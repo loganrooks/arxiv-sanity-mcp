@@ -1,0 +1,5 @@
+# Track only .planning/ for GSD project management
+*
+!.gitignore
+!.planning/
+!.planning/**
