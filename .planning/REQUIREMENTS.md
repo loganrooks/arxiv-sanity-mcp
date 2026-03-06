@@ -11,8 +11,8 @@
 **Goal:** Comprehensive understanding of the actual system state, not assumptions from prior sessions.
 
 - [x] **AUD-01**: Storage audit — all partitions, all directories >1GB, with usage breakdown. Includes the uninvestigated ~/.cache (67GB), .local, .vscode, miniconda3, and any other large consumers.
-- [ ] **AUD-02**: Process and service inventory — all running processes, listening ports, systemd services (system and user), Docker containers, cron jobs. Identify orphans, conflicts, and resource waste.
-- [ ] **AUD-03**: Security posture assessment — all network bindings (0.0.0.0 vs localhost vs Tailscale), credential storage locations, file permissions on sensitive files, firewall rules, SSH configuration.
+- [x] **AUD-02**: Process and service inventory — all running processes, listening ports, systemd services (system and user), Docker containers, cron jobs. Identify orphans, conflicts, and resource waste.
+- [x] **AUD-03**: Security posture assessment — all network bindings (0.0.0.0 vs localhost vs Tailscale), credential storage locations, file permissions on sensitive files, firewall rules, SSH configuration.
 - [x] **AUD-04**: GPU and CUDA assessment — driver version, CUDA toolkit state, installed ML frameworks, what's currently using the GPU, whether CUDA 11.8 is limiting.
 - [ ] **AUD-05**: Project ecosystem state — for each project in ~/workspace/projects/, assess: git status, last commit date, active dependencies, running services, disk footprint.
 - [ ] **AUD-06**: Network and access assessment — Tailscale status, SyncThing state (connected peers, sync status, folder health), SSH configuration, existing tmux/screen sessions.

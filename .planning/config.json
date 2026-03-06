@@ -9,5 +9,11 @@
   "milestone_name": "Platform Genesis",
   "phases_total": 7,
   "current_phase": 0,
-  "needs_sudo_phases": [3, 4]
+  "needs_sudo_phases": [
+    3,
+    4
+  ],
+  "workflow": {
+    "_auto_chain_active": false
+  }
 }

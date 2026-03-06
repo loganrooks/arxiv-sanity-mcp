@@ -26,7 +26,7 @@ Phase 1 (Audit) → Phase 2 (Research) → Phase 3 (Stabilize) → Phase 4 (Foun
 Plans:
 - [x] 01-01-PLAN.md — Storage audit + GPU/CUDA assessment
 - [x] 01-02-PLAN.md — Process/service inventory + Security posture assessment
-- [ ] 01-03-PLAN.md — Project ecosystem + Network/access + Toolchain inventory
+- [x] 01-03-PLAN.md — Project ecosystem + Network/access + Toolchain inventory
 - [ ] 01-04-PLAN.md — Consolidated system map (synthesizes all domain audits)
 
 **Delivers:**
