@@ -1,45 +1,56 @@
-# Project State: Dionysus Platform
+# Project State: Dionysus Research Platform
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-28)
+See: .planning/PROJECT.md (updated 2026-03-05)
 
-**Core value:** A hardened workstation where scholarly tools can be developed, deployed, and accessed from any device — without experimentation creating chaos.
-**Current focus:** Project initialized — ready for Phase 1 planning
+**Core value:** Three-node experimental research platform for scholarly tool development, experimentation, and AI-assisted research workflows.
+**Current focus:** Project re-initialized with iterative spiral methodology — ready for Phase 1.
 
 ## Current Phase
 
 **Phase:** Not yet started
-**Next action:** `/gsd:plan-phase 1` — Emergency Security Hardening
+**Next action:** `/gsd:plan-phase 1` — Deep System Audit
 
 ## Milestone Progress
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | Emergency Security Hardening | Not started |
-| 2 | Process Cleanup + Space Recovery | Not started |
-| 3 | Development Environment Modernization | Not started |
-| 4 | Service Infrastructure | Not started |
-| 5 | Data Architecture + Pipeline Orchestration | Not started |
-| 6 | Network Exposure + Multi-Device Integration | Not started |
-| 7 | Obsidian Integration + Knowledge Layer | Not started |
+| 1 | Deep System Audit | Not started |
+| 2 | Tool & Strategy Research | Not started |
+| 3 | Critical Stabilization | Not started |
+| 4 | Platform Foundation | Not started |
+| 5 | Workflow & Architecture Research | Not started |
+| 6 | Experimentation Infrastructure | Not started |
+| 7 | First Scholarly Workflow | Not started |
 
 ## Key Decisions Log
 
 | Decision | Phase | Rationale |
 |----------|-------|-----------|
-| Remove Tor Browser | P2 | User confirmed — install lightweight tor if needed |
-| Delete conda envs (acadlib-dev, analysis, university) | P2 | User confirmed orphaned |
-| Obsidian Sync vs SyncThing | P7 | Deferred — decide during Phase 7 |
-| systemd + Docker hybrid | P4 | Research consensus — systemd for Python/TS, Docker for isolation only |
-| GNU Stow for dotfiles | P3 | Research consensus — simplest option for single-machine + Mac |
-| `just` for pipeline orchestration | P5 | Research consensus — lighter than Celery/Prefect, more structured than shell |
+| Agentic vision drives infrastructure | Init | Cleanup/hardening serves the agentic future, not the reverse |
+| Iterative spiral methodology | Init | Diagnose → research → implement cycles; later phases shaped by earlier findings |
+| Platform scope (not individual tools) | Init | This project builds the stage; individual tools are separate projects |
+| Keep Opus for research agents | Init | Claude Max provides generous Opus access |
+| Hermeneutic workspace as starting point | Init | Good foundation but needs evolution — specifics deferred to Phase 5 |
+| OpenClaw likely skip | Init | Security concerns outweigh utility; Claude headless + cron may suffice — confirmed in Phase 2 |
+| Obsidian Sync (to add) | Init | Required for three-device vault mesh; $4-8/month |
 
 ## Session Context
 
-**Last session:** 2026-02-28
-**Last action:** Project initialization complete (PROJECT.md, REQUIREMENTS.md, ROADMAP.md, research)
-**Blockers:** Phases 1, 2, 4, 6 need sudo (use Codex CLI or manual)
+**Last session:** 2026-03-05
+**Last action:** Project re-initialization with expanded scope (diagnosis + research + agentic architecture)
+**Blockers:** Phases 3, 4 need sudo (use Codex CLI)
+**Subscriptions:** Claude Max, ChatGPT Pro, Gemini access
+
+## Existing Research Assets
+
+| Document | Status | Notes |
+|----------|--------|-------|
+| `.planning/research/synthesis.md` | Theoretical | Tool landscape — needs system verification in Phase 2 |
+| `.planning/research/critical-audit.md` | Theoretical | Verification criteria to test in Phases 1-2 |
+| Previous REQUIREMENTS.md | Superseded | Some requirements carried forward; others refined |
+| Previous ROADMAP.md | Superseded | Linear 7-phase replaced by iterative spiral |
 
 ---
-*State initialized: 2026-02-28*
+*State initialized: 2026-03-05*

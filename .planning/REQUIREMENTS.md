@@ -1,170 +1,173 @@
-# Requirements: Dionysus Platform
+# Requirements: Dionysus Research Platform
 
-**Defined:** 2026-02-28
-**Core Value:** A hardened workstation where scholarly tools can be developed, deployed, and accessed from any device — without experimentation creating chaos.
+**Defined:** 2026-03-05
+**Supersedes:** Previous requirements (2026-02-28)
+**Methodology:** Iterative spiral — early requirements are diagnostic and research-oriented; implementation requirements are informed by findings and refined as phases complete.
 
-## v1 Requirements
+---
 
-Requirements for initial release. Each maps to roadmap phases.
+## Phase 1: Deep System Audit
 
-### Security
+**Goal:** Comprehensive understanding of the actual system state, not assumptions from prior sessions.
 
+- [ ] **AUD-01**: Storage audit — all partitions, all directories >1GB, with usage breakdown. Includes the uninvestigated ~/.cache (67GB), .local, .vscode, miniconda3, and any other large consumers.
+- [ ] **AUD-02**: Process and service inventory — all running processes, listening ports, systemd services (system and user), Docker containers, cron jobs. Identify orphans, conflicts, and resource waste.
+- [ ] **AUD-03**: Security posture assessment — all network bindings (0.0.0.0 vs localhost vs Tailscale), credential storage locations, file permissions on sensitive files, firewall rules, SSH configuration.
+- [ ] **AUD-04**: GPU and CUDA assessment — driver version, CUDA toolkit state, installed ML frameworks, what's currently using the GPU, whether CUDA 11.8 is limiting.
+- [ ] **AUD-05**: Project ecosystem state — for each project in ~/workspace/projects/, assess: git status, last commit date, active dependencies, running services, disk footprint.
+- [ ] **AUD-06**: Network and access assessment — Tailscale status, SyncThing state (connected peers, sync status, folder health), SSH configuration, existing tmux/screen sessions.
+- [ ] **AUD-07**: Installed toolchain inventory — Node.js version(s), Python version(s) and environments, package managers (npm, pip, uv, conda), their caches and overlap.
+- [ ] **AUD-08**: Produce consolidated system map document at `.planning/research/system-audit.md`
+
+**Deliverable:** A living system map that becomes the ground truth for all subsequent phases.
+
+---
+
+## Phase 2: Tool & Strategy Research
+
+**Goal:** Hands-on evaluation of key tools and approaches against the actual system. Verify and challenge the synthesis research claims.
+
+- [ ] **RSC-01**: Test Claude Code Remote Control — verify it works on this system (headless Ubuntu 24.04, tmux, Tailscale chain). Document setup steps, failure modes, reconnection behavior.
+- [ ] **RSC-02**: Evaluate Obsidian Headless — install, test sync, measure resource usage. Verify the `OBSIDIAN_AUTH_TOKEN` D-Bus bypass. Test with a minimal vault before committing.
+- [ ] **RSC-03**: Evaluate mosh — install, test from Apollo and Orpheus equivalents, compare to raw SSH for session resilience.
+- [ ] **RSC-04**: Research agent parallelization patterns — fetch and analyze Boris Cherny's workflow (parallel Claude instances, subagent patterns, verification loops). Assess what's applicable to our setup.
+- [ ] **RSC-05**: Research domain-expertise-in-context-files pattern — fetch and analyze Zack Shapiro and Nav Toor threads. Extract applicable patterns for scholarly CLAUDE.md and context files.
+- [ ] **RSC-06**: Evaluate OpenClaw — assess security posture (audit findings: 341 malicious skills, CVE, plaintext credentials) vs. utility. Determine if Claude Code headless + cron/systemd fully replaces its use cases.
+- [ ] **RSC-07**: Survey scholarly workflow implementations — examine claude-scholar (40+ skills), pedrohcgs/claude-code-my-workflow, and other reference implementations. Extract reusable patterns.
+- [ ] **RSC-08**: Evaluate multi-model orchestration — when Claude vs Codex CLI vs Gemini? What tasks suit which model? Document decision framework.
+- [ ] **RSC-09**: Research experiment tracking approaches — MLflow, Weights & Biases, simple filesystem-based tracking. What's appropriate at our scale?
+- [ ] **RSC-10**: Produce research findings document at `.planning/research/tool-evaluation.md` with recommendations that inform Phases 3-4.
+
+**Deliverable:** Verified, system-tested recommendations for the tool stack — not theoretical preferences but confirmed-working approaches.
+
+---
+
+## Phase 3: Critical Stabilization
+
+**Goal:** Fix everything that's actively dangerous or broken. Informed by Phase 1 audit findings.
+
+### Security (blocking — must complete before deploying agents)
 - [ ] **SEC-01**: All network services bound to 127.0.0.1 or Tailscale IP only (no 0.0.0.0 bindings)
-- [ ] **SEC-02**: VNC secured with password and bound to localhost (accessed via SSH tunnel or Tailscale)
-- [ ] **SEC-03**: nginx default site removed (no service uses it)
-- [ ] **SEC-04**: Git credential.helper=store removed; plaintext .git-credentials deleted; gh auth is sole credential source
-- [ ] **SEC-05**: SyncThing GUI bound to 127.0.0.1:8384 (not 0.0.0.0)
+- [ ] **SEC-02**: VNC secured (password + localhost bind) or removed if unused
+- [ ] **SEC-03**: Nginx default site removed
+- [ ] **SEC-04**: Git credential.helper=store removed; plaintext .git-credentials deleted; gh auth as sole credential source
+- [ ] **SEC-05**: SyncThing GUI bound to 127.0.0.1:8384
 - [ ] **SEC-06**: Sensitive files (.env, SSH keys) verified at 600 permissions
+- [ ] **SEC-07**: UFW rules reviewed and tightened per audit findings
 
-### Cleanup
+### System Health
+- [ ] **CLN-01**: ~/.cache investigated and cleaned (67GB — identify what's safe to remove)
+- [ ] **CLN-02**: Broken HWE kernel packages (6.17.0-14) resolved
+- [ ] **CLN-03**: Docker data-root migrated to /data/docker/ (off root partition)
+- [ ] **CLN-04**: Orphaned conda environments removed (audit-verified list)
+- [ ] **CLN-05**: Stale caches cleaned (pip, uv, npm — audit-verified sizes)
+- [ ] **CLN-06**: /home utilization reduced to ~65% or below
+- [ ] **CLN-07**: Orphaned processes killed and prevention mechanism installed
 
-- [ ] **CLN-01**: Orphaned MCP processes killed and cron-based cleanup installed (every 30 min)
-- [ ] **CLN-02**: Orphaned conda environments removed (acadlib-dev, analysis, university — ~17GB)
-- [ ] **CLN-03**: Unreferenced HuggingFace models removed (~13.5GB, user-verified list)
-- [ ] **CLN-04**: pip cache purged (~5.5GB)
-- [ ] **CLN-05**: Tor Browser removed (~16GB)
-- [ ] **CLN-06**: Stale dotfiles/dirs removed (.acadlib, .gphoto, .philosophy_tools, .streamlit, backup files)
-- [ ] **CLN-07**: Broken HWE kernel packages (6.17.0-14) resolved
-- [ ] **CLN-08**: .bashrc cleaned (dead aliases, duplicate PATHs, stale references)
-- [ ] **CLN-09**: /home utilization reduced from 82% to ~65% or below
+**Requires sudo** — use Codex CLI or manual intervention.
+
+---
+
+## Phase 4: Platform Foundation
+
+**Goal:** Multi-device access, knowledge base, and development environment — the stable base on which everything else runs.
+
+### Multi-Device Access
+- [ ] **ACC-01**: mosh installed and configured (if Phase 2 evaluation is positive)
+- [ ] **ACC-02**: tmux configured with session persistence, plugins (resurrect, continuum)
+- [ ] **ACC-03**: SSH config with Tailscale host aliases, ControlMaster multiplexing, keepalives
+- [ ] **ACC-04**: Remote Control verified end-to-end: Dionysus → tmux → Claude Code → phone/browser
+- [ ] **ACC-05**: Session persistence verified: disconnect from Apollo, reconnect from Orpheus, resume work
+
+### Knowledge Base
+- [ ] **KNW-01**: Obsidian vault architecture designed (folder structure, naming conventions, frontmatter schema)
+- [ ] **KNW-02**: Obsidian Headless running as systemd user service with `loginctl enable-linger`
+- [ ] **KNW-03**: Obsidian Sync configured for three-device mesh (Dionysus, Apollo, Orpheus)
+- [ ] **KNW-04**: obsidian-mcp server connected to Claude Code (read, write, search vault)
+- [ ] **KNW-05**: Vault-root CLAUDE.md written with philosophical framework, citation conventions, domain terminology
 
 ### Development Environment
+- [ ] **DEV-01**: Node.js upgraded to v22 LTS; all MCP servers and TS projects verified
+- [ ] **DEV-02**: Python environment strategy implemented (uv primary, conda for GPU-only)
+- [ ] **DEV-03**: Dotfiles tracked in git repo with GNU Stow
+- [ ] **DEV-04**: loginctl linger enabled; systemd user service directory prepared
 
-- [ ] **DEV-01**: Node.js upgraded to v22 LTS via NodeSource
-- [ ] **DEV-02**: All MCP servers and TypeScript projects verified working on Node 22
-- [ ] **DEV-03**: uv established as primary Python package manager; pip cache cleared; conda reserved for GPU/system-dep envs only
-- [ ] **DEV-04**: Dotfiles tracked in git repo with GNU Stow (.bashrc, .gitconfig, .tmux.conf, .ssh/config, .claude/CLAUDE.md)
-- [ ] **DEV-05**: SSH config created with Tailscale host aliases, ControlMaster multiplexing, keepalives
-- [ ] **DEV-06**: tmux plugins installed (TPM, resurrect, continuum) with auto-attach on SSH login
-- [ ] **DEV-07**: Session persistence works: disconnect SSH, reconnect from different device, resume tmux session
+**Requires sudo** for some items — use Codex CLI.
 
-### Service Infrastructure
+---
 
-- [ ] **SVC-01**: loginctl linger enabled for rookslog (user services persist beyond SSH)
-- [ ] **SVC-02**: systemd user service directory structure created (~/.config/systemd/user/)
-- [ ] **SVC-03**: At least one existing tool migrated to systemd user service (validates pattern)
-- [ ] **SVC-04**: Docker Compose file consolidating PaddleOCR + PostgreSQL + Redis
-- [ ] **SVC-05**: Docker data-root migrated to /data/docker/ (off root partition)
-- [ ] **SVC-06**: Project template/scaffold exists for deploying new tools as services
-- [ ] **SVC-07**: Port registry and environment config at ~/.config/dionysus/
+## Phase 5: Workflow & Architecture Research
 
-### Data Architecture
+**Goal:** With a stable platform, research how to build scholarly workflows. Evaluate existing approaches, design the first end-to-end workflow.
 
-- [ ] **DAT-01**: Canonical scholarly data directory at /data/scholarly/ with raw/, processed/, embeddings/, knowledge/, vault/ subdirs
-- [ ] **DAT-02**: HuggingFace model cache relocated to /data/models/ (symlinked from ~/.cache/huggingface)
-- [ ] **DAT-03**: Existing scattered data consolidated into new structure
-- [ ] **DAT-04**: `just` installed with pipeline justfile at ~/scripts/pipelines/
-- [ ] **DAT-05**: First automated pipeline working: audio file → transcription → structured output
-- [ ] **DAT-06**: systemd path unit triggers pipeline on new file arrival in inbox directory
-- [ ] **DAT-07**: metadata.json convention established for all generated outputs
+*Requirements for this phase will be defined after Phases 1-4 complete, informed by findings.*
 
-### Multi-Device
+Provisional scope:
+- [ ] **WRK-01**: Evaluate hermeneutic workspace architecture against current needs — what to keep, what to evolve
+- [ ] **WRK-02**: Design first end-to-end scholarly workflow (likely close reading or lecture processing)
+- [ ] **WRK-03**: Research agent architecture for scholarly tasks (specialized readers, connection finders, etc.)
+- [ ] **WRK-04**: Design experiment framework for retrieval/embedding comparisons
+- [ ] **WRK-05**: Evaluate CLAUDE.md and skills patterns from claude-scholar and other reference implementations
 
-- [ ] **MDV-01**: SyncThing cleaned up (default folder removed, academic-active/courses overlap fixed, cleanoutDays NaN fixed)
-- [ ] **MDV-02**: SyncThing inbox folder created for phone-to-server file relay
-- [ ] **MDV-03**: Tailscale Serve configured for key services (HTTPS on *.ts.net)
-- [ ] **MDV-04**: End-to-end test: record audio on phone → arrives on Dionysus → transcription runs
-- [ ] **MDV-05**: Apollo-side SyncThing verified and inbox relay configured
+---
 
-### Knowledge Layer
+## Phase 6: Experimentation Infrastructure
 
-- [ ] **KNW-01**: Obsidian vault created at /data/scholarly/vault/ with standard structure
-- [ ] **KNW-02**: Vault syncs to Apollo (method TBD: Obsidian Sync or SyncThing)
-- [ ] **KNW-03**: Pipeline-generated outputs appear as notes in vault (generate-vault-note tooling)
-- [ ] **KNW-04**: Embedding experimentation framework: `just embed` creates isolated experiment, `just embed-promote` moves to production
-- [ ] **KNW-05**: Essential Obsidian plugins installed (Dataview, Templater, Pandoc export)
+**Goal:** Set up the environment for running experiments — GPU tooling, model management, experiment tracking, notebook/script infrastructure.
 
-## v2 Requirements
+*Requirements will be defined after Phase 5 research.*
 
-Deferred to future release. Tracked but not in current roadmap.
+Provisional scope:
+- [ ] **EXP-01**: GPU tooling verified and documented (CUDA, PyTorch, frameworks)
+- [ ] **EXP-02**: Model management — /data/models/ with HuggingFace symlink, cache policy
+- [ ] **EXP-03**: Experiment tracking system deployed (method TBD from Phase 2 research)
+- [ ] **EXP-04**: Notebook/script infrastructure for running experiments
+- [ ] **EXP-05**: Environment isolation for experiments (separate from production tools)
 
-### Canvas Integration
+---
 
-- **CAN-01**: Canvas API feasibility study completed
-- **CAN-02**: Course materials auto-sync from Canvas to data directory
-- **CAN-03**: Assignment deadlines integrated with note-taking workflow
+## Phase 7: First Scholarly Workflow
 
-### Advanced Pipelines
+**Goal:** Implement one end-to-end workflow, use it for real work, evaluate, iterate.
 
-- **PIP-01**: Lecture recording → multi-format output (transcript, summary, connected readings, questions)
-- **PIP-02**: Handwritten note scanning → OCR → structured integration
-- **PIP-03**: Reading group workflow automation (reading paths, session notes, passage tracking)
-- **PIP-04**: Writing project agents (automated close readings, thesis exploration, resource gathering)
+*Requirements will be defined after Phase 5-6.*
 
-### GPU Management
+Provisional scope:
+- [ ] **FLW-01**: One complete workflow implemented and tested
+- [ ] **FLW-02**: Workflow used on a real task (reading group prep, film talk, lecture processing)
+- [ ] **FLW-03**: Evaluation document produced — what worked, what didn't, what to change
+- [ ] **FLW-04**: Roadmap for Milestone 2 informed by evaluation
 
-- **GPU-01**: Queue-based GPU scheduling for concurrent ML workloads
-- **GPU-02**: Resource monitoring and allocation visibility
+---
 
-## Out of Scope
+## Out of Scope (This Milestone)
 
 | Feature | Reason |
 |---------|--------|
-| Building individual scholarly tools | Separate GSD projects (scholardoc, lecture processor, etc.) |
-| Kubernetes / container orchestration | Single-user, single-machine — systemd is sufficient |
-| Grafana / Prometheus monitoring | Overkill for personal workstation; journald + scripts suffice |
+| Building individual scholarly tools | Separate projects (scholardoc, etc.) |
+| Kubernetes / container orchestration | Single-user, single-machine |
+| Full monitoring stack (Grafana/Prometheus) | Overkill; journald + scripts suffice |
 | CI/CD pipelines | No deployment targets beyond local machine |
-| Ansible / configuration management | Single machine; dotfiles + scripts cover this |
-| Migrating away from Tailscale | Works well, no reason to change |
-| Apollo-side software beyond SSH/SyncThing/Obsidian | Keep Mac minimal, Dionysus is the brain |
-| Bare-metal disaster recovery automation | Dotfiles repo + git + documented setup covers 90% |
+| Cloud infrastructure | Deferred to future milestone |
+| Advanced pipeline automation | Depends on workflow research (Phase 5) |
+| Canvas API integration | Deferred to Milestone 2 |
+
+---
 
 ## Traceability
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| SEC-01 | Phase 1 | Pending |
-| SEC-02 | Phase 1 | Pending |
-| SEC-03 | Phase 1 | Pending |
-| SEC-04 | Phase 1 | Pending |
-| SEC-05 | Phase 1 | Pending |
-| SEC-06 | Phase 1 | Pending |
-| CLN-01 | Phase 2 | Pending |
-| CLN-02 | Phase 2 | Pending |
-| CLN-03 | Phase 2 | Pending |
-| CLN-04 | Phase 2 | Pending |
-| CLN-05 | Phase 2 | Pending |
-| CLN-06 | Phase 2 | Pending |
-| CLN-07 | Phase 2 | Pending |
-| CLN-08 | Phase 2 | Pending |
-| CLN-09 | Phase 2 | Pending |
-| DEV-01 | Phase 3 | Pending |
-| DEV-02 | Phase 3 | Pending |
-| DEV-03 | Phase 3 | Pending |
-| DEV-04 | Phase 3 | Pending |
-| DEV-05 | Phase 3 | Pending |
-| DEV-06 | Phase 3 | Pending |
-| DEV-07 | Phase 3 | Pending |
-| SVC-01 | Phase 4 | Pending |
-| SVC-02 | Phase 4 | Pending |
-| SVC-03 | Phase 4 | Pending |
-| SVC-04 | Phase 4 | Pending |
-| SVC-05 | Phase 4 | Pending |
-| SVC-06 | Phase 4 | Pending |
-| SVC-07 | Phase 4 | Pending |
-| DAT-01 | Phase 5 | Pending |
-| DAT-02 | Phase 5 | Pending |
-| DAT-03 | Phase 5 | Pending |
-| DAT-04 | Phase 5 | Pending |
-| DAT-05 | Phase 5 | Pending |
-| DAT-06 | Phase 5 | Pending |
-| DAT-07 | Phase 5 | Pending |
-| MDV-01 | Phase 6 | Pending |
-| MDV-02 | Phase 6 | Pending |
-| MDV-03 | Phase 6 | Pending |
-| MDV-04 | Phase 6 | Pending |
-| MDV-05 | Phase 6 | Pending |
-| KNW-01 | Phase 7 | Pending |
-| KNW-02 | Phase 7 | Pending |
-| KNW-03 | Phase 7 | Pending |
-| KNW-04 | Phase 7 | Pending |
-| KNW-05 | Phase 7 | Pending |
+| Phase | Requirements | Focus |
+|-------|-------------|-------|
+| 1 | AUD-01 through AUD-08 | Diagnosis |
+| 2 | RSC-01 through RSC-10 | Research |
+| 3 | SEC-01–07, CLN-01–07 | Stabilization |
+| 4 | ACC-01–05, KNW-01–05, DEV-01–04 | Foundation |
+| 5 | WRK-01–05 (provisional) | Research |
+| 6 | EXP-01–05 (provisional) | Experimentation |
+| 7 | FLW-01–04 (provisional) | Implementation + Evaluation |
 
-**Coverage:**
-- v1 requirements: 45 total
-- Mapped to phases: 45
-- Unmapped: 0
+**Coverage:** 48 requirements (34 defined, 14 provisional)
 
 ---
-*Requirements defined: 2026-02-28*
-*Last updated: 2026-02-28 after initial definition*
+*Requirements defined: 2026-03-05*
+*Methodology note: Phases 5-7 requirements are provisional and will be refined after earlier phases complete.*
