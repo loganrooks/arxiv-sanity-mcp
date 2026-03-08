@@ -37,6 +37,13 @@ Ingest arXiv metadata, build canonical paper model with correct time semantics, 
 - Rich results: title, authors, abstract snippet, all categories, all four dates (submission, update, announcement, OAI datestamp), version info, license
 - Full paper detail available via separate get_paper equivalent
 
+### Processing intensity anticipation
+- Phase 1 schema must anticipate multi-tier processing: include `processing_tier` column, `promotion_reason` provenance field
+- Ingest all new papers at Tier 0-1 (metadata + FTS) — no discrimination at ingestion time
+- Promotion to higher tiers (enrichment, embedding, content) is a Phase 3-4 concern, but the data model supports it from day one
+- Budget-constrained exploration and undervalued-paper discovery are experiment-worthy design questions (see docs/08 Experiments 5-6 and docs/10 Questions 16-18)
+- Retrospective demotion: soft-demote only expensive artifacts, never delete metadata
+
 ### Claude's Discretion
 - Harvesting strategy: CLI command vs background job, resume-on-failure approach
 - Influence proxy implementation details (citation count tiers, decay function)
