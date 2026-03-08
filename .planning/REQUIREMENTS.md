@@ -61,7 +61,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **ENRC-01**: System enriches papers lazily via OpenAlex (topics, citations, related works, FWCI)
 - [ ] **ENRC-02**: OpenAlex enrichment is triggered on demand, not bulk (cost-aware)
-- [ ] **ENRC-03**: System resolves external IDs: arXiv ID ↔ DOI ↔ OpenAlex ID
+- [ ] **ENRC-03**: System resolves external IDs: arXiv ID <-> DOI <-> OpenAlex ID
 - [ ] **ENRC-04**: Enrichment data records provenance (source, timestamp, API version)
 
 ### Content
@@ -69,7 +69,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **CONT-01**: System provides abstract as default content variant (no rights issues)
 - [ ] **CONT-02**: System models content variants explicitly: abstract, HTML, source-derived, PDF-derived markdown
 - [ ] **CONT-03**: Content variants record provenance: source, extraction method, conversion path, license basis
-- [ ] **CONT-04**: Content variant acquisition follows source-aware priority: abstract → arXiv HTML → source → PDF
+- [ ] **CONT-04**: Content variant acquisition follows source-aware priority: abstract -> arXiv HTML -> source -> PDF
 - [ ] **CONT-05**: System supports multiple parsing backends behind a common interface (Docling, Marker, GROBID)
 - [ ] **CONT-06**: Content serving respects per-paper license restrictions (gated by rights metadata)
 
@@ -125,61 +125,61 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INGS-01 | — | Pending |
-| INGS-02 | — | Pending |
-| INGS-03 | — | Pending |
-| INGS-04 | — | Pending |
-| INGS-05 | — | Pending |
-| PAPR-01 | — | Pending |
-| PAPR-02 | — | Pending |
-| PAPR-03 | — | Pending |
-| PAPR-04 | — | Pending |
-| SRCH-01 | — | Pending |
-| SRCH-02 | — | Pending |
-| SRCH-03 | — | Pending |
-| SRCH-04 | — | Pending |
-| SRCH-05 | — | Pending |
-| SRCH-06 | — | Pending |
-| WKFL-01 | — | Pending |
-| WKFL-02 | — | Pending |
-| WKFL-03 | — | Pending |
-| WKFL-04 | — | Pending |
-| WKFL-05 | — | Pending |
-| WKFL-06 | — | Pending |
-| WKFL-07 | — | Pending |
-| WKFL-08 | — | Pending |
-| INTR-01 | — | Pending |
-| INTR-02 | — | Pending |
-| INTR-03 | — | Pending |
-| INTR-04 | — | Pending |
-| INTR-05 | — | Pending |
-| INTR-06 | — | Pending |
-| RANK-01 | — | Pending |
-| RANK-02 | — | Pending |
-| RANK-03 | — | Pending |
-| ENRC-01 | — | Pending |
-| ENRC-02 | — | Pending |
-| ENRC-03 | — | Pending |
-| ENRC-04 | — | Pending |
-| CONT-01 | — | Pending |
-| CONT-02 | — | Pending |
-| CONT-03 | — | Pending |
-| CONT-04 | — | Pending |
-| CONT-05 | — | Pending |
-| CONT-06 | — | Pending |
-| MCP-01 | — | Pending |
-| MCP-02 | — | Pending |
-| MCP-03 | — | Pending |
-| MCP-04 | — | Pending |
-| MCP-05 | — | Pending |
-| MCP-06 | — | Pending |
-| MCP-07 | — | Pending |
+| INGS-01 | Phase 1 | Pending |
+| INGS-02 | Phase 1 | Pending |
+| INGS-03 | Phase 1 | Pending |
+| INGS-04 | Phase 1 | Pending |
+| INGS-05 | Phase 1 | Pending |
+| PAPR-01 | Phase 1 | Pending |
+| PAPR-02 | Phase 1 | Pending |
+| PAPR-03 | Phase 1 | Pending |
+| PAPR-04 | Phase 1 | Pending |
+| SRCH-01 | Phase 1 | Pending |
+| SRCH-02 | Phase 1 | Pending |
+| SRCH-03 | Phase 1 | Pending |
+| SRCH-04 | Phase 1 | Pending |
+| SRCH-05 | Phase 1 | Pending |
+| SRCH-06 | Phase 1 | Pending |
+| WKFL-01 | Phase 2 | Pending |
+| WKFL-02 | Phase 2 | Pending |
+| WKFL-03 | Phase 2 | Pending |
+| WKFL-04 | Phase 2 | Pending |
+| WKFL-05 | Phase 2 | Pending |
+| WKFL-06 | Phase 2 | Pending |
+| WKFL-07 | Phase 2 | Pending |
+| WKFL-08 | Phase 2 | Pending |
+| INTR-01 | Phase 3 | Pending |
+| INTR-02 | Phase 3 | Pending |
+| INTR-03 | Phase 3 | Pending |
+| INTR-04 | Phase 3 | Pending |
+| INTR-05 | Phase 3 | Pending |
+| INTR-06 | Phase 3 | Pending |
+| RANK-01 | Phase 3 | Pending |
+| RANK-02 | Phase 3 | Pending |
+| RANK-03 | Phase 3 | Pending |
+| ENRC-01 | Phase 4 | Pending |
+| ENRC-02 | Phase 4 | Pending |
+| ENRC-03 | Phase 4 | Pending |
+| ENRC-04 | Phase 4 | Pending |
+| CONT-01 | Phase 5 | Pending |
+| CONT-02 | Phase 5 | Pending |
+| CONT-03 | Phase 5 | Pending |
+| CONT-04 | Phase 5 | Pending |
+| CONT-05 | Phase 5 | Pending |
+| CONT-06 | Phase 5 | Pending |
+| MCP-01 | Phase 6 | Pending |
+| MCP-02 | Phase 6 | Pending |
+| MCP-03 | Phase 6 | Pending |
+| MCP-04 | Phase 6 | Pending |
+| MCP-05 | Phase 6 | Pending |
+| MCP-06 | Phase 6 | Pending |
+| MCP-07 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 47 total
-- Mapped to phases: 0
-- Unmapped: 47 ⚠️
+- Mapped to phases: 47
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-08*
-*Last updated: 2026-03-08 after initial definition*
+*Last updated: 2026-03-08 after roadmap creation*
