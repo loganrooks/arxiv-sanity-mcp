@@ -37,9 +37,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **WKFL-02**: User can add papers to and remove papers from collections
 - [x] **WKFL-03**: User can mark paper triage state (unseen, shortlisted, dismissed, read, cite-later)
 - [x] **WKFL-04**: User can create saved queries with parameters, ranking mode, and filters
-- [ ] **WKFL-05**: User can re-run saved queries on demand
+- [x] **WKFL-05**: User can re-run saved queries on demand
 - [x] **WKFL-06**: User can create watches (saved query + cadence + checkpoint)
-- [ ] **WKFL-07**: User can get delta results since last checkpoint ("what's new since I last checked")
+- [x] **WKFL-07**: User can get delta results since last checkpoint ("what's new since I last checked")
 - [x] **WKFL-08**: User can batch-triage multiple papers in a single operation
 
 ### Interest Modeling
@@ -144,9 +144,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | WKFL-02 | Phase 2 | Complete |
 | WKFL-03 | Phase 2 | Complete |
 | WKFL-04 | Phase 2 | Complete |
-| WKFL-05 | Phase 2 | Pending |
+| WKFL-05 | Phase 2 | Complete |
 | WKFL-06 | Phase 2 | Complete |
-| WKFL-07 | Phase 2 | Pending |
+| WKFL-07 | Phase 2 | Complete |
 | WKFL-08 | Phase 2 | Complete |
 | INTR-01 | Phase 3 | Pending |
 | INTR-02 | Phase 3 | Pending |
