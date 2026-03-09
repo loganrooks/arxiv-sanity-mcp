@@ -1,7 +1,10 @@
 """SQLAlchemy ORM models for arxiv-mcp.
 
-Paper model and supporting types are defined here. The Base
-declarative class is imported by alembic/env.py for autogenerate.
+Paper model, workflow models, and supporting types are defined here.
+The Base declarative class is imported by alembic/env.py for autogenerate.
+
+All ORM models share a single Base to keep relationship references
+in one module. Use string-based forward references in relationship().
 """
 
 from __future__ import annotations
@@ -9,9 +12,20 @@ from __future__ import annotations
 import enum
 from datetime import date, datetime
 
-from sqlalchemy import ARRAY, Date, DateTime, Index, Integer, String, Text
+from sqlalchemy import (
+    ARRAY,
+    Boolean,
+    CheckConstraint,
+    Date,
+    DateTime,
+    ForeignKey,
+    Index,
+    Integer,
+    String,
+    Text,
+)
 from sqlalchemy.dialects.postgresql import JSONB, TSVECTOR
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase):
@@ -106,3 +120,157 @@ class Paper(Base):
 
     def __repr__(self) -> str:
         return f"<Paper(arxiv_id={self.arxiv_id!r}, title={self.title!r:.50})>"
+
+
+# --- Workflow models (Phase 2) ---
+
+
+class Collection(Base):
+    """Named paper collection for organizing research workflow.
+
+    Flat collections (no hierarchy). Papers belong via CollectionPaper
+    association object. Slugs are auto-generated from names.
+    """
+
+    __tablename__ = "collections"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    slug: Mapped[str] = mapped_column(String(128), unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(256), nullable=False)
+    is_archived: Mapped[bool] = mapped_column(Boolean, default=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+    # Relationships
+    paper_associations: Mapped[list[CollectionPaper]] = relationship(
+        "CollectionPaper", back_populates="collection", cascade="all, delete-orphan"
+    )
+
+    def __repr__(self) -> str:
+        return f"<Collection(slug={self.slug!r}, name={self.name!r})>"
+
+
+class CollectionPaper(Base):
+    """Association object for collection-paper membership with provenance.
+
+    Stores extra columns (source, added_at) beyond a simple many-to-many.
+    Source tracks how the paper was added: manual, saved_query, or agent.
+    """
+
+    __tablename__ = "collection_papers"
+
+    collection_id: Mapped[int] = mapped_column(
+        ForeignKey("collections.id", ondelete="CASCADE"), primary_key=True
+    )
+    paper_id: Mapped[str] = mapped_column(
+        ForeignKey("papers.arxiv_id", ondelete="CASCADE"), primary_key=True
+    )
+    source: Mapped[str] = mapped_column(String(32), default="manual")
+    added_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+    # Relationships
+    collection: Mapped[Collection] = relationship(
+        "Collection", back_populates="paper_associations"
+    )
+    paper: Mapped[Paper] = relationship("Paper")
+
+    __table_args__ = (
+        Index("idx_collection_papers_paper_id", "paper_id"),
+    )
+
+    def __repr__(self) -> str:
+        return (
+            f"<CollectionPaper(collection_id={self.collection_id}, "
+            f"paper_id={self.paper_id!r}, source={self.source!r})>"
+        )
+
+
+class TriageState(Base):
+    """Per-paper triage state (global, not per-collection).
+
+    Only non-default states are stored. Absence of a row means 'unseen'.
+    Valid states: shortlisted, dismissed, read, cite-later, archived.
+    """
+
+    __tablename__ = "triage_states"
+
+    paper_id: Mapped[str] = mapped_column(
+        ForeignKey("papers.arxiv_id", ondelete="CASCADE"), primary_key=True
+    )
+    state: Mapped[str] = mapped_column(String(20), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+    __table_args__ = (
+        CheckConstraint(
+            "state IN ('shortlisted', 'dismissed', 'read', 'cite-later', 'archived')",
+            name="ck_triage_state_valid",
+        ),
+        Index("idx_triage_states_state", "state"),
+    )
+
+    def __repr__(self) -> str:
+        return f"<TriageState(paper_id={self.paper_id!r}, state={self.state!r})>"
+
+
+class TriageLog(Base):
+    """Audit trail for triage state transitions.
+
+    Logs every state change with timestamp, source, and optional reason.
+    old_state includes 'unseen' for first triage from no-row state.
+    """
+
+    __tablename__ = "triage_log"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    paper_id: Mapped[str] = mapped_column(
+        ForeignKey("papers.arxiv_id", ondelete="CASCADE"), nullable=False
+    )
+    old_state: Mapped[str] = mapped_column(String(20), nullable=False)
+    new_state: Mapped[str] = mapped_column(String(20), nullable=False)
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    source: Mapped[str] = mapped_column(String(32), default="manual")
+    reason: Mapped[str | None] = mapped_column(Text)
+
+    __table_args__ = (
+        Index("idx_triage_log_paper_timestamp", "paper_id", "timestamp"),
+    )
+
+    def __repr__(self) -> str:
+        return (
+            f"<TriageLog(paper_id={self.paper_id!r}, "
+            f"{self.old_state!r} -> {self.new_state!r})>"
+        )
+
+
+class SavedQuery(Base):
+    """Named, reusable search query with optional watch functionality.
+
+    Watch = saved query + checkpoint metadata (extends, not separate entity).
+    Watch columns are nullable -- not all queries are watches.
+    """
+
+    __tablename__ = "saved_queries"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    slug: Mapped[str] = mapped_column(String(128), unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(256), nullable=False)
+    params: Mapped[dict] = mapped_column(JSONB, nullable=False)
+
+    # Usage tracking
+    run_count: Mapped[int] = mapped_column(Integer, default=0)
+    last_run_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+    # Watch fields (nullable -- not all queries are watches)
+    is_watch: Mapped[bool] = mapped_column(Boolean, default=False)
+    cadence_hint: Mapped[str | None] = mapped_column(String(20))
+    checkpoint_date: Mapped[date | None] = mapped_column(Date)
+    last_checked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    is_paused: Mapped[bool] = mapped_column(Boolean, default=False)
+
+    # Timestamps
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+    def __repr__(self) -> str:
+        watch = " (watch)" if self.is_watch else ""
+        return f"<SavedQuery(slug={self.slug!r}{watch})>"
