@@ -31,12 +31,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User can browse recently announced papers filtered by arXiv category and switch between time bases (submission vs announcement vs update)
   4. User can find related papers from a seed paper via lexical similarity
   5. Every stored paper has provenance metadata (source, fetch timestamp) and per-paper license/rights data
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md -- Foundation: project scaffolding, DB schema, paper model, test infrastructure
+- [ ] 01-02-PLAN.md -- Ingestion: OAI-PMH harvester, arXiv API client, XML parsers, metadata mapper
+- [ ] 01-03-PLAN.md -- Search: fielded search, browse recent, find related, cursor pagination, CLI
 
 ### Phase 2: Workflow State
 **Goal**: Users can organize their research workflow with collections, triage states, saved queries, and delta tracking to answer "what's new since I last checked"
@@ -120,7 +120,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Metadata Substrate | 0/3 | Not started | - |
+| 1. Metadata Substrate | 0/3 | Planned | - |
 | 2. Workflow State | 0/2 | Not started | - |
 | 3. Interest Modeling & Ranking | 0/2 | Not started | - |
 | 4. Enrichment Adapters | 0/1 | Not started | - |
