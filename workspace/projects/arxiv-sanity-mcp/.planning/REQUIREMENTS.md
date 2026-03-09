@@ -11,16 +11,16 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **INGS-01**: System ingests arXiv metadata via OAI-PMH bulk harvesting with resumption token handling
 - [ ] **INGS-02**: System ingests arXiv metadata via API for incremental/targeted queries
-- [ ] **INGS-03**: System tracks four distinct time semantics per paper: submission date, update date, announcement date, OAI-PMH datestamp
-- [ ] **INGS-04**: System stores per-paper license/rights metadata from OAI-PMH and RSS feeds
+- [x] **INGS-03**: System tracks four distinct time semantics per paper: submission date, update date, announcement date, OAI-PMH datestamp
+- [x] **INGS-04**: System stores per-paper license/rights metadata from OAI-PMH and RSS feeds
 - [ ] **INGS-05**: System supports incremental harvesting with datestamp-based checkpoints
 
 ### Paper Model
 
-- [ ] **PAPR-01**: Canonical paper model with arXiv ID as primary identifier
-- [ ] **PAPR-02**: Paper records include title, authors, abstract, categories, version history
-- [ ] **PAPR-03**: Paper records support external identifiers (DOI, OpenAlex ID, Semantic Scholar ID)
-- [ ] **PAPR-04**: Paper records track provenance: data source, fetch timestamp, enrichment history
+- [x] **PAPR-01**: Canonical paper model with arXiv ID as primary identifier
+- [x] **PAPR-02**: Paper records include title, authors, abstract, categories, version history
+- [x] **PAPR-03**: Paper records support external identifiers (DOI, OpenAlex ID, Semantic Scholar ID)
+- [x] **PAPR-04**: Paper records track provenance: data source, fetch timestamp, enrichment history
 
 ### Search & Discovery
 
@@ -127,13 +127,13 @@ Deferred to future release. Tracked but not in current roadmap.
 |-------------|-------|--------|
 | INGS-01 | Phase 1 | Pending |
 | INGS-02 | Phase 1 | Pending |
-| INGS-03 | Phase 1 | Pending |
-| INGS-04 | Phase 1 | Pending |
+| INGS-03 | Phase 1 | Complete |
+| INGS-04 | Phase 1 | Complete |
 | INGS-05 | Phase 1 | Pending |
-| PAPR-01 | Phase 1 | Pending |
-| PAPR-02 | Phase 1 | Pending |
-| PAPR-03 | Phase 1 | Pending |
-| PAPR-04 | Phase 1 | Pending |
+| PAPR-01 | Phase 1 | Complete |
+| PAPR-02 | Phase 1 | Complete |
+| PAPR-03 | Phase 1 | Complete |
+| PAPR-04 | Phase 1 | Complete |
 | SRCH-01 | Phase 1 | Pending |
 | SRCH-02 | Phase 1 | Pending |
 | SRCH-03 | Phase 1 | Pending |

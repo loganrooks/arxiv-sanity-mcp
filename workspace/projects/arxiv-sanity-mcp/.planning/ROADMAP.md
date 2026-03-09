@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md -- Foundation: project scaffolding, DB schema, paper model, test infrastructure
+- [x] 01-01-PLAN.md -- Foundation: project scaffolding, DB schema, paper model, test infrastructure
 - [ ] 01-02-PLAN.md -- Ingestion: OAI-PMH harvester, arXiv API client, XML parsers, metadata mapper
 - [ ] 01-03-PLAN.md -- Search: fielded search, browse recent, find related, cursor pagination, CLI
 
