@@ -15,10 +15,10 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from arxiv_mcp.config import get_settings
 from arxiv_mcp.db.models import Base, Paper
 
-# SQL for the tsvector trigger function -- mirrors the Alembic migration.
-# We create it manually in tests because SQLAlchemy's create_all does not
-# run Alembic migrations.
-TSVECTOR_TRIGGER_SQL = """
+# SQL statements for the tsvector trigger -- mirrors the Alembic migration.
+# Split into separate statements because asyncpg does not support multiple
+# commands in a single prepared statement.
+TSVECTOR_FUNCTION_SQL = """
 CREATE OR REPLACE FUNCTION papers_search_vector_update() RETURNS trigger AS $$
 BEGIN
   NEW.search_vector :=
@@ -27,13 +27,17 @@ BEGIN
     setweight(to_tsvector('english', COALESCE(NEW.abstract, '')), 'C');
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql
+"""
 
-DROP TRIGGER IF EXISTS papers_search_vector_trigger ON papers;
+TSVECTOR_DROP_TRIGGER_SQL = (
+    "DROP TRIGGER IF EXISTS papers_search_vector_trigger ON papers"
+)
 
+TSVECTOR_CREATE_TRIGGER_SQL = """
 CREATE TRIGGER papers_search_vector_trigger
   BEFORE INSERT OR UPDATE ON papers
-  FOR EACH ROW EXECUTE FUNCTION papers_search_vector_update();
+  FOR EACH ROW EXECUTE FUNCTION papers_search_vector_update()
 """
 
 
@@ -85,16 +89,21 @@ def sample_paper_data(**overrides) -> dict:
     return defaults
 
 
-@pytest.fixture(scope="session")
-def test_engine():
-    """Create async engine for the test database."""
+@pytest.fixture
+async def test_engine():
+    """Create async engine for the test database.
+
+    Function-scoped to avoid event loop issues with asyncpg.
+    Each test gets a fresh engine bound to its own event loop.
+    """
     settings = get_settings()
     engine = create_async_engine(
         settings.test_database_url,
         echo=False,
         pool_pre_ping=True,
     )
-    return engine
+    yield engine
+    await engine.dispose()
 
 
 @pytest.fixture
@@ -106,7 +115,9 @@ async def test_session(test_engine):
     """
     async with test_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-        await conn.execute(text(TSVECTOR_TRIGGER_SQL))
+        await conn.execute(text(TSVECTOR_FUNCTION_SQL))
+        await conn.execute(text(TSVECTOR_DROP_TRIGGER_SQL))
+        await conn.execute(text(TSVECTOR_CREATE_TRIGGER_SQL))
 
     async_session = async_sessionmaker(
         test_engine,
@@ -118,6 +129,9 @@ async def test_session(test_engine):
         yield session
 
     async with test_engine.begin() as conn:
+        # Drop trigger and function before dropping tables
+        await conn.execute(text("DROP TRIGGER IF EXISTS papers_search_vector_trigger ON papers"))
+        await conn.execute(text("DROP FUNCTION IF EXISTS papers_search_vector_update()"))
         await conn.run_sync(Base.metadata.drop_all)
 
 

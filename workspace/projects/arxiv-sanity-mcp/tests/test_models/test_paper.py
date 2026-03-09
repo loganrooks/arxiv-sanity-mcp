@@ -179,7 +179,7 @@ async def test_search_vector_trigger(test_session):
     await test_session.commit()
 
     # Expire to force re-fetch from DB (trigger runs server-side)
-    await test_session.expire(paper)
+    test_session.expire(paper)
     stmt = select(Paper).where(Paper.arxiv_id == "2301.00010")
     result = await test_session.execute(stmt)
     refreshed = result.scalar_one()
