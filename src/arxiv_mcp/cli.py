@@ -1,7 +1,7 @@
 """CLI entry point for arxiv-mcp.
 
 Provides the main Click group. Subcommands for harvest and search
-are registered by their respective modules in Plans 02 and 03.
+are registered by their respective modules.
 """
 
 from __future__ import annotations
@@ -15,6 +15,15 @@ def cli() -> None:
     """arxiv-mcp: arXiv research discovery substrate."""
 
 
-# Subgroups will be registered here by subsequent plans:
-# - cli.add_command(harvest_group)  # Plan 02
-# - cli.add_command(search_group)   # Plan 03
+# Register harvest subgroup (Plan 02)
+from arxiv_mcp.ingestion.cli import harvest_group
+
+cli.add_command(harvest_group)
+
+# Search subgroup will be registered by Plan 03
+try:
+    from arxiv_mcp.search.cli import search_group
+
+    cli.add_command(search_group)
+except (ImportError, ModuleNotFoundError):
+    pass  # Plan 03 (search) not yet implemented
