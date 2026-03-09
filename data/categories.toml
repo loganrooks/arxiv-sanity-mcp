@@ -1,0 +1,25 @@
+# arXiv category configuration for arxiv-mcp
+#
+# This mirrors arxiv-sanity's original scope: CS, statistics ML, and
+# ML-adjacent math/engineering categories. Categories are configurable
+# at runtime -- edit this file or override via environment/config to
+# expand or narrow the harvesting scope.
+#
+# Archives listed in [defaults] are harvested via OAI-PMH. Individual
+# categories within each archive are filtered at ingestion time.
+
+[defaults]
+archives = ["cs", "stat"]
+
+[categories]
+# Computer Science -- core ML/AI categories
+cs = ["cs.AI", "cs.CL", "cs.CV", "cs.LG", "cs.NE", "cs.IR", "cs.MA", "cs.RO"]
+
+# Statistics -- ML and theory
+stat = ["stat.ML", "stat.TH"]
+
+# Mathematics -- optimization and statistics theory
+math = ["math.OC", "math.ST"]
+
+# Electrical Engineering -- signal/image processing
+eess = ["eess.AS", "eess.IV", "eess.SP"]
