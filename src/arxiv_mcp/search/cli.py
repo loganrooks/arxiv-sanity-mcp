@@ -22,13 +22,27 @@ from arxiv_mcp.search.service import SearchService
 console = Console()
 
 
-def _get_search_service(settings: Settings | None = None) -> SearchService:
-    """Create a SearchService with engine and session factory."""
+def _get_search_service(settings: Settings | None = None):
+    """Create a search service with engine and session factory.
+
+    Returns WorkflowSearchService (triage + collection enrichment) if
+    the workflow module is available, otherwise falls back to bare
+    SearchService for Phase 1 compatibility.
+    """
     if settings is None:
         settings = get_settings()
     engine = create_engine(settings.database_url)
     sf = session_factory(engine)
-    return SearchService(session_factory=sf, settings=settings)
+    search_svc = SearchService(session_factory=sf, settings=settings)
+
+    try:
+        from arxiv_mcp.workflow.search_augment import WorkflowSearchService
+
+        return WorkflowSearchService(
+            session_factory=sf, settings=settings, search_service=search_svc
+        )
+    except (ImportError, ModuleNotFoundError):
+        return search_svc
 
 
 def _truncate(text: str | None, max_len: int = 60) -> str:
@@ -49,14 +63,32 @@ def _format_date(d) -> str:
     return str(d)[:10]
 
 
+_TRIAGE_COLORS = {
+    "shortlisted": "green",
+    "read": "blue",
+    "cite-later": "cyan",
+    "dismissed": "red",
+    "archived": "dim",
+    "unseen": "dim",
+}
+
+
 def _display_results_table(items, show_score: bool = True) -> None:
-    """Display search results in a rich table."""
+    """Display search results in a rich table.
+
+    Detects WorkflowSearchResult items (have triage_state attr) and
+    adds Triage and Collections columns with color coding.
+    """
+    has_workflow = len(items) > 0 and hasattr(items[0], "triage_state")
+
     table = Table(show_header=True, header_style="bold cyan", expand=True)
     table.add_column("arxiv_id", width=14)
     table.add_column("Title", ratio=3)
     table.add_column("Authors", ratio=2)
     table.add_column("Category", width=8)
     table.add_column("Date", width=12)
+    if has_workflow:
+        table.add_column("Triage", width=12)
     if show_score:
         table.add_column("Score", width=8, justify="right")
 
@@ -69,6 +101,10 @@ def _display_results_table(items, show_score: bool = True) -> None:
             p.primary_category or "",
             _format_date(p.announced_date or p.submitted_date),
         ]
+        if has_workflow:
+            state = item.triage_state
+            color = _TRIAGE_COLORS.get(state, "white")
+            row.append(f"[{color}]{state}[/{color}]")
         if show_score:
             row.append(f"{item.score:.4f}" if item.score is not None else "")
         table.add_row(*row)

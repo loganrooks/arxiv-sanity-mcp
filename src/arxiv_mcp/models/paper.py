@@ -117,3 +117,17 @@ class SearchResult(BaseModel):
 
     paper: PaperSummary
     score: float | None = None
+
+
+class WorkflowSearchResult(BaseModel):
+    """Search result enriched with workflow context (triage state, collections).
+
+    Wraps the same PaperSummary and score as SearchResult, plus:
+    - triage_state: always present, defaults to "unseen" (absence-means-unseen)
+    - collection_slugs: list of collection slugs this paper belongs to
+    """
+
+    paper: PaperSummary
+    score: float | None = None
+    triage_state: str = "unseen"
+    collection_slugs: list[str] = []
