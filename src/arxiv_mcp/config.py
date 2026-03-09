@@ -46,6 +46,13 @@ class Settings(BaseSettings):
     default_page_size: int = 20
     max_page_size: int = 100
 
+    # Workflow soft limits (warning thresholds)
+    soft_limit_collections: int = 100
+    soft_limit_saved_queries: int = 50
+    soft_limit_watches: int = 20
+    default_watch_cadence: str = "daily"
+    export_default_path: str = "data/workflow_export.json"
+
     def load_categories(self) -> dict:
         """Load category configuration from TOML file.
 
