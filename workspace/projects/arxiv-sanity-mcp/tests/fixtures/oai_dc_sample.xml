@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <header>
+    <identifier>oai:arXiv.org:2301.00001</identifier>
+    <datestamp>2023-06-15</datestamp>
+    <setSpec>cs</setSpec>
+  </header>
+  <metadata>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+               xmlns:dc="http://purl.org/dc/elements/1.1/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title>Attention Is All You Need: A Revisitation</dc:title>
+      <dc:creator>Vaswani, Ashish</dc:creator>
+      <dc:creator>Shazeer, Noam</dc:creator>
+      <dc:creator>Parmar, Niki</dc:creator>
+      <dc:creator>Uszkoreit, Jakob</dc:creator>
+      <dc:subject>cs.CL</dc:subject>
+      <dc:subject>cs.AI</dc:subject>
+      <dc:subject>cs.LG</dc:subject>
+      <dc:description>  The dominant sequence transduction models are based on complex recurrent
+or convolutional neural networks that include an encoder and a decoder.
+The best performing models also connect the encoder and decoder through
+an attention mechanism. We propose a new simple network architecture,
+the Transformer, based solely on attention mechanisms.
+</dc:description>
+      <dc:date>2023-01-02</dc:date>
+      <dc:identifier>http://arxiv.org/abs/2301.00001</dc:identifier>
+    </oai_dc:dc>
+  </metadata>
+</record>

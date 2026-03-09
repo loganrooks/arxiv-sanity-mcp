@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record xmlns="http://www.openarchives.org/OAI/2.0/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <header>
+    <identifier>oai:arXiv.org:2301.00001</identifier>
+    <datestamp>2023-06-15</datestamp>
+    <setSpec>cs</setSpec>
+  </header>
+  <metadata>
+    <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ http://arxiv.org/OAI/arXivRaw.xsd">
+      <id>2301.00001</id>
+      <submitter>Ashish Vaswani</submitter>
+      <version version="v1">
+        <date>Mon, 2 Jan 2023 12:00:00 GMT</date>
+        <size>45kb</size>
+        <source_type>D</source_type>
+      </version>
+      <version version="v2">
+        <date>Thu, 15 Jun 2023 08:30:00 GMT</date>
+        <size>48kb</size>
+        <source_type>D</source_type>
+      </version>
+      <title>Attention Is All You Need: A Revisitation</title>
+      <authors>Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit</authors>
+      <categories>cs.CL cs.AI cs.LG</categories>
+      <comments>15 pages, 5 figures</comments>
+      <journal-ref>Journal of Machine Learning Research, 2023</journal-ref>
+      <doi>10.48550/arXiv.2301.00001</doi>
+      <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+      <abstract>  The dominant sequence transduction models are based on complex recurrent
+or convolutional neural networks that include an encoder and a decoder.
+The best performing models also connect the encoder and decoder through
+an attention mechanism. We propose a new simple network architecture,
+the Transformer, based solely on attention mechanisms.
+</abstract>
+      <report-no>TR-2023-001</report-no>
+      <acm-class>I.2.7</acm-class>
+      <msc-class>68T05</msc-class>
+    </arXivRaw>
+  </metadata>
+</record>
