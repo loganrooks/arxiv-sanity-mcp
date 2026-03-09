@@ -24,12 +24,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Search & Discovery
 
-- [ ] **SRCH-01**: User can search papers by title, author, abstract text, category, and date range
-- [ ] **SRCH-02**: User can compose queries with AND/OR operators
-- [ ] **SRCH-03**: User can browse recently announced papers filtered by arXiv category
-- [ ] **SRCH-04**: User can specify time basis (submission, update, announcement) when browsing recent papers
-- [ ] **SRCH-05**: User can find related papers from one or more seed papers via lexical similarity
-- [ ] **SRCH-06**: Results include cursor-based pagination with predictable result sizes
+- [x] **SRCH-01**: User can search papers by title, author, abstract text, category, and date range
+- [x] **SRCH-02**: User can compose queries with AND/OR operators
+- [x] **SRCH-03**: User can browse recently announced papers filtered by arXiv category
+- [x] **SRCH-04**: User can specify time basis (submission, update, announcement) when browsing recent papers
+- [x] **SRCH-05**: User can find related papers from one or more seed papers via lexical similarity
+- [x] **SRCH-06**: Results include cursor-based pagination with predictable result sizes
 
 ### Workflow State
 
@@ -134,12 +134,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | PAPR-02 | Phase 1 | Complete |
 | PAPR-03 | Phase 1 | Complete |
 | PAPR-04 | Phase 1 | Complete |
-| SRCH-01 | Phase 1 | Pending |
-| SRCH-02 | Phase 1 | Pending |
-| SRCH-03 | Phase 1 | Pending |
-| SRCH-04 | Phase 1 | Pending |
-| SRCH-05 | Phase 1 | Pending |
-| SRCH-06 | Phase 1 | Pending |
+| SRCH-01 | Phase 1 | Complete |
+| SRCH-02 | Phase 1 | Complete |
+| SRCH-03 | Phase 1 | Complete |
+| SRCH-04 | Phase 1 | Complete |
+| SRCH-05 | Phase 1 | Complete |
+| SRCH-06 | Phase 1 | Complete |
 | WKFL-01 | Phase 2 | Pending |
 | WKFL-02 | Phase 2 | Pending |
 | WKFL-03 | Phase 2 | Pending |
