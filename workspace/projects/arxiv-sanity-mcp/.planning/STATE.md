@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-03-09T14:52:07.166Z"
-last_activity: 2026-03-09 -- Plan 01-03 complete (search, browse, discovery)
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-09T23:35:18.788Z"
+last_activity: 2026-03-09 -- Plan 02-01 complete (workflow schema foundation)
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
-  percent: 25
+  total_plans: 6
+  completed_plans: 4
+  percent: 67
 ---
 
 # Project State
@@ -21,33 +21,34 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 2: Workflow State -- Context gathered, ready for planning
+**Current focus:** Phase 2: Workflow State -- Executing plans
 
 ## Current Position
 
-Phase: 2 of 6 (Workflow State) -- Context gathered
-Plan: 0 of TBD in current phase
+Phase: 2 of 6 (Workflow State) -- Executing
+Plan: 1 of 3 in current phase (complete)
 Status: Executing
-Last activity: 2026-03-09 -- Phase 2 context gathered (collections, triage, saved queries, watches, durability)
+Last activity: 2026-03-09 -- Plan 02-01 complete (workflow schema foundation)
 
-Progress: [██░░░░░░░░] 25%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 8.3 min
-- Total execution time: 0.42 hours
+- Total plans completed: 4
+- Average duration: 7.3 min
+- Total execution time: 0.48 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-metadata-substrate | 3 | 25 min | 8.3 min |
+| 02-workflow-state | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (9 min), 01-02 (8 min), 01-03 (8 min)
-- Trend: stable
+- Last 5 plans: 01-01 (9 min), 01-02 (8 min), 01-03 (8 min), 02-01 (4 min)
+- Trend: improving
 
 *Updated after each plan completion*
 
@@ -73,6 +74,9 @@ Recent decisions affecting current work:
 - 01-03: Browse recent uses max(date) subquery instead of current_date for deterministic tests.
 - 01-03: Keyset cursor uses rank expression not label (PostgreSQL cannot reference SELECT aliases in WHERE).
 - [Phase 01]: 01-02: arXivRaw as primary harvest format; JSON checkpoint file for incremental state
+- [Phase 02]: 02-01: All 5 workflow ORM models in single db/models.py (shared Base, string forward references)
+- [Phase 02]: 02-01: TriageState uses VARCHAR + CHECK constraint (not native ENUM) for migration simplicity
+- [Phase 02]: 02-01: SavedQuery params as JSONB for schema-free evolution; watch columns on same table
 
 ### Pending Todos
 
@@ -86,5 +90,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-09
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-workflow-state/02-CONTEXT.md
+Stopped at: Completed 02-01-PLAN.md
+Resume file: .planning/phases/02-workflow-state/02-01-SUMMARY.md

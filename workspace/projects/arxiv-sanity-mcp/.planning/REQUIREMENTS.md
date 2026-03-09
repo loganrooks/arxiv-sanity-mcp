@@ -33,12 +33,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Workflow State
 
-- [ ] **WKFL-01**: User can create, list, and delete named paper collections
-- [ ] **WKFL-02**: User can add papers to and remove papers from collections
-- [ ] **WKFL-03**: User can mark paper triage state (unseen, shortlisted, dismissed, read, cite-later)
-- [ ] **WKFL-04**: User can create saved queries with parameters, ranking mode, and filters
+- [x] **WKFL-01**: User can create, list, and delete named paper collections
+- [x] **WKFL-02**: User can add papers to and remove papers from collections
+- [x] **WKFL-03**: User can mark paper triage state (unseen, shortlisted, dismissed, read, cite-later)
+- [x] **WKFL-04**: User can create saved queries with parameters, ranking mode, and filters
 - [ ] **WKFL-05**: User can re-run saved queries on demand
-- [ ] **WKFL-06**: User can create watches (saved query + cadence + checkpoint)
+- [x] **WKFL-06**: User can create watches (saved query + cadence + checkpoint)
 - [ ] **WKFL-07**: User can get delta results since last checkpoint ("what's new since I last checked")
 - [ ] **WKFL-08**: User can batch-triage multiple papers in a single operation
 
@@ -140,12 +140,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | SRCH-04 | Phase 1 | Complete |
 | SRCH-05 | Phase 1 | Complete |
 | SRCH-06 | Phase 1 | Complete |
-| WKFL-01 | Phase 2 | Pending |
-| WKFL-02 | Phase 2 | Pending |
-| WKFL-03 | Phase 2 | Pending |
-| WKFL-04 | Phase 2 | Pending |
+| WKFL-01 | Phase 2 | Complete |
+| WKFL-02 | Phase 2 | Complete |
+| WKFL-03 | Phase 2 | Complete |
+| WKFL-04 | Phase 2 | Complete |
 | WKFL-05 | Phase 2 | Pending |
-| WKFL-06 | Phase 2 | Pending |
+| WKFL-06 | Phase 2 | Complete |
 | WKFL-07 | Phase 2 | Pending |
 | WKFL-08 | Phase 2 | Pending |
 | INTR-01 | Phase 3 | Pending |
