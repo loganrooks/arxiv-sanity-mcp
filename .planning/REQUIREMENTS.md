@@ -9,11 +9,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Ingestion
 
-- [ ] **INGS-01**: System ingests arXiv metadata via OAI-PMH bulk harvesting with resumption token handling
-- [ ] **INGS-02**: System ingests arXiv metadata via API for incremental/targeted queries
+- [x] **INGS-01**: System ingests arXiv metadata via OAI-PMH bulk harvesting with resumption token handling
+- [x] **INGS-02**: System ingests arXiv metadata via API for incremental/targeted queries
 - [x] **INGS-03**: System tracks four distinct time semantics per paper: submission date, update date, announcement date, OAI-PMH datestamp
 - [x] **INGS-04**: System stores per-paper license/rights metadata from OAI-PMH and RSS feeds
-- [ ] **INGS-05**: System supports incremental harvesting with datestamp-based checkpoints
+- [x] **INGS-05**: System supports incremental harvesting with datestamp-based checkpoints
 
 ### Paper Model
 
@@ -125,11 +125,11 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INGS-01 | Phase 1 | Pending |
-| INGS-02 | Phase 1 | Pending |
+| INGS-01 | Phase 1 | Complete |
+| INGS-02 | Phase 1 | Complete |
 | INGS-03 | Phase 1 | Complete |
 | INGS-04 | Phase 1 | Complete |
-| INGS-05 | Phase 1 | Pending |
+| INGS-05 | Phase 1 | Complete |
 | PAPR-01 | Phase 1 | Complete |
 | PAPR-02 | Phase 1 | Complete |
 | PAPR-03 | Phase 1 | Complete |
