@@ -47,11 +47,12 @@ Plans:
   2. User can mark papers with triage states (unseen, shortlisted, dismissed, read, cite-later) and batch-triage multiple papers at once
   3. User can save a query with parameters, ranking mode, and filters, then re-run it on demand
   4. User can create a watch (saved query + cadence + checkpoint) and get delta results showing only papers new since the last checkpoint
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md -- Schema foundation: ORM models, Pydantic schemas, Alembic migration 002, test infrastructure
+- [ ] 02-02-PLAN.md -- Collection and triage services: CRUD, membership, merge, archive, triage mark/batch/log
+- [ ] 02-03-PLAN.md -- Saved queries, watches, export/import, stats, paper show, and CLI commands
 
 ### Phase 3: Interest Modeling & Ranking
 **Goal**: Users can build explicit interest profiles from multiple signal types and get structured explanations for why each paper surfaced in results
@@ -120,8 +121,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Metadata Substrate | 0/3 | Planned | - |
-| 2. Workflow State | 0/2 | Not started | - |
+| 1. Metadata Substrate | 3/3 | Complete | 2026-03-09 |
+| 2. Workflow State | 0/3 | Planned | - |
 | 3. Interest Modeling & Ranking | 0/2 | Not started | - |
 | 4. Enrichment Adapters | 0/1 | Not started | - |
 | 5. Content Normalization | 0/2 | Not started | - |
