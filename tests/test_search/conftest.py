@@ -311,6 +311,12 @@ async def search_engine():
 @pytest.fixture
 async def search_session(search_engine):
     """Create tables, populate with sample papers, yield session, then cleanup."""
+    # Drop existing tables/triggers first for clean isolation
+    async with search_engine.begin() as conn:
+        await conn.execute(text("DROP TRIGGER IF EXISTS papers_search_vector_trigger ON papers"))
+        await conn.execute(text("DROP FUNCTION IF EXISTS papers_search_vector_update()"))
+        await conn.run_sync(Base.metadata.drop_all)
+
     async with search_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
         await conn.execute(text(TSVECTOR_FUNCTION_SQL))
