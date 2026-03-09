@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-09T23:43:59.625Z"
-last_activity: 2026-03-09 -- Plan 02-02 complete (collection & triage services)
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-03-09T23:56:06Z"
+last_activity: 2026-03-09 -- Plan 02-03 complete (queries, watches, export, CLI) - Phase 2 complete
 progress:
   total_phases: 6
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 5
-  percent: 83
+  completed_plans: 6
+  percent: 100
 ---
 
 # Project State
@@ -21,34 +21,34 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 2: Workflow State -- Executing plans
+**Current focus:** Phase 2: Workflow State -- Complete
 
 ## Current Position
 
-Phase: 2 of 6 (Workflow State) -- Executing
-Plan: 2 of 3 in current phase (complete)
-Status: Executing
-Last activity: 2026-03-09 -- Plan 02-02 complete (collection & triage services)
+Phase: 2 of 6 (Workflow State) -- Complete
+Plan: 3 of 3 in current phase (complete)
+Status: Phase 2 complete
+Last activity: 2026-03-09 -- Plan 02-03 complete (queries, watches, export, CLI)
 
-Progress: [████████░░] 83%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 7.0 min
-- Total execution time: 0.58 hours
+- Total plans completed: 6
+- Average duration: 7.3 min
+- Total execution time: 0.73 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-metadata-substrate | 3 | 25 min | 8.3 min |
-| 02-workflow-state | 2 | 10 min | 5 min |
+| 02-workflow-state | 3 | 21 min | 7.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (8 min), 01-03 (8 min), 02-01 (4 min), 02-02 (6 min)
-- Trend: improving
+- Last 5 plans: 01-03 (8 min), 02-01 (4 min), 02-02 (6 min), 02-03 (11 min)
+- Trend: stable
 
 *Updated after each plan completion*
 
@@ -79,6 +79,10 @@ Recent decisions affecting current work:
 - [Phase 02]: 02-01: SavedQuery params as JSONB for schema-free evolution; watch columns on same table
 - [Phase 02]: 02-02: CollectionPaperView as Pydantic BaseModel for PaginatedResponse generic compatibility
 - [Phase 02]: 02-02: Query-based batch triage uses build_search_query with large page_size; processes in 500-paper chunks
+- [Phase 02]: 02-03: Checkpoint+1 delta: check_watch uses checkpoint_date + 1 day as date_from for strictly-newer results
+- [Phase 02]: 02-03: Post-process enrichment: WorkflowSearchService wraps SearchService with 2-query batch (no Phase 1 modification)
+- [Phase 02]: 02-03: Last-write-wins for triage import conflict resolution; skip for collections/saved queries
+- [Phase 02]: 02-03: Lazy workflow CLI import via try/except for forward compatibility
 
 ### Pending Todos
 
@@ -91,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T23:43:59.618Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-09T23:56:06Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None
