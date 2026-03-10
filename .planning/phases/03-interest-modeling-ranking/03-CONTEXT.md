@@ -102,7 +102,15 @@ Users can build explicit interest profiles from multiple signal types (seed pape
 - Interest profiles become the primary input for Phase 6 MCP prompts (daily-digest uses profile, triage-shortlist filters by profile affinity)
 
 ### Hardware constraints and compute strategy
-- Target hardware: Xeon W-2125 (4c/8t), 32GB RAM, GTX 1080 Ti (11GB VRAM), PostgreSQL + Redis local
+- Target hardware (Dionysus): Xeon W-2125 (4c/8t), 32GB RAM, GTX 1080 Ti (11GB VRAM), CUDA 11.8, Ubuntu 24.04
+- Running services: PostgreSQL 16 (localhost:5432), Redis 7 (localhost:6379)
+- Storage tiers (cleanup in progress — expect significantly more headroom soon):
+  | Tier | Mount    | Size  | Purpose                         |
+  |------|----------|-------|---------------------------------|
+  | NVMe | /        | 55G   | System (keep lean)              |
+  | NVMe | /home    | 343G  | Active dev, projects, envs      |
+  | SSD  | /scratch | 92G   | Temporary processing            |
+  | HDD  | /data    | 1.8T  | Bulk storage, corpora, archives |
 - Phase 3 ranking is entirely CPU-bound and PostgreSQL-bound — no GPU, no embeddings, no external API calls needed
 - All ranking computation (lexical scoring, category overlap, recency weighting) happens in PostgreSQL queries or lightweight Python post-processing — well within single-node constraints
 - This phase is solidly "Bronze" compute profile (docs/05, §7): metadata + lexical retrieval + workflow-derived signals, no embeddings required
