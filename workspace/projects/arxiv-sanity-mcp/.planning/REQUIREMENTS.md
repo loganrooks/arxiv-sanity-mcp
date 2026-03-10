@@ -53,9 +53,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Ranking & Explanation
 
-- [ ] **RANK-01**: Results include structured ranking explanations (why each paper surfaced)
-- [ ] **RANK-02**: Explanations expose signal types: query match, seed relation, category overlap, interest profile match, recency
-- [ ] **RANK-03**: User can inspect ranker inputs for any result set
+- [x] **RANK-01**: Results include structured ranking explanations (why each paper surfaced)
+- [x] **RANK-02**: Explanations expose signal types: query match, seed relation, category overlap, interest profile match, recency
+- [x] **RANK-03**: User can inspect ranker inputs for any result set
 
 ### Enrichment
 
@@ -154,9 +154,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | INTR-04 | Phase 3 | Complete |
 | INTR-05 | Phase 3 | Complete |
 | INTR-06 | Phase 3 | Pending |
-| RANK-01 | Phase 3 | Pending |
-| RANK-02 | Phase 3 | Pending |
-| RANK-03 | Phase 3 | Pending |
+| RANK-01 | Phase 3 | Complete |
+| RANK-02 | Phase 3 | Complete |
+| RANK-03 | Phase 3 | Complete |
 | ENRC-01 | Phase 4 | Pending |
 | ENRC-02 | Phase 4 | Pending |
 | ENRC-03 | Phase 4 | Pending |
