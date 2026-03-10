@@ -45,6 +45,66 @@ def _get_search_service(settings: Settings | None = None):
         return search_svc
 
 
+def _get_profile_ranking_service(settings: Settings | None = None):
+    """Build the full service chain: SearchService -> WorkflowSearchService -> ProfileRankingService.
+
+    Returns (ProfileRankingService, session_factory) tuple. The session_factory
+    is returned so callers can also construct ProfileService if needed.
+    """
+    if settings is None:
+        settings = get_settings()
+    engine = create_engine(settings.database_url)
+    sf = session_factory(engine)
+    search_svc = SearchService(session_factory=sf, settings=settings)
+
+    from arxiv_mcp.interest.search_augment import ProfileRankingService
+    from arxiv_mcp.workflow.search_augment import WorkflowSearchService
+
+    workflow_svc = WorkflowSearchService(
+        session_factory=sf, settings=settings, search_service=search_svc
+    )
+    profile_svc = ProfileRankingService(
+        session_factory=sf, settings=settings,
+        workflow_search_service=workflow_svc,
+    )
+    return profile_svc, sf
+
+
+def _display_ranking_explanation(item, console_obj) -> None:
+    """Display ranking explanation for a ProfileSearchResult."""
+    if item.ranking_explanation is None:
+        return
+
+    expl = item.ranking_explanation
+    console_obj.print(f"  [dim]Composite score: {expl.composite_score:.4f} (ranker {expl.ranker_version})[/dim]")
+    for signal in expl.signal_breakdown:
+        # Score bar: visual representation
+        bar_len = int(signal.normalized_score * 20)
+        bar = "=" * bar_len + "-" * (20 - bar_len)
+        console_obj.print(
+            f"    [{bar}] {signal.signal_type}: "
+            f"norm={signal.normalized_score:.3f} "
+            f"wt={signal.weight:.2f} "
+            f"wtd={signal.weighted_score:.4f} "
+            f"-- {signal.explanation}"
+        )
+
+
+def _display_ranker_snapshot(snapshot, console_obj) -> None:
+    """Display a RankerSnapshot at the top of profile-ranked results."""
+    console_obj.print("\n[bold]Ranker Snapshot[/bold]")
+    console_obj.print(f"  Profile: {snapshot.profile_slug or '(none)'}")
+    console_obj.print(f"  Version: {snapshot.ranker_version}")
+    console_obj.print(f"  Negative weight: {snapshot.negative_weight:.2f}")
+    console_obj.print(f"  Seed papers: {snapshot.seed_paper_count}")
+    console_obj.print(f"  Followed authors: {snapshot.followed_author_count}")
+    console_obj.print(f"  Negative examples: {snapshot.negative_example_count}")
+    console_obj.print(f"  Saved queries: {snapshot.saved_query_count}")
+    console_obj.print(f"  Weights: {', '.join(f'{k}={v:.2f}' for k, v in snapshot.weights.items())}")
+    console_obj.print(f"  Signal types: {', '.join(snapshot.signal_types_applied)}")
+    console_obj.print()
+
+
 def _truncate(text: str | None, max_len: int = 60) -> str:
     """Truncate text for table display."""
     if text is None:
@@ -147,43 +207,81 @@ def search_group():
 )
 @click.option("--cursor", help="Pagination cursor for next page")
 @click.option("--limit", "page_size", default=20, help="Results per page")
+@click.option("--profile", "profile_slug", default=None, help="Profile slug for ranked results")
+@click.option("--explain", "explain", is_flag=True, help="Show ranker snapshot (requires --profile)")
 @click.option("--json", "output_json", is_flag=True, help="Output as JSON")
 def search_query(
     query_text, title, author, category, date_from, date_to, time_basis, cursor, page_size,
-    output_json
+    profile_slug, explain, output_json
 ):
     """Search papers by text, author, category, date."""
     if not any([query_text, title, author, category, date_from, date_to]):
         click.echo("Error: at least one search criterion is required.", err=True)
         raise SystemExit(1)
 
-    service = _get_search_service()
-
-    result = asyncio.run(
-        service.search_papers(
-            query_text=query_text,
-            title=title,
-            author=author,
-            category=category,
-            date_from=date_from.date() if date_from else None,
-            date_to=date_to.date() if date_to else None,
-            time_basis=time_basis,
-            cursor_token=cursor,
-            page_size=page_size,
-        )
+    search_kwargs = dict(
+        query_text=query_text,
+        title=title,
+        author=author,
+        category=category,
+        date_from=date_from.date() if date_from else None,
+        date_to=date_to.date() if date_to else None,
+        time_basis=time_basis,
+        cursor_token=cursor,
+        page_size=page_size,
     )
 
-    if output_json:
-        click.echo(result.model_dump_json(indent=2))
-    else:
+    if profile_slug:
+        # Profile-ranked search
+        profile_svc, _ = _get_profile_ranking_service()
+        response = asyncio.run(
+            profile_svc.search_papers(profile_slug=profile_slug, **search_kwargs)
+        )
+
+        if output_json:
+            click.echo(response.model_dump_json(indent=2))
+            return
+
+        result = response.results
         if not result.items:
             console.print("[yellow]No results found.[/yellow]")
             return
 
-        has_score = any(item.score is not None for item in result.items)
-        console.print(f"\n[bold]Found {len(result.items)} results[/bold]\n")
-        _display_results_table(result.items, show_score=has_score)
+        # Show ranker snapshot if --explain
+        if explain and response.ranker_snapshot:
+            _display_ranker_snapshot(response.ranker_snapshot, console)
+
+        console.print(f"\n[bold]Found {len(result.items)} results[/bold] (profile: {profile_slug})\n")
+        for item in result.items:
+            p = item.paper
+            triage_state = item.triage_state
+            triage_color = _TRIAGE_COLORS.get(triage_state, "white")
+            score_str = f"{item.score:.4f}" if item.score is not None else ""
+            console.print(
+                f"[bold]{p.arxiv_id}[/bold] {_truncate(p.title, 60)} "
+                f"[dim]{_truncate(p.authors_text, 30)}[/dim] "
+                f"[{triage_color}]{triage_state}[/{triage_color}] "
+                f"[cyan]{score_str}[/cyan]"
+            )
+            _display_ranking_explanation(item, console)
+
         _display_pagination_info(result.page_info)
+    else:
+        # Standard search (no profile)
+        service = _get_search_service()
+        result = asyncio.run(service.search_papers(**search_kwargs))
+
+        if output_json:
+            click.echo(result.model_dump_json(indent=2))
+        else:
+            if not result.items:
+                console.print("[yellow]No results found.[/yellow]")
+                return
+
+            has_score = any(item.score is not None for item in result.items)
+            console.print(f"\n[bold]Found {len(result.items)} results[/bold]\n")
+            _display_results_table(result.items, show_score=has_score)
+            _display_pagination_info(result.page_info)
 
 
 @search_group.command("browse")
@@ -197,36 +295,79 @@ def search_query(
 @click.option("--days", default=7, help="Number of days to look back")
 @click.option("--cursor", help="Pagination cursor")
 @click.option("--limit", "page_size", default=50, help="Results per page")
+@click.option("--profile", "profile_slug", default=None, help="Profile slug for ranked results")
+@click.option("--explain", "explain", is_flag=True, help="Show ranker snapshot (requires --profile)")
 @click.option("--json", "output_json", is_flag=True, help="Output as JSON")
-def browse_recent(category, time_basis, days, cursor, page_size, output_json):
+def browse_recent(category, time_basis, days, cursor, page_size, profile_slug, explain, output_json):
     """Browse recently announced papers."""
-    service = _get_search_service()
-
-    result = asyncio.run(
-        service.browse_recent(
-            category=category,
-            time_basis=time_basis,
-            days=days,
-            cursor_token=cursor,
-            page_size=page_size,
-        )
+    browse_kwargs = dict(
+        category=category,
+        time_basis=time_basis,
+        days=days,
+        cursor_token=cursor,
+        page_size=page_size,
     )
 
-    if output_json:
-        click.echo(result.model_dump_json(indent=2))
-    else:
+    if profile_slug:
+        # Profile-ranked browse
+        profile_svc, _ = _get_profile_ranking_service()
+        response = asyncio.run(
+            profile_svc.browse_recent(profile_slug=profile_slug, **browse_kwargs)
+        )
+
+        if output_json:
+            click.echo(response.model_dump_json(indent=2))
+            return
+
+        result = response.results
         if not result.items:
             console.print("[yellow]No recent papers found.[/yellow]")
             return
 
+        # Show ranker snapshot if --explain
+        if explain and response.ranker_snapshot:
+            _display_ranker_snapshot(response.ranker_snapshot, console)
+
         title = f"Recent papers"
         if category:
             title += f" in {category}"
-        title += f" (last {days} days)"
+        title += f" (last {days} days, profile: {profile_slug})"
 
         console.print(f"\n[bold]{title}[/bold] - {len(result.items)} results\n")
-        _display_results_table(result.items, show_score=False)
+        for item in result.items:
+            p = item.paper
+            triage_state = item.triage_state
+            triage_color = _TRIAGE_COLORS.get(triage_state, "white")
+            score_str = f"{item.score:.4f}" if item.score is not None else ""
+            console.print(
+                f"[bold]{p.arxiv_id}[/bold] {_truncate(p.title, 60)} "
+                f"[dim]{_truncate(p.authors_text, 30)}[/dim] "
+                f"[{triage_color}]{triage_state}[/{triage_color}] "
+                f"[cyan]{score_str}[/cyan]"
+            )
+            _display_ranking_explanation(item, console)
+
         _display_pagination_info(result.page_info)
+    else:
+        # Standard browse (no profile)
+        service = _get_search_service()
+        result = asyncio.run(service.browse_recent(**browse_kwargs))
+
+        if output_json:
+            click.echo(result.model_dump_json(indent=2))
+        else:
+            if not result.items:
+                console.print("[yellow]No recent papers found.[/yellow]")
+                return
+
+            title = f"Recent papers"
+            if category:
+                title += f" in {category}"
+            title += f" (last {days} days)"
+
+            console.print(f"\n[bold]{title}[/bold] - {len(result.items)} results\n")
+            _display_results_table(result.items, show_score=False)
+            _display_pagination_info(result.page_info)
 
 
 @search_group.command("related")

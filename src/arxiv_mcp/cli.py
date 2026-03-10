@@ -47,3 +47,11 @@ try:
     cli.add_command(workflow_group)
 except (ImportError, ModuleNotFoundError):
     pass
+
+# Interest profile subgroup (Phase 3, Plan 03)
+try:
+    from arxiv_mcp.interest.cli import profile_group
+
+    cli.add_command(profile_group)
+except (ImportError, ModuleNotFoundError):
+    pass
