@@ -107,6 +107,7 @@ Users can build explicit interest profiles from multiple signal types (seed pape
 - All ranking computation (lexical scoring, category overlap, recency weighting) happens in PostgreSQL queries or lightweight Python post-processing — well within single-node constraints
 - This phase is solidly "Bronze" compute profile (docs/05, §7): metadata + lexical retrieval + workflow-derived signals, no embeddings required
 - Storage: interest profiles and signals are small metadata rows — negligible impact on /home (82% used) even at scale
+- Secondary hardware: M4 MacBook Air (apollo) available over Tailscale — strong Neural Engine / unified memory for MLX inference, but not needed for Phase 3. Potential future use as secondary compute node for embedding inference (v2 semantic features) if it outperforms the 1080 Ti for specific model formats. For now it's the development client, not a compute node.
 
 ### Cost and sustainability model
 - Self-hosted first: Phase 3 requires zero cloud services or external APIs — everything runs on local PostgreSQL
