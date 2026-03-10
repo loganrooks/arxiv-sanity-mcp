@@ -101,6 +101,23 @@ Users can build explicit interest profiles from multiple signal types (seed pape
 - Seed relation scoring uses existing lexical similarity (build_related_query pattern) — when semantic embeddings arrive in v2, they plug into the same signal slot
 - Interest profiles become the primary input for Phase 6 MCP prompts (daily-digest uses profile, triage-shortlist filters by profile affinity)
 
+### Hardware constraints and compute strategy
+- Target hardware: Xeon W-2125 (4c/8t), 32GB RAM, GTX 1080 Ti (11GB VRAM), PostgreSQL + Redis local
+- Phase 3 ranking is entirely CPU-bound and PostgreSQL-bound — no GPU, no embeddings, no external API calls needed
+- All ranking computation (lexical scoring, category overlap, recency weighting) happens in PostgreSQL queries or lightweight Python post-processing — well within single-node constraints
+- This phase is solidly "Bronze" compute profile (docs/05, §7): metadata + lexical retrieval + workflow-derived signals, no embeddings required
+- Storage: interest profiles and signals are small metadata rows — negligible impact on /home (82% used) even at scale
+
+### Cost and sustainability model
+- Self-hosted first: Phase 3 requires zero cloud services or external APIs — everything runs on local PostgreSQL
+- Budget-conscious default: the ranking pipeline should never require paid services to function at its core level
+- Cloud-optional upgrade path: if donation/contribution revenue arrives, the ranking pipeline should have clear slots where cloud services add value:
+  - Semantic reranking via hosted embedding API (e.g., Voyage, Cohere) → plugs into the signal pipeline as an additional SignalScore type
+  - Hosted vector DB for broader embedding coverage → Silver/Gold compute tier, not required for Bronze
+  - GPU compute for local SPECTER2 embeddings → uses the 1080 Ti (11GB VRAM) for v2 semantic features, no cloud needed
+- Design principle: Bronze (fully local, free) must be complete and useful. Silver/Gold are incremental improvements, not requirements.
+- Donation model precedent: arxiv-sanity was donation-supported. If this project follows that path, investment priorities should be: (1) broader OpenAlex enrichment budget (Phase 4), (2) hosted embedding API for semantic reranking (v2), (3) better hardware for local inference. Phase 3 itself needs none of this.
+
 ### Claude's Discretion
 - Database schema: single InterestProfile + InterestSignal tables vs per-signal-type tables (recommended: single signal table with type discriminator, same pattern as triage log)
 - Scoring normalization approach (min-max vs sigmoid vs percentile)
