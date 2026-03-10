@@ -55,3 +55,11 @@ try:
     cli.add_command(profile_group)
 except (ImportError, ModuleNotFoundError):
     pass
+
+# Enrichment subgroup (Phase 4, Plan 02)
+try:
+    from arxiv_mcp.enrichment.cli import enrich_group
+
+    cli.add_command(enrich_group)
+except (ImportError, ModuleNotFoundError):
+    pass
