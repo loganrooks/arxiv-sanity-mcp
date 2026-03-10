@@ -1,0 +1,131 @@
+{
+  "id": "https://openalex.org/W2741809807",
+  "doi": "https://doi.org/10.48550/arxiv.1706.03762",
+  "ids": {
+    "openalex": "https://openalex.org/W2741809807",
+    "doi": "https://doi.org/10.48550/arxiv.1706.03762",
+    "mag": 2741809807
+  },
+  "type": "preprint",
+  "is_retracted": false,
+  "cited_by_count": 6497,
+  "fwci": 115.7593,
+  "citation_normalized_percentile": {
+    "value": 0.9996,
+    "is_in_top_1_percent": true,
+    "is_in_top_10_percent": true
+  },
+  "primary_topic": {
+    "id": "https://openalex.org/T10032",
+    "display_name": "Natural Language Processing Techniques",
+    "score": 0.999,
+    "subfield": {
+      "id": "https://openalex.org/subfields/1702",
+      "display_name": "Artificial Intelligence"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/17",
+      "display_name": "Computer Science"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10032",
+      "display_name": "Natural Language Processing Techniques",
+      "score": 0.999,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T11234",
+      "display_name": "Deep Learning Architectures",
+      "score": 0.85,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10456",
+      "display_name": "Machine Translation and Sequence Modeling",
+      "score": 0.72,
+      "subfield": {
+        "id": "https://openalex.org/subfields/1702",
+        "display_name": "Artificial Intelligence"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "related_works": [
+    "https://openalex.org/W2965373594",
+    "https://openalex.org/W2963073156",
+    "https://openalex.org/W2102313092",
+    "https://openalex.org/W2143243535",
+    "https://openalex.org/W2115442807",
+    "https://openalex.org/W2012390730",
+    "https://openalex.org/W2789331505",
+    "https://openalex.org/W2588474590",
+    "https://openalex.org/W2100843109",
+    "https://openalex.org/W2101221128"
+  ],
+  "counts_by_year": [
+    {"year": 2026, "cited_by_count": 523},
+    {"year": 2025, "cited_by_count": 1842},
+    {"year": 2024, "cited_by_count": 1567},
+    {"year": 2023, "cited_by_count": 1203},
+    {"year": 2022, "cited_by_count": 856},
+    {"year": 2021, "cited_by_count": 506}
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "gold",
+    "oa_url": "https://arxiv.org/abs/1706.03762"
+  },
+  "indexed_in": ["arxiv", "crossref"],
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5023888391",
+        "display_name": "Ashish Vaswani",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I1983995261",
+          "display_name": "Google",
+          "country_code": "US"
+        }
+      ]
+    }
+  ]
+}
