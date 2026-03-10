@@ -86,11 +86,32 @@ class PaperSummary(BaseModel):
         )
 
 
+class EnrichmentInfo(BaseModel):
+    """Enrichment data display model for PaperDetail.
+
+    Provides a simplified view of PaperEnrichment for user-facing display.
+    Topics are display_name strings only. Related works split into local
+    (in DB) and external (not in DB) counts.
+    """
+
+    openalex_id: str | None = None
+    doi: str | None = None
+    cited_by_count: int | None = None
+    fwci: float | None = None
+    fwci_interpretation: str | None = None
+    topics: list[str] | None = None
+    related_works_local: int = 0
+    related_works_external: int = 0
+    enriched_at: datetime | None = None
+    source_api: str | None = None
+    status: str | None = None
+
+
 class PaperDetail(PaperSummary):
     """Full paper detail extending PaperSummary.
 
     Includes the complete abstract, version history, external identifiers,
-    provenance fields, and processing tier information.
+    provenance fields, processing tier information, and enrichment data.
     """
 
     # Full content
@@ -112,6 +133,9 @@ class PaperDetail(PaperSummary):
     # External IDs (populated in Phase 4)
     openalex_id: str | None = None
     semantic_scholar_id: str | None = None
+
+    # Enrichment data (Phase 4)
+    enrichment: EnrichmentInfo | None = None
 
 
 class SearchResult(BaseModel):
