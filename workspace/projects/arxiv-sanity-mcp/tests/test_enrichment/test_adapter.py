@@ -6,8 +6,6 @@ error handling, and proper resource cleanup.
 
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, patch
-
 import httpx
 import pytest
 import respx
@@ -43,16 +41,24 @@ def adapter_no_key() -> Settings:
     )
 
 
+@pytest.fixture
+def mock_openalex():
+    """Provide a respx mock router scoped to OpenAlex API base URL."""
+    with respx.mock(base_url="https://api.openalex.org") as router:
+        yield router
+
+
 class TestSingletonResolution:
     """Tests for single-paper ID resolution via singleton endpoint (FREE)."""
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_resolve_single_id(self, adapter_settings, openalex_work_fixture):
+    async def test_resolve_single_id(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """Single paper resolves arXiv ID via DOI prefix using singleton endpoint."""
-        respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         result = await adapter.resolve_ids(["1706.03762"])
@@ -62,11 +68,12 @@ class TestSingletonResolution:
         assert result["1706.03762"].openalex_id == "W2741809807"
         assert result["1706.03762"].doi == "10.48550/arxiv.1706.03762"
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_resolve_batch_ids(self, adapter_settings, openalex_batch_fixture):
+    async def test_resolve_batch_ids(
+        self, mock_openalex, adapter_settings, openalex_batch_fixture
+    ):
         """Batch resolution uses filter=doi: endpoint for multiple IDs."""
-        respx.get("/works").mock(
+        mock_openalex.get("/works").mock(
             return_value=httpx.Response(200, json=openalex_batch_fixture)
         )
 
@@ -84,16 +91,14 @@ class TestSingletonResolution:
 class TestBatchChunking:
     """Tests for batch chunking logic."""
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_batch_respects_max_batch_size(self, adapter_settings):
+    async def test_batch_respects_max_batch_size(self, mock_openalex, adapter_settings):
         """Batch respects max batch size of 50 (splits larger lists into chunks)."""
         adapter_settings.enrichment_batch_size = 50
 
         # Generate 60 IDs
         arxiv_ids = [f"2301.{i:05d}" for i in range(60)]
 
-        # Mock both batch calls
         batch_response_1 = {
             "meta": {"count": 50},
             "results": [
@@ -131,7 +136,7 @@ class TestBatchChunking:
             ],
         }
 
-        route = respx.get("/works").mock(
+        route = mock_openalex.get("/works").mock(
             side_effect=[
                 httpx.Response(200, json=batch_response_1),
                 httpx.Response(200, json=batch_response_2),
@@ -148,13 +153,14 @@ class TestBatchChunking:
 class TestEnrichSingle:
     """Tests for single paper enrichment."""
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_enrich_success(self, adapter_settings, openalex_work_fixture):
+    async def test_enrich_success(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """Single enrich returns full EnrichmentResult on success."""
-        respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         results = await adapter.enrich(["1706.03762"])
@@ -168,13 +174,12 @@ class TestEnrichSingle:
         assert result.topics is not None
         assert len(result.topics) == 3
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_enrich_not_found(self, adapter_settings):
+    async def test_enrich_not_found(self, mock_openalex, adapter_settings):
         """404 response returns EnrichmentResult with status='not_found'."""
-        respx.get(
-            "/works/doi:10.48550/arXiv.9999.99999",
-        ).mock(return_value=httpx.Response(404, json={"error": "Not found"}))
+        mock_openalex.get("/works/doi:10.48550/arXiv.9999.99999").mock(
+            return_value=httpx.Response(404, json={"error": "Not found"})
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         results = await adapter.enrich(["9999.99999"])
@@ -182,15 +187,15 @@ class TestEnrichSingle:
         assert len(results) == 1
         assert results[0].status == EnrichmentStatus.NOT_FOUND
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_enrich_partial(self, adapter_settings, openalex_batch_fixture):
+    async def test_enrich_partial(
+        self, mock_openalex, adapter_settings, openalex_batch_fixture
+    ):
         """Partial response (missing FWCI or topics) returns status='partial'."""
-        # Second work in batch has no fwci, no topics
         partial_work = openalex_batch_fixture["results"][1]
-        respx.get(
-            "/works/doi:10.48550/arXiv.2301.00001",
-        ).mock(return_value=httpx.Response(200, json=partial_work))
+        mock_openalex.get("/works/doi:10.48550/arXiv.2301.00001").mock(
+            return_value=httpx.Response(200, json=partial_work)
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         results = await adapter.enrich(["2301.00001"])
@@ -203,13 +208,12 @@ class TestEnrichSingle:
 class TestRateLimitAndRetry:
     """Tests for rate limiting and 429 retry behavior."""
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_429_triggers_retry(self, adapter_settings, openalex_work_fixture):
+    async def test_429_triggers_retry(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """429 response triggers exponential backoff retry (up to 3 retries)."""
-        route = respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(
+        route = mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
             side_effect=[
                 httpx.Response(429, json={"error": "Rate limit"}),
                 httpx.Response(200, json=openalex_work_fixture),
@@ -223,15 +227,15 @@ class TestRateLimitAndRetry:
         assert len(results) == 1
         assert results[0].status == EnrichmentStatus.SUCCESS
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_rate_limiter_enforces_interval(self, adapter_settings, openalex_work_fixture):
+    async def test_rate_limiter_enforces_interval(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """Rate limiter enforces minimum interval between requests."""
-        respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
-        # Use a low rate limit to verify it works (but high enough for test speed)
         adapter_settings.enrichment_rate_limit = 100.0
         adapter = OpenAlexAdapter(adapter_settings)
         results = await adapter.enrich(["1706.03762"])
@@ -243,61 +247,62 @@ class TestRateLimitAndRetry:
 class TestAPIKeyAndParams:
     """Tests for API key and select parameter handling."""
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_api_key_included(self, adapter_settings, openalex_work_fixture):
+    async def test_api_key_included(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """Adapter includes api_key in request params when configured."""
-        route = respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        route = mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         await adapter.enrich(["1706.03762"])
 
-        # Check request had api_key param
         assert route.calls.last is not None
         request = route.calls.last.request
-        assert b"api_key=test-key-123" in request.url.raw_query
+        assert b"api_key=test-key-123" in request.url.query
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_select_parameter_present(self, adapter_settings, openalex_work_fixture):
+    async def test_select_parameter_present(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """Adapter uses select= parameter to request only needed fields."""
-        route = respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        route = mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         await adapter.enrich(["1706.03762"])
 
         request = route.calls.last.request
-        assert b"select=" in request.url.raw_query
+        assert b"select=" in request.url.query
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_no_api_key_omits_param(self, adapter_no_key, openalex_work_fixture):
+    async def test_no_api_key_omits_param(
+        self, mock_openalex, adapter_no_key, openalex_work_fixture
+    ):
         """Adapter omits api_key when not configured."""
-        route = respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        route = mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
         adapter = OpenAlexAdapter(adapter_no_key)
         await adapter.enrich(["1706.03762"])
 
         request = route.calls.last.request
-        assert b"api_key" not in request.url.raw_query
+        assert b"api_key" not in request.url.query
 
 
 class TestErrorHandling:
     """Tests for network error handling."""
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_timeout_returns_error(self, adapter_settings):
+    async def test_timeout_returns_error(self, mock_openalex, adapter_settings):
         """Network timeout returns status='error' with error_detail."""
-        respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(side_effect=httpx.TimeoutException("Connection timed out"))
+        mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            side_effect=httpx.TimeoutException("Connection timed out")
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         results = await adapter.enrich(["1706.03762"])
@@ -305,15 +310,19 @@ class TestErrorHandling:
         assert len(results) == 1
         assert results[0].status == EnrichmentStatus.ERROR
         assert results[0].error_detail is not None
-        assert "timed out" in results[0].error_detail.lower() or "timeout" in results[0].error_detail.lower()
+        assert (
+            "timed out" in results[0].error_detail.lower()
+            or "timeout" in results[0].error_detail.lower()
+        )
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_client_properly_closed(self, adapter_settings, openalex_work_fixture):
+    async def test_client_properly_closed(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """httpx.AsyncClient is properly closed after use (no resource leaks)."""
-        respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         results = await adapter.enrich(["1706.03762"])
@@ -325,13 +334,14 @@ class TestErrorHandling:
 class TestResolveIds:
     """Tests for resolve_ids method."""
 
-    @respx.mock(base_url="https://api.openalex.org")
     @pytest.mark.asyncio
-    async def test_resolve_ids_returns_dict(self, adapter_settings, openalex_work_fixture):
+    async def test_resolve_ids_returns_dict(
+        self, mock_openalex, adapter_settings, openalex_work_fixture
+    ):
         """resolve_ids returns dict mapping arXiv IDs to ExternalIds."""
-        respx.get(
-            "/works/doi:10.48550/arXiv.1706.03762",
-        ).mock(return_value=httpx.Response(200, json=openalex_work_fixture))
+        mock_openalex.get("/works/doi:10.48550/arXiv.1706.03762").mock(
+            return_value=httpx.Response(200, json=openalex_work_fixture)
+        )
 
         adapter = OpenAlexAdapter(adapter_settings)
         result = await adapter.resolve_ids(["1706.03762"])
