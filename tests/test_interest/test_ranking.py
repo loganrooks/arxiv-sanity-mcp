@@ -26,7 +26,8 @@ from arxiv_mcp.interest.ranking import (
     score_recency,
     score_seed_relation,
 )
-from arxiv_mcp.models.paper import PaperSummary, ProfileSearchResult
+from arxiv_mcp.models.pagination import PaginatedResponse
+from arxiv_mcp.models.paper import PaperSummary, ProfileSearchResult, WorkflowSearchResult
 
 
 # ---------------------------------------------------------------------------
@@ -471,3 +472,209 @@ class TestProfileSearchResult:
         )
         assert result.ranking_explanation is None
         assert result.triage_state == "unseen"
+
+
+# ===========================================================================
+# TestProfileRankingService
+# ===========================================================================
+
+
+class MockWorkflowSearchService:
+    """Mock WorkflowSearchService returning canned results."""
+
+    def __init__(self, results: list[WorkflowSearchResult] | None = None):
+        from arxiv_mcp.models.pagination import PageInfo
+
+        self._results = results or []
+        self._page_info = PageInfo(has_next=False, next_cursor=None)
+        self.last_kwargs: dict = {}
+
+    async def search_papers(self, **kwargs) -> PaginatedResponse[WorkflowSearchResult]:
+        self.last_kwargs = kwargs
+        return PaginatedResponse[WorkflowSearchResult](
+            items=self._results,
+            page_info=self._page_info,
+        )
+
+    async def browse_recent(self, **kwargs) -> PaginatedResponse[WorkflowSearchResult]:
+        self.last_kwargs = kwargs
+        return PaginatedResponse[WorkflowSearchResult](
+            items=self._results,
+            page_info=self._page_info,
+        )
+
+
+def _make_workflow_results(count: int = 3) -> list[WorkflowSearchResult]:
+    """Build a list of WorkflowSearchResult for testing."""
+    results = []
+    now = datetime.now(timezone.utc)
+    for i in range(count):
+        paper = _make_paper(
+            arxiv_id=f"2301.{i:05d}",
+            title=f"Test Paper {i}",
+            authors_text=f"Author {i}",
+            category_list=["cs.CL", "cs.AI"] if i % 2 == 0 else ["math.AG"],
+            submitted_date=now - timedelta(days=i * 5),
+        )
+        results.append(
+            WorkflowSearchResult(
+                paper=paper,
+                score=0.9 - (i * 0.2),
+                triage_state="unseen",
+                collection_slugs=[],
+            )
+        )
+    return results
+
+
+class TestProfileRankingService:
+    """Tests for ProfileRankingService wrapping WorkflowSearchService."""
+
+    async def test_search_without_profile(self):
+        """Without profile_slug, results pass through as ProfileSearchResults with no explanation."""
+        mock_wss = MockWorkflowSearchService(results=_make_workflow_results(3))
+
+        from arxiv_mcp.interest.search_augment import ProfileRankingService
+
+        service = ProfileRankingService(
+            session_factory=None,
+            settings=None,
+            workflow_search_service=mock_wss,
+        )
+        response = await service.search_papers(profile_slug=None, query_text="test")
+        assert response.ranker_snapshot is None
+        assert len(response.results.items) == 3
+        for item in response.results.items:
+            assert isinstance(item, ProfileSearchResult)
+            assert item.ranking_explanation is None
+
+    async def test_search_with_profile(self):
+        """With profile_slug, results are re-ranked with explanations and snapshot."""
+        mock_wss = MockWorkflowSearchService(results=_make_workflow_results(3))
+
+        from arxiv_mcp.interest.search_augment import ProfileRankingService
+
+        service = ProfileRankingService(
+            session_factory=None,
+            settings=None,
+            workflow_search_service=mock_wss,
+            _test_profile_context=_make_profile_context(
+                seed_papers=[_make_paper(arxiv_id="seed-1")],
+                seed_categories={"cs.CL", "cs.LG"},
+                followed_authors=["author 0"],
+            ),
+        )
+        response = await service.search_papers(
+            profile_slug="test-profile",
+            query_text="test",
+            page_size=3,
+        )
+        assert response.ranker_snapshot is not None
+        assert response.ranker_snapshot.profile_slug == "test-profile"
+        assert len(response.results.items) <= 3
+        for item in response.results.items:
+            assert isinstance(item, ProfileSearchResult)
+            assert item.ranking_explanation is not None
+            assert item.ranking_explanation.composite_score >= 0.0
+
+    async def test_search_with_empty_profile(self):
+        """Empty profile returns results with only query_match + recency signals."""
+        mock_wss = MockWorkflowSearchService(results=_make_workflow_results(2))
+
+        from arxiv_mcp.interest.search_augment import ProfileRankingService
+
+        service = ProfileRankingService(
+            session_factory=None,
+            settings=None,
+            workflow_search_service=mock_wss,
+            _test_profile_context=_make_profile_context(),  # empty
+        )
+        response = await service.search_papers(
+            profile_slug="empty-profile",
+            query_text="test",
+            page_size=2,
+        )
+        assert response.ranker_snapshot is not None
+        for item in response.results.items:
+            assert item.ranking_explanation is not None
+            types = {s.signal_type for s in item.ranking_explanation.signal_breakdown}
+            assert SignalType.QUERY_MATCH in types
+            assert SignalType.RECENCY in types
+
+    async def test_browse_with_profile(self):
+        """browse_recent with profile_slug applies ranking."""
+        mock_wss = MockWorkflowSearchService(results=_make_workflow_results(3))
+
+        from arxiv_mcp.interest.search_augment import ProfileRankingService
+
+        service = ProfileRankingService(
+            session_factory=None,
+            settings=None,
+            workflow_search_service=mock_wss,
+            _test_profile_context=_make_profile_context(
+                seed_papers=[_make_paper(arxiv_id="seed-1")],
+                seed_categories={"cs.CL"},
+            ),
+        )
+        response = await service.browse_recent(
+            profile_slug="test-profile",
+            page_size=3,
+        )
+        assert response.ranker_snapshot is not None
+        assert len(response.results.items) <= 3
+
+    async def test_ranker_snapshot_present(self):
+        """Response includes ranker_snapshot with correct metadata."""
+        mock_wss = MockWorkflowSearchService(results=_make_workflow_results(1))
+
+        from arxiv_mcp.interest.search_augment import ProfileRankingService
+
+        ctx = _make_profile_context(
+            seed_papers=[_make_paper(arxiv_id="s1"), _make_paper(arxiv_id="s2")],
+            followed_authors=["auth a"],
+            negative_papers=[_make_paper(arxiv_id="n1")],
+            query_slugs=["q1"],
+        )
+        service = ProfileRankingService(
+            session_factory=None,
+            settings=None,
+            workflow_search_service=mock_wss,
+            _test_profile_context=ctx,
+        )
+        response = await service.search_papers(
+            profile_slug="test-profile",
+            query_text="test",
+            page_size=1,
+        )
+        snap = response.ranker_snapshot
+        assert snap is not None
+        assert snap.seed_paper_count == 2
+        assert snap.followed_author_count == 1
+        assert snap.negative_example_count == 1
+        assert snap.saved_query_count == 1
+        assert snap.ranker_version == RankingPipeline.RANKER_VERSION
+
+    async def test_overfetch_strategy(self):
+        """Service requests page_size * 3 from base service for re-ranking."""
+        mock_wss = MockWorkflowSearchService(results=_make_workflow_results(6))
+
+        from arxiv_mcp.interest.search_augment import ProfileRankingService
+
+        service = ProfileRankingService(
+            session_factory=None,
+            settings=None,
+            workflow_search_service=mock_wss,
+            _test_profile_context=_make_profile_context(
+                seed_papers=[_make_paper(arxiv_id="seed-1")],
+                seed_categories={"cs.CL"},
+            ),
+        )
+        response = await service.search_papers(
+            profile_slug="test-profile",
+            query_text="test",
+            page_size=2,
+        )
+        # Service should have passed page_size * 3 = 6 to the mock
+        assert mock_wss.last_kwargs.get("page_size") == 6
+        # But response should be trimmed to original page_size
+        assert len(response.results.items) <= 2
