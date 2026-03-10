@@ -63,11 +63,12 @@ Plans:
   2. User can inspect all signals in a profile and see which were user-added vs system-suggested
   3. Every result in a result set includes a structured ranking explanation exposing signal types (query match, seed relation, category overlap, interest profile match, recency)
   4. User can inspect the full ranker inputs for any result set
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md -- Interest profile data model, migration, ProfileService with CRUD and signal management
+- [ ] 03-02-PLAN.md -- Composable ranking pipeline with 5 signal scorers, ProfileRankingService
+- [ ] 03-03-PLAN.md -- Suggestion engine, profile CLI, search CLI integration with --profile and --explain
 
 ### Phase 4: Enrichment Adapters
 **Goal**: Papers are lazily enriched with OpenAlex data (topics, citations, related works) on demand, with external ID resolution and full provenance tracking
@@ -123,7 +124,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Metadata Substrate | 3/3 | Complete | 2026-03-09 |
 | 2. Workflow State | 3/3 | Complete | 2026-03-09 |
-| 3. Interest Modeling & Ranking | 0/2 | Not started | - |
+| 3. Interest Modeling & Ranking | 0/3 | Not started | - |
 | 4. Enrichment Adapters | 0/1 | Not started | - |
 | 5. Content Normalization | 0/2 | Not started | - |
 | 6. MCP Integration | 0/2 | Not started | - |
