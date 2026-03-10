@@ -53,6 +53,10 @@ class Settings(BaseSettings):
     default_watch_cadence: str = "daily"
     export_default_path: str = "data/workflow_export.json"
 
+    # Interest profile settings
+    soft_limit_profiles: int = 50
+    default_negative_weight: float = 0.3
+
     def load_categories(self) -> dict:
         """Load category configuration from TOML file.
 
