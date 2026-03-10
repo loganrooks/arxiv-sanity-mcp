@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-03-10T00:02:44.943Z"
-last_activity: 2026-03-09 -- Plan 02-03 complete (queries, watches, export, CLI)
+status: in_progress
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-10T01:00:46Z"
+last_activity: 2026-03-10 -- Plan 03-01 complete (interest profile data model)
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
-  percent: 100
+  total_plans: 9
+  completed_plans: 7
+  percent: 78
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 2: Workflow State -- Complete
+**Current focus:** Phase 3: Interest Modeling & Ranking
 
 ## Current Position
 
-Phase: 2 of 6 (Workflow State) -- Complete
-Plan: 3 of 3 in current phase (complete)
-Status: Phase 2 complete
-Last activity: 2026-03-09 -- Plan 02-03 complete (queries, watches, export, CLI)
+Phase: 3 of 6 (Interest Modeling & Ranking)
+Plan: 1 of 3 in current phase (complete)
+Status: Plan 03-01 complete, 03-02 next
+Last activity: 2026-03-10 -- Plan 03-01 complete (interest profile data model)
 
-Progress: [██████████] 100%
+Progress: [███████░░░] 78%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
+- Total plans completed: 7
 - Average duration: 7.3 min
-- Total execution time: 0.73 hours
+- Total execution time: 0.85 hours
 
 **By Phase:**
 
@@ -45,9 +45,10 @@ Progress: [██████████] 100%
 |-------|-------|-------|----------|
 | 01-metadata-substrate | 3 | 25 min | 8.3 min |
 | 02-workflow-state | 3 | 21 min | 7.0 min |
+| 03-interest-modeling-ranking | 1/3 | 7 min | 7.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-03 (8 min), 02-01 (4 min), 02-02 (6 min), 02-03 (11 min)
+- Last 5 plans: 02-01 (4 min), 02-02 (6 min), 02-03 (11 min), 03-01 (7 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -83,6 +84,10 @@ Recent decisions affecting current work:
 - [Phase 02]: 02-03: Post-process enrichment: WorkflowSearchService wraps SearchService with 2-query batch (no Phase 1 modification)
 - [Phase 02]: 02-03: Last-write-wins for triage import conflict resolution; skip for collections/saved queries
 - [Phase 02]: 02-03: Lazy workflow CLI import via try/except for forward compatibility
+- [Phase 03]: 03-01: Single InterestSignal table with signal_type discriminator (not per-type tables) for uniform querying
+- [Phase 03]: 03-01: Saved query signals use warn-not-error for non-existent queries (resilient to deleted queries)
+- [Phase 03]: 03-01: Author name normalization via lowercase + whitespace collapse (exact match, not fuzzy)
+- [Phase 03]: 03-01: Application-level duplicate check before DB constraint for descriptive error messages
 
 ### Pending Todos
 
@@ -95,6 +100,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-09T23:56:06Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-03-10T01:00:46Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
