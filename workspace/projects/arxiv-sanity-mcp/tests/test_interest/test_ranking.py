@@ -1,0 +1,473 @@
+"""Tests for ranking pipeline: signal scorers, RankingPipeline, and Pydantic types.
+
+Tests cover all 5 signal types, edge cases (empty inputs, zero division,
+self-match exclusion), negative demotion, RankingExplanation, RankerSnapshot,
+and ProfileSearchResult model construction.
+"""
+
+from __future__ import annotations
+
+from datetime import date, datetime, timedelta, timezone
+
+import pytest
+
+from arxiv_mcp.interest.ranking import (
+    DEFAULT_WEIGHTS,
+    ProfileContext,
+    RankerSnapshot,
+    RankingExplanation,
+    RankingPipeline,
+    SignalScore,
+    SignalType,
+    apply_negative_demotion,
+    score_category_overlap,
+    score_profile_match,
+    score_query_match,
+    score_recency,
+    score_seed_relation,
+)
+from arxiv_mcp.models.paper import PaperSummary, ProfileSearchResult
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+
+def _make_paper(
+    arxiv_id: str = "2301.00001",
+    title: str = "Test Paper",
+    authors_text: str = "Author A, Author B",
+    categories: str = "cs.CL cs.AI",
+    primary_category: str = "cs.CL",
+    category_list: list[str] | None = None,
+    submitted_date: datetime | None = None,
+    announced_date: date | None = None,
+) -> PaperSummary:
+    """Build a PaperSummary for testing."""
+    if category_list is None:
+        category_list = ["cs.CL", "cs.AI"]
+    if submitted_date is None:
+        submitted_date = datetime(2023, 6, 1, tzinfo=timezone.utc)
+    if announced_date is None:
+        announced_date = date(2023, 6, 2)
+    return PaperSummary(
+        arxiv_id=arxiv_id,
+        title=title,
+        authors_text=authors_text,
+        abstract_snippet="Abstract snippet.",
+        categories=categories,
+        primary_category=primary_category,
+        category_list=category_list,
+        submitted_date=submitted_date,
+        announced_date=announced_date,
+        oai_datestamp=date(2023, 6, 15),
+    )
+
+
+def _make_profile_context(
+    seed_papers: list[PaperSummary] | None = None,
+    seed_categories: set[str] | None = None,
+    followed_authors: list[str] | None = None,
+    negative_papers: list[PaperSummary] | None = None,
+    negative_categories: set[str] | None = None,
+    negative_weight: float = 0.3,
+    query_slugs: list[str] | None = None,
+    weights: dict[str, float] | None = None,
+    profile_slug: str = "test-profile",
+) -> ProfileContext:
+    """Build a ProfileContext for testing."""
+    return ProfileContext(
+        profile_slug=profile_slug,
+        seed_papers=seed_papers or [],
+        seed_categories=seed_categories or set(),
+        followed_authors=followed_authors or [],
+        negative_papers=negative_papers or [],
+        negative_categories=negative_categories or set(),
+        negative_weight=negative_weight,
+        query_slugs=query_slugs or [],
+        weights=weights or dict(DEFAULT_WEIGHTS),
+    )
+
+
+# ===========================================================================
+# TestQueryMatchScorer
+# ===========================================================================
+
+
+class TestQueryMatchScorer:
+    """Tests for score_query_match signal scorer."""
+
+    def test_normal_normalization(self):
+        """Ranks [0.1, 0.5, 0.9] should normalize to [1.0, 0.5, 0.0]."""
+        all_ranks = [0.1, 0.5, 0.9]
+        # Best rank = lowest (0.1) -> 1.0, worst (0.9) -> 0.0
+        s = score_query_match(0.1, all_ranks)
+        assert s.signal_type == SignalType.QUERY_MATCH
+        assert s.normalized_score == pytest.approx(1.0)
+
+        s2 = score_query_match(0.5, all_ranks)
+        assert s2.normalized_score == pytest.approx(0.5)
+
+        s3 = score_query_match(0.9, all_ranks)
+        assert s3.normalized_score == pytest.approx(0.0)
+
+    def test_same_rank_guard(self):
+        """All-same ranks should return 1.0 (zero-division guard)."""
+        s = score_query_match(0.5, [0.5, 0.5, 0.5])
+        assert s.normalized_score == pytest.approx(1.0)
+
+    def test_none_rank_returns_zero(self):
+        """None query_rank returns zero SignalScore."""
+        s = score_query_match(None, [0.1, 0.5, 0.9])
+        assert s.normalized_score == pytest.approx(0.0)
+        assert s.weighted_score == pytest.approx(0.0)
+
+
+# ===========================================================================
+# TestCategoryOverlapScorer
+# ===========================================================================
+
+
+class TestCategoryOverlapScorer:
+    """Tests for score_category_overlap signal scorer."""
+
+    def test_partial_overlap(self):
+        """2 of 3 seed categories -> Jaccard ~0.67."""
+        paper = _make_paper(category_list=["cs.CL", "cs.AI"])
+        seed_cats = {"cs.CL", "cs.AI", "cs.LG"}
+        s = score_category_overlap(paper, seed_cats)
+        # Intersection: {cs.CL, cs.AI} = 2, Union: {cs.CL, cs.AI, cs.LG} = 3
+        assert s.normalized_score == pytest.approx(2.0 / 3.0, abs=0.01)
+
+    def test_full_overlap(self):
+        """Exact match returns 1.0."""
+        paper = _make_paper(category_list=["cs.CL", "cs.AI"])
+        seed_cats = {"cs.CL", "cs.AI"}
+        s = score_category_overlap(paper, seed_cats)
+        assert s.normalized_score == pytest.approx(1.0)
+
+    def test_no_overlap(self):
+        """No overlap returns 0.0."""
+        paper = _make_paper(category_list=["math.AG"])
+        seed_cats = {"cs.CL", "cs.AI"}
+        s = score_category_overlap(paper, seed_cats)
+        assert s.normalized_score == pytest.approx(0.0)
+
+    def test_empty_seed_categories(self):
+        """Empty seed categories returns 0.0."""
+        paper = _make_paper(category_list=["cs.CL"])
+        s = score_category_overlap(paper, set())
+        assert s.normalized_score == pytest.approx(0.0)
+
+
+# ===========================================================================
+# TestRecencyScorer
+# ===========================================================================
+
+
+class TestRecencyScorer:
+    """Tests for score_recency signal scorer."""
+
+    def test_today_paper(self):
+        """Paper submitted today returns ~1.0."""
+        now = datetime.now(timezone.utc)
+        paper = _make_paper(submitted_date=now)
+        s = score_recency(paper, max_date=now, decay_days=90)
+        assert s.normalized_score == pytest.approx(1.0, abs=0.01)
+
+    def test_old_paper(self):
+        """90-day-old paper returns ~0.0."""
+        now = datetime.now(timezone.utc)
+        old = now - timedelta(days=90)
+        paper = _make_paper(submitted_date=old)
+        s = score_recency(paper, max_date=now, decay_days=90)
+        assert s.normalized_score == pytest.approx(0.0, abs=0.01)
+
+    def test_beyond_decay_days(self):
+        """Paper older than decay_days returns exactly 0.0."""
+        now = datetime.now(timezone.utc)
+        ancient = now - timedelta(days=120)
+        paper = _make_paper(submitted_date=ancient)
+        s = score_recency(paper, max_date=now, decay_days=90)
+        assert s.normalized_score == pytest.approx(0.0)
+
+
+# ===========================================================================
+# TestSeedRelationScorer
+# ===========================================================================
+
+
+class TestSeedRelationScorer:
+    """Tests for score_seed_relation signal scorer."""
+
+    def test_matching_author(self):
+        """Paper with matching author returns positive score."""
+        paper = _make_paper(authors_text="Author A, Author B")
+        seed_papers = [_make_paper(arxiv_id="seed-1")]
+        seed_cats = {"cs.CL", "cs.AI"}
+        followed = ["author a"]
+        s = score_seed_relation(paper, seed_papers, seed_cats, followed)
+        assert s.normalized_score > 0.0
+
+    def test_matching_categories(self):
+        """Paper sharing seed categories has positive score."""
+        paper = _make_paper(category_list=["cs.CL", "cs.AI"])
+        seed_papers = [_make_paper(arxiv_id="seed-1", category_list=["cs.CL", "cs.LG"])]
+        seed_cats = {"cs.CL", "cs.LG"}
+        s = score_seed_relation(paper, seed_papers, seed_cats, [])
+        assert s.normalized_score > 0.0
+
+    def test_self_exclusion(self):
+        """Seed papers themselves are excluded (returns 0.0)."""
+        paper = _make_paper(arxiv_id="2301.00001")
+        seed_papers = [_make_paper(arxiv_id="2301.00001")]
+        seed_ids = {p.arxiv_id for p in seed_papers}
+        # score_seed_relation checks if paper.arxiv_id in seed set
+        s = score_seed_relation(paper, seed_papers, {"cs.CL"}, [])
+        assert s.normalized_score == pytest.approx(0.0)
+
+
+# ===========================================================================
+# TestProfileMatchScorer
+# ===========================================================================
+
+
+class TestProfileMatchScorer:
+    """Tests for score_profile_match signal scorer."""
+
+    def test_aggregation_correctness(self):
+        """Profile match aggregates sub-signals correctly."""
+        paper = _make_paper(
+            authors_text="Author A",
+            category_list=["cs.CL", "cs.AI"],
+        )
+        ctx = _make_profile_context(
+            seed_papers=[_make_paper(arxiv_id="seed-1", category_list=["cs.CL", "cs.LG"])],
+            seed_categories={"cs.CL", "cs.LG"},
+            followed_authors=["author a"],
+        )
+        s = score_profile_match(paper, ctx)
+        assert s.signal_type == SignalType.INTEREST_PROFILE_MATCH
+        # Composite of sub-signals, should be positive
+        assert s.normalized_score > 0.0
+        assert s.normalized_score <= 1.0
+
+
+# ===========================================================================
+# TestNegativeDemotion
+# ===========================================================================
+
+
+class TestNegativeDemotion:
+    """Tests for apply_negative_demotion."""
+
+    def test_demotion_applied(self):
+        """Negative example matching reduces scores."""
+        paper = _make_paper(arxiv_id="neg-paper", category_list=["cs.CL"])
+        ctx = _make_profile_context(
+            negative_papers=[_make_paper(arxiv_id="neg-paper")],
+            negative_categories={"cs.CL"},
+            negative_weight=0.5,
+        )
+        scores = [
+            SignalScore(
+                signal_type=SignalType.QUERY_MATCH,
+                raw_score=0.8,
+                normalized_score=0.8,
+                weight=0.35,
+                weighted_score=0.28,
+                explanation="test",
+            ),
+        ]
+        apply_negative_demotion(scores, paper, ctx)
+        # weighted_score should be reduced by factor (1.0 - 0.5) = 0.5
+        assert scores[0].weighted_score == pytest.approx(0.14)
+
+    def test_no_negatives_no_effect(self):
+        """Without negative matches, scores unchanged."""
+        paper = _make_paper(arxiv_id="good-paper", category_list=["math.AG"])
+        ctx = _make_profile_context(
+            negative_papers=[],
+            negative_categories={"cs.CL"},
+            negative_weight=0.5,
+        )
+        scores = [
+            SignalScore(
+                signal_type=SignalType.QUERY_MATCH,
+                raw_score=0.8,
+                normalized_score=0.8,
+                weight=0.35,
+                weighted_score=0.28,
+                explanation="test",
+            ),
+        ]
+        apply_negative_demotion(scores, paper, ctx)
+        assert scores[0].weighted_score == pytest.approx(0.28)
+
+
+# ===========================================================================
+# TestRankingPipeline
+# ===========================================================================
+
+
+class TestRankingPipeline:
+    """Tests for RankingPipeline.score_paper."""
+
+    def test_with_profile(self):
+        """Pipeline with profile returns RankingExplanation with all applicable signals."""
+        paper = _make_paper(
+            authors_text="Author A",
+            category_list=["cs.CL", "cs.AI"],
+            submitted_date=datetime.now(timezone.utc),
+        )
+        ctx = _make_profile_context(
+            seed_papers=[_make_paper(arxiv_id="seed-1")],
+            seed_categories={"cs.CL", "cs.LG"},
+            followed_authors=["author a"],
+        )
+        pipeline = RankingPipeline()
+        explanation = pipeline.score_paper(
+            paper,
+            query_rank=0.5,
+            all_ranks=[0.1, 0.5, 0.9],
+            profile_context=ctx,
+        )
+        assert isinstance(explanation, RankingExplanation)
+        assert explanation.composite_score > 0.0
+        # Should have all 5 signals
+        types_present = {s.signal_type for s in explanation.signal_breakdown}
+        assert SignalType.QUERY_MATCH in types_present
+        assert SignalType.RECENCY in types_present
+        assert SignalType.SEED_RELATION in types_present
+        assert SignalType.CATEGORY_OVERLAP in types_present
+        assert SignalType.INTEREST_PROFILE_MATCH in types_present
+
+    def test_without_profile(self):
+        """Pipeline without profile returns only query_match + recency signals."""
+        paper = _make_paper(submitted_date=datetime.now(timezone.utc))
+        pipeline = RankingPipeline()
+        explanation = pipeline.score_paper(
+            paper,
+            query_rank=0.3,
+            all_ranks=[0.1, 0.3, 0.9],
+            profile_context=None,
+        )
+        types_present = {s.signal_type for s in explanation.signal_breakdown}
+        assert SignalType.QUERY_MATCH in types_present
+        assert SignalType.RECENCY in types_present
+        assert SignalType.SEED_RELATION not in types_present
+        assert SignalType.CATEGORY_OVERLAP not in types_present
+        assert SignalType.INTEREST_PROFILE_MATCH not in types_present
+
+    def test_empty_profile(self):
+        """Pipeline with empty profile (no signals) returns only query_match + recency."""
+        paper = _make_paper(submitted_date=datetime.now(timezone.utc))
+        ctx = _make_profile_context()  # empty
+        pipeline = RankingPipeline()
+        explanation = pipeline.score_paper(
+            paper,
+            query_rank=0.3,
+            all_ranks=[0.1, 0.3, 0.9],
+            profile_context=ctx,
+        )
+        types_present = {s.signal_type for s in explanation.signal_breakdown}
+        assert SignalType.QUERY_MATCH in types_present
+        assert SignalType.RECENCY in types_present
+
+    def test_custom_weights(self):
+        """Custom weights override DEFAULT_WEIGHTS correctly."""
+        custom = {SignalType.QUERY_MATCH: 0.9, SignalType.RECENCY: 0.1}
+        pipeline = RankingPipeline(weights=custom)
+        paper = _make_paper(submitted_date=datetime.now(timezone.utc))
+        explanation = pipeline.score_paper(
+            paper,
+            query_rank=0.1,
+            all_ranks=[0.1, 0.5, 0.9],
+        )
+        qm = [s for s in explanation.signal_breakdown if s.signal_type == SignalType.QUERY_MATCH][0]
+        assert qm.weight == pytest.approx(0.9)
+
+
+# ===========================================================================
+# TestRankerSnapshot
+# ===========================================================================
+
+
+class TestRankerSnapshot:
+    """Tests for RankerSnapshot capture."""
+
+    def test_snapshot_fields(self):
+        """Snapshot captures profile slug, weights, signal counts, ranker_version."""
+        ctx = _make_profile_context(
+            seed_papers=[_make_paper(arxiv_id="seed-1"), _make_paper(arxiv_id="seed-2")],
+            followed_authors=["author a"],
+            negative_papers=[_make_paper(arxiv_id="neg-1")],
+            query_slugs=["q-1"],
+        )
+        pipeline = RankingPipeline()
+        snap = pipeline.capture_snapshot(profile_context=ctx)
+        assert isinstance(snap, RankerSnapshot)
+        assert snap.profile_slug == "test-profile"
+        assert snap.ranker_version == RankingPipeline.RANKER_VERSION
+        assert snap.seed_paper_count == 2
+        assert snap.followed_author_count == 1
+        assert snap.negative_example_count == 1
+        assert snap.saved_query_count == 1
+        assert snap.negative_weight == pytest.approx(0.3)
+        assert snap.captured_at is not None
+
+    def test_snapshot_no_profile(self):
+        """Snapshot without profile returns None slug and zero counts."""
+        pipeline = RankingPipeline()
+        snap = pipeline.capture_snapshot(profile_context=None)
+        assert snap.profile_slug is None
+        assert snap.seed_paper_count == 0
+
+
+# ===========================================================================
+# TestProfileSearchResult
+# ===========================================================================
+
+
+class TestProfileSearchResult:
+    """Tests for ProfileSearchResult Pydantic model."""
+
+    def test_construction_with_explanation(self):
+        """ProfileSearchResult can be constructed with ranking_explanation."""
+        paper = _make_paper()
+        explanation = RankingExplanation(
+            composite_score=0.75,
+            signal_breakdown=[
+                SignalScore(
+                    signal_type=SignalType.QUERY_MATCH,
+                    raw_score=0.8,
+                    normalized_score=0.8,
+                    weight=0.35,
+                    weighted_score=0.28,
+                    explanation="query match",
+                ),
+            ],
+            ranker_version="0.3.0",
+        )
+        result = ProfileSearchResult(
+            paper=paper,
+            score=0.75,
+            triage_state="unseen",
+            collection_slugs=[],
+            ranking_explanation=explanation,
+        )
+        assert result.ranking_explanation is not None
+        assert result.ranking_explanation.composite_score == pytest.approx(0.75)
+        assert result.paper.arxiv_id == "2301.00001"
+        assert result.triage_state == "unseen"
+
+    def test_construction_without_explanation(self):
+        """ProfileSearchResult defaults to None ranking_explanation."""
+        paper = _make_paper()
+        result = ProfileSearchResult(
+            paper=paper,
+            score=0.5,
+        )
+        assert result.ranking_explanation is None
+        assert result.triage_state == "unseen"
