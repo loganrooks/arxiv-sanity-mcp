@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Completed 03-02-PLAN.md
-last_updated: "2026-03-10T01:11:53Z"
-last_activity: 2026-03-10 -- Plan 03-02 complete (ranking pipeline)
+stopped_at: Completed 03-03-PLAN.md
+last_updated: "2026-03-10T01:22:47Z"
+last_activity: 2026-03-10 -- Plan 03-03 complete (suggestions & CLI)
 progress:
   total_phases: 6
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 9
-  completed_plans: 8
-  percent: 89
+  completed_plans: 9
+  percent: 100
 ---
 
 # Project State
@@ -25,19 +25,19 @@ See: .planning/PROJECT.md (updated 2026-03-08)
 
 ## Current Position
 
-Phase: 3 of 6 (Interest Modeling & Ranking)
-Plan: 2 of 3 in current phase (complete)
-Status: Plan 03-02 complete, 03-03 next
-Last activity: 2026-03-10 -- Plan 03-02 complete (ranking pipeline)
+Phase: 3 of 6 (Interest Modeling & Ranking) -- COMPLETE
+Plan: 3 of 3 in current phase (complete)
+Status: Phase 3 complete, Phase 4 next
+Last activity: 2026-03-10 -- Plan 03-03 complete (suggestions & CLI)
 
-Progress: [█████████░] 89%
+Progress: [██████████] 100% (Phase 3 complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 7.4 min
-- Total execution time: 0.98 hours
+- Total execution time: 1.12 hours
 
 **By Phase:**
 
@@ -45,10 +45,10 @@ Progress: [█████████░] 89%
 |-------|-------|-------|----------|
 | 01-metadata-substrate | 3 | 25 min | 8.3 min |
 | 02-workflow-state | 3 | 21 min | 7.0 min |
-| 03-interest-modeling-ranking | 2/3 | 15 min | 7.5 min |
+| 03-interest-modeling-ranking | 3 | 23 min | 7.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (6 min), 02-03 (11 min), 03-01 (7 min), 03-02 (8 min)
+- Last 5 plans: 02-03 (11 min), 03-01 (7 min), 03-02 (8 min), 03-03 (8 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -91,6 +91,10 @@ Recent decisions affecting current work:
 - [Phase 03]: 03-02: Ranking types (SignalType, SignalScore, etc.) as Pydantic models in models/interest.py to break circular imports
 - [Phase 03]: 03-02: Over-fetch multiplier of 3x for re-ranking compensation (page_size * 3 from base service)
 - [Phase 03]: 03-02: Negative demotion uses multiplicative factor (1 - weight) on weighted_scores, never removes results
+- [Phase 03]: 03-03: Suggestion threshold 3+ papers for author frequency, run_count >= 3 for query suggestions
+- [Phase 03]: 03-03: All signal statuses (active/pending/dismissed) excluded from suggestion generation
+- [Phase 03]: 03-03: CLI signal IDs use type:value format for confirm/dismiss (e.g., seed_paper:2301.00001)
+- [Phase 03]: 03-03: Profile-ranked search displays inline per-result ranking explanations (not table format)
 - [Phase 03]: 03-02: ProfileSearchResponse in interest/search_augment.py (not models/) to avoid circular import chain
 
 ### Pending Todos
@@ -104,6 +108,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T01:11:53Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-03-10T01:22:47Z
+Stopped at: Completed 03-03-PLAN.md (Phase 3 complete)
 Resume file: None

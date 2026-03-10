@@ -49,7 +49,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INTR-03**: Interest profiles support saved queries as signals
 - [x] **INTR-04**: Interest profiles support followed authors as signals
 - [x] **INTR-05**: Interest profiles support negative examples (papers/topics to deprioritize)
-- [ ] **INTR-06**: User can inspect all signals in an interest profile and their provenance (user-added vs system-suggested)
+- [x] **INTR-06**: User can inspect all signals in an interest profile and their provenance (user-added vs system-suggested)
 
 ### Ranking & Explanation
 
@@ -153,7 +153,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | INTR-03 | Phase 3 | Complete |
 | INTR-04 | Phase 3 | Complete |
 | INTR-05 | Phase 3 | Complete |
-| INTR-06 | Phase 3 | Pending |
+| INTR-06 | Phase 3 | Complete |
 | RANK-01 | Phase 3 | Complete |
 | RANK-02 | Phase 3 | Complete |
 | RANK-03 | Phase 3 | Complete |
