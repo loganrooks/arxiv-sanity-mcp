@@ -57,6 +57,13 @@ class Settings(BaseSettings):
     soft_limit_profiles: int = 50
     default_negative_weight: float = 0.3
 
+    # Enrichment settings
+    openalex_api_key: str = ""
+    openalex_api_url: str = "https://api.openalex.org"
+    enrichment_cooldown_days: int = 7
+    enrichment_batch_size: int = 50
+    enrichment_rate_limit: float = 5.0
+
     def load_categories(self) -> dict:
         """Load category configuration from TOML file.
 

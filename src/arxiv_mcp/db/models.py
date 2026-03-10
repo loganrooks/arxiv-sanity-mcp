@@ -124,6 +124,58 @@ class Paper(Base):
         return f"<Paper(arxiv_id={self.arxiv_id!r}, title={self.title!r:.50})>"
 
 
+# --- Enrichment models (Phase 4) ---
+
+
+class PaperEnrichment(Base):
+    """External enrichment data for a paper (e.g., from OpenAlex).
+
+    Separate table from Paper for clean lifecycle separation:
+    enrichment data can become stale while arXiv metadata is stable.
+    One enrichment record per paper (arxiv_id is PK + FK).
+    """
+
+    __tablename__ = "paper_enrichments"
+
+    arxiv_id: Mapped[str] = mapped_column(
+        String(20),
+        ForeignKey("papers.arxiv_id", ondelete="CASCADE"),
+        primary_key=True,
+    )
+    openalex_id: Mapped[str | None] = mapped_column(String(64))
+    doi: Mapped[str | None] = mapped_column(String(256))
+    cited_by_count: Mapped[int | None] = mapped_column(Integer)
+    fwci: Mapped[float | None] = mapped_column(Float)
+    topics: Mapped[dict | None] = mapped_column(JSONB)
+    related_works: Mapped[list | None] = mapped_column(JSONB)
+    counts_by_year: Mapped[list | None] = mapped_column(JSONB)
+    openalex_type: Mapped[str | None] = mapped_column(String(64))
+    openalex_raw: Mapped[dict | None] = mapped_column(JSONB)
+    source_api: Mapped[str] = mapped_column(String(32), default="openalex")
+    api_version: Mapped[str | None] = mapped_column(String(32))
+    enriched_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    last_attempted_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False
+    )
+    status: Mapped[str] = mapped_column(String(20), nullable=False)
+    error_detail: Mapped[str | None] = mapped_column(Text)
+
+    __table_args__ = (
+        CheckConstraint(
+            "status IN ('success', 'not_found', 'partial', 'error')",
+            name="ck_enrichment_status_valid",
+        ),
+        Index("idx_enrichments_status", "status"),
+        Index("idx_enrichments_enriched_at", "enriched_at"),
+    )
+
+    def __repr__(self) -> str:
+        return (
+            f"<PaperEnrichment(arxiv_id={self.arxiv_id!r}, "
+            f"status={self.status!r}, source={self.source_api!r})>"
+        )
+
+
 # --- Workflow models (Phase 2) ---
 
 
