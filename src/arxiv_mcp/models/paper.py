@@ -12,6 +12,8 @@ from typing import ClassVar
 
 from pydantic import BaseModel, ConfigDict
 
+from arxiv_mcp.models.interest import RankingExplanation
+
 
 class PaperVersion(BaseModel):
     """A single version entry in a paper's version history."""
@@ -131,3 +133,18 @@ class WorkflowSearchResult(BaseModel):
     score: float | None = None
     triage_state: str = "unseen"
     collection_slugs: list[str] = []
+
+
+class ProfileSearchResult(BaseModel):
+    """Search result with profile-based ranking explanation.
+
+    Duplicates WorkflowSearchResult fields (not inheritance) to avoid
+    Pydantic v2 inheritance complexity. Adds ranking_explanation for
+    inspectable ranking (ADR-0001).
+    """
+
+    paper: PaperSummary
+    score: float | None = None
+    triage_state: str = "unseen"
+    collection_slugs: list[str] = []
+    ranking_explanation: RankingExplanation | None = None
