@@ -79,10 +79,11 @@ Plans:
   2. Enrichment happens on demand (not bulk) and the system tracks which papers have been enriched and when
   3. System resolves arXiv ID to DOI to OpenAlex ID bidirectionally
   4. All enrichment data records provenance (source API, timestamp, API version)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: TBD
+- [ ] 04-01-PLAN.md -- Data model, Pydantic schemas, OpenAlexAdapter with DOI-based resolution, migration 004, test fixtures
+- [ ] 04-02-PLAN.md -- EnrichmentService orchestration, CLI subgroup, paper show integration, batch operations
 
 ### Phase 5: Content Normalization
 **Goal**: Users can access paper content at multiple fidelity levels (abstract through full-text markdown) with source-aware acquisition, rights-gated serving, and full provenance
@@ -124,7 +125,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Metadata Substrate | 3/3 | Complete | 2026-03-09 |
 | 2. Workflow State | 3/3 | Complete | 2026-03-09 |
-| 3. Interest Modeling & Ranking | 0/3 | Not started | - |
-| 4. Enrichment Adapters | 0/1 | Not started | - |
+| 3. Interest Modeling & Ranking | 3/3 | Complete | 2026-03-10 |
+| 4. Enrichment Adapters | 0/2 | Not started | - |
 | 5. Content Normalization | 0/2 | Not started | - |
 | 6. MCP Integration | 0/2 | Not started | - |
