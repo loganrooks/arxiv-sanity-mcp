@@ -59,10 +59,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Enrichment
 
-- [ ] **ENRC-01**: System enriches papers lazily via OpenAlex (topics, citations, related works, FWCI)
+- [x] **ENRC-01**: System enriches papers lazily via OpenAlex (topics, citations, related works, FWCI)
 - [ ] **ENRC-02**: OpenAlex enrichment is triggered on demand, not bulk (cost-aware)
-- [ ] **ENRC-03**: System resolves external IDs: arXiv ID <-> DOI <-> OpenAlex ID
-- [ ] **ENRC-04**: Enrichment data records provenance (source, timestamp, API version)
+- [x] **ENRC-03**: System resolves external IDs: arXiv ID <-> DOI <-> OpenAlex ID
+- [x] **ENRC-04**: Enrichment data records provenance (source, timestamp, API version)
 
 ### Content
 
@@ -157,10 +157,10 @@ Deferred to future release. Tracked but not in current roadmap.
 | RANK-01 | Phase 3 | Complete |
 | RANK-02 | Phase 3 | Complete |
 | RANK-03 | Phase 3 | Complete |
-| ENRC-01 | Phase 4 | Pending |
+| ENRC-01 | Phase 4 | Complete |
 | ENRC-02 | Phase 4 | Pending |
-| ENRC-03 | Phase 4 | Pending |
-| ENRC-04 | Phase 4 | Pending |
+| ENRC-03 | Phase 4 | Complete |
+| ENRC-04 | Phase 4 | Complete |
 | CONT-01 | Phase 5 | Pending |
 | CONT-02 | Phase 5 | Pending |
 | CONT-03 | Phase 5 | Pending |

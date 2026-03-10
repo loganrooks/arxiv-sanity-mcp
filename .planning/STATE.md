@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 03-03-PLAN.md (Phase 3 complete)
-last_updated: "2026-03-10T01:28:58.994Z"
-last_activity: 2026-03-10 -- Plan 03-03 complete (suggestions & CLI)
+status: in-progress
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-10T02:56:00.000Z"
+last_activity: 2026-03-10 -- Plan 04-01 complete (enrichment data model & OpenAlex adapter)
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
-  percent: 100
+  total_plans: 11
+  completed_plans: 10
+  percent: 91
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 3: Interest Modeling & Ranking
+**Current focus:** Phase 4: Enrichment Adapters
 
 ## Current Position
 
-Phase: 3 of 6 (Interest Modeling & Ranking) -- COMPLETE
-Plan: 3 of 3 in current phase (complete)
-Status: Phase 3 complete, Phase 4 next
-Last activity: 2026-03-10 -- Plan 03-03 complete (suggestions & CLI)
+Phase: 4 of 6 (Enrichment Adapters)
+Plan: 1 of 2 in current phase (complete)
+Status: Plan 04-01 complete, Plan 04-02 next
+Last activity: 2026-03-10 -- Plan 04-01 complete (enrichment data model & OpenAlex adapter)
 
-Progress: [██████████] 100% (Phase 3 complete)
+Progress: [█████████░] 91% (10/11 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
-- Average duration: 7.4 min
-- Total execution time: 1.12 hours
+- Total plans completed: 10
+- Average duration: 7.5 min
+- Total execution time: 1.25 hours
 
 **By Phase:**
 
@@ -46,9 +46,10 @@ Progress: [██████████] 100% (Phase 3 complete)
 | 01-metadata-substrate | 3 | 25 min | 8.3 min |
 | 02-workflow-state | 3 | 21 min | 7.0 min |
 | 03-interest-modeling-ranking | 3 | 23 min | 7.7 min |
+| 04-enrichment-adapters | 1/2 | 8 min | 8.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (11 min), 03-01 (7 min), 03-02 (8 min), 03-03 (8 min)
+- Last 5 plans: 03-01 (7 min), 03-02 (8 min), 03-03 (8 min), 04-01 (8 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -96,6 +97,10 @@ Recent decisions affecting current work:
 - [Phase 03]: 03-03: CLI signal IDs use type:value format for confirm/dismiss (e.g., seed_paper:2301.00001)
 - [Phase 03]: 03-03: Profile-ranked search displays inline per-result ranking explanations (not table format)
 - [Phase 03]: 03-02: ProfileSearchResponse in interest/search_augment.py (not models/) to avoid circular import chain
+- [Phase 04]: 04-01: respx mock fixture using context manager with base_url (not decorator pattern)
+- [Phase 04]: 04-01: TopicInfo and ExternalIds strip URL prefixes via field_validator (short-form storage)
+- [Phase 04]: 04-01: EnrichmentResult status via field completeness heuristic (SUCCESS if cited_by_count + fwci/topics)
+- [Phase 04]: 04-01: RateLimiter uses time.monotonic + asyncio.sleep (simple, sufficient for 5 req/s)
 
 ### Pending Todos
 
@@ -108,6 +113,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T01:22:47Z
-Stopped at: Completed 03-03-PLAN.md (Phase 3 complete)
+Last session: 2026-03-10T02:56:00Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
