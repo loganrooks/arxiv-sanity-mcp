@@ -44,11 +44,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Interest Modeling
 
-- [ ] **INTR-01**: User can create and manage interest profiles composed of multiple signal types
-- [ ] **INTR-02**: Interest profiles support seed paper sets as signals
-- [ ] **INTR-03**: Interest profiles support saved queries as signals
-- [ ] **INTR-04**: Interest profiles support followed authors as signals
-- [ ] **INTR-05**: Interest profiles support negative examples (papers/topics to deprioritize)
+- [x] **INTR-01**: User can create and manage interest profiles composed of multiple signal types
+- [x] **INTR-02**: Interest profiles support seed paper sets as signals
+- [x] **INTR-03**: Interest profiles support saved queries as signals
+- [x] **INTR-04**: Interest profiles support followed authors as signals
+- [x] **INTR-05**: Interest profiles support negative examples (papers/topics to deprioritize)
 - [ ] **INTR-06**: User can inspect all signals in an interest profile and their provenance (user-added vs system-suggested)
 
 ### Ranking & Explanation
@@ -148,11 +148,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | WKFL-06 | Phase 2 | Complete |
 | WKFL-07 | Phase 2 | Complete |
 | WKFL-08 | Phase 2 | Complete |
-| INTR-01 | Phase 3 | Pending |
-| INTR-02 | Phase 3 | Pending |
-| INTR-03 | Phase 3 | Pending |
-| INTR-04 | Phase 3 | Pending |
-| INTR-05 | Phase 3 | Pending |
+| INTR-01 | Phase 3 | Complete |
+| INTR-02 | Phase 3 | Complete |
+| INTR-03 | Phase 3 | Complete |
+| INTR-04 | Phase 3 | Complete |
+| INTR-05 | Phase 3 | Complete |
 | INTR-06 | Phase 3 | Pending |
 | RANK-01 | Phase 3 | Pending |
 | RANK-02 | Phase 3 | Pending |
