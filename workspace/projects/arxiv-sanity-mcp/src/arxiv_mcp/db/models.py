@@ -18,11 +18,13 @@ from sqlalchemy import (
     CheckConstraint,
     Date,
     DateTime,
+    Float,
     ForeignKey,
     Index,
     Integer,
     String,
     Text,
+    UniqueConstraint,
 )
 from sqlalchemy.dialects.postgresql import JSONB, TSVECTOR
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
@@ -274,3 +276,86 @@ class SavedQuery(Base):
     def __repr__(self) -> str:
         watch = " (watch)" if self.is_watch else ""
         return f"<SavedQuery(slug={self.slug!r}{watch})>"
+
+
+# --- Interest models (Phase 3) ---
+
+
+class InterestProfile(Base):
+    """Named interest profile containing typed signals.
+
+    Profiles represent research threads (e.g., "attention-mechanisms",
+    "philosophy-of-ai"). Each profile contains a set of typed signals
+    that express the user's interests. Slugs are auto-generated from names.
+    """
+
+    __tablename__ = "interest_profiles"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    slug: Mapped[str] = mapped_column(String(128), unique=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(256), nullable=False)
+    is_archived: Mapped[bool] = mapped_column(Boolean, default=False)
+    negative_weight: Mapped[float] = mapped_column(Float, default=0.3)
+    weights: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+    # Relationships
+    signals: Mapped[list[InterestSignal]] = relationship(
+        "InterestSignal", back_populates="profile", cascade="all, delete-orphan"
+    )
+
+    def __repr__(self) -> str:
+        return f"<InterestProfile(slug={self.slug!r}, name={self.name!r})>"
+
+
+class InterestSignal(Base):
+    """Typed signal within an interest profile.
+
+    Each signal has a type (seed_paper, saved_query, followed_author,
+    negative_example), a value, provenance tracking (source, added_at,
+    reason), and a status (active, pending, dismissed).
+
+    Unique constraint on (profile_id, signal_type, signal_value) prevents
+    duplicate signals within a profile.
+    """
+
+    __tablename__ = "interest_signals"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    profile_id: Mapped[int] = mapped_column(
+        ForeignKey("interest_profiles.id", ondelete="CASCADE"), nullable=False
+    )
+    signal_type: Mapped[str] = mapped_column(String(32), nullable=False)
+    signal_value: Mapped[str] = mapped_column(String(256), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), default="active")
+    source: Mapped[str] = mapped_column(String(32), default="manual")
+    added_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+    # Relationships
+    profile: Mapped[InterestProfile] = relationship(
+        "InterestProfile", back_populates="signals"
+    )
+
+    __table_args__ = (
+        CheckConstraint(
+            "signal_type IN ('seed_paper', 'saved_query', 'followed_author', 'negative_example')",
+            name="ck_signal_type_valid",
+        ),
+        CheckConstraint(
+            "status IN ('active', 'pending', 'dismissed')",
+            name="ck_signal_status_valid",
+        ),
+        UniqueConstraint(
+            "profile_id", "signal_type", "signal_value",
+            name="uq_interest_signals_profile_type_value",
+        ),
+        Index("idx_interest_signals_profile_type", "profile_id", "signal_type"),
+    )
+
+    def __repr__(self) -> str:
+        return (
+            f"<InterestSignal(profile_id={self.profile_id}, "
+            f"type={self.signal_type!r}, value={self.signal_value!r})>"
+        )
