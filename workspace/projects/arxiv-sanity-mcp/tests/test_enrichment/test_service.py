@@ -180,7 +180,7 @@ async def test_enrich_paper_creates_enrichment_record(enrichment_session_factory
 
     # Verify DB record
     async with enrichment_session_factory() as session:
-        enrichment = await session.get(PaperEnrichment, "2301.00001")
+        enrichment = await session.get(PaperEnrichment, ("2301.00001", "mock_openalex"))
         assert enrichment is not None
         assert enrichment.openalex_id == result.openalex_id
         assert enrichment.doi == result.doi
@@ -297,7 +297,7 @@ async def test_enrich_paper_not_found_in_openalex(enrichment_session_factory):
 
     # Verify DB record
     async with enrichment_session_factory() as session:
-        enrichment = await session.get(PaperEnrichment, "2301.00001")
+        enrichment = await session.get(PaperEnrichment, ("2301.00001", "mock_openalex"))
         assert enrichment is not None
         assert enrichment.status == "not_found"
         assert enrichment.last_attempted_at is not None
@@ -325,7 +325,7 @@ async def test_re_enrichment_upserts(enrichment_session_factory):
     await svc.enrich_paper("2301.00001", refresh=True)
 
     async with enrichment_session_factory() as session:
-        enrichment = await session.get(PaperEnrichment, "2301.00001")
+        enrichment = await session.get(PaperEnrichment, ("2301.00001", "mock_openalex"))
         assert enrichment.cited_by_count == 50
         assert enrichment.fwci == 2.5
 
@@ -355,7 +355,7 @@ async def test_failed_enrichment_preserves_existing(enrichment_session_factory):
     await svc.enrich_paper("2301.00001", refresh=True)
 
     async with enrichment_session_factory() as session:
-        enrichment = await session.get(PaperEnrichment, "2301.00001")
+        enrichment = await session.get(PaperEnrichment, ("2301.00001", "mock_openalex"))
         # Error should be recorded but existing data preserved
         assert enrichment.status == "error"
         # last_attempted_at should be updated
@@ -457,7 +457,7 @@ async def test_get_enrichment_status(enrichment_session_factory):
 
     await svc.enrich_paper("2301.00001")
 
-    status = await svc.get_enrichment_status("2301.00001")
+    status = await svc.get_enrichment_status("2301.00001", source_api="mock_openalex")
     assert status is not None
     assert status.arxiv_id == "2301.00001"
     assert status.status == "success"
@@ -501,7 +501,7 @@ async def test_provenance_fields_populated(enrichment_session_factory):
     await svc.enrich_paper("2301.00001")
 
     async with enrichment_session_factory() as session:
-        enrichment = await session.get(PaperEnrichment, "2301.00001")
+        enrichment = await session.get(PaperEnrichment, ("2301.00001", "mock_openalex"))
         assert enrichment.source_api == "mock_openalex"
         assert enrichment.api_version is not None
         assert enrichment.api_version != ""
