@@ -5,7 +5,7 @@ milestone_name: milestone
 status: completed
 stopped_at: Completed quick-1-PLAN.md (foundation fixes)
 last_updated: "2026-03-11T01:17:56.928Z"
-last_activity: 2026-03-10 -- Phase 4 complete (enrichment service, CLI, batch operations)
+last_activity: 2026-03-11 -- Quick task 1: foundation fixes (extensible schemas, remove implicit demotion, epistemic discipline docs)
 progress:
   total_phases: 6
   completed_phases: 4
@@ -118,6 +118,12 @@ None yet.
 
 - Phase 4: OpenAlex credit-based pricing tiers need research before committing to enrichment scheduling strategy.
 - Phase 5: Docling vs Marker quality comparison for scholarly PDFs (math, citations, tables) needs Phase 5 experimentation.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 1 | Foundation fixes: extensible schemas, remove implicit demotion, epistemic discipline | 2026-03-11 | 27ae31f | [1-foundation-fixes](./quick/1-foundation-fixes-extensible-schemas-remo/) |
 
 ## Session Continuity
 
