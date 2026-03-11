@@ -69,9 +69,11 @@ class EnrichmentService:
             if paper is None:
                 raise ValueError(f"Paper '{arxiv_id}' not found in database")
 
-            # 2. Check cooldown
+            # 2. Check cooldown (composite PK: arxiv_id + source_api)
             if not refresh:
-                existing = await session.get(PaperEnrichment, arxiv_id)
+                existing = await session.get(
+                    PaperEnrichment, (arxiv_id, self.adapter.adapter_name)
+                )
                 if existing is not None:
                     cooldown_threshold = datetime.now(timezone.utc) - timedelta(
                         days=self.settings.enrichment_cooldown_days
@@ -187,10 +189,12 @@ class EnrichmentService:
     # Status / stats
     # ------------------------------------------------------------------
 
-    async def get_enrichment_status(self, arxiv_id: str) -> PaperEnrichment | None:
+    async def get_enrichment_status(
+        self, arxiv_id: str, source_api: str = "openalex"
+    ) -> PaperEnrichment | None:
         """Get enrichment record for a paper, or None if not enriched."""
         async with self.session_factory() as session:
-            return await session.get(PaperEnrichment, arxiv_id)
+            return await session.get(PaperEnrichment, (arxiv_id, source_api))
 
     async def get_enrichment_stats(self) -> dict:
         """Get aggregate enrichment statistics.
@@ -267,8 +271,10 @@ class EnrichmentService:
 
         stmt = pg_insert(PaperEnrichment).values(**values)
 
-        # On conflict: update all columns except arxiv_id
-        update_cols = {k: v for k, v in values.items() if k != "arxiv_id"}
+        # On conflict: update all columns except composite PK (arxiv_id, source_api)
+        update_cols = {
+            k: v for k, v in values.items() if k not in ("arxiv_id", "source_api")
+        }
 
         # For error status, preserve existing enrichment data columns
         # but update status, error_detail, and last_attempted_at
@@ -281,7 +287,7 @@ class EnrichmentService:
             }
 
         stmt = stmt.on_conflict_do_update(
-            index_elements=["arxiv_id"],
+            index_elements=["arxiv_id", "source_api"],
             set_=update_cols,
         )
 

@@ -22,6 +22,7 @@ from sqlalchemy import (
     ForeignKey,
     Index,
     Integer,
+    PrimaryKeyConstraint,
     String,
     Text,
     UniqueConstraint,
@@ -128,11 +129,12 @@ class Paper(Base):
 
 
 class PaperEnrichment(Base):
-    """External enrichment data for a paper (e.g., from OpenAlex).
+    """External enrichment data for a paper from a specific source API.
 
     Separate table from Paper for clean lifecycle separation:
     enrichment data can become stale while arXiv metadata is stable.
-    One enrichment record per paper (arxiv_id is PK + FK).
+    Composite PK (arxiv_id, source_api) supports multiple enrichment
+    sources per paper.
     """
 
     __tablename__ = "paper_enrichments"
@@ -140,7 +142,6 @@ class PaperEnrichment(Base):
     arxiv_id: Mapped[str] = mapped_column(
         String(20),
         ForeignKey("papers.arxiv_id", ondelete="CASCADE"),
-        primary_key=True,
     )
     openalex_id: Mapped[str | None] = mapped_column(String(64))
     doi: Mapped[str | None] = mapped_column(String(256))
@@ -161,6 +162,7 @@ class PaperEnrichment(Base):
     error_detail: Mapped[str | None] = mapped_column(Text)
 
     __table_args__ = (
+        PrimaryKeyConstraint("arxiv_id", "source_api", name="paper_enrichments_pkey"),
         CheckConstraint(
             "status IN ('success', 'not_found', 'partial', 'error')",
             name="ck_enrichment_status_valid",
@@ -391,10 +393,7 @@ class InterestSignal(Base):
     )
 
     __table_args__ = (
-        CheckConstraint(
-            "signal_type IN ('seed_paper', 'saved_query', 'followed_author', 'negative_example')",
-            name="ck_signal_type_valid",
-        ),
+        # signal_type validated at application level (signals.py VALID_SIGNAL_TYPES)
         CheckConstraint(
             "status IN ('active', 'pending', 'dismissed')",
             name="ck_signal_status_valid",

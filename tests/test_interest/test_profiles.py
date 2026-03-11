@@ -148,20 +148,21 @@ class TestSignalORM:
         await test_session.rollback()
 
     @pytest.mark.asyncio
-    async def test_check_constraint_rejects_invalid_signal_type(self, test_session):
-        """Invalid signal_type should be rejected by CHECK constraint."""
+    async def test_novel_signal_type_accepted_by_db(self, test_session):
+        """Novel signal_type is accepted by DB (validation at application level, not CHECK constraint)."""
         profile = InterestProfile(**sample_profile_data())
         test_session.add(profile)
         await test_session.flush()
 
         signal = InterestSignal(
             profile_id=profile.id,
-            **sample_signal_data(signal_type="invalid_type"),
+            **sample_signal_data(signal_type="custom_signal"),
         )
         test_session.add(signal)
-        with pytest.raises(IntegrityError):
-            await test_session.commit()
-        await test_session.rollback()
+        await test_session.commit()
+        # DB accepts it -- application-level validation (VALID_SIGNAL_TYPES) is
+        # enforced in signals.py, not by a CHECK constraint
+        assert signal.signal_type == "custom_signal"
 
     @pytest.mark.asyncio
     async def test_check_constraint_rejects_invalid_status(self, test_session):
