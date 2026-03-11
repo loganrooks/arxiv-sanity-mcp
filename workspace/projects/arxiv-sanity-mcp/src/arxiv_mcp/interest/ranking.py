@@ -375,29 +375,24 @@ def apply_negative_demotion(
 ) -> None:
     """Apply soft demotion to scores for papers matching negative examples.
 
-    Mutates the scores list in place. If the paper's arxiv_id matches
-    a negative example or its categories overlap with negative categories,
-    all weighted_scores are multiplied by (1.0 - negative_weight).
+    Direct ID matching only -- category-based demotion removed per ADR-0001
+    (exploration-first). Mutates the scores list in place. If the paper's
+    arxiv_id matches a negative example, all weighted_scores are multiplied
+    by (1.0 - negative_weight).
 
     This is soft demotion -- never removes scores entirely.
 
     Args:
         scores: List of SignalScores to potentially demote (mutated).
         paper: Paper being scored.
-        profile_context: Profile context with negative papers/categories.
+        profile_context: Profile context with negative papers.
     """
-    if not profile_context.negative_papers and not profile_context.negative_categories:
+    if not profile_context.negative_papers:
         return
 
     negative_ids = {p.arxiv_id for p in profile_context.negative_papers}
-    paper_cats = set(paper.category_list or [])
 
-    is_negative = (
-        paper.arxiv_id in negative_ids
-        or bool(paper_cats & profile_context.negative_categories)
-    )
-
-    if not is_negative:
+    if paper.arxiv_id not in negative_ids:
         return
 
     demotion_factor = 1.0 - profile_context.negative_weight

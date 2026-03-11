@@ -60,6 +60,7 @@ class Settings(BaseSettings):
     # Enrichment settings
     openalex_api_key: str = ""
     openalex_api_url: str = "https://api.openalex.org"
+    openalex_email: str = ""  # Set for OpenAlex polite pool (10 req/s vs 1 req/s anonymous)
     enrichment_cooldown_days: int = 7
     enrichment_batch_size: int = 50
     enrichment_rate_limit: float = 5.0

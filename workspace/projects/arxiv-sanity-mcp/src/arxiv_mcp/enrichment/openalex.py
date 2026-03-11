@@ -99,11 +99,20 @@ class OpenAlexAdapter:
         return f"10.48550/arXiv.{arxiv_id}"
 
     def _build_params(self) -> dict:
-        """Build base request parameters with api_key and select."""
+        """Build base request parameters with api_key, mailto, and select."""
         params: dict[str, str] = {"select": SELECTED_FIELDS}
         if self._settings.openalex_api_key:
             params["api_key"] = self._settings.openalex_api_key
+        if self._settings.openalex_email:
+            params["mailto"] = self._settings.openalex_email
         return params
+
+    def _build_user_agent(self) -> str:
+        """Build User-Agent header, including mailto for OpenAlex polite pool."""
+        user_agent = "arxiv-mcp/0.1.0"
+        if self._settings.openalex_email:
+            user_agent += f" (mailto:{self._settings.openalex_email})"
+        return user_agent
 
     async def _request_with_retry(
         self,
@@ -158,7 +167,7 @@ class OpenAlexAdapter:
 
         async with httpx.AsyncClient(
             base_url=self._settings.openalex_api_url,
-            headers={"User-Agent": "arxiv-mcp/0.1.0"},
+            headers={"User-Agent": self._build_user_agent()},
             timeout=30.0,
         ) as client:
             if len(arxiv_ids) == 1:
@@ -262,7 +271,7 @@ class OpenAlexAdapter:
         """
         async with httpx.AsyncClient(
             base_url=self._settings.openalex_api_url,
-            headers={"User-Agent": "arxiv-mcp/0.1.0"},
+            headers={"User-Agent": self._build_user_agent()},
             timeout=30.0,
         ) as client:
             if len(arxiv_ids) == 1:
