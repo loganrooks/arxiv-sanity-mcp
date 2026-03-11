@@ -47,8 +47,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INTR-01**: User can create and manage interest profiles composed of multiple signal types
 - [x] **INTR-02**: Interest profiles support seed paper sets as signals
 - [x] **INTR-03**: Interest profiles support saved queries as signals
-- [x] **INTR-04**: Interest profiles support followed authors as signals
-- [x] **INTR-05**: Interest profiles support negative examples (papers/topics to deprioritize)
+- [x] **INTR-04** [chosen for now]: Interest profiles support followed authors as signals (source says "possible" signal type)
+- [x] **INTR-05** [chosen for now]: Interest profiles support negative examples (papers/topics to deprioritize) (source says "possible" signal type)
 - [x] **INTR-06**: User can inspect all signals in an interest profile and their provenance (user-added vs system-suggested)
 
 ### Ranking & Explanation
@@ -70,7 +70,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **CONT-02**: System models content variants explicitly: abstract, HTML, source-derived, PDF-derived markdown
 - [ ] **CONT-03**: Content variants record provenance: source, extraction method, conversion path, license basis
 - [ ] **CONT-04**: Content variant acquisition follows source-aware priority: abstract -> arXiv HTML -> source -> PDF
-- [ ] **CONT-05**: System supports multiple parsing backends behind a common interface (Docling, Marker, GROBID)
+- [ ] **CONT-05** [chosen for now]: System supports multiple parsing backends behind a common interface (Docling, Marker, GROBID) (source says "working hypothesis" -- one backend behind extensible interface may suffice for v1)
 - [ ] **CONT-06**: Content serving respects per-paper license restrictions (gated by rights metadata)
 
 ### MCP Interface
@@ -79,9 +79,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **MCP-02**: MCP server exposes workflow tools: create_collection, add_to_collection, mark_triage_state, create_saved_query, get_delta_since_checkpoint
 - [ ] **MCP-03**: MCP server exposes content tools: get_content_variant
 - [ ] **MCP-04**: MCP server exposes canonical resources: paper, collection, saved query, result set
-- [ ] **MCP-05**: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist
+- [ ] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
 - [ ] **MCP-06**: Tool names describe user intent, not implementation (find_related_papers, not search_embeddings)
-- [ ] **MCP-07**: MCP tool set stays at 5-10 tools maximum to limit context token cost
+- [ ] **MCP-07** [chosen for now]: MCP tool set stays at 5-10 tools maximum to limit context token cost (no traceable source; sensible heuristic but not a firm requirement)
 
 ## v2 Requirements
 

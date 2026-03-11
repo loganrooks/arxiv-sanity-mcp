@@ -6,6 +6,9 @@
 These questions are intentionally unresolved.
 
 ## 1. What is the right default notion of interest state?
+> **Status: Resolved during implementation (pending user validation)**
+> Implementation chose: four signal types (seed_paper, saved_query, followed_author, negative_example). Signal type set is now application-validated, not DB-constrained, allowing future extension without migration. See FINDINGS.md I1, I5.
+
 Should the default user-facing abstraction be:
 - tags,
 - collections,
@@ -25,6 +28,9 @@ Should we expose multiple relatedness modes explicitly?
 If yes, how many without overwhelming the user?
 
 ## 4. Which external enrichments are worth the dependency cost?
+> **Status: Resolved during implementation (pending user validation)**
+> Implementation chose: OpenAlex as sole enrichment source (demand-driven, not bulk). Schema now supports composite PK (arxiv_id, source_api) for multi-source extensibility. See FINDINGS.md I4, I5.
+
 Should OpenAlex be considered core?
 Should Semantic Scholar be optional?
 Where do Crossref and OpenCitations fit?
@@ -95,6 +101,8 @@ Candidates:
 - and explanation signals.
 
 ## 16. What is the right processing intensity promotion strategy?
+> **Status: Resolved during implementation (pending user validation)**
+> Implementation chose: demand-driven promotion only (enrich when user/agent touches the paper). Budget-constrained and cohort-based strategies remain viable future options. See FINDINGS.md I5.
 
 Papers can be processed at multiple tiers: metadata-only (free), FTS-indexed (free), OpenAlex-enriched (API call), embedded (GPU), content-parsed (expensive). The question is which papers get promoted to higher tiers and when.
 
