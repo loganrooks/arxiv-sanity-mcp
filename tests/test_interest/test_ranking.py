@@ -306,6 +306,28 @@ class TestNegativeDemotion:
         apply_negative_demotion(scores, paper, ctx)
         assert scores[0].weighted_score == pytest.approx(0.28)
 
+    def test_category_overlap_does_not_trigger_demotion(self):
+        """Category overlap with negative papers should NOT trigger demotion (ADR-0001)."""
+        paper = _make_paper(arxiv_id="innocent-paper", category_list=["cs.CL"])
+        ctx = _make_profile_context(
+            negative_papers=[_make_paper(arxiv_id="neg-paper", category_list=["cs.CL"])],
+            negative_categories={"cs.CL"},
+            negative_weight=0.5,
+        )
+        scores = [
+            SignalScore(
+                signal_type=SignalType.QUERY_MATCH,
+                raw_score=0.8,
+                normalized_score=0.8,
+                weight=0.35,
+                weighted_score=0.28,
+                explanation="test",
+            ),
+        ]
+        apply_negative_demotion(scores, paper, ctx)
+        # Score should be unchanged -- category overlap alone does not trigger demotion
+        assert scores[0].weighted_score == pytest.approx(0.28)
+
 
 # ===========================================================================
 # TestRankingPipeline
