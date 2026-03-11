@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-03-10T03:15:08.194Z"
+stopped_at: Completed quick-1-PLAN.md (foundation fixes)
+last_updated: "2026-03-11T01:17:56.928Z"
 last_activity: 2026-03-10 -- Phase 4 complete (enrichment service, CLI, batch operations)
 progress:
   total_phases: 6
@@ -105,6 +105,10 @@ Recent decisions affecting current work:
 - [Phase 04]: 04-02: Paper.doi only set if currently null (never overwrite existing DOI)
 - [Phase 04]: 04-02: Per-paper session scope in batch enrichment for partial failure resilience
 - [Phase 04]: 04-02: MockAdapter pattern for service tests (implements protocol, predetermined results)
+- [Phase quick-1]: Application-level validation for signal types instead of DB CHECK constraint (extensible without migration)
+- [Phase quick-1]: Composite PK (arxiv_id, source_api) for multi-source enrichment records
+- [Phase quick-1]: Direct ID matching only for negative demotion per ADR-0001 (no category inference)
+- [Phase quick-1]: openalex_email setting for OpenAlex polite pool access
 
 ### Pending Todos
 
@@ -117,6 +121,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-10T03:09:42.649Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-03-11T01:17:50.077Z
+Stopped at: Completed quick-1-PLAN.md (foundation fixes)
 Resume file: None
