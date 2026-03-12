@@ -65,6 +65,11 @@ class Settings(BaseSettings):
     enrichment_batch_size: int = 50
     enrichment_rate_limit: float = 5.0
 
+    # Content normalization settings (Phase 6)
+    deployment_mode: str = "local"  # "local" or "hosted" -- controls license enforcement
+    content_rate_limit: float = 3.0  # seconds between arXiv content fetches
+    content_max_pdf_pages: int = 100  # safety limit for Marker/Docling page count
+
     def load_categories(self) -> dict:
         """Load category configuration from TOML file.
 
