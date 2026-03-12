@@ -72,12 +72,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Content
 
-- [ ] **CONT-01**: System provides abstract as default content variant (no rights issues)
-- [ ] **CONT-02**: System models content variants explicitly: abstract, HTML, source-derived, PDF-derived markdown
-- [ ] **CONT-03**: Content variants record provenance: source, extraction method, conversion path, license basis
+- [x] **CONT-01**: System provides abstract as default content variant (no rights issues)
+- [x] **CONT-02**: System models content variants explicitly: abstract, HTML, source-derived, PDF-derived markdown
+- [x] **CONT-03**: Content variants record provenance: source, extraction method, conversion path, license basis
 - [ ] **CONT-04**: Content variant acquisition follows source-aware priority: abstract -> arXiv HTML -> source -> PDF
 - [ ] **CONT-05** [chosen for now]: System supports multiple parsing backends behind a common interface (Docling, Marker, GROBID) (source says "working hypothesis" -- one backend behind extensible interface may suffice for v1)
-- [ ] **CONT-06**: Content serving respects per-paper license restrictions (gated by rights metadata)
+- [x] **CONT-06**: Content serving respects per-paper license restrictions (gated by rights metadata)
 
 ### MCP Interface
 
@@ -185,12 +185,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | MCPV-01 | Phase 5 | Complete |
 | MCPV-02 | Phase 5 | Complete |
 | MCPV-03 | Phase 5 | Complete |
-| CONT-01 | Phase 6 | Pending |
-| CONT-02 | Phase 6 | Pending |
-| CONT-03 | Phase 6 | Pending |
+| CONT-01 | Phase 6 | Complete |
+| CONT-02 | Phase 6 | Complete |
+| CONT-03 | Phase 6 | Complete |
 | CONT-04 | Phase 6 | Pending |
 | CONT-05 | Phase 6 | Pending |
-| CONT-06 | Phase 6 | Pending |
+| CONT-06 | Phase 6 | Complete |
 | MCP-03 | Phase 6 | Pending |
 
 **Coverage:**
