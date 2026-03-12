@@ -169,7 +169,15 @@ class ProfileRankingService:
         page_size: int,
         **kwargs,
     ) -> ProfileSearchResponse:
-        """Core ranked search logic shared by search_papers and browse_recent."""
+        """Core ranked search logic shared by search_papers and browse_recent.
+
+        Note: Pagination is approximate when profile-based re-ranking is active.
+        Each page independently over-fetches N*3 results from the base service,
+        re-ranks, and trims to N. This means page boundaries shift between
+        requests -- a paper on page 1 could move to page 2 or vice versa on
+        subsequent queries. This is a known limitation of the over-fetch +
+        re-rank strategy.
+        """
         # Over-fetch for re-ranking (Pitfall 2 mitigation)
         overfetch_size = page_size * OVERFETCH_MULTIPLIER
         search_fn = getattr(self.workflow_search, method)

@@ -234,22 +234,23 @@ def score_seed_relation(
     seed_categories: set[str],
     followed_authors: list[str],
 ) -> SignalScore:
-    """Score a paper by its relation to seed papers and followed authors.
+    """Score a paper by its relation to seed papers via author match.
 
-    Composite of:
-    - Category overlap with seed paper categories (proxy for topic match)
-    - Author match against followed authors list
+    Uses author match against followed authors list as the sole signal.
+    Category overlap is scored separately by score_category_overlap to
+    avoid triple-counting (PREMCP-01).
 
     Excludes papers whose arxiv_id is in the seed set (self-match exclusion).
 
     Args:
         paper: Paper to score.
         seed_papers: List of seed papers from the profile.
-        seed_categories: Union of seed paper category_lists.
+        seed_categories: Union of seed paper category_lists (unused,
+            kept for API compatibility).
         followed_authors: Normalized author names from the profile.
 
     Returns:
-        SignalScore with composite relation score.
+        SignalScore with author match score.
     """
     seed_ids = {p.arxiv_id for p in seed_papers}
     if paper.arxiv_id in seed_ids:
@@ -272,36 +273,25 @@ def score_seed_relation(
             explanation="No seed papers or followed authors",
         )
 
-    # Sub-signal 1: category overlap with seeds
-    paper_cats = set(paper.category_list or [])
-    cat_score = 0.0
-    if seed_categories and paper_cats:
-        intersection = paper_cats & seed_categories
-        union = paper_cats | seed_categories
-        cat_score = len(intersection) / len(union) if union else 0.0
-
-    # Sub-signal 2: author match
+    # Author match (sole signal -- category overlap scored separately)
     author_score = 0.0
     if followed_authors:
         paper_authors = parse_authors(paper.authors_text or "")
         matched = sum(1 for a in paper_authors if a in followed_authors)
         author_score = min(1.0, matched / max(1, len(followed_authors)))
 
-    # Weighted composite (60% category, 40% author)
-    composite = 0.6 * cat_score + 0.4 * author_score
-    composite = max(0.0, min(1.0, composite))
+    author_score = max(0.0, min(1.0, author_score))
 
-    parts = []
-    if cat_score > 0:
-        parts.append(f"cat_overlap={cat_score:.3f}")
-    if author_score > 0:
-        parts.append(f"author_match={author_score:.3f}")
-    explanation = f"Seed relation: {', '.join(parts) if parts else 'no match'}"
+    explanation = (
+        f"Seed relation: author_match={author_score:.3f}"
+        if author_score > 0
+        else "Seed relation: no author match"
+    )
 
     return SignalScore(
         signal_type=SignalType.SEED_RELATION,
-        raw_score=composite,
-        normalized_score=composite,
+        raw_score=author_score,
+        normalized_score=author_score,
         weight=0.0,
         weighted_score=0.0,
         explanation=explanation,
@@ -314,9 +304,9 @@ def score_profile_match(
 ) -> SignalScore:
     """Score how well a paper matches the overall interest profile.
 
-    Aggregates seed_relation + category_overlap + author match sub-signals
-    into a single composite score. Avoids double-counting by using a
-    unified formula rather than summing individual signals.
+    Uses author match and query coverage as sub-signals. Category overlap
+    is scored separately by score_category_overlap to avoid triple-counting
+    (PREMCP-01).
 
     Args:
         paper: Paper to score.
@@ -335,27 +325,20 @@ def score_profile_match(
             explanation="Empty profile, no match possible",
         )
 
-    # Sub-signal 1: category overlap with all seed categories
-    paper_cats = set(paper.category_list or [])
-    cat_score = 0.0
-    if profile_context.seed_categories and paper_cats:
-        intersection = paper_cats & profile_context.seed_categories
-        union = paper_cats | profile_context.seed_categories
-        cat_score = len(intersection) / len(union) if union else 0.0
-
-    # Sub-signal 2: author match against followed authors
+    # Sub-signal 1: author match against followed authors
     author_score = 0.0
     if profile_context.followed_authors:
         paper_authors = parse_authors(paper.authors_text or "")
         matched = sum(1 for a in paper_authors if a in profile_context.followed_authors)
         author_score = min(1.0, matched / max(1, len(profile_context.followed_authors)))
 
-    # Sub-signal 3: query coverage (does the paper match saved query topics?)
+    # Sub-signal 2: query coverage (does the paper match saved query topics?)
     # For now, just use presence as a binary boost
     query_boost = 0.1 if profile_context.query_slugs else 0.0
 
-    # Weighted composite
-    composite = 0.5 * cat_score + 0.35 * author_score + 0.15 * query_boost
+    # Weighted composite (85% author, 15% query boost)
+    # Category overlap removed per PREMCP-01 -- scored separately
+    composite = 0.85 * author_score + 0.15 * query_boost
     composite = max(0.0, min(1.0, composite))
 
     return SignalScore(
@@ -364,7 +347,7 @@ def score_profile_match(
         normalized_score=composite,
         weight=0.0,
         weighted_score=0.0,
-        explanation=f"Profile match: cat={cat_score:.3f}, author={author_score:.3f}",
+        explanation=f"Profile match: author={author_score:.3f}, query_boost={query_boost:.3f}",
     )
 
 
