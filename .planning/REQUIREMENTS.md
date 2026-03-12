@@ -82,9 +82,9 @@ Requirements for initial release. Each maps to roadmap phases.
 ### MCP Interface
 
 - [x] **MCP-01**: MCP server exposes discovery tools: search_papers, browse_recent, find_related_papers, get_paper
-- [ ] **MCP-02**: MCP server exposes workflow/interest/enrichment tools: triage_paper, add_to_collection, create_watch, add_signal, enrich_paper
+- [x] **MCP-02**: MCP server exposes workflow/interest/enrichment tools: triage_paper, add_to_collection, create_watch, add_signal, enrich_paper
 - [ ] **MCP-03**: MCP server exposes content tools: get_content_variant
-- [ ] **MCP-04**: MCP server exposes canonical resources: paper://{arxiv_id}, collection://{slug}, profile://{slug}, watch://{slug}/deltas
+- [x] **MCP-04**: MCP server exposes canonical resources: paper://{arxiv_id}, collection://{slug}, profile://{slug}, watch://{slug}/deltas
 - [ ] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
 - [x] **MCP-06**: Tool names describe user intent, not implementation (find_related_papers, not search_embeddings)
 - [x] **MCP-07** [chosen for now]: MCP tool set stays at 5-10 tools maximum to limit context token cost (no traceable source; sensible heuristic but not a firm requirement)
@@ -177,8 +177,8 @@ Deferred to future release. Tracked but not in current roadmap.
 | PREMCP-02 | Phase 04.1 | Complete |
 | PREMCP-03 | Phase 04.1 | Complete |
 | MCP-01 | Phase 04.1 | Complete |
-| MCP-02 | Phase 04.1 | Pending |
-| MCP-04 | Phase 04.1 | Pending |
+| MCP-02 | Phase 04.1 | Complete |
+| MCP-04 | Phase 04.1 | Complete |
 | MCP-06 | Phase 04.1 | Complete |
 | MCP-07 | Phase 04.1 | Complete |
 | MCP-05 | Phase 5 | Pending |
