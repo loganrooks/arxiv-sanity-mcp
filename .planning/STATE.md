@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 05-03-PLAN.md (validation session + iteration). Phase 5 complete. Phase 6 (content normalization) next.
-last_updated: "2026-03-12T07:08:14.030Z"
-last_activity: 2026-03-12 -- MCP validation session, doc 06 resolved, batch_add_signals tool, 403 tests
+status: in-progress
+stopped_at: Completed 06-01-PLAN.md (content data foundation). Plan 02 next.
+last_updated: "2026-03-12T23:31:40Z"
+last_activity: 2026-03-12 -- Content data foundation: ORM model, Pydantic schemas, RightsChecker, migration 008, 438 tests
 progress:
   total_phases: 7
   completed_phases: 6
-  total_plans: 17
-  completed_plans: 17
-  percent: 100
+  total_plans: 20
+  completed_plans: 18
+  percent: 90
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 06: Content Normalization (next)
+**Current focus:** Phase 06: Content Normalization -- Plan 01 complete, Plan 02 next
 
 ## Current Position
 
-Phase: 05 of 6 (MCP Validation & Iteration) -- COMPLETE
-Plan: 3 of 3 in current phase (all plans complete)
-Status: Phase 5 complete. MCP validated with real data, doc 06 resolved, 10 tools + 4 resources + 3 prompts. Phase 6 next.
-Last activity: 2026-03-12 -- MCP validation session, doc 06 resolved, batch_add_signals tool, 403 tests
+Phase: 06 of 7 (Content Normalization)
+Plan: 1 of 3 in current phase
+Status: Plan 01 complete. ContentVariant ORM, Pydantic schemas, RightsChecker, migration 008, 438 tests. Plan 02 next.
+Last activity: 2026-03-12 -- Content data foundation: ORM model, Pydantic schemas, RightsChecker, migration 008, 438 tests
 
-Progress: [██████████] 100% (17/17 plans)
+Progress: [█████████░] 90% (18/20 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 17
-- Average duration: 7.9 min
-- Total execution time: 2.3 hours
+- Total plans completed: 18
+- Average duration: 7.8 min
+- Total execution time: 2.4 hours
 
 **By Phase:**
 
@@ -50,13 +50,14 @@ Progress: [██████████] 100% (17/17 plans)
 
 | 04.1-MCP v1 | 3/3 | 19 min | 6.3 min |
 | 05-MCP Validation | 3/3 | 39 min | 13.0 min |
+| 06-Content Normalization | 1/3 | 7 min | 7.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 04.1-02 (5 min), 04.1-03 (7 min), 05-01 (8 min), 05-02 (4 min), 05-03 (27 min)
-- Trend: 05-03 was longer due to real data import + arXiv API interaction
+- Last 5 plans: 04.1-03 (7 min), 05-01 (8 min), 05-02 (4 min), 05-03 (27 min), 06-01 (7 min)
+- Trend: 06-01 back to normal pace (data models + tests, no external API calls)
 
 *Updated after each plan completion*
-| Phase 05 P03 | 27 | 2 tasks | 9 files |
+| Phase 06 P01 | 7 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -138,6 +139,10 @@ Recent decisions affecting current work:
 - [Phase 05]: 05-03: Option D (hybrid tools+resources+prompts) validated as correct MCP surface shape
 - [Phase 05]: 05-03: All 5 doc 06 questions resolved with evidence from real MCP usage
 - [Phase 05]: 05-03: Profile vs collection ordering is irrelevant (independent concepts at different workflow stages)
+- [Phase 06]: 06-01: RightsChecker uses set-based license classification (PERMISSIVE vs PERSONAL_USE) with unknown/None as restrictive
+- [Phase 06]: 06-01: Local mode always allows access with warning; hosted mode blocks non-permissive licenses (ADR-0003)
+- [Phase 06]: 06-01: ContentVariant follows PaperEnrichment pattern: composite PK, FK to papers, CHECK constraint on variant_type
+- [Phase 06]: 06-01: quality_warnings as JSONB in ORM and list[str] in Pydantic (natural serialization boundary)
 
 ### Pending Todos
 
@@ -164,6 +169,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T07:00:59Z
-Stopped at: Completed 05-03-PLAN.md (validation session + iteration). Phase 5 complete. Phase 6 (content normalization) next.
+Last session: 2026-03-12T23:31:40Z
+Stopped at: Completed 06-01-PLAN.md (content data foundation). Plan 02 (abstract adapter + HTML fetcher) next.
 Resume file: None
