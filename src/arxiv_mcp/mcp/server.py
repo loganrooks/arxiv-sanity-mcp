@@ -78,3 +78,6 @@ mcp = FastMCP("arxiv-mcp", lifespan=app_lifespan)
 
 # Register tool modules (side-effect imports)
 from arxiv_mcp.mcp.tools import discovery, workflow, interest, enrichment  # noqa: F401, E402
+
+# Register resource modules (side-effect imports)
+from arxiv_mcp.mcp.resources import paper, collection, profile, watch  # noqa: F401, E402
