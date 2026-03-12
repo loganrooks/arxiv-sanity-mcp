@@ -211,13 +211,17 @@ class TestSeedRelationScorer:
         s = score_seed_relation(paper, seed_papers, seed_cats, followed)
         assert s.normalized_score > 0.0
 
-    def test_matching_categories(self):
-        """Paper sharing seed categories has positive score."""
+    def test_categories_only_returns_zero(self):
+        """Paper with matching categories but no author match returns 0.0.
+
+        Category overlap was removed from score_seed_relation to fix
+        triple-counting (PREMCP-01). Only author match remains.
+        """
         paper = _make_paper(category_list=["cs.CL", "cs.AI"])
         seed_papers = [_make_paper(arxiv_id="seed-1", category_list=["cs.CL", "cs.LG"])]
         seed_cats = {"cs.CL", "cs.LG"}
         s = score_seed_relation(paper, seed_papers, seed_cats, [])
-        assert s.normalized_score > 0.0
+        assert s.normalized_score == pytest.approx(0.0)
 
     def test_self_exclusion(self):
         """Seed papers themselves are excluded (returns 0.0)."""
@@ -227,6 +231,21 @@ class TestSeedRelationScorer:
         # score_seed_relation checks if paper.arxiv_id in seed set
         s = score_seed_relation(paper, seed_papers, {"cs.CL"}, [])
         assert s.normalized_score == pytest.approx(0.0)
+
+    def test_no_category_jaccard_in_seed_relation(self):
+        """PREMCP-01: score_seed_relation must not compute category Jaccard.
+
+        Verifies that category-only match produces 0.0 (author signal only).
+        """
+        paper = _make_paper(category_list=["cs.CL", "cs.AI"])
+        seed_papers = [_make_paper(arxiv_id="seed-1")]
+        seed_cats = {"cs.CL", "cs.AI"}
+        # No followed authors -- only category match possible
+        s = score_seed_relation(paper, seed_papers, seed_cats, [])
+        assert s.normalized_score == pytest.approx(0.0), (
+            "score_seed_relation should return 0.0 when only categories match "
+            "(category Jaccard removed per PREMCP-01)"
+        )
 
 
 # ===========================================================================
@@ -253,6 +272,46 @@ class TestProfileMatchScorer:
         # Composite of sub-signals, should be positive
         assert s.normalized_score > 0.0
         assert s.normalized_score <= 1.0
+
+    def test_categories_only_returns_query_boost_only(self):
+        """Profile match with matching categories but no author returns only query_boost.
+
+        Category Jaccard was removed from score_profile_match to fix
+        triple-counting (PREMCP-01). Only author + query_boost remain.
+        """
+        paper = _make_paper(category_list=["cs.CL", "cs.AI"])
+        ctx = _make_profile_context(
+            seed_papers=[_make_paper(arxiv_id="seed-1", category_list=["cs.CL", "cs.AI"])],
+            seed_categories={"cs.CL", "cs.AI"},
+            followed_authors=[],  # No authors
+            query_slugs=[],  # No queries -> query_boost = 0
+        )
+        s = score_profile_match(paper, ctx)
+        # With no author match and no query slugs, composite should be 0.0
+        assert s.normalized_score == pytest.approx(0.0), (
+            "score_profile_match should return 0.0 when only categories match "
+            "(category Jaccard removed per PREMCP-01)"
+        )
+
+    def test_author_match_returns_positive(self):
+        """Profile match with author match returns > 0.0."""
+        paper = _make_paper(authors_text="Author A, Author B")
+        ctx = _make_profile_context(
+            seed_papers=[_make_paper(arxiv_id="seed-1")],
+            seed_categories={"cs.CL"},
+            followed_authors=["author a"],
+        )
+        s = score_profile_match(paper, ctx)
+        assert s.normalized_score > 0.0
+
+    def test_no_category_jaccard_in_profile_match(self):
+        """PREMCP-01: score_profile_match must not compute category Jaccard."""
+        import inspect
+        source = inspect.getsource(score_profile_match)
+        # Should not contain category Jaccard computation
+        assert "intersection" not in source or "union" not in source, (
+            "score_profile_match should not compute Jaccard (intersection/union)"
+        )
 
 
 # ===========================================================================
@@ -410,6 +469,66 @@ class TestRankingPipeline:
         )
         qm = [s for s in explanation.signal_breakdown if s.signal_type == SignalType.QUERY_MATCH][0]
         assert qm.weight == pytest.approx(0.9)
+
+    def test_category_weight_no_triple_count(self):
+        """PREMCP-01: Category overlap effective weight is exactly DEFAULT_WEIGHTS[CATEGORY_OVERLAP].
+
+        When a paper matches only via categories (no author match, no query match),
+        the total weighted category contribution comes exclusively from
+        score_category_overlap with weight 0.15, not from triple-counting.
+        """
+        # Paper that matches seed categories but has no matching authors
+        paper = _make_paper(
+            arxiv_id="2301.99999",
+            authors_text="Unknown Author",
+            category_list=["cs.CL", "cs.AI"],
+            submitted_date=datetime.now(timezone.utc),
+        )
+        ctx = _make_profile_context(
+            seed_papers=[_make_paper(arxiv_id="seed-1", category_list=["cs.CL", "cs.AI"])],
+            seed_categories={"cs.CL", "cs.AI"},
+            followed_authors=[],  # No author match possible
+            query_slugs=[],  # No query boost
+        )
+        pipeline = RankingPipeline()
+        explanation = pipeline.score_paper(
+            paper,
+            query_rank=None,  # No query match
+            all_ranks=[],
+            profile_context=ctx,
+        )
+
+        # Find category overlap signal
+        co_signals = [
+            s for s in explanation.signal_breakdown
+            if s.signal_type == SignalType.CATEGORY_OVERLAP
+        ]
+        assert len(co_signals) == 1
+        co = co_signals[0]
+
+        # Category overlap weight must be exactly DEFAULT_WEIGHTS value
+        assert co.weight == pytest.approx(DEFAULT_WEIGHTS[SignalType.CATEGORY_OVERLAP])
+        assert co.weight == pytest.approx(0.15)
+
+        # Seed relation and profile match should contribute 0 category weight
+        sr_signals = [
+            s for s in explanation.signal_breakdown
+            if s.signal_type == SignalType.SEED_RELATION
+        ]
+        pm_signals = [
+            s for s in explanation.signal_breakdown
+            if s.signal_type == SignalType.INTEREST_PROFILE_MATCH
+        ]
+        # With no author match and no query boost, these should be 0
+        assert sr_signals[0].weighted_score == pytest.approx(0.0)
+        assert pm_signals[0].weighted_score == pytest.approx(0.0)
+
+        # Total category-related weighted score is exactly co.weighted_score
+        # (no hidden category weight in seed_relation or profile_match)
+        total_category_contribution = co.weighted_score
+        assert total_category_contribution == pytest.approx(
+            co.normalized_score * 0.15
+        )
 
 
 # ===========================================================================
