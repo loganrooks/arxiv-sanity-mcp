@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 05-02-PLAN.md (3 MCP prompts). Plan 03 (validation session + iteration) next.
-last_updated: "2026-03-12T06:31:05.517Z"
+stopped_at: Completed 05-01-PLAN.md (import script). Plan 02 already complete. Plan 03 (validation session + iteration) next.
+last_updated: "2026-03-12T06:31:35.342Z"
 last_activity: 2026-03-12 -- 3 MCP prompts (literature_review_session, daily_digest, triage_shortlist), 18 new tests
 progress:
   total_phases: 7
@@ -56,6 +56,7 @@ Progress: [█████████░] ~94% (16/17 plans)
 - Trend: stable
 
 *Updated after each plan completion*
+| Phase 05 P01 | 5 | 1 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -128,6 +129,10 @@ Recent decisions affecting current work:
 - [Phase 05]: 05-02: Prompts return concise workflow guidance (~1000-1500 chars), not paper content
 - [Phase 05]: 05-02: triage_shortlist uses show_collection PaginatedResponse for live paper count
 - [Phase 05]: 05-02: Each prompt is a single UserMessage (not multi-message sequences) for simplicity
+- [Phase 05]: 05-01: Used followed_author signal type for tension vocabulary (tensions map to topical interest areas)
+- [Phase 05]: 05-01: Paper-index-data.json value scores for triage mapping, NOT normalized_holistic
+- [Phase 05]: 05-01: Excluded-audit papers default to 'seen' triage state (not in paper-index-data)
+- [Phase 05]: 05-01: ON CONFLICT DO NOTHING for paper upsert idempotency
 
 ### Pending Todos
 
@@ -152,6 +157,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12
-Stopped at: Completed 05-02-PLAN.md (3 MCP prompts). Plan 03 (validation session + iteration) next.
+Last session: 2026-03-12T06:31:35.337Z
+Stopped at: Completed 05-01-PLAN.md (import script). Plan 02 already complete. Plan 03 (validation session + iteration) next.
 Resume file: None
