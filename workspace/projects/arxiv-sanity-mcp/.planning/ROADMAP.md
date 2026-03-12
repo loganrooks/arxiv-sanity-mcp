@@ -150,6 +150,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 04.1 → 5 → 6
 | 2. Workflow State | 3/3 | Complete | 2026-03-09 |
 | 3. Interest Modeling & Ranking | 3/3 | Complete | 2026-03-10 |
 | 4. Enrichment Adapters | 2/2 | Complete | 2026-03-10 |
-| 04.1. MCP v1 | 3/3 | Complete   | 2026-03-12 |
+| 04.1. MCP v1 | 3/3 | Complete    | 2026-03-12 |
 | 5. MCP Validation & Iteration | 0/? | Not started | - |
 | 6. Content Normalization | 0/? | Not started | - |
