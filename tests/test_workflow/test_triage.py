@@ -215,6 +215,82 @@ class TestBatchTriageByQuery:
 # ---------------------------------------------------------------------------
 
 
+class TestSeenTriageState:
+    """PREMCP-02: Tests for 'seen' triage state."""
+
+    async def test_mark_seen_creates_row(self, svc, session_factory, sample_papers):
+        """mark_triage(arxiv_id, 'seen') creates a TriageState row (not absence)."""
+        result = await svc.mark_triage("2301.00001", "seen")
+        assert result.state == "seen"
+
+        # Verify row exists in DB
+        async with session_factory() as session:
+            db_result = await session.execute(
+                select(TriageState).where(TriageState.paper_id == "2301.00001")
+            )
+            ts = db_result.scalar_one_or_none()
+            assert ts is not None
+            assert ts.state == "seen"
+
+    async def test_mark_seen_then_get_returns_seen(self, svc, sample_papers):
+        """mark_triage followed by get_triage_state returns 'seen'."""
+        await svc.mark_triage("2301.00001", "seen")
+        state = await svc.get_triage_state("2301.00001")
+        assert state == "seen"
+
+    async def test_seen_distinct_from_unseen(self, svc, sample_papers):
+        """'seen' is distinct from 'unseen' (absence of row)."""
+        # Before marking: unseen
+        state_before = await svc.get_triage_state("2301.00001")
+        assert state_before == "unseen"
+
+        # After marking as seen: seen
+        await svc.mark_triage("2301.00001", "seen")
+        state_after = await svc.get_triage_state("2301.00001")
+        assert state_after == "seen"
+        assert state_after != "unseen"
+
+    async def test_seen_in_valid_states(self, svc):
+        """'seen' is in TriageService.VALID_STATES."""
+        assert "seen" in TriageService.VALID_STATES
+
+    async def test_seen_to_shortlisted_transition(self, svc, sample_papers):
+        """Transitioning from 'seen' to 'shortlisted' works and logs transition."""
+        await svc.mark_triage("2301.00001", "seen")
+        result = await svc.mark_triage("2301.00001", "shortlisted")
+        assert result.state == "shortlisted"
+
+        # Check audit log
+        log = await svc.get_triage_log("2301.00001")
+        assert len(log) == 2
+        assert log[0].old_state == "unseen"
+        assert log[0].new_state == "seen"
+        assert log[1].old_state == "seen"
+        assert log[1].new_state == "shortlisted"
+
+    async def test_unseen_to_seen_creates_row(self, svc, session_factory, sample_papers):
+        """Transitioning from 'unseen' (no row) to 'seen' creates a row."""
+        # Verify no row exists
+        async with session_factory() as session:
+            db_result = await session.execute(
+                select(TriageState).where(TriageState.paper_id == "2301.00001")
+            )
+            assert db_result.scalar_one_or_none() is None
+
+        # Mark as seen
+        result = await svc.mark_triage("2301.00001", "seen")
+        assert result.state == "seen"
+
+        # Verify row now exists
+        async with session_factory() as session:
+            db_result = await session.execute(
+                select(TriageState).where(TriageState.paper_id == "2301.00001")
+            )
+            ts = db_result.scalar_one_or_none()
+            assert ts is not None
+            assert ts.state == "seen"
+
+
 class TestGetTriageLog:
     async def test_log_returns_chronological(self, svc, sample_papers):
         await svc.mark_triage("2301.00001", "shortlisted")
