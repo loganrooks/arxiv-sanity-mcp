@@ -16,8 +16,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: Workflow State** - Collections, triage states, saved queries, watches, and delta/checkpoint handling
 - [ ] **Phase 3: Interest Modeling & Ranking** - Interest profiles with multiple signal types and structured ranking explanations
 - [ ] **Phase 4: Enrichment Adapters** - OpenAlex integration, external ID resolution, and lazy enrichment with provenance
-- [ ] **Phase 5: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving
-- [ ] **Phase 6: MCP Integration** - Full MCP server with discovery, workflow, and content tools, resources, and prompts
+- [ ] **Phase 5: MCP Validation & Iteration** - Real workflow validation, doc 06 resolution, prompt design, tool iteration
+- [ ] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
 
 ## Phase Details
 
@@ -85,31 +85,54 @@ Plans:
 - [ ] 04-01-PLAN.md -- Data model, Pydantic schemas, OpenAlexAdapter with DOI-based resolution, migration 004, test fixtures
 - [ ] 04-02-PLAN.md -- EnrichmentService orchestration, CLI subgroup, paper show integration, batch operations
 
-### Phase 5: Content Normalization
-**Goal**: Users can access paper content at multiple fidelity levels (abstract through full-text markdown) with source-aware acquisition, rights-gated serving, and full provenance
-**Depends on**: Phase 1
-**Requirements**: CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, CONT-06
+### Phase 04.1: MCP v1 — expose existing services as MCP tools and resources (INSERTED)
+
+**Goal:** An MCP server exposes existing search, workflow, interest, and enrichment services as tools and resources. Pre-MCP quality fixes (ranking triple-counting, "seen" triage state) are applied first. An MCP client can perform a complete literature review workflow: search, triage, collect, profile, enrich.
+**Depends on:** Phase 4
+**Requirements**: PREMCP-01, PREMCP-02, PREMCP-03, MCP-01, MCP-02, MCP-04, MCP-06, MCP-07
 **Success Criteria** (what must be TRUE):
-  1. User can retrieve paper content as abstract (always available) or as richer variants (HTML, source-derived, PDF-derived markdown) when available
-  2. Content variants are acquired in source-aware priority order (abstract then arXiv HTML then source then PDF) and each records its extraction method and conversion path
-  3. Multiple parsing backends (Docling, Marker, GROBID) work behind a common interface and can be swapped without changing the content API
-  4. Content serving refuses to return full-text for papers whose license does not permit it, with a clear explanation of why
+  1. Category overlap is scored exactly once in the ranking pipeline (effective weight = DEFAULT_WEIGHTS[CATEGORY_OVERLAP], not 2.5x)
+  2. "Seen" triage state exists and is distinct from absence (never encountered) and from shortlisted/dismissed (decision made)
+  3. An MCP client can discover papers via search_papers, browse_recent, find_related_papers, and get_paper tools
+  4. An MCP client can manage workflow state via create_collection, add_to_collection, mark_triage_state, create_saved_query, and get_delta_since_checkpoint tools
+  5. MCP resources expose paper, collection, saved query, and result set as canonical objects
+  6. Tool names describe user intent, not implementation
+**Plans**: 3 plans
+
+Plans:
+- [ ] 04.1-01-PLAN.md -- Pre-MCP quality fixes: ranking triple-counting, "seen" triage state, pagination documentation
+- [ ] 04.1-02-PLAN.md -- MCP server scaffold with FastMCP lifespan, 4 discovery tools, test infrastructure
+- [ ] 04.1-03-PLAN.md -- 5 workflow/interest/enrichment tools, 4 resource templates, tool naming tests
+
+### Phase 5: MCP Validation & Iteration (RESEQUENCED — was Phase 6)
+
+**Goal:** MCP v1 is validated with real literature review workflows. Doc 06 open questions are resolved with evidence from agent usage. MCP prompts are designed and tested. Tool granularity is iterated based on real usage patterns.
+**Depends on**: Phase 04.1
+**Requirements**: MCP-05, MCPV-01, MCPV-02, MCPV-03
+**Success Criteria** (what must be TRUE):
+  1. At least one real literature review session completed through MCP (search → triage → collect → expand → enrich)
+  2. Doc 06 open questions (tool granularity, resource design, prompt reusability) have evidence-based answers
+  3. MCP prompts for daily-digest, literature-map-from-seeds, and triage-shortlist are available and produce useful agent workflows
+  4. Tool set has been iterated at least once based on validation feedback
 **Plans**: TBD
 
 Plans:
 - [ ] 05-01: TBD
 - [ ] 05-02: TBD
 
-### Phase 6: MCP Integration
-**Goal**: The full discovery, workflow, and content system is exposed as an MCP server with intent-based tools, canonical resources, and reusable prompts
-**Depends on**: Phase 1, Phase 2, Phase 3, Phase 4, Phase 5
-**Requirements**: MCP-01, MCP-02, MCP-03, MCP-04, MCP-05, MCP-06, MCP-07
+**Rationale for resequencing:** Content normalization blocks MCP validation. For literature review, metadata + abstracts + triage + ranking are the high-value loops. Full-text parsing is secondary. Validate the MCP surface with real workflows before adding content complexity. See `.planning/ECOSYSTEM-COMMENTARY.md` §3.
+
+### Phase 6: Content Normalization (RESEQUENCED — was Phase 5)
+
+**Goal**: Users can access paper content at multiple fidelity levels (abstract through full-text markdown) with source-aware acquisition, rights-gated serving, and full provenance. Content tools exposed via MCP.
+**Depends on**: Phase 04.1
+**Requirements**: CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, CONT-06, MCP-03
 **Success Criteria** (what must be TRUE):
-  1. An MCP client (Claude Code) can discover papers via search_papers, browse_recent, find_related_papers, and get_paper tools
-  2. An MCP client can manage workflow state via create_collection, add_to_collection, mark_triage_state, create_saved_query, and get_delta_since_checkpoint tools
-  3. An MCP client can access paper content variants via get_content_variant tool
-  4. MCP resources expose paper, collection, saved query, and result set as canonical objects
-  5. MCP prompts for daily-digest, literature-map-from-seeds, and triage-shortlist are available and produce useful agent workflows
+  1. User can retrieve paper content as abstract (always available) or as richer variants (HTML, source-derived, PDF-derived markdown) when available
+  2. Content variants are acquired in source-aware priority order (abstract then arXiv HTML then source then PDF) and each records its extraction method and conversion path
+  3. Multiple parsing backends (Docling, Marker, GROBID) work behind a common interface and can be swapped without changing the content API
+  4. Content serving refuses to return full-text for papers whose license does not permit it, with a clear explanation of why
+  5. An MCP client can access paper content variants via get_content_variant tool
 **Plans**: TBD
 
 Plans:
@@ -119,13 +142,14 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 04.1 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Metadata Substrate | 3/3 | Complete | 2026-03-09 |
 | 2. Workflow State | 3/3 | Complete | 2026-03-09 |
 | 3. Interest Modeling & Ranking | 3/3 | Complete | 2026-03-10 |
-| 4. Enrichment Adapters | 0/2 | Not started | - |
-| 5. Content Normalization | 0/2 | Not started | - |
-| 6. MCP Integration | 0/2 | Not started | - |
+| 4. Enrichment Adapters | 2/2 | Complete | 2026-03-10 |
+| 04.1. MCP v1 | 0/3 | Not started | - |
+| 5. MCP Validation & Iteration | 0/? | Not started | - |
+| 6. Content Normalization | 0/? | Not started | - |
