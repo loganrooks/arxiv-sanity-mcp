@@ -66,9 +66,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Pre-MCP Fixes
 
-- [ ] **PREMCP-01**: Category overlap is scored exactly once in the ranking pipeline (remove redundant Jaccard from score_seed_relation and score_profile_match; effective weight = 0.15, not 0.375)
-- [ ] **PREMCP-02**: "Seen" triage state exists in TriageState CHECK constraint, distinct from absence (never encountered) and from shortlisted/dismissed (decision made)
-- [ ] **PREMCP-03**: Over-fetch pagination after re-ranking is documented as approximate (page boundaries shift because each page independently over-fetches and re-ranks)
+- [x] **PREMCP-01**: Category overlap is scored exactly once in the ranking pipeline (remove redundant Jaccard from score_seed_relation and score_profile_match; effective weight = 0.15, not 0.375)
+- [x] **PREMCP-02**: "Seen" triage state exists in TriageState CHECK constraint, distinct from absence (never encountered) and from shortlisted/dismissed (decision made)
+- [x] **PREMCP-03**: Over-fetch pagination after re-ranking is documented as approximate (page boundaries shift because each page independently over-fetches and re-ranks)
 
 ### Content
 
@@ -173,9 +173,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | ENRC-02 | Phase 4 | Complete |
 | ENRC-03 | Phase 4 | Complete |
 | ENRC-04 | Phase 4 | Complete |
-| PREMCP-01 | Phase 04.1 | Pending |
-| PREMCP-02 | Phase 04.1 | Pending |
-| PREMCP-03 | Phase 04.1 | Pending |
+| PREMCP-01 | Phase 04.1 | Complete |
+| PREMCP-02 | Phase 04.1 | Complete |
+| PREMCP-03 | Phase 04.1 | Complete |
 | MCP-01 | Phase 04.1 | Pending |
 | MCP-02 | Phase 04.1 | Pending |
 | MCP-04 | Phase 04.1 | Pending |

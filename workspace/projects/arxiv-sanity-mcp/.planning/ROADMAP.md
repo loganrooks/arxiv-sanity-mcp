@@ -100,7 +100,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04.1-01-PLAN.md -- Pre-MCP quality fixes: ranking triple-counting, "seen" triage state, pagination documentation
+- [x] 04.1-01-PLAN.md -- Pre-MCP quality fixes: ranking triple-counting, "seen" triage state, pagination documentation
 - [ ] 04.1-02-PLAN.md -- MCP server scaffold with FastMCP lifespan, 4 discovery tools, test infrastructure
 - [ ] 04.1-03-PLAN.md -- 5 workflow/interest/enrichment tools, 4 resource templates, tool naming tests
 
@@ -150,6 +150,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 04.1 → 5 → 6
 | 2. Workflow State | 3/3 | Complete | 2026-03-09 |
 | 3. Interest Modeling & Ranking | 3/3 | Complete | 2026-03-10 |
 | 4. Enrichment Adapters | 2/2 | Complete | 2026-03-10 |
-| 04.1. MCP v1 | 0/3 | Not started | - |
+| 04.1. MCP v1 | 1/3 | In progress | - |
 | 5. MCP Validation & Iteration | 0/? | Not started | - |
 | 6. Content Normalization | 0/? | Not started | - |
