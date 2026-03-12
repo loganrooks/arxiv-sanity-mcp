@@ -11,16 +11,16 @@ import pytest
 
 
 class TestToolCount:
-    """MCP-07: Total tool count should be exactly 9."""
+    """MCP-07: Total tool count should be exactly 10."""
 
-    def test_tool_count_is_nine(self):
+    def test_tool_count_is_ten(self):
         # Import triggers all tool module registrations via server.py bottom imports
         from arxiv_mcp.mcp.server import mcp
 
         tools = asyncio.run(mcp.list_tools())
         tool_names = [t.name for t in tools]
-        assert len(tools) == 9, (
-            f"Expected 9 tools, got {len(tools)}: {sorted(tool_names)}"
+        assert len(tools) == 10, (
+            f"Expected 10 tools, got {len(tools)}: {sorted(tool_names)}"
         )
 
 
@@ -39,6 +39,7 @@ class TestToolNames:
             "add_to_collection",
             "create_watch",
             "add_signal",
+            "batch_add_signals",
             "enrich_paper",
         }
         tools = asyncio.run(mcp.list_tools())

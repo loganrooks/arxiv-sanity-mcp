@@ -261,6 +261,134 @@ class TestAddSignal:
         assert "error" in result
 
 
+# ---- batch_add_signals tests ----
+
+
+class TestBatchAddSignals:
+    """batch_add_signals adds multiple signals in one call with partial-success semantics."""
+
+    async def test_batch_add_all_succeed(self, mock_ctx, mock_app_context):
+        from arxiv_mcp.mcp.tools.interest import batch_add_signals
+
+        now = datetime.now(timezone.utc)
+        mock_app_context.profiles.add_signal = AsyncMock(
+            return_value=SignalInfo(
+                signal_type="seed_paper",
+                signal_value="2301.00001",
+                status="active",
+                source="mcp",
+                added_at=now,
+                reason=None,
+            )
+        )
+
+        signals = [
+            {"signal_type": "seed_paper", "signal_value": "2301.00001", "reason": "Important"},
+            {"signal_type": "seed_paper", "signal_value": "2301.00002"},
+            {"signal_type": "followed_author", "signal_value": "Jane Doe", "reason": "Key author"},
+        ]
+
+        result = await batch_add_signals(
+            profile_slug="my-profile",
+            signals=signals,
+            ctx=mock_ctx,
+        )
+
+        assert isinstance(result, dict)
+        assert result["profile_slug"] == "my-profile"
+        assert result["total"] == 3
+        assert result["added"] == 3
+        assert result["errors"] == 0
+        assert len(result["results"]) == 3
+        assert mock_app_context.profiles.add_signal.await_count == 3
+
+    async def test_batch_add_partial_failure(self, mock_ctx, mock_app_context):
+        from arxiv_mcp.mcp.tools.interest import batch_add_signals
+
+        now = datetime.now(timezone.utc)
+        mock_app_context.profiles.add_signal = AsyncMock(
+            side_effect=[
+                SignalInfo(
+                    signal_type="seed_paper",
+                    signal_value="2301.00001",
+                    status="active",
+                    source="mcp",
+                    added_at=now,
+                    reason=None,
+                ),
+                ValueError("Duplicate signal: seed_paper:2301.00002"),
+                SignalInfo(
+                    signal_type="followed_author",
+                    signal_value="Jane Doe",
+                    status="active",
+                    source="mcp",
+                    added_at=now,
+                    reason=None,
+                ),
+            ]
+        )
+
+        signals = [
+            {"signal_type": "seed_paper", "signal_value": "2301.00001"},
+            {"signal_type": "seed_paper", "signal_value": "2301.00002"},
+            {"signal_type": "followed_author", "signal_value": "Jane Doe"},
+        ]
+
+        result = await batch_add_signals(
+            profile_slug="my-profile",
+            signals=signals,
+            ctx=mock_ctx,
+        )
+
+        assert result["total"] == 3
+        assert result["added"] == 2
+        assert result["errors"] == 1
+        assert "error" in result["results"][1]
+        assert result["results"][1]["signal_value"] == "2301.00002"
+
+    async def test_batch_add_empty_list(self, mock_ctx, mock_app_context):
+        from arxiv_mcp.mcp.tools.interest import batch_add_signals
+
+        result = await batch_add_signals(
+            profile_slug="my-profile",
+            signals=[],
+            ctx=mock_ctx,
+        )
+
+        assert result["total"] == 0
+        assert result["added"] == 0
+        assert result["errors"] == 0
+        assert result["results"] == []
+
+    async def test_batch_add_passes_source_mcp(self, mock_ctx, mock_app_context):
+        from arxiv_mcp.mcp.tools.interest import batch_add_signals
+
+        now = datetime.now(timezone.utc)
+        mock_app_context.profiles.add_signal = AsyncMock(
+            return_value=SignalInfo(
+                signal_type="seed_paper",
+                signal_value="2301.00001",
+                status="active",
+                source="mcp",
+                added_at=now,
+                reason=None,
+            )
+        )
+
+        await batch_add_signals(
+            profile_slug="my-profile",
+            signals=[{"signal_type": "seed_paper", "signal_value": "2301.00001"}],
+            ctx=mock_ctx,
+        )
+
+        call_args = mock_app_context.profiles.add_signal.call_args
+        assert call_args[1].get("source") is None or "mcp" in str(call_args)
+        # Check positional args or kwargs for source="mcp"
+        mock_app_context.profiles.add_signal.assert_awaited_once_with(
+            "my-profile", "seed_paper", "2301.00001", source="mcp", reason=None
+        )
+
+
 # ---- enrich_paper tests ----
 
 
