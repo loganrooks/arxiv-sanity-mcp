@@ -36,30 +36,32 @@ created: 2026-03-12
 
 ## Per-Task Verification Map
 
-| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| TBD | 01 | 1 | CONT-01 | unit | `python -m pytest tests/test_content/test_service.py::test_get_abstract_variant -x` | ❌ W0 | ⬜ pending |
-| TBD | 01 | 1 | CONT-02 | unit | `python -m pytest tests/test_content/test_models.py -x` | ❌ W0 | ⬜ pending |
-| TBD | 01 | 1 | CONT-03 | unit | `python -m pytest tests/test_content/test_service.py::test_provenance_fields -x` | ❌ W0 | ⬜ pending |
-| TBD | 01 | 1 | CONT-04 | unit | `python -m pytest tests/test_content/test_service.py::test_acquisition_priority -x` | ❌ W0 | ⬜ pending |
-| TBD | 01 | 1 | CONT-05 | unit | `python -m pytest tests/test_content/test_adapter.py -x` | ❌ W0 | ⬜ pending |
-| TBD | 01 | 1 | CONT-06 | unit | `python -m pytest tests/test_content/test_rights.py -x` | ❌ W0 | ⬜ pending |
-| TBD | 02 | 2 | MCP-03 | unit | `python -m pytest tests/test_mcp/test_content_tool.py -x` | ❌ W0 | ⬜ pending |
+Each task's automated verify command references ONLY test files created by that same task or earlier tasks in the same plan. Tests are created TDD-style within each task, not in a separate Wave 0.
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+| Requirement | Plan | Wave | Test File | Created By | Automated Command | Status |
+|-------------|------|------|-----------|------------|-------------------|--------|
+| CONT-02 | 06-01 | 1 | tests/test_content/test_models.py | 06-01 Task 1 | `python -m pytest tests/test_content/test_models.py -x` | pending |
+| CONT-06 | 06-01 | 1 | tests/test_content/test_rights.py | 06-01 Task 1 | `python -m pytest tests/test_content/test_rights.py -x` | pending |
+| CONT-05 | 06-02 | 2 | tests/test_content/test_adapter.py | 06-02 Task 1 | `python -m pytest tests/test_content/test_adapter.py -x` | pending |
+| CONT-04 | 06-02 | 2 | tests/test_content/test_html_fetcher.py | 06-02 Task 1 | `python -m pytest tests/test_content/test_html_fetcher.py -x` | pending |
+| CONT-01, CONT-03, CONT-04 | 06-02 | 2 | tests/test_content/test_service.py | 06-02 Task 2 | `python -m pytest tests/test_content/test_service.py -x` | pending |
+| MCP-03, CONT-06 | 06-03 | 3 | tests/test_mcp/test_content_tool.py | 06-03 Task 1 | `python -m pytest tests/test_mcp/test_content_tool.py -x` | pending |
+| MCP-03 | 06-03 | 3 | tests/test_mcp/test_tool_names.py | 06-03 Task 2 (update) | `python -m pytest tests/test_mcp/test_tool_names.py -x` | pending |
+| MCP-03 | 06-03 | 3 | tests/test_mcp/test_resources.py | 06-03 Task 2 (update) | `python -m pytest tests/test_mcp/test_resources.py -x` | pending |
+
+*Status: pending / green / red / flaky*
 
 ---
 
-## Wave 0 Requirements
+## Test File Creation Schedule
 
-- [ ] `tests/test_content/__init__.py` — package init
-- [ ] `tests/test_content/conftest.py` — shared fixtures (content_session_factory, mock adapter)
-- [ ] `tests/test_content/test_models.py` — ContentConversionResult, ContentStatus Pydantic model tests
-- [ ] `tests/test_content/test_adapter.py` — MarkerAdapter protocol compliance, MockAdapter
-- [ ] `tests/test_content/test_rights.py` — RightsChecker with all license types, both deployment modes
-- [ ] `tests/test_content/test_service.py` — ContentService orchestration, priority chain, DB storage, tier promotion
-- [ ] `tests/test_mcp/test_content_tool.py` — get_content_variant MCP tool with mock services
-- [ ] Update `tests/test_mcp/test_tool_names.py` — expect 11 tools, include "get_content_variant"
+Tests are created TDD-style within each task (not in a separate Wave 0). Each plan creates its own test files as part of the task that needs them.
+
+| Wave | Plan | Test Files Created |
+|------|------|--------------------|
+| 1 | 06-01 | test_models.py, test_rights.py, conftest.py, __init__.py |
+| 2 | 06-02 | test_adapter.py, test_html_fetcher.py, test_service.py |
+| 3 | 06-03 | test_content_tool.py (new), test_tool_names.py (update), test_resources.py (update) |
 
 ---
 
@@ -74,9 +76,9 @@ created: 2026-03-12
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
+- [ ] All tasks have `<automated>` verify referencing only self-created or prior test files
 - [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
+- [ ] Test files created TDD-style within each task
 - [ ] No watch-mode flags
 - [ ] Feedback latency < 30s
 - [ ] `nyquist_compliant: true` set in frontmatter
