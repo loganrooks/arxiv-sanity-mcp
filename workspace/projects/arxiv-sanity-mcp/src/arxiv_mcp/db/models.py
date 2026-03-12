@@ -245,7 +245,7 @@ class TriageState(Base):
     """Per-paper triage state (global, not per-collection).
 
     Only non-default states are stored. Absence of a row means 'unseen'.
-    Valid states: shortlisted, dismissed, read, cite-later, archived.
+    Valid states: seen, shortlisted, dismissed, read, cite-later, archived.
     """
 
     __tablename__ = "triage_states"
@@ -258,7 +258,7 @@ class TriageState(Base):
 
     __table_args__ = (
         CheckConstraint(
-            "state IN ('shortlisted', 'dismissed', 'read', 'cite-later', 'archived')",
+            "state IN ('seen', 'shortlisted', 'dismissed', 'read', 'cite-later', 'archived')",
             name="ck_triage_state_valid",
         ),
         Index("idx_triage_states_state", "state"),
