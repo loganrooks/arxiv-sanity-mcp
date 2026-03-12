@@ -35,7 +35,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **WKFL-01**: User can create, list, and delete named paper collections
 - [x] **WKFL-02**: User can add papers to and remove papers from collections
-- [x] **WKFL-03**: User can mark paper triage state (unseen, shortlisted, dismissed, read, cite-later)
+- [x] **WKFL-03**: User can mark paper triage state (unseen, seen, shortlisted, dismissed, read, cite-later, archived)
 - [x] **WKFL-04**: User can create saved queries with parameters, ranking mode, and filters
 - [x] **WKFL-05**: User can re-run saved queries on demand
 - [x] **WKFL-06**: User can create watches (saved query + cadence + checkpoint)
@@ -85,7 +85,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **MCP-02**: MCP server exposes workflow/interest/enrichment tools: triage_paper, add_to_collection, create_watch, add_signal, enrich_paper
 - [ ] **MCP-03**: MCP server exposes content tools: get_content_variant
 - [x] **MCP-04**: MCP server exposes canonical resources: paper://{arxiv_id}, collection://{slug}, profile://{slug}, watch://{slug}/deltas
-- [ ] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
+- [x] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
 - [x] **MCP-06**: Tool names describe user intent, not implementation (find_related_papers, not search_embeddings)
 - [x] **MCP-07** [chosen for now]: MCP tool set stays at 5-10 tools maximum to limit context token cost (no traceable source; sensible heuristic but not a firm requirement)
 
@@ -181,7 +181,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | MCP-04 | Phase 04.1 | Complete |
 | MCP-06 | Phase 04.1 | Complete |
 | MCP-07 | Phase 04.1 | Complete |
-| MCP-05 | Phase 5 | Pending |
+| MCP-05 | Phase 5 | Complete |
 | MCPV-01 | Phase 5 | Pending |
 | MCPV-02 | Phase 5 | Pending |
 | MCPV-03 | Phase 5 | Pending |
