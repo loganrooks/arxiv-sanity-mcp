@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-stopped_at: "Completed 04.1-02-PLAN.md (MCP server scaffold + discovery tools)"
+stopped_at: "Completed 04.1-03-PLAN.md (workflow/interest/enrichment tools + resources). Phase 04.1 complete."
 last_updated: "2026-03-12"
-last_activity: 2026-03-12 -- FastMCP server scaffold, AppContext lifespan, 4 discovery tools (search_papers, browse_recent, find_related_papers, get_paper), 14 MCP tests
+last_activity: 2026-03-12 -- 5 workflow/interest/enrichment MCP tools, 4 resource templates, 24 new tests (357 total)
 progress:
   total_phases: 6
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 14
-  completed_plans: 13
-  percent: 87
+  completed_plans: 14
+  percent: 93
 ---
 
 # Project State
@@ -25,19 +25,19 @@ See: .planning/PROJECT.md (updated 2026-03-08)
 
 ## Current Position
 
-Phase: 04.1 of 6 (MCP v1)
-Plan: 2 of 3 in current phase
-Status: Phase 04.1 plan 02 complete (MCP server scaffold + discovery tools). Plan 03 remaining (workflow/interest/enrichment tools).
-Last activity: 2026-03-12 -- FastMCP server scaffold, AppContext lifespan, 4 discovery tools, 14 MCP tests
+Phase: 04.1 of 6 (MCP v1) -- COMPLETE
+Plan: 3 of 3 in current phase (all complete)
+Status: Phase 04.1 complete. MCP v1 surface fully implemented: 9 tools + 4 resources, 357 tests passing.
+Last activity: 2026-03-12 -- 5 workflow/interest/enrichment tools, 4 resource templates, 24 new MCP tests
 
-Progress: [█████████░] ~87% (13/~15 estimated plans)
+Progress: [██████████] ~93% (14/~15 estimated plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 7.5 min
-- Total execution time: 1.38 hours
+- Total plans completed: 14
+- Average duration: 7.1 min
+- Total execution time: 1.65 hours
 
 **By Phase:**
 
@@ -48,11 +48,11 @@ Progress: [█████████░] ~87% (13/~15 estimated plans)
 | 03-interest-modeling-ranking | 3 | 23 min | 7.7 min |
 | 04-enrichment-adapters | 2/2 | 16 min | 8.0 min |
 
-| 04.1-MCP v1 | 2/3 | 12 min | 6.0 min |
+| 04.1-MCP v1 | 3/3 | 19 min | 6.3 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (8 min), 04-02 (8 min), 04.1-01 (7 min), 04.1-02 (5 min)
-- Trend: stable/improving
+- Last 5 plans: 04-02 (8 min), 04.1-01 (7 min), 04.1-02 (5 min), 04.1-03 (7 min)
+- Trend: stable
 
 *Updated after each plan completion*
 
@@ -119,6 +119,11 @@ Recent decisions affecting current work:
 - [Phase 04.1]: 04.1-02: find_related_papers accepts str|list[str], deduplicates by highest score, excludes seed IDs
 - [Phase 04.1]: 04.1-02: get_paper uses direct ORM select(Paper) query (not SearchService) for single-paper lookup
 - [Phase 04.1]: 04.1-02: _get_app(ctx) helper pattern for extracting AppContext from MCP Context
+- [Phase 04.1]: 04.1-03: All MCP tools use source='mcp' for audit trail provenance
+- [Phase 04.1]: 04.1-03: add_to_collection auto-creates collection on ValueError (idempotent UX)
+- [Phase 04.1]: 04.1-03: create_watch two-step: create_saved_query then promote_to_watch
+- [Phase 04.1]: 04.1-03: Paper resource composes from 4 services (ORM + triage + enrichment + collections)
+- [Phase 04.1]: 04.1-03: Resources return {"error": ...} dicts on not-found (consistent with tool pattern)
 
 ### Pending Todos
 
@@ -144,5 +149,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-12
-Stopped at: Completed 04.1-02-PLAN.md (MCP server scaffold + discovery tools). Ready for 04.1-03 (workflow/interest/enrichment tools).
+Stopped at: Completed 04.1-03-PLAN.md (workflow/interest/enrichment tools + resources). Phase 04.1 complete. Ready for Phase 5 (MCP Validation).
 Resume file: None
