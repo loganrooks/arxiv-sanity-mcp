@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 05-01-PLAN.md (import script). Plan 02 already complete. Plan 03 (validation session + iteration) next.
-last_updated: "2026-03-12T06:31:35.342Z"
-last_activity: 2026-03-12 -- 3 MCP prompts (literature_review_session, daily_digest, triage_shortlist), 18 new tests
+stopped_at: Completed 05-03-PLAN.md (validation session + iteration). Phase 5 complete. Phase 6 (content normalization) next.
+last_updated: "2026-03-12T07:00:59Z"
+last_activity: 2026-03-12 -- MCP validation session, doc 06 resolved, batch_add_signals tool, 403 tests
 progress:
   total_phases: 7
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 17
-  completed_plans: 16
-  percent: 94
+  completed_plans: 17
+  percent: 100
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 05: MCP Validation & Iteration
+**Current focus:** Phase 06: Content Normalization (next)
 
 ## Current Position
 
-Phase: 05 of 6 (MCP Validation & Iteration) -- IN PROGRESS
-Plan: 2 of 3 in current phase (plan 02 complete)
-Status: 3 MCP prompts implemented. Import script (plan 01) and prompts (plan 02) complete. Plan 03 (validation session + iteration) next.
-Last activity: 2026-03-12 -- 3 MCP prompts (literature_review_session, daily_digest, triage_shortlist), 18 new tests
+Phase: 05 of 6 (MCP Validation & Iteration) -- COMPLETE
+Plan: 3 of 3 in current phase (all plans complete)
+Status: Phase 5 complete. MCP validated with real data, doc 06 resolved, 10 tools + 4 resources + 3 prompts. Phase 6 next.
+Last activity: 2026-03-12 -- MCP validation session, doc 06 resolved, batch_add_signals tool, 403 tests
 
-Progress: [█████████░] ~94% (16/17 plans)
+Progress: [██████████] 100% (17/17 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
-- Average duration: 6.8 min
-- Total execution time: 1.85 hours
+- Total plans completed: 17
+- Average duration: 7.9 min
+- Total execution time: 2.3 hours
 
 **By Phase:**
 
@@ -49,14 +49,14 @@ Progress: [█████████░] ~94% (16/17 plans)
 | 04-enrichment-adapters | 2/2 | 16 min | 8.0 min |
 
 | 04.1-MCP v1 | 3/3 | 19 min | 6.3 min |
-| 05-MCP Validation | 2/3 | ~12 min | ~6.0 min |
+| 05-MCP Validation | 3/3 | 39 min | 13.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 04.1-01 (7 min), 04.1-02 (5 min), 04.1-03 (7 min), 05-01 (8 min), 05-02 (4 min)
-- Trend: stable
+- Last 5 plans: 04.1-02 (5 min), 04.1-03 (7 min), 05-01 (8 min), 05-02 (4 min), 05-03 (27 min)
+- Trend: 05-03 was longer due to real data import + arXiv API interaction
 
 *Updated after each plan completion*
-| Phase 05 P01 | 5 | 1 tasks | 4 files |
+| Phase 05 P03 | 27 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -133,6 +133,11 @@ Recent decisions affecting current work:
 - [Phase 05]: 05-01: Paper-index-data.json value scores for triage mapping, NOT normalized_holistic
 - [Phase 05]: 05-01: Excluded-audit papers default to 'seen' triage state (not in paper-index-data)
 - [Phase 05]: 05-01: ON CONFLICT DO NOTHING for paper upsert idempotency
+- [Phase 05]: 05-03: batch_add_signals uses partial-success semantics (continue on individual errors, report summary)
+- [Phase 05]: 05-03: Result sets remain ephemeral in v1 (agents compensate via context window; persistence deferred to v2)
+- [Phase 05]: 05-03: Option D (hybrid tools+resources+prompts) validated as correct MCP surface shape
+- [Phase 05]: 05-03: All 5 doc 06 questions resolved with evidence from real MCP usage
+- [Phase 05]: 05-03: Profile vs collection ordering is irrelevant (independent concepts at different workflow stages)
 
 ### Pending Todos
 
@@ -148,6 +153,8 @@ None yet.
 
 - Phase 6: Docling vs Marker quality comparison for scholarly PDFs (math, citations, tables) needs Phase 6 experimentation.
 - OpenAlex credit-based pricing tiers need research before committing to enrichment scheduling strategy.
+- Enrichment schema mismatch: DB has single PK (arxiv_id) but code expects composite PK (arxiv_id, source_api). Migration needed before enrichment works against live DB.
+- arXiv API URL must be HTTPS (fixed in 05-03); follow_redirects enabled as safety measure.
 
 ### Quick Tasks Completed
 
@@ -157,6 +164,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T06:31:35.337Z
-Stopped at: Completed 05-01-PLAN.md (import script). Plan 02 already complete. Plan 03 (validation session + iteration) next.
+Last session: 2026-03-12T07:00:59Z
+Stopped at: Completed 05-03-PLAN.md (validation session + iteration). Phase 5 complete. Phase 6 (content normalization) next.
 Resume file: None
