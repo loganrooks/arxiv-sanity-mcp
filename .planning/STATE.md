@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 04.1-03-PLAN.md (workflow/interest/enrichment tools + resources). Phase 04.1 complete. Ready for Phase 5 (MCP Validation).
-last_updated: "2026-03-12T01:48:23.332Z"
-last_activity: 2026-03-12 -- 5 workflow/interest/enrichment tools, 4 resource templates, 24 new MCP tests
+stopped_at: Completed 05-02-PLAN.md (3 MCP prompts). Plan 03 (validation session + iteration) next.
+last_updated: "2026-03-12T06:31:05.517Z"
+last_activity: 2026-03-12 -- 3 MCP prompts (literature_review_session, daily_digest, triage_shortlist), 18 new tests
 progress:
   total_phases: 7
   completed_phases: 5
-  total_plans: 14
-  completed_plans: 14
-  percent: 93
+  total_plans: 17
+  completed_plans: 16
+  percent: 94
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 04.1: MCP v1
+**Current focus:** Phase 05: MCP Validation & Iteration
 
 ## Current Position
 
-Phase: 04.1 of 6 (MCP v1) -- COMPLETE
-Plan: 3 of 3 in current phase (all complete)
-Status: Phase 04.1 complete. MCP v1 surface fully implemented: 9 tools + 4 resources, 357 tests passing.
-Last activity: 2026-03-12 -- 5 workflow/interest/enrichment tools, 4 resource templates, 24 new MCP tests
+Phase: 05 of 6 (MCP Validation & Iteration) -- IN PROGRESS
+Plan: 2 of 3 in current phase (plan 02 complete)
+Status: 3 MCP prompts implemented. Import script (plan 01) and prompts (plan 02) complete. Plan 03 (validation session + iteration) next.
+Last activity: 2026-03-12 -- 3 MCP prompts (literature_review_session, daily_digest, triage_shortlist), 18 new tests
 
-Progress: [██████████] ~93% (14/~15 estimated plans)
+Progress: [█████████░] ~94% (16/17 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
-- Average duration: 7.1 min
-- Total execution time: 1.65 hours
+- Total plans completed: 16
+- Average duration: 6.8 min
+- Total execution time: 1.85 hours
 
 **By Phase:**
 
@@ -49,9 +49,10 @@ Progress: [██████████] ~93% (14/~15 estimated plans)
 | 04-enrichment-adapters | 2/2 | 16 min | 8.0 min |
 
 | 04.1-MCP v1 | 3/3 | 19 min | 6.3 min |
+| 05-MCP Validation | 2/3 | ~12 min | ~6.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-02 (8 min), 04.1-01 (7 min), 04.1-02 (5 min), 04.1-03 (7 min)
+- Last 5 plans: 04.1-01 (7 min), 04.1-02 (5 min), 04.1-03 (7 min), 05-01 (8 min), 05-02 (4 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -124,6 +125,9 @@ Recent decisions affecting current work:
 - [Phase 04.1]: 04.1-03: create_watch two-step: create_saved_query then promote_to_watch
 - [Phase 04.1]: 04.1-03: Paper resource composes from 4 services (ORM + triage + enrichment + collections)
 - [Phase 04.1]: 04.1-03: Resources return {"error": ...} dicts on not-found (consistent with tool pattern)
+- [Phase 05]: 05-02: Prompts return concise workflow guidance (~1000-1500 chars), not paper content
+- [Phase 05]: 05-02: triage_shortlist uses show_collection PaginatedResponse for live paper count
+- [Phase 05]: 05-02: Each prompt is a single UserMessage (not multi-message sequences) for simplicity
 
 ### Pending Todos
 
@@ -149,5 +153,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-12
-Stopped at: Completed 04.1-03-PLAN.md (workflow/interest/enrichment tools + resources). Phase 04.1 complete. Ready for Phase 5 (MCP Validation).
+Stopped at: Completed 05-02-PLAN.md (3 MCP prompts). Plan 03 (validation session + iteration) next.
 Resume file: None
