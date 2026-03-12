@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Workflow State** - Collections, triage states, saved queries, watches, and delta/checkpoint handling
 - [x] **Phase 3: Interest Modeling & Ranking** - Interest profiles with multiple signal types and structured ranking explanations
 - [x] **Phase 4: Enrichment Adapters** - OpenAlex integration, external ID resolution, and lazy enrichment with provenance
-- [ ] **Phase 5: MCP Validation & Iteration** - Real workflow validation, doc 06 resolution, prompt design, tool iteration
+- [x] **Phase 5: MCP Validation & Iteration** - Real workflow validation, doc 06 resolution, prompt design, tool iteration
 - [ ] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
 
 ## Phase Details
@@ -117,9 +117,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md -- Import script: arxiv-scan data bootstrap (150 papers, triage states, tension profile)
-- [ ] 05-02-PLAN.md -- MCP prompts: literature_review_session, daily_digest, triage_shortlist
-- [ ] 05-03-PLAN.md -- Validation session, doc 06 resolution, evidence-based MCP surface iteration
+- [x] 05-01-PLAN.md -- Import script: arxiv-scan data bootstrap (157 papers, triage states, tension profile)
+- [x] 05-02-PLAN.md -- MCP prompts: literature_review_session, daily_digest, triage_shortlist
+- [x] 05-03-PLAN.md -- Validation session, doc 06 resolution, evidence-based MCP surface iteration
 
 **Rationale for resequencing:** Content normalization blocks MCP validation. For literature review, metadata + abstracts + triage + ranking are the high-value loops. Full-text parsing is secondary. Validate the MCP surface with real workflows before adding content complexity. See `.planning/ECOSYSTEM-COMMENTARY.md` §3.
 
@@ -134,11 +134,12 @@ Plans:
   3. Multiple parsing backends (Docling, Marker, GROBID) work behind a common interface and can be swapped without changing the content API
   4. Content serving refuses to return full-text for papers whose license does not permit it, with a clear explanation of why
   5. An MCP client can access paper content variants via get_content_variant tool
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
+- [ ] 06-01-PLAN.md -- Data foundation: ContentVariant ORM, Pydantic models, RightsChecker, migration 008, Settings extension
+- [ ] 06-02-PLAN.md -- Content adapters and service: ContentAdapter protocol, MarkerAdapter, HTML fetcher, ContentService orchestration
+- [ ] 06-03-PLAN.md -- MCP integration: get_content_variant tool, paper resource extension, content CLI, tool count update
 
 ## Progress
 
@@ -152,5 +153,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6
 | 3. Interest Modeling & Ranking | 3/3 | Complete | 2026-03-10 |
 | 4. Enrichment Adapters | 2/2 | Complete | 2026-03-10 |
 | 04.1. MCP v1 | 3/3 | Complete    | 2026-03-12 |
-| 5. MCP Validation & Iteration | 0/3 | Not started | - |
-| 6. Content Normalization | 0/? | Not started | - |
+| 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
+| 6. Content Normalization | 0/3 | Not started | - |
