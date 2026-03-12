@@ -34,7 +34,7 @@ class Settings(BaseSettings):
 
     # arXiv endpoints
     arxiv_oai_url: str = "https://oaipmh.arxiv.org/oai"
-    arxiv_api_url: str = "http://export.arxiv.org/api/query"
+    arxiv_api_url: str = "https://export.arxiv.org/api/query"
 
     # Category configuration
     categories_file: str = "data/categories.toml"

@@ -163,7 +163,7 @@ class ArxivAPIClient:
         if delay > 0:
             await asyncio.sleep(delay)
 
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(follow_redirects=True) as client:
             response = await client.get(self.base_url, params=params)
             response.raise_for_status()
             self._last_request_time = time.monotonic()
