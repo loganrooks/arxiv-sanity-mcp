@@ -81,3 +81,6 @@ from arxiv_mcp.mcp.tools import discovery, workflow, interest, enrichment  # noq
 
 # Register resource modules (side-effect imports)
 from arxiv_mcp.mcp.resources import paper, collection, profile, watch  # noqa: F401, E402
+
+# Register prompt modules (side-effect imports)
+from arxiv_mcp.mcp.prompts import literature_review, daily_digest, triage_shortlist  # noqa: F401, E402

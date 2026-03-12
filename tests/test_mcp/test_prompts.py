@@ -10,6 +10,8 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
+from arxiv_mcp.models.pagination import PageInfo, PaginatedResponse
+
 
 # ---- Registration tests ----
 
@@ -176,11 +178,12 @@ class TestTriageShortlistRendering:
     async def test_renders_non_empty_user_messages(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.prompts.triage_shortlist import triage_shortlist
 
-        # Mock show_collection to return a collection with a paper count
-        mock_collection = MagicMock()
-        mock_collection.total = 5
+        # Mock show_collection to return PaginatedResponse with paper count
         mock_app_context.collections.show_collection = AsyncMock(
-            return_value=mock_collection
+            return_value=PaginatedResponse(
+                items=[MagicMock() for _ in range(5)],
+                page_info=PageInfo(has_next=False, total_estimate=5),
+            )
         )
 
         result = await triage_shortlist(
@@ -195,10 +198,11 @@ class TestTriageShortlistRendering:
     async def test_includes_paper_count_from_collection(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.prompts.triage_shortlist import triage_shortlist
 
-        mock_collection = MagicMock()
-        mock_collection.total = 12
         mock_app_context.collections.show_collection = AsyncMock(
-            return_value=mock_collection
+            return_value=PaginatedResponse(
+                items=[MagicMock() for _ in range(12)],
+                page_info=PageInfo(has_next=False, total_estimate=12),
+            )
         )
 
         result = await triage_shortlist(
@@ -211,10 +215,11 @@ class TestTriageShortlistRendering:
     async def test_includes_profile_context_when_provided(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.prompts.triage_shortlist import triage_shortlist
 
-        mock_collection = MagicMock()
-        mock_collection.total = 3
         mock_app_context.collections.show_collection = AsyncMock(
-            return_value=mock_collection
+            return_value=PaginatedResponse(
+                items=[MagicMock() for _ in range(3)],
+                page_info=PageInfo(has_next=False, total_estimate=3),
+            )
         )
 
         result = await triage_shortlist(
@@ -244,10 +249,11 @@ class TestTriageShortlistRendering:
     async def test_conciseness_under_4000_chars(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.prompts.triage_shortlist import triage_shortlist
 
-        mock_collection = MagicMock()
-        mock_collection.total = 20
         mock_app_context.collections.show_collection = AsyncMock(
-            return_value=mock_collection
+            return_value=PaginatedResponse(
+                items=[MagicMock() for _ in range(20)],
+                page_info=PageInfo(has_next=False, total_estimate=20),
+            )
         )
 
         result = await triage_shortlist(
