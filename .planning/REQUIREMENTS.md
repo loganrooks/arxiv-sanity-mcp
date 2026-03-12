@@ -92,8 +92,8 @@ Requirements for initial release. Each maps to roadmap phases.
 ### MCP Validation
 
 - [x] **MCPV-01**: At least one real literature review session completed through MCP (search → triage → collect → expand → enrich)
-- [ ] **MCPV-02**: Doc 06 open questions (tool granularity, resource design, prompt reusability) resolved with evidence from MCP usage
-- [ ] **MCPV-03**: MCP tool set iterated at least once based on real agent workflow feedback
+- [x] **MCPV-02**: Doc 06 open questions (tool granularity, resource design, prompt reusability) resolved with evidence from MCP usage
+- [x] **MCPV-03**: MCP tool set iterated at least once based on real agent workflow feedback
 
 ## v2 Requirements
 
@@ -183,8 +183,8 @@ Deferred to future release. Tracked but not in current roadmap.
 | MCP-07 | Phase 04.1 | Complete |
 | MCP-05 | Phase 5 | Complete |
 | MCPV-01 | Phase 5 | Complete |
-| MCPV-02 | Phase 5 | Pending |
-| MCPV-03 | Phase 5 | Pending |
+| MCPV-02 | Phase 5 | Complete |
+| MCPV-03 | Phase 5 | Complete |
 | CONT-01 | Phase 6 | Pending |
 | CONT-02 | Phase 6 | Pending |
 | CONT-03 | Phase 6 | Pending |
