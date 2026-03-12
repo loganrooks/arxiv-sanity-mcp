@@ -207,7 +207,7 @@ class TestFetchArxivHtml:
 
     @pytest.mark.asyncio
     async def test_returns_none_for_head_404_no_get(self):
-        """When HEAD returns 404, no GET request is made."""
+        """When HEAD returns 404, no GET request is made (only 1 acquire call)."""
         from arxiv_mcp.content.html_fetcher import fetch_arxiv_html
 
         rate_limiter = AsyncMock()
@@ -216,15 +216,11 @@ class TestFetchArxivHtml:
             head_route = router.head("/html/2301.00001").mock(
                 return_value=httpx.Response(404)
             )
-            get_route = router.get("/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
-            )
 
             async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             assert content is None
             assert head_route.call_count == 1
-            assert get_route.call_count == 0
-            # Only one acquire call (for HEAD)
+            # Only one acquire call (for HEAD, no GET)
             assert rate_limiter.acquire.call_count == 1
