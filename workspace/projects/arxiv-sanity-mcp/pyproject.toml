@@ -18,6 +18,7 @@ dependencies = [
     "rich>=13.9",
     "python-dotenv>=1.0",
     "python-dateutil>=2.9.0.post0",
+    "mcp[cli]>=1.25,<2",
 ]
 
 [project.scripts]
