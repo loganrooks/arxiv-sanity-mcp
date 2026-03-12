@@ -63,3 +63,11 @@ try:
     cli.add_command(enrich_group)
 except (ImportError, ModuleNotFoundError):
     pass
+
+# Import subgroup (Phase 5, Plan 01)
+try:
+    from arxiv_mcp.scripts.import_arxiv_scan import import_scan_group
+
+    cli.add_command(import_scan_group)
+except (ImportError, ModuleNotFoundError):
+    pass
