@@ -410,3 +410,51 @@ class InterestSignal(Base):
             f"<InterestSignal(profile_id={self.profile_id}, "
             f"type={self.signal_type!r}, value={self.signal_value!r})>"
         )
+
+
+# --- Content models (Phase 6) ---
+
+
+class ContentVariant(Base):
+    """Normalized content variant for a paper.
+
+    Stores paper content in a specific format (abstract, HTML, source-derived
+    markdown, PDF-derived markdown) with full provenance tracking. Composite
+    PK (arxiv_id, variant_type) allows one variant per type per paper.
+
+    Follows the PaperEnrichment pattern: separate table with FK to papers,
+    provenance columns, and lifecycle independent of core metadata.
+    """
+
+    __tablename__ = "content_variants"
+
+    arxiv_id: Mapped[str] = mapped_column(
+        String(20),
+        ForeignKey("papers.arxiv_id", ondelete="CASCADE"),
+    )
+    variant_type: Mapped[str] = mapped_column(String(32))
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+    content_hash: Mapped[str | None] = mapped_column(String(64))
+    source_url: Mapped[str | None] = mapped_column(String(512))
+    backend: Mapped[str | None] = mapped_column(String(32))
+    backend_version: Mapped[str | None] = mapped_column(String(32))
+    extraction_method: Mapped[str | None] = mapped_column(String(32))
+    license_uri: Mapped[str | None] = mapped_column(String(256))
+    quality_warnings: Mapped[dict | None] = mapped_column(JSONB)
+    fetched_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    converted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+    __table_args__ = (
+        PrimaryKeyConstraint("arxiv_id", "variant_type", name="content_variants_pkey"),
+        CheckConstraint(
+            "variant_type IN ('abstract', 'html', 'source_derived', 'pdf_markdown')",
+            name="ck_content_variant_type_valid",
+        ),
+        Index("idx_content_variants_arxiv_id", "arxiv_id"),
+    )
+
+    def __repr__(self) -> str:
+        return (
+            f"<ContentVariant(arxiv_id={self.arxiv_id!r}, "
+            f"variant_type={self.variant_type!r})>"
+        )
