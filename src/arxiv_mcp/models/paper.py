@@ -48,7 +48,7 @@ class PaperSummary(BaseModel):
     submitted_date: datetime
     updated_date: datetime | None = None
     announced_date: date | None = None
-    oai_datestamp: date
+    oai_datestamp: date | None = None
 
     # Version and rights
     latest_version: int | None = None
