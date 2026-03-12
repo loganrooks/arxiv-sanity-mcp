@@ -2,7 +2,7 @@
 
 ## Overview
 
-This roadmap delivers an MCP-native research discovery substrate in six phases. The first phase builds the metadata foundation (paper model, ingestion, lexical search). The next two phases add workflow state and interest modeling -- at which point the system has the core differentiators (explicit taste modeling, inspectable ranking, stateful workflows). Enrichment and content normalization extend the data available for discovery. The final phase wires everything into the MCP protocol surface with tools, resources, and prompts. Semantic search is deferred to v2.
+This roadmap delivers an MCP-native research discovery substrate in six phases. Phases 1-4 built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, and enrichment adapters. Phase 04.1 exposed all services as an MCP server (9 tools, 4 resources). Phase 5 validates the MCP surface with real literature review workflows and iterates based on evidence. Phase 6 adds content normalization. Semantic search is deferred to v2.
 
 ## Phases
 
@@ -12,10 +12,10 @@ This roadmap delivers an MCP-native research discovery substrate in six phases. 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Metadata Substrate** - Paper model, arXiv ingestion, lexical search, and recent-paper browsing
-- [ ] **Phase 2: Workflow State** - Collections, triage states, saved queries, watches, and delta/checkpoint handling
-- [ ] **Phase 3: Interest Modeling & Ranking** - Interest profiles with multiple signal types and structured ranking explanations
-- [ ] **Phase 4: Enrichment Adapters** - OpenAlex integration, external ID resolution, and lazy enrichment with provenance
+- [x] **Phase 1: Metadata Substrate** - Paper model, arXiv ingestion, lexical search, and recent-paper browsing
+- [x] **Phase 2: Workflow State** - Collections, triage states, saved queries, watches, and delta/checkpoint handling
+- [x] **Phase 3: Interest Modeling & Ranking** - Interest profiles with multiple signal types and structured ranking explanations
+- [x] **Phase 4: Enrichment Adapters** - OpenAlex integration, external ID resolution, and lazy enrichment with provenance
 - [ ] **Phase 5: MCP Validation & Iteration** - Real workflow validation, doc 06 resolution, prompt design, tool iteration
 - [ ] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
 
@@ -35,8 +35,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md -- Foundation: project scaffolding, DB schema, paper model, test infrastructure
-- [ ] 01-02-PLAN.md -- Ingestion: OAI-PMH harvester, arXiv API client, XML parsers, metadata mapper
-- [ ] 01-03-PLAN.md -- Search: fielded search, browse recent, find related, cursor pagination, CLI
+- [x] 01-02-PLAN.md -- Ingestion: OAI-PMH harvester, arXiv API client, XML parsers, metadata mapper
+- [x] 01-03-PLAN.md -- Search: fielded search, browse recent, find related, cursor pagination, CLI
 
 ### Phase 2: Workflow State
 **Goal**: Users can organize their research workflow with collections, triage states, saved queries, and delta tracking to answer "what's new since I last checked"
@@ -50,9 +50,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Schema foundation: ORM models, Pydantic schemas, Alembic migration 002, test infrastructure
-- [ ] 02-02-PLAN.md -- Collection and triage services: CRUD, membership, merge, archive, triage mark/batch/log
-- [ ] 02-03-PLAN.md -- Saved queries, watches, export/import, stats, paper show, and CLI commands
+- [x] 02-01-PLAN.md -- Schema foundation: ORM models, Pydantic schemas, Alembic migration 002, test infrastructure
+- [x] 02-02-PLAN.md -- Collection and triage services: CRUD, membership, merge, archive, triage mark/batch/log
+- [x] 02-03-PLAN.md -- Saved queries, watches, export/import, stats, paper show, and CLI commands
 
 ### Phase 3: Interest Modeling & Ranking
 **Goal**: Users can build explicit interest profiles from multiple signal types and get structured explanations for why each paper surfaced in results
@@ -66,9 +66,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md -- Interest profile data model, migration, ProfileService with CRUD and signal management
-- [ ] 03-02-PLAN.md -- Composable ranking pipeline with 5 signal scorers, ProfileRankingService
-- [ ] 03-03-PLAN.md -- Suggestion engine, profile CLI, search CLI integration with --profile and --explain
+- [x] 03-01-PLAN.md -- Interest profile data model, migration, ProfileService with CRUD and signal management
+- [x] 03-02-PLAN.md -- Composable ranking pipeline with 5 signal scorers, ProfileRankingService
+- [x] 03-03-PLAN.md -- Suggestion engine, profile CLI, search CLI integration with --profile and --explain
 
 ### Phase 4: Enrichment Adapters
 **Goal**: Papers are lazily enriched with OpenAlex data (topics, citations, related works) on demand, with external ID resolution and full provenance tracking
@@ -82,8 +82,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md -- Data model, Pydantic schemas, OpenAlexAdapter with DOI-based resolution, migration 004, test fixtures
-- [ ] 04-02-PLAN.md -- EnrichmentService orchestration, CLI subgroup, paper show integration, batch operations
+- [x] 04-01-PLAN.md -- Data model, Pydantic schemas, OpenAlexAdapter with DOI-based resolution, migration 004, test fixtures
+- [x] 04-02-PLAN.md -- EnrichmentService orchestration, CLI subgroup, paper show integration, batch operations
 
 ### Phase 04.1: MCP v1 — expose existing services as MCP tools and resources (INSERTED)
 
@@ -101,8 +101,8 @@ Plans:
 
 Plans:
 - [x] 04.1-01-PLAN.md -- Pre-MCP quality fixes: ranking triple-counting, "seen" triage state, pagination documentation
-- [ ] 04.1-02-PLAN.md -- MCP server scaffold with FastMCP lifespan, 4 discovery tools, test infrastructure
-- [ ] 04.1-03-PLAN.md -- 5 workflow/interest/enrichment tools, 4 resource templates, tool naming tests
+- [x] 04.1-02-PLAN.md -- MCP server scaffold with FastMCP lifespan, 4 discovery tools, test infrastructure
+- [x] 04.1-03-PLAN.md -- 5 workflow/interest/enrichment tools, 4 resource templates, tool naming tests
 
 ### Phase 5: MCP Validation & Iteration (RESEQUENCED — was Phase 6)
 
@@ -110,15 +110,16 @@ Plans:
 **Depends on**: Phase 04.1
 **Requirements**: MCP-05, MCPV-01, MCPV-02, MCPV-03
 **Success Criteria** (what must be TRUE):
-  1. At least one real literature review session completed through MCP (search → triage → collect → expand → enrich)
+  1. At least one real literature review session completed through MCP (search -> triage -> collect -> expand -> enrich)
   2. Doc 06 open questions (tool granularity, resource design, prompt reusability) have evidence-based answers
   3. MCP prompts for daily-digest, literature-map-from-seeds, and triage-shortlist are available and produce useful agent workflows
   4. Tool set has been iterated at least once based on validation feedback
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md -- Import script: arxiv-scan data bootstrap (150 papers, triage states, tension profile)
+- [ ] 05-02-PLAN.md -- MCP prompts: literature_review_session, daily_digest, triage_shortlist
+- [ ] 05-03-PLAN.md -- Validation session, doc 06 resolution, evidence-based MCP surface iteration
 
 **Rationale for resequencing:** Content normalization blocks MCP validation. For literature review, metadata + abstracts + triage + ranking are the high-value loops. Full-text parsing is secondary. Validate the MCP surface with real workflows before adding content complexity. See `.planning/ECOSYSTEM-COMMENTARY.md` §3.
 
@@ -142,7 +143,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 04.1 → 5 → 6
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -151,5 +152,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 04.1 → 5 → 6
 | 3. Interest Modeling & Ranking | 3/3 | Complete | 2026-03-10 |
 | 4. Enrichment Adapters | 2/2 | Complete | 2026-03-10 |
 | 04.1. MCP v1 | 3/3 | Complete    | 2026-03-12 |
-| 5. MCP Validation & Iteration | 0/? | Not started | - |
+| 5. MCP Validation & Iteration | 0/3 | Not started | - |
 | 6. Content Normalization | 0/? | Not started | - |
