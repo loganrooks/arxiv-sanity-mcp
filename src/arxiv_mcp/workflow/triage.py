@@ -27,7 +27,7 @@ from arxiv_mcp.models.workflow import (
 class TriageService:
     """Manages per-paper triage states with audit trail.
 
-    States: unseen, shortlisted, dismissed, read, cite-later, archived.
+    States: unseen, seen, shortlisted, dismissed, read, cite-later, archived.
     Absence of a triage_states row means "unseen" (no materialization).
     All transitions are logged to triage_log with source and optional reason.
     """

@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed quick-1-PLAN.md (foundation fixes)
-last_updated: "2026-03-11T01:17:56.928Z"
-last_activity: 2026-03-11 -- Quick task 1: foundation fixes (extensible schemas, remove implicit demotion, epistemic discipline docs)
+status: active
+stopped_at: "Completed 04.1-01-PLAN.md (pre-MCP quality fixes)"
+last_updated: "2026-03-12"
+last_activity: 2026-03-12 -- PREMCP-01 ranking triple-counting fix, PREMCP-02 seen triage state, PREMCP-03 pagination docs, planning doc alignment
 progress:
   total_phases: 6
   completed_phases: 4
-  total_plans: 11
-  completed_plans: 11
-  percent: 100
+  total_plans: 14
+  completed_plans: 12
+  percent: 80
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 4: Enrichment Adapters
+**Current focus:** Phase 04.1: MCP v1
 
 ## Current Position
 
-Phase: 4 of 6 (Enrichment Adapters) -- COMPLETE
-Plan: 2 of 2 in current phase (complete)
-Status: Phase 4 complete, all 11 plans done
-Last activity: 2026-03-10 -- Phase 4 complete (enrichment service, CLI, batch operations)
+Phase: 04.1 of 6 (MCP v1)
+Plan: 1 of 3 in current phase
+Status: Phase 04.1 plan 01 complete (pre-MCP quality fixes). Plans 02-03 remaining (MCP server scaffold, tools/resources).
+Last activity: 2026-03-12 -- PREMCP-01 ranking fix, PREMCP-02 seen state, PREMCP-03 pagination docs, planning doc alignment
 
-Progress: [██████████] 100% (11/11 plans)
+Progress: [████████░░] ~80% (12/~15 estimated plans)
 
 ## Performance Metrics
 
@@ -48,8 +48,10 @@ Progress: [██████████] 100% (11/11 plans)
 | 03-interest-modeling-ranking | 3 | 23 min | 7.7 min |
 | 04-enrichment-adapters | 2/2 | 16 min | 8.0 min |
 
+| 04.1-MCP v1 | 1/3 | 7 min | 7.0 min |
+
 **Recent Trend:**
-- Last 5 plans: 03-02 (8 min), 03-03 (8 min), 04-01 (8 min), 04-02 (8 min)
+- Last 5 plans: 03-03 (8 min), 04-01 (8 min), 04-02 (8 min), 04.1-01 (7 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -109,15 +111,24 @@ Recent decisions affecting current work:
 - [Phase quick-1]: Composite PK (arxiv_id, source_api) for multi-source enrichment records
 - [Phase quick-1]: Direct ID matching only for negative demotion per ADR-0001 (no category inference)
 - [Phase quick-1]: openalex_email setting for OpenAlex polite pool access
+- [Phase 04.1]: 04.1-01: Category Jaccard removed from score_seed_relation (author-only) and score_profile_match (85% author + 15% query_boost)
+- [Phase 04.1]: 04.1-01: 'seen' triage state uses existing mark_triage upsert path (no new service method)
+- [Phase 04.1]: 04.1-01: Docstring assertion test pattern for documentation regression prevention
 
 ### Pending Todos
 
 None yet.
 
+### Roadmap Evolution
+
+- Phase 04.1 inserted after Phase 4: MCP v1 — expose existing services as MCP tools and resources (foundation audit finding 1B: MCP-native project identity requires earlier MCP validation)
+- 2026-03-11: Roadmap resequenced per ecosystem analysis. Old Phase 5 (Content Normalization) → new Phase 6. Old Phase 6 (MCP Integration) absorbed into Phase 04.1 + new Phase 5 (MCP Validation). MCP requirements split: core tools (Phase 04.1), prompts/validation (Phase 5), content tool (Phase 6). Three new requirement categories added: PREMCP (pre-MCP fixes), MCPV (validation). Total requirements: 53 (was 47).
+- 2026-03-11: Ecosystem commentary document written (.planning/ECOSYSTEM-COMMENTARY.md) analyzing cross-project data flows between arxiv-scan pipeline and MCP, identifying pre-MCP fix priorities, literature review feature priorities, and feedback loop design.
+
 ### Blockers/Concerns
 
-- Phase 4: OpenAlex credit-based pricing tiers need research before committing to enrichment scheduling strategy.
-- Phase 5: Docling vs Marker quality comparison for scholarly PDFs (math, citations, tables) needs Phase 5 experimentation.
+- Phase 6: Docling vs Marker quality comparison for scholarly PDFs (math, citations, tables) needs Phase 6 experimentation.
+- OpenAlex credit-based pricing tiers need research before committing to enrichment scheduling strategy.
 
 ### Quick Tasks Completed
 
@@ -127,6 +138,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-11T01:17:50.077Z
-Stopped at: Completed quick-1-PLAN.md (foundation fixes)
+Last session: 2026-03-12
+Stopped at: Completed 04.1-01-PLAN.md (pre-MCP quality fixes). Ready for 04.1-02 (MCP server scaffold).
 Resume file: None
