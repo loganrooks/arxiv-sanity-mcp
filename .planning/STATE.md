@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: active
-stopped_at: "Completed 04.1-01-PLAN.md (pre-MCP quality fixes)"
+stopped_at: "Completed 04.1-02-PLAN.md (MCP server scaffold + discovery tools)"
 last_updated: "2026-03-12"
-last_activity: 2026-03-12 -- PREMCP-01 ranking triple-counting fix, PREMCP-02 seen triage state, PREMCP-03 pagination docs, planning doc alignment
+last_activity: 2026-03-12 -- FastMCP server scaffold, AppContext lifespan, 4 discovery tools (search_papers, browse_recent, find_related_papers, get_paper), 14 MCP tests
 progress:
   total_phases: 6
   completed_phases: 4
   total_plans: 14
-  completed_plans: 12
-  percent: 80
+  completed_plans: 13
+  percent: 87
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-08)
 ## Current Position
 
 Phase: 04.1 of 6 (MCP v1)
-Plan: 1 of 3 in current phase
-Status: Phase 04.1 plan 01 complete (pre-MCP quality fixes). Plans 02-03 remaining (MCP server scaffold, tools/resources).
-Last activity: 2026-03-12 -- PREMCP-01 ranking fix, PREMCP-02 seen state, PREMCP-03 pagination docs, planning doc alignment
+Plan: 2 of 3 in current phase
+Status: Phase 04.1 plan 02 complete (MCP server scaffold + discovery tools). Plan 03 remaining (workflow/interest/enrichment tools).
+Last activity: 2026-03-12 -- FastMCP server scaffold, AppContext lifespan, 4 discovery tools, 14 MCP tests
 
-Progress: [████████░░] ~80% (12/~15 estimated plans)
+Progress: [█████████░] ~87% (13/~15 estimated plans)
 
 ## Performance Metrics
 
@@ -48,11 +48,11 @@ Progress: [████████░░] ~80% (12/~15 estimated plans)
 | 03-interest-modeling-ranking | 3 | 23 min | 7.7 min |
 | 04-enrichment-adapters | 2/2 | 16 min | 8.0 min |
 
-| 04.1-MCP v1 | 1/3 | 7 min | 7.0 min |
+| 04.1-MCP v1 | 2/3 | 12 min | 6.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-03 (8 min), 04-01 (8 min), 04-02 (8 min), 04.1-01 (7 min)
-- Trend: stable
+- Last 5 plans: 04-01 (8 min), 04-02 (8 min), 04.1-01 (7 min), 04.1-02 (5 min)
+- Trend: stable/improving
 
 *Updated after each plan completion*
 
@@ -114,6 +114,11 @@ Recent decisions affecting current work:
 - [Phase 04.1]: 04.1-01: Category Jaccard removed from score_seed_relation (author-only) and score_profile_match (85% author + 15% query_boost)
 - [Phase 04.1]: 04.1-01: 'seen' triage state uses existing mark_triage upsert path (no new service method)
 - [Phase 04.1]: 04.1-01: Docstring assertion test pattern for documentation regression prevention
+- [Phase 04.1]: 04.1-02: AppContext dataclass with all 7 services + engine/session_factory/settings for FastMCP lifespan DI
+- [Phase 04.1]: 04.1-02: Tools return dict via model_dump(mode='json') for MCP transport compatibility
+- [Phase 04.1]: 04.1-02: find_related_papers accepts str|list[str], deduplicates by highest score, excludes seed IDs
+- [Phase 04.1]: 04.1-02: get_paper uses direct ORM select(Paper) query (not SearchService) for single-paper lookup
+- [Phase 04.1]: 04.1-02: _get_app(ctx) helper pattern for extracting AppContext from MCP Context
 
 ### Pending Todos
 
@@ -139,5 +144,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-12
-Stopped at: Completed 04.1-01-PLAN.md (pre-MCP quality fixes). Ready for 04.1-02 (MCP server scaffold).
+Stopped at: Completed 04.1-02-PLAN.md (MCP server scaffold + discovery tools). Ready for 04.1-03 (workflow/interest/enrichment tools).
 Resume file: None
