@@ -94,8 +94,8 @@ Plans:
   1. Category overlap is scored exactly once in the ranking pipeline (effective weight = DEFAULT_WEIGHTS[CATEGORY_OVERLAP], not 2.5x)
   2. "Seen" triage state exists and is distinct from absence (never encountered) and from shortlisted/dismissed (decision made)
   3. An MCP client can discover papers via search_papers, browse_recent, find_related_papers, and get_paper tools
-  4. An MCP client can manage workflow state via create_collection, add_to_collection, mark_triage_state, create_saved_query, and get_delta_since_checkpoint tools
-  5. MCP resources expose paper, collection, saved query, and result set as canonical objects
+  4. An MCP client can manage workflow state via triage_paper, add_to_collection, and create_watch tools, plus add_signal for interest profiles and enrich_paper for enrichment
+  5. MCP resources expose paper, collection, profile, and watch deltas as canonical objects
   6. Tool names describe user intent, not implementation
 **Plans**: 3 plans
 

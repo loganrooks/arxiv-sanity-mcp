@@ -64,6 +64,12 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **ENRC-03**: System resolves external IDs: arXiv ID <-> DOI <-> OpenAlex ID
 - [x] **ENRC-04**: Enrichment data records provenance (source, timestamp, API version)
 
+### Pre-MCP Fixes
+
+- [ ] **PREMCP-01**: Category overlap is scored exactly once in the ranking pipeline (remove redundant Jaccard from score_seed_relation and score_profile_match; effective weight = 0.15, not 0.375)
+- [ ] **PREMCP-02**: "Seen" triage state exists in TriageState CHECK constraint, distinct from absence (never encountered) and from shortlisted/dismissed (decision made)
+- [ ] **PREMCP-03**: Over-fetch pagination after re-ranking is documented as approximate (page boundaries shift because each page independently over-fetches and re-ranks)
+
 ### Content
 
 - [ ] **CONT-01**: System provides abstract as default content variant (no rights issues)
@@ -76,12 +82,18 @@ Requirements for initial release. Each maps to roadmap phases.
 ### MCP Interface
 
 - [ ] **MCP-01**: MCP server exposes discovery tools: search_papers, browse_recent, find_related_papers, get_paper
-- [ ] **MCP-02**: MCP server exposes workflow tools: create_collection, add_to_collection, mark_triage_state, create_saved_query, get_delta_since_checkpoint
+- [ ] **MCP-02**: MCP server exposes workflow/interest/enrichment tools: triage_paper, add_to_collection, create_watch, add_signal, enrich_paper
 - [ ] **MCP-03**: MCP server exposes content tools: get_content_variant
-- [ ] **MCP-04**: MCP server exposes canonical resources: paper, collection, saved query, result set
+- [ ] **MCP-04**: MCP server exposes canonical resources: paper://{arxiv_id}, collection://{slug}, profile://{slug}, watch://{slug}/deltas
 - [ ] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
 - [ ] **MCP-06**: Tool names describe user intent, not implementation (find_related_papers, not search_embeddings)
 - [ ] **MCP-07** [chosen for now]: MCP tool set stays at 5-10 tools maximum to limit context token cost (no traceable source; sensible heuristic but not a firm requirement)
+
+### MCP Validation
+
+- [ ] **MCPV-01**: At least one real literature review session completed through MCP (search → triage → collect → expand → enrich)
+- [ ] **MCPV-02**: Doc 06 open questions (tool granularity, resource design, prompt reusability) resolved with evidence from MCP usage
+- [ ] **MCPV-03**: MCP tool set iterated at least once based on real agent workflow feedback
 
 ## v2 Requirements
 
@@ -161,25 +173,31 @@ Deferred to future release. Tracked but not in current roadmap.
 | ENRC-02 | Phase 4 | Complete |
 | ENRC-03 | Phase 4 | Complete |
 | ENRC-04 | Phase 4 | Complete |
-| CONT-01 | Phase 5 | Pending |
-| CONT-02 | Phase 5 | Pending |
-| CONT-03 | Phase 5 | Pending |
-| CONT-04 | Phase 5 | Pending |
-| CONT-05 | Phase 5 | Pending |
-| CONT-06 | Phase 5 | Pending |
-| MCP-01 | Phase 6 | Pending |
-| MCP-02 | Phase 6 | Pending |
+| PREMCP-01 | Phase 04.1 | Pending |
+| PREMCP-02 | Phase 04.1 | Pending |
+| PREMCP-03 | Phase 04.1 | Pending |
+| MCP-01 | Phase 04.1 | Pending |
+| MCP-02 | Phase 04.1 | Pending |
+| MCP-04 | Phase 04.1 | Pending |
+| MCP-06 | Phase 04.1 | Pending |
+| MCP-07 | Phase 04.1 | Pending |
+| MCP-05 | Phase 5 | Pending |
+| MCPV-01 | Phase 5 | Pending |
+| MCPV-02 | Phase 5 | Pending |
+| MCPV-03 | Phase 5 | Pending |
+| CONT-01 | Phase 6 | Pending |
+| CONT-02 | Phase 6 | Pending |
+| CONT-03 | Phase 6 | Pending |
+| CONT-04 | Phase 6 | Pending |
+| CONT-05 | Phase 6 | Pending |
+| CONT-06 | Phase 6 | Pending |
 | MCP-03 | Phase 6 | Pending |
-| MCP-04 | Phase 6 | Pending |
-| MCP-05 | Phase 6 | Pending |
-| MCP-06 | Phase 6 | Pending |
-| MCP-07 | Phase 6 | Pending |
 
 **Coverage:**
-- v1 requirements: 47 total
-- Mapped to phases: 47
+- v1 requirements: 53 total (47 original + 3 PREMCP + 3 MCPV)
+- Mapped to phases: 53
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-08*
-*Last updated: 2026-03-08 after roadmap creation*
+*Last updated: 2026-03-11 after ecosystem commentary and roadmap resequencing*
