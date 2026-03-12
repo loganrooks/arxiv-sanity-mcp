@@ -32,7 +32,7 @@ class TriageService:
     All transitions are logged to triage_log with source and optional reason.
     """
 
-    VALID_STATES = {"unseen", "shortlisted", "dismissed", "read", "cite-later", "archived"}
+    VALID_STATES = {"unseen", "seen", "shortlisted", "dismissed", "read", "cite-later", "archived"}
 
     def __init__(
         self,
