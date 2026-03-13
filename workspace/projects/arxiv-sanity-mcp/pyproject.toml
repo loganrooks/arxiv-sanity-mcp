@@ -12,6 +12,7 @@ dependencies = [
     "pydantic-settings>=2.7",
     "oaipmh-scythe>=0.14",
     "lxml>=5.3",
+    "beautifulsoup4>=4.12",
     "httpx>=0.28",
     "click>=8.1",
     "structlog>=24.4",
