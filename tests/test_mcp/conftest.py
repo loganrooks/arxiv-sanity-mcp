@@ -7,9 +7,10 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
+from arxiv_mcp.interest.search_augment import ProfileSearchResponse
 from arxiv_mcp.mcp.server import AppContext
 from arxiv_mcp.models.pagination import PageInfo, PaginatedResponse
-from arxiv_mcp.models.paper import PaperSummary, SearchResult
+from arxiv_mcp.models.paper import PaperSummary, ProfileSearchResult, SearchResult
 
 
 def _make_paper_summary(arxiv_id: str = "2301.00001", title: str = "Test Paper") -> PaperSummary:
@@ -34,6 +35,47 @@ def _make_paper_summary(arxiv_id: str = "2301.00001", title: str = "Test Paper")
 def _make_search_result(arxiv_id: str = "2301.00001", score: float = 0.9) -> SearchResult:
     """Create a sample SearchResult for test fixtures."""
     return SearchResult(paper=_make_paper_summary(arxiv_id=arxiv_id), score=score)
+
+
+def _make_profile_search_result(
+    arxiv_id: str = "2301.00001",
+    score: float = 0.9,
+    triage_state: str = "unseen",
+    collection_slugs: list[str] | None = None,
+    ranking_explanation: object | None = None,
+) -> ProfileSearchResult:
+    """Create a sample ProfileSearchResult for test fixtures."""
+    return ProfileSearchResult(
+        paper=_make_paper_summary(arxiv_id=arxiv_id),
+        score=score,
+        triage_state=triage_state,
+        collection_slugs=collection_slugs or [],
+        ranking_explanation=ranking_explanation,
+    )
+
+
+def _make_profile_search_response(
+    arxiv_id: str = "2301.00001",
+    score: float = 0.9,
+    triage_state: str = "unseen",
+    collection_slugs: list[str] | None = None,
+    ranking_explanation: object | None = None,
+    ranker_snapshot: object | None = None,
+) -> ProfileSearchResponse:
+    """Create a sample ProfileSearchResponse for test fixtures."""
+    return ProfileSearchResponse(
+        results=PaginatedResponse[ProfileSearchResult](
+            items=[_make_profile_search_result(
+                arxiv_id=arxiv_id,
+                score=score,
+                triage_state=triage_state,
+                collection_slugs=collection_slugs,
+                ranking_explanation=ranking_explanation,
+            )],
+            page_info=PageInfo(has_next=False, next_cursor=None, total_estimate=1),
+        ),
+        ranker_snapshot=ranker_snapshot,
+    )
 
 
 @pytest.fixture
@@ -73,8 +115,12 @@ def mock_app_context():
     ctx.content.get_or_create_variant = AsyncMock(return_value={})
     ctx.content.list_variants = AsyncMock(return_value=[])
     ctx.profile_ranking = AsyncMock()
-    ctx.profile_ranking.search_papers = AsyncMock(return_value=MagicMock())
-    ctx.profile_ranking.browse_recent = AsyncMock(return_value=MagicMock())
+    ctx.profile_ranking.search_papers = AsyncMock(
+        return_value=_make_profile_search_response("2301.00001", 0.95),
+    )
+    ctx.profile_ranking.browse_recent = AsyncMock(
+        return_value=_make_profile_search_response("2301.00002", 0.8),
+    )
     ctx.suggestions = AsyncMock()
     ctx.suggestions.generate_suggestions = AsyncMock(return_value=[])
     ctx.suggestions.add_suggestions_to_profile = AsyncMock(return_value=[])

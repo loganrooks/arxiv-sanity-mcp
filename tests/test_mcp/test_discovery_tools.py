@@ -12,7 +12,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 
 from arxiv_mcp.models.pagination import PageInfo, PaginatedResponse
-from arxiv_mcp.models.paper import PaperSummary, SearchResult
+from arxiv_mcp.models.paper import PaperSummary, ProfileSearchResult, SearchResult
 
 
 # ---- Tool name tests ----
@@ -33,12 +33,12 @@ class TestToolNames:
         assert actual_names == expected_names
 
 
-# ---- search_papers tests ----
+# ---- search_papers tests (updated for ProfileRankingService delegation) ----
 
 class TestSearchPapers:
-    """search_papers tool calls SearchService.search_papers with mapped params."""
+    """search_papers tool delegates to ProfileRankingService.search_papers."""
 
-    async def test_search_papers_delegates_to_service(self, mock_ctx, mock_app_context):
+    async def test_search_papers_delegates_to_profile_ranking(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.tools.discovery import search_papers
 
         result = await search_papers(
@@ -48,28 +48,33 @@ class TestSearchPapers:
             ctx=mock_ctx,
         )
 
-        mock_app_context.search.search_papers.assert_awaited_once()
-        call_kwargs = mock_app_context.search.search_papers.call_args.kwargs
+        mock_app_context.profile_ranking.search_papers.assert_awaited_once()
+        call_kwargs = mock_app_context.profile_ranking.search_papers.call_args.kwargs
         # query maps to query_text
         assert call_kwargs["query_text"] == "attention mechanisms"
         assert call_kwargs["category"] == "cs.AI"
         assert call_kwargs["page_size"] == 10
+        # profile_slug defaults to None
+        assert call_kwargs["profile_slug"] is None
 
     async def test_search_papers_maps_cursor_to_cursor_token(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.tools.discovery import search_papers
 
         await search_papers(cursor="abc123", ctx=mock_ctx)
 
-        call_kwargs = mock_app_context.search.search_papers.call_args.kwargs
+        call_kwargs = mock_app_context.profile_ranking.search_papers.call_args.kwargs
         assert call_kwargs["cursor_token"] == "abc123"
 
-    async def test_search_papers_returns_dict(self, mock_ctx):
+    async def test_search_papers_returns_profile_search_response_shape(self, mock_ctx):
         from arxiv_mcp.mcp.tools.discovery import search_papers
 
         result = await search_papers(query="test", ctx=mock_ctx)
         assert isinstance(result, dict)
-        assert "items" in result
-        assert "page_info" in result
+        # ProfileSearchResponse shape: results + ranker_snapshot at top level
+        assert "results" in result
+        assert "ranker_snapshot" in result
+        assert "items" in result["results"]
+        assert "page_info" in result["results"]
 
     async def test_search_papers_parses_date_strings(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.tools.discovery import search_papers
@@ -80,17 +85,147 @@ class TestSearchPapers:
             ctx=mock_ctx,
         )
 
-        call_kwargs = mock_app_context.search.search_papers.call_args.kwargs
+        call_kwargs = mock_app_context.profile_ranking.search_papers.call_args.kwargs
         assert call_kwargs["date_from"] == date(2023, 1, 1)
         assert call_kwargs["date_to"] == date(2023, 6, 30)
 
 
-# ---- browse_recent tests ----
+# ---- search_papers profile-ranked tests ----
+
+class TestSearchPapersProfileRanked:
+    """search_papers with profile_slug delegates to ProfileRankingService
+    and returns results with ranking_explanation."""
+
+    async def test_search_with_profile_slug_forwards_slug(self, mock_ctx, mock_app_context):
+        from arxiv_mcp.mcp.tools.discovery import search_papers
+
+        await search_papers(
+            query="attention",
+            profile_slug="test-profile",
+            ctx=mock_ctx,
+        )
+
+        call_kwargs = mock_app_context.profile_ranking.search_papers.call_args.kwargs
+        assert call_kwargs["profile_slug"] == "test-profile"
+
+    async def test_search_with_profile_slug_result_has_ranking_explanation(
+        self, mock_ctx, mock_app_context
+    ):
+        """When profile_slug is provided, result items should include ranking_explanation."""
+        from tests.test_mcp.conftest import _make_profile_search_response
+        from arxiv_mcp.mcp.tools.discovery import search_papers
+        from arxiv_mcp.models.interest import RankingExplanation
+
+        # Build a mock ranking explanation
+        mock_explanation = RankingExplanation(
+            composite_score=0.85,
+            query_relevance=0.7,
+            seed_relation=0.1,
+            author_affinity=0.05,
+            negative_demotion=0.0,
+            profile_match=0.0,
+        )
+        mock_app_context.profile_ranking.search_papers.return_value = (
+            _make_profile_search_response(
+                arxiv_id="2301.00001",
+                score=0.85,
+                ranking_explanation=mock_explanation,
+                ranker_snapshot={"weights": {"query_relevance": 0.6}},
+            )
+        )
+
+        result = await search_papers(
+            query="attention",
+            profile_slug="test-profile",
+            ctx=mock_ctx,
+        )
+
+        item = result["results"]["items"][0]
+        assert item["ranking_explanation"] is not None
+        assert item["ranking_explanation"]["composite_score"] == 0.85
+
+    async def test_search_with_profile_slug_has_ranker_snapshot(
+        self, mock_ctx, mock_app_context
+    ):
+        from tests.test_mcp.conftest import _make_profile_search_response
+        from arxiv_mcp.mcp.tools.discovery import search_papers
+
+        mock_app_context.profile_ranking.search_papers.return_value = (
+            _make_profile_search_response(
+                ranker_snapshot={"weights": {"query_relevance": 0.6}},
+            )
+        )
+
+        result = await search_papers(
+            query="test",
+            profile_slug="my-profile",
+            ctx=mock_ctx,
+        )
+
+        assert result["ranker_snapshot"] is not None
+
+
+# ---- search_papers workflow-enriched tests ----
+
+class TestSearchPapersWorkflowEnriched:
+    """search_papers without profile_slug returns workflow-enriched results
+    (triage_state, collection_slugs) via ProfileRankingService pass-through."""
+
+    async def test_search_without_profile_includes_triage_state(self, mock_ctx, mock_app_context):
+        from tests.test_mcp.conftest import _make_profile_search_response
+        from arxiv_mcp.mcp.tools.discovery import search_papers
+
+        mock_app_context.profile_ranking.search_papers.return_value = (
+            _make_profile_search_response(
+                triage_state="interesting",
+                collection_slugs=["ml-papers"],
+            )
+        )
+
+        result = await search_papers(query="test", ctx=mock_ctx)
+
+        item = result["results"]["items"][0]
+        assert item["triage_state"] == "interesting"
+
+    async def test_search_without_profile_includes_collection_slugs(
+        self, mock_ctx, mock_app_context
+    ):
+        from tests.test_mcp.conftest import _make_profile_search_response
+        from arxiv_mcp.mcp.tools.discovery import search_papers
+
+        mock_app_context.profile_ranking.search_papers.return_value = (
+            _make_profile_search_response(
+                collection_slugs=["ml-papers", "transformers"],
+            )
+        )
+
+        result = await search_papers(query="test", ctx=mock_ctx)
+
+        item = result["results"]["items"][0]
+        assert item["collection_slugs"] == ["ml-papers", "transformers"]
+
+    async def test_search_without_profile_ranking_explanation_is_none(self, mock_ctx):
+        from arxiv_mcp.mcp.tools.discovery import search_papers
+
+        result = await search_papers(query="test", ctx=mock_ctx)
+
+        item = result["results"]["items"][0]
+        assert item["ranking_explanation"] is None
+
+    async def test_search_without_profile_ranker_snapshot_is_none(self, mock_ctx):
+        from arxiv_mcp.mcp.tools.discovery import search_papers
+
+        result = await search_papers(query="test", ctx=mock_ctx)
+
+        assert result["ranker_snapshot"] is None
+
+
+# ---- browse_recent tests (updated for ProfileRankingService delegation) ----
 
 class TestBrowseRecent:
-    """browse_recent tool calls SearchService.browse_recent with mapped params."""
+    """browse_recent tool delegates to ProfileRankingService.browse_recent."""
 
-    async def test_browse_recent_delegates_to_service(self, mock_ctx, mock_app_context):
+    async def test_browse_recent_delegates_to_profile_ranking(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.tools.discovery import browse_recent
 
         result = await browse_recent(
@@ -100,8 +235,8 @@ class TestBrowseRecent:
             ctx=mock_ctx,
         )
 
-        mock_app_context.search.browse_recent.assert_awaited_once()
-        call_kwargs = mock_app_context.search.browse_recent.call_args.kwargs
+        mock_app_context.profile_ranking.browse_recent.assert_awaited_once()
+        call_kwargs = mock_app_context.profile_ranking.browse_recent.call_args.kwargs
         assert call_kwargs["category"] == "cs.AI"
         assert call_kwargs["days"] == 14
         assert call_kwargs["page_size"] == 10
@@ -111,15 +246,51 @@ class TestBrowseRecent:
 
         await browse_recent(cursor="xyz789", ctx=mock_ctx)
 
-        call_kwargs = mock_app_context.search.browse_recent.call_args.kwargs
+        call_kwargs = mock_app_context.profile_ranking.browse_recent.call_args.kwargs
         assert call_kwargs["cursor_token"] == "xyz789"
 
-    async def test_browse_recent_returns_dict(self, mock_ctx):
+    async def test_browse_recent_returns_profile_search_response_shape(self, mock_ctx):
         from arxiv_mcp.mcp.tools.discovery import browse_recent
 
         result = await browse_recent(ctx=mock_ctx)
         assert isinstance(result, dict)
-        assert "items" in result
+        assert "results" in result
+        assert "ranker_snapshot" in result
+
+
+# ---- browse_recent profile-ranked tests ----
+
+class TestBrowseRecentProfileRanked:
+    """browse_recent with profile_slug for profile-ranked browsing."""
+
+    async def test_browse_with_profile_slug_forwards_slug(self, mock_ctx, mock_app_context):
+        from arxiv_mcp.mcp.tools.discovery import browse_recent
+
+        await browse_recent(
+            profile_slug="test-profile",
+            ctx=mock_ctx,
+        )
+
+        call_kwargs = mock_app_context.profile_ranking.browse_recent.call_args.kwargs
+        assert call_kwargs["profile_slug"] == "test-profile"
+
+    async def test_browse_without_profile_slug_passes_none(self, mock_ctx, mock_app_context):
+        from arxiv_mcp.mcp.tools.discovery import browse_recent
+
+        await browse_recent(ctx=mock_ctx)
+
+        call_kwargs = mock_app_context.profile_ranking.browse_recent.call_args.kwargs
+        assert call_kwargs["profile_slug"] is None
+
+    async def test_browse_result_has_profile_search_response_shape(self, mock_ctx):
+        from arxiv_mcp.mcp.tools.discovery import browse_recent
+
+        result = await browse_recent(ctx=mock_ctx)
+
+        assert "results" in result
+        assert "items" in result["results"]
+        assert "page_info" in result["results"]
+        assert "ranker_snapshot" in result
 
 
 # ---- find_related_papers tests ----
