@@ -1,10 +1,12 @@
-"""Interest tools: add_signal, batch_add_signals.
+"""Interest tools: add_signal, batch_add_signals, create_profile, suggest_signals.
 
-Wraps ProfileService.add_signal as MCP tools with user-intent-oriented
-names and dict return types.
+Wraps ProfileService and SuggestionService as MCP tools with
+user-intent-oriented names and dict return types.
 """
 
 from __future__ import annotations
+
+from dataclasses import asdict
 
 from mcp.server.fastmcp import Context
 
@@ -82,4 +84,58 @@ async def batch_add_signals(
         "added": added,
         "errors": errors,
         "results": results,
+    }
+
+
+@mcp.tool()
+async def create_profile(
+    name: str,
+    negative_weight: float | None = None,
+    ctx: Context = None,
+) -> dict:
+    """Create a new interest profile.
+
+    Returns the profile summary with slug, name, signal_count, and timestamps.
+    """
+    app = _get_app(ctx)
+
+    try:
+        result = await app.profiles.create_profile(name, negative_weight=negative_weight)
+    except ValueError as e:
+        return {"error": str(e)}
+
+    return result.model_dump(mode="json")
+
+
+@mcp.tool()
+async def suggest_signals(
+    profile_slug: str,
+    auto_add: bool = False,
+    ctx: Context = None,
+) -> dict:
+    """Generate signal suggestions for an interest profile.
+
+    Examines workflow activity (triaged papers, frequent queries, recurring
+    authors) to suggest new signals. With auto_add=True, adds suggestions
+    as pending signals automatically.
+
+    Returns candidates list and added_count.
+    """
+    app = _get_app(ctx)
+
+    try:
+        candidates = await app.suggestions.generate_suggestions(profile_slug)
+    except ValueError as e:
+        return {"error": str(e)}
+
+    added_count = 0
+    if auto_add and candidates:
+        added = await app.suggestions.add_suggestions_to_profile(
+            profile_slug, candidates
+        )
+        added_count = len(added)
+
+    return {
+        "candidates": [asdict(c) for c in candidates],
+        "added_count": added_count,
     }
