@@ -34,6 +34,10 @@ async def content_session_factory(test_engine):
         await conn.execute(text(TSVECTOR_FUNCTION_SQL))
         await conn.execute(text(TSVECTOR_DROP_TRIGGER_SQL))
         await conn.execute(text(TSVECTOR_CREATE_TRIGGER_SQL))
+        # Truncate to ensure clean state (avoids stale data from prior fixtures
+        # while preserving table structure for asyncpg prepared statement cache)
+        await conn.execute(text("TRUNCATE TABLE content_variants CASCADE"))
+        await conn.execute(text("TRUNCATE TABLE papers CASCADE"))
 
     factory = async_sessionmaker(
         test_engine,
