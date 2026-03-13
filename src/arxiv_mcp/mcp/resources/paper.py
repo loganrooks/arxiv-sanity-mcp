@@ -54,6 +54,9 @@ async def paper_resource(arxiv_id: str, ctx: Context) -> dict:
     collections = await app.collections.get_paper_collections(arxiv_id)
     collections_data = [c.model_dump(mode="json") for c in collections]
 
+    # Get available content variants (type + converted_at, without full content)
+    content_variants = await app.content.list_variants(arxiv_id)
+
     return {
         "arxiv_id": paper.arxiv_id,
         "title": paper.title,
@@ -69,4 +72,5 @@ async def paper_resource(arxiv_id: str, ctx: Context) -> dict:
         "triage_state": triage_state,
         "enrichment": enrichment_data,
         "collections": collections_data,
+        "content_variants": content_variants,
     }

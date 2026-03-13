@@ -81,6 +81,13 @@ class TestPaperResource:
             ]
         )
 
+        # Mock content variants
+        mock_app_context.content.list_variants = AsyncMock(
+            return_value=[
+                {"variant_type": "html", "converted_at": "2026-01-01T00:00:00", "backend": "arxiv_html"}
+            ]
+        )
+
         result = await paper_resource(arxiv_id="2301.00001", ctx=mock_ctx)
 
         assert isinstance(result, dict)
@@ -91,6 +98,9 @@ class TestPaperResource:
         assert result["enrichment"]["cited_by_count"] == 42
         assert len(result["collections"]) == 1
         assert result["collections"][0]["slug"] == "ml-papers"
+        assert "content_variants" in result
+        assert len(result["content_variants"]) == 1
+        assert result["content_variants"][0]["variant_type"] == "html"
 
     async def test_paper_resource_not_found(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.resources.paper import paper_resource

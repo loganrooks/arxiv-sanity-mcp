@@ -64,6 +64,14 @@ try:
 except (ImportError, ModuleNotFoundError):
     pass
 
+# Content subgroup (Phase 6, Plan 03)
+try:
+    from arxiv_mcp.content.cli import content_group
+
+    cli.add_command(content_group)
+except (ImportError, ModuleNotFoundError):
+    pass
+
 # Import subgroup (Phase 5, Plan 01)
 try:
     from arxiv_mcp.scripts.import_arxiv_scan import import_scan_group
