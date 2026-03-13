@@ -15,11 +15,13 @@ from arxiv_mcp.content.models import (
     VariantType,
 )
 from arxiv_mcp.content.rights import RightsChecker
+from arxiv_mcp.content.service import ContentService
 
 __all__ = [
     "AccessDecision",
     "ContentAdapter",
     "ContentConversionResult",
+    "ContentService",
     "ContentStatus",
     "MarkerAdapter",
     "MockContentAdapter",
