@@ -175,7 +175,7 @@ Plans:
 
 Plans:
 - [ ] 08-01-PLAN.md -- Test fixture consolidation, create_watch docstring fix, content lazy import fix
-- [ ] 08-02-PLAN.md -- Live database migration alignment (alembic upgrade 004 -> 008)
+- [x] 08-02-PLAN.md -- Live database migration alignment (alembic upgrade 004 -> 008)
 
 ## Progress
 
@@ -192,4 +192,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8
 | 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
 | 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
 | 7. MCP Surface Parity | 2/2 | Complete   | 2026-03-13 |
-| 8. Infrastructure Fixes | 0/2 | Not started | - |
+| 8. Infrastructure Fixes | 1/2 | In Progress | - |
