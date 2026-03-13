@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 06-02-PLAN.md (content adapters + service). Plan 03 next.
-last_updated: "2026-03-13T00:30:08.970Z"
-last_activity: 2026-03-13 -- Content adapters + service: ContentAdapter protocol, HTML fetcher, ContentService priority chain, 465 tests
+stopped_at: Completed 06-03-PLAN.md (MCP tool + resource + CLI integration). Phase 06 complete.
+last_updated: "2026-03-13T00:50:31Z"
+last_activity: 2026-03-13 -- MCP tool + resource + CLI integration: get_content_variant tool, rights enforcement, content CLI, 471 tests
 progress:
   total_phases: 7
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 20
-  completed_plans: 19
-  percent: 95
+  completed_plans: 20
+  percent: 100
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 06: Content Normalization -- Plan 02 complete, Plan 03 next
+**Current focus:** All phases complete (20/20 plans). v1.0 milestone reached.
 
 ## Current Position
 
-Phase: 06 of 7 (Content Normalization)
-Plan: 2 of 3 in current phase
-Status: Plan 02 complete. ContentAdapter, HTML fetcher, ContentService with priority chain, 465 tests. Plan 03 next.
-Last activity: 2026-03-13 -- Content adapters + service: ContentAdapter protocol, HTML fetcher, ContentService priority chain, 465 tests
+Phase: 06 of 7 (Content Normalization) -- COMPLETE
+Plan: 3 of 3 in current phase -- COMPLETE
+Status: Phase 06 complete. get_content_variant MCP tool with rights enforcement, paper resource extension, content CLI. 471 tests, 11 tools.
+Last activity: 2026-03-13 -- MCP tool + resource + CLI integration: get_content_variant tool, rights enforcement, content CLI, 471 tests
 
-Progress: [██████████] 95% (19/20 plans)
+Progress: [██████████] 100% (20/20 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 19
-- Average duration: 10.3 min
-- Total execution time: 3.3 hours
+- Total plans completed: 20
+- Average duration: 10.7 min
+- Total execution time: 3.6 hours
 
 **By Phase:**
 
@@ -50,15 +50,16 @@ Progress: [██████████] 95% (19/20 plans)
 
 | 04.1-MCP v1 | 3/3 | 19 min | 6.3 min |
 | 05-MCP Validation | 3/3 | 39 min | 13.0 min |
-| 06-Content Normalization | 2/3 | 61 min | 30.5 min |
+| 06-Content Normalization | 3/3 | 79 min | 26.3 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (8 min), 05-02 (4 min), 05-03 (27 min), 06-01 (7 min), 06-02 (54 min)
-- Trend: 06-02 longer due to TDD cycles with full DB integration tests (~14 min per test run)
+- Last 5 plans: 05-02 (4 min), 05-03 (27 min), 06-01 (7 min), 06-02 (54 min), 06-03 (18 min)
+- Trend: Consistent execution. Phase 06 complete.
 
 *Updated after each plan completion*
 | Phase 06 P01 | 7 | 2 tasks | 10 files |
 | Phase 06 P02 | 54 | 2 tasks | 7 files |
+| Phase 06 P03 | 18 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -150,6 +151,11 @@ Recent decisions affecting current work:
 - [Phase 06]: 06-02: ContentService reuses enrichment RateLimiter for consistent arXiv rate limiting
 - [Phase 06]: 06-02: PDF temp file uses NamedTemporaryFile with delete=True for automatic cleanup
 - [Phase 06]: 06-02: Variant storage uses pg_insert ON CONFLICT upsert (same pattern as enrichment)
+- [Phase 06]: 06-03: get_content_variant validates variant before rights check (fail fast on invalid input)
+- [Phase 06]: 06-03: Abstract variant skips rights check (always available per arXiv terms)
+- [Phase 06]: 06-03: Rights enforcement at MCP tool layer via RightsChecker, not at service layer (ADR-0003)
+- [Phase 06]: 06-03: Paper resource returns content_variants as lightweight metadata list (no full content)
+- [Phase 06]: 06-03: Content CLI follows enrichment CLI pattern: _make_services helper, asyncio.run, Rich+JSON output
 
 ### Pending Todos
 
@@ -176,6 +182,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T00:29:00Z
-Stopped at: Completed 06-02-PLAN.md (content adapters + service). Plan 03 (MCP tool + resource integration) next.
+Last session: 2026-03-13T00:50:31Z
+Stopped at: Completed 06-03-PLAN.md (MCP tool + resource + CLI integration). Phase 06 complete. All 20 plans done.
 Resume file: None

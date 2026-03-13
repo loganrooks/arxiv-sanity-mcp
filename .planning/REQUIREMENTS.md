@@ -83,7 +83,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **MCP-01**: MCP server exposes discovery tools: search_papers, browse_recent, find_related_papers, get_paper
 - [x] **MCP-02**: MCP server exposes workflow/interest/enrichment tools: triage_paper, add_to_collection, create_watch, add_signal, enrich_paper
-- [ ] **MCP-03**: MCP server exposes content tools: get_content_variant
+- [x] **MCP-03**: MCP server exposes content tools: get_content_variant
 - [x] **MCP-04**: MCP server exposes canonical resources: paper://{arxiv_id}, collection://{slug}, profile://{slug}, watch://{slug}/deltas
 - [x] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
 - [x] **MCP-06**: Tool names describe user intent, not implementation (find_related_papers, not search_embeddings)
@@ -191,7 +191,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | CONT-04 | Phase 6 | Complete |
 | CONT-05 | Phase 6 | Complete |
 | CONT-06 | Phase 6 | Complete |
-| MCP-03 | Phase 6 | Pending |
+| MCP-03 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 53 total (47 original + 3 PREMCP + 3 MCPV)
