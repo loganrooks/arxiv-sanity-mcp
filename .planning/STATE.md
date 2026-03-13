@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 06-04-PLAN.md (gap closure -- beautifulsoup4 + test isolation). Phase 06 fully complete. All 21 plans done.
-last_updated: "2026-03-13T03:01:23.340Z"
-last_activity: "2026-03-13 -- Gap closure: beautifulsoup4 dependency declared, content test isolation fixed, 471 tests green"
+status: in-progress
+stopped_at: Completed 07-01-PLAN.md (AppContext expansion + interest tools)
+last_updated: "2026-03-13T04:22:41.888Z"
+last_activity: 2026-03-13 -- AppContext expanded with ProfileRankingService + SuggestionService, create_profile + suggest_signals MCP tools added, 480 tests
 progress:
-  total_phases: 7
+  total_phases: 9
   completed_phases: 7
-  total_plans: 21
-  completed_plans: 21
-  percent: 100
+  total_plans: 23
+  completed_plans: 22
+  percent: 96
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** All phases complete (21/21 plans). v1.0 milestone reached. Gap closure plan 06-04 fixed missing dependency.
+**Current focus:** Phase 07 (MCP Surface Parity) in progress. Plan 1 of 2 complete. AppContext expanded, 2 new interest tools added.
 
 ## Current Position
 
-Phase: 06 of 7 (Content Normalization) -- COMPLETE
-Plan: 4 of 4 in current phase -- COMPLETE
-Status: Phase 06 fully complete (incl. gap closure). beautifulsoup4 declared, test isolation fixed, 471 tests, 11 tools.
-Last activity: 2026-03-13 -- Gap closure: beautifulsoup4 dependency declared, content test isolation fixed, 471 tests green
+Phase: 07 of 9 (MCP Surface Parity)
+Plan: 1 of 2 in current phase -- COMPLETE
+Status: AppContext expanded with ProfileRankingService + SuggestionService. create_profile and suggest_signals tools added. 480 tests, 13 tools.
+Last activity: 2026-03-13 -- AppContext expanded with ProfileRankingService + SuggestionService, create_profile + suggest_signals MCP tools added, 480 tests
 
-Progress: [██████████] 100% (21/21 plans)
+Progress: [██████████] 96% (22/23 plans)
 
 ## Performance Metrics
 
@@ -61,6 +61,7 @@ Progress: [██████████] 100% (21/21 plans)
 | Phase 06 P02 | 54 | 2 tasks | 7 files |
 | Phase 06 P03 | 18 | 2 tasks | 9 files |
 | Phase 06 P04 | 51 | 1 task | 3 files |
+| Phase 07 P01 | 17 | 1 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -158,6 +159,8 @@ Recent decisions affecting current work:
 - [Phase 06]: 06-03: Paper resource returns content_variants as lightweight metadata list (no full content)
 - [Phase 06]: 06-03: Content CLI follows enrichment CLI pattern: _make_services helper, asyncio.run, Rich+JSON output
 - [Phase 06]: 06-04: TRUNCATE CASCADE instead of drop+create for content test fixture cleanup (preserves asyncpg prepared statement cache)
+- [Phase 07]: WorkflowSearchService as intermediate service (not on AppContext) -- only ProfileRankingService wraps it
+- [Phase 07]: SuggestionCandidate serialized via dataclasses.asdict (not model_dump) -- dataclass not Pydantic
 
 ### Pending Todos
 
@@ -184,6 +187,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T02:26:35Z
-Stopped at: Completed 06-04-PLAN.md (gap closure -- beautifulsoup4 + test isolation). Phase 06 fully complete. All 21 plans done.
+Last session: 2026-03-13T04:22:41.884Z
+Stopped at: Completed 07-01-PLAN.md (AppContext expansion + interest tools)
 Resume file: None
