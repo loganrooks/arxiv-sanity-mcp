@@ -155,7 +155,11 @@ Plans:
   3. An MCP client can create an interest profile via create_profile tool
   4. An MCP client can generate and review signal suggestions via suggest_signals tool
   5. AppContext includes ProfileRankingService (or equivalent) and all new tools are tested
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 07-01-PLAN.md -- AppContext expansion (ProfileRankingService + SuggestionService), create_profile and suggest_signals tools
+- [ ] 07-02-PLAN.md -- Discovery tool enhancement: reroute search_papers and browse_recent through ProfileRankingService with profile_slug parameter
 
 ### Phase 8: Infrastructure Fixes (GAP CLOSURE)
 
@@ -183,5 +187,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8
 | 04.1. MCP v1 | 3/3 | Complete | 2026-03-12 |
 | 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
 | 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
-| 7. MCP Surface Parity | 0/? | Not started | - |
+| 7. MCP Surface Parity | 0/2 | Not started | - |
 | 8. Infrastructure Fixes | 0/? | Not started | - |
