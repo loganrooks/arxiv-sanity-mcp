@@ -158,8 +158,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 07-01-PLAN.md -- AppContext expansion (ProfileRankingService + SuggestionService), create_profile and suggest_signals tools
-- [ ] 07-02-PLAN.md -- Discovery tool enhancement: reroute search_papers and browse_recent through ProfileRankingService with profile_slug parameter
+- [x] 07-01-PLAN.md -- AppContext expansion (ProfileRankingService + SuggestionService), create_profile and suggest_signals tools
+- [x] 07-02-PLAN.md -- Discovery tool enhancement: reroute search_papers and browse_recent through ProfileRankingService with profile_slug parameter
 
 ### Phase 8: Infrastructure Fixes (GAP CLOSURE)
 
@@ -171,7 +171,11 @@ Plans:
   2. Test fixtures use consistent scoping — no UniqueViolationError from concurrent table creation
   3. create_watch docstring references watch://{slug}/deltas resource (not non-existent get_delta tool)
   4. content/__init__.py uses lazy import for html_fetcher (no eager import propagation)
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 08-01-PLAN.md -- Test fixture consolidation, create_watch docstring fix, content lazy import fix
+- [ ] 08-02-PLAN.md -- Live database migration alignment (alembic upgrade 004 -> 008)
 
 ## Progress
 
@@ -188,4 +192,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8
 | 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
 | 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
 | 7. MCP Surface Parity | 2/2 | Complete   | 2026-03-13 |
-| 8. Infrastructure Fixes | 0/? | Not started | - |
+| 8. Infrastructure Fixes | 0/2 | Not started | - |
