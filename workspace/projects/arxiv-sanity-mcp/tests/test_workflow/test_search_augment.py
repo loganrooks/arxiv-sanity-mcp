@@ -21,7 +21,7 @@ from arxiv_mcp.db.models import (
 from arxiv_mcp.search.service import SearchService
 from arxiv_mcp.workflow.search_augment import WorkflowSearchService
 
-from .conftest import sample_paper_data
+from tests.conftest import sample_paper_data
 
 
 @pytest.fixture
@@ -31,7 +31,7 @@ async def session_factory(test_engine):
 
     from arxiv_mcp.db.models import Base
 
-    from .conftest import (
+    from tests.conftest import (
         TSVECTOR_CREATE_TRIGGER_SQL,
         TSVECTOR_DROP_TRIGGER_SQL,
         TSVECTOR_FUNCTION_SQL,

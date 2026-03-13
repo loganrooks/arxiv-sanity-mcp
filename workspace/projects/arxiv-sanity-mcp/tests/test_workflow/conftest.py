@@ -1,78 +1,24 @@
 """Shared test fixtures for workflow model tests.
 
-Provides async database engine, session with workflow tables,
-and sample data factories for collections, triage states, and saved queries.
+Provides workflow-specific sample data factories for collections,
+triage states, and saved queries. Shared fixtures (test_engine,
+test_session, sample_paper_data, TSVECTOR constants) are imported
+from the root conftest.
 """
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 
 import pytest
-from sqlalchemy import text
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from arxiv_mcp.config import get_settings
-from arxiv_mcp.db.models import Base, Paper
-
-# SQL statements for the tsvector trigger -- reused from Phase 1 conftest.
-TSVECTOR_FUNCTION_SQL = """
-CREATE OR REPLACE FUNCTION papers_search_vector_update() RETURNS trigger AS $$
-BEGIN
-  NEW.search_vector :=
-    setweight(to_tsvector('english', COALESCE(NEW.title, '')), 'A') ||
-    setweight(to_tsvector('simple', COALESCE(NEW.authors_text, '')), 'B') ||
-    setweight(to_tsvector('english', COALESCE(NEW.abstract, '')), 'C');
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql
-"""
-
-TSVECTOR_DROP_TRIGGER_SQL = (
-    "DROP TRIGGER IF EXISTS papers_search_vector_trigger ON papers"
+from arxiv_mcp.db.models import Paper
+from tests.conftest import (
+    TSVECTOR_CREATE_TRIGGER_SQL,
+    TSVECTOR_DROP_TRIGGER_SQL,
+    TSVECTOR_FUNCTION_SQL,
+    sample_paper_data,
 )
-
-TSVECTOR_CREATE_TRIGGER_SQL = """
-CREATE TRIGGER papers_search_vector_trigger
-  BEFORE INSERT OR UPDATE ON papers
-  FOR EACH ROW EXECUTE FUNCTION papers_search_vector_update()
-"""
-
-
-def sample_paper_data(**overrides) -> dict:
-    """Factory for paper data dicts. Pass overrides for specific fields."""
-    defaults = {
-        "arxiv_id": "2301.00001",
-        "title": "Attention Is All You Need",
-        "authors_text": "Ashish Vaswani, Noam Shazeer",
-        "abstract": "We propose a new simple network architecture, the Transformer.",
-        "submitter": "Ashish Vaswani",
-        "comments": "15 pages",
-        "journal_ref": None,
-        "report_no": None,
-        "categories": "cs.CL cs.AI",
-        "primary_category": "cs.CL",
-        "category_list": ["cs.CL", "cs.AI"],
-        "msc_class": None,
-        "acm_class": None,
-        "doi": None,
-        "openalex_id": None,
-        "semantic_scholar_id": None,
-        "submitted_date": datetime(2023, 1, 1, 12, 0, 0, tzinfo=timezone.utc),
-        "updated_date": datetime(2023, 6, 15, 8, 30, 0, tzinfo=timezone.utc),
-        "announced_date": date(2023, 1, 2),
-        "oai_datestamp": date(2023, 6, 15),
-        "license_uri": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
-        "latest_version": 2,
-        "version_history": None,
-        "processing_tier": 0,
-        "promotion_reason": None,
-        "source": "oai_pmh",
-        "fetched_at": datetime(2023, 7, 1, 0, 0, 0, tzinfo=timezone.utc),
-        "last_metadata_update": None,
-    }
-    defaults.update(overrides)
-    return defaults
 
 
 def sample_collection_data(**overrides) -> dict:
@@ -117,50 +63,6 @@ def sample_saved_query_data(**overrides) -> dict:
     }
     defaults.update(overrides)
     return defaults
-
-
-@pytest.fixture
-async def test_engine():
-    """Create async engine for the test database.
-
-    Function-scoped to avoid event loop issues with asyncpg.
-    """
-    settings = get_settings()
-    engine = create_async_engine(
-        settings.test_database_url,
-        echo=False,
-        pool_pre_ping=True,
-    )
-    yield engine
-    await engine.dispose()
-
-
-@pytest.fixture
-async def test_session(test_engine):
-    """Create all tables (including workflow), yield a session, then drop all.
-
-    Also creates the tsvector trigger function and trigger
-    since create_all does not run Alembic migrations.
-    """
-    async with test_engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-        await conn.execute(text(TSVECTOR_FUNCTION_SQL))
-        await conn.execute(text(TSVECTOR_DROP_TRIGGER_SQL))
-        await conn.execute(text(TSVECTOR_CREATE_TRIGGER_SQL))
-
-    async_session = async_sessionmaker(
-        test_engine,
-        class_=AsyncSession,
-        expire_on_commit=False,
-    )
-
-    async with async_session() as session:
-        yield session
-
-    async with test_engine.begin() as conn:
-        await conn.execute(text("DROP TRIGGER IF EXISTS papers_search_vector_trigger ON papers"))
-        await conn.execute(text("DROP FUNCTION IF EXISTS papers_search_vector_update()"))
-        await conn.run_sync(Base.metadata.drop_all)
 
 
 @pytest.fixture
