@@ -31,12 +31,24 @@ async def search_papers(
     time_basis: str = "announced",
     page_size: int = 20,
     cursor: str | None = None,
+    profile_slug: str | None = None,
     ctx: Context = None,
 ) -> dict:
     """Search for arXiv papers by text, title, author, or category.
 
     Returns paginated results with paper metadata and relevance scores.
     Use cursor from previous results to get the next page.
+
+    Optionally provide profile_slug to get profile-ranked results with
+    ranking explanations on each result.
+
+    Response shape: {"results": {"items": [...], "page_info": {...}}, "ranker_snapshot": ...}
+
+    Without profile_slug: items include triage_state and collection_slugs;
+    ranking_explanation is null; ranker_snapshot is null.
+
+    With profile_slug: items additionally include ranking_explanation
+    and the response includes a ranker_snapshot capturing ranker config.
     """
     app = _get_app(ctx)
 
@@ -44,7 +56,8 @@ async def search_papers(
     parsed_date_from = date.fromisoformat(date_from) if date_from else None
     parsed_date_to = date.fromisoformat(date_to) if date_to else None
 
-    result = await app.search.search_papers(
+    result = await app.profile_ranking.search_papers(
+        profile_slug=profile_slug,
         query_text=query,
         title=title,
         author=author,
@@ -66,15 +79,28 @@ async def browse_recent(
     days: int = 7,
     page_size: int = 20,
     cursor: str | None = None,
+    profile_slug: str | None = None,
     ctx: Context = None,
 ) -> dict:
     """Browse recently announced arXiv papers, optionally filtered by category.
 
     Use time_basis to select ordering: announced, submitted, or updated.
+
+    Optionally provide profile_slug to get profile-ranked results with
+    ranking explanations on each result.
+
+    Response shape: {"results": {"items": [...], "page_info": {...}}, "ranker_snapshot": ...}
+
+    Without profile_slug: items include triage_state and collection_slugs;
+    ranking_explanation is null; ranker_snapshot is null.
+
+    With profile_slug: items additionally include ranking_explanation
+    and the response includes a ranker_snapshot capturing ranker config.
     """
     app = _get_app(ctx)
 
-    result = await app.search.browse_recent(
+    result = await app.profile_ranking.browse_recent(
+        profile_slug=profile_slug,
         category=category,
         time_basis=time_basis,
         days=days,

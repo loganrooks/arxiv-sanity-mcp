@@ -114,23 +114,45 @@ class TestSearchPapersProfileRanked:
         """When profile_slug is provided, result items should include ranking_explanation."""
         from tests.test_mcp.conftest import _make_profile_search_response
         from arxiv_mcp.mcp.tools.discovery import search_papers
-        from arxiv_mcp.models.interest import RankingExplanation
+        from arxiv_mcp.models.interest import (
+            RankerSnapshot,
+            RankingExplanation,
+            SignalScore,
+            SignalType,
+        )
 
-        # Build a mock ranking explanation
+        # Build a mock ranking explanation with all required fields
         mock_explanation = RankingExplanation(
             composite_score=0.85,
-            query_relevance=0.7,
-            seed_relation=0.1,
-            author_affinity=0.05,
-            negative_demotion=0.0,
-            profile_match=0.0,
+            signal_breakdown=[
+                SignalScore(
+                    signal_type=SignalType.QUERY_MATCH,
+                    raw_score=0.7,
+                    normalized_score=0.7,
+                    weight=0.6,
+                    weighted_score=0.42,
+                    explanation="High relevance to query",
+                ),
+            ],
+            ranker_version="v1",
+        )
+        mock_snapshot = RankerSnapshot(
+            profile_slug="test-profile",
+            ranker_version="v1",
+            weights={"query_match": 0.6, "seed_relation": 0.2},
+            signal_types_applied=["query_match", "seed_relation"],
+            seed_paper_count=2,
+            followed_author_count=1,
+            negative_example_count=0,
+            saved_query_count=0,
+            negative_weight=0.3,
         )
         mock_app_context.profile_ranking.search_papers.return_value = (
             _make_profile_search_response(
                 arxiv_id="2301.00001",
                 score=0.85,
                 ranking_explanation=mock_explanation,
-                ranker_snapshot={"weights": {"query_relevance": 0.6}},
+                ranker_snapshot=mock_snapshot,
             )
         )
 
@@ -149,10 +171,22 @@ class TestSearchPapersProfileRanked:
     ):
         from tests.test_mcp.conftest import _make_profile_search_response
         from arxiv_mcp.mcp.tools.discovery import search_papers
+        from arxiv_mcp.models.interest import RankerSnapshot
 
+        mock_snapshot = RankerSnapshot(
+            profile_slug="my-profile",
+            ranker_version="v1",
+            weights={"query_match": 0.6},
+            signal_types_applied=["query_match"],
+            seed_paper_count=0,
+            followed_author_count=0,
+            negative_example_count=0,
+            saved_query_count=0,
+            negative_weight=0.3,
+        )
         mock_app_context.profile_ranking.search_papers.return_value = (
             _make_profile_search_response(
-                ranker_snapshot={"weights": {"query_relevance": 0.6}},
+                ranker_snapshot=mock_snapshot,
             )
         )
 
