@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 06-01-PLAN.md (content data foundation). Plan 02 next.
-last_updated: "2026-03-12T23:31:40Z"
-last_activity: 2026-03-12 -- Content data foundation: ORM model, Pydantic schemas, RightsChecker, migration 008, 438 tests
+stopped_at: Completed 06-02-PLAN.md (content adapters + service). Plan 03 next.
+last_updated: "2026-03-13T00:30:08.970Z"
+last_activity: 2026-03-13 -- Content adapters + service: ContentAdapter protocol, HTML fetcher, ContentService priority chain, 465 tests
 progress:
   total_phases: 7
   completed_phases: 6
   total_plans: 20
-  completed_plans: 18
-  percent: 90
+  completed_plans: 19
+  percent: 95
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 06: Content Normalization -- Plan 01 complete, Plan 02 next
+**Current focus:** Phase 06: Content Normalization -- Plan 02 complete, Plan 03 next
 
 ## Current Position
 
 Phase: 06 of 7 (Content Normalization)
-Plan: 1 of 3 in current phase
-Status: Plan 01 complete. ContentVariant ORM, Pydantic schemas, RightsChecker, migration 008, 438 tests. Plan 02 next.
-Last activity: 2026-03-12 -- Content data foundation: ORM model, Pydantic schemas, RightsChecker, migration 008, 438 tests
+Plan: 2 of 3 in current phase
+Status: Plan 02 complete. ContentAdapter, HTML fetcher, ContentService with priority chain, 465 tests. Plan 03 next.
+Last activity: 2026-03-13 -- Content adapters + service: ContentAdapter protocol, HTML fetcher, ContentService priority chain, 465 tests
 
-Progress: [█████████░] 90% (18/20 plans)
+Progress: [██████████] 95% (19/20 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
-- Average duration: 7.8 min
-- Total execution time: 2.4 hours
+- Total plans completed: 19
+- Average duration: 10.3 min
+- Total execution time: 3.3 hours
 
 **By Phase:**
 
@@ -50,14 +50,15 @@ Progress: [█████████░] 90% (18/20 plans)
 
 | 04.1-MCP v1 | 3/3 | 19 min | 6.3 min |
 | 05-MCP Validation | 3/3 | 39 min | 13.0 min |
-| 06-Content Normalization | 1/3 | 7 min | 7.0 min |
+| 06-Content Normalization | 2/3 | 61 min | 30.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 04.1-03 (7 min), 05-01 (8 min), 05-02 (4 min), 05-03 (27 min), 06-01 (7 min)
-- Trend: 06-01 back to normal pace (data models + tests, no external API calls)
+- Last 5 plans: 05-01 (8 min), 05-02 (4 min), 05-03 (27 min), 06-01 (7 min), 06-02 (54 min)
+- Trend: 06-02 longer due to TDD cycles with full DB integration tests (~14 min per test run)
 
 *Updated after each plan completion*
 | Phase 06 P01 | 7 | 2 tasks | 10 files |
+| Phase 06 P02 | 54 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -143,6 +144,12 @@ Recent decisions affecting current work:
 - [Phase 06]: 06-01: Local mode always allows access with warning; hosted mode blocks non-permissive licenses (ADR-0003)
 - [Phase 06]: 06-01: ContentVariant follows PaperEnrichment pattern: composite PK, FK to papers, CHECK constraint on variant_type
 - [Phase 06]: 06-01: quality_warnings as JSONB in ORM and list[str] in Pydantic (natural serialization boundary)
+- [Phase 06]: 06-02: ContentAdapter protocol mirrors EnrichmentAdapter: adapter_name property + async convert method
+- [Phase 06]: 06-02: MarkerAdapter initializes PdfConverter once in __init__ (not per-call) via asyncio.to_thread
+- [Phase 06]: 06-02: HTML fetcher uses HEAD-first check before GET to avoid bandwidth waste on 404 papers
+- [Phase 06]: 06-02: ContentService reuses enrichment RateLimiter for consistent arXiv rate limiting
+- [Phase 06]: 06-02: PDF temp file uses NamedTemporaryFile with delete=True for automatic cleanup
+- [Phase 06]: 06-02: Variant storage uses pg_insert ON CONFLICT upsert (same pattern as enrichment)
 
 ### Pending Todos
 
@@ -169,6 +176,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T23:31:40Z
-Stopped at: Completed 06-01-PLAN.md (content data foundation). Plan 02 (abstract adapter + HTML fetcher) next.
+Last session: 2026-03-13T00:29:00Z
+Stopped at: Completed 06-02-PLAN.md (content adapters + service). Plan 03 (MCP tool + resource integration) next.
 Resume file: None
