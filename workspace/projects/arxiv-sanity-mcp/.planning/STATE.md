@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Discovery tools rerouted through ProfileRankingService. search_papers and browse_recent accept profile_slug for profile-ranked results. 490 tests, 13 tools.
-stopped_at: Phase 8 context gathered
-last_updated: "2026-03-13T19:31:44.117Z"
-last_activity: 2026-03-13 -- Discovery tools rerouted through ProfileRankingService with profile_slug parameter, 490 tests
+status: Live database migrated to 008 (head). Composite PK on paper_enrichments, content_variants table created, seen triage state active.
+stopped_at: Completed 08-02-PLAN.md
+last_updated: "2026-03-13T20:40:53.497Z"
+last_activity: 2026-03-13 -- Applied Alembic migrations 005-008 on live database
 progress:
   total_phases: 9
   completed_phases: 8
   total_plans: 25
-  completed_plans: 23
-  percent: 100
+  completed_plans: 24
+  percent: 96
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 07 (MCP Surface Parity) complete. All 23 plans across 9 phases done. Discovery tools enriched with workflow context and profile ranking.
+**Current focus:** Phase 08 (Infrastructure Fixes) in progress. Plan 02 complete (live DB migration). Plan 01 pending (test fixture consolidation, code fixes).
 
 ## Current Position
 
-Phase: 07 of 9 (MCP Surface Parity) -- COMPLETE
-Plan: 2 of 2 in current phase -- COMPLETE
-Status: Discovery tools rerouted through ProfileRankingService. search_papers and browse_recent accept profile_slug for profile-ranked results. 490 tests, 13 tools.
-Last activity: 2026-03-13 -- Discovery tools rerouted through ProfileRankingService with profile_slug parameter, 490 tests
+Phase: 08 of 9 (Infrastructure Fixes) -- IN PROGRESS
+Plan: 2 of 2 in current phase -- COMPLETE (plan 01 pending)
+Status: Live database migrated to 008 (head). Composite PK on paper_enrichments, content_variants table created, seen triage state active.
+Last activity: 2026-03-13 -- Applied Alembic migrations 005-008 on live database
 
-Progress: [██████████] 100% (23/23 plans)
+Progress: [██████████] 96% (24/25 plans)
 
 ## Performance Metrics
 
@@ -63,6 +63,7 @@ Progress: [██████████] 100% (23/23 plans)
 | Phase 06 P04 | 51 | 1 task | 3 files |
 | Phase 07 P01 | 17 | 1 tasks | 5 files |
 | Phase 07 P02 | 18 | 1 tasks | 3 files |
+| Phase 08 P02 | 2 | 1 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -165,6 +166,7 @@ Recent decisions affecting current work:
 - [Phase 07]: ProfileRankingService as universal delegation target for discovery tools (handles both ranked and unranked paths internally)
 - [Phase 07]: Always include ranking_explanation when profile_slug provided (no explain toggle) -- MCP returns structured data for agents
 - [Phase 07]: find_related_papers not routed through ProfileRankingService -- flat list incompatible with ProfileSearchResponse
+- [Phase 08]: 08-02: Database-only migration plan -- no source files modified, live DB migrated 004->008 via alembic upgrade head
 
 ### Pending Todos
 
@@ -180,7 +182,7 @@ None yet.
 
 - Phase 6: Docling vs Marker quality comparison for scholarly PDFs (math, citations, tables) needs Phase 6 experimentation.
 - OpenAlex credit-based pricing tiers need research before committing to enrichment scheduling strategy.
-- Enrichment schema mismatch: DB has single PK (arxiv_id) but code expects composite PK (arxiv_id, source_api). Migration needed before enrichment works against live DB.
+- ~~Enrichment schema mismatch~~ RESOLVED (08-02): Live DB migrated to composite PK (arxiv_id, source_api) via alembic upgrade head.
 - arXiv API URL must be HTTPS (fixed in 05-03); follow_redirects enabled as safety measure.
 
 ### Quick Tasks Completed
@@ -191,6 +193,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T19:31:44.112Z
-Stopped at: Phase 8 context gathered
-Resume file: .planning/phases/08-infrastructure-fixes/08-CONTEXT.md
+Last session: 2026-03-13T20:40:53.492Z
+Stopped at: Completed 08-02-PLAN.md
+Resume file: None
