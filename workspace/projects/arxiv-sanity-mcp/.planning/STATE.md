@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Live database migrated to 008 (head). Composite PK on paper_enrichments, content_variants table created, seen triage state active.
-stopped_at: Completed 08-02-PLAN.md
-last_updated: "2026-03-13T20:40:53.497Z"
-last_activity: 2026-03-13 -- Applied Alembic migrations 005-008 on live database
+status: Phase 08 complete. Test fixtures deduplicated, docstring fixed, content re-exports removed, live DB migrated. 493 tests passing.
+stopped_at: Completed 08-01-PLAN.md
+last_updated: "2026-03-13T21:29:21Z"
+last_activity: 2026-03-13 -- Test fixture consolidation, docstring fix, content re-exports removed, 3 regression tests added. 493 tests passing.
 progress:
   total_phases: 9
-  completed_phases: 8
+  completed_phases: 9
   total_plans: 25
-  completed_plans: 24
-  percent: 96
+  completed_plans: 25
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 08 (Infrastructure Fixes) in progress. Plan 02 complete (live DB migration). Plan 01 pending (test fixture consolidation, code fixes).
+**Current focus:** Phase 08 (Infrastructure Fixes) complete. All 25 plans across 9 phases done. 493 tests passing.
 
 ## Current Position
 
-Phase: 08 of 9 (Infrastructure Fixes) -- IN PROGRESS
-Plan: 2 of 2 in current phase -- COMPLETE (plan 01 pending)
-Status: Live database migrated to 008 (head). Composite PK on paper_enrichments, content_variants table created, seen triage state active.
-Last activity: 2026-03-13 -- Applied Alembic migrations 005-008 on live database
+Phase: 08 of 9 (Infrastructure Fixes) -- COMPLETE
+Plan: 2 of 2 in current phase -- COMPLETE
+Status: Phase 08 complete. Test fixtures deduplicated, docstring fixed, content re-exports removed, live DB migrated. 493 tests passing.
+Last activity: 2026-03-13 -- Test fixture consolidation, docstring fix, content re-exports removed, 3 regression tests added. 493 tests passing.
 
-Progress: [██████████] 96% (24/25 plans)
+Progress: [██████████] 100% (25/25 plans)
 
 ## Performance Metrics
 
@@ -63,6 +63,7 @@ Progress: [██████████] 96% (24/25 plans)
 | Phase 06 P04 | 51 | 1 task | 3 files |
 | Phase 07 P01 | 17 | 1 tasks | 5 files |
 | Phase 07 P02 | 18 | 1 tasks | 3 files |
+| Phase 08 P01 | 51 | 2 tasks | 11 files |
 | Phase 08 P02 | 2 | 1 tasks | 0 files |
 
 ## Accumulated Context
@@ -166,6 +167,9 @@ Recent decisions affecting current work:
 - [Phase 07]: ProfileRankingService as universal delegation target for discovery tools (handles both ranked and unranked paths internally)
 - [Phase 07]: Always include ranking_explanation when profile_slug provided (no explain toggle) -- MCP returns structured data for agents
 - [Phase 07]: find_related_papers not routed through ProfileRankingService -- flat list incompatible with ProfileSearchResponse
+- [Phase 08]: 08-01: Shared fixtures (test_engine, test_session, TSVECTOR SQL, sample_paper_data) centralized in root conftest only; module conftest imports them
+- [Phase 08]: 08-01: content/__init__.py stripped to docstring only (zero re-exports) per locked SC-4 decision
+- [Phase 08]: 08-01: Subprocess-based import isolation testing for verifying lazy loading (avoids false passes from pre-loaded modules)
 - [Phase 08]: 08-02: Database-only migration plan -- no source files modified, live DB migrated 004->008 via alembic upgrade head
 
 ### Pending Todos
@@ -193,6 +197,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T20:40:53.492Z
-Stopped at: Completed 08-02-PLAN.md
+Last session: 2026-03-13T21:29:21Z
+Stopped at: Completed 08-01-PLAN.md (Phase 08 fully done)
 Resume file: None
