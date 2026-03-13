@@ -70,7 +70,7 @@ async def create_watch(
 ) -> dict:
     """Create a monitored search that tracks new papers matching your query.
 
-    Run get_delta to see papers added since your last check.
+    Read the watch://{slug}/deltas resource to see papers added since your last check.
     """
     app = _get_app(ctx)
 
