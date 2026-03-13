@@ -134,12 +134,13 @@ Plans:
   3. Multiple parsing backends (Docling, Marker, GROBID) work behind a common interface and can be swapped without changing the content API
   4. Content serving refuses to return full-text for papers whose license does not permit it, with a clear explanation of why
   5. An MCP client can access paper content variants via get_content_variant tool
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
-- [ ] 06-01-PLAN.md -- Data foundation: ContentVariant ORM, Pydantic models, RightsChecker, migration 008, Settings extension
-- [ ] 06-02-PLAN.md -- Content adapters and service: ContentAdapter protocol, MarkerAdapter, HTML fetcher, ContentService orchestration
-- [ ] 06-03-PLAN.md -- MCP integration: get_content_variant tool, paper resource extension, content CLI, tool count update
+- [x] 06-01-PLAN.md -- Data foundation: ContentVariant ORM, Pydantic models, RightsChecker, migration 008, Settings extension
+- [x] 06-02-PLAN.md -- Content adapters and service: ContentAdapter protocol, MarkerAdapter, HTML fetcher, ContentService orchestration
+- [x] 06-03-PLAN.md -- MCP integration: get_content_variant tool, paper resource extension, content CLI, tool count update
+- [ ] 06-04-PLAN.md -- Gap closure: add missing beautifulsoup4 dependency, verify full test suite
 
 ## Progress
 
@@ -154,4 +155,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6
 | 4. Enrichment Adapters | 2/2 | Complete | 2026-03-10 |
 | 04.1. MCP v1 | 3/3 | Complete    | 2026-03-12 |
 | 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
-| 6. Content Normalization | 0/3 | Not started | - |
+| 6. Content Normalization | 3/4 | Gap closure | - |
