@@ -15,6 +15,7 @@ from mcp.server.fastmcp import FastMCP
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, AsyncSession
 
 from arxiv_mcp.config import Settings, get_settings
+from arxiv_mcp.content.service import ContentService
 from arxiv_mcp.db.engine import create_engine, session_factory
 from arxiv_mcp.enrichment.service import EnrichmentService
 from arxiv_mcp.interest.profiles import ProfileService
@@ -39,6 +40,7 @@ class AppContext:
     watches: WatchService
     profiles: ProfileService
     enrichment: EnrichmentService
+    content: ContentService
 
 
 @asynccontextmanager
@@ -56,6 +58,7 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
     watches = WatchService(sf, settings, search)
     profiles = ProfileService(sf, settings)
     enrichment = EnrichmentService(sf, settings)
+    content = ContentService(sf, settings)
 
     try:
         yield AppContext(
@@ -69,6 +72,7 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
             watches=watches,
             profiles=profiles,
             enrichment=enrichment,
+            content=content,
         )
     finally:
         await engine.dispose()
@@ -77,7 +81,7 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
 mcp = FastMCP("arxiv-mcp", lifespan=app_lifespan)
 
 # Register tool modules (side-effect imports)
-from arxiv_mcp.mcp.tools import discovery, workflow, interest, enrichment  # noqa: F401, E402
+from arxiv_mcp.mcp.tools import discovery, workflow, interest, enrichment, content  # noqa: F401, E402
 
 # Register resource modules (side-effect imports)
 from arxiv_mcp.mcp.resources import paper, collection, profile, watch  # noqa: F401, E402
