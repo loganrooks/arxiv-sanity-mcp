@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 07-01-PLAN.md (AppContext expansion + interest tools)
-last_updated: "2026-03-13T04:22:41.888Z"
-last_activity: 2026-03-13 -- AppContext expanded with ProfileRankingService + SuggestionService, create_profile + suggest_signals MCP tools added, 480 tests
+stopped_at: Completed 07-02-PLAN.md (Discovery tool rerouting through ProfileRankingService)
+last_updated: "2026-03-13T04:43:02.000Z"
+last_activity: 2026-03-13 -- Discovery tools rerouted through ProfileRankingService with profile_slug parameter, 490 tests
 progress:
   total_phases: 9
-  completed_phases: 7
+  completed_phases: 8
   total_plans: 23
-  completed_plans: 22
-  percent: 96
+  completed_plans: 23
+  percent: 100
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 07 (MCP Surface Parity) in progress. Plan 1 of 2 complete. AppContext expanded, 2 new interest tools added.
+**Current focus:** Phase 07 (MCP Surface Parity) complete. All 23 plans across 9 phases done. Discovery tools enriched with workflow context and profile ranking.
 
 ## Current Position
 
-Phase: 07 of 9 (MCP Surface Parity)
-Plan: 1 of 2 in current phase -- COMPLETE
-Status: AppContext expanded with ProfileRankingService + SuggestionService. create_profile and suggest_signals tools added. 480 tests, 13 tools.
-Last activity: 2026-03-13 -- AppContext expanded with ProfileRankingService + SuggestionService, create_profile + suggest_signals MCP tools added, 480 tests
+Phase: 07 of 9 (MCP Surface Parity) -- COMPLETE
+Plan: 2 of 2 in current phase -- COMPLETE
+Status: Discovery tools rerouted through ProfileRankingService. search_papers and browse_recent accept profile_slug for profile-ranked results. 490 tests, 13 tools.
+Last activity: 2026-03-13 -- Discovery tools rerouted through ProfileRankingService with profile_slug parameter, 490 tests
 
-Progress: [██████████] 96% (22/23 plans)
+Progress: [██████████] 100% (23/23 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21
+- Total plans completed: 23
 - Average duration: 12.6 min
-- Total execution time: 4.4 hours
+- Total execution time: 5.0 hours
 
 **By Phase:**
 
@@ -53,8 +53,8 @@ Progress: [██████████] 96% (22/23 plans)
 | 06-Content Normalization | 4/4 | 130 min | 32.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-03 (27 min), 06-01 (7 min), 06-02 (54 min), 06-03 (18 min), 06-04 (51 min)
-- Trend: Consistent execution. Phase 06 fully complete (incl. gap closure).
+- Last 5 plans: 06-02 (54 min), 06-03 (18 min), 06-04 (51 min), 07-01 (17 min), 07-02 (18 min)
+- Trend: Consistent execution. All phases complete.
 
 *Updated after each plan completion*
 | Phase 06 P01 | 7 | 2 tasks | 10 files |
@@ -62,6 +62,7 @@ Progress: [██████████] 96% (22/23 plans)
 | Phase 06 P03 | 18 | 2 tasks | 9 files |
 | Phase 06 P04 | 51 | 1 task | 3 files |
 | Phase 07 P01 | 17 | 1 tasks | 5 files |
+| Phase 07 P02 | 18 | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -161,6 +162,9 @@ Recent decisions affecting current work:
 - [Phase 06]: 06-04: TRUNCATE CASCADE instead of drop+create for content test fixture cleanup (preserves asyncpg prepared statement cache)
 - [Phase 07]: WorkflowSearchService as intermediate service (not on AppContext) -- only ProfileRankingService wraps it
 - [Phase 07]: SuggestionCandidate serialized via dataclasses.asdict (not model_dump) -- dataclass not Pydantic
+- [Phase 07]: ProfileRankingService as universal delegation target for discovery tools (handles both ranked and unranked paths internally)
+- [Phase 07]: Always include ranking_explanation when profile_slug provided (no explain toggle) -- MCP returns structured data for agents
+- [Phase 07]: find_related_papers not routed through ProfileRankingService -- flat list incompatible with ProfileSearchResponse
 
 ### Pending Todos
 
@@ -187,6 +191,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T04:22:41.884Z
-Stopped at: Completed 07-01-PLAN.md (AppContext expansion + interest tools)
+Last session: 2026-03-13T04:43:02Z
+Stopped at: Completed 07-02-PLAN.md (Discovery tool rerouting through ProfileRankingService)
 Resume file: None

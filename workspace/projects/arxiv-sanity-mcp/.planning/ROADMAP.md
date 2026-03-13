@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Enrichment Adapters** - OpenAlex integration, external ID resolution, and lazy enrichment with provenance
 - [x] **Phase 5: MCP Validation & Iteration** - Real workflow validation, doc 06 resolution, prompt design, tool iteration
 - [x] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
-- [ ] **Phase 7: MCP Surface Parity** - Wire profile-ranked search, workflow-enriched results, create_profile, and suggest_signals into MCP (GAP CLOSURE)
+- [x] **Phase 7: MCP Surface Parity** - Wire profile-ranked search, workflow-enriched results, create_profile, and suggest_signals into MCP (GAP CLOSURE) (completed 2026-03-13)
 - [ ] **Phase 8: Infrastructure Fixes** - Enrichment schema alignment, test fixture scoping, docstring and import fixes (GAP CLOSURE)
 
 ## Phase Details
@@ -187,5 +187,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8
 | 04.1. MCP v1 | 3/3 | Complete | 2026-03-12 |
 | 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
 | 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
-| 7. MCP Surface Parity | 0/2 | Not started | - |
+| 7. MCP Surface Parity | 2/2 | Complete   | 2026-03-13 |
 | 8. Infrastructure Fixes | 0/? | Not started | - |
