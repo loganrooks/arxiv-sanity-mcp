@@ -2,7 +2,7 @@
 
 ## Overview
 
-This roadmap delivers an MCP-native research discovery substrate in six phases. Phases 1-4 built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, and enrichment adapters. Phase 04.1 exposed all services as an MCP server (9 tools, 4 resources). Phase 5 validates the MCP surface with real literature review workflows and iterates based on evidence. Phase 6 adds content normalization. Semantic search is deferred to v2.
+This roadmap delivers an MCP-native research discovery substrate. Phases 1-6 built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, enrichment adapters, MCP server (11 tools, 4 resources, 3 prompts), validation with real workflows, and content normalization. Phases 7-8 close gaps identified by the v1 milestone audit: MCP surface parity with CLI capabilities (Phase 7) and infrastructure fixes (Phase 8). Semantic search is deferred to v2.
 
 ## Phases
 
@@ -17,7 +17,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Interest Modeling & Ranking** - Interest profiles with multiple signal types and structured ranking explanations
 - [x] **Phase 4: Enrichment Adapters** - OpenAlex integration, external ID resolution, and lazy enrichment with provenance
 - [x] **Phase 5: MCP Validation & Iteration** - Real workflow validation, doc 06 resolution, prompt design, tool iteration
-- [ ] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
+- [x] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
+- [ ] **Phase 7: MCP Surface Parity** - Wire profile-ranked search, workflow-enriched results, create_profile, and suggest_signals into MCP (GAP CLOSURE)
+- [ ] **Phase 8: Infrastructure Fixes** - Enrichment schema alignment, test fixture scoping, docstring and import fixes (GAP CLOSURE)
 
 ## Phase Details
 
@@ -140,12 +142,37 @@ Plans:
 - [x] 06-01-PLAN.md -- Data foundation: ContentVariant ORM, Pydantic models, RightsChecker, migration 008, Settings extension
 - [x] 06-02-PLAN.md -- Content adapters and service: ContentAdapter protocol, MarkerAdapter, HTML fetcher, ContentService orchestration
 - [x] 06-03-PLAN.md -- MCP integration: get_content_variant tool, paper resource extension, content CLI, tool count update
-- [ ] 06-04-PLAN.md -- Gap closure: add missing beautifulsoup4 dependency, verify full test suite
+- [x] 06-04-PLAN.md -- Gap closure: add missing beautifulsoup4 dependency, verify full test suite
+
+### Phase 7: MCP Surface Parity (GAP CLOSURE)
+
+**Goal:** MCP tools expose the same capabilities available in the CLI — profile-ranked search, workflow-enriched search results, profile creation, and signal suggestions — so agents using MCP have full parity with CLI users.
+**Depends on:** Phase 6
+**Gap Closure:** Closes integration gaps and degraded Interest-Driven Discovery flow from v1 audit
+**Success Criteria** (what must be TRUE):
+  1. An MCP client can search papers with a profile_slug parameter and receive profile-ranked results with RankingExplanation on each result
+  2. MCP search_papers and browse_recent return WorkflowSearchResult-enriched results (triage_state, collection_slugs) not bare SearchResult
+  3. An MCP client can create an interest profile via create_profile tool
+  4. An MCP client can generate and review signal suggestions via suggest_signals tool
+  5. AppContext includes ProfileRankingService (or equivalent) and all new tools are tested
+**Plans**: TBD
+
+### Phase 8: Infrastructure Fixes (GAP CLOSURE)
+
+**Goal:** Fix pre-existing infrastructure issues: enrichment schema mismatch blocking live enrichment, test fixture conflicts, and minor documentation/import issues.
+**Depends on:** Phase 6
+**Gap Closure:** Closes tech debt items from v1 audit
+**Success Criteria** (what must be TRUE):
+  1. Enrichment schema (migration) aligns with code expectations — enrich_paper works against real database
+  2. Test fixtures use consistent scoping — no UniqueViolationError from concurrent table creation
+  3. create_watch docstring references watch://{slug}/deltas resource (not non-existent get_delta tool)
+  4. content/__init__.py uses lazy import for html_fetcher (no eager import propagation)
+**Plans**: TBD
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -153,6 +180,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6
 | 2. Workflow State | 3/3 | Complete | 2026-03-09 |
 | 3. Interest Modeling & Ranking | 3/3 | Complete | 2026-03-10 |
 | 4. Enrichment Adapters | 2/2 | Complete | 2026-03-10 |
-| 04.1. MCP v1 | 3/3 | Complete    | 2026-03-12 |
+| 04.1. MCP v1 | 3/3 | Complete | 2026-03-12 |
 | 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
-| 6. Content Normalization | 3/4 | Gap closure | - |
+| 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
+| 7. MCP Surface Parity | 0/? | Not started | - |
+| 8. Infrastructure Fixes | 0/? | Not started | - |
