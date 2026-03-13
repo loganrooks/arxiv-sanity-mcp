@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 06-03-PLAN.md (MCP tool + resource + CLI integration). Phase 06 complete.
-last_updated: "2026-03-13T00:50:31Z"
-last_activity: 2026-03-13 -- MCP tool + resource + CLI integration: get_content_variant tool, rights enforcement, content CLI, 471 tests
+stopped_at: Completed 06-04-PLAN.md (gap closure -- beautifulsoup4 dependency + test isolation fix). Phase 06 fully complete.
+last_updated: "2026-03-13T02:26:35Z"
+last_activity: 2026-03-13 -- Gap closure: beautifulsoup4 dependency declared, content test isolation fixed, 471 tests green
 progress:
   total_phases: 7
   completed_phases: 7
-  total_plans: 20
-  completed_plans: 20
+  total_plans: 21
+  completed_plans: 21
   percent: 100
 ---
 
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** All phases complete (20/20 plans). v1.0 milestone reached.
+**Current focus:** All phases complete (21/21 plans). v1.0 milestone reached. Gap closure plan 06-04 fixed missing dependency.
 
 ## Current Position
 
 Phase: 06 of 7 (Content Normalization) -- COMPLETE
-Plan: 3 of 3 in current phase -- COMPLETE
-Status: Phase 06 complete. get_content_variant MCP tool with rights enforcement, paper resource extension, content CLI. 471 tests, 11 tools.
-Last activity: 2026-03-13 -- MCP tool + resource + CLI integration: get_content_variant tool, rights enforcement, content CLI, 471 tests
+Plan: 4 of 4 in current phase -- COMPLETE
+Status: Phase 06 fully complete (incl. gap closure). beautifulsoup4 declared, test isolation fixed, 471 tests, 11 tools.
+Last activity: 2026-03-13 -- Gap closure: beautifulsoup4 dependency declared, content test isolation fixed, 471 tests green
 
-Progress: [██████████] 100% (20/20 plans)
+Progress: [██████████] 100% (21/21 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
-- Average duration: 10.7 min
-- Total execution time: 3.6 hours
+- Total plans completed: 21
+- Average duration: 12.6 min
+- Total execution time: 4.4 hours
 
 **By Phase:**
 
@@ -50,16 +50,17 @@ Progress: [██████████] 100% (20/20 plans)
 
 | 04.1-MCP v1 | 3/3 | 19 min | 6.3 min |
 | 05-MCP Validation | 3/3 | 39 min | 13.0 min |
-| 06-Content Normalization | 3/3 | 79 min | 26.3 min |
+| 06-Content Normalization | 4/4 | 130 min | 32.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-02 (4 min), 05-03 (27 min), 06-01 (7 min), 06-02 (54 min), 06-03 (18 min)
-- Trend: Consistent execution. Phase 06 complete.
+- Last 5 plans: 05-03 (27 min), 06-01 (7 min), 06-02 (54 min), 06-03 (18 min), 06-04 (51 min)
+- Trend: Consistent execution. Phase 06 fully complete (incl. gap closure).
 
 *Updated after each plan completion*
 | Phase 06 P01 | 7 | 2 tasks | 10 files |
 | Phase 06 P02 | 54 | 2 tasks | 7 files |
 | Phase 06 P03 | 18 | 2 tasks | 9 files |
+| Phase 06 P04 | 51 | 1 task | 3 files |
 
 ## Accumulated Context
 
@@ -156,6 +157,7 @@ Recent decisions affecting current work:
 - [Phase 06]: 06-03: Rights enforcement at MCP tool layer via RightsChecker, not at service layer (ADR-0003)
 - [Phase 06]: 06-03: Paper resource returns content_variants as lightweight metadata list (no full content)
 - [Phase 06]: 06-03: Content CLI follows enrichment CLI pattern: _make_services helper, asyncio.run, Rich+JSON output
+- [Phase 06]: 06-04: TRUNCATE CASCADE instead of drop+create for content test fixture cleanup (preserves asyncpg prepared statement cache)
 
 ### Pending Todos
 
@@ -182,6 +184,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T00:50:31Z
-Stopped at: Completed 06-03-PLAN.md (MCP tool + resource + CLI integration). Phase 06 complete. All 20 plans done.
+Last session: 2026-03-13T02:26:35Z
+Stopped at: Completed 06-04-PLAN.md (gap closure -- beautifulsoup4 + test isolation). Phase 06 fully complete. All 21 plans done.
 Resume file: None
