@@ -69,6 +69,9 @@ def mock_app_context():
     ctx.watches = AsyncMock()
     ctx.profiles = AsyncMock()
     ctx.enrichment = AsyncMock()
+    ctx.content = AsyncMock()
+    ctx.content.get_or_create_variant = AsyncMock(return_value={})
+    ctx.content.list_variants = AsyncMock(return_value=[])
     ctx.settings = MagicMock()
     ctx.engine = MagicMock()
 
