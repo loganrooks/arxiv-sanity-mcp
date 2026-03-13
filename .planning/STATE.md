@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in-progress
+status: Discovery tools rerouted through ProfileRankingService. search_papers and browse_recent accept profile_slug for profile-ranked results. 490 tests, 13 tools.
 stopped_at: Completed 07-02-PLAN.md (Discovery tool rerouting through ProfileRankingService)
-last_updated: "2026-03-13T04:43:02.000Z"
+last_updated: "2026-03-13T05:03:24.844Z"
 last_activity: 2026-03-13 -- Discovery tools rerouted through ProfileRankingService with profile_slug parameter, 490 tests
 progress:
   total_phases: 9
