@@ -19,9 +19,12 @@ from arxiv_mcp.content.service import ContentService
 from arxiv_mcp.db.engine import create_engine, session_factory
 from arxiv_mcp.enrichment.service import EnrichmentService
 from arxiv_mcp.interest.profiles import ProfileService
+from arxiv_mcp.interest.search_augment import ProfileRankingService
+from arxiv_mcp.interest.suggestions import SuggestionService
 from arxiv_mcp.search.service import SearchService
 from arxiv_mcp.workflow.collections import CollectionService
 from arxiv_mcp.workflow.queries import SavedQueryService
+from arxiv_mcp.workflow.search_augment import WorkflowSearchService
 from arxiv_mcp.workflow.triage import TriageService
 from arxiv_mcp.workflow.watches import WatchService
 
@@ -41,6 +44,8 @@ class AppContext:
     profiles: ProfileService
     enrichment: EnrichmentService
     content: ContentService
+    profile_ranking: ProfileRankingService
+    suggestions: SuggestionService
 
 
 @asynccontextmanager
@@ -60,6 +65,11 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
     enrichment = EnrichmentService(sf, settings)
     content = ContentService(sf, settings)
 
+    # Interest services -- depend on search and profiles
+    workflow_search = WorkflowSearchService(sf, settings, search)
+    profile_ranking = ProfileRankingService(sf, settings, workflow_search)
+    suggestions = SuggestionService(sf, settings, profiles)
+
     try:
         yield AppContext(
             engine=engine,
@@ -73,6 +83,8 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
             profiles=profiles,
             enrichment=enrichment,
             content=content,
+            profile_ranking=profile_ranking,
+            suggestions=suggestions,
         )
     finally:
         await engine.dispose()

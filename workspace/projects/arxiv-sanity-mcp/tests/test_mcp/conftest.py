@@ -72,6 +72,12 @@ def mock_app_context():
     ctx.content = AsyncMock()
     ctx.content.get_or_create_variant = AsyncMock(return_value={})
     ctx.content.list_variants = AsyncMock(return_value=[])
+    ctx.profile_ranking = AsyncMock()
+    ctx.profile_ranking.search_papers = AsyncMock(return_value=MagicMock())
+    ctx.profile_ranking.browse_recent = AsyncMock(return_value=MagicMock())
+    ctx.suggestions = AsyncMock()
+    ctx.suggestions.generate_suggestions = AsyncMock(return_value=[])
+    ctx.suggestions.add_suggestions_to_profile = AsyncMock(return_value=[])
     ctx.settings = MagicMock()
     ctx.engine = MagicMock()
 
