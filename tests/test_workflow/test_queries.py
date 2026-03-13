@@ -16,7 +16,8 @@ from arxiv_mcp.db.models import Paper, SavedQuery
 from arxiv_mcp.search.service import SearchService
 from arxiv_mcp.workflow.queries import SavedQueryService
 
-from .conftest import sample_paper_data, sample_saved_query_data
+from tests.conftest import sample_paper_data
+from .conftest import sample_saved_query_data
 
 
 @pytest.fixture
@@ -25,7 +26,7 @@ async def session_factory(test_engine):
     from arxiv_mcp.db.models import Base
     from sqlalchemy import text
 
-    from .conftest import (
+    from tests.conftest import (
         TSVECTOR_CREATE_TRIGGER_SQL,
         TSVECTOR_DROP_TRIGGER_SQL,
         TSVECTOR_FUNCTION_SQL,

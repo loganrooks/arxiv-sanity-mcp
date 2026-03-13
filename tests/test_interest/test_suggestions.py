@@ -22,8 +22,8 @@ from arxiv_mcp.db.models import (
 from arxiv_mcp.interest.profiles import ProfileService
 from arxiv_mcp.interest.suggestions import SuggestionCandidate, SuggestionService
 
+from tests.conftest import sample_paper_data
 from .conftest import (
-    sample_paper_data,
     sample_profile_data,
     sample_saved_query_data,
     sample_signal_data,
