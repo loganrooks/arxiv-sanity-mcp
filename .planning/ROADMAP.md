@@ -196,7 +196,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 | 7. MCP Surface Parity | 2/2 | Complete | 2026-03-13 |
 | 8. Infrastructure Fixes | 2/2 | Complete | 2026-03-13 |
 | 9. Release Packaging | 2/3 | In Progress | - |
-| 10. Agent Integration Test | 0/3 | Not Started | - |
+| 10. Agent Integration Test | 1/3 | In Progress|  |
 
 ### Phase 9: Release Packaging
 
@@ -227,7 +227,7 @@ Plans:
   3. Friction points and ergonomic issues are documented (tool descriptions, error messages, missing affordances)
   4. Setup/configuration guide exists and was validated by actually following it from scratch
   5. Any critical ergonomic fixes identified are either resolved or tracked as v0.2.0 items
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
 - [ ] 10-01-PLAN.md -- MCP server configuration in Claude Code, database verification, connectivity test

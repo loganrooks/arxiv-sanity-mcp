@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v0.1
 milestone_name: milestone
-status: completed
-stopped_at: Phase 10 context gathered
-last_updated: "2026-03-14T04:04:54.927Z"
-last_activity: 2026-03-14 -- GitHub repo created, CI workflow with PostgreSQL, v0.1.0 release tag.
+status: verifying
+stopped_at: Completed 10-01-PLAN.md
+last_updated: "2026-03-14T04:46:42.802Z"
+last_activity: 2026-03-14 -- arxiv-discovery MCP server registered in ~/.claude.json, connectivity verified.
 progress:
   total_phases: 11
   completed_phases: 10
-  total_plans: 28
-  completed_plans: 28
-  percent: 100
+  total_plans: 31
+  completed_plans: 29
+  percent: 94
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 09 (Release Packaging) complete. GitHub repo public, CI green, v0.1.0 tagged. Phase 10 (Agent Integration Test) next.
+**Current focus:** Phase 10 (Agent Integration Test) in progress. MCP server configured and connected. Plan 01 complete, Plans 02-03 next.
 
 ## Current Position
 
-Phase: 09 of 11 (Release Packaging) -- COMPLETE
-Plan: 3 of 3 in current phase (all plans complete)
-Status: GitHub repo public, CI green, v0.1.0 tagged. All release packaging complete.
-Last activity: 2026-03-14 -- GitHub repo created, CI workflow with PostgreSQL, v0.1.0 release tag.
+Phase: 10 of 11 (Agent Integration Test)
+Plan: 1 of 3 in current phase (Plan 01 complete)
+Status: MCP server configured in Claude Code, database verified at migration 008 with Phase 5 data.
+Last activity: 2026-03-14 -- arxiv-discovery MCP server registered in ~/.claude.json, connectivity verified.
 
-Progress: [██████████] 100% (28/28 plans)
+Progress: [█████████░] 94% (29/31 plans)
 
 ## Performance Metrics
 
@@ -68,6 +68,7 @@ Progress: [██████████] 100% (28/28 plans)
 | Phase 09 P01 | 17 | 2 tasks | 45 files |
 | Phase 09 P02 | 2 | 1 tasks | 1 files |
 | Phase 09 P03 | 46 | 3 tasks | 4 files |
+| Phase 10 P01 | 1 | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -181,6 +182,9 @@ Recent decisions affecting current work:
 - [Phase 09]: 09-03: git subtree split to extract project from home directory monorepo into standalone GitHub repo
 - [Phase 09]: 09-03: Content service integration tests deselected in CI (async DB+HTTP event loop hang; passes locally)
 - [Phase 09]: 09-03: pytest-asyncio pinned to >=0.24,<1 for respx compatibility
+- [Phase 10]: MCP server registered via claude mcp add-json --scope local (writes to ~/.claude.json alongside existing servers)
+- [Phase 10]: DATABASE_URL passed explicitly in MCP env block (belt-and-suspenders with .env discovery via cwd)
+- [Phase 10]: Absolute venv Python path used for MCP stdio command (not system python)
 
 ### Pending Todos
 
@@ -210,6 +214,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T04:04:54.922Z
-Stopped at: Phase 10 context gathered
-Resume file: .planning/phases/10-agent-integration-test/10-CONTEXT.md
+Last session: 2026-03-14T04:46:42.797Z
+Stopped at: Completed 10-01-PLAN.md
+Resume file: None
