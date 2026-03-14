@@ -67,15 +67,24 @@ All MCP capabilities are mirrored in a full CLI (`arxiv-mcp`) for terminal workf
 ```bash
 git clone https://github.com/loganrooks/arxiv-sanity-mcp.git
 cd arxiv-sanity-mcp
+
+# Create and activate a virtual environment (recommended)
+python3.13 -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+# .venv\Scripts\activate   # Windows
+
 pip install -e .
 ```
 
 For development (tests, linting):
 
 ```bash
-pip install -e .
+pip install -e ".[dev]"
+# Or manually:
 pip install pytest pytest-asyncio pytest-cov pytest-timeout respx ruff
 ```
+
+> **Note:** The MCP server configuration below requires the absolute path to your venv's Python interpreter. You can find it with `which python` after activating the venv.
 
 ## Database Setup
 
@@ -122,15 +131,36 @@ arxiv-mcp triage mark 2301.00001 shortlisted
 
 ## MCP Server Configuration
 
-Add this to your Claude Desktop config (`claude_desktop_config.json`) or Claude Code MCP settings:
+### Claude Code
+
+Use `claude mcp add-json` with your venv's absolute Python path:
+
+```bash
+claude mcp add-json arxiv-discovery --scope local '{
+  "command": "/absolute/path/to/arxiv-sanity-mcp/.venv/bin/python",
+  "args": ["-m", "arxiv_mcp.mcp"],
+  "cwd": "/absolute/path/to/arxiv-sanity-mcp",
+  "env": {
+    "DATABASE_URL": "postgresql+asyncpg://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp"
+  }
+}'
+```
+
+Replace `/absolute/path/to/arxiv-sanity-mcp` with the actual path to your cloned repository.
+
+> **Important:** Use the absolute path to the venv Python binary (e.g., `/home/user/projects/arxiv-sanity-mcp/.venv/bin/python`), not just `python`. This ensures the MCP server uses the correct environment regardless of which directory you launch Claude Code from.
+
+### Claude Desktop
+
+Add this to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "arxiv-discovery": {
-      "command": "python",
+      "command": "/absolute/path/to/arxiv-sanity-mcp/.venv/bin/python",
       "args": ["-m", "arxiv_mcp.mcp"],
-      "cwd": "/path/to/arxiv-sanity-mcp",
+      "cwd": "/absolute/path/to/arxiv-sanity-mcp",
       "env": {
         "DATABASE_URL": "postgresql+asyncpg://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp"
       }
@@ -139,7 +169,7 @@ Add this to your Claude Desktop config (`claude_desktop_config.json`) or Claude 
 }
 ```
 
-Replace `/path/to/arxiv-sanity-mcp` with the actual path to your cloned repository.
+Replace `/absolute/path/to/arxiv-sanity-mcp` with the actual path to your cloned repository.
 
 ## Configuration
 
