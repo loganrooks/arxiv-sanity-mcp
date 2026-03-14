@@ -1,13 +1,13 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
+milestone: v0.1
 milestone_name: milestone
 status: completed
-stopped_at: Completed 08-01-PLAN.md (Phase 08 fully done)
-last_updated: "2026-03-13T22:05:23.586Z"
+stopped_at: Phase 9 context gathered
+last_updated: "2026-03-14T02:18:34.601Z"
 last_activity: 2026-03-13 -- Test fixture consolidation, docstring fix, content re-exports removed, 3 regression tests added. 493 tests passing.
 progress:
-  total_phases: 9
+  total_phases: 11
   completed_phases: 9
   total_plans: 25
   completed_plans: 25
@@ -182,6 +182,9 @@ None yet.
 - 2026-03-11: Roadmap resequenced per ecosystem analysis. Old Phase 5 (Content Normalization) → new Phase 6. Old Phase 6 (MCP Integration) absorbed into Phase 04.1 + new Phase 5 (MCP Validation). MCP requirements split: core tools (Phase 04.1), prompts/validation (Phase 5), content tool (Phase 6). Three new requirement categories added: PREMCP (pre-MCP fixes), MCPV (validation). Total requirements: 53 (was 47).
 - 2026-03-11: Ecosystem commentary document written (.planning/ECOSYSTEM-COMMENTARY.md) analyzing cross-project data flows between arxiv-scan pipeline and MCP, identifying pre-MCP fix priorities, literature review feature priorities, and feedback loop design.
 
+- Phase 9 added: Release Packaging (LICENSE, README, pyproject.toml, CHANGELOG, GitHub, CI, v0.1.0 tag)
+- Phase 10 added: Agent Integration Test (real MCP server config, agent research session, setup docs from actual usage)
+
 ### Blockers/Concerns
 
 - Phase 6: Docling vs Marker quality comparison for scholarly PDFs (math, citations, tables) needs Phase 6 experimentation.
@@ -197,6 +200,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T21:29:21Z
-Stopped at: Completed 08-01-PLAN.md (Phase 08 fully done)
-Resume file: None
+Last session: 2026-03-14T02:18:34.594Z
+Stopped at: Phase 9 context gathered
+Resume file: .planning/phases/09-release-packaging/09-CONTEXT.md
