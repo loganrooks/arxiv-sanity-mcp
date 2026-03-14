@@ -2,7 +2,7 @@
 
 ## Overview
 
-This roadmap delivers an MCP-native research discovery substrate. Phases 1-6 built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, enrichment adapters, MCP server (11 tools, 4 resources, 3 prompts), validation with real workflows, and content normalization. Phases 7-8 close gaps identified by the v1 milestone audit: MCP surface parity with CLI capabilities (Phase 7) and infrastructure fixes (Phase 8). Semantic search is deferred to v2.
+This roadmap delivers an MCP-native research discovery substrate. Phases 1-6 built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, enrichment adapters, MCP server (13 tools, 4 resources, 3 prompts), validation with real workflows, and content normalization. Phases 7-8 closed gaps identified by the v1 milestone audit. Phases 9-10 handle release packaging and real-world agent integration testing. Semantic search is deferred to v2.
 
 ## Phases
 
@@ -19,7 +19,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 5: MCP Validation & Iteration** - Real workflow validation, doc 06 resolution, prompt design, tool iteration
 - [x] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
 - [x] **Phase 7: MCP Surface Parity** - Wire profile-ranked search, workflow-enriched results, create_profile, and suggest_signals into MCP (GAP CLOSURE) (completed 2026-03-13)
-- [ ] **Phase 8: Infrastructure Fixes** - Enrichment schema alignment, test fixture scoping, docstring and import fixes (GAP CLOSURE)
+- [x] **Phase 8: Infrastructure Fixes** - Enrichment schema alignment, test fixture scoping, docstring and import fixes (GAP CLOSURE)
+- [ ] **Phase 9: Release Packaging** - LICENSE, README rewrite, pyproject.toml metadata, CHANGELOG, GitHub repo, CI pipeline, v0.1.0 tag
+- [ ] **Phase 10: Agent Integration Test** - Real MCP server configuration, agent research session, setup documentation from actual usage
 
 ## Phase Details
 
@@ -174,13 +176,13 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 08-01-PLAN.md -- Test fixture consolidation, create_watch docstring fix, content lazy import fix
+- [x] 08-01-PLAN.md -- Test fixture consolidation, create_watch docstring fix, content lazy import fix
 - [x] 08-02-PLAN.md -- Live database migration alignment (alembic upgrade 004 -> 008)
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -191,5 +193,41 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8
 | 04.1. MCP v1 | 3/3 | Complete | 2026-03-12 |
 | 5. MCP Validation & Iteration | 3/3 | Complete | 2026-03-12 |
 | 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
-| 7. MCP Surface Parity | 2/2 | Complete   | 2026-03-13 |
-| 8. Infrastructure Fixes | 1/2 | In Progress | - |
+| 7. MCP Surface Parity | 2/2 | Complete | 2026-03-13 |
+| 8. Infrastructure Fixes | 2/2 | Complete | 2026-03-13 |
+| 9. Release Packaging | 0/3 | Not Started | - |
+| 10. Agent Integration Test | 0/? | Not Started | - |
+
+### Phase 9: Release Packaging
+
+**Goal:** The project is distributable: legally licensed, documented for users (not just designers), hosted on GitHub with CI, and tagged as v0.1.0. A new user can find, install, configure, and run the MCP server from the README alone.
+**Depends on:** Phase 8
+**Success Criteria** (what must be TRUE):
+  1. LICENSE file exists at repo root with a recognized open-source license
+  2. README contains: project description, feature overview, installation instructions, quick-start guide, MCP server configuration example, and link to design docs
+  3. pyproject.toml has complete metadata: author, license, classifiers, repository URL, keywords
+  4. CHANGELOG.md exists with v0.1.0 entry summarizing capabilities
+  5. GitHub repository exists and is the configured remote
+  6. GitHub Actions CI runs tests + lint on push/PR and passes
+  7. Git tag v0.1.0 exists on the release commit
+**Plans:** 3 plans
+
+Plans:
+- [ ] 09-01-PLAN.md -- License, pyproject.toml metadata, CHANGELOG, ruff lint fixes
+- [ ] 09-02-PLAN.md -- README rewrite for users (install, quick-start, MCP config)
+- [ ] 09-03-PLAN.md -- GitHub repo creation, CI workflow, push, v0.1.0 tag
+
+### Phase 10: Agent Integration Test
+
+**Goal:** The MCP server is configured as a real MCP server in Claude Code (or equivalent client), and an agent completes a genuine research session without builder intervention. Setup documentation is written from the actual experience of getting it running, not from assumptions.
+**Depends on:** Phase 9
+**Success Criteria** (what must be TRUE):
+  1. MCP server is configured in claude_desktop_config.json (or Claude Code MCP settings) and connects successfully
+  2. An agent completes a full research workflow (search -> triage -> collect -> profile -> enrich) without manual tool-call construction
+  3. Friction points and ergonomic issues are documented (tool descriptions, error messages, missing affordances)
+  4. Setup/configuration guide exists and was validated by actually following it from scratch
+  5. Any critical ergonomic fixes identified are either resolved or tracked as v0.2.0 items
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 10 to break down)
