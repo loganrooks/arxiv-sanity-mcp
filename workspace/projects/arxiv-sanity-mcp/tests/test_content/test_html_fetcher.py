@@ -55,10 +55,13 @@ SAMPLE_HTML_NO_CONTAINER = """
 </html>
 """
 
+HTML_URL = "https://arxiv.org/html/2301.00001"
+
 
 class TestFetchArxivHtml:
     """Tests for fetch_arxiv_html function."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_returns_none_for_404(self):
         """fetch_arxiv_html returns (None, None) for 404 HEAD response."""
@@ -66,17 +69,15 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(404)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(404))
 
-            async with httpx.AsyncClient() as client:
-                content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            assert content is None
-            assert url is None
+        assert content is None
+        assert url is None
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_extracts_article_content(self):
         """fetch_arxiv_html extracts article content from valid HTML."""
@@ -84,22 +85,20 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            assert content is not None
-            assert "main content of the paper" in content
-            assert "advanced techniques" in content
-            assert url == "https://arxiv.org/html/2301.00001"
+        assert content is not None
+        assert "main content of the paper" in content
+        assert "advanced techniques" in content
+        assert url == "https://arxiv.org/html/2301.00001"
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_strips_nav_header_footer(self):
         """fetch_arxiv_html strips nav, header, footer elements."""
@@ -107,22 +106,20 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            assert content is not None
-            assert "arXiv Header" not in content
-            assert "arXiv Footer" not in content
-            assert "Home" not in content  # nav content stripped
+        assert content is not None
+        assert "arXiv Header" not in content
+        assert "arXiv Footer" not in content
+        assert "Home" not in content  # nav content stripped
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_falls_back_to_main_container(self):
         """fetch_arxiv_html falls back to <main> if no <article>."""
@@ -130,20 +127,18 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_MAIN)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_MAIN)
+        )
 
-            async with httpx.AsyncClient() as client:
-                content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            assert content is not None
-            assert "Main content area" in content
+        assert content is not None
+        assert "Main content area" in content
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_returns_none_when_no_container(self):
         """fetch_arxiv_html returns None when no article/main/body container found."""
@@ -151,21 +146,19 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_NO_CONTAINER)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_NO_CONTAINER)
+        )
 
-            async with httpx.AsyncClient() as client:
-                content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            # body exists but is empty -- should still find body container
-            # But no meaningful content will be returned
-            # The function finds body, strips nav/header/footer, returns str(body)
+        # body exists but is empty -- should still find body container
+        # But no meaningful content will be returned
+        # The function finds body, strips nav/header/footer, returns str(body)
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_handles_timeout_gracefully(self):
         """fetch_arxiv_html returns (None, None) on timeout."""
@@ -173,17 +166,17 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                side_effect=httpx.TimeoutException("Connection timed out")
-            )
+        respx.head(HTML_URL).mock(
+            side_effect=httpx.TimeoutException("Connection timed out")
+        )
 
-            async with httpx.AsyncClient() as client:
-                content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            assert content is None
-            assert url is None
+        assert content is None
+        assert url is None
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_respects_rate_limiter(self):
         """fetch_arxiv_html calls rate_limiter.acquire before HTTP requests."""
@@ -191,20 +184,18 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            # acquire called once before HEAD and once before GET
-            assert rate_limiter.acquire.call_count == 2
+        # acquire called once before HEAD and once before GET
+        assert rate_limiter.acquire.call_count == 2
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_returns_none_for_head_404_no_get(self):
         """When HEAD returns 404, no GET request is made (only 1 acquire call)."""
@@ -212,15 +203,12 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock() as router:
-            head_route = router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(404)
-            )
+        head_route = respx.head(HTML_URL).mock(return_value=httpx.Response(404))
 
-            async with httpx.AsyncClient() as client:
-                content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
+        async with httpx.AsyncClient() as client:
+            content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
-            assert content is None
-            assert head_route.call_count == 1
-            # Only one acquire call (for HEAD, no GET)
-            assert rate_limiter.acquire.call_count == 1
+        assert content is None
+        assert head_route.call_count == 1
+        # Only one acquire call (for HEAD, no GET)
+        assert rate_limiter.acquire.call_count == 1
