@@ -227,7 +227,7 @@ class TestSeedRelationScorer:
         """Seed papers themselves are excluded (returns 0.0)."""
         paper = _make_paper(arxiv_id="2301.00001")
         seed_papers = [_make_paper(arxiv_id="2301.00001")]
-        seed_ids = {p.arxiv_id for p in seed_papers}
+        _seed_ids = {p.arxiv_id for p in seed_papers}
         # score_seed_relation checks if paper.arxiv_id in seed set
         s = score_seed_relation(paper, seed_papers, {"cs.CL"}, [])
         assert s.normalized_score == pytest.approx(0.0)

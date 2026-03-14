@@ -8,19 +8,14 @@ respx-mocked HTTP for HTML/PDF fetching.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from unittest.mock import AsyncMock
 
 import httpx
 import pytest
 import respx
-from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from arxiv_mcp.config import Settings
 from arxiv_mcp.content.adapters import MockContentAdapter
-from arxiv_mcp.content.models import ContentConversionResult
-from arxiv_mcp.db.models import ContentVariant, Paper, ProcessingTier
+from arxiv_mcp.db.models import Paper, ProcessingTier
 from tests.conftest import sample_paper_data
 
 

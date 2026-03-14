@@ -296,7 +296,6 @@ async def test_demote_watch(query_service, watch_service):
     assert result.is_watch is False
 
     # Saved query should still exist
-    from arxiv_mcp.workflow.queries import SavedQueryService
 
     detail = await query_service.get_saved_query("to-demote")
     assert detail.slug == "to-demote"

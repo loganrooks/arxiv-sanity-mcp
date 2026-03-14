@@ -62,8 +62,8 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
     saved_queries = SavedQueryService(sf, settings, search)
     watches = WatchService(sf, settings, search)
     profiles = ProfileService(sf, settings)
-    enrichment = EnrichmentService(sf, settings)
-    content = ContentService(sf, settings)
+    enrichment_svc = EnrichmentService(sf, settings)
+    content_svc = ContentService(sf, settings)
 
     # Interest services -- depend on search and profiles
     workflow_search = WorkflowSearchService(sf, settings, search)
@@ -81,8 +81,8 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
             saved_queries=saved_queries,
             watches=watches,
             profiles=profiles,
-            enrichment=enrichment,
-            content=content,
+            enrichment=enrichment_svc,
+            content=content_svc,
             profile_ranking=profile_ranking,
             suggestions=suggestions,
         )

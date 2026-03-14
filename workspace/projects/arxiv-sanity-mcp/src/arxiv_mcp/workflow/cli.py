@@ -1103,12 +1103,12 @@ def workflow_stats(output_json):
     console.print(f"Collections: {stats.collection_count}")
     console.print(f"Saved queries: {stats.saved_query_count}")
     console.print(f"Watches: {stats.watch_count}")
-    console.print(f"\n[bold]Triage breakdown:[/bold]")
+    console.print("\n[bold]Triage breakdown:[/bold]")
     for state, count in sorted(stats.triage_counts.items()):
         console.print(f"  {state}: {count}")
 
     if stats.insights:
-        console.print(f"\n[bold]Insights:[/bold]")
+        console.print("\n[bold]Insights:[/bold]")
         for insight in stats.insights:
             console.print(f"  - {insight}")
 

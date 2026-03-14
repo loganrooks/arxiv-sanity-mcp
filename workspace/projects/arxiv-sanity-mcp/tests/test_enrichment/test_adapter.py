@@ -12,7 +12,7 @@ import respx
 
 from arxiv_mcp.config import Settings
 from arxiv_mcp.enrichment.models import EnrichmentStatus, ExternalIds
-from arxiv_mcp.enrichment.openalex import SELECTED_FIELDS, OpenAlexAdapter
+from arxiv_mcp.enrichment.openalex import OpenAlexAdapter
 
 
 @pytest.fixture

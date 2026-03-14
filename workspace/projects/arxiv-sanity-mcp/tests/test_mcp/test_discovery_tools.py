@@ -7,12 +7,9 @@ Tests call tool functions directly with mock context (not through MCP transport)
 from __future__ import annotations
 
 from datetime import date, datetime, timezone
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
-import pytest
 
-from arxiv_mcp.models.pagination import PageInfo, PaginatedResponse
-from arxiv_mcp.models.paper import PaperSummary, ProfileSearchResult, SearchResult
 
 
 # ---- Tool name tests ----
@@ -41,7 +38,7 @@ class TestSearchPapers:
     async def test_search_papers_delegates_to_profile_ranking(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.tools.discovery import search_papers
 
-        result = await search_papers(
+        _result = await search_papers(
             query="attention mechanisms",
             category="cs.AI",
             page_size=10,
@@ -262,7 +259,7 @@ class TestBrowseRecent:
     async def test_browse_recent_delegates_to_profile_ranking(self, mock_ctx, mock_app_context):
         from arxiv_mcp.mcp.tools.discovery import browse_recent
 
-        result = await browse_recent(
+        _result = await browse_recent(
             category="cs.AI",
             days=14,
             page_size=10,

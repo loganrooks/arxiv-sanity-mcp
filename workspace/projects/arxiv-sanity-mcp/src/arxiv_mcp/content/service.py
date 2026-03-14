@@ -21,7 +21,6 @@ from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from arxiv_mcp.config import Settings
-from arxiv_mcp.content.adapters import MarkerAdapter, MockContentAdapter
 from arxiv_mcp.content.html_fetcher import fetch_arxiv_html
 from arxiv_mcp.content.models import ContentConversionResult
 from arxiv_mcp.db.models import ContentVariant, Paper, ProcessingTier

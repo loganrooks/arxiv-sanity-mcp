@@ -24,7 +24,7 @@ from arxiv_mcp.db.models import (
     TriageLog,
     TriageState,
 )
-from arxiv_mcp.models.paper import PaperDetail, PaperSummary
+from arxiv_mcp.models.paper import PaperSummary
 from arxiv_mcp.models.workflow import ExportData, WorkflowStats
 
 logger = logging.getLogger(__name__)

@@ -8,15 +8,13 @@ database) are mocked.
 from __future__ import annotations
 
 import json
-from datetime import date, datetime, timezone
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
-import pytest
 from lxml import etree
 
 from arxiv_mcp.config import Settings
-from arxiv_mcp.ingestion.oai_pmh import HarvestResult, OAIPMHHarvester
+from arxiv_mcp.ingestion.oai_pmh import OAIPMHHarvester
 
 
 # --- Helper to create mock OAI-PMH records ---

@@ -245,7 +245,7 @@ class ProfileRankingService:
             return self._test_profile_context
 
         # Production path: load from DB
-        from arxiv_mcp.db.models import InterestProfile, InterestSignal, Paper
+        from arxiv_mcp.db.models import InterestProfile, Paper
         from sqlalchemy.orm import selectinload
 
         async with self.session_factory() as session:

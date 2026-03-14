@@ -6,14 +6,13 @@ triage state listing, and audit log. All tests run against PostgreSQL.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 
 import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from arxiv_mcp.config import get_settings
-from arxiv_mcp.db.models import Paper, TriageState, TriageLog
+from arxiv_mcp.db.models import TriageState
 from arxiv_mcp.workflow.triage import TriageService
 
 
