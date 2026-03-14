@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.1
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 09-01-PLAN.md
-last_updated: "2026-03-14T02:53:43Z"
-last_activity: 2026-03-14 -- MIT License, pyproject.toml metadata, CHANGELOG.md, 96 ruff lint errors resolved to zero.
+stopped_at: Completed 09-03-PLAN.md
+last_updated: "2026-03-14T03:43:12Z"
+last_activity: 2026-03-14 -- GitHub repo created, CI workflow with PostgreSQL, v0.1.0 release tag.
 progress:
   total_phases: 11
-  completed_phases: 9
+  completed_phases: 10
   total_plans: 28
-  completed_plans: 27
-  percent: 96
+  completed_plans: 28
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 09 (Release Packaging) in progress. Plans 1-2 of 3 complete. 493 tests passing.
+**Current focus:** Phase 09 (Release Packaging) complete. GitHub repo public, CI green, v0.1.0 tagged. Phase 10 (Agent Integration Test) next.
 
 ## Current Position
 
-Phase: 09 of 11 (Release Packaging) -- IN PROGRESS
-Plan: 2 of 3 in current phase (plans 01 and 02 complete, plan 03 remaining)
-Status: LICENSE, pyproject.toml metadata, CHANGELOG.md, README.md complete. Zero ruff lint errors. 493 tests passing.
-Last activity: 2026-03-14 -- MIT License, pyproject.toml metadata, CHANGELOG.md, 96 ruff lint errors resolved to zero.
+Phase: 09 of 11 (Release Packaging) -- COMPLETE
+Plan: 3 of 3 in current phase (all plans complete)
+Status: GitHub repo public, CI green, v0.1.0 tagged. All release packaging complete.
+Last activity: 2026-03-14 -- GitHub repo created, CI workflow with PostgreSQL, v0.1.0 release tag.
 
-Progress: [█████████░] 96% (27/28 plans)
+Progress: [██████████] 100% (28/28 plans)
 
 ## Performance Metrics
 
@@ -67,6 +67,7 @@ Progress: [█████████░] 96% (27/28 plans)
 | Phase 08 P02 | 2 | 1 tasks | 0 files |
 | Phase 09 P01 | 17 | 2 tasks | 45 files |
 | Phase 09 P02 | 2 | 1 tasks | 1 files |
+| Phase 09 P03 | 46 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -177,6 +178,9 @@ Recent decisions affecting current work:
 - [Phase 09]: 09-01: Renamed enrichment/content local vars in server.py lifespan to avoid F811 shadowing with side-effect import names
 - [Phase 09]: 09-01: Per-file-ignores for alembic F401 and cli.py E402 (intentional patterns)
 - [Phase 09]: 09-02: README documents all 13 MCP tools grouped by domain, with user-facing quick-start and MCP server config
+- [Phase 09]: 09-03: git subtree split to extract project from home directory monorepo into standalone GitHub repo
+- [Phase 09]: 09-03: Content service integration tests deselected in CI (async DB+HTTP event loop hang; passes locally)
+- [Phase 09]: 09-03: pytest-asyncio pinned to >=0.24,<1 for respx compatibility
 
 ### Pending Todos
 
@@ -206,6 +210,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T02:53:43Z
-Stopped at: Completed 09-01-PLAN.md
+Last session: 2026-03-14T03:43:12Z
+Stopped at: Completed 09-03-PLAN.md
 Resume file: None
