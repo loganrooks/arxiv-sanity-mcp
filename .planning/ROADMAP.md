@@ -196,7 +196,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 | 7. MCP Surface Parity | 2/2 | Complete | 2026-03-13 |
 | 8. Infrastructure Fixes | 2/2 | Complete | 2026-03-13 |
 | 9. Release Packaging | 2/3 | In Progress | - |
-| 10. Agent Integration Test | 0/? | Not Started | - |
+| 10. Agent Integration Test | 0/3 | Not Started | - |
 
 ### Phase 9: Release Packaging
 
@@ -215,19 +215,21 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 Plans:
 - [x] 09-01-PLAN.md -- License, pyproject.toml metadata, CHANGELOG, ruff lint fixes
 - [x] 09-02-PLAN.md -- README rewrite for users (install, quick-start, MCP config)
-- [ ] 09-03-PLAN.md -- GitHub repo creation, CI workflow, push, v0.1.0 tag
+- [x] 09-03-PLAN.md -- GitHub repo creation, CI workflow, push, v0.1.0 tag
 
 ### Phase 10: Agent Integration Test
 
 **Goal:** The MCP server is configured as a real MCP server in Claude Code (or equivalent client), and an agent completes a genuine research session without builder intervention. Setup documentation is written from the actual experience of getting it running, not from assumptions.
 **Depends on:** Phase 9
 **Success Criteria** (what must be TRUE):
-  1. MCP server is configured in claude_desktop_config.json (or Claude Code MCP settings) and connects successfully
+  1. MCP server is configured in Claude Code MCP settings (.mcp.json) and connects successfully
   2. An agent completes a full research workflow (search -> triage -> collect -> profile -> enrich) without manual tool-call construction
   3. Friction points and ergonomic issues are documented (tool descriptions, error messages, missing affordances)
   4. Setup/configuration guide exists and was validated by actually following it from scratch
   5. Any critical ergonomic fixes identified are either resolved or tracked as v0.2.0 items
-**Plans:** 0 plans
+**Plans:** 3 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 10 to break down)
+- [ ] 10-01-PLAN.md -- MCP server configuration in Claude Code, database verification, connectivity test
+- [ ] 10-02-PLAN.md -- Agent research session (5 E2E flows), session log, friction report
+- [ ] 10-03-PLAN.md -- README validation, critical ergonomic fixes, friction report finalization
