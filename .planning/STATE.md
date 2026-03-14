@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v0.1
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 10-02-PLAN.md
-last_updated: "2026-03-14T05:15:00.000Z"
-last_activity: 2026-03-14 -- Agent research session completed. 5 E2E flows exercised, 13/13 tools tested, friction report created.
+status: complete
+stopped_at: Completed 10-03-PLAN.md
+last_updated: "2026-03-14T05:14:26.000Z"
+last_activity: 2026-03-14 -- Phase 10 complete. All critical fixes applied, README validated, friction report finalized.
 progress:
   total_phases: 11
-  completed_phases: 10
+  completed_phases: 11
   total_plans: 31
-  completed_plans: 30
-  percent: 97
+  completed_plans: 31
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 10 (Agent Integration Test) in progress. Plans 01-02 complete, Plan 03 (critical fixes) next.
+**Current focus:** All phases complete. v0.1 milestone ready for final review.
 
 ## Current Position
 
 Phase: 10 of 11 (Agent Integration Test)
-Plan: 2 of 3 in current phase (Plans 01-02 complete)
-Status: Agent research session completed. 5 E2E flows exercised, 13/13 tools tested. 1 Blocker identified (add_to_collection SQL leak).
-Last activity: 2026-03-14 -- Agent research session completed. Friction report created with 1 Blocker, 11 Friction, 3 Ergonomic items.
+Plan: 3 of 3 in current phase (Plans 01-03 complete)
+Status: Phase 10 complete. All critical fixes applied, README validated, friction report finalized.
+Last activity: 2026-03-14 -- Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
 
-Progress: [█████████░] 97% (30/31 plans)
+Progress: [██████████] 100% (31/31 plans)
 
 ## Performance Metrics
 
@@ -69,6 +69,8 @@ Progress: [█████████░] 97% (30/31 plans)
 | Phase 09 P02 | 2 | 1 tasks | 1 files |
 | Phase 09 P03 | 46 | 3 tasks | 4 files |
 | Phase 10 P01 | 1 | 2 tasks | 1 files |
+| Phase 10 P02 | 30 | 1 tasks | 3 files |
+| Phase 10 P03 | 5 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -185,6 +187,9 @@ Recent decisions affecting current work:
 - [Phase 10]: MCP server registered via claude mcp add-json --scope local (writes to ~/.claude.json alongside existing servers)
 - [Phase 10]: DATABASE_URL passed explicitly in MCP env block (belt-and-suspenders with .env discovery via cwd)
 - [Phase 10]: Absolute venv Python path used for MCP stdio command (not system python)
+- [Phase 10]: IntegrityError catch at MCP tool layer (not service layer) for clean FK violation error messages
+- [Phase 10]: F-07 fix via string replacement at tool layer rather than modifying SavedQueryService
+- [Phase 10]: README split into Claude Code and Claude Desktop sections with validated configs
 
 ### Pending Todos
 
@@ -214,6 +219,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T04:46:42.797Z
-Stopped at: Completed 10-01-PLAN.md
+Last session: 2026-03-14T05:14:26Z
+Stopped at: Completed 10-03-PLAN.md
 Resume file: None

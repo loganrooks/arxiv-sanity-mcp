@@ -21,7 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 7: MCP Surface Parity** - Wire profile-ranked search, workflow-enriched results, create_profile, and suggest_signals into MCP (GAP CLOSURE) (completed 2026-03-13)
 - [x] **Phase 8: Infrastructure Fixes** - Enrichment schema alignment, test fixture scoping, docstring and import fixes (GAP CLOSURE)
 - [ ] **Phase 9: Release Packaging** - LICENSE, README rewrite, pyproject.toml metadata, CHANGELOG, GitHub repo, CI pipeline, v0.1.0 tag
-- [ ] **Phase 10: Agent Integration Test** - Real MCP server configuration, agent research session, setup documentation from actual usage
+- [x] **Phase 10: Agent Integration Test** - Real MCP server configuration, agent research session, setup documentation from actual usage (completed 2026-03-14)
 
 ## Phase Details
 
@@ -196,7 +196,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 | 7. MCP Surface Parity | 2/2 | Complete | 2026-03-13 |
 | 8. Infrastructure Fixes | 2/2 | Complete | 2026-03-13 |
 | 9. Release Packaging | 2/3 | In Progress | - |
-| 10. Agent Integration Test | 1/3 | In Progress|  |
+| 10. Agent Integration Test | 3/3 | Complete   | 2026-03-14 |
 
 ### Phase 9: Release Packaging
 
@@ -227,7 +227,7 @@ Plans:
   3. Friction points and ergonomic issues are documented (tool descriptions, error messages, missing affordances)
   4. Setup/configuration guide exists and was validated by actually following it from scratch
   5. Any critical ergonomic fixes identified are either resolved or tracked as v0.2.0 items
-**Plans:** 1/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 10-01-PLAN.md -- MCP server configuration in Claude Code, database verification, connectivity test
