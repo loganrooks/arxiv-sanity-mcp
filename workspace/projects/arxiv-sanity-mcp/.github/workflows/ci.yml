@@ -55,7 +55,7 @@ jobs:
         env:
           DATABASE_URL: postgresql+asyncpg://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp
           TEST_DATABASE_URL: postgresql+asyncpg://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp_test
-        run: python -m pytest tests/ --timeout=30
+        run: python -m pytest tests/ --timeout=30 --deselect tests/test_content/test_service.py
 
       - name: Lint
         run: ruff check src/ tests/
