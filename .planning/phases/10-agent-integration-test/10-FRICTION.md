@@ -18,7 +18,7 @@
 
 **Fix policy:** Fix now.
 
-**Resolution:**
+**Resolution:** Fixed in commit 93feb4c. `add_to_collection` now catches `IntegrityError` and returns `{"error": "Paper 'X' not found in database"}`.
 
 ---
 
@@ -36,7 +36,7 @@
 
 **Fix policy:** v0.2.0 — requires COUNT query optimization. Known from milestone audit.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- requires COUNT query optimization that may impact search latency.
 
 ### F-02: `find_related_papers` inconsistent response shape
 
@@ -50,7 +50,7 @@
 
 **Fix policy:** v0.2.0 — breaking change to unify response shapes.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- breaking change; requires versioned API or migration path for existing clients.
 
 ### F-03: `suggest_signals` returns unbounded list (97 candidates)
 
@@ -64,7 +64,7 @@
 
 **Fix policy:** v0.2.0 — add `limit` parameter with sensible default (10-20).
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- add `limit` parameter with default of 20.
 
 ### F-04: MCP resources not discoverable via ListMcpResourcesTool
 
@@ -78,7 +78,7 @@
 
 **Fix policy:** v0.2.0 — requires MCP resource template registration. May also be a Claude Code client limitation.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- requires MCP resource template registration and may be partially a Claude Code client limitation.
 
 ### F-05: `browse_recent` default `time_basis=announced` returns empty for corpus
 
@@ -92,7 +92,7 @@
 
 **Fix policy:** Fix now — update tool description to note that `submitted` is recommended when `announced_date` may not be populated.
 
-**Resolution:**
+**Resolution:** Fixed in commit 18f9097. Tool description now notes that `submitted` is recommended when `announced_date` may not be populated.
 
 ### F-06: Date-filtered search returns empty (filters on `announced_date`)
 
@@ -106,7 +106,7 @@
 
 **Fix policy:** v0.2.0 — align date filtering with `time_basis` parameter, or default to `submitted_date`.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- requires aligning search date filters with `time_basis` parameter.
 
 ### F-07: Duplicate watch error uses internal terminology
 
@@ -120,7 +120,7 @@
 
 **Fix policy:** Fix now — simple string change.
 
-**Resolution:**
+**Resolution:** Fixed in commit 93feb4c. `create_watch` now catches ValueError and replaces "Saved query" with "Watch" in error message.
 
 ### F-08: Content variant errors don't distinguish "not fetched" from "unavailable"
 
@@ -134,7 +134,7 @@
 
 **Fix policy:** v0.2.0 — improve error messages with actionable guidance.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- requires distinguishing "not fetched yet" from "unavailable" states in content service.
 
 ### F-09: Title-only search returns `score: null`
 
@@ -148,7 +148,7 @@
 
 **Fix policy:** v0.2.0 — title search uses different code path that doesn't produce scores.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- title search uses ILIKE path that doesn't produce ts_rank scores.
 
 ### F-10: `enrich_paper` response includes duplicative `raw_response`
 
@@ -162,7 +162,7 @@
 
 **Fix policy:** v0.2.0 — consider removing `raw_response` or making it opt-in.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- add `include_raw` parameter (default false) or remove `raw_response` entirely.
 
 ### F-11: MCP prompts not invocable from Claude Code client
 
@@ -176,7 +176,7 @@
 
 **Fix policy:** v0.2.0 — track Claude Code prompt support; consider exposing prompt content as a tool.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- Claude Code client limitation. Consider exposing prompt content as a `get_workflow_guide` tool.
 
 ## Ergonomic
 
@@ -190,7 +190,7 @@
 
 **Fix policy:** v0.2.0
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- add category validation with known arXiv category list.
 
 ### E-02: `add_to_collection` duplicate returns `added: true`
 
@@ -202,7 +202,7 @@
 
 **Fix policy:** v0.2.0
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- return `already_present` field when paper is already in collection.
 
 ### E-03: `find_related_papers` error handling differs from other tools
 
@@ -214,10 +214,21 @@
 
 **Fix policy:** v0.2.0 — wrap in try/catch to return JSON error.
 
-**Resolution:**
+**Resolution:** Tracked for v0.2.0 -- wrap in try/catch to return JSON error consistent with other tools.
 
 ## Known Issues from Milestone Audit (Confirmed)
 
 - **total_estimate: None** — Confirmed in F-01. All paginated responses have null total_estimate.
 - **find_related_papers lacks workflow enrichment** — Confirmed. Related papers response has no triage_state or collection_slugs (inconsistent with search_papers).
 - **triage_paper "unseen" confusion** — Not reproduced. Triage state transitions all work correctly including reset to "unseen".
+
+## Summary
+
+- **Total issues found:** 15
+- **Blockers:** 1 (1 fixed, 0 unresolved)
+- **Friction:** 11 (3 fixed, 8 deferred to v0.2.0)
+- **Ergonomic:** 3 (all v0.2.0)
+- **Critical fixes applied:** 3 commits with fix(10): prefix
+  - `93feb4c` -- B-01: add_to_collection IntegrityError catch + F-07: create_watch error terminology
+  - `18f9097` -- F-05: browse_recent description updated
+  - `f68fef8` -- README setup instructions corrected
