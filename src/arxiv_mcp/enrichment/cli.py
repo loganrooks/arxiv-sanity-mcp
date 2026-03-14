@@ -80,7 +80,6 @@ def _format_enrichment_result(result, paper_submitted_date=None) -> dict:
 
 def _display_enrichment_result(result, paper_submitted_date=None) -> None:
     """Display enrichment result using Rich formatting."""
-    from arxiv_mcp.enrichment.models import EnrichmentStatus
 
     status_colors = {
         "success": "green",

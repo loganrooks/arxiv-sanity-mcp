@@ -10,9 +10,8 @@ from __future__ import annotations
 
 import dataclasses
 from datetime import datetime, timezone
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock
 
-import pytest
 
 from arxiv_mcp.interest.suggestions import SuggestionCandidate
 from arxiv_mcp.mcp.server import AppContext

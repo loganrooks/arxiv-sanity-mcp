@@ -7,7 +7,6 @@ tension signal generation. Uses inline fixture data, NOT /scratch/.
 from __future__ import annotations
 
 import json
-import tempfile
 from pathlib import Path
 
 import pytest

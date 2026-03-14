@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import enum
 
-import pytest
 from sqlalchemy import inspect
 
 from arxiv_mcp.content.models import (

@@ -7,9 +7,8 @@ Covers: triage_paper, add_to_collection, create_watch, add_signal, enrich_paper.
 from __future__ import annotations
 
 from datetime import date, datetime, timezone
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock
 
-import pytest
 
 from arxiv_mcp.enrichment.models import EnrichmentResult, EnrichmentStatus
 from arxiv_mcp.models.interest import SignalInfo
@@ -59,7 +58,7 @@ class TestTriagePaper:
             )
         )
 
-        result = await triage_paper(
+        _result = await triage_paper(
             arxiv_id="2301.00001",
             state="dismissed",
             reason="Not relevant to my research",

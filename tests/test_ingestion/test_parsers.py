@@ -6,7 +6,6 @@ and mapping parsed metadata to Paper ORM instances.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 
 from arxiv_mcp.ingestion.parsers import (
     RawPaperMetadata,

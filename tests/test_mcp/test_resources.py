@@ -9,13 +9,11 @@ from __future__ import annotations
 from datetime import date, datetime, timezone
 from unittest.mock import AsyncMock, MagicMock
 
-import pytest
 
-from arxiv_mcp.enrichment.models import EnrichmentResult, EnrichmentStatus
 from arxiv_mcp.models.interest import ProfileDetail, SignalInfo
 from arxiv_mcp.models.pagination import PageInfo, PaginatedResponse
 from arxiv_mcp.models.paper import PaperSummary, SearchResult
-from arxiv_mcp.models.workflow import CollectionSummary, WatchSummary
+from arxiv_mcp.models.workflow import CollectionSummary
 
 
 # ---- paper resource tests ----

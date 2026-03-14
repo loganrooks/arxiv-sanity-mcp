@@ -371,7 +371,7 @@ def scan_command(data_dir: Path) -> None:
     settings = get_settings()
     click.echo(f"Importing from: {data_dir}")
     stats = asyncio.run(import_arxiv_scan(data_dir, settings))
-    click.echo(f"\nImport complete:")
+    click.echo("\nImport complete:")
     click.echo(f"  Papers fetched:  {stats['papers_fetched']}")
     click.echo(f"  Papers skipped:  {stats['papers_skipped']}")
     click.echo(f"  Papers errors:   {stats['papers_errors']}")

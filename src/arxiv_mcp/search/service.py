@@ -14,7 +14,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from arxiv_mcp.config import Settings
 from arxiv_mcp.db.models import Paper
 from arxiv_mcp.db.queries import build_browse_query, build_related_query, build_search_query
-from arxiv_mcp.models.pagination import Cursor, PageInfo, PaginatedResponse
+from arxiv_mcp.models.pagination import Cursor, PaginatedResponse
 from arxiv_mcp.models.paper import SearchResult
 from arxiv_mcp.search.pagination import build_page_info
 from arxiv_mcp.search.ranking import shape_search_results

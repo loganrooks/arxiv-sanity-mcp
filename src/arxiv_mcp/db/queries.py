@@ -10,8 +10,7 @@ from __future__ import annotations
 
 from datetime import date, timedelta
 
-from sqlalchemy import Select, case, desc, func, literal, select, text, tuple_
-from sqlalchemy.sql.expression import ColumnElement
+from sqlalchemy import Select, desc, func, literal, select, tuple_
 
 from arxiv_mcp.db.models import Paper
 from arxiv_mcp.models.pagination import Cursor

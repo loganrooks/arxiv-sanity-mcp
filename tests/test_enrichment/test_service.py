@@ -7,11 +7,9 @@ and aggregate statistics. Uses mock adapter (no real HTTP calls).
 
 from __future__ import annotations
 
-import asyncio
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 import pytest
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from arxiv_mcp.config import Settings
@@ -245,7 +243,7 @@ async def test_enrich_paper_cooldown_skips(enrichment_session_factory):
 
     # Second enrichment should be skipped (within 7-day cooldown)
     adapter.enrich_calls.clear()
-    result = await svc.enrich_paper("2301.00001")
+    _result = await svc.enrich_paper("2301.00001")
 
     # Adapter should NOT have been called again
     assert len(adapter.enrich_calls) == 0

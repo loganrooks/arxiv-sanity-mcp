@@ -15,7 +15,7 @@ import structlog
 from lxml import etree
 
 from arxiv_mcp.config import Settings
-from arxiv_mcp.ingestion.parsers import PaperVersion, RawPaperMetadata
+from arxiv_mcp.ingestion.parsers import RawPaperMetadata
 
 logger = structlog.get_logger(__name__)
 

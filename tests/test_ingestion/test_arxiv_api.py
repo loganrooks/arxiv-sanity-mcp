@@ -9,8 +9,6 @@ from __future__ import annotations
 import time
 from unittest.mock import AsyncMock, MagicMock, patch
 
-import httpx
-import pytest
 
 from arxiv_mcp.config import Settings
 from arxiv_mcp.ingestion.arxiv_api import ArxivAPIClient
@@ -192,7 +190,7 @@ class TestArxivAPIClient:
 
         # Verify pagination parameters were passed
         call_args = mock_client.get.call_args
-        params = call_args[1].get("params", call_args[0][1] if len(call_args[0]) > 1 else {})
+        _params = call_args[1].get("params", call_args[0][1] if len(call_args[0]) > 1 else {})
         assert len(results) == 2
 
     @patch("arxiv_mcp.ingestion.arxiv_api.httpx.AsyncClient")

@@ -7,7 +7,7 @@ processing tier, and the tsvector search trigger.
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+from datetime import date, datetime
 
 import pytest
 from sqlalchemy import select

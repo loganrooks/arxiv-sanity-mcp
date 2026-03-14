@@ -7,7 +7,6 @@ and single-paper fetch operations.
 from __future__ import annotations
 
 import asyncio
-from datetime import date
 
 import click
 import structlog
@@ -75,7 +74,7 @@ def bulk_harvest(archive_set, from_date, batch_size, prefix):
             )
         )
 
-    console.print(f"\n[bold green]Harvest complete![/]")
+    console.print("\n[bold green]Harvest complete![/]")
     console.print(f"  Fetched: {result.total_fetched}")
     console.print(f"  Inserted: {result.total_inserted}")
     console.print(f"  Updated: {result.total_updated}")
@@ -103,10 +102,10 @@ def incremental_harvest():
         TextColumn("[progress.description]{task.description}"),
         console=console,
     ) as progress:
-        task = progress.add_task("Incremental harvest...", total=None)
+        _task = progress.add_task("Incremental harvest...", total=None)
         result = asyncio.run(harvester.harvest_incremental())
 
-    console.print(f"\n[bold green]Incremental harvest complete![/]")
+    console.print("\n[bold green]Incremental harvest complete![/]")
     console.print(f"  Fetched: {result.total_fetched}")
     console.print(f"  Skipped: {result.total_skipped}")
     console.print(f"  Duration: {result.duration_seconds:.1f}s")
@@ -134,7 +133,7 @@ def fetch_paper(arxiv_id):
             return
 
         paper = map_to_paper(raw, source="arxiv_api")
-        console.print(f"\n[bold green]Paper fetched:[/]")
+        console.print("\n[bold green]Paper fetched:[/]")
         console.print(f"  ID: {paper.arxiv_id}")
         console.print(f"  Title: {paper.title}")
         console.print(f"  Authors: {paper.authors_text}")

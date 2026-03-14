@@ -17,7 +17,6 @@ from tests.conftest import (
     TSVECTOR_CREATE_TRIGGER_SQL,
     TSVECTOR_DROP_TRIGGER_SQL,
     TSVECTOR_FUNCTION_SQL,
-    sample_paper_data,
 )
 from arxiv_mcp.db.models import Base
 

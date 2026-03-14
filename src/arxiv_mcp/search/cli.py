@@ -328,7 +328,7 @@ def browse_recent(category, time_basis, days, cursor, page_size, profile_slug, e
         if explain and response.ranker_snapshot:
             _display_ranker_snapshot(response.ranker_snapshot, console)
 
-        title = f"Recent papers"
+        title = "Recent papers"
         if category:
             title += f" in {category}"
         title += f" (last {days} days, profile: {profile_slug})"
@@ -360,7 +360,7 @@ def browse_recent(category, time_basis, days, cursor, page_size, profile_slug, e
                 console.print("[yellow]No recent papers found.[/yellow]")
                 return
 
-            title = f"Recent papers"
+            title = "Recent papers"
             if category:
                 title += f" in {category}"
             title += f" (last {days} days)"

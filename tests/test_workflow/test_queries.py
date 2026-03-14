@@ -12,12 +12,11 @@ import pytest
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from arxiv_mcp.config import get_settings
-from arxiv_mcp.db.models import Paper, SavedQuery
+from arxiv_mcp.db.models import Paper
 from arxiv_mcp.search.service import SearchService
 from arxiv_mcp.workflow.queries import SavedQueryService
 
 from tests.conftest import sample_paper_data
-from .conftest import sample_saved_query_data
 
 
 @pytest.fixture
