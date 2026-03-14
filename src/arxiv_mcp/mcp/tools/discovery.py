@@ -85,6 +85,8 @@ async def browse_recent(
     """Browse recently announced arXiv papers, optionally filtered by category.
 
     Use time_basis to select ordering: announced, submitted, or updated.
+    Note: Many papers may not have announced_date populated. If results are
+    empty with the default time_basis='announced', try time_basis='submitted'.
 
     Optionally provide profile_slug to get profile-ranked results with
     ranking explanations on each result.
