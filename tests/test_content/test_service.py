@@ -37,6 +37,9 @@ SAMPLE_HTML_RESPONSE = """
 
 SAMPLE_PDF_BYTES = b"%PDF-1.4 fake pdf content"
 
+HTML_URL = "https://arxiv.org/html/2301.00001"
+PDF_URL = "https://arxiv.org/pdf/2301.00001"
+
 
 @pytest.fixture
 def test_settings() -> Settings:
@@ -63,6 +66,11 @@ async def paper_in_db(content_session_factory) -> Paper:
         await session.commit()
         await session.refresh(paper)
         return paper
+
+
+def _mock_html_client() -> httpx.AsyncClient:
+    """Create a mock transport client for testing (no real HTTP)."""
+    return httpx.AsyncClient(transport=respx.mock.transport)
 
 
 class TestGetAbstractVariant:
@@ -106,6 +114,7 @@ class TestGetVariant:
 class TestHtmlVariant:
     """Tests for HTML variant acquisition."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_get_or_create_html_variant(
         self, content_session_factory, test_settings, paper_in_db
@@ -115,20 +124,18 @@ class TestHtmlVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                result = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        result = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        await client.aclose()
 
         assert result["variant_type"] == "html"
         assert "important results" in result["content"]
@@ -140,6 +147,7 @@ class TestHtmlVariant:
 class TestPdfMarkdownVariant:
     """Tests for PDF markdown variant acquisition."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_get_or_create_pdf_markdown_variant(
         self, content_session_factory, test_settings, paper_in_db
@@ -149,19 +157,19 @@ class TestPdfMarkdownVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock() as router:
-            router.get("https://arxiv.org/pdf/2301.00001").mock(
-                return_value=httpx.Response(200, content=SAMPLE_PDF_BYTES)
-            )
+        respx.get(PDF_URL).mock(
+            return_value=httpx.Response(200, content=SAMPLE_PDF_BYTES)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                result = await svc.get_or_create_variant(
-                    "2301.00001", preferred_variant="pdf_markdown"
-                )
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        result = await svc.get_or_create_variant(
+            "2301.00001", preferred_variant="pdf_markdown"
+        )
+        await client.aclose()
 
         assert result["variant_type"] == "pdf_markdown"
         assert result["backend"] == "mock_marker"
@@ -172,6 +180,7 @@ class TestPdfMarkdownVariant:
 class TestBestVariant:
     """Tests for 'best' variant priority chain."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_best_variant_tries_html_first(
         self, content_session_factory, test_settings, paper_in_db
@@ -181,25 +190,24 @@ class TestBestVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                result = await svc.get_or_create_variant("2301.00001", preferred_variant="best")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        result = await svc.get_or_create_variant("2301.00001", preferred_variant="best")
+        await client.aclose()
 
         assert result["variant_type"] == "html"
         # No PDF conversion should have been called
         assert len(adapter.convert_calls) == 0
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_best_variant_falls_back_to_pdf(
         self, content_session_factory, test_settings, paper_in_db
@@ -209,20 +217,18 @@ class TestBestVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(404)
-            )
-            router.get("https://arxiv.org/pdf/2301.00001").mock(
-                return_value=httpx.Response(200, content=SAMPLE_PDF_BYTES)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(404))
+        respx.get(PDF_URL).mock(
+            return_value=httpx.Response(200, content=SAMPLE_PDF_BYTES)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                result = await svc.get_or_create_variant("2301.00001", preferred_variant="best")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        result = await svc.get_or_create_variant("2301.00001", preferred_variant="best")
+        await client.aclose()
 
         assert result["variant_type"] == "pdf_markdown"
         assert len(adapter.convert_calls) == 1
@@ -231,6 +237,7 @@ class TestBestVariant:
 class TestCaching:
     """Tests for variant caching behavior."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_cached_variant_returned_without_refetch(
         self, content_session_factory, test_settings, paper_in_db
@@ -241,23 +248,21 @@ class TestCaching:
         adapter = MockContentAdapter()
 
         # First call: fetch and store HTML
-        with respx.mock() as router:
-            head_route = router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            get_route = router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
-            )
+        head_route = respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        get_route = respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                result1 = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        result1 = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        await client.aclose()
 
-            assert head_route.call_count == 1
-            assert get_route.call_count == 1
+        assert head_route.call_count == 1
+        assert get_route.call_count == 1
 
         # Second call: should hit cache, no HTTP
         svc2 = ContentService(content_session_factory, test_settings, adapter=adapter)
@@ -270,6 +275,7 @@ class TestCaching:
 class TestTierPromotion:
     """Tests for processing tier promotion."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_processing_tier_promoted(
         self, content_session_factory, test_settings, paper_in_db
@@ -279,20 +285,18 @@ class TestTierPromotion:
 
         adapter = MockContentAdapter()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        await client.aclose()
 
         # Verify tier promotion in DB
         async with content_session_factory() as session:
@@ -303,6 +307,7 @@ class TestTierPromotion:
 class TestProvenance:
     """Tests for provenance field population."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_license_uri_copied(
         self, content_session_factory, test_settings, paper_in_db
@@ -312,23 +317,22 @@ class TestProvenance:
 
         adapter = MockContentAdapter()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                result = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        result = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        await client.aclose()
 
         assert result["license_uri"] == "http://creativecommons.org/licenses/by/4.0/"
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_provenance_fields_populated(
         self, content_session_factory, test_settings, paper_in_db
@@ -338,20 +342,18 @@ class TestProvenance:
 
         adapter = MockContentAdapter()
 
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                result = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        result = await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        await client.aclose()
 
         assert result["source_url"] is not None
         assert result["backend"] is not None
@@ -363,6 +365,7 @@ class TestProvenance:
 class TestListVariants:
     """Tests for listing available variants."""
 
+    @respx.mock
     @pytest.mark.asyncio
     async def test_list_variants_returns_summary(
         self, content_session_factory, test_settings, paper_in_db
@@ -373,20 +376,18 @@ class TestListVariants:
         adapter = MockContentAdapter()
 
         # Store an HTML variant first
-        with respx.mock() as router:
-            router.head("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200)
-            )
-            router.get("https://arxiv.org/html/2301.00001").mock(
-                return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
-            )
+        respx.head(HTML_URL).mock(return_value=httpx.Response(200))
+        respx.get(HTML_URL).mock(
+            return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
+        )
 
-            async with httpx.AsyncClient() as client:
-                svc = ContentService(
-                    content_session_factory, test_settings,
-                    adapter=adapter, http_client=client,
-                )
-                await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        client = httpx.AsyncClient()
+        svc = ContentService(
+            content_session_factory, test_settings,
+            adapter=adapter, http_client=client,
+        )
+        await svc.get_or_create_variant("2301.00001", preferred_variant="html")
+        await client.aclose()
 
         # List variants
         svc2 = ContentService(content_session_factory, test_settings, adapter=adapter)
