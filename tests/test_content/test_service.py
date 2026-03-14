@@ -115,15 +115,15 @@ class TestHtmlVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -149,12 +149,12 @@ class TestPdfMarkdownVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.get("/pdf/2301.00001").mock(
+        with respx.mock() as router:
+            router.get("https://arxiv.org/pdf/2301.00001").mock(
                 return_value=httpx.Response(200, content=SAMPLE_PDF_BYTES)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -181,15 +181,15 @@ class TestBestVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -209,15 +209,15 @@ class TestBestVariant:
 
         adapter = MockContentAdapter()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(404)
             )
-            router.get("/pdf/2301.00001").mock(
+            router.get("https://arxiv.org/pdf/2301.00001").mock(
                 return_value=httpx.Response(200, content=SAMPLE_PDF_BYTES)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -241,15 +241,15 @@ class TestCaching:
         adapter = MockContentAdapter()
 
         # First call: fetch and store HTML
-        with respx.mock(base_url="https://arxiv.org") as router:
-            head_route = router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            head_route = router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            get_route = router.get("/html/2301.00001").mock(
+            get_route = router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -279,15 +279,15 @@ class TestTierPromotion:
 
         adapter = MockContentAdapter()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -312,15 +312,15 @@ class TestProvenance:
 
         adapter = MockContentAdapter()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -338,15 +338,15 @@ class TestProvenance:
 
         adapter = MockContentAdapter()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,
@@ -373,15 +373,15 @@ class TestListVariants:
         adapter = MockContentAdapter()
 
         # Store an HTML variant first
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_RESPONSE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 svc = ContentService(
                     content_session_factory, test_settings,
                     adapter=adapter, http_client=client,

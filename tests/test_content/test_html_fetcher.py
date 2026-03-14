@@ -66,12 +66,12 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(404)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             assert content is None
@@ -84,15 +84,15 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             assert content is not None
@@ -107,15 +107,15 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             assert content is not None
@@ -130,15 +130,15 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_MAIN)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             assert content is not None
@@ -151,15 +151,15 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_NO_CONTAINER)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             # body exists but is empty -- should still find body container
@@ -173,12 +173,12 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 side_effect=httpx.TimeoutException("Connection timed out")
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             assert content is None
@@ -191,15 +191,15 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200)
             )
-            router.get("/html/2301.00001").mock(
+            router.get("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(200, text=SAMPLE_HTML_WITH_ARTICLE)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             # acquire called once before HEAD and once before GET
@@ -212,12 +212,12 @@ class TestFetchArxivHtml:
 
         rate_limiter = AsyncMock()
 
-        with respx.mock(base_url="https://arxiv.org") as router:
-            head_route = router.head("/html/2301.00001").mock(
+        with respx.mock() as router:
+            head_route = router.head("https://arxiv.org/html/2301.00001").mock(
                 return_value=httpx.Response(404)
             )
 
-            async with httpx.AsyncClient(base_url="https://arxiv.org") as client:
+            async with httpx.AsyncClient() as client:
                 content, url = await fetch_arxiv_html("2301.00001", client, rate_limiter)
 
             assert content is None
