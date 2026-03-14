@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -e . && pip install pytest pytest-asyncio pytest-cov pytest-timeout respx ruff
+
+      - name: Create test database and user
+        run: |
+          PGPASSWORD=postgres psql -h localhost -U postgres <<SQL
+          CREATE USER arxiv_mcp WITH PASSWORD 'arxiv_mcp_dev';
+          CREATE DATABASE arxiv_mcp OWNER arxiv_mcp;
+          CREATE DATABASE arxiv_mcp_test OWNER arxiv_mcp;
+          GRANT ALL PRIVILEGES ON DATABASE arxiv_mcp TO arxiv_mcp;
+          GRANT ALL PRIVILEGES ON DATABASE arxiv_mcp_test TO arxiv_mcp;
+          SQL
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: postgresql+asyncpg://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp
+        run: alembic upgrade head
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql+asyncpg://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp
+          TEST_DATABASE_URL: postgresql+asyncpg://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp_test
+        run: python -m pytest tests/ --timeout=30
+
+      - name: Lint
+        run: ruff check src/ tests/
