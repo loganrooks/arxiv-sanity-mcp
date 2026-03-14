@@ -7,6 +7,7 @@ as MCP tools with user-intent-oriented names and dict return types.
 from __future__ import annotations
 
 from mcp.server.fastmcp import Context
+from sqlalchemy.exc import IntegrityError
 
 from arxiv_mcp.mcp.server import AppContext, mcp
 from arxiv_mcp.workflow.util import slugify
@@ -54,8 +55,13 @@ async def add_to_collection(
         await app.collections.add_papers(slug, [arxiv_id], source="mcp")
     except ValueError:
         # Collection doesn't exist -- create it, then retry
-        await app.collections.create_collection(collection_name)
-        await app.collections.add_papers(slug, [arxiv_id], source="mcp")
+        try:
+            await app.collections.create_collection(collection_name)
+            await app.collections.add_papers(slug, [arxiv_id], source="mcp")
+        except IntegrityError:
+            return {"error": f"Paper '{arxiv_id}' not found in database"}
+    except IntegrityError:
+        return {"error": f"Paper '{arxiv_id}' not found in database"}
 
     return {"arxiv_id": arxiv_id, "collection": slug, "added": True}
 
@@ -78,7 +84,13 @@ async def create_watch(
     if category is not None:
         params["category"] = category
 
-    saved = await app.saved_queries.create_saved_query(name=name, params=params)
+    try:
+        saved = await app.saved_queries.create_saved_query(name=name, params=params)
+    except ValueError as e:
+        # Re-phrase internal "Saved query" terminology as user-facing "Watch"
+        msg = str(e).replace("Saved query", "Watch")
+        return {"error": msg}
+
     watch = await app.watches.promote_to_watch(saved.slug, cadence=cadence)
 
     return watch.model_dump(mode="json")
