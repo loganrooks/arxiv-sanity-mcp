@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.1
 milestone_name: milestone
 status: verifying
-stopped_at: Completed 10-01-PLAN.md
-last_updated: "2026-03-14T04:46:42.802Z"
-last_activity: 2026-03-14 -- arxiv-discovery MCP server registered in ~/.claude.json, connectivity verified.
+stopped_at: Completed 10-02-PLAN.md
+last_updated: "2026-03-14T05:15:00.000Z"
+last_activity: 2026-03-14 -- Agent research session completed. 5 E2E flows exercised, 13/13 tools tested, friction report created.
 progress:
   total_phases: 11
   completed_phases: 10
   total_plans: 31
-  completed_plans: 29
-  percent: 94
+  completed_plans: 30
+  percent: 97
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 10 (Agent Integration Test) in progress. MCP server configured and connected. Plan 01 complete, Plans 02-03 next.
+**Current focus:** Phase 10 (Agent Integration Test) in progress. Plans 01-02 complete, Plan 03 (critical fixes) next.
 
 ## Current Position
 
 Phase: 10 of 11 (Agent Integration Test)
-Plan: 1 of 3 in current phase (Plan 01 complete)
-Status: MCP server configured in Claude Code, database verified at migration 008 with Phase 5 data.
-Last activity: 2026-03-14 -- arxiv-discovery MCP server registered in ~/.claude.json, connectivity verified.
+Plan: 2 of 3 in current phase (Plans 01-02 complete)
+Status: Agent research session completed. 5 E2E flows exercised, 13/13 tools tested. 1 Blocker identified (add_to_collection SQL leak).
+Last activity: 2026-03-14 -- Agent research session completed. Friction report created with 1 Blocker, 11 Friction, 3 Ergonomic items.
 
-Progress: [█████████░] 94% (29/31 plans)
+Progress: [█████████░] 97% (30/31 plans)
 
 ## Performance Metrics
 
