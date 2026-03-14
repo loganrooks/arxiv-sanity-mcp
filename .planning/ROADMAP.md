@@ -195,7 +195,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 | 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
 | 7. MCP Surface Parity | 2/2 | Complete | 2026-03-13 |
 | 8. Infrastructure Fixes | 2/2 | Complete | 2026-03-13 |
-| 9. Release Packaging | 0/3 | Not Started | - |
+| 9. Release Packaging | 2/3 | In Progress | - |
 | 10. Agent Integration Test | 0/? | Not Started | - |
 
 ### Phase 9: Release Packaging
@@ -213,8 +213,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 **Plans:** 3 plans
 
 Plans:
-- [ ] 09-01-PLAN.md -- License, pyproject.toml metadata, CHANGELOG, ruff lint fixes
-- [ ] 09-02-PLAN.md -- README rewrite for users (install, quick-start, MCP config)
+- [x] 09-01-PLAN.md -- License, pyproject.toml metadata, CHANGELOG, ruff lint fixes
+- [x] 09-02-PLAN.md -- README rewrite for users (install, quick-start, MCP config)
 - [ ] 09-03-PLAN.md -- GitHub repo creation, CI workflow, push, v0.1.0 tag
 
 ### Phase 10: Agent Integration Test

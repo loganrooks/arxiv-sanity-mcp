@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.1
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 09-02-PLAN.md
-last_updated: "2026-03-14T02:39:25.328Z"
-last_activity: 2026-03-14 -- README.md rewrite with installation, quick-start, MCP config, and feature overview.
+stopped_at: Completed 09-01-PLAN.md
+last_updated: "2026-03-14T02:53:43Z"
+last_activity: 2026-03-14 -- MIT License, pyproject.toml metadata, CHANGELOG.md, 96 ruff lint errors resolved to zero.
 progress:
   total_phases: 11
   completed_phases: 9
   total_plans: 28
-  completed_plans: 26
-  percent: 93
+  completed_plans: 27
+  percent: 96
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** Phase 09 (Release Packaging) in progress. Plan 2 of 3 complete. 493 tests passing.
+**Current focus:** Phase 09 (Release Packaging) in progress. Plans 1-2 of 3 complete. 493 tests passing.
 
 ## Current Position
 
 Phase: 09 of 11 (Release Packaging) -- IN PROGRESS
-Plan: 2 of 3 in current phase
-Status: README.md rewritten as user-facing documentation. 13 MCP tools, 4 resources, 3 prompts documented.
-Last activity: 2026-03-14 -- README.md rewrite with installation, quick-start, MCP config, and feature overview.
+Plan: 2 of 3 in current phase (plans 01 and 02 complete, plan 03 remaining)
+Status: LICENSE, pyproject.toml metadata, CHANGELOG.md, README.md complete. Zero ruff lint errors. 493 tests passing.
+Last activity: 2026-03-14 -- MIT License, pyproject.toml metadata, CHANGELOG.md, 96 ruff lint errors resolved to zero.
 
-Progress: [█████████░] 93% (26/28 plans)
+Progress: [█████████░] 96% (27/28 plans)
 
 ## Performance Metrics
 
@@ -65,6 +65,7 @@ Progress: [█████████░] 93% (26/28 plans)
 | Phase 07 P02 | 18 | 1 tasks | 3 files |
 | Phase 08 P01 | 51 | 2 tasks | 11 files |
 | Phase 08 P02 | 2 | 1 tasks | 0 files |
+| Phase 09 P01 | 17 | 2 tasks | 45 files |
 | Phase 09 P02 | 2 | 1 tasks | 1 files |
 
 ## Accumulated Context
@@ -172,6 +173,9 @@ Recent decisions affecting current work:
 - [Phase 08]: 08-01: content/__init__.py stripped to docstring only (zero re-exports) per locked SC-4 decision
 - [Phase 08]: 08-01: Subprocess-based import isolation testing for verifying lazy loading (avoids false passes from pre-loaded modules)
 - [Phase 08]: 08-02: Database-only migration plan -- no source files modified, live DB migrated 004->008 via alembic upgrade head
+- [Phase 09]: 09-01: PEP 639 SPDX string format for license (license = 'MIT') not legacy table format
+- [Phase 09]: 09-01: Renamed enrichment/content local vars in server.py lifespan to avoid F811 shadowing with side-effect import names
+- [Phase 09]: 09-01: Per-file-ignores for alembic F401 and cli.py E402 (intentional patterns)
 - [Phase 09]: 09-02: README documents all 13 MCP tools grouped by domain, with user-facing quick-start and MCP server config
 
 ### Pending Todos
@@ -202,6 +206,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T02:39:25.322Z
-Stopped at: Completed 09-02-PLAN.md
+Last session: 2026-03-14T02:53:43Z
+Stopped at: Completed 09-01-PLAN.md
 Resume file: None
