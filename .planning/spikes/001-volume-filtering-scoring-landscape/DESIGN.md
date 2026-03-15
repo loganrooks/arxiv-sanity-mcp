@@ -1,5 +1,5 @@
 ---
-question: "What are the volume, filtering, and scoring dynamics of arXiv paper ingestion under different configurations — and what signals available at ingestion time predict paper importance?"
+question: "What does the arXiv paper landscape look like for our configured categories, what signals predict paper importance, and how do different filtering/promotion strategies trade off volume against coverage?"
 type: exploratory
 status: designing
 linked_deliberation: deployment-portability.md
@@ -12,184 +12,189 @@ linked_questions:
 
 ## Question
 
-What are the real-world volume dynamics of arXiv paper ingestion under different category and scoring configurations — and which signals available at metadata-only tier predict future paper importance?
+What does the arXiv paper landscape look like for our configured categories? What signals — both raw and computed — predict paper importance? How do different filtering and promotion strategies trade off volume against coverage?
 
 ## Why This Matters
 
-We need to make architectural decisions about:
-- Whether SQLite is viable as a default backend (depends on expected corpus size)
-- How the promotion pipeline should work (depends on which scoring signals are predictive)
-- What filtering strategies to offer users (depends on the volume-quality tradeoff)
+We need empirical understanding before making architectural decisions about:
+- Backend choice (SQLite vs PostgreSQL — depends on expected corpus size)
+- Promotion pipeline design (depends on which scoring signals exist and work)
+- Filtering strategy (depends on the volume-quality tradeoff shape)
+- User-facing tier recommendations (depends on all of the above)
 
-We currently have zero empirical data on any of these. The project has 126 papers from manual import. Real-world usage involves daily harvesting from arXiv, producing ~100K papers/year (estimated from arXiv stats, unvalidated against our actual pipeline).
+We currently have zero empirical data. This spike explores the landscape before we commit to any particular approach.
 
 ## Background
 
 ### What the architecture currently says
 - **ADR-0002:** "Ingest metadata eagerly, enrich lazily, embed selectively"
-- **Ingestion filtering:** Category-only (configured in `categories.toml`: 15 categories across cs, stat, math, eess)
-- **Promotion:** Demand-driven only — papers get enriched/embedded when a user/agent explicitly touches them
+- **Ingestion filtering:** Category-only (categories.toml: 15 categories across cs, stat, math, eess)
+- **Promotion:** Demand-driven only — entirely manual
 - **Processing tiers:** METADATA_ONLY(0) → FTS_INDEXED(1) → ENRICHED(2) → EMBEDDED(3) → CONTENT_PARSED(4)
-- **Current behavior:** All ingested papers go straight to tier 1 (FTS_INDEXED) automatically
 
 ### What we don't know
-1. How many papers/day actually match our configured categories after deduplication?
-2. What does the volume look like at different category configurations?
-3. What metadata-only signals (available at tier 0-1) correlate with future importance?
-4. At what scoring threshold do we start missing important papers (regret)?
-5. What's the volume-coverage tradeoff curve look like?
+- The actual volume dynamics of our pipeline at realistic scale
+- What the corpus looks like structurally (clusters, distributions, outliers)
+- Which features — raw or computed — correlate with paper importance
+- Whether "importance" is even one thing or multiple dimensions
+- What the coverage-regret tradeoff looks like at different filtering levels
+- How different promotion strategies compare in resource requirements
 
-## Hypotheses
+## Design Principles
 
-These are not predictions to confirm/reject — they're working hypotheses to guide exploration. We expect some to be revised as we learn.
+1. **Explore before operationalize.** Don't define "important paper = >50 citations" upfront. Let the data reveal what importance looks like.
+2. **Compute signals, don't just read them.** Metadata fields are inputs. Interesting signals are often derived (author network centrality, category entropy, temporal patterns).
+3. **Visualize before quantify.** Maps and distributions reveal structure that summary statistics hide.
+4. **Leave room for emergence.** The most interesting findings will be things we didn't think to look for.
 
-**H1:** The big 4 categories (cs.AI, cs.CL, cs.CV, cs.LG) account for >80% of the papers a philosophy-of-AI researcher would want, despite being only 4 of 15 configured categories.
+## Phases
 
-**H2:** At least one metadata-only signal (author publication frequency, category cross-listing count, abstract length, title keyword patterns) will correlate with future citation count at r > 0.3.
+This spike has three phases. Each phase's design may be refined based on previous phase findings.
 
-**H3:** An "ingest all, promote selectively" strategy (ADR-0002's approach) produces lower regret than any ingestion-stage filtering strategy, at the cost of larger tier-0/1 storage.
+### Phase A: Landscape Exploration
 
-**H4:** There exists a natural elbow in the volume-coverage curve where increasing ingestion volume gives diminishing returns in important-paper coverage.
+**Objective:** Understand what our slice of arXiv looks like — volume, structure, distributions, clusters.
 
-## Experiments
+**A1: Volume Mapping**
+- Harvest 1 calendar month of real data (January 2026) at multiple category configs:
+  - Config A: Big 4 (cs.AI, cs.CL, cs.CV, cs.LG)
+  - Config B: All 15 configured categories
+  - Config C: All of CS (37 subcategories)
+- Measure: unique papers/day, cross-listing overlap, category distribution
+- Extrapolate to annual and historical volumes
+- Output: volume estimates per config with deduplication rates
 
-### Experiment 1: Volume Mapping
+**A2: Corpus Visualization and Structure**
+- Using the harvested sample, explore the corpus structure:
+  - Topic modeling (LDA or BERTopic) on abstracts — what clusters emerge naturally?
+  - Dimensionality reduction (UMAP or t-SNE) of TF-IDF vectors — visualize the paper space
+  - Category co-occurrence heatmap — how do categories overlap?
+  - Temporal patterns — submission rate by day/week/month, seasonal effects
+  - Author network — who publishes together, prolific author distribution
+- Output: visualizations, cluster descriptions, structural observations
+- **This is the most open-ended part.** We're looking at the data to see what patterns exist before deciding what to measure.
 
-**Objective:** Measure actual paper volumes at different category configurations.
+**A3: Distribution Analysis**
+- For the harvested sample, compute distributions of:
+  - Papers per category per day
+  - Authors per paper
+  - Categories per paper (cross-listing breadth)
+  - Submission timing patterns
+  - Any other features that the visualization in A2 suggests are interesting
+- Output: distribution plots, summary statistics, outlier identification
 
-**Method:**
-1. Use arXiv OAI-PMH to harvest 1 calendar month (e.g., January 2026) for each configuration:
-   - Config A: Big 4 only (cs.AI, cs.CL, cs.CV, cs.LG)
-   - Config B: All 15 configured categories
-   - Config C: All of CS (37 subcategories)
-   - Config D: Config B + expanded philosophy-adjacent (e.g., cs.CY, cs.HC, physics categories)
-2. Count unique papers per config (accounting for cross-listing deduplication)
-3. Extrapolate to annual volume
+### Phase B: Signal Research and Discovery
 
-**Measurements:**
-- Unique papers per day, per config
-- Cross-listing overlap percentage between configs
-- Category distribution within each config (which categories contribute most?)
-- Metadata size per paper (average, p50, p95)
+**Objective:** Identify and evaluate candidate signals that could predict paper importance or relevance. Start with research, then compute and test.
 
-**Controls:**
-- Same time period for all configs (controls for seasonal variation)
-- Deduplication by arxiv_id (controls for cross-listing)
+**B1: Research — What Signals Could We Use?**
+- Literature review: what do existing paper recommendation systems use as features?
+  - arxiv-sanity-lite: TF-IDF + SVM on user tags
+  - Semantic Scholar: SPECTER embeddings, citation velocity
+  - OpenAlex: topics, concepts, citation graph metrics
+  - Others in the literature
+- Catalog of possible signals, organized by:
+  - When available (at ingestion vs after enrichment vs after user interaction)
+  - Computational cost (free metadata field vs API call vs GPU compute)
+  - What they might predict (importance, relevance to a profile, novelty)
+- Output: signal catalog document
 
-### Experiment 2: Scoring Signal Analysis
+**B2: Computed Signal Exploration**
+- Using a retrospective sample (papers from 2024 with 2+ years of citation history via OpenAlex), compute candidate signals:
+  - **Raw metadata signals:** author count, category count, primary category, etc.
+  - **Computed signals:** things we derive from metadata that aren't directly stored
+    - Author publication frequency in corpus (proxy for productivity/influence)
+    - Category entropy (how cross-disciplinary is this paper?)
+    - Title/abstract textual features (TF-IDF similarity to high-impact papers, keyword patterns)
+    - Temporal features (submission timing relative to conference deadlines, trending topic overlap)
+    - Author network features (co-author graph centrality, institutional diversity)
+    - Whatever else Phase A's exploration suggests
+  - **Enrichment signals (available after tier 2):**
+    - OpenAlex topic scores
+    - Related works count
+    - Early citation velocity (citations in first N months)
+- For each signal, visualize its distribution and relationship to citation outcomes
+- Unsupervised analysis: do papers cluster by these signals in ways that map to importance?
+- Output: signal analysis with visualizations, ranked by apparent informativeness
 
-**Objective:** Identify which metadata-only signals predict future paper importance.
+**B3: "Importance" — Is It One Thing?**
+- Using the enriched retrospective sample, explore what "important" means:
+  - Citation count distribution — what does the tail look like?
+  - Citation velocity vs cumulative citations — are fast-cited papers different from slow-burn papers?
+  - Is there a meaningful boundary between "important" and "not important" or is it a continuum?
+  - Do different categories have different importance distributions? (A paper with 50 citations in stat.TH might be landmark; in cs.AI it might be average)
+  - Cluster analysis: do importance dimensions (citations, breadth of citing fields, longevity) form natural groups?
+- Output: operational definition(s) of importance grounded in data, not assumed upfront
 
-**Method:**
-1. Harvest a retrospective sample: papers from January-March 2024 in Config B categories
-2. Enrich all papers via OpenAlex to get current (2026) citation counts
-3. For each paper, extract metadata-only signals available at ingestion time:
-   - Author count
-   - Abstract word count
-   - Number of categories (cross-listing breadth)
-   - Primary category
-   - Title keyword patterns (e.g., contains "survey", "benchmark", "framework")
-   - Day of week / month of submission
-   - Author name frequency in corpus (proxy for prolific authors)
-4. Correlate each signal with citation count at +2 years
-5. Build a simple scoring model (logistic regression or decision tree) and evaluate predictiveness
+### Phase C: Tradeoff Mapping
 
-**Measurements:**
-- Pearson/Spearman correlation for each signal vs citations
-- ROC-AUC of a simple classifier predicting "paper reaches >10 citations within 2 years"
-- Feature importance ranking
-- Confusion matrix: what types of important papers does the classifier miss?
+**Objective:** Given what we learned in Phases A and B, map the tradeoffs between filtering strategies, promotion strategies, and resource requirements.
 
-**Controls:**
-- Use 2024 data with 2026 citations (2-year lag gives citations time to accumulate)
-- Train/test split (70/30) to avoid overfitting
-- Null model comparison (random scoring)
+**C1: Coverage-Regret Analysis**
+- Using the best signals from Phase B, construct candidate filtering/scoring strategies
+- Apply each strategy to the retrospective sample
+- Measure coverage (% of important papers retained) vs volume (papers kept)
+- Plot coverage curves — look for elbows, natural thresholds
+- Analyze regret: which important papers does each strategy miss, and why?
+- Test sensitivity: how do results change with different importance definitions from B3?
+- Output: coverage-regret curves, strategy comparison, regret analysis
 
-### Experiment 3: Coverage-Regret Analysis
+**C2: Promotion Pipeline Simulation**
+- Simulate 1 year of operation under different promotion strategies:
+  - Demand-only (current: user touches paper → promote)
+  - Cohort-based (auto-promote top N% daily)
+  - Budget-constrained (fixed daily enrichment budget, allocated by score)
+  - Two-phase (ingest broadly, build triage data, then auto-promote)
+- Estimate for each: API calls/day, disk usage growth, compute requirements
+- Cross-reference with backend capacity (from volume estimates in Phase A)
+- Output: resource projections per strategy, backend implications
 
-**Objective:** Map the tradeoff between filtering aggressiveness and missed-paper regret.
-
-**Method:**
-1. Using the same retrospective sample from Experiment 2
-2. Define "important paper" operationally: >50 citations within 2 years (this threshold itself should be explored)
-3. Apply different filtering strategies:
-   - No filter (keep all) — baseline
-   - Category-only (current approach)
-   - Category + top-N% by scoring model from Experiment 2
-   - Category + minimum cross-listing count
-   - Category + author frequency threshold
-4. For each strategy, measure:
-   - How many papers kept (volume)
-   - How many important papers kept (coverage)
-   - How many important papers missed (regret)
-
-**Measurements:**
-- Coverage: % of important papers retained at each filtering level
-- Volume: absolute number of papers at each level
-- Regret: list of specific important papers missed, with analysis of why
-- Coverage-volume curve: plot coverage (y) vs volume (x) for each strategy
-- Elbow detection: where does the curve flatten?
-
-**Controls:**
-- Same "importance" definition across all strategies
-- Multiple importance thresholds (>10, >50, >100 citations) to test sensitivity
-- Time-window controls (does the pattern hold for Q1 2024 vs Q2 2024?)
-
-### Experiment 4: Promotion Pipeline Simulation
-
-**Objective:** Estimate resource requirements of different promotion strategies at realistic volumes.
-
-**Method:**
-1. Using volume estimates from Experiment 1 and scoring model from Experiment 2
-2. Simulate 1 year of operation under different promotion strategies:
-   - **Demand-only:** Only promote papers the user touches (estimate 5-20 papers/day)
-   - **Cohort:** Auto-promote top 10% of daily ingest to tier 2
-   - **Budget-constrained:** Fixed daily budget of N enrichments, allocated by score
-   - **Two-phase:** Ingest all at tier 0-1, promote based on accumulated triage data after 30 days
-3. For each strategy, estimate:
-   - Enrichment API calls per day/month (OpenAlex rate limit: 10 req/s with email, 1 req/s without)
-   - Disk usage growth trajectory
-   - Embedding compute requirements (when we reach tier 3)
-
-**Measurements:**
-- API calls per day per strategy
-- Cumulative disk usage over 12 months
-- Time to process daily batch
-- Estimated cost (API, compute, storage)
-
-**Controls:**
-- Same base corpus for all strategies
-- Same user interaction model (estimated from Phase 5 and Phase 10 session data)
+**C3: Backend Implications**
+- Using volume estimates from A1 and resource projections from C2:
+  - At what corpus sizes do different operations become slow? (This feeds Spike 002)
+  - What are the disk usage projections for each tier over 1-3 years?
+  - At what point would a user need to consider migrating from SQLite to PostgreSQL?
+  - What are the concrete feature tradeoffs at each backend (from our earlier analysis)?
+- Output: preliminary backend sizing guidance (to be validated by Spike 002 benchmarks)
 
 ## Success Criteria
 
-This is an exploratory spike — success is defined by learning, not by confirming a hypothesis.
+Exploratory spike — success is learning, not confirming.
 
-**The spike succeeds if we can answer:**
-1. How many papers per year at each category configuration? (±20% accuracy)
-2. Which 2-3 metadata signals are most predictive of importance? (ranked by effect size)
-3. What's the shape of the coverage-regret curve? (is there an elbow?)
-4. What are the resource implications of each promotion strategy? (order of magnitude)
+**The spike succeeds if we can provide grounded answers to:**
+1. What are the realistic paper volumes at each category configuration?
+2. What does the arXiv landscape look like structurally for our categories?
+3. Which 3-5 signals are most worth computing for paper scoring?
+4. What shape is the coverage-regret tradeoff? Is there an elbow?
+5. What promotion strategy best fits our architectural values (ADR-0002)?
+6. What are the approximate resource requirements for 1 year of operation?
+
+**The spike surfaces new questions if:**
+- Unsupervised analysis reveals unexpected structure worth investigating further
+- Signal analysis suggests a scoring approach worth prototyping (→ potential new spike)
+- Coverage analysis reveals that aggressive filtering is too risky OR that broad ingestion is too cheap to bother filtering (→ revises the whole question)
 
 **The spike fails if:**
-- We can't harvest enough historical data to do the retrospective analysis
-- OpenAlex enrichment rate limits prevent us from getting citation data for the sample
-- The signals we can extract at metadata-only tier have no predictive value (all r < 0.1)
+- We can't harvest enough data for meaningful analysis (arXiv rate limits, API issues)
+- OpenAlex enrichment is too slow to get citation data for the retrospective sample
+- The analysis is too shallow to inform architectural decisions
 
 ## Practical Constraints
 
-- arXiv OAI-PMH rate limit: 3 seconds between requests (configurable in our harvester)
-- OpenAlex rate limit: 10 req/s with email, 1 req/s without (we have email configured)
-- Disk: /home has ~80GB free, /scratch has 87GB free, /data has 1.4TB free
-- GPU: GTX 1080 Ti available but not needed for this spike (no embeddings)
-- All experiment code lives in this spike workspace — no modification to main project files
+- arXiv OAI-PMH: 3s between requests (our harvester rate limit)
+- OpenAlex: 10 req/s with email configured
+- Storage: /scratch (87GB free) for experiment data, /data (1.4TB) for large datasets
+- GPU: GTX 1080 Ti available for BERTopic / UMAP if needed
+- Python environment: conda or project venv, scikit-learn + matplotlib + umap-learn + bertopic
+- All experiment code lives in this spike workspace
 
 ## Experiment Code Location
 
-All code in `.planning/spikes/001-volume-filtering-scoring-landscape/experiments/`
+`.planning/spikes/001-volume-filtering-scoring-landscape/experiments/`
 
 ## Output
 
-- **FINDINGS.md:** Data, charts, analysis for each experiment
-- **DECISION.md:** Answers to the four success criteria questions
-- Feeds into: Spike 002 (backend benchmarking) and deployment-portability deliberation
+- **FINDINGS.md:** Data, visualizations, analysis organized by phase
+- **DECISION.md:** Answers to the six success criteria questions + recommendations
+- **Artifacts:** Notebooks, scripts, datasets in experiments/
+- **Feeds into:** Spike 002 (backend benchmarking), deployment-portability deliberation, potentially new spikes
