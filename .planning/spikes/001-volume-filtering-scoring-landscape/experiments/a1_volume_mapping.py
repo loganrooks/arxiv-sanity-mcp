@@ -25,13 +25,33 @@ from pathlib import Path
 import structlog
 from oaipmh_scythe import Scythe
 
-# Add project root to path for imports
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "src"))
-
-from arxiv_mcp.ingestion.parsers import parse_arxiv_raw
-
 logger = structlog.get_logger(__name__)
+
+
+def _first(val):
+    """Extract first element from scythe's list-valued metadata fields."""
+    if isinstance(val, list):
+        return val[0] if val else None
+    return val
+
+
+class SimpleRecord:
+    """Minimal record extracted from scythe's dict metadata."""
+    def __init__(self, meta: dict):
+        self.arxiv_id = _first(meta.get("id", []))
+        self.title = _first(meta.get("title", []))
+        self.authors = _first(meta.get("authors", []))
+        self.abstract = _first(meta.get("abstract", []))
+        self.categories = _first(meta.get("categories", []))
+        self.primary_category = self.categories.split()[0] if self.categories else None
+        self.submitted_date = _first(meta.get("date", []))
+        self.updated_date = None  # Not directly available in arXivRaw dict
+        self.license_uri = _first(meta.get("license", []))
+        self.latest_version = None
+        # Parse version from version field if present
+        versions = meta.get("version", [])
+        if versions and versions[0]:
+            self.latest_version = len(versions)
 
 # --- Category Configurations ---
 
@@ -157,10 +177,10 @@ def harvest_month(
                               f"matched {stats['total_matched']}...")
 
                     try:
-                        raw = parse_arxiv_raw(record.metadata)
+                        raw = SimpleRecord(record.metadata)
 
                         # Category filtering
-                        if not matches_categories(raw.categories, config["categories"]):
+                        if not matches_categories(raw.categories or "", config["categories"]):
                             stats["total_skipped"] += 1
                             continue
 
