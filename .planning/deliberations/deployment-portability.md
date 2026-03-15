@@ -11,7 +11,7 @@ Lifecycle: open → concluded → adopted → evaluated → superseded
 -->
 
 **Date:** 2026-03-14
-**Status:** Concluded
+**Status:** Open — pending spike findings
 **Trigger:** After Phase 10 (agent integration test) completion, user asked: "are we sure everything is working? how might one install this locally on another computer?" Investigation revealed the project is feature-complete but not deployment-ready. Subsequent deliberation expanded scope to include: backend flexibility (SQLite vs PostgreSQL), deployment tiers (personal vs hosted), arxiv-sanity-lite architecture comparison, and PyPI distribution.
 **Affects:** v0.1.x release, v0.2 milestone planning, new users, installation on apollo (MacBook), potential contributors
 **Related:**
@@ -235,11 +235,27 @@ All of these work through the service layer, which sits above the storage interf
 | P4 | SQLite FTS5 search quality will be indistinguishable from PostgreSQL tsvector for corpora <10K papers | Compare search results for same queries on both backends | Users report noticeably worse search on SQLite |
 | P5 | Zero users will need Tier 3 (hosted) in the first 6 months | Track `--transport http` usage | Someone requests hosted mode within 3 months |
 
+## Status Update (2026-03-15)
+
+The recommendation above was drafted prematurely — several key assumptions require empirical testing before architectural decisions can be made. A spike program has been created to investigate:
+
+1. **Volume and filtering landscape** (Spike 001): What are the real-world paper volumes under different configurations? What scoring signals predict paper importance at ingestion time? What are the coverage/regret tradeoffs of different filtering strategies?
+
+2. **Backend performance benchmarking** (Spike 002): At the volumes identified in Spike 001, how do SQLite and PostgreSQL perform across the full paper lifecycle?
+
+The phasing (11 + 12) and tier feature matrix above remain the *working hypothesis*, but they should not be adopted until spike findings either confirm or revise them. In particular:
+- The "~10K papers" SQLite limit in the tier matrix is an unverified guess
+- The storage interface design depends on understanding the promotion pipeline
+- The scoring/filtering system design emerged as a prerequisite question not addressed in this deliberation
+
+**Spike program roadmap:** `.planning/spikes/ROADMAP.md`
+**Deliberation status:** Open — re-evaluate after Spike 001 findings
+
 ## Decision Record
 
-**Decision:** Tiered deployment architecture. Phase 11 (distribution/tooling) as v0.1.1. Phase 12 (storage abstraction/SQLite) as first phase of v0.2. Three tiers: Personal (SQLite), Power (PostgreSQL), Hosted (HTTP transport). Storage interface as the abstraction boundary.
-**Decided:** 2026-03-14
-**Implemented via:** not yet implemented — Phase 11 and Phase 12 to be created
+**Decision:** Pending — awaiting spike findings
+**Decided:** —
+**Implemented via:** not yet implemented
 **Signals addressed:** None (triggered by post-Phase-10 conversation)
 
 ## Evaluation
