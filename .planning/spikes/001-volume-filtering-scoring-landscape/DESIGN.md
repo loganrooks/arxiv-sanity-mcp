@@ -74,6 +74,17 @@ This spike has three phases. Each phase's design may be refined based on previou
 - Output: visualizations, cluster descriptions, structural observations
 - **This is the most open-ended part.** We're looking at the data to see what patterns exist before deciding what to measure.
 
+**A2b: Interactive Explorer Prototype**
+- Build a Streamlit (or Plotly Dash) app for interactive exploration of the harvested corpus:
+  - UMAP scatter of papers (each dot = a paper)
+  - Color by selectable dimension: category, cluster, citation count, scoring signals (added in Phase B)
+  - Filter controls: category checkboxes, date range, scoring threshold slider
+  - On hover / click detail panel: paper title, authors, abstract, citation count, categories, submission date, enrichment data (OpenAlex topics, related works count, FWCI), triage state, processing tier — all available metadata
+  - Regret panel (added in Phase C): "At this threshold, you miss N important papers" with list
+- This tool evolves across all three phases — Phase A creates the base map, Phase B adds signal coloring, Phase C adds filtering/regret visualization
+- Not a polished product — a spike instrument for understanding the data
+- Output: working interactive app in experiments/explorer/
+
 **A3: Distribution Analysis**
 - For the harvested sample, compute distributions of:
   - Papers per category per day
@@ -185,7 +196,8 @@ Exploratory spike — success is learning, not confirming.
 - OpenAlex: 10 req/s with email configured
 - Storage: /scratch (87GB free) for experiment data, /data (1.4TB) for large datasets
 - GPU: GTX 1080 Ti available for BERTopic / UMAP if needed
-- Python environment: conda or project venv, scikit-learn + matplotlib + umap-learn + bertopic
+- Python environment: conda or project venv
+- Key libraries: scikit-learn, matplotlib, umap-learn, bertopic, streamlit, plotly
 - All experiment code lives in this spike workspace
 
 ## Experiment Code Location
