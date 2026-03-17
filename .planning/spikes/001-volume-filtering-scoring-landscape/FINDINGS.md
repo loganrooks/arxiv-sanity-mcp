@@ -1,7 +1,7 @@
 # Spike 001: Findings (In Progress)
 
 **Last updated:** 2026-03-17
-**Status:** Phase A1 complete, A1c.1-2 complete, A1c.3 + A2-C pending
+**Status:** Phase A1 + A1c capability envelope complete. A2-C pending.
 
 ## Phase A1: Volume Mapping — Complete
 
@@ -191,6 +191,69 @@ Measured FTS5 search latency during concurrent writes at 5 write rates (0–100/
 
 Tests run with 10K pre-populated papers. At larger corpus sizes (50K+), absolute search latency would be higher (per A1b findings) but the *relative impact* of concurrent writes should be similar since the contention is at the file/journal level, not query-proportional. WAL mode's advantage is architectural (readers don't block on writers), not scale-dependent.
 
+## A1c.3: Lightweight Embedding Benchmark — Complete
+
+Measured all-MiniLM-L6-v2 (384-dim) embedding computation time on CPU (Xeon W-2125, 4c/8t) and GPU (GTX 1080 Ti), memory footprint, and brute-force cosine similarity search time at 6 scale points. Pre-normalized embeddings enable dot-product search.
+
+### Embedding Computation Time
+
+| Scale | CPU | GPU | GPU Speedup |
+|-------|-----|-----|-------------|
+| 5K | 177s (35.5ms/paper) | 8.7s (1.7ms/paper) | 20.3x |
+| 10K | 355s (35.5ms/paper) | 17.3s (1.7ms/paper) | 20.4x |
+| 19K | 684s (35.5ms/paper) | 33.1s (1.7ms/paper) | 20.6x |
+| 50K | 1762s (35.2ms/paper) | 88.0s (1.8ms/paper) | 20.0x |
+| 100K | 3371s (33.7ms/paper) | 179.7s (1.8ms/paper) | 18.8x |
+| 215K | 7136s (33.2ms/paper) | 377.9s (1.8ms/paper) | 18.9x |
+
+### Memory Footprint
+
+| Scale | float32 | float16 |
+|-------|---------|---------|
+| 5K | 7.3 MB | 3.7 MB |
+| 10K | 14.6 MB | 7.3 MB |
+| 19K | 28.2 MB | 14.1 MB |
+| 50K | 73.2 MB | 36.6 MB |
+| 100K | 146.5 MB | 73.2 MB |
+| 215K | 314.9 MB | 157.5 MB |
+
+### Brute-Force Cosine Similarity Search (p50, pre-normalized dot product)
+
+| Scale | CPU | GPU |
+|-------|-----|-----|
+| 5K | 3.0ms | 0.2ms |
+| 10K | 2.8ms | 0.5ms |
+| 19K | 5.0ms | 4.2ms |
+| 50K | 5.0ms | 7.8ms |
+| 100K | 8.0ms | 9.2ms |
+| 215K | 16.2ms | 16.9ms |
+
+### Key Findings
+
+1. **Brute-force embedding search is shockingly fast — under 17ms at 215K papers.** This is 30x faster than TF-IDF cosine similarity (516ms) at the same scale. Pre-normalized dot product with dense 384-dim vectors is faster than sparse TF-IDF cosine over 56K-dim vectors. The 100ms threshold from DESIGN.md is never even approached.
+
+2. **GPU provides ~20x speedup for embedding computation, but search is CPU-bound.** GPU embedding is 1.7ms/paper vs 35ms/paper on CPU — a consistent 20x. But brute-force search is similar on CPU and GPU because it's a simple matrix multiplication that numpy handles efficiently.
+
+3. **CPU embedding is prohibitively slow for interactive use.** Embedding 19K papers takes 11.4 minutes on CPU. The full 215K takes 2 hours. This is fine for a batch job (nightly rebuild) but not for on-demand embedding of newly arrived papers. GPU makes this feasible: 19K in 33 seconds, 215K in 6.3 minutes.
+
+4. **Memory is modest.** float32 embeddings for 215K papers need 315 MB. float16 halves this to 158 MB. Both fit trivially in laptop RAM. Combined with TF-IDF (157 MB), the total feature set for 215K papers is ~472 MB float32 — still under 1 GB.
+
+5. **Semantic search works on SQLite without pgvector.** At all scales, brute-force search is under 17ms. This completely undercuts the deliberation's assumption that pgvector is needed for semantic search at personal scale. The tier differentiation should be GPU availability for *embedding computation*, not database features for *search*.
+
+6. **The embedding bottleneck is computation, not storage or search.** Same pattern as TF-IDF (A1c.1) but more extreme: the features are cheap to store and fast to search, but expensive to compute (especially on CPU).
+
+### What Would Have Surprised Us (Pre-registered Predictions vs Results)
+
+| Prediction | Threshold | Actual | Surprised? |
+|-----------|-----------|--------|-----------|
+| Brute-force search at 100K under 10ms | <10ms | 8.0ms CPU, 9.2ms GPU | **Yes** — expected this to be slow |
+| GPU embedding <5x faster than CPU | <5x speedup | 20x speedup | **Yes** — GPU advantage much larger than expected |
+| float16 measurably degrades quality | Quality difference | Not tested (need quality eval) | N/A — deferred |
+
+### Methodology Note
+
+Same duplication caveat as previous experiments. Search time at 215K with real unique papers would produce different similarity distributions but the compute time (matrix multiply) depends only on matrix dimensions, not content uniqueness. Embedding computation time per paper is consistent (~35ms CPU, ~1.7ms GPU) regardless of scale — the work is per-text, not per-corpus. The GPU speedup (20x) is a property of the model+hardware combination, not the data.
+
 ## What We Know With Evidence
 
 | Claim | Evidence | Confidence |
@@ -208,6 +271,11 @@ Tests run with 10K pre-populated papers. At larger corpus sizes (50K+), absolute
 | Harvest daemon + MCP server can coexist on SQLite | Zero degradation at realistic rates (WAL) | High — 600 papers/day is orders of magnitude below threshold |
 | DELETE journal mode with unbatched writes is dangerous | p95=3.7s at 100 writes/s, batch=1 | High — measured directly |
 | Batch writes eliminate DELETE mode contention | p95=11ms at 100/s with batch=10 | High — measured directly |
+| Brute-force embedding search is fast at all scales | 16.2ms p50 at 215K papers | High — measured directly |
+| GPU provides ~20x speedup for embedding computation | 35ms/paper CPU vs 1.7ms/paper GPU | High — consistent across all scales |
+| CPU embedding is too slow for interactive use | 11 min for 19K papers, 2 hours for 215K | High — measured directly |
+| Semantic search does NOT need pgvector at personal scale | Brute-force under 17ms at 215K | High — completely undercuts deliberation assumption |
+| Embedding memory is modest | 315 MB float32 at 215K papers | High — measured directly |
 
 ## What We Don't Know (Unmeasured)
 
@@ -216,8 +284,8 @@ Tests run with 10K pre-populated papers. At larger corpus sizes (50K+), absolute
 | ~~TF-IDF matrix size vs corpus size~~ | ~~Determines RAM needed~~ | **Answered (A1c.1):** 157 MB at 215K papers |
 | ~~TF-IDF rebuild time at scale~~ | ~~Determines feature update latency~~ | **Answered (A1c.1):** 28.5s at 215K papers |
 | ~~Brute-force TF-IDF cosine similarity at scale~~ | ~~Determines whether numpy search is practical~~ | **Answered (A1c.1):** Feasible to ~50-75K; 516ms at 215K |
-| Embedding computation time (CPU vs GPU) | Determines feasibility of semantic features on different hardware | Embed our 19K papers with all-MiniLM-L6-v2, measure time |
-| Brute-force embedding cosine similarity at scale | Determines whether embeddings are practical without pgvector | Benchmark at 19K, 50K, 100K with real embeddings |
+| ~~Embedding computation time (CPU vs GPU)~~ | ~~Determines semantic feature feasibility~~ | **Answered (A1c.3):** 35ms/paper CPU, 1.7ms/paper GPU (20x speedup) |
+| ~~Brute-force embedding search at scale~~ | ~~Determines whether embeddings work without pgvector~~ | **Answered (A1c.3):** 16ms p50 at 215K — pgvector unnecessary at personal scale |
 | ~~Concurrent read+write on SQLite~~ | ~~Determines harvest daemon + MCP coexistence~~ | **Answered (A1c.2):** WAL mode makes this a non-issue |
 | Pre-filtered cosine similarity performance | Does searching within category/time window keep latency under 100ms at 215K? | TF-IDF cosine on pre-filtered subsets |
 | PostgreSQL performance at same scales | Needed for fair backend comparison | Run equivalent benchmarks on PostgreSQL |
@@ -240,4 +308,8 @@ Tests run with 10K pre-populated papers. At larger corpus sizes (50K+), absolute
 
 6. **SQLite concurrent access is a solved problem with WAL mode.** We expected this to be a meaningful constraint that might force separate databases for harvest and query. It's not — WAL mode completely eliminates write-induced search degradation. Search latency is flat at 1.3-1.6ms regardless of whether 0 or 100 papers/second are being written concurrently. The deliberation's concern about "concurrent multi-writer access" as a PostgreSQL advantage is invalid for the single-writer scenario (one harvest daemon). WAL should be the default for all SQLite deployments.
 
-7. **The TF-IDF feasibility constraint is compute, not memory.** We expected that RAM might be the bottleneck for TF-IDF recommendations on laptops. It's not — 215K papers need only 157 MB. The bottleneck is brute-force cosine similarity search: O(n) over the full matrix crosses 100ms around 50K-75K papers and hits 500ms at 215K. This means the scaling strategy is pre-filtering (reduce the search space), not approximate nearest neighbors or bigger hardware. Conveniently, an SVM classifier trained on user preferences *is* a pre-filter — you only compute similarity against papers the SVM considers relevant.
+7. **Embedding search is faster than TF-IDF search.** Brute-force dot product over 384-dim dense embeddings (16ms at 215K) is 30x faster than cosine similarity over 56K-dim sparse TF-IDF (516ms at 215K). Dense, low-dimensional, pre-normalized vectors are simply more efficient to search than high-dimensional sparse matrices. This means that if you have embeddings, you don't need FTS5 for *similarity* — only for *keyword search* (which embeddings can't replace).
+
+8. **The tier differentiation is GPU for embedding computation, not database for search.** The deliberation assumed pgvector was needed for semantic search. It's not — brute-force works fine to 215K+. The real tier differentiator is GPU availability for *creating* embeddings (20x speedup), not database features for *searching* them. A laptop without GPU can still use pre-computed embeddings; it just can't create them quickly.
+
+9. **The TF-IDF feasibility constraint is compute, not memory.** We expected that RAM might be the bottleneck for TF-IDF recommendations on laptops. It's not — 215K papers need only 157 MB. The bottleneck is brute-force cosine similarity search: O(n) over the full matrix crosses 100ms around 50K-75K papers and hits 500ms at 215K. This means the scaling strategy is pre-filtering (reduce the search space), not approximate nearest neighbors or bigger hardware. Conveniently, an SVM classifier trained on user preferences *is* a pre-filter — you only compute similarity against papers the SVM considers relevant.

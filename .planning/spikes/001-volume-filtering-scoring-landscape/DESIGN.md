@@ -64,7 +64,7 @@ The NLP intelligence layer (TF-IDF, SVM, embeddings) runs in Python, not the dat
 | A1b: FTS5 Search Benchmark | **Complete** | <40ms p50 at 215K papers, linear scaling | `a1_fts5_benchmark.py` |
 | A1c.1: TF-IDF Matrix Benchmark | **Complete** | 157 MB at 215K; cosine search 516ms (bottleneck is compute, not RAM) | `a1c_tfidf_benchmark.py` |
 | A1c.2: Concurrent SQLite R+W | **Complete** | WAL mode: zero degradation at 100 writes/s. Non-issue. | `a1c_concurrent_sqlite.py` |
-| A1c.3: Lightweight Embeddings | Pending | — | — |
+| A1c.3: Lightweight Embeddings | **Complete** | 16ms search at 215K (no pgvector needed). GPU 20x faster for compute. | `a1c_embedding_benchmark.py` |
 | A2: Corpus Visualization | Pending | — | — |
 | A2b: Interactive Explorer | Pending | — | — |
 | A3: Distribution Analysis | Pending | — | — |
@@ -131,18 +131,13 @@ These experiments measure whether key computational operations are feasible at o
 
 *Results:* WAL mode completely eliminates the problem. Search p50 stays 1.3-1.6ms at 0-100 writes/s. Zero lock errors. DELETE mode with unbatched writes is catastrophic (p95=3.7s at 100/s). See FINDINGS.md for full data.
 
-**A1c.3: Lightweight Embedding Benchmark** — PENDING
+**A1c.3: Lightweight Embedding Benchmark** — COMPLETE
 
 *Question:* What are the compute time, memory, and brute-force search characteristics of lightweight sentence embeddings at our scale points?
 
 *Why it matters:* Semantic search is a v2 feature. The deliberation's tier model assumes pgvector is needed for semantic search. But at personal scale (<50K papers), brute-force cosine similarity over pre-computed embeddings might be fast enough — which would mean semantic search works on SQLite too. This fundamentally changes the tier differentiation story.
 
-*What to measure:*
-- Embedding computation time per paper for all-MiniLM-L6-v2 (384-dim), CPU vs GPU
-- Total embedding time for 19K papers (CPU vs GPU)
-- Embedding matrix memory at each scale point (float32 vs float16)
-- Brute-force cosine similarity search time at each scale point
-- Quality spot-check: do embedding neighbors make intuitive sense?
+*Results:* Brute-force embedding search is 16ms at 215K papers — 30x faster than TF-IDF cosine. pgvector is unnecessary at personal scale. GPU provides 20x embedding speedup (1.7ms vs 35ms per paper). Memory is 315 MB float32 at 215K. See FINDINGS.md for full data.
 
 ---
 

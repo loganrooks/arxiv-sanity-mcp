@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-15
 **Updated:** 2026-03-17
-**Status:** Active — Spike 001 A1+A1b+A1c.1+A1c.2 complete, A1c.3 next
+**Status:** Active — Spike 001 A1+A1b+A1c (all capability benchmarks) complete. A2 next.
 **Origin:** Post-Phase-10 deliberation on deployment and portability
 
 ## Context
@@ -49,7 +49,7 @@ This led to a tiered deployment proposal (SQLite for personal, PostgreSQL for po
 
 | # | Question | Type | Depends On | Status |
 |---|----------|------|------------|--------|
-| 001 | Volume, filtering, and scoring landscape | Exploratory | — | A1+A1b+A1c.1+A1c.2 complete. Key: Big4=12K/mo, FTS5 <40ms@215K, TF-IDF 157MB (compute bottleneck), WAL eliminates concurrency concern |
+| 001 | Volume, filtering, and scoring landscape | Exploratory | — | A1+A1c complete. FTS5 <40ms, TF-IDF 157MB (search slow >50K), WAL solves concurrency, embeddings 16ms@215K (no pgvector needed), GPU 20x for compute |
 | 002 | Backend performance benchmarking (SQLite vs PostgreSQL) | Comparative | 001 (volume estimates inform test parameters) | Blocked on 001 |
 
 ### Anticipated (may emerge from Spike 001-002 findings)
