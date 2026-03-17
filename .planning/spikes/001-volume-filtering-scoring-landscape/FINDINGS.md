@@ -1,7 +1,7 @@
 # Spike 001: Findings (In Progress)
 
 **Last updated:** 2026-03-17
-**Status:** Phase A1 complete, A1c.1 (TF-IDF) complete, A1c.2-3 + A2-C pending
+**Status:** Phase A1 complete, A1c.1-2 complete, A1c.3 + A2-C pending
 
 ## Phase A1: Volume Mapping — Complete
 
@@ -120,6 +120,77 @@ Measured TF-IDF matrix construction, memory footprint, and cosine similarity sea
 
 Same duplication caveat as A1b: scale points above 19K use duplicated papers with modified IDs. This preserves term frequency distributions but means vocabulary is capped at 19K unique papers' worth (~56K terms). Real 215K unique papers would have larger vocabulary (~150K-200K terms estimated), which would increase memory slightly but likely decrease search time (sparser, more discriminative vectors). The cosine search time finding (the main concern) may be slightly pessimistic for real data — duplicated documents create a denser similarity landscape than truly diverse papers would.
 
+## A1c.2: Concurrent SQLite Read+Write — Complete
+
+Measured FTS5 search latency during concurrent writes at 5 write rates (0–100/s), 2 journal modes (default DELETE vs WAL), 2 batch sizes (1 vs 10). 10K pre-populated papers. Each test runs for 10 seconds. `busy_timeout=5000ms`.
+
+### Search p50 Latency During Concurrent Writes
+
+**Batch size 1 (individual INSERT+COMMIT per paper):**
+
+| Journal Mode | 0/s (baseline) | 1/s | 10/s | 50/s | 100/s |
+|-------------|---------------|------|------|------|-------|
+| DELETE | 1.3ms | 1.7ms | 1.9ms | **27.6ms** | **180.7ms** |
+| WAL | 1.3ms | 1.5ms | 1.4ms | 1.6ms | 1.6ms |
+
+**Batch size 10 (10 INSERTs per COMMIT):**
+
+| Journal Mode | 0/s (baseline) | 1/s | 10/s | 50/s | 100/s |
+|-------------|---------------|------|------|------|-------|
+| DELETE | 1.3ms | 1.4ms | 1.6ms | 1.5ms | 1.9ms |
+| WAL | 1.3ms | 1.2ms | 1.4ms | 1.5ms | 1.5ms |
+
+### Search p95 Latency During Concurrent Writes
+
+**Batch size 1:**
+
+| Journal Mode | 0/s | 1/s | 10/s | 50/s | 100/s |
+|-------------|------|------|------|------|-------|
+| DELETE | 7.6ms | 8.2ms | 10.4ms | **59.7ms** | **3714ms** |
+| WAL | 7.7ms | 7.6ms | 7.5ms | 8.2ms | 8.1ms |
+
+**Batch size 10:**
+
+| Journal Mode | 0/s | 1/s | 10/s | 50/s | 100/s |
+|-------------|------|------|------|------|-------|
+| DELETE | 7.5ms | 7.6ms | 8.1ms | 8.6ms | 11.1ms |
+| WAL | 7.4ms | 7.3ms | 7.6ms | 8.1ms | 7.8ms |
+
+### Search Throughput
+
+| Config | 0/s writes | 100/s writes (batch=1) | 100/s writes (batch=10) |
+|--------|-----------|----------------------|------------------------|
+| DELETE | 406/s | **1/s** (99.7% drop) | 264/s (35% drop) |
+| WAL | 405/s | 359/s (11% drop) | 378/s (7% drop) |
+
+### Lock Errors
+
+**Zero lock errors across all configurations.** The 5-second `busy_timeout` was never triggered. Contention manifests as latency increase, not errors.
+
+### Key Findings
+
+1. **WAL mode completely eliminates write-induced search latency degradation.** With WAL, search p50 stays at 1.3-1.6ms regardless of write rate (0 to 100/s). Without WAL, search p50 jumps from 1.3ms to 181ms at 100 writes/s with batch=1 — a 140x degradation.
+
+2. **Batch size matters enormously for DELETE mode, barely for WAL.** DELETE mode with batch=1 at 100/s is catastrophic (p95=3.7s). DELETE mode with batch=10 at 100/s is tolerable (p95=11ms). WAL mode doesn't care about batch size — both are under 10ms.
+
+3. **The harvest daemon + MCP server can absolutely coexist on SQLite.** With WAL mode enabled (one `PRAGMA journal_mode=WAL` statement), concurrent access is a non-issue at any realistic write rate. Daily harvest of ~600 papers is 0.007 papers/second sustained — orders of magnitude below where any contention appears.
+
+4. **Even bulk import is fine with WAL.** 100 papers/second with batch=10 in WAL mode: search p50=1.5ms, p95=7.8ms, 378 searches/second. Zero impact on search quality.
+
+5. **DELETE mode with batch=1 is the only dangerous configuration.** Individual commits per paper at high rates cause severe contention. This is easily avoided: either use WAL (preferred) or batch writes.
+
+### What Would Have Surprised Us (Pre-registered Predictions vs Results)
+
+| Prediction | Threshold | Actual | Surprised? |
+|-----------|-----------|--------|-----------|
+| WAL eliminates contention entirely | No degradation | p50 stays 1.3-1.6ms at all rates | **Yes** — even better than expected, completely flat |
+| Search latency doubles during writes | 2x baseline | DELETE+batch1: 140x at 100/s. WAL: 1.0-1.2x | Partial — DELETE is worse than predicted, WAL better |
+| SQLITE_BUSY errors at realistic rates | Any busy errors | Zero errors at all rates (with 5s timeout) | **Yes** — expected some at 100/s |
+
+### Methodology Note
+
+Tests run with 10K pre-populated papers. At larger corpus sizes (50K+), absolute search latency would be higher (per A1b findings) but the *relative impact* of concurrent writes should be similar since the contention is at the file/journal level, not query-proportional. WAL mode's advantage is architectural (readers don't block on writers), not scale-dependent.
+
 ## What We Know With Evidence
 
 | Claim | Evidence | Confidence |
@@ -133,6 +204,10 @@ Same duplication caveat as A1b: scale points above 19K use duplicated papers wit
 | Brute-force cosine similarity is too slow above ~50-75K papers | 57ms at 50K, 173ms at 100K, 516ms at 215K | Medium — measured with duplicated data; real data may be slightly faster (sparser vectors) |
 | Vocabulary pruning has negligible impact on TF-IDF performance | All 5 configs within 10% at scale | High — measured across 5 configurations |
 | The TF-IDF feasibility constraint is compute, not memory | 157 MB RAM vs 516ms search at 215K | High — clear separation between the two dimensions |
+| WAL mode eliminates concurrent access as a concern | p50 stays 1.3-1.6ms at 0-100 writes/s | High — measured directly, completely flat |
+| Harvest daemon + MCP server can coexist on SQLite | Zero degradation at realistic rates (WAL) | High — 600 papers/day is orders of magnitude below threshold |
+| DELETE journal mode with unbatched writes is dangerous | p95=3.7s at 100 writes/s, batch=1 | High — measured directly |
+| Batch writes eliminate DELETE mode contention | p95=11ms at 100/s with batch=10 | High — measured directly |
 
 ## What We Don't Know (Unmeasured)
 
@@ -143,7 +218,7 @@ Same duplication caveat as A1b: scale points above 19K use duplicated papers wit
 | ~~Brute-force TF-IDF cosine similarity at scale~~ | ~~Determines whether numpy search is practical~~ | **Answered (A1c.1):** Feasible to ~50-75K; 516ms at 215K |
 | Embedding computation time (CPU vs GPU) | Determines feasibility of semantic features on different hardware | Embed our 19K papers with all-MiniLM-L6-v2, measure time |
 | Brute-force embedding cosine similarity at scale | Determines whether embeddings are practical without pgvector | Benchmark at 19K, 50K, 100K with real embeddings |
-| Concurrent read+write on SQLite | Determines whether harvest daemon + MCP server can coexist | Simulate concurrent access patterns |
+| ~~Concurrent read+write on SQLite~~ | ~~Determines harvest daemon + MCP coexistence~~ | **Answered (A1c.2):** WAL mode makes this a non-issue |
 | Pre-filtered cosine similarity performance | Does searching within category/time window keep latency under 100ms at 215K? | TF-IDF cosine on pre-filtered subsets |
 | PostgreSQL performance at same scales | Needed for fair backend comparison | Run equivalent benchmarks on PostgreSQL |
 | FTS5 vs tsvector result quality | Do they return the same papers for the same queries? | Side-by-side comparison on real data |
@@ -163,4 +238,6 @@ Same duplication caveat as A1b: scale points above 19K use duplicated papers wit
 
 5. **"Project" as a first-class concept is missing.** Interest profiles provide per-project ranking, but the user wants project-level recommendation feeds, model inheritance, and workspace separation. This isn't in any design doc.
 
-6. **The TF-IDF feasibility constraint is compute, not memory.** We expected that RAM might be the bottleneck for TF-IDF recommendations on laptops. It's not — 215K papers need only 157 MB. The bottleneck is brute-force cosine similarity search: O(n) over the full matrix crosses 100ms around 50K-75K papers and hits 500ms at 215K. This means the scaling strategy is pre-filtering (reduce the search space), not approximate nearest neighbors or bigger hardware. Conveniently, an SVM classifier trained on user preferences *is* a pre-filter — you only compute similarity against papers the SVM considers relevant.
+6. **SQLite concurrent access is a solved problem with WAL mode.** We expected this to be a meaningful constraint that might force separate databases for harvest and query. It's not — WAL mode completely eliminates write-induced search degradation. Search latency is flat at 1.3-1.6ms regardless of whether 0 or 100 papers/second are being written concurrently. The deliberation's concern about "concurrent multi-writer access" as a PostgreSQL advantage is invalid for the single-writer scenario (one harvest daemon). WAL should be the default for all SQLite deployments.
+
+7. **The TF-IDF feasibility constraint is compute, not memory.** We expected that RAM might be the bottleneck for TF-IDF recommendations on laptops. It's not — 215K papers need only 157 MB. The bottleneck is brute-force cosine similarity search: O(n) over the full matrix crosses 100ms around 50K-75K papers and hits 500ms at 215K. This means the scaling strategy is pre-filtering (reduce the search space), not approximate nearest neighbors or bigger hardware. Conveniently, an SVM classifier trained on user preferences *is* a pre-filter — you only compute similarity against papers the SVM considers relevant.

@@ -63,7 +63,7 @@ The NLP intelligence layer (TF-IDF, SVM, embeddings) runs in Python, not the dat
 | A1: Volume Mapping | **Complete** | Big4 = 12K/month, All CS = 18K/month, 81% overlap | `a1_volume_mapping.py` |
 | A1b: FTS5 Search Benchmark | **Complete** | <40ms p50 at 215K papers, linear scaling | `a1_fts5_benchmark.py` |
 | A1c.1: TF-IDF Matrix Benchmark | **Complete** | 157 MB at 215K; cosine search 516ms (bottleneck is compute, not RAM) | `a1c_tfidf_benchmark.py` |
-| A1c.2: Concurrent SQLite R+W | Pending | — | — |
+| A1c.2: Concurrent SQLite R+W | **Complete** | WAL mode: zero degradation at 100 writes/s. Non-issue. | `a1c_concurrent_sqlite.py` |
 | A1c.3: Lightweight Embeddings | Pending | — | — |
 | A2: Corpus Visualization | Pending | — | — |
 | A2b: Interactive Explorer | Pending | — | — |
@@ -123,18 +123,13 @@ These experiments measure whether key computational operations are feasible at o
 
 *Results:* Memory is trivial (157 MB at 215K). Cosine search is the bottleneck (516ms at 215K, crosses 100ms around 50-75K). See FINDINGS.md for full data.
 
-**A1c.2: Concurrent SQLite Read+Write** — PENDING
+**A1c.2: Concurrent SQLite Read+Write** — COMPLETE
 
 *Question:* What happens to search latency when another process is writing papers simultaneously?
 
 *Why it matters:* In normal operation, the harvest daemon writes new papers while the MCP server handles search queries. SQLite uses file-level locking. WAL mode allows concurrent reads during writes, but contention is possible. If search latency degrades significantly during writes, the MCP server and harvester can't coexist on the same SQLite database — which undermines Tier 1's "single-file simplicity" value proposition.
 
-*What to measure:*
-- FTS5 search latency while writing 0, 10, 50, 100 papers/second
-- Write throughput while running continuous searches
-- Lock contention frequency and SQLITE_BUSY error rate
-- WAL mode vs default journal mode comparison
-- Effect of write batch size on contention
+*Results:* WAL mode completely eliminates the problem. Search p50 stays 1.3-1.6ms at 0-100 writes/s. Zero lock errors. DELETE mode with unbatched writes is catastrophic (p95=3.7s at 100/s). See FINDINGS.md for full data.
 
 **A1c.3: Lightweight Embedding Benchmark** — PENDING
 
