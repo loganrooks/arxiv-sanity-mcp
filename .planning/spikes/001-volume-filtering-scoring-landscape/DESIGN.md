@@ -1,7 +1,8 @@
 ---
 question: "What does the arXiv paper landscape look like for our configured categories, what signals predict paper importance, and how do different filtering/promotion strategies trade off volume against coverage?"
 type: exploratory
-status: designing
+status: in_progress
+round: 1
 linked_deliberation: deployment-portability.md
 linked_questions:
   - "docs/10-open-questions.md Q16: Processing promotion strategy"
@@ -21,8 +22,9 @@ We need empirical understanding before making architectural decisions about:
 - Promotion pipeline design (depends on which scoring signals exist and work)
 - Filtering strategy (depends on the volume-quality tradeoff shape)
 - User-facing tier recommendations (depends on all of the above)
+- **Capability envelope** (what compute/storage operations are feasible at what scale on what hardware)
 
-We currently have zero empirical data. This spike explores the landscape before we commit to any particular approach.
+We currently have partial empirical data (volume and FTS5 search). This spike continues exploring the landscape before we commit to any particular approach.
 
 ## Background
 
@@ -33,12 +35,18 @@ We currently have zero empirical data. This spike explores the landscape before 
 - **Processing tiers:** METADATA_ONLY(0) → FTS_INDEXED(1) → ENRICHED(2) → EMBEDDED(3) → CONTENT_PARSED(4)
 
 ### What we don't know
-- The actual volume dynamics of our pipeline at realistic scale
+- ~~The actual volume dynamics of our pipeline at realistic scale~~ → **Measured (A1)**
 - What the corpus looks like structurally (clusters, distributions, outliers)
 - Which features — raw or computed — correlate with paper importance
 - Whether "importance" is even one thing or multiple dimensions
 - What the coverage-regret tradeoff looks like at different filtering levels
 - How different promotion strategies compare in resource requirements
+- **Whether TF-IDF recommendation features fit in RAM at our expected corpus sizes**
+- **Whether SQLite can serve reads during concurrent writes (harvest daemon + MCP coexistence)**
+- **Whether lightweight embeddings are feasible without pgvector at personal scale**
+
+### Key discovery during deliberation (2026-03-14)
+The NLP intelligence layer (TF-IDF, SVM, embeddings) runs in Python, not the database. The database is storage. This means the "SQLite vs PostgreSQL" question is narrower than assumed — it's about storage and indexing, not about the scoring/recommendation capabilities. This discovery expanded the spike scope: we now need to measure the capability envelope of these Python-side operations to understand what's feasible at different hardware levels.
 
 ## Design Principles
 
@@ -46,6 +54,36 @@ We currently have zero empirical data. This spike explores the landscape before 
 2. **Compute signals, don't just read them.** Metadata fields are inputs. Interesting signals are often derived (author network centrality, category entropy, temporal patterns).
 3. **Visualize before quantify.** Maps and distributions reveal structure that summary statistics hide.
 4. **Leave room for emergence.** The most interesting findings will be things we didn't think to look for.
+5. **Measure the envelope, not just the product.** Before designing a feature, measure whether its prerequisites are feasible on target hardware. Don't build a TF-IDF recommendation system and then discover the matrix doesn't fit in RAM on a laptop.
+
+## Progress
+
+| Experiment | Status | Key Finding | Script |
+|-----------|--------|-------------|--------|
+| A1: Volume Mapping | **Complete** | Big4 = 12K/month, All CS = 18K/month, 81% overlap | `a1_volume_mapping.py` |
+| A1b: FTS5 Search Benchmark | **Complete** | <40ms p50 at 215K papers, linear scaling | `a1_fts5_benchmark.py` |
+| A1c.1: TF-IDF Matrix Benchmark | **Complete** | 157 MB at 215K; cosine search 516ms (bottleneck is compute, not RAM) | `a1c_tfidf_benchmark.py` |
+| A1c.2: Concurrent SQLite R+W | Pending | — | — |
+| A1c.3: Lightweight Embeddings | Pending | — | — |
+| A2: Corpus Visualization | Pending | — | — |
+| A2b: Interactive Explorer | Pending | — | — |
+| A3: Distribution Analysis | Pending | — | — |
+| B1: Signal Literature Review | Pending | — | — |
+| B2: Computed Signal Exploration | Pending | — | — |
+| B3: Importance Analysis | Pending | — | — |
+| C1: Coverage-Regret Analysis | Pending | — | — |
+| C2: Promotion Pipeline Sim | Pending | — | — |
+| C3: Backend Implications | Pending | — | — |
+
+## Scope Evolution
+
+The original DESIGN.md covered three phases (A: landscape, B: signals, C: tradeoffs). During the deployment-portability deliberation (2026-03-14), we discovered that the NLP layer is independent of the database — TF-IDF, SVM, and embeddings all run in Python. This expanded the spike scope in two ways:
+
+1. **New experiments (A1b, A1c):** We need to measure the capability envelope of key operations (FTS5 search, TF-IDF matrices, concurrent access, embeddings) at our measured scale points to understand what's feasible on different hardware. These determine whether proposed deployment tiers are realistic.
+
+2. **New success criteria:** The spike now also needs to answer "what can this hardware actually do?" — not just "what does the data look like?" These capability measurements feed directly into the deployment-portability deliberation's tier recommendations.
+
+This is a natural extension of an exploratory spike (the reference says exploratory spikes "can refine during spike as understanding grows"). The capability experiments share the A1 dataset and scale methodology, and their findings are prerequisites for Phase C (tradeoff mapping).
 
 ## Phases
 
@@ -53,18 +91,68 @@ This spike has three phases. Each phase's design may be refined based on previou
 
 ### Phase A: Landscape Exploration
 
-**Objective:** Understand what our slice of arXiv looks like — volume, structure, distributions, clusters.
+**Objective:** Understand what our slice of arXiv looks like — volume, structure, distributions, clusters — and what compute/storage operations are feasible at those volumes.
 
-**A1: Volume Mapping**
-- Harvest 1 calendar month of real data (January 2026) at multiple category configs:
-  - Config A: Big 4 (cs.AI, cs.CL, cs.CV, cs.LG)
-  - Config B: All 15 configured categories
-  - Config C: All of CS (37 subcategories)
-- Measure: unique papers/day, cross-listing overlap, category distribution
-- Extrapolate to annual and historical volumes
-- Output: volume estimates per config with deduplication rates
+---
 
-**A2: Corpus Visualization and Structure**
+**A1: Volume Mapping** — COMPLETE
+
+- Harvested 1 calendar month of real data (January 2026) at three category configs
+- 19,252 unique papers in `experiments/data/spike_001_harvest.db`
+- See FINDINGS.md for full results
+
+---
+
+**A1b: FTS5 Search Performance Benchmark** — COMPLETE
+
+- Measured SQLite FTS5 search latency at 7 scale points (5K–500K)
+- Used duplicated paper data (preserves text distribution, vocabulary limited to 19K unique)
+- See FINDINGS.md for full results
+
+---
+
+**A1c: Capability Envelope Benchmarks** — IN PROGRESS
+
+These experiments measure whether key computational operations are feasible at our measured corpus sizes. Each tests a specific capability that a deployment tier might depend on.
+
+**A1c.1: TF-IDF Matrix Benchmark** — COMPLETE
+
+*Question:* What are the memory footprint and rebuild time of a TF-IDF matrix at our scale points? At what corpus size does it stop fitting comfortably in RAM?
+
+*Why it matters:* arxiv-sanity-lite's core recommendation loop is TF-IDF + SVM. If TF-IDF matrices fit in RAM at 50K–215K papers, content-based recommendation is feasible on a laptop without a database. If they don't, the recommendation architecture needs a different approach (approximate, segmented, or database-side).
+
+*Results:* Memory is trivial (157 MB at 215K). Cosine search is the bottleneck (516ms at 215K, crosses 100ms around 50-75K). See FINDINGS.md for full data.
+
+**A1c.2: Concurrent SQLite Read+Write** — PENDING
+
+*Question:* What happens to search latency when another process is writing papers simultaneously?
+
+*Why it matters:* In normal operation, the harvest daemon writes new papers while the MCP server handles search queries. SQLite uses file-level locking. WAL mode allows concurrent reads during writes, but contention is possible. If search latency degrades significantly during writes, the MCP server and harvester can't coexist on the same SQLite database — which undermines Tier 1's "single-file simplicity" value proposition.
+
+*What to measure:*
+- FTS5 search latency while writing 0, 10, 50, 100 papers/second
+- Write throughput while running continuous searches
+- Lock contention frequency and SQLITE_BUSY error rate
+- WAL mode vs default journal mode comparison
+- Effect of write batch size on contention
+
+**A1c.3: Lightweight Embedding Benchmark** — PENDING
+
+*Question:* What are the compute time, memory, and brute-force search characteristics of lightweight sentence embeddings at our scale points?
+
+*Why it matters:* Semantic search is a v2 feature. The deliberation's tier model assumes pgvector is needed for semantic search. But at personal scale (<50K papers), brute-force cosine similarity over pre-computed embeddings might be fast enough — which would mean semantic search works on SQLite too. This fundamentally changes the tier differentiation story.
+
+*What to measure:*
+- Embedding computation time per paper for all-MiniLM-L6-v2 (384-dim), CPU vs GPU
+- Total embedding time for 19K papers (CPU vs GPU)
+- Embedding matrix memory at each scale point (float32 vs float16)
+- Brute-force cosine similarity search time at each scale point
+- Quality spot-check: do embedding neighbors make intuitive sense?
+
+---
+
+**A2: Corpus Visualization and Structure** — PENDING
+
 - Using the harvested sample, explore the corpus structure:
   - Topic modeling (LDA or BERTopic) on abstracts — what clusters emerge naturally?
   - Dimensionality reduction (UMAP or t-SNE) of TF-IDF vectors — visualize the paper space
@@ -74,99 +162,32 @@ This spike has three phases. Each phase's design may be refined based on previou
 - Output: visualizations, cluster descriptions, structural observations
 - **This is the most open-ended part.** We're looking at the data to see what patterns exist before deciding what to measure.
 
-**A2b: Interactive Explorer Prototype**
-- Build a Streamlit (or Plotly Dash) app for interactive exploration of the harvested corpus:
-  - UMAP scatter of papers (each dot = a paper)
-  - Color by selectable dimension: category, cluster, citation count, scoring signals (added in Phase B)
-  - Filter controls: category checkboxes, date range, scoring threshold slider
-  - On hover / click detail panel: paper title, authors, abstract, citation count, categories, submission date, enrichment data (OpenAlex topics, related works count, FWCI), triage state, processing tier — all available metadata
-  - Regret panel (added in Phase C): "At this threshold, you miss N important papers" with list
-- This tool evolves across all three phases — Phase A creates the base map, Phase B adds signal coloring, Phase C adds filtering/regret visualization
+**A2b: Interactive Explorer Prototype** — PENDING
+
+- Build a Streamlit (or Plotly Dash) app for interactive exploration of the harvested corpus
 - Not a polished product — a spike instrument for understanding the data
 - Output: working interactive app in experiments/explorer/
 
-**A3: Distribution Analysis**
-- For the harvested sample, compute distributions of:
-  - Papers per category per day
-  - Authors per paper
-  - Categories per paper (cross-listing breadth)
-  - Submission timing patterns
-  - Any other features that the visualization in A2 suggests are interesting
+**A3: Distribution Analysis** — PENDING
+
+- For the harvested sample, compute distributions of key features
 - Output: distribution plots, summary statistics, outlier identification
 
 ### Phase B: Signal Research and Discovery
 
 **Objective:** Identify and evaluate candidate signals that could predict paper importance or relevance. Start with research, then compute and test.
 
-**B1: Research — What Signals Could We Use?**
-- Literature review: what do existing paper recommendation systems use as features?
-  - arxiv-sanity-lite: TF-IDF + SVM on user tags
-  - Semantic Scholar: SPECTER embeddings, citation velocity
-  - OpenAlex: topics, concepts, citation graph metrics
-  - Others in the literature
-- Catalog of possible signals, organized by:
-  - When available (at ingestion vs after enrichment vs after user interaction)
-  - Computational cost (free metadata field vs API call vs GPU compute)
-  - What they might predict (importance, relevance to a profile, novelty)
-- Output: signal catalog document
-
-**B2: Computed Signal Exploration**
-- Using a retrospective sample (papers from 2024 with 2+ years of citation history via OpenAlex), compute candidate signals:
-  - **Raw metadata signals:** author count, category count, primary category, etc.
-  - **Computed signals:** things we derive from metadata that aren't directly stored
-    - Author publication frequency in corpus (proxy for productivity/influence)
-    - Category entropy (how cross-disciplinary is this paper?)
-    - Title/abstract textual features (TF-IDF similarity to high-impact papers, keyword patterns)
-    - Temporal features (submission timing relative to conference deadlines, trending topic overlap)
-    - Author network features (co-author graph centrality, institutional diversity)
-    - Whatever else Phase A's exploration suggests
-  - **Enrichment signals (available after tier 2):**
-    - OpenAlex topic scores
-    - Related works count
-    - Early citation velocity (citations in first N months)
-- For each signal, visualize its distribution and relationship to citation outcomes
-- Unsupervised analysis: do papers cluster by these signals in ways that map to importance?
-- Output: signal analysis with visualizations, ranked by apparent informativeness
-
-**B3: "Importance" — Is It One Thing?**
-- Using the enriched retrospective sample, explore what "important" means:
-  - Citation count distribution — what does the tail look like?
-  - Citation velocity vs cumulative citations — are fast-cited papers different from slow-burn papers?
-  - Is there a meaningful boundary between "important" and "not important" or is it a continuum?
-  - Do different categories have different importance distributions? (A paper with 50 citations in stat.TH might be landmark; in cs.AI it might be average)
-  - Cluster analysis: do importance dimensions (citations, breadth of citing fields, longevity) form natural groups?
-- Output: operational definition(s) of importance grounded in data, not assumed upfront
+**B1:** Literature review of paper recommendation features
+**B2:** Computed signal exploration on retrospective sample with OpenAlex citations
+**B3:** Explore what "importance" means empirically
 
 ### Phase C: Tradeoff Mapping
 
-**Objective:** Given what we learned in Phases A and B, map the tradeoffs between filtering strategies, promotion strategies, and resource requirements.
+**Objective:** Map the tradeoffs between filtering strategies, promotion strategies, and resource requirements.
 
-**C1: Coverage-Regret Analysis**
-- Using the best signals from Phase B, construct candidate filtering/scoring strategies
-- Apply each strategy to the retrospective sample
-- Measure coverage (% of important papers retained) vs volume (papers kept)
-- Plot coverage curves — look for elbows, natural thresholds
-- Analyze regret: which important papers does each strategy miss, and why?
-- Test sensitivity: how do results change with different importance definitions from B3?
-- Output: coverage-regret curves, strategy comparison, regret analysis
-
-**C2: Promotion Pipeline Simulation**
-- Simulate 1 year of operation under different promotion strategies:
-  - Demand-only (current: user touches paper → promote)
-  - Cohort-based (auto-promote top N% daily)
-  - Budget-constrained (fixed daily enrichment budget, allocated by score)
-  - Two-phase (ingest broadly, build triage data, then auto-promote)
-- Estimate for each: API calls/day, disk usage growth, compute requirements
-- Cross-reference with backend capacity (from volume estimates in Phase A)
-- Output: resource projections per strategy, backend implications
-
-**C3: Backend Implications**
-- Using volume estimates from A1 and resource projections from C2:
-  - At what corpus sizes do different operations become slow? (This feeds Spike 002)
-  - What are the disk usage projections for each tier over 1-3 years?
-  - At what point would a user need to consider migrating from SQLite to PostgreSQL?
-  - What are the concrete feature tradeoffs at each backend (from our earlier analysis)?
-- Output: preliminary backend sizing guidance (to be validated by Spike 002 benchmarks)
+**C1:** Coverage-regret analysis with candidate filtering strategies
+**C2:** Promotion pipeline simulation (resource projections)
+**C3:** Backend implications synthesis
 
 ## Success Criteria
 
@@ -179,25 +200,17 @@ Exploratory spike — success is learning, not confirming.
 4. What shape is the coverage-regret tradeoff? Is there an elbow?
 5. What promotion strategy best fits our architectural values (ADR-0002)?
 6. What are the approximate resource requirements for 1 year of operation?
-
-**The spike surfaces new questions if:**
-- Unsupervised analysis reveals unexpected structure worth investigating further
-- Signal analysis suggests a scoring approach worth prototyping (→ potential new spike)
-- Coverage analysis reveals that aggressive filtering is too risky OR that broad ingestion is too cheap to bother filtering (→ revises the whole question)
-
-**The spike fails if:**
-- We can't harvest enough data for meaningful analysis (arXiv rate limits, API issues)
-- OpenAlex enrichment is too slow to get citation data for the retrospective sample
-- The analysis is too shallow to inform architectural decisions
+7. **What is the capability envelope for TF-IDF, embeddings, and concurrent access at our scale points?**
+8. **At what corpus sizes do different NLP features become infeasible on a laptop (8-16 GB RAM)?**
 
 ## Practical Constraints
 
 - arXiv OAI-PMH: 3s between requests (our harvester rate limit)
 - OpenAlex: 10 req/s with email configured
 - Storage: /scratch (87GB free) for experiment data, /data (1.4TB) for large datasets
-- GPU: GTX 1080 Ti available for BERTopic / UMAP if needed
-- Python environment: conda or project venv
-- Key libraries: scikit-learn, matplotlib, umap-learn, bertopic, streamlit, plotly
+- GPU: GTX 1080 Ti available for BERTopic / UMAP / embedding computation
+- RAM: 32 GB — relevant constraint for TF-IDF and embedding matrix benchmarks
+- Python environment: system Python 3 with scikit-learn 1.8.0, scipy 1.16.3, numpy 2.2.6
 - All experiment code lives in this spike workspace
 
 ## Experiment Code Location
@@ -207,6 +220,6 @@ Exploratory spike — success is learning, not confirming.
 ## Output
 
 - **FINDINGS.md:** Data, visualizations, analysis organized by phase
-- **DECISION.md:** Answers to the six success criteria questions + recommendations
-- **Artifacts:** Notebooks, scripts, datasets in experiments/
+- **DECISION.md:** Answers to the success criteria questions + recommendations (written when spike concludes)
+- **Artifacts:** Scripts, datasets in experiments/
 - **Feeds into:** Spike 002 (backend benchmarking), deployment-portability deliberation, potentially new spikes
