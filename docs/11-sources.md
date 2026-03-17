@@ -1,0 +1,43 @@
+# Sources
+
+- **S1** — arXiv API User's Manual — https://info.arxiv.org/help/api/user-manual.html
+- **S2** — Terms of Use for arXiv APIs — https://info.arxiv.org/help/api/tou.html
+- **S3** — arXiv Bulk Data Access — https://info.arxiv.org/help/bulk_data.html
+- **S4** — arXiv RSS feed specifications — https://info.arxiv.org/help/rss_specifications.html
+- **S5** — arXiv accessible HTML — https://info.arxiv.org/about/accessible_HTML.html
+- **S6** — arXiv media types and source download patterns — https://info.arxiv.org/help/mimetypes.html
+- **S7** — arXiv permissions and reuse — https://info.arxiv.org/help/license/reuse.html
+- **S8** — arXiv public statistics FAQ — https://info.arxiv.org/help/faq/statfaq.html
+- **S9** — arXiv announcement schedule — https://info.arxiv.org/help/availability.html
+- **S10** — OpenAlex overview — https://developers.openalex.org/
+- **S11** — OpenAlex key concepts — https://developers.openalex.org/guides/key-concepts
+- **S12** — OpenAlex work object — https://developers.openalex.org/api-reference/works/get-a-single-work
+- **S13** — OpenAlex searching / semantic search — https://developers.openalex.org/guides/searching
+- **S14** — OpenAlex aboutness endpoint — https://docs.openalex.org/how-to-use-the-api/aboutness-endpoint-text
+- **S15** — OpenAlex autocomplete — https://developers.openalex.org/guides/autocomplete
+- **S16** — Semantic Scholar API — https://www.semanticscholar.org/product/api
+- **S17** — Semantic Scholar recommendations API — https://api.semanticscholar.org/api-docs/recommendations
+- **S18** — Crossref REST API — https://www.crossref.org/documentation/retrieve-metadata/rest-api/
+- **S19** — OpenCitations Index REST API — https://api.opencitations.net/index
+- **S20** — MCP basic overview — https://modelcontextprotocol.io/specification/2025-11-25/basic
+- **S21** — MCP tools — https://modelcontextprotocol.io/specification/2025-06-18/server/tools
+- **S22** — MCP resources — https://modelcontextprotocol.io/specification/2025-06-18/server/resources
+- **S23** — MCP prompts — https://modelcontextprotocol.io/specification/2025-06-18/server/prompts
+- **S24** — MCP reference servers repo — https://github.com/modelcontextprotocol/servers
+- **S25** — arxiv-sanity-preserver README — https://github.com/karpathy/arxiv-sanity-preserver/blob/master/README.md
+- **S26** — arxiv-sanity-lite README — https://github.com/karpathy/arxiv-sanity-lite
+- **S27** — Connected Papers — https://www.connectedpapers.com/ and https://www.connectedpapers.com/about
+- **S28** — ResearchRabbit features — https://www.researchrabbit.ai/features
+- **S29** — ResearchRabbit guide — https://www.researchrabbit.ai/articles/guide-to-using-researchrabbit
+- **S30** — Litmaps features — https://www.litmaps.com/features
+- **S31** — Litmaps for Researchers — https://www.litmaps.com/about/for-researchers
+- **S32** — Litmaps Monitor — https://docs.litmaps.com/en/articles/9126249-monitor-get-alerts-for-important-research
+- **S33** — Elicit search — https://elicit.com/solutions/search
+- **S34** — Elicit systematic reviews — https://elicit.com/solutions/systematic-review
+- **S35** — Scite overview / smart citations — https://scite.ai/ and https://scite.ai/blog/smart-citations-rankings
+- **S36** — Hugging Face Trending Papers changelog — https://huggingface.co/changelog/trending-papers
+- **S37** — Docling — https://www.docling.ai/
+- **S38** — Marker — https://github.com/datalab-to/marker
+- **S39** — GROBID — https://grobid.readthedocs.io/en/latest/Introduction/
+- **S40** — Community arXiv/OpenAlex/S2 MCP servers — e.g. https://github.com/blazickjp/arxiv-mcp-server, https://github.com/oksure/openalex-research-mcp, https://github.com/akapet00/semantic-scholar-mcp, https://github.com/benedict2310/Scientific-Papers-MCP
+- **S41** — OpenAI MCP guide — https://developers.openai.com/api/docs/mcp/
