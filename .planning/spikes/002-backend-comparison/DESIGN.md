@@ -174,12 +174,76 @@ This is a comparative spike — success is a complete, honest tradeoff map.
 
 ## Practical Constraints
 
-- PostgreSQL is running locally (port 5432)
-- 19K real papers available in `spike_001_harvest.db`
-- Pre-computed embeddings from A1c.3 (reusable)
-- pgvector extension: verify installed, install if not (`CREATE EXTENSION vector`)
 - Same hardware as Spike 001 (Xeon W-2125, 32 GB RAM, GTX 1080 Ti)
+- 19K real papers available in `spike_001_harvest.db`
 - All experiment code in `.planning/spikes/002-backend-comparison/experiments/`
+
+## Infrastructure State (verified 2026-03-17)
+
+**PostgreSQL:**
+- Version: PostgreSQL 16.13 (Ubuntu 24.04)
+- Running on port 5432
+- Database: `arxiv_mcp` (126 papers from Phase 10 agent test)
+- Connection: `postgresql://arxiv_mcp:arxiv_mcp_dev@localhost:5432/arxiv_mcp` (password in `~/.env`)
+- Test database: `arxiv_mcp_test` (same credentials)
+- Auth: password auth via localhost TCP (peer auth fails for this user)
+
+**pgvector:**
+- NOT currently installed
+- Package available: `postgresql-16-pgvector` version 0.6.0-1 (Ubuntu noble)
+- Install: `sudo apt install postgresql-16-pgvector` then `CREATE EXTENSION vector;`
+- This requires sudo — confirm with user before installing
+
+**Python drivers:**
+- `psycopg2` 2.9.10 — available (synchronous PostgreSQL driver)
+- `asyncpg` — available (async driver, used by the main project)
+- `psycopg3` — NOT available
+
+**Embeddings:**
+- A1c.3 computed embeddings on-the-fly and did NOT persist them
+- For Spike 002, first step is to compute and save 19K paper embeddings as `.npy` files
+- Use all-MiniLM-L6-v2 on GPU (~33 seconds for 19K papers)
+- Save as `embeddings_19k.npy` (float32, shape 19252×384, ~28 MB)
+
+**SQLite (Spike 001 data):**
+- Harvest DB: `.planning/spikes/001-volume-filtering-scoring-landscape/experiments/data/spike_001_harvest.db` (19,252 papers, 37 MB)
+- FTS5 benchmark DB: `fts5_benchmark.db` (contains scaled data + FTS index)
+- Scale duplication methodology: cycle through 19K papers with modified IDs
+
+**Existing project database:**
+- The main project's PostgreSQL database (`arxiv_mcp`) has 126 papers, 8 Alembic migrations, full schema (papers, collections, triage_states, interest_signals, etc.)
+- For fair comparison, Spike 002 should create a SEPARATE database or schema — don't pollute the project DB
+- Recommendation: create `arxiv_mcp_spike002` database, or use a separate schema within `arxiv_mcp`
+
+## Query Set
+
+For reproducibility, the full query set used across Dimensions 1-2 should be defined here. Starting from A1b's 10 queries, extended to 20+:
+
+**From A1b (Spike 001):**
+1. `transformer` (single common)
+2. `phenomenology` (single specific — rare in CS, tests stemming)
+3. `language model` (two-word common)
+4. `reinforcement learning agent` (three-word)
+5. `attention AND mechanism` (boolean AND)
+6. `consciousness OR awareness` (boolean OR)
+7. `"large language model"` (phrase)
+8. `neural network optimization` (multi-field broad)
+9. `RLHF alignment` (narrow specific)
+10. `multi-agent system cooperative reinforcement learning` (long)
+
+**Extended for Spike 002:**
+11. `Vaswani` (author name — tests name handling)
+12. `GAN generative adversarial` (acronym + expansion)
+13. `diffusion model image generation` (trending topic)
+14. `graph neural network` (specific subfield)
+15. `federated learning privacy` (cross-domain)
+16. `theorem proof verification` (math-adjacent)
+17. `robotics manipulation` (applied CS)
+18. `causal inference` (statistics-adjacent)
+19. `self-supervised contrastive` (method-specific)
+20. `survey` (very common, tests ranking quality)
+
+**Query type distribution:** 5 single-term, 5 multi-word, 3 boolean/phrase, 4 subfield-specific, 3 cross-domain/edge-case.
 
 ## Experiment Code Location
 

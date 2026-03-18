@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-15
 **Updated:** 2026-03-17
-**Status:** Spike 001 capability envelope (A1c) complete. Deployment question answered. Remaining spike work addresses scoring/recommendation design (v0.2).
+**Status:** Spike 001 A1c complete (SQLite-only data). Spike 002 designed — comparative PostgreSQL benchmarks needed before deployment conclusions. Spike 001 A2/B/C address scoring/recommendation.
 **Origin:** Post-Phase-10 deliberation on deployment and portability
 
 ## Context
@@ -23,7 +23,7 @@ The spike program started as one question ("how do we deploy this?") but reveale
 |-----------|--------|-------------|
 | FTS5 search | 30ms at 215K, 71ms at 500K | SQLite keyword search fine to 500K+ |
 | TF-IDF similarity | 516ms at 215K, <100ms at 50K | Use embeddings or pre-filter at scale |
-| Embedding search | 16ms at 215K (brute-force dot product) | pgvector unnecessary at personal scale |
+| Embedding search | 16ms at 215K (brute-force dot product) | pgvector comparison needed (Spike 002) |
 | Concurrent SQLite | Zero degradation with WAL mode | Harvest daemon + MCP server coexist |
 | Embedding compute | 35ms/paper CPU, 1.7ms/paper GPU (20x) | CPU incremental: 21s/day. Cold start: 2h overnight |
 | Memory (all features) | ~472 MB at 215K (TF-IDF + embeddings) | Fits on any laptop |
