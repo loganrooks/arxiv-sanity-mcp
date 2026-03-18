@@ -234,7 +234,7 @@ Measured all-MiniLM-L6-v2 (384-dim) embedding computation time on CPU (Xeon W-21
 
 2. **GPU provides ~20x speedup for embedding computation, but search is CPU-bound.** GPU embedding is 1.7ms/paper vs 35ms/paper on CPU — a consistent 20x. But brute-force search is similar on CPU and GPU because it's a simple matrix multiplication that numpy handles efficiently.
 
-3. **CPU embedding is prohibitively slow for interactive use.** Embedding 19K papers takes 11.4 minutes on CPU. The full 215K takes 2 hours. This is fine for a batch job (nightly rebuild) but not for on-demand embedding of newly arrived papers. GPU makes this feasible: 19K in 33 seconds, 215K in 6.3 minutes.
+3. **CPU embedding is slow but operationally manageable.** Embedding 19K papers takes 11.4 minutes on CPU. The full 215K takes 2 hours — acceptable as an overnight cold-start job. Daily incremental (600 papers) takes only 21 seconds on CPU. The real question isn't "is CPU fast enough?" but "what's the smart ingestion strategy?" — prioritize user's categories first, background the rest, provide progress feedback. GPU makes cold start fast (6.3 min for 215K) but isn't required.
 
 4. **Memory is modest.** float32 embeddings for 215K papers need 315 MB. float16 halves this to 158 MB. Both fit trivially in laptop RAM. Combined with TF-IDF (157 MB), the total feature set for 215K papers is ~472 MB float32 — still under 1 GB.
 
@@ -273,7 +273,7 @@ Same duplication caveat as previous experiments. Search time at 215K with real u
 | Batch writes eliminate DELETE mode contention | p95=11ms at 100/s with batch=10 | High — measured directly |
 | Brute-force embedding search is fast at all scales | 16.2ms p50 at 215K papers | High — measured directly |
 | GPU provides ~20x speedup for embedding computation | 35ms/paper CPU vs 1.7ms/paper GPU | High — consistent across all scales |
-| CPU embedding is too slow for interactive use | 11 min for 19K papers, 2 hours for 215K | High — measured directly |
+| CPU embedding: cold start is overnight, daily incremental is 21s | 35ms/paper × 600/day = 21s. Full 215K = 2h. | High — measured directly. Reframed: not a problem with smart ingestion strategy. |
 | Semantic search does NOT need pgvector at personal scale | Brute-force under 17ms at 215K | High — completely undercuts deliberation assumption |
 | Embedding memory is modest | 315 MB float32 at 215K papers | High — measured directly |
 

@@ -2,86 +2,112 @@
 
 **Created:** 2026-03-15
 **Updated:** 2026-03-17
-**Status:** Active — Spike 001 A1+A1b+A1c (all capability benchmarks) complete. A2 next.
+**Status:** Spike 001 capability envelope (A1c) complete. Deployment question answered. Remaining spike work addresses scoring/recommendation design (v0.2).
 **Origin:** Post-Phase-10 deliberation on deployment and portability
 
 ## Context
 
-After completing v0.1 (Phase 10: Agent Integration Test), three interconnected areas of design uncertainty emerged that cannot be resolved through discussion alone — they require empirical investigation.
+After completing v0.1 (Phase 10: Agent Integration Test), interconnected areas of design uncertainty emerged around deployment, filtering, recommendation, and backend architecture. A spike program was created to investigate empirically.
 
-### How We Got Here
+### Key Discovery: Two Separate Questions
 
-**Deliberation: deployment-portability.md** (2026-03-14, concluded)
+The spike program started as one question ("how do we deploy this?") but revealed two independent questions:
 
-The initial question was "how would someone install this on another computer?" Investigation revealed:
-- Current install is 8 manual steps, ~15 min, requires PostgreSQL
-- arxiv-sanity-lite (our inspiration) runs entirely on SQLite + pickle files on a $5 VPS
-- The MCP ecosystem standard is zero-install via `uvx` (Python) or `npx` (Node.js)
-- Our PostgreSQL dependency is the main barrier to frictionless distribution
+1. **Deployment architecture** (answered by A1+A1c) — SQLite handles the full feature set at personal scale. PostgreSQL is an opt-in upgrade for multi-writer concurrency. The tier differentiator is GPU availability for embedding computation, not database features for search.
 
-This led to a tiered deployment proposal (SQLite for personal, PostgreSQL for power users, HTTP for hosted). But before committing to that architecture, we identified assumptions that need empirical testing.
+2. **Scoring/recommendation design** (A2, B, C phases) — What signals predict paper importance? How should the recommendation system work? What filtering strategies optimize coverage vs volume? These inform v0.2 features, not deployment architecture.
 
-**Key assumptions that need testing:**
-1. "SQLite handles our scale" — stated without knowing what our scale actually is
-2. "FTS5 search quality is equivalent to tsvector" — asserted without comparison
-3. "100K papers is the realistic corpus size" — based on arXiv stats research, never validated against our actual filtering pipeline
-4. "The storage interface will be clean and narrow" — architectural claim, untested
+### Capability Envelope Summary (A1c)
 
-**Deeper questions that emerged during deliberation:**
-- The promotion pipeline (how papers move from metadata-only → enriched → embedded) has no scoring system — it's entirely manual/demand-driven
-- Open Question 16 in docs/10-open-questions.md asks: "What is the right processing intensity promotion strategy?" and lists four candidates, none implemented
-- The volume of papers isn't just a backend concern — it's entangled with filtering strategy, scoring design, and the regret/coverage tradeoff
-- We need to understand the filtering landscape BEFORE we can design meaningful backend benchmarks
+| Operation | Result | Implication |
+|-----------|--------|-------------|
+| FTS5 search | 30ms at 215K, 71ms at 500K | SQLite keyword search fine to 500K+ |
+| TF-IDF similarity | 516ms at 215K, <100ms at 50K | Use embeddings or pre-filter at scale |
+| Embedding search | 16ms at 215K (brute-force dot product) | pgvector unnecessary at personal scale |
+| Concurrent SQLite | Zero degradation with WAL mode | Harvest daemon + MCP server coexist |
+| Embedding compute | 35ms/paper CPU, 1.7ms/paper GPU (20x) | CPU incremental: 21s/day. Cold start: 2h overnight |
+| Memory (all features) | ~472 MB at 215K (TF-IDF + embeddings) | Fits on any laptop |
 
 ### Architectural References
 
-- ADR-0002: Metadata-first, lazy enrichment ("ingest eagerly, enrich lazily, embed selectively")
-- Doc 05 §4: Stack A → B trajectory (metadata + lexical first, selective semantic later)
-- Doc 05 §7: Compute profiles (Bronze/Silver/Gold)
-- Doc 10 Q16: Processing promotion strategies (demand-driven, cohort, budget-constrained, two-phase)
-- Doc 10 Q17: Retrospective demotion
-- ProcessingTier enum: METADATA_ONLY → FTS_INDEXED → ENRICHED → EMBEDDED → CONTENT_PARSED
-- categories.toml: 15 categories across 4 archives (cs, stat, math, eess)
+- ADR-0002: Metadata-first, lazy enrichment
+- Doc 05 §4: Stack A → B trajectory
+- Doc 10 Q16/Q17: Processing promotion strategies
+- Deliberation: `.planning/deliberations/deployment-portability.md`
+- Full findings: `.planning/spikes/001-volume-filtering-scoring-landscape/FINDINGS.md`
 
 ## Spike Sequence
 
-### Known Spikes
+### Complete
 
-| # | Question | Type | Depends On | Status |
-|---|----------|------|------------|--------|
-| 001 | Volume, filtering, and scoring landscape | Exploratory | — | A1+A1c complete. FTS5 <40ms, TF-IDF 157MB (search slow >50K), WAL solves concurrency, embeddings 16ms@215K (no pgvector needed), GPU 20x for compute |
-| 002 | Backend performance benchmarking (SQLite vs PostgreSQL) | Comparative | 001 (volume estimates inform test parameters) | Blocked on 001 |
+| # | Question | Type | Status | Key Outcome |
+|---|----------|------|--------|-------------|
+| 001 A1+A1c | Volume, scale, and capability envelope | Exploratory | **Complete** | Deployment question answered. SQLite sufficient. See capability summary above. |
 
-### Anticipated (may emerge from Spike 001-002 findings)
+### Active (Spike 001 remaining phases)
 
-| Question | Would be triggered if... |
-|----------|------------------------|
-| Promotion pipeline strategies | Spike 001 reveals that scoring signals at ingestion time are predictive enough to automate promotion |
-| Migration mechanics (SQLite → PostgreSQL) | Spike 002 confirms both backends are viable and migration is part of the tier system |
-| Scoring system design | Spike 001 reveals a clear candidate scoring approach worth prototyping |
-| Continuous indexing daemon | Volume mapping reveals that daily incremental harvest needs automation |
-| Hosted mode resource profiling | Spike 002 reveals viable hosted deployment and someone wants to test multi-user performance |
+| Phase | Question | Priority | Blocks |
+|-------|----------|----------|--------|
+| A2: Corpus visualization | What does the paper space look like structurally? | Medium | Informs B1-B2 signal design |
+| A3: Distribution analysis | What are the statistical properties of the corpus? | Medium | Informs B2-B3 |
+| B1: Signal literature review | What do existing recommenders use as features? | Medium | Informs B2 |
+| B2: Computed signal exploration | Which signals predict importance in our data? | Medium | Informs C1 |
+| B3: Importance analysis | Is "importance" one thing or multiple dimensions? | Medium | Informs C1 |
+| C1: Coverage-regret | What's the tradeoff shape for filtering strategies? | Lower | Informs promotion pipeline design |
+| C2: Promotion simulation | What are the resource costs of different strategies? | Lower | Informs v0.2 planning |
+| C3: Backend implications | At what scale do operations become slow? | **Deprioritized** | Mostly answered by A1c |
 
-### Principles
+### Quick Validation Experiments (new, emerged from A1c findings)
+
+Small experiments that validate the mitigations proposed in the deliberation update:
+
+| Experiment | What it validates | Effort |
+|-----------|------------------|--------|
+| Pre-filtered TF-IDF cosine | Does category scoping keep similarity <100ms at 215K? | Small — reuse A1c.1 script |
+| Memory-mapped feature loading | Is mmap actually near-instant for 472 MB? | Small — prototype |
+| FTS5 vs tsvector quality | Do they return equivalent results for same queries? | Medium — needs PostgreSQL comparison |
+| Embedding quality (MiniLM vs SPECTER2) | Is a general model good enough for academic abstracts? | Medium — needs SPECTER2 |
+
+### Deprioritized
+
+| # | Question | Why deprioritized |
+|---|----------|-------------------|
+| 002 | PostgreSQL performance benchmarking | SQLite handles the workload. PostgreSQL advantage is architectural (multi-writer), not performance. Only relevant if multi-user demand emerges. |
+
+## Open Design Questions
+
+These emerged from the spike and deliberation work. They need design deliberation, not experiments:
+
+1. **Feature lifecycle layer** — Where do TF-IDF/embedding matrices live? How do they update incrementally? Memory-mapped storage, lazy loading, background refresh. This is a new architectural layer between storage and services.
+
+2. **Smart cold-ingestion strategy** — On first install: prioritize user's configured categories for embedding, background the rest. Progress feedback during init. The 2-hour full-corpus embed is an overnight job, not a blocker.
+
+3. **"Project" as first-class concept** — Different recommenders per research project. Not in any design doc yet.
+
+4. **Cold start UX** — What does `arxiv-mcp init` look like? Seed corpus selection, category config, progress bar, "ready to use" threshold.
+
+5. **Embedding model selection** — all-MiniLM-L6-v2 is general-purpose. SPECTER2 is academic-specific. Tradeoff between availability, speed, and domain relevance.
+
+## Decision Flow
+
+```
+Spike 001 A1c findings (DONE)
+      ↓
+Deliberation updated (DONE — 2026-03-17)
+      ↓
+Phase 11 (Distribution) ← ready to plan/execute
+      ↓
+Phase 12 (Storage Abstraction) ← ready to plan, revised scope
+      ↓
+Spike 001 A2/B/C (in parallel with implementation — informs v0.2 recommendation features)
+```
+
+The deployment path is unblocked. Spike 001's remaining phases inform v0.2 feature design and can run in parallel with Phase 11/12 implementation.
+
+## Principles
 
 1. **Each spike answers one question.** Comparative questions ("A vs B") are one spike with multiple experiments.
 2. **Spikes produce findings, not decisions.** The deliberation process uses spike findings to make decisions.
 3. **Spikes chain.** Later spikes use earlier findings to design better experiments.
 4. **New spikes can emerge.** This roadmap is a living document. Unexpected findings create new questions.
-5. **Rigor over speed.** Experiments should be designed to produce epistemologically reliable results — reproducible, falsifiable, with clear metrics and controlled variables.
-
-## Decision Flow
-
-```
-Spike findings
-      ↓
-Update deliberation (deployment-portability.md)
-      ↓
-Conclude deployment architecture decisions
-      ↓
-Create implementation phases (11, 12, etc.)
-      ↓
-Execute
-```
-
-The spike program feeds back into the deployment deliberation. We don't create implementation phases until the spikes give us enough evidence to make confident architectural decisions.
+5. **Rigor over speed.** Experiments should produce epistemologically reliable results — reproducible, falsifiable, with clear metrics and controlled variables.
