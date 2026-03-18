@@ -11,7 +11,7 @@ Lifecycle: open → concluded → adopted → evaluated → superseded
 -->
 
 **Date:** 2026-03-14
-**Status:** Open — pending spike findings
+**Status:** Open — capability envelope (A1c) complete, tier model revised. Remaining spike phases (A2, B, C) address scoring/filtering, not deployment.
 **Trigger:** After Phase 10 (agent integration test) completion, user asked: "are we sure everything is working? how might one install this locally on another computer?" Investigation revealed the project is feature-complete but not deployment-ready. Subsequent deliberation expanded scope to include: backend flexibility (SQLite vs PostgreSQL), deployment tiers (personal vs hosted), arxiv-sanity-lite architecture comparison, and PyPI distribution.
 **Affects:** v0.1.x release, v0.2 milestone planning, new users, installation on apollo (MacBook), potential contributors
 **Related:**
@@ -251,12 +251,140 @@ The phasing (11 + 12) and tier feature matrix above remain the *working hypothes
 **Spike program roadmap:** `.planning/spikes/ROADMAP.md`
 **Deliberation status:** Open — re-evaluate after Spike 001 findings
 
+## Status Update (2026-03-17) — Spike 001 Capability Envelope Complete
+
+The A1c capability benchmarks are complete. They tested three key operations at 6 scale points (5K–215K papers) using 19,252 real arXiv papers. The results invalidate several assumptions in the analysis above and require revising the tier model.
+
+### Evidence from Spike 001 A1c
+
+| Experiment | Key Finding | Deliberation Impact |
+|-----------|-------------|---------------------|
+| A1c.1: TF-IDF matrix | 157 MB at 215K. Cosine search 516ms (crosses 100ms at ~50-75K) | Memory is not the constraint — compute is. Pre-filtering or embedding switch mitigates. |
+| A1c.2: Concurrent SQLite | WAL mode: p50 stays 1.3-1.6ms at 0-100 writes/s. Zero lock errors. | Concurrent single-writer access is a non-issue. "No concurrent users" in tier matrix was wrong for single-writer. |
+| A1c.3: Embeddings | Brute-force search 16ms at 215K (30x faster than TF-IDF). GPU 20x faster for computing embeddings (1.7 vs 35ms/paper). 315 MB float32 at 215K. | pgvector is unnecessary at personal scale. Tier differentiator is GPU for compute, not database for search. |
+
+Full results: `.planning/spikes/001-volume-filtering-scoring-landscape/FINDINGS.md`
+
+### Assumptions Falsified
+
+**1. "~10K papers" SQLite scale limit (Tier matrix, line 224)**
+- **Claim:** SQLite can handle ~10K papers
+- **Evidence:** FTS5 search under 100ms to 500K papers. Embedding search under 100ms to ~1.3M papers. WAL concurrent access zero degradation. TF-IDF similarity under 100ms to ~50-75K (mitigable via pre-filtering or embedding switch).
+- **Revised:** SQLite's operational limit is **~500K papers for keyword search**, with higher limits for embedding similarity. The TF-IDF path has a 50-75K limit that's addressable through design (see mitigations below).
+
+**2. "Vector/semantic search: No (SQLite) / pgvector (PostgreSQL)" (Tier matrix, line 223)**
+- **Claim:** Semantic search requires pgvector on PostgreSQL
+- **Evidence:** Brute-force dot product over 384-dim pre-normalized embeddings: 16ms at 215K papers. Faster than FTS5 keyword search (30ms) at the same scale. pgvector's ANN indexing only becomes valuable above ~1M papers where brute-force O(n) starts to matter.
+- **Revised:** Semantic search works on **any backend** via brute-force numpy. pgvector is a scaling optimization for >1M papers, not a capability gate.
+
+**3. "Concurrent users: No (SQLite)" (Tier matrix, line 222)**
+- **Claim:** SQLite cannot handle concurrent access
+- **Evidence:** WAL mode with single writer (harvest daemon) + single reader (MCP server): zero latency degradation, zero lock errors at 100 writes/second. Daily harvest rate is 0.007 papers/second — orders of magnitude below contention threshold.
+- **Revised:** SQLite handles the **single-writer** scenario (one harvest daemon + one MCP server) perfectly. "No concurrent users" only applies to **multi-writer** scenarios (multiple users triaging simultaneously).
+
+### Revised Tier Model
+
+The original tiers were organized around **database choice** (SQLite → PostgreSQL → Hosted). The spike data shows the meaningful axes are:
+
+| Axis | What it determines | Measured evidence |
+|------|-------------------|-------------------|
+| **Corpus size** | Which search methods stay interactive | FTS5: 500K. Embeddings: 1.3M. TF-IDF: 50-75K (mitigable). |
+| **GPU availability** | Whether embedding computation is seconds or hours | 20x speedup (1.7ms vs 35ms per paper). But incremental daily is only 21s even on CPU. |
+| **User count** | Whether SQLite suffices or PostgreSQL is needed | Single-writer: SQLite is fine. Multi-writer: PostgreSQL required. |
+
+**Revised feature matrix:**
+
+| Feature | SQLite (default) | PostgreSQL (opt-in) |
+|---------|-----------------|---------------------|
+| Full-text search | FTS5 (30ms at 215K) | tsvector |
+| Interest profiles + ranking | Yes | Yes |
+| TF-IDF recommendations | Yes (pre-filter at >50K) | Yes |
+| Embedding/semantic search | Yes, brute-force (16ms at 215K) | Yes + pgvector ANN at >1M |
+| Triage / collections / watches | Yes | Yes |
+| OpenAlex enrichment | Yes | Yes |
+| Content normalization | Yes | Yes |
+| Concurrent single-writer | Yes (WAL mode) | Yes |
+| Concurrent multi-writer | **No** | Yes |
+| Scale ceiling | ~500K papers | Unlimited |
+
+Only one "No" remains: multi-writer concurrency. Everything else works on SQLite.
+
+### Performance Mitigations (Design-Level)
+
+The raw benchmarks identify three bottlenecks. Each has design-level mitigations that don't require hardware changes:
+
+**TF-IDF cosine similarity (516ms at 215K, crosses 100ms at ~50K-75K):**
+1. **Category pre-filtering** — Search within primary category. cs.AI primary ≈ 16K/year → 20ms.
+2. **SVM pre-selection** — arxiv-sanity-lite's approach: SVM trained on user library selects candidates, cosine only over candidates.
+3. **Switch to embedding similarity** — 30x faster. Use TF-IDF for keyword search only, embeddings for similarity.
+4. **Rolling window** — Only compute similarity over recent N months, not full corpus.
+
+**CPU embedding computation (35ms/paper, 2 hours for full 215K corpus):**
+1. **Incremental embedding** — 600 new papers/day × 35ms = **21 seconds/day on CPU**. The 2-hour figure is cold-start only.
+2. **Lazy embedding** — Only embed papers the user interacts with (triaged, collected). Most papers never need embeddings.
+3. **Pre-computed from OpenAlex** — OpenAlex is adding embeddings to their API. Fetch instead of compute.
+4. **Cold-start mitigation** — First `arxiv-mcp init` could batch-embed the seed corpus (a one-time setup step).
+
+**Feature matrix loading on MCP server startup (~472 MB total: 315 MB embeddings + 157 MB TF-IDF):**
+1. **Memory-mapped files** — `numpy.memmap` for both matrices. Load time → ~0ms (OS pages on demand).
+2. **Background loading** — Start MCP server immediately for metadata/triage. Load features in background thread.
+3. **Lazy initialization** — Don't load until first recommendation/similarity query. First query ~2s, all subsequent instant.
+
+With these mitigations, the practical user experience is:
+- **Server start:** Instant (mmap or lazy load)
+- **Daily operation:** 21 seconds/day for embedding new papers (CPU), instant on GPU
+- **Similarity search:** 16ms (embeddings) or <100ms (TF-IDF with pre-filtering)
+- **Cold start (first install):** 6 minutes (GPU) or batch overnight (CPU) — one-time cost
+
+### Impact on Recommendation
+
+**Option B (Phase 11 + Phase 12) remains correct** but the motivation shifts:
+
+**Original motivation:** SQLite needed because PostgreSQL is too hard to install. Storage abstraction needed because SQLite can't do semantic search.
+
+**Revised motivation:** SQLite is the **sufficient default** for the full feature set at personal scale. PostgreSQL is an opt-in upgrade for multi-writer access or extreme scale (>500K). The storage abstraction is good architecture for testability and portability, not a capability bridge.
+
+**Revised Phase 12 scope:**
+- Storage abstraction still needed for clean backend switching
+- SQLite backend can now support **all features** including semantic search (was previously marked "No")
+- pgvector integration moves from "required for semantic search" to "optional optimization at >1M papers"
+- **New: Feature lifecycle layer** — memory-mapped embedding/TF-IDF storage, incremental update, lazy loading. This is above the storage layer but below the service layer.
+
+### Revised Predictions
+
+| ID | Original Prediction | Revised | Status |
+|----|-------------------|---------|--------|
+| P1 | `arxiv-mcp init` reduces setup to <3 min | Unchanged | Still testable |
+| P2 | >70% choose SQLite | Strengthened — SQLite has full feature parity | Still testable |
+| P3 | Storage interface <5 methods | Unknown — needs implementation | Still testable |
+| P4 | FTS5 quality ≈ tsvector for <10K papers | Revised to <500K papers (scale limit much higher) | Needs testing |
+| P5 | Zero users need Tier 3 in 6 months | Unchanged | Still testable |
+| P6 | *(new)* Brute-force embedding search stays under 100ms to 500K papers | Extrapolated ~37ms at 500K | Testable with real data |
+| P7 | *(new)* Incremental daily embedding on CPU takes <60 seconds | 600 papers × 35ms = 21s projected | Testable operationally |
+
+### What Spike 001 A1c Does NOT Answer
+
+1. **FTS5 vs tsvector result quality** — Are they functionally equivalent? Search *latency* is established; search *quality* is not.
+2. **Feature lifecycle implementation** — Memory-mapped files, incremental updates, lazy loading are proposed but not prototyped.
+3. **MCP server startup time** — Projected as near-instant with mmap but not measured.
+4. **Cold start UX** — What does "embedding 19K papers for 11 minutes on CPU" feel like as a first-run experience?
+5. **Embedding quality for this domain** — all-MiniLM-L6-v2 may not be optimal for academic abstracts. SPECTER2 or domain-specific models might be better.
+
+These are smaller, more targeted questions. Some are testable experiments (add to Spike 001 A2+ or new spikes); others are design decisions that can be made with current evidence.
+
+### Spike 002 Status
+
+**Original plan:** Benchmark PostgreSQL at the same scales for fair comparison.
+**Revised assessment:** Less urgent. The spike data shows SQLite handles the full workload. Spike 002 would confirm the delta is small, but the decision no longer depends on it. PostgreSQL's remaining advantage (multi-writer) is architectural, not performance-based.
+
+**Recommendation:** Defer Spike 002. Proceed to Phase 11 (distribution) with current evidence. If multi-user demand emerges, run Spike 002 then.
+
 ## Decision Record
 
-**Decision:** Pending — awaiting spike findings
+**Decision:** Pending — capability envelope data supports Option B but full spike program (A2, B, C phases) not yet complete. The deployment architecture question has enough evidence to proceed with Phase 11 (distribution). Phase 12 (storage abstraction) can proceed in parallel or after, with revised scope.
 **Decided:** —
 **Implemented via:** not yet implemented
-**Signals addressed:** None (triggered by post-Phase-10 conversation)
+**Signals addressed:** Spike 001 A1 (volume mapping), A1b (FTS5 benchmark), A1c.1 (TF-IDF), A1c.2 (concurrent SQLite), A1c.3 (embeddings)
 
 ## Evaluation
 
