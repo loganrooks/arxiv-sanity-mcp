@@ -1,7 +1,7 @@
-# Spike 001: Findings (In Progress)
+# Spike 001: Findings
 
-**Last updated:** 2026-03-17
-**Status:** Phase A1 + A1c capability envelope complete. A2-C pending.
+**Last updated:** 2026-03-19
+**Status:** Complete (all phases). See DECISION.md for synthesis and recommendations.
 
 ## Phase A1: Volume Mapping — Complete
 
@@ -313,3 +313,115 @@ Same duplication caveat as previous experiments. Search time at 215K with real u
 8. **The tier differentiation is GPU for embedding computation, not database for search.** The deliberation assumed pgvector was needed for semantic search. It's not — brute-force works fine to 215K+. The real tier differentiator is GPU availability for *creating* embeddings (20x speedup), not database features for *searching* them. A laptop without GPU can still use pre-computed embeddings; it just can't create them quickly.
 
 9. **The TF-IDF feasibility constraint is compute, not memory.** We expected that RAM might be the bottleneck for TF-IDF recommendations on laptops. It's not — 215K papers need only 157 MB. The bottleneck is brute-force cosine similarity search: O(n) over the full matrix crosses 100ms around 50K-75K papers and hits 500ms at 215K. This means the scaling strategy is pre-filtering (reduce the search space), not approximate nearest neighbors or bigger hardware. Conveniently, an SVM classifier trained on user preferences *is* a pre-filter — you only compute similarity against papers the SVM considers relevant.
+
+---
+
+## Phase A2: Corpus Visualization — Complete (2026-03-19)
+
+### Topic-Category Alignment
+
+BERTopic on 19K papers (using MiniLM embeddings) found 48 topics. Average topic purity: **0.40** (1.0 = perfect category alignment). Only 1/48 topics has high purity (>0.7). 13/48 have low purity (<0.3).
+
+**Implication:** Categories moderately align with topical structure. Category-based pre-filtering works but will miss cross-domain papers. The administrative category structure does not cleanly map to the research topic structure.
+
+### Category Co-occurrence
+
+60.6% of papers list multiple categories. Top co-occurrences: cs.AI+cs.LG (1,909 papers), cs.AI+cs.CL (1,445), cs.AI+cs.CV (858). cs.AI is a cross-listing hub — 5,438 listed vs 1,318 primary.
+
+### Author Distribution
+
+65,513 unique authors. Median: 1 paper/month. P99: 6. Max: 56 (common names like "Yang Liu" inflated by name collision). Power-law distribution.
+
+## Phase A3: Distribution Analysis — Complete (2026-03-19)
+
+- Category inequality: Gini 0.83. cs.LG (2,894), cs.CV (2,737), cs.CL (2,218) = 41% of corpus.
+- Abstract length: median 153 words, mean 157. Title: median 10 words.
+- Vocabulary: 49,944 unique terms. 2,001 terms (4%) cover 80% of content. Zipf's law holds.
+- Authors per paper: median 4. Single-author: rare.
+
+## Phase B1: Signal Literature Review — Complete (2026-03-19)
+
+Reviewed 6 production systems + 2 comprehensive surveys (117 systems, 2019-2024).
+
+Key findings:
+- Dense embeddings replacing TF-IDF: 50.79% of recent systems use embeddings vs ~6% TF-IDF
+- Hybrid/adaptive systems dominate: 55.56% use multiple signal types
+- Citation is the most powerful metadata signal (78.72% of relational systems)
+- SPECTER2 is SOTA for scientific document embeddings (citation-graph-trained)
+- Our 5-signal ranker covers personalization well; highest-value additions are FWCI, citation count, bibliographic coupling
+
+Full catalog: `experiments/data/b1_signal_literature_review.md`
+
+## Phase B2: Computed Signal Exploration — Complete (2026-03-19)
+
+460 papers enriched via OpenAlex. Correlation with citations (importance proxy):
+- FWCI: r=0.75 (strongest non-tautological)
+- Citation percentile: r=0.39
+- Institution proxy: r=0.39
+- Author count: r=0.25
+- Reference count: r=0.20
+- Content signals (topic novelty, abstract length, category entropy): near-zero
+
+**Limitation:** Near-zero citations for January 2026 papers. Correlations show signal structure, not predictive power.
+
+## Phase B3: Importance Analysis — Complete (2026-03-19)
+
+At least 2 distinct importance dimensions visible: bibliometric impact (FWCI, citations — avg |r|=0.57) and content properties (topic novelty, length — avg |r|=0.08). Structural signals (author count, references) are intermediate (avg |r|=0.28).
+
+**Recommendation:** Multi-axis display is better than single composite score. Show bibliometric strength AND content relevance separately.
+
+## Phase C1: Coverage-Regret + Filtering Landscape — Complete (2026-03-19)
+
+### Round 1-2: Static Filters (coverage proxy — limited reliability)
+
+No static strategy dramatically outperforms random against near-zero citation proxy. Embedding-based filtering slightly more efficient than category filtering. Hybrid union (keyword OR embedding OR author) gives best absolute coverage (68% at 69% volume).
+
+### Round 3: Quality Metrics and Fair Evaluation
+
+**Quality profiles (C1-R7):** Embedding top-100 gives highest coherence (0.49-0.58) and seed relevance (0.49-0.60). Keyword matching produces high volume with low coherence (0.18-0.34). The tradeoff is smooth with no sharp elbow — users need a configurable aggressiveness slider.
+
+**Null hypothesis tests:** Centroid model degradation was a simulation artifact (circular ground truth). Cannot reject H0 for any adaptive model — the simulation framework lacks the power to distinguish models.
+
+**Fair cross-model evaluation:** Each embedding model wins on its own clusters, loses on the other's. Neither is "better" — they capture different similarity dimensions. Consensus papers (agreed by both) have higher category overlap with seed (0.40 vs 0.32/0.33).
+
+**12-strategy comparison on model-independent ground truth (category co-membership):**
+
+| Strategy | R@100 | What it captures |
+|---|---|---|
+| Co-author network | 82% | Social proximity |
+| Rare category co-occurrence | 50% | Metadata structure |
+| BERTopic topic | 47% | Topical clustering |
+| MiniLM embedding | 17% | Semantic similarity |
+| SPECTER2 embedding | 16% | Citation-structure proximity |
+| All weighted/RRF combos | 14-16% | Various blends |
+| TF-IDF | 14% | Lexical overlap |
+
+**Caveat:** Category co-membership favors metadata-based strategies by construction. Embedding models find papers related in ways categories don't capture — validated by qualitative review.
+
+### Qualitative Review (3 seeds, 15 papers each)
+
+AI agent reviewed consensus, MiniLM-only, and SPECTER2-only recommendations:
+- MiniLM captures **topical precision** (papers using similar language)
+- SPECTER2 captures **discovery potential** (papers from adjacent communities with different vocabulary)
+- Best papers distributed across all three sets — neither model alone finds everything
+- Both produce false positives of different kinds: MiniLM = vocabulary squatters, SPECTER2 = community neighbors
+
+Full review: `experiments/data/qualitative_review_assessment.md`
+
+## Phase C2: Promotion Pipeline Simulation — Complete (2026-03-19)
+
+All strategies resource-feasible at 19K papers/month. Even embed-everything with SPECTER2 needs only 13s GPU/day. Storage: 1.5-15 GB/year. The constraint is signal quality, not compute cost.
+
+Per-category resource model built for interactive installer: `experiments/data/category_resource_model.json`
+
+## Critical Limitations
+
+1. **SPECTER2 loaded improperly.** All experiments used mean pooling without proximity adapter. Proper adapter changes ~35% of top-20 recommendations. All SPECTER2 results should be re-evaluated. See Spike 003.
+
+2. **No human relevance judgments.** All evaluations use proxies. AI qualitative review is informative but not authoritative.
+
+3. **Near-zero citation proxy.** Coverage/importance measurements unreliable as absolute values.
+
+4. **One month of data.** Seasonal and long-term variation not captured.
+
+5. **Evaluation biases caught 5 times during this spike** — see signals in knowledge base. Results should be read with awareness that evaluation framework design affects which approach "wins."
