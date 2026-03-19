@@ -308,6 +308,88 @@ These experiments measure whether key computational operations are feasible at o
 
 *Remaining work:* Integrate C1/C2 findings with Spike 002 findings to produce final backend recommendation. This synthesis happens in the deliberation, not in an experiment.
 
+---
+
+## Round 2: Gap Closure (added 2026-03-19)
+
+Round 1 of B/C completed the protocol as specified but failed to propagate findings between experiments. B1 identified SVM, keyword, and hybrid filtering as the most validated approaches in the literature — but C1 didn't test any of them. QV3 showed MiniLM/SPECTER2 disagree strongly — but C1's embedding filter used only MiniLM. B3 found importance is multi-dimensional — but C1 used a single proxy.
+
+See signal: `sig-2026-03-19-gaps-not-proactively-identified`
+
+### C1-R: Extended Filtering Strategies
+
+C1 Round 1 tested basic strategies. Round 2 tests the approaches B1 identified as most validated:
+
+**C1-R1: Keyword-based filtering**
+
+Protocol:
+1. Define 5 seed keyword sets simulating different user interests (e.g., "reinforcement learning + robotics", "language model + reasoning", "diffusion + generation")
+2. For each seed, filter the 460 enriched papers by keyword match in title+abstract
+3. Measure coverage of "important" papers (same proxy as C1 Round 1)
+4. Compare volume reduction vs coverage loss against C1 baselines
+
+**C1-R2: Author-based filtering**
+
+Protocol:
+1. From enrichment data, extract author publication counts (via OpenAlex authorship)
+2. Filter to papers with at least one "prolific" author (>= 5 papers in corpus)
+3. Simulate "followed_author" filtering: select 10 most prolific authors as "followed", keep their papers
+4. Measure coverage and volume
+
+**C1-R3: SVM classifier filtering (arxiv-sanity-lite approach)**
+
+Protocol:
+1. Simulate a user library: randomly select 20 papers as "positive" (user's saved papers)
+2. Compute TF-IDF on all 460 enriched papers
+3. Train LinearSVC (C=0.01, balanced weights) on positive vs rest
+4. Score all papers by SVM decision function
+5. Keep top 50%, top 20%, top 10% — measure coverage at each threshold
+6. Repeat with 5 different random libraries to assess stability
+
+**C1-R4: Hybrid union filtering**
+
+Protocol:
+1. Combine: keyword match OR SVM top-50% OR embedding top-50%
+2. Measure coverage of union (should be higher than any individual strategy)
+3. Measure volume of union
+4. Compare efficiency (coverage/volume ratio) against individual strategies
+
+**C1-R5: SPECTER2 embedding filter**
+
+Protocol:
+1. Recompute the embedding top-50% filter using SPECTER2 embeddings instead of MiniLM
+2. Compare coverage and volume against MiniLM embedding filter from C1 Round 1
+3. Assess whether SPECTER2's domain-specific similarity produces better filtering
+
+### C1-R6: Importance proxy sensitivity
+
+Round 1's importance proxy (citation count) is near-zero for January 2026 papers. This undermines all coverage measurements.
+
+Protocol:
+1. Use reference_count as alternative proxy (available for more papers, not time-dependent)
+2. Use OpenAlex FWCI as second alternative (field-normalized)
+3. Re-run top 3 filtering strategies against each proxy
+4. Report: how stable are coverage numbers across different importance definitions?
+
+### Category Resource Model Refinement
+
+Already completed (category_resource_model.py). Produced per-category and per-preset resource estimates for interactive installer.
+
+Additional refinement needed:
+1. **Primary vs listed distinction**: installer should filter by "listed in" not "primary category" — the category model showed cs.AI has 5,438 listed vs 1,318 primary papers
+2. **Overlap estimation**: for multi-category selections, use the pairwise overlap data to estimate unique paper count
+
+### Round 2 Completion Checklist
+
+- [ ] C1-R1: Keyword-based filtering tested
+- [ ] C1-R2: Author-based filtering tested
+- [ ] C1-R3: SVM classifier filtering tested
+- [ ] C1-R4: Hybrid union filtering tested
+- [ ] C1-R5: SPECTER2 embedding filter tested
+- [ ] C1-R6: Importance proxy sensitivity analyzed
+- [ ] Category resource model committed
+- [ ] FINDINGS.md updated with all Round 2 results
+
 ## Success Criteria
 
 Exploratory spike — success is learning, not confirming.

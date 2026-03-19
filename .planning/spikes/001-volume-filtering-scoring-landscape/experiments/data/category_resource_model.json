@@ -1,0 +1,1321 @@
+{
+  "description": "Per-category resource estimation model for arxiv-mcp interactive installer. Based on January 2026 harvest data (19,252 papers across 130 categories). Resource costs derived from Spike 001 (A1c) and Spike 002 (QV3, C2) measurements.",
+  "data_source": "spike_001_harvest.db (January 2026)",
+  "total_papers_month": 19252,
+  "total_categories": 151,
+  "per_category": [
+    {
+      "category": "cs.AI",
+      "description": "Artificial Intelligence",
+      "papers_primary": 1318,
+      "papers_listed": 5438,
+      "resources": {
+        "papers_per_month": 5438,
+        "papers_per_day": 181.3,
+        "papers_per_year": 65256,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.31,
+          "embed_gpu_specter2_seconds": 3.73,
+          "embed_cpu_minilm_seconds": 6.34,
+          "openalex_enrich_seconds": 18.13
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.2,
+          "embed_gpu_specter2_minutes": 1.9,
+          "embed_cpu_minilm_minutes": 3.2,
+          "openalex_enrich_minutes": 9.1
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 290.4,
+          "postgresql_db_mb": 362.6,
+          "embeddings_minilm_mb": 95.6,
+          "embeddings_specter2_mb": 191.2
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 5.0,
+          "embeddings_minilm_mb": 95.6,
+          "embeddings_specter2_mb": 191.2
+        }
+      }
+    },
+    {
+      "category": "cs.LG",
+      "description": "Machine Learning",
+      "papers_primary": 2894,
+      "papers_listed": 5145,
+      "resources": {
+        "papers_per_month": 5145,
+        "papers_per_day": 171.5,
+        "papers_per_year": 61740,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.29,
+          "embed_gpu_specter2_seconds": 3.53,
+          "embed_cpu_minilm_seconds": 6.0,
+          "openalex_enrich_seconds": 17.15
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.1,
+          "embed_gpu_specter2_minutes": 1.8,
+          "embed_cpu_minilm_minutes": 3.0,
+          "openalex_enrich_minutes": 8.6
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 274.8,
+          "postgresql_db_mb": 343.1,
+          "embeddings_minilm_mb": 90.4,
+          "embeddings_specter2_mb": 180.9
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 4.7,
+          "embeddings_minilm_mb": 90.4,
+          "embeddings_specter2_mb": 180.9
+        }
+      }
+    },
+    {
+      "category": "cs.CV",
+      "description": "Computer Vision",
+      "papers_primary": 2737,
+      "papers_listed": 3364,
+      "resources": {
+        "papers_per_month": 3364,
+        "papers_per_day": 112.1,
+        "papers_per_year": 40368,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.19,
+          "embed_gpu_specter2_seconds": 2.31,
+          "embed_cpu_minilm_seconds": 3.92,
+          "openalex_enrich_seconds": 11.21
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.1,
+          "embed_gpu_specter2_minutes": 1.2,
+          "embed_cpu_minilm_minutes": 2.0,
+          "openalex_enrich_minutes": 5.6
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 179.7,
+          "postgresql_db_mb": 224.3,
+          "embeddings_minilm_mb": 59.1,
+          "embeddings_specter2_mb": 118.3
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 3.1,
+          "embeddings_minilm_mb": 59.1,
+          "embeddings_specter2_mb": 118.3
+        }
+      }
+    },
+    {
+      "category": "cs.CL",
+      "description": "Computation and Language (NLP)",
+      "papers_primary": 2218,
+      "papers_listed": 3100,
+      "resources": {
+        "papers_per_month": 3100,
+        "papers_per_day": 103.3,
+        "papers_per_year": 37200,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.18,
+          "embed_gpu_specter2_seconds": 2.13,
+          "embed_cpu_minilm_seconds": 3.62,
+          "openalex_enrich_seconds": 10.33
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.1,
+          "embed_gpu_specter2_minutes": 1.1,
+          "embed_cpu_minilm_minutes": 1.8,
+          "openalex_enrich_minutes": 5.2
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 165.6,
+          "postgresql_db_mb": 206.7,
+          "embeddings_minilm_mb": 54.5,
+          "embeddings_specter2_mb": 109.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 2.8,
+          "embeddings_minilm_mb": 54.5,
+          "embeddings_specter2_mb": 109.0
+        }
+      }
+    },
+    {
+      "category": "cs.RO",
+      "description": "Robotics",
+      "papers_primary": 729,
+      "papers_listed": 957,
+      "resources": {
+        "papers_per_month": 957,
+        "papers_per_day": 31.9,
+        "papers_per_year": 11484,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.05,
+          "embed_gpu_specter2_seconds": 0.66,
+          "embed_cpu_minilm_seconds": 1.12,
+          "openalex_enrich_seconds": 3.19
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.3,
+          "embed_cpu_minilm_minutes": 0.6,
+          "openalex_enrich_minutes": 1.6
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 51.1,
+          "postgresql_db_mb": 63.8,
+          "embeddings_minilm_mb": 16.8,
+          "embeddings_specter2_mb": 33.6
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.9,
+          "embeddings_minilm_mb": 16.8,
+          "embeddings_specter2_mb": 33.6
+        }
+      }
+    },
+    {
+      "category": "cs.CR",
+      "description": "Cryptography and Security",
+      "papers_primary": 708,
+      "papers_listed": 950,
+      "resources": {
+        "papers_per_month": 950,
+        "papers_per_day": 31.7,
+        "papers_per_year": 11400,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.05,
+          "embed_gpu_specter2_seconds": 0.65,
+          "embed_cpu_minilm_seconds": 1.11,
+          "openalex_enrich_seconds": 3.17
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.3,
+          "embed_cpu_minilm_minutes": 0.6,
+          "openalex_enrich_minutes": 1.6
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 50.7,
+          "postgresql_db_mb": 63.4,
+          "embeddings_minilm_mb": 16.7,
+          "embeddings_specter2_mb": 33.4
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.9,
+          "embeddings_minilm_mb": 16.7,
+          "embeddings_specter2_mb": 33.4
+        }
+      }
+    },
+    {
+      "category": "math.OC",
+      "description": "Optimization and Control",
+      "papers_primary": 535,
+      "papers_listed": 912,
+      "resources": {
+        "papers_per_month": 912,
+        "papers_per_day": 30.4,
+        "papers_per_year": 10944,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.05,
+          "embed_gpu_specter2_seconds": 0.63,
+          "embed_cpu_minilm_seconds": 1.06,
+          "openalex_enrich_seconds": 3.04
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.3,
+          "embed_cpu_minilm_minutes": 0.5,
+          "openalex_enrich_minutes": 1.5
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 48.7,
+          "postgresql_db_mb": 60.8,
+          "embeddings_minilm_mb": 16.0,
+          "embeddings_specter2_mb": 32.1
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.8,
+          "embeddings_minilm_mb": 16.0,
+          "embeddings_specter2_mb": 32.1
+        }
+      }
+    },
+    {
+      "category": "cs.SY",
+      "description": "",
+      "papers_primary": 0,
+      "papers_listed": 787,
+      "resources": {
+        "papers_per_month": 787,
+        "papers_per_day": 26.2,
+        "papers_per_year": 9444,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.54,
+          "embed_cpu_minilm_seconds": 0.92,
+          "openalex_enrich_seconds": 2.62
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.3,
+          "embed_cpu_minilm_minutes": 0.5,
+          "openalex_enrich_minutes": 1.3
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 42.0,
+          "postgresql_db_mb": 52.5,
+          "embeddings_minilm_mb": 13.8,
+          "embeddings_specter2_mb": 27.7
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.7,
+          "embeddings_minilm_mb": 13.8,
+          "embeddings_specter2_mb": 27.7
+        }
+      }
+    },
+    {
+      "category": "eess.SY",
+      "description": "Systems and Control",
+      "papers_primary": 474,
+      "papers_listed": 785,
+      "resources": {
+        "papers_per_month": 785,
+        "papers_per_day": 26.2,
+        "papers_per_year": 9420,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.54,
+          "embed_cpu_minilm_seconds": 0.92,
+          "openalex_enrich_seconds": 2.62
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.3,
+          "embed_cpu_minilm_minutes": 0.5,
+          "openalex_enrich_minutes": 1.3
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 41.9,
+          "postgresql_db_mb": 52.3,
+          "embeddings_minilm_mb": 13.8,
+          "embeddings_specter2_mb": 27.6
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.7,
+          "embeddings_minilm_mb": 13.8,
+          "embeddings_specter2_mb": 27.6
+        }
+      }
+    },
+    {
+      "category": "stat.ML",
+      "description": "Machine Learning (Statistics)",
+      "papers_primary": 274,
+      "papers_listed": 782,
+      "resources": {
+        "papers_per_month": 782,
+        "papers_per_day": 26.1,
+        "papers_per_year": 9384,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.54,
+          "embed_cpu_minilm_seconds": 0.91,
+          "openalex_enrich_seconds": 2.61
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.3,
+          "embed_cpu_minilm_minutes": 0.5,
+          "openalex_enrich_minutes": 1.3
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 41.8,
+          "postgresql_db_mb": 52.1,
+          "embeddings_minilm_mb": 13.7,
+          "embeddings_specter2_mb": 27.5
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.7,
+          "embeddings_minilm_mb": 13.7,
+          "embeddings_specter2_mb": 27.5
+        }
+      }
+    },
+    {
+      "category": "cs.HC",
+      "description": "Human-Computer Interaction",
+      "papers_primary": 493,
+      "papers_listed": 746,
+      "resources": {
+        "papers_per_month": 746,
+        "papers_per_day": 24.9,
+        "papers_per_year": 8952,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.51,
+          "embed_cpu_minilm_seconds": 0.87,
+          "openalex_enrich_seconds": 2.49
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.3,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.2
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 39.8,
+          "postgresql_db_mb": 49.7,
+          "embeddings_minilm_mb": 13.1,
+          "embeddings_specter2_mb": 26.2
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.7,
+          "embeddings_minilm_mb": 13.1,
+          "embeddings_specter2_mb": 26.2
+        }
+      }
+    },
+    {
+      "category": "eess.SP",
+      "description": "",
+      "papers_primary": 485,
+      "papers_listed": 723,
+      "resources": {
+        "papers_per_month": 723,
+        "papers_per_day": 24.1,
+        "papers_per_year": 8676,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.5,
+          "embed_cpu_minilm_seconds": 0.84,
+          "openalex_enrich_seconds": 2.41
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.2
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 38.6,
+          "postgresql_db_mb": 48.2,
+          "embeddings_minilm_mb": 12.7,
+          "embeddings_specter2_mb": 25.4
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.7,
+          "embeddings_minilm_mb": 12.7,
+          "embeddings_specter2_mb": 25.4
+        }
+      }
+    },
+    {
+      "category": "cs.NA",
+      "description": "",
+      "papers_primary": 0,
+      "papers_listed": 711,
+      "resources": {
+        "papers_per_month": 711,
+        "papers_per_day": 23.7,
+        "papers_per_year": 8532,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.49,
+          "embed_cpu_minilm_seconds": 0.83,
+          "openalex_enrich_seconds": 2.37
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.2
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 38.0,
+          "postgresql_db_mb": 47.4,
+          "embeddings_minilm_mb": 12.5,
+          "embeddings_specter2_mb": 25.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.7,
+          "embeddings_minilm_mb": 12.5,
+          "embeddings_specter2_mb": 25.0
+        }
+      }
+    },
+    {
+      "category": "math.NA",
+      "description": "Numerical Analysis",
+      "papers_primary": 527,
+      "papers_listed": 711,
+      "resources": {
+        "papers_per_month": 711,
+        "papers_per_day": 23.7,
+        "papers_per_year": 8532,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.49,
+          "embed_cpu_minilm_seconds": 0.83,
+          "openalex_enrich_seconds": 2.37
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.2
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 38.0,
+          "postgresql_db_mb": 47.4,
+          "embeddings_minilm_mb": 12.5,
+          "embeddings_specter2_mb": 25.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.7,
+          "embeddings_minilm_mb": 12.5,
+          "embeddings_specter2_mb": 25.0
+        }
+      }
+    },
+    {
+      "category": "cs.SE",
+      "description": "Software Engineering",
+      "papers_primary": 533,
+      "papers_listed": 691,
+      "resources": {
+        "papers_per_month": 691,
+        "papers_per_day": 23.0,
+        "papers_per_year": 8292,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.47,
+          "embed_cpu_minilm_seconds": 0.81,
+          "openalex_enrich_seconds": 2.3
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.2
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 36.9,
+          "postgresql_db_mb": 46.1,
+          "embeddings_minilm_mb": 12.1,
+          "embeddings_specter2_mb": 24.3
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.6,
+          "embeddings_minilm_mb": 12.1,
+          "embeddings_specter2_mb": 24.3
+        }
+      }
+    },
+    {
+      "category": "cs.IT",
+      "description": "Information Theory",
+      "papers_primary": 448,
+      "papers_listed": 665,
+      "resources": {
+        "papers_per_month": 665,
+        "papers_per_day": 22.2,
+        "papers_per_year": 7980,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.46,
+          "embed_cpu_minilm_seconds": 0.78,
+          "openalex_enrich_seconds": 2.22
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.1
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 35.5,
+          "postgresql_db_mb": 44.3,
+          "embeddings_minilm_mb": 11.7,
+          "embeddings_specter2_mb": 23.4
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.6,
+          "embeddings_minilm_mb": 11.7,
+          "embeddings_specter2_mb": 23.4
+        }
+      }
+    },
+    {
+      "category": "math.IT",
+      "description": "",
+      "papers_primary": 0,
+      "papers_listed": 665,
+      "resources": {
+        "papers_per_month": 665,
+        "papers_per_day": 22.2,
+        "papers_per_year": 7980,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.04,
+          "embed_gpu_specter2_seconds": 0.46,
+          "embed_cpu_minilm_seconds": 0.78,
+          "openalex_enrich_seconds": 2.22
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.1
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 35.5,
+          "postgresql_db_mb": 44.3,
+          "embeddings_minilm_mb": 11.7,
+          "embeddings_specter2_mb": 23.4
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.6,
+          "embeddings_minilm_mb": 11.7,
+          "embeddings_specter2_mb": 23.4
+        }
+      }
+    },
+    {
+      "category": "cs.CY",
+      "description": "Computers and Society",
+      "papers_primary": 328,
+      "papers_listed": 616,
+      "resources": {
+        "papers_per_month": 616,
+        "papers_per_day": 20.5,
+        "papers_per_year": 7392,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.03,
+          "embed_gpu_specter2_seconds": 0.42,
+          "embed_cpu_minilm_seconds": 0.72,
+          "openalex_enrich_seconds": 2.05
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.4,
+          "openalex_enrich_minutes": 1.0
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 32.9,
+          "postgresql_db_mb": 41.1,
+          "embeddings_minilm_mb": 10.8,
+          "embeddings_specter2_mb": 21.7
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.6,
+          "embeddings_minilm_mb": 10.8,
+          "embeddings_specter2_mb": 21.7
+        }
+      }
+    },
+    {
+      "category": "cs.IR",
+      "description": "Information Retrieval",
+      "papers_primary": 342,
+      "papers_listed": 535,
+      "resources": {
+        "papers_per_month": 535,
+        "papers_per_day": 17.8,
+        "papers_per_year": 6420,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.03,
+          "embed_gpu_specter2_seconds": 0.37,
+          "embed_cpu_minilm_seconds": 0.62,
+          "openalex_enrich_seconds": 1.78
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.3,
+          "openalex_enrich_minutes": 0.9
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 28.6,
+          "postgresql_db_mb": 35.7,
+          "embeddings_minilm_mb": 9.4,
+          "embeddings_specter2_mb": 18.8
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.5,
+          "embeddings_minilm_mb": 9.4,
+          "embeddings_specter2_mb": 18.8
+        }
+      }
+    },
+    {
+      "category": "cs.SD",
+      "description": "",
+      "papers_primary": 274,
+      "papers_listed": 443,
+      "resources": {
+        "papers_per_month": 443,
+        "papers_per_day": 14.8,
+        "papers_per_year": 5316,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.03,
+          "embed_gpu_specter2_seconds": 0.3,
+          "embed_cpu_minilm_seconds": 0.52,
+          "openalex_enrich_seconds": 1.48
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.2,
+          "embed_cpu_minilm_minutes": 0.3,
+          "openalex_enrich_minutes": 0.7
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 23.7,
+          "postgresql_db_mb": 29.5,
+          "embeddings_minilm_mb": 7.8,
+          "embeddings_specter2_mb": 15.6
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.4,
+          "embeddings_minilm_mb": 7.8,
+          "embeddings_specter2_mb": 15.6
+        }
+      }
+    },
+    {
+      "category": "cs.DC",
+      "description": "Distributed Computing",
+      "papers_primary": 238,
+      "papers_listed": 427,
+      "resources": {
+        "papers_per_month": 427,
+        "papers_per_day": 14.2,
+        "papers_per_year": 5124,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.29,
+          "embed_cpu_minilm_seconds": 0.5,
+          "openalex_enrich_seconds": 1.42
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.7
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 22.8,
+          "postgresql_db_mb": 28.5,
+          "embeddings_minilm_mb": 7.5,
+          "embeddings_specter2_mb": 15.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.4,
+          "embeddings_minilm_mb": 7.5,
+          "embeddings_specter2_mb": 15.0
+        }
+      }
+    },
+    {
+      "category": "math.ST",
+      "description": "",
+      "papers_primary": 205,
+      "papers_listed": 426,
+      "resources": {
+        "papers_per_month": 426,
+        "papers_per_day": 14.2,
+        "papers_per_year": 5112,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.29,
+          "embed_cpu_minilm_seconds": 0.5,
+          "openalex_enrich_seconds": 1.42
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.7
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 22.8,
+          "postgresql_db_mb": 28.4,
+          "embeddings_minilm_mb": 7.5,
+          "embeddings_specter2_mb": 15.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.4,
+          "embeddings_minilm_mb": 7.5,
+          "embeddings_specter2_mb": 15.0
+        }
+      }
+    },
+    {
+      "category": "stat.TH",
+      "description": "",
+      "papers_primary": 0,
+      "papers_listed": 426,
+      "resources": {
+        "papers_per_month": 426,
+        "papers_per_day": 14.2,
+        "papers_per_year": 5112,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.29,
+          "embed_cpu_minilm_seconds": 0.5,
+          "openalex_enrich_seconds": 1.42
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.7
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 22.8,
+          "postgresql_db_mb": 28.4,
+          "embeddings_minilm_mb": 7.5,
+          "embeddings_specter2_mb": 15.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.4,
+          "embeddings_minilm_mb": 7.5,
+          "embeddings_specter2_mb": 15.0
+        }
+      }
+    },
+    {
+      "category": "eess.AS",
+      "description": "",
+      "papers_primary": 190,
+      "papers_listed": 396,
+      "resources": {
+        "papers_per_month": 396,
+        "papers_per_day": 13.2,
+        "papers_per_year": 4752,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.27,
+          "embed_cpu_minilm_seconds": 0.46,
+          "openalex_enrich_seconds": 1.32
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.7
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 21.1,
+          "postgresql_db_mb": 26.4,
+          "embeddings_minilm_mb": 7.0,
+          "embeddings_specter2_mb": 13.9
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.4,
+          "embeddings_minilm_mb": 7.0,
+          "embeddings_specter2_mb": 13.9
+        }
+      }
+    },
+    {
+      "category": "quant-ph",
+      "description": "",
+      "papers_primary": 241,
+      "papers_listed": 334,
+      "resources": {
+        "papers_per_month": 334,
+        "papers_per_day": 11.1,
+        "papers_per_year": 4008,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.23,
+          "embed_cpu_minilm_seconds": 0.39,
+          "openalex_enrich_seconds": 1.11
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.6
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 17.8,
+          "postgresql_db_mb": 22.3,
+          "embeddings_minilm_mb": 5.9,
+          "embeddings_specter2_mb": 11.7
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.3,
+          "embeddings_minilm_mb": 5.9,
+          "embeddings_specter2_mb": 11.7
+        }
+      }
+    },
+    {
+      "category": "eess.IV",
+      "description": "",
+      "papers_primary": 206,
+      "papers_listed": 330,
+      "resources": {
+        "papers_per_month": 330,
+        "papers_per_day": 11.0,
+        "papers_per_year": 3960,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.23,
+          "embed_cpu_minilm_seconds": 0.39,
+          "openalex_enrich_seconds": 1.1
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.6
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 17.6,
+          "postgresql_db_mb": 22.0,
+          "embeddings_minilm_mb": 5.8,
+          "embeddings_specter2_mb": 11.6
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.3,
+          "embeddings_minilm_mb": 5.8,
+          "embeddings_specter2_mb": 11.6
+        }
+      }
+    },
+    {
+      "category": "cs.NI",
+      "description": "Networking",
+      "papers_primary": 221,
+      "papers_listed": 312,
+      "resources": {
+        "papers_per_month": 312,
+        "papers_per_day": 10.4,
+        "papers_per_year": 3744,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.21,
+          "embed_cpu_minilm_seconds": 0.36,
+          "openalex_enrich_seconds": 1.04
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.5
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 16.7,
+          "postgresql_db_mb": 20.8,
+          "embeddings_minilm_mb": 5.5,
+          "embeddings_specter2_mb": 11.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.3,
+          "embeddings_minilm_mb": 5.5,
+          "embeddings_specter2_mb": 11.0
+        }
+      }
+    },
+    {
+      "category": "cs.MA",
+      "description": "Multiagent Systems",
+      "papers_primary": 100,
+      "papers_listed": 286,
+      "resources": {
+        "papers_per_month": 286,
+        "papers_per_day": 9.5,
+        "papers_per_year": 3432,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.2,
+          "embed_cpu_minilm_seconds": 0.33,
+          "openalex_enrich_seconds": 0.95
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.5
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 15.3,
+          "postgresql_db_mb": 19.1,
+          "embeddings_minilm_mb": 5.0,
+          "embeddings_specter2_mb": 10.1
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.3,
+          "embeddings_minilm_mb": 5.0,
+          "embeddings_specter2_mb": 10.1
+        }
+      }
+    },
+    {
+      "category": "cs.DS",
+      "description": "Data Structures and Algorithms",
+      "papers_primary": 167,
+      "papers_listed": 277,
+      "resources": {
+        "papers_per_month": 277,
+        "papers_per_day": 9.2,
+        "papers_per_year": 3324,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.19,
+          "embed_cpu_minilm_seconds": 0.32,
+          "openalex_enrich_seconds": 0.92
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.5
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 14.8,
+          "postgresql_db_mb": 18.5,
+          "embeddings_minilm_mb": 4.9,
+          "embeddings_specter2_mb": 9.7
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.3,
+          "embeddings_minilm_mb": 4.9,
+          "embeddings_specter2_mb": 9.7
+        }
+      }
+    },
+    {
+      "category": "stat.ME",
+      "description": "",
+      "papers_primary": 129,
+      "papers_listed": 269,
+      "resources": {
+        "papers_per_month": 269,
+        "papers_per_day": 9.0,
+        "papers_per_year": 3228,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.02,
+          "embed_gpu_specter2_seconds": 0.18,
+          "embed_cpu_minilm_seconds": 0.31,
+          "openalex_enrich_seconds": 0.9
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.0,
+          "embed_gpu_specter2_minutes": 0.1,
+          "embed_cpu_minilm_minutes": 0.2,
+          "openalex_enrich_minutes": 0.4
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 14.4,
+          "postgresql_db_mb": 17.9,
+          "embeddings_minilm_mb": 4.7,
+          "embeddings_specter2_mb": 9.5
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 0.2,
+          "embeddings_minilm_mb": 4.7,
+          "embeddings_specter2_mb": 9.5
+        }
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": "ML Researcher",
+      "description": "Core machine learning + NLP + AI",
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "cs.AI",
+        "stat.ML"
+      ],
+      "unique_papers_per_month": 10184,
+      "resources": {
+        "papers_per_month": 10184,
+        "papers_per_day": 339.5,
+        "papers_per_year": 122208,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.58,
+          "embed_gpu_specter2_seconds": 6.99,
+          "embed_cpu_minilm_seconds": 11.88,
+          "openalex_enrich_seconds": 33.95
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.3,
+          "embed_gpu_specter2_minutes": 3.5,
+          "embed_cpu_minilm_minutes": 5.9,
+          "openalex_enrich_minutes": 17.0
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 543.9,
+          "postgresql_db_mb": 679.1,
+          "embeddings_minilm_mb": 179.0,
+          "embeddings_specter2_mb": 358.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 9.3,
+          "embeddings_minilm_mb": 179.0,
+          "embeddings_specter2_mb": 358.0
+        }
+      }
+    },
+    {
+      "name": "CV Researcher",
+      "description": "Computer vision + ML",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "unique_papers_per_month": 7954,
+      "resources": {
+        "papers_per_month": 7954,
+        "papers_per_day": 265.1,
+        "papers_per_year": 95448,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.45,
+          "embed_gpu_specter2_seconds": 5.46,
+          "embed_cpu_minilm_seconds": 9.28,
+          "openalex_enrich_seconds": 26.51
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.2,
+          "embed_gpu_specter2_minutes": 2.7,
+          "embed_cpu_minilm_minutes": 4.6,
+          "openalex_enrich_minutes": 13.3
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 424.8,
+          "postgresql_db_mb": 530.4,
+          "embeddings_minilm_mb": 139.8,
+          "embeddings_specter2_mb": 279.6
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 7.3,
+          "embeddings_minilm_mb": 139.8,
+          "embeddings_specter2_mb": 279.6
+        }
+      }
+    },
+    {
+      "name": "NLP Researcher",
+      "description": "NLP + AI + Information Retrieval",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "unique_papers_per_month": 7359,
+      "resources": {
+        "papers_per_month": 7359,
+        "papers_per_day": 245.3,
+        "papers_per_year": 88308,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.42,
+          "embed_gpu_specter2_seconds": 5.05,
+          "embed_cpu_minilm_seconds": 8.59,
+          "openalex_enrich_seconds": 24.53
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.2,
+          "embed_gpu_specter2_minutes": 2.5,
+          "embed_cpu_minilm_minutes": 4.3,
+          "openalex_enrich_minutes": 12.3
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 393.0,
+          "postgresql_db_mb": 490.7,
+          "embeddings_minilm_mb": 129.4,
+          "embeddings_specter2_mb": 258.7
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 6.7,
+          "embeddings_minilm_mb": 129.4,
+          "embeddings_specter2_mb": 258.7
+        }
+      }
+    },
+    {
+      "name": "Robotics",
+      "description": "Robotics + control + multiagent",
+      "categories": [
+        "cs.RO",
+        "eess.SY",
+        "cs.MA"
+      ],
+      "unique_papers_per_month": 1881,
+      "resources": {
+        "papers_per_month": 1881,
+        "papers_per_day": 62.7,
+        "papers_per_year": 22572,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.11,
+          "embed_gpu_specter2_seconds": 1.29,
+          "embed_cpu_minilm_seconds": 2.19,
+          "openalex_enrich_seconds": 6.27
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.1,
+          "embed_gpu_specter2_minutes": 0.6,
+          "embed_cpu_minilm_minutes": 1.1,
+          "openalex_enrich_minutes": 3.1
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 100.5,
+          "postgresql_db_mb": 125.4,
+          "embeddings_minilm_mb": 33.1,
+          "embeddings_specter2_mb": 66.1
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 1.7,
+          "embeddings_minilm_mb": 33.1,
+          "embeddings_specter2_mb": 66.1
+        }
+      }
+    },
+    {
+      "name": "Broad CS",
+      "description": "Top 10 CS categories",
+      "categories": [
+        "cs.LG",
+        "cs.CV",
+        "cs.CL",
+        "cs.AI",
+        "cs.RO",
+        "cs.CR",
+        "cs.SE",
+        "cs.DC",
+        "cs.IR",
+        "cs.HC"
+      ],
+      "unique_papers_per_month": 14394,
+      "resources": {
+        "papers_per_month": 14394,
+        "papers_per_day": 479.8,
+        "papers_per_year": 172728,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.82,
+          "embed_gpu_specter2_seconds": 9.88,
+          "embed_cpu_minilm_seconds": 16.79,
+          "openalex_enrich_seconds": 47.98
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.4,
+          "embed_gpu_specter2_minutes": 4.9,
+          "embed_cpu_minilm_minutes": 8.4,
+          "openalex_enrich_minutes": 24.0
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 768.7,
+          "postgresql_db_mb": 959.9,
+          "embeddings_minilm_mb": 253.0,
+          "embeddings_specter2_mb": 506.0
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 13.2,
+          "embeddings_minilm_mb": 253.0,
+          "embeddings_specter2_mb": 506.0
+        }
+      }
+    },
+    {
+      "name": "Everything",
+      "description": "All 15 configured categories",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.CV",
+        "cs.CL",
+        "cs.RO",
+        "cs.CR",
+        "math.OC",
+        "cs.SY",
+        "eess.SY",
+        "stat.ML",
+        "cs.HC",
+        "eess.SP",
+        "cs.NA",
+        "math.NA",
+        "cs.SE"
+      ],
+      "unique_papers_per_month": 16275,
+      "resources": {
+        "papers_per_month": 16275,
+        "papers_per_day": 542.5,
+        "papers_per_year": 195300,
+        "daily_compute": {
+          "embed_gpu_minilm_seconds": 0.92,
+          "embed_gpu_specter2_seconds": 11.18,
+          "embed_cpu_minilm_seconds": 18.99,
+          "openalex_enrich_seconds": 54.25
+        },
+        "cold_start": {
+          "embed_gpu_minilm_minutes": 0.5,
+          "embed_gpu_specter2_minutes": 5.6,
+          "embed_cpu_minilm_minutes": 9.5,
+          "openalex_enrich_minutes": 27.1
+        },
+        "storage_per_year": {
+          "sqlite_db_mb": 869.1,
+          "postgresql_db_mb": 1085.3,
+          "embeddings_minilm_mb": 286.1,
+          "embeddings_specter2_mb": 572.2
+        },
+        "memory_at_1year": {
+          "tfidf_matrix_mb": 14.9,
+          "embeddings_minilm_mb": 286.1,
+          "embeddings_specter2_mb": 572.2
+        }
+      }
+    }
+  ],
+  "overlap_pairs": {
+    "cs.AI+cs.LG": 1909,
+    "cs.AI+cs.CL": 1445,
+    "cs.AI+cs.CV": 858,
+    "cs.SY+eess.SY": 785,
+    "cs.NA+math.NA": 711,
+    "cs.LG+cs.CL": 703,
+    "cs.IT+math.IT": 665,
+    "cs.LG+stat.ML": 631,
+    "cs.LG+cs.CV": 555,
+    "math.ST+stat.TH": 426,
+    "cs.SD+eess.AS": 285,
+    "cs.AI+cs.CR": 277,
+    "cs.AI+cs.CY": 275,
+    "cs.AI+cs.SE": 231,
+    "cs.AI+cs.HC": 228,
+    "cs.CV+eess.IV": 223,
+    "cs.LG+cs.CR": 209,
+    "cs.LG+math.OC": 201,
+    "cs.AI+cs.IR": 198,
+    "cs.AI+cs.RO": 192,
+    "cs.CV+cs.CL": 187,
+    "cs.CV+cs.RO": 172,
+    "cs.AI+cs.MA": 146,
+    "cs.CL+cs.IR": 145,
+    "cs.AI+cs.SD": 133,
+    "cs.CL+cs.CY": 132,
+    "math.ST+stat.ME": 128,
+    "stat.TH+stat.ME": 128,
+    "math.OC+cs.SY": 122,
+    "math.OC+eess.SY": 120
+  },
+  "cost_constants": {
+    "embed_gpu_minilm_ms_per_paper": 1.7,
+    "embed_gpu_specter2_ms_per_paper": 20.6,
+    "embed_cpu_minilm_ms_per_paper": 35.0,
+    "openalex_rate_per_sec": 10,
+    "sqlite_bytes_per_paper": 2745,
+    "pg_bytes_per_paper": 5827,
+    "embedding_bytes_384_per_paper": 1536,
+    "embedding_bytes_768_per_paper": 3072
+  },
+  "usage_notes": "To estimate resources for a custom category selection: 1. Sum listed_counts for selected categories. 2. Subtract pairwise overlaps (inclusion-exclusion). 3. Multiply unique paper count by cost constants. The overlap_pairs table provides the largest pairwise overlaps. For 3+ categories, full inclusion-exclusion is more accurate but pairwise subtraction is a reasonable approximation.",
+  "timestamp": "2026-03-19T02:14:39Z"
+}

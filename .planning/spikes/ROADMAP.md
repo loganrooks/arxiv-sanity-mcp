@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-15
 **Updated:** 2026-03-19
-**Status:** Both spikes in progress. Spike 001 is 3/8 complete by its success criteria (A1, A1c done; A2, A3, B, C pending). Spike 002 Round 1 dimensions done but has methodological gaps requiring Round 2 remediation. Neither spike can be concluded yet. Deliberation blocked on spike completion.
+**Status:** Spike 001: 8/8 success criteria answered (Round 1), Round 2 gap closure in progress (B1-informed filtering strategies). Spike 002: Round 2 remediation 8/9 complete. Per-category resource model built. Deliberation nearing conclusion — awaiting C1-R filtering strategies.
 **Origin:** Post-Phase-10 deliberation on deployment and portability
 
 ## Context
