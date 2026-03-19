@@ -381,14 +381,113 @@ Additional refinement needed:
 
 ### Round 2 Completion Checklist
 
-- [ ] C1-R1: Keyword-based filtering tested
-- [ ] C1-R2: Author-based filtering tested
-- [ ] C1-R3: SVM classifier filtering tested
-- [ ] C1-R4: Hybrid union filtering tested
-- [ ] C1-R5: SPECTER2 embedding filter tested
-- [ ] C1-R6: Importance proxy sensitivity analyzed
-- [ ] Category resource model committed
+- [x] C1-R1: Keyword-based filtering tested
+- [x] C1-R2: Author-based filtering tested
+- [x] C1-R3: SVM classifier filtering tested
+- [x] C1-R4: Hybrid union filtering tested
+- [x] C1-R5: SPECTER2 embedding filter tested
+- [x] C1-R6: Importance proxy sensitivity analyzed
+- [x] Category resource model committed
 - [ ] FINDINGS.md updated with all Round 2 results
+
+**Round 2 finding:** No static strategy dramatically outperforms random with this proxy. The importance proxy (near-zero citations) is too weak. But the structural finding — that strategies have different coverage characteristics — is itself the useful result. See Round 3 for the correct framing.
+
+---
+
+## Round 3: Quality, Adaptation, and Architecture (added 2026-03-19)
+
+Rounds 1-2 measured "coverage" against a broken proxy and tested static strategies for what is fundamentally a dynamic, adaptive problem. Round 3 reframes the question.
+
+See signal: `sig-2026-03-19-measuring-wrong-thing-filtering`
+
+### The Reframing
+
+The spike's success criterion #4 asks "what shape is the coverage-regret tradeoff?" But the real question is: **how should the recommendation system work?** This is a design question informed by experimental findings, not answerable by more benchmark tables.
+
+Key findings that constrain the design:
+- **B1:** Adaptive/hybrid systems dominate in literature (55.56%). Per-user SVM is the most validated personal approach.
+- **B3:** Importance is multi-dimensional. Single-score ranking loses information.
+- **A2:** Categories moderately align with topics (purity 0.40). Category-only filtering misses cross-domain work.
+- **C1 R1-R2:** No static strategy exceeds ~1.15x efficiency. Static filters are not the answer.
+- **QV3:** Embedding model choice matters (MiniLM vs SPECTER2 Jaccard 0.178). Different models capture different similarity.
+- **C2:** All strategies are resource-feasible. The constraint is quality, not compute.
+
+### What Remains Testable (Experiments)
+
+**C1-R7: Quality measurement — topical coherence and diversity**
+
+Instead of coverage against a proxy, measure the actual quality of filtered paper sets:
+
+Protocol:
+1. For 5 simulated research interests (seed paper sets of 3-5 papers each), apply each filtering strategy
+2. For each filtered set, measure:
+   - **Topical coherence**: mean pairwise cosine similarity within the filtered set (are these papers about related things?)
+   - **Diversity**: number of distinct BERTopic clusters represented (does the filter capture breadth?)
+   - **Seed relevance**: mean cosine similarity between filtered papers and seed papers (does the filter find papers the user would actually want?)
+   - **Novelty**: fraction of filtered papers NOT in the same BERTopic cluster as seeds (does the filter surface surprising-but-relevant papers?)
+3. Report quality profiles per strategy: "keyword filtering produces coherent but narrow sets; embedding filtering produces diverse but noisy sets"
+
+**C1-R8: Parameterized precision-recall curves**
+
+Protocol:
+1. For embedding similarity and SVM decision function, vary the threshold from 0% to 100% in 10% increments
+2. At each threshold, measure: volume, coherence, seed-relevance, diversity
+3. Plot: aggressiveness (threshold) vs each quality metric
+4. Identify: where does increasing aggressiveness cause disproportionate quality loss? (the actual elbow question)
+
+**C1-R9: Adaptive learning simulation**
+
+Protocol:
+1. Simulate 30 days of user behavior:
+   - Day 1: User provides 5 seed papers
+   - Each day: system surfaces top 20 papers by current model
+   - User "triages" them: 3 marked interesting, 5 marked not interesting, 12 skipped
+   - Model retrains on cumulative feedback (SVM or embedding centroid update)
+2. Measure at each day:
+   - Seed-relevance of surfaced papers (does quality improve over time?)
+   - How many days until the model stabilizes?
+   - Does a SPECTER2-based model converge faster than MiniLM?
+3. Test with 3 different simulated "user personalities" (focused researcher, broad surveyor, interdisciplinary explorer)
+
+### What Requires Design, Not Experiments
+
+These questions are answered by the spike findings but resolved through architectural design, not more benchmarks:
+
+**D1: Ingestion vs Promotion distinction**
+
+The spike data supports a two-layer architecture:
+- **Ingestion layer** (wide net): User selects categories at install time. All papers in those categories are ingested. The category resource model provides volume estimates. This is a **configuration** choice, not a filter.
+- **Promotion layer** (learned, adaptive): From ingested papers, which to surface? This is where the adaptive filtering lives. Starts from seed papers, learns from triage behavior, operates per-project.
+
+This is a design decision, not a testable hypothesis. The experiments above validate the mechanisms; the architecture connects them.
+
+**D2: Per-project mixture of experts**
+
+B3 found importance is multi-dimensional. The "mixture of experts" model:
+- Each research project has its own interest profile (already in our schema as `interest_signals`)
+- Each profile learns different weights: this project cares about methodology novelty, that project cares about author network, another cares about a specific topic
+- The "experts" are the signal dimensions from B2: embedding similarity, keyword relevance, author proximity, citation impact, topic novelty
+- Each project's model is a learned weighting over these experts
+
+This is implementable using our existing `InterestProfile` + `RankingService` architecture. The spike establishes the dimensions (B2) and shows they're independent (B3). Implementation is Phase 12+ work, not spike work.
+
+**D3: What "quality" means for this system**
+
+For the deliberation and DECISION.md:
+- Quality ≠ coverage against citations
+- Quality = does the user find papers they wouldn't have found otherwise, efficiently?
+- Measurable proxies: topical coherence (filtered set is about related things), seed relevance (matches user interest), diversity (captures multiple relevant sub-areas), novelty (surfaces unexpected connections)
+- The C1-R7 experiment provides these quality metrics for each strategy
+
+### Round 3 Completion Checklist
+
+- [ ] C1-R7: Quality measurement (coherence, diversity, seed-relevance, novelty)
+- [ ] C1-R8: Parameterized precision-recall curves
+- [ ] C1-R9: Adaptive learning simulation (30-day user behavior)
+- [ ] Design notes: ingestion vs promotion architecture
+- [ ] Design notes: per-project mixture of experts
+- [ ] FINDINGS.md updated
+- [ ] DECISION.md written
 
 ## Success Criteria
 
