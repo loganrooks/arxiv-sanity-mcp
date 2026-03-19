@@ -1,0 +1,77 @@
+{
+  "qv1": {
+    "full_corpus": {
+      "n_papers": 19252,
+      "p50_ms": 26.18
+    },
+    "by_category": [
+      {
+        "category": "cs.LG",
+        "n_papers": 2894,
+        "p50_ms": 3.81,
+        "ratio_vs_full": 0.1454
+      },
+      {
+        "category": "cs.CV",
+        "n_papers": 2737,
+        "p50_ms": 3.67,
+        "ratio_vs_full": 0.1402
+      },
+      {
+        "category": "cs.CL",
+        "n_papers": 2218,
+        "p50_ms": 2.59,
+        "ratio_vs_full": 0.099
+      },
+      {
+        "category": "cs.AI",
+        "n_papers": 1318,
+        "p50_ms": 1.74,
+        "ratio_vs_full": 0.0666
+      },
+      {
+        "category": "cs.RO",
+        "n_papers": 729,
+        "p50_ms": 1.16,
+        "ratio_vs_full": 0.0443
+      }
+    ],
+    "extrapolation_215k": {
+      "full_corpus_ms": 292.0,
+      "filtered_largest_cat_ms": 44.0,
+      "largest_category": "cs.LG",
+      "largest_category_fraction": 0.1503
+    },
+    "verdict": "VALIDATED"
+  },
+  "qv2": {
+    "embeddings_28mb": {
+      "file_size_mb": 28.2,
+      "np_load_p50_ms": 5.6,
+      "mmap_open_p50_ms": 0.17,
+      "mmap_first_query_p50_ms": 6.58
+    },
+    "tfidf_157mb": {
+      "file_size_mb": 156.9,
+      "shape": [
+        19252,
+        2137
+      ],
+      "np_load_p50_ms": 75.0,
+      "mmap_open_p50_ms": 0.21,
+      "mmap_first_query_p50_ms": 15.69
+    },
+    "combined_472mb": {
+      "file_size_mb": 471.9,
+      "shape": [
+        19252,
+        6426
+      ],
+      "np_load_p50_ms": 240.22,
+      "mmap_open_p50_ms": 0.18,
+      "mmap_first_query_p50_ms": 47.32
+    },
+    "verdict": "VALIDATED"
+  },
+  "timestamp": "2026-03-19T01:18:49Z"
+}
