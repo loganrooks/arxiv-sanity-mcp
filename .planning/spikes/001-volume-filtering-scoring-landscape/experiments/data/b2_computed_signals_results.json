@@ -1,0 +1,333 @@
+{
+  "sample_size": 500,
+  "enriched_count": 460,
+  "analysis": {
+    "correlations_with_citation": {
+      "fwci": 0.748,
+      "citation_percentile": 0.3942,
+      "author_count": 0.2539,
+      "institution_proxy": 0.3856,
+      "category_count": 0.0458,
+      "category_entropy": 0.05,
+      "reference_count": 0.2023,
+      "topic_count": 0.0587,
+      "abstract_length": -0.0238,
+      "title_length": -0.1576,
+      "topic_novelty": 0.0654
+    },
+    "feature_importances": {
+      "citation_count": 0.514,
+      "fwci": 0.2056,
+      "citation_percentile": 0.1094,
+      "reference_count": 0.0628,
+      "institution_proxy": 0.0338,
+      "abstract_length": 0.0254,
+      "topic_novelty": 0.0138,
+      "topic_count": 0.0123,
+      "author_count": 0.0082,
+      "title_length": 0.0071,
+      "category_entropy": 0.0039,
+      "category_count": 0.0035
+    },
+    "signal_stats": {
+      "citation_count": {
+        "mean": 1897.8978,
+        "median": 0.0,
+        "std": 9384.8863,
+        "min": 0.0,
+        "max": 75548.0,
+        "zeros": 363,
+        "zero_fraction": 0.7891
+      },
+      "fwci": {
+        "mean": 78.2558,
+        "median": 0.0,
+        "std": 562.8176,
+        "min": 0.0,
+        "max": 9284.7614,
+        "zeros": 384,
+        "zero_fraction": 0.8348
+      },
+      "citation_percentile": {
+        "mean": 0.2913,
+        "median": 0.1276,
+        "std": 0.3616,
+        "min": 0.0,
+        "max": 1.0,
+        "zeros": 192,
+        "zero_fraction": 0.4174
+      },
+      "author_count": {
+        "mean": 5.4674,
+        "median": 4.0,
+        "std": 9.2725,
+        "min": 1.0,
+        "max": 100.0,
+        "zeros": 0,
+        "zero_fraction": 0.0
+      },
+      "institution_proxy": {
+        "mean": 0.4283,
+        "median": 0.0,
+        "std": 0.8529,
+        "min": 0.0,
+        "max": 8.0,
+        "zeros": 327,
+        "zero_fraction": 0.7109
+      },
+      "category_count": {
+        "mean": 2.0457,
+        "median": 2.0,
+        "std": 1.0592,
+        "min": 1.0,
+        "max": 6.0,
+        "zeros": 0,
+        "zero_fraction": 0.0
+      },
+      "category_entropy": {
+        "mean": 0.8501,
+        "median": 1.0,
+        "std": 0.7236,
+        "min": 0.0,
+        "max": 2.585,
+        "zeros": 166,
+        "zero_fraction": 0.3609
+      },
+      "reference_count": {
+        "mean": 18.5087,
+        "median": 0.0,
+        "std": 63.911,
+        "min": 0.0,
+        "max": 784.0,
+        "zeros": 365,
+        "zero_fraction": 0.7935
+      },
+      "topic_count": {
+        "mean": 2.8391,
+        "median": 3.0,
+        "std": 0.5439,
+        "min": 0.0,
+        "max": 3.0,
+        "zeros": 6,
+        "zero_fraction": 0.013
+      },
+      "abstract_length": {
+        "mean": 173.9609,
+        "median": 172.0,
+        "std": 45.1374,
+        "min": 10.0,
+        "max": 304.0,
+        "zeros": 0,
+        "zero_fraction": 0.0
+      },
+      "title_length": {
+        "mean": 9.7,
+        "median": 10.0,
+        "std": 2.7993,
+        "min": 2.0,
+        "max": 19.0,
+        "zeros": 0,
+        "zero_fraction": 0.0
+      },
+      "topic_novelty": {
+        "mean": 0.4386,
+        "median": 0.431,
+        "std": 0.133,
+        "min": 0.0,
+        "max": 0.9827,
+        "zeros": 5,
+        "zero_fraction": 0.0109
+      }
+    },
+    "citation_threshold_80pct": 1.0,
+    "citation_distribution": {
+      "min": 0.0,
+      "max": 75548.0,
+      "median": 0.0,
+      "mean": 1897.9
+    }
+  },
+  "signal_data": [
+    {
+      "arxiv_id": "2601.14288",
+      "category": "astro-ph.CO",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0.3797,
+        "author_count": 7,
+        "institution_proxy": 0,
+        "category_count": 5,
+        "category_entropy": 2.3219,
+        "reference_count": 0,
+        "topic_count": 3,
+        "abstract_length": 139,
+        "title_length": 11,
+        "topic_novelty": 0.1829
+      }
+    },
+    {
+      "arxiv_id": "2601.07292",
+      "category": "astro-ph.GA",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0.7351,
+        "author_count": 8,
+        "institution_proxy": 0,
+        "category_count": 3,
+        "category_entropy": 1.585,
+        "reference_count": 54,
+        "topic_count": 3,
+        "abstract_length": 235,
+        "title_length": 7,
+        "topic_novelty": 0.1882
+      }
+    },
+    {
+      "arxiv_id": "2601.21231",
+      "category": "astro-ph.HE",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0.4149,
+        "author_count": 3,
+        "institution_proxy": 0,
+        "category_count": 4,
+        "category_entropy": 2.0,
+        "reference_count": 0,
+        "topic_count": 3,
+        "abstract_length": 196,
+        "title_length": 11,
+        "topic_novelty": 0.193
+      }
+    },
+    {
+      "arxiv_id": "2512.24754",
+      "category": "astro-ph.IM",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0,
+        "author_count": 6,
+        "institution_proxy": 0,
+        "category_count": 2,
+        "category_entropy": 1.0,
+        "reference_count": 0,
+        "topic_count": 3,
+        "abstract_length": 182,
+        "title_length": 12,
+        "topic_novelty": 0.3507
+      }
+    },
+    {
+      "arxiv_id": "2405.14750",
+      "category": "astro-ph.SR",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0,
+        "author_count": 2,
+        "institution_proxy": 0,
+        "category_count": 3,
+        "category_entropy": 1.585,
+        "reference_count": 0,
+        "topic_count": 2,
+        "abstract_length": 133,
+        "title_length": 12,
+        "topic_novelty": 0.1967
+      }
+    },
+    {
+      "arxiv_id": "2509.05041",
+      "category": "cond-mat.dis-nn",
+      "signals": {
+        "citation_count": 6470,
+        "fwci": 514.031,
+        "citation_percentile": 1.0,
+        "author_count": 6,
+        "institution_proxy": 2,
+        "category_count": 3,
+        "category_entropy": 1.585,
+        "reference_count": 86,
+        "topic_count": 3,
+        "abstract_length": 195,
+        "title_length": 8,
+        "topic_novelty": 0.2903
+      }
+    },
+    {
+      "arxiv_id": "2512.24894",
+      "category": "cond-mat.mes-hall",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0.7219,
+        "author_count": 11,
+        "institution_proxy": 0,
+        "category_count": 4,
+        "category_entropy": 2.0,
+        "reference_count": 0,
+        "topic_count": 3,
+        "abstract_length": 224,
+        "title_length": 13,
+        "topic_novelty": 0.2689
+      }
+    },
+    {
+      "arxiv_id": "2507.00683",
+      "category": "cond-mat.mtrl-sci",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0.0671,
+        "author_count": 2,
+        "institution_proxy": 1,
+        "category_count": 2,
+        "category_entropy": 1.0,
+        "reference_count": 9,
+        "topic_count": 3,
+        "abstract_length": 188,
+        "title_length": 12,
+        "topic_novelty": 0.6274
+      }
+    },
+    {
+      "arxiv_id": "2601.05683",
+      "category": "cond-mat.soft",
+      "signals": {
+        "citation_count": 0,
+        "fwci": 0,
+        "citation_percentile": 0.1876,
+        "author_count": 1,
+        "institution_proxy": 0,
+        "category_count": 2,
+        "category_entropy": 1.0,
+        "reference_count": 0,
+        "topic_count": 3,
+        "abstract_length": 91,
+        "title_length": 8,
+        "topic_novelty": 0.4016
+      }
+    },
+    {
+      "arxiv_id": "2512.23930",
+      "category": "cond-mat.stat-mech",
+      "signals": {
+        "citation_count": 7574,
+        "fwci": 69.2541,
+        "citation_percentile": 0.9985,
+        "author_count": 2,
+        "institution_proxy": 0,
+        "category_count": 4,
+        "category_entropy": 2.0,
+        "reference_count": 15,
+        "topic_count": 3,
+        "abstract_length": 166,
+        "title_length": 11,
+        "topic_novelty": 0.3816
+      }
+    }
+  ],
+  "timestamp": "2026-03-19T02:01:51Z"
+}
