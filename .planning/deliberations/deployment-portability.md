@@ -11,7 +11,7 @@ Lifecycle: open → concluded → adopted → evaluated → superseded
 -->
 
 **Date:** 2026-03-14
-**Status:** Open — capability envelope (A1c) complete, tier model revised. Remaining spike phases (A2, B, C) address scoring/filtering, not deployment.
+**Status:** Open — Spike 002 complete, both-backend data now available. Tier model requires second revision. Remaining spike phases (A2, B, C) address scoring/filtering, not deployment.
 **Trigger:** After Phase 10 (agent integration test) completion, user asked: "are we sure everything is working? how might one install this locally on another computer?" Investigation revealed the project is feature-complete but not deployment-ready. Subsequent deliberation expanded scope to include: backend flexibility (SQLite vs PostgreSQL), deployment tiers (personal vs hosted), arxiv-sanity-lite architecture comparison, and PyPI distribution.
 **Affects:** v0.1.x release, v0.2 milestone planning, new users, installation on apollo (MacBook), potential contributors
 **Related:**
@@ -372,19 +372,119 @@ With these mitigations, the practical user experience is:
 
 These are smaller, more targeted questions. Some are testable experiments (add to Spike 001 A2+ or new spikes); others are design decisions that can be made with current evidence.
 
-### Spike 002 Status
+### Spike 002 Status — COMPLETE
 
-**Original plan:** Benchmark PostgreSQL at the same scales for fair comparison.
-**Revised assessment:** Less urgent. The spike data shows SQLite handles the full workload. Spike 002 would confirm the delta is small, but the decision no longer depends on it. PostgreSQL's remaining advantage (multi-writer) is architectural, not performance-based.
+~~**Original plan:** Benchmark PostgreSQL at the same scales for fair comparison.~~
+~~**Revised assessment:** Less urgent. The spike data shows SQLite handles the full workload. Spike 002 would confirm the delta is small, but the decision no longer depends on it. PostgreSQL's remaining advantage (multi-writer) is architectural, not performance-based.~~
+~~**Recommendation:** Defer Spike 002. Proceed to Phase 11 (distribution) with current evidence. If multi-user demand emerges, run Spike 002 then.~~
 
-**Recommendation:** Defer Spike 002. Proceed to Phase 11 (distribution) with current evidence. If multi-user demand emerges, run Spike 002 then.
+**The above was premature.** Spike 002 was executed (2026-03-18) and produced findings that significantly revise the analysis. See Status Update below.
+
+## Status Update (2026-03-18) — Spike 002 Complete
+
+Spike 002 measured PostgreSQL across 6 dimensions at the same scale points as Spike 001, using the same 19,252 real arXiv papers. The results invalidate additional assumptions and require a second tier model revision.
+
+Full findings: `.planning/spikes/002-backend-comparison/FINDINGS.md`
+
+### Evidence from Spike 002
+
+| Dimension | Key Finding | Deliberation Impact |
+|-----------|-------------|---------------------|
+| D1: Search quality | FTS5 and tsvector return materially different papers (avg Jaccard 0.39). FTS5 fails on hyphenated terms. 13/20 queries show low agreement. | **Major.** Backend choice is a retrieval quality decision, not just performance. P4 falsified. |
+| D2: Search latency | FTS5 is 3.5–4.8x faster at all scale points. tsvector ~100ms at 215K. | Moderate. Both under 500ms. FTS5 speed advantage is real but both are interactive. |
+| D3: Vector search | pgvector HNSW is 5–23x faster than numpy brute-force, near-constant ~0.8ms. Recall ≥0.91. | **Major.** HNSW provides genuine value even at 19K. "pgvector unnecessary" falsified. |
+| D4: Writes | SQLite 5–6x faster for bulk import. Both handle concurrent R+W without degradation. | Minor. Cold start difference (1.5s vs 8.6s at 19K) is not user-visible. |
+| D5: Operations | SQLite: 87x faster connections, instant backup, 2x smaller on disk. | Moderate for deployment simplicity. Negated by connection pooling in practice. |
+| D6: Workflow | 6-tool MCP workflow: SQLite 15ms, PG 21ms (1.4x). | Minor. Both well under 100ms for complete workflows. |
+
+### Assumptions Falsified (Second Round)
+
+**4. P4: "FTS5 quality ≈ tsvector for <500K papers" (Revised prediction from first update)**
+- **Claim:** Search quality is equivalent between backends
+- **Evidence:** Average Jaccard 0.39 at 19K. "language model" returns Jaccard 0.03 (near-complete disagreement). FTS5 fails entirely on 2/20 queries with hyphenated terms.
+- **Revised:** FTS5 and tsvector are **not interchangeable**. They use different stemming, different ranking functions, and handle multi-word queries differently. The quality gap is independent of scale.
+
+**5. "pgvector unnecessary at personal scale" (Spike 001 claim, reinforced in A1c update)**
+- **Claim:** Brute-force numpy is sufficient; pgvector only needed at >1M papers
+- **Evidence:** pgvector HNSW: 0.6ms at 215K. Numpy brute-force: 14ms at 215K. HNSW is 23x faster and near-constant regardless of scale. Recall 91% at 215K with default params.
+- **Revised:** pgvector provides genuine value **at every scale tested** (5K–215K). The O(1) vs O(n) scaling means the advantage grows with corpus size. The Spike 001 claim was one-sided inference.
+
+**6. "Only one 'No' remains: multi-writer" (Revised tier matrix from first update)**
+- **Claim:** SQLite has full feature parity except multi-writer
+- **Evidence:** Search quality divergence means SQLite and PostgreSQL offer different user experiences even for single users. The difference isn't a missing feature — it's a different quality of results for the same queries.
+- **Revised:** The tier model has **two meaningful differentiators**: (1) search quality (stemming, ranking, hyphen handling), (2) vector search speed. Multi-writer is third.
+
+### Second Tier Model Revision
+
+The first revision (after Spike 001) organized tiers around corpus size/GPU/user count. Spike 002 shows **search quality** is a new axis:
+
+| Axis | What it determines | Evidence |
+|------|-------------------|----------|
+| **Search quality** | Whether results are optimal for multi-word/hyphenated queries | Jaccard 0.39 between FTS5 and tsvector. FTS5 fails on hyphens. |
+| **Vector search speed** | Whether semantic search is sub-millisecond or tens of ms | HNSW 0.8ms vs numpy 3–14ms depending on scale |
+| **Deployment simplicity** | Whether user needs PostgreSQL server | SQLite is zero-config; PostgreSQL needs install/config |
+| **User count** | Whether multi-writer is needed | Single-writer: either. Multi-writer: PostgreSQL. |
+
+**Second revised feature matrix:**
+
+| Feature | SQLite | PostgreSQL |
+|---------|--------|------------|
+| Full-text search speed | **Faster** (3.5–4.8x) | Slower but interactive |
+| Full-text search quality | Different stemming, fails on hyphens | Better stemming, handles all query types |
+| Interest profiles + ranking | Yes | Yes |
+| Embedding/semantic search | Brute-force (3–14ms, scales linearly) | **HNSW (0.6–1ms, near-constant)** |
+| TF-IDF recommendations | Yes (pre-filter at >50K) | Yes |
+| Triage / collections / watches | Yes | Yes |
+| OpenAlex enrichment | Yes | Yes |
+| Content normalization | Yes | Yes |
+| Concurrent single-writer | Yes (WAL mode) | Yes |
+| Concurrent multi-writer | **No** | Yes |
+| Deployment | Zero-config, single file | Requires server |
+| Disk space | 2x smaller | 2x larger |
+| Backup | File copy (instant) | pg_dump (seconds) |
+| Scale ceiling | ~500K for keyword | Unlimited |
+
+The story is no longer "SQLite does everything, PostgreSQL adds multi-writer." It's: **SQLite is simpler to deploy but has worse search quality and slower vector search. PostgreSQL is harder to deploy but provides better results.** This is a genuine tradeoff, not a simple tier ordering.
+
+### Impact on Recommendation
+
+**Option B (Phase 11 + Phase 12) still holds** but the storage abstraction design must account for quality differences:
+
+1. **Default backend question reopened.** The first revision concluded "SQLite as default" because it had "full feature parity." Spike 002 shows it doesn't — search quality differs materially. The default should be the backend that gives users the best experience, not the easiest to install.
+
+2. **Storage interface cannot hide quality differences.** A `search_papers()` method will return different results depending on backend. This isn't a bug — it's a property of the backends. The abstraction must be honest about this (documentation, not code).
+
+3. **pgvector integration moves earlier.** The first revision pushed pgvector to "optional optimization at >1M papers." Spike 002 shows HNSW has value at 19K. If PostgreSQL is in the picture at all, pgvector should be available from day one.
+
+4. **The "try it easily → upgrade for power" story is complicated.** If SQLite search quality is worse, users who start on SQLite may have a worse first impression. On the other hand, SQLite's zero-config story is what gets them in the door at all.
+
+### Remaining Questions for Deliberation (Not Spikes)
+
+The data is now sufficient for the deployment deliberation to reach a conclusion. The remaining questions are judgment calls, not empirical ones:
+
+1. **Default backend choice:** SQLite (easier to start, worse search) vs PostgreSQL (harder to start, better results). Or: docker-compose as the PostgreSQL "easy path."
+2. **Whether to ship both backends or PostgreSQL-only with docker-compose for simplicity.** Two backends means 2x storage test surface. Docker-compose could make PostgreSQL nearly as easy as SQLite.
+3. **Whether the FTS5 quality gap matters in practice for this user base.** The Jaccard was measured against tsvector as ground truth, but neither has been measured against human relevance judgments. FTS5 might return equally useful (just different) papers.
+
+### Second Revised Predictions
+
+| ID | Original | After Spike 001 | After Spike 002 | Status |
+|----|----------|-----------------|-----------------|--------|
+| P1 | init reduces setup to <3 min | Unchanged | Unchanged | Testable |
+| P2 | >70% choose SQLite | Strengthened | **Weakened** — quality gap may push users to PG | Testable |
+| P3 | Storage interface <5 methods | Unchanged | Unchanged | Testable |
+| P4 | FTS5 quality ≈ tsvector | Extended to <500K | **Falsified** (Jaccard 0.39 at 19K) | Done |
+| P5 | Zero Tier 3 users in 6mo | Unchanged | Unchanged | Testable |
+| P6 | Embedding search <100ms to 500K | Extrapolated ~37ms | Confirmed trajectory, but HNSW is 0.6ms | Partially confirmed |
+| P7 | Daily CPU embedding <60s | 21s projected | Unchanged | Testable |
+| P8 | *(new)* pgvector HNSW recall stays >0.9 at 500K | — | Extrapolated from 0.91 at 215K | Testable |
 
 ## Decision Record
 
-**Decision:** Pending — capability envelope data supports Option B but full spike program (A2, B, C phases) not yet complete. The deployment architecture question has enough evidence to proceed with Phase 11 (distribution). Phase 12 (storage abstraction) can proceed in parallel or after, with revised scope.
+**Decision:** Pending — both-backend data now available. Deployment deliberation can conclude. The remaining question is a design judgment (default backend, whether to ship both), not an empirical one.
 **Decided:** —
 **Implemented via:** not yet implemented
-**Signals addressed:** Spike 001 A1 (volume mapping), A1b (FTS5 benchmark), A1c.1 (TF-IDF), A1c.2 (concurrent SQLite), A1c.3 (embeddings)
+**Signals addressed:** Spike 001 A1 (volume mapping), A1b (FTS5 benchmark), A1c.1 (TF-IDF), A1c.2 (concurrent SQLite), A1c.3 (embeddings), **Spike 002 D1–D6 (full backend comparison)**
 
 ## Evaluation
 

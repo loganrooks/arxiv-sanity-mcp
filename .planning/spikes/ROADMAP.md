@@ -65,16 +65,18 @@ Small experiments that validate the mitigations proposed in the deliberation upd
 |-----------|------------------|--------|
 | Pre-filtered TF-IDF cosine | Does category scoping keep similarity <100ms at 215K? | Small — reuse A1c.1 script |
 | Memory-mapped feature loading | Is mmap actually near-instant for 472 MB? | Small — prototype |
-| FTS5 vs tsvector quality | Do they return equivalent results for same queries? | Medium — needs PostgreSQL comparison |
+| ~~FTS5 vs tsvector quality~~ | ~~Do they return equivalent results for same queries?~~ | **Answered by Spike 002 D1** — No, Jaccard 0.39 |
 | Embedding quality (MiniLM vs SPECTER2) | Is a general model good enough for academic abstracts? | Medium — needs SPECTER2 |
 
-### Active (Spike 002: Backend Comparison)
+### Complete (Spike 002: Backend Comparison)
 
 | # | Question | Type | Status | Key Outcome |
 |---|----------|------|--------|-------------|
-| 002 | PostgreSQL vs SQLite comparative benchmarks | Comparative | **Designed** | 6 dimensions: search quality, latency, vector search, writes, ops, workflow. DESIGN.md complete. Awaiting execution. |
+| 002 | PostgreSQL vs SQLite comparative benchmarks | Comparative | **Complete** | H1 falsified (Jaccard 0.39 — backends return different papers). pgvector HNSW 5–23x faster than numpy. FTS5 3.5–4.8x faster for keyword search but fails on hyphens and has worse stemming. |
 
 > **Epistemic correction (2026-03-17):** Spike 002 was initially deprioritized based on Spike 001's SQLite-only data. This was premature — comparative claims ("SQLite is sufficient") require comparative data. Spike 001 results are hypotheses under test, not conclusions.
+>
+> **Result (2026-03-18):** Spike 001's claims partially falsified. Choosing between backends is a search quality decision, not just a performance decision. Full findings in `002-backend-comparison/FINDINGS.md`.
 
 ## Open Design Questions
 
@@ -95,18 +97,18 @@ These emerged from the spike and deliberation work. They need design deliberatio
 ```
 Spike 001 A1c findings (DONE — SQLite-only baseline)
       ↓
-Spike 002 execution (ACTIVE — PostgreSQL comparative data)
+Spike 002 findings (DONE — both-backend comparative data)
       ↓
-Deliberation conclusion (BLOCKED on Spike 002 — both-backend data required)
+Deliberation conclusion (UNBLOCKED — ready for design judgment)
       ↓
-Phase 11 (Distribution) ← blocked on deployment deliberation
+Phase 11 (Distribution) ← ready to plan after deliberation concludes
       ↓
-Phase 12 (Storage Abstraction) ← blocked on deployment deliberation
+Phase 12 (Storage Abstraction) ← ready to plan after deliberation concludes
       ↓
 Spike 001 A2/B/C (in parallel — informs v0.2 recommendation features)
 ```
 
-The deployment path is blocked on Spike 002 comparative data. Phase 11/12 planning requires both-backend evidence, not SQLite-only measurements.
+The deployment path is unblocked. Both-backend evidence is available. The remaining decision is a design judgment (default backend choice, whether to ship dual-backend), not an empirical question.
 
 ## Principles
 
