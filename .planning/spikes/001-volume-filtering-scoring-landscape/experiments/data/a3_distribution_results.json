@@ -1,0 +1,180 @@
+{
+  "categories": {
+    "n_categories": 130,
+    "gini": 0.8315,
+    "top_10": [
+      [
+        "cs.LG",
+        2894
+      ],
+      [
+        "cs.CV",
+        2737
+      ],
+      [
+        "cs.CL",
+        2218
+      ],
+      [
+        "cs.AI",
+        1318
+      ],
+      [
+        "cs.RO",
+        729
+      ],
+      [
+        "cs.CR",
+        708
+      ],
+      [
+        "math.OC",
+        535
+      ],
+      [
+        "cs.SE",
+        533
+      ],
+      [
+        "math.NA",
+        527
+      ],
+      [
+        "cs.HC",
+        493
+      ]
+    ]
+  },
+  "lengths": {
+    "abstract": {
+      "mean": 172.7,
+      "median": 172.0,
+      "std": 44.8,
+      "min": 10,
+      "max": 417
+    },
+    "title": {
+      "mean": 10.2,
+      "median": 10.0,
+      "std": 3.1,
+      "min": 1,
+      "max": 34
+    }
+  },
+  "authors_per_paper": {
+    "mean": 4.6,
+    "median": 4.0,
+    "p90": 8.0,
+    "max": 483,
+    "single_author_fraction": 0.1893
+  },
+  "categories_per_paper": {
+    "mean": 1.95,
+    "median": 2.0,
+    "max": 7,
+    "single_category_fraction": 0.3943,
+    "multi_category_fraction": 0.6057
+  },
+  "temporal": {
+    "total_days": 1060,
+    "papers_per_day_mean": 18.2,
+    "weekday_distribution": {
+      "Monday": 0,
+      "Tuesday": 0,
+      "Wednesday": 0,
+      "Thursday": 0,
+      "Friday": 0,
+      "Saturday": 0,
+      "Sunday": 0
+    }
+  },
+  "vocabulary": {
+    "total_words": 2939865,
+    "unique_terms": 49944,
+    "terms_for_80pct_coverage": 2001,
+    "coverage_fraction": 0.0401,
+    "top_20_terms": [
+      [
+        "the",
+        131560
+      ],
+      [
+        "and",
+        110263
+      ],
+      [
+        "for",
+        40145
+      ],
+      [
+        "that",
+        38235
+      ],
+      [
+        "with",
+        27561
+      ],
+      [
+        "this",
+        27110
+      ],
+      [
+        "models",
+        16046
+      ],
+      [
+        "model",
+        14577
+      ],
+      [
+        "are",
+        14367
+      ],
+      [
+        "from",
+        14274
+      ],
+      [
+        "based",
+        14067
+      ],
+      [
+        "our",
+        13901
+      ],
+      [
+        "data",
+        13106
+      ],
+      [
+        "framework",
+        10181
+      ],
+      [
+        "these",
+        10095
+      ],
+      [
+        "which",
+        9810
+      ],
+      [
+        "while",
+        9807
+      ],
+      [
+        "performance",
+        9729
+      ],
+      [
+        "learning",
+        9517
+      ],
+      [
+        "can",
+        8795
+      ]
+    ]
+  },
+  "timestamp": "2026-03-19T01:11:55Z"
+}

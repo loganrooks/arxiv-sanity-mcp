@@ -1,0 +1,147 @@
+{
+  "dimension": "D2-R",
+  "description": "Baseline reproduction \u2014 A1b FTS5 measurement stability",
+  "variance_threshold": 0.2,
+  "measurement_stable": false,
+  "per_scale": {
+    "19000": [
+      {
+        "query_name": "single_common",
+        "now_p50_ms": 4.02,
+        "a1b_p50_ms": 2.614,
+        "variance": 0.5379,
+        "within_threshold": false
+      },
+      {
+        "query_name": "single_specific",
+        "now_p50_ms": 0.112,
+        "a1b_p50_ms": 0.071,
+        "variance": 0.5775,
+        "within_threshold": false
+      },
+      {
+        "query_name": "two_word",
+        "now_p50_ms": 10.643,
+        "a1b_p50_ms": 7.33,
+        "variance": 0.452,
+        "within_threshold": false
+      },
+      {
+        "query_name": "three_word",
+        "now_p50_ms": 1.781,
+        "a1b_p50_ms": 1.112,
+        "variance": 0.6016,
+        "within_threshold": false
+      },
+      {
+        "query_name": "boolean_and",
+        "now_p50_ms": 0.934,
+        "a1b_p50_ms": 1.407,
+        "variance": -0.3362,
+        "within_threshold": false
+      },
+      {
+        "query_name": "boolean_or",
+        "now_p50_ms": 4.457,
+        "a1b_p50_ms": 2.654,
+        "variance": 0.6794,
+        "within_threshold": false
+      },
+      {
+        "query_name": "phrase",
+        "now_p50_ms": 6.995,
+        "a1b_p50_ms": 5.85,
+        "variance": 0.1957,
+        "within_threshold": true
+      },
+      {
+        "query_name": "multi_field_broad",
+        "now_p50_ms": 2.554,
+        "a1b_p50_ms": 2.83,
+        "variance": -0.0975,
+        "within_threshold": true
+      },
+      {
+        "query_name": "narrow_specific",
+        "now_p50_ms": 0.684,
+        "a1b_p50_ms": 0.288,
+        "variance": 1.375,
+        "within_threshold": false
+      },
+      {
+        "query_name": "long_query",
+        "error": true
+      }
+    ],
+    "215000": [
+      {
+        "query_name": "single_common",
+        "now_p50_ms": 42.231,
+        "a1b_p50_ms": 27.287,
+        "variance": 0.5477,
+        "within_threshold": false
+      },
+      {
+        "query_name": "single_specific",
+        "now_p50_ms": 0.625,
+        "a1b_p50_ms": 0.265,
+        "variance": 1.3585,
+        "within_threshold": false
+      },
+      {
+        "query_name": "two_word",
+        "now_p50_ms": 118.017,
+        "a1b_p50_ms": 90.819,
+        "variance": 0.2995,
+        "within_threshold": false
+      },
+      {
+        "query_name": "three_word",
+        "now_p50_ms": 16.469,
+        "a1b_p50_ms": 13.223,
+        "variance": 0.2455,
+        "within_threshold": false
+      },
+      {
+        "query_name": "boolean_and",
+        "now_p50_ms": 20.137,
+        "a1b_p50_ms": 10.323,
+        "variance": 0.9507,
+        "within_threshold": false
+      },
+      {
+        "query_name": "boolean_or",
+        "now_p50_ms": 40.249,
+        "a1b_p50_ms": 33.747,
+        "variance": 0.1927,
+        "within_threshold": true
+      },
+      {
+        "query_name": "phrase",
+        "now_p50_ms": 101.451,
+        "a1b_p50_ms": 72.631,
+        "variance": 0.3968,
+        "within_threshold": false
+      },
+      {
+        "query_name": "multi_field_broad",
+        "now_p50_ms": 23.557,
+        "a1b_p50_ms": 18.486,
+        "variance": 0.2743,
+        "within_threshold": false
+      },
+      {
+        "query_name": "narrow_specific",
+        "now_p50_ms": 4.171,
+        "a1b_p50_ms": 4.036,
+        "variance": 0.0334,
+        "within_threshold": true
+      },
+      {
+        "query_name": "long_query",
+        "error": true
+      }
+    ]
+  },
+  "timestamp": "2026-03-19T01:11:34Z"
+}
