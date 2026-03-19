@@ -1,0 +1,284 @@
+{
+  "2512.24801": {
+    "seed": {
+      "id": "2512.24801",
+      "cat": "quant-ph",
+      "title": "Limits of quantum generative models with classical sampling hardness",
+      "abstract": "Sampling tasks have been successful in establishing quantum advantages both in theory and experiments. This has fueled the use of quantum computers for generative modeling to create samples following the probability distribution underlying a given dataset. In particular, the potential to build gener"
+    },
+    "consensus": [
+      {
+        "id": "2405.10360",
+        "cat": "quant-ph",
+        "title": "Adversarial Robustness Guarantees for Quantum Classifiers",
+        "abstract": "Despite their ever more widespread deployment throughout society, machine learning algorithms remain critically vulnerable to being spoofed by subtle adversarial tampering with their input data. The prospect of near-term quantum computers being capable of running {quantum machine learning} (QML) alg"
+      },
+      {
+        "id": "2504.03315",
+        "cat": "quant-ph",
+        "title": "Detecting underdetermination in parameterized quantum circuits",
+        "abstract": "A central question in machine learning is how reliable the predictions of a trained model are. Reliability includes the identification of instances for which a model is likely not to be trusted based on an analysis of the learning system itself. Such unreliability for an input may arise from the mod"
+      },
+      {
+        "id": "2601.05036",
+        "cat": "quant-ph",
+        "title": "Exponential capacity scaling of classical GANs compared to hybrid latent style-based quantum GANs",
+        "abstract": "Quantum generative modeling is a very active area of research in looking for practical advantage in data analysis. Quantum generative adversarial networks (QGANs) are leading candidates for quantum generative modeling and have been applied to diverse areas, from high-energy physics to image generati"
+      },
+      {
+        "id": "2601.01589",
+        "cat": "quant-ph",
+        "title": "Learning Relationship between Quantum Walks and Underdamped Langevin Dynamics",
+        "abstract": "Fast computational algorithms are in constant demand, and their development has been driven by advances such as quantum speedup and classical acceleration. This paper intends to study search algorithms based on quantum walks in quantum computation and sampling algorithms based on Langevin dynamics i"
+      },
+      {
+        "id": "2601.13708",
+        "cat": "quant-ph",
+        "title": "Generative Adversarial Networks for Resource State Generation",
+        "abstract": "We introduce a physics-informed Generative Adversarial Network framework that recasts quantum resource-state generation as an inverse-design task. By embedding task-specific utility functions into training, the model learns to generate valid two-qubit states optimized for teleportation and entanglem"
+      }
+    ],
+    "minilm_only": [
+      {
+        "id": "2402.08606",
+        "cat": "quant-ph",
+        "title": "Arbitrary Polynomial Separations in Trainable Quantum Machine Learning",
+        "abstract": "Recent theoretical results in quantum machine learning have demonstrated a general trade-off between the expressive power of quantum neural networks (QNNs) and their trainability; as a corollary of these results, practical exponential separations in expressive power over classical machine learning m"
+      },
+      {
+        "id": "2503.06917",
+        "cat": "cs.LG",
+        "title": "Sample-Efficient Optimization over Generative Priors via Coarse Learnability",
+        "abstract": "In zeroth-order optimization, we seek to minimize a function $d(\\cdot)$, which may encode combinatorial feasibility, using only function evaluations. We focus on the setting where solutions must also satisfy qualitative constraints or conform to a complex prior distribution. To address this, we intr"
+      },
+      {
+        "id": "2601.07882",
+        "cat": "quant-ph",
+        "title": "Tackling Heterogeneity in Quantum Federated Learning: An Integrated Sporadic-Personalized Approach",
+        "abstract": "Quantum federated learning (QFL) emerges as a powerful technique that combines quantum computing with federated learning to efficiently process complex data across distributed quantum devices while ensuring data privacy in quantum networks. Despite recent research efforts, existing QFL frameworks st"
+      },
+      {
+        "id": "2411.12730",
+        "cat": "quant-ph",
+        "title": "Testing classical properties from quantum data",
+        "abstract": "Properties of Boolean functions can often be tested much faster than the functions can be learned. However, this advantage usually disappears when testers are limited to random samples of a function $f$--a natural setting for data science--rather than queries. In this work we initiate the study of a"
+      },
+      {
+        "id": "2601.21780",
+        "cat": "cs.LG",
+        "title": "Quantum LEGO Learning: A Modular Design Principle for Hybrid Artificial Intelligence",
+        "abstract": "Hybrid quantum-classical learning models increasingly integrate neural networks with variational quantum circuits (VQCs) to exploit complementary inductive biases. However, many existing approaches rely on tightly coupled architectures or task-specific encoders, limiting conceptual clarity, generali"
+      }
+    ],
+    "specter_only": [
+      {
+        "id": "2601.01877",
+        "cat": "quant-ph",
+        "title": "Random-Matrix-Induced Simplicity Bias in Over-parameterized Variational Quantum Circuits",
+        "abstract": "Over-parameterization is commonly used to increase the expressivity of variational quantum circuits (VQCs), yet deeper and more highly parameterized circuits often exhibit poor trainability and limited generalization. In this work, we provide a theoretical explanation for this phenomenon from a func"
+      },
+      {
+        "id": "2601.10588",
+        "cat": "quant-ph",
+        "title": "Searching for Quantum Effects in the Brain: A Bell-Type Test for Nonclassical Latent Representations in Autoencoders",
+        "abstract": "Whether neural information processing is entirely classical or involves quantum-mechanical elements remains an open question. Here we propose a model-agnostic, information-theoretic test of nonclassicality that bypasses microscopic assumptions and instead probes the structure of neural representatio"
+      },
+      {
+        "id": "2512.10929",
+        "cat": "quant-ph",
+        "title": "Noisy Quantum Learning Theory",
+        "abstract": "We develop a framework for learning from noisy quantum experiments in which fault-tolerant devices access uncharacterized systems through noisy couplings. Introducing the complexity class $\\textsf{NBQP}$ (\"noisy BQP''), we model noisy fault-tolerant quantum computers that cannot generally error-corr"
+      },
+      {
+        "id": "2601.03220",
+        "cat": "cs.LG",
+        "title": "From Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence",
+        "abstract": "Can we learn more from data than existed in the generating process itself? Can new and useful information be constructed from merely applying deterministic transformations to existing data? Can the learnable content in data be evaluated without considering a downstream task? On these questions, Shan"
+      },
+      {
+        "id": "2510.07264",
+        "cat": "quant-ph",
+        "title": "When quantum resources backfire: Non-gaussianity and symplectic coherence in noisy bosonic circuits",
+        "abstract": "Analyzing the impact of noise is of fundamental importance to understand the advantages provided by quantum systems. While the classical simulability of noisy discrete-variable systems is increasingly well understood, noisy bosonic circuits are more challenging to simulate and analyze. Here, we addr"
+      }
+    ]
+  },
+  "2601.08224": {
+    "seed": {
+      "id": "2601.08224",
+      "cat": "cs.AI",
+      "title": "An Axiomatic Approach to General Intelligence: SANC(E3) -- Self-organizing Active Network of Concepts with Energy E3",
+      "abstract": "General intelligence must reorganize experience into internal structures that enable prediction and action under finite resources. Existing systems implicitly presuppose fixed primitive units -- tokens, subwords, pixels, or predefined sensor channels -- thereby bypassing the question of how represen"
+    },
+    "consensus": [
+      {
+        "id": "2601.12837",
+        "cat": "q-bio.NC",
+        "title": "Cognition spaces: natural, artificial, and hybrid",
+        "abstract": "Cognitive processes are realized across an extraordinary range of natural, artificial, and hybrid systems, yet there is no unified framework for comparing their forms, limits, and unrealized possibilities. Here, we propose a cognition space approach that replaces narrow, substrate-dependent definiti"
+      },
+      {
+        "id": "2601.06851",
+        "cat": "cs.AI",
+        "title": "A Brain-like Synergistic Core in LLMs Drives Behaviour and Learning",
+        "abstract": "The independent evolution of intelligence in biological and artificial systems offers a unique opportunity to identify its fundamental computational principles. Here we show that large language models spontaneously develop synergistic cores -- components where information integration exceeds individ"
+      },
+      {
+        "id": "2601.04269",
+        "cat": "cs.AI",
+        "title": "Systems Explaining Systems: A Framework for Intelligence and Consciousness",
+        "abstract": "This paper proposes a conceptual framework in which intelligence and consciousness emerge from relational structure rather than from prediction or domain-specific mechanisms. Intelligence is defined as the capacity to form and integrate causal connections between signals, actions, and internal state"
+      },
+      {
+        "id": "2601.03498",
+        "cat": "q-bio.NC",
+        "title": "A Quantifiable Information-Processing Hierarchy Provides a Necessary Condition for Detecting Agency",
+        "abstract": "As intelligent systems are developed across diverse substrates - from machine learning models and neuromorphic hardware to in vitro neural cultures - understanding what gives a system agency has become increasingly important. Existing definitions, however, tend to rely on top-down descriptions that "
+      }
+    ],
+    "minilm_only": [
+      {
+        "id": "2512.04745",
+        "cat": "math.OC",
+        "title": "Neural Policy Composition from Free Energy Minimization",
+        "abstract": "The ability to compose acquired skills to plan and execute behaviors is a hallmark of natural intelligence. Yet, despite remarkable cross-disciplinary efforts, a principled account of how task structure shapes gating and how such computations could be delivered in neural circuits, remains elusive. H"
+      },
+      {
+        "id": "2511.19156",
+        "cat": "cs.IT",
+        "title": "Information Physics of Intelligence: Unifying Logical Depth and Entropy under Thermodynamic Constraints",
+        "abstract": "The rapid scaling of artificial intelligence models has revealed a fundamental tension between model capacity (storage) and inference efficiency (computation). While classical information theory focuses on transmission and storage limits, it lacks a unified physical framework to quantify the thermod"
+      },
+      {
+        "id": "2601.17335",
+        "cat": "cs.AI",
+        "title": "The Relativity of AGI: Distributional Axioms, Fragility, and Undecidability",
+        "abstract": "We study whether Artificial General Intelligence (AGI) admits a coherent theoretical definition that supports absolute claims of existence, robustness, or self-verification. We formalize AGI axiomatically as a distributional, resource-bounded semantic predicate, indexed by a task family, a task dist"
+      },
+      {
+        "id": "2601.00245",
+        "cat": "cs.NE",
+        "title": "Modern Neuromorphic AI: From Intra-Token to Inter-Token Processing",
+        "abstract": "The rapid growth of artificial intelligence (AI) has brought novel data processing and generative capabilities but also escalating energy requirements. This challenge motivates renewed interest in neuromorphic computing principles, which promise brain-like efficiency through discrete and sparse acti"
+      },
+      {
+        "id": "2505.14125",
+        "cat": "cs.LG",
+        "title": "Contrastive Consolidation of Top-Down Modulations Achieves Sparsely Supervised Continual Learning",
+        "abstract": "Biological brains learn continually from a stream of unlabeled data, while integrating specialized information from sparsely labeled examples without compromising their ability to generalize. Meanwhile, machine learning methods are susceptible to catastrophic forgetting in this natural learning sett"
+      }
+    ],
+    "specter_only": [
+      {
+        "id": "2601.02010",
+        "cat": "q-bio.NC",
+        "title": "A neural network for modeling human concept formation, understanding and communication",
+        "abstract": "A remarkable capability of the human brain is to form more abstract conceptual representations from sensorimotor experiences and flexibly apply them independent of direct sensory inputs. However, the computational mechanism underlying this ability remains poorly understood. Here, we present a dual-m"
+      },
+      {
+        "id": "2512.12225",
+        "cat": "cs.AI",
+        "title": "A Geometric Theory of Cognition",
+        "abstract": "Human cognition spans perception, memory, intuitive judgment, deliberative reasoning, action selection, and social inference, yet these capacities are often explained through distinct computational theories. Here we present a unified mathematical framework in which diverse cognitive processes emerge"
+      },
+      {
+        "id": "2601.04501",
+        "cat": "math.DS",
+        "title": "The Minary Primitive of Computational Autopoiesis",
+        "abstract": "We introduce Minary, a computational framework designed as a candidate for the first formally provable autopoietic primitive. Minary represents interacting probabilistic events as multi-dimensional vectors and combines them via linear superposition rather than multiplicative scalar operations, there"
+      },
+      {
+        "id": "2601.10810",
+        "cat": "cs.LG",
+        "title": "Digital Metabolism: Decoupling Logic from Facts via Regenerative Unlearning -- Towards a Pure Neural Logic Core",
+        "abstract": "Large language models (LLMs) currently suffer from parameter entanglement, where general reasoning capabilities (logic) and specific factual knowledge (facts) exist in a superposition state within shared weights. This coupling leads to the \"memory wall,\" where computational capacity is squandered on"
+      },
+      {
+        "id": "2506.01820",
+        "cat": "cs.AI",
+        "title": "Fodor and Pylyshyn's Legacy: Still No Human-like Systematic Compositionality in Neural Networks",
+        "abstract": "Strong meta-learning capabilities for systematic compositionality are emerging as an important skill for navigating the complex and changing tasks of today's world. However, in presenting models for robust adaptation to novel environments, it is important to refrain from making unsupported claims ab"
+      }
+    ]
+  },
+  "2601.18264": {
+    "seed": {
+      "id": "2601.18264",
+      "cat": "cs.LG",
+      "title": "Neural Network Approximation: A View from Polytope Decomposition",
+      "abstract": "Universal approximation theory offers a foundational framework to verify neural network expressiveness, enabling principled utilization in real-world applications. However, most existing theoretical constructions are established by uniformly dividing the input space into tiny hypercubes without cons"
+    },
+    "consensus": [
+      {
+        "id": "2403.05809",
+        "cat": "math.NA",
+        "title": "Two-hidden-layer ReLU neural networks and finite elements",
+        "abstract": "We point out that (continuous or discontinuous) piecewise linear functions on a convex polytope mesh can be represented by two-hidden-layer ReLU neural networks in a weak sense. In addition, the numbers of neurons of the two hidden layers required to weakly represent are accurately given based on th"
+      }
+    ],
+    "minilm_only": [
+      {
+        "id": "2601.14026",
+        "cat": "cs.LG",
+        "title": "Universal Approximation Theorem for Input-Connected Multilayer Perceptrons",
+        "abstract": "We introduce the Input-Connected Multilayer Perceptron (IC-MLP), a feedforward neural network architecture in which each hidden neuron receives, in addition to the outputs of the preceding layer, a direct affine connection from the raw input. We first study this architecture in the univariate settin"
+      },
+      {
+        "id": "2505.16716",
+        "cat": "cs.CC",
+        "title": "The Computational Complexity of Counting Linear Regions in ReLU Neural Networks",
+        "abstract": "An established measure of the expressive power of a given ReLU neural network is the number of linear regions into which it partitions the input space. There exist many different, non-equivalent definitions of what a linear region actually is. We systematically assess which papers use which definiti"
+      },
+      {
+        "id": "2506.16065",
+        "cat": "cs.LG",
+        "title": "Floating-Point Neural Networks Are Provably Robust Universal Approximators",
+        "abstract": "The classical universal approximation (UA) theorem for neural networks establishes mild conditions under which a feedforward neural network can approximate a continuous function $f$ with arbitrary accuracy. A recent result shows that neural networks also enjoy a more general interval universal appro"
+      },
+      {
+        "id": "2512.24295",
+        "cat": "math.OC",
+        "title": "Optimization over Trained Neural Networks: Going Large with Gradient-Based Algorithms",
+        "abstract": "When optimizing a nonlinear objective, one can employ a neural network as a surrogate for the nonlinear function. However, the resulting optimization model can be time-consuming to solve globally with exact methods. As a result, local search that exploits the neural-network structure has been employ"
+      },
+      {
+        "id": "2209.04036",
+        "cat": "math.MG",
+        "title": "Functional dimension of feedforward ReLU neural networks",
+        "abstract": "It is well-known that the parameterized family of functions representable by fully-connected feedforward neural networks with ReLU activation function is precisely the class of piecewise linear functions with finitely many pieces. It is less well-known that for every fixed architecture of ReLU neura"
+      }
+    ],
+    "specter_only": [
+      {
+        "id": "2601.17562",
+        "cat": "math.NA",
+        "title": "Sparse RBF Networks for PDEs and nonlocal equations: function space theory, operator calculus, and training algorithms",
+        "abstract": "This work presents a systematic analysis and extension of the sparse radial basis function network (SparseRBFnet) previously introduced for solving nonlinear partial differential equations (PDEs). Based on its adaptive-width shallow kernel network formulation, we further investigate its function-spa"
+      },
+      {
+        "id": "2507.12814",
+        "cat": "cs.LG",
+        "title": "RONOM: Reduced-Order Neural Operator Modeling",
+        "abstract": "Time-dependent partial differential equations are ubiquitous in physics-based modeling, but they remain computationally intensive in many-query scenarios, such as real-time forecasting, optimal control, and uncertainty quantification. Reduced-order modeling (ROM) addresses these challenges by constr"
+      },
+      {
+        "id": "2601.14070",
+        "cat": "math.NA",
+        "title": "On the optimal shape parameter for kernel methods: Sharp direct and inverse statements",
+        "abstract": "The search for the optimal shape parameter for Radial Basis Function (RBF) kernel approximation has been an outstanding research problem for decades. In this work, we establish a theoretical framework for this problem by leveraging a recently established theory on sharp direct, inverse and saturatio"
+      },
+      {
+        "id": "2407.02700",
+        "cat": "cs.LG",
+        "title": "A simple algorithm for output range analysis for deep neural networks",
+        "abstract": "This paper presents a novel approach for the output range estimation problem in Deep Neural Networks (DNNs) by integrating a Simulated Annealing (SA) algorithm tailored to operate within constrained domains and ensure convergence towards global optima. The method effectively addresses the challenges"
+      },
+      {
+        "id": "2410.14951",
+        "cat": "cs.AI",
+        "title": "Architectural Scaling Surpass Basis Complexity? Efficient KANs with Single-Parameter Design",
+        "abstract": "The landscape of Kolmogorov-Arnold Networks (KANs) is rapidly expanding, yet lacks a unified theoretical framework and a clear principle for efficient architecture design. This paper addresses these gaps with three core contributions. First, we introduce the Universal KAN (Uni-KAN) framework, a nove"
+      }
+    ]
+  }
+}
