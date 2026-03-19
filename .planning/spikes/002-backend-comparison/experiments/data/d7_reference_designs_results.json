@@ -1,0 +1,265 @@
+{
+  "semantic_scholar": {
+    "queries": [
+      {
+        "query": "transformer",
+        "p50_ms": 344.1,
+        "mean_ms": 331.0,
+        "min_ms": 197.4,
+        "max_ms": 451.6,
+        "result_count": null
+      },
+      {
+        "query": "language model",
+        "p50_ms": 1184.5,
+        "mean_ms": 908.9,
+        "min_ms": 334.7,
+        "max_ms": 1207.6,
+        "result_count": 26079600
+      },
+      {
+        "query": "reinforcement learning",
+        "p50_ms": 339.0,
+        "mean_ms": 338.6,
+        "min_ms": 336.4,
+        "max_ms": 340.4,
+        "result_count": null
+      },
+      {
+        "query": "graph neural network",
+        "p50_ms": 335.3,
+        "mean_ms": 332.5,
+        "min_ms": 323.1,
+        "max_ms": 339.1,
+        "result_count": null
+      },
+      {
+        "query": "causal inference",
+        "p50_ms": 321.0,
+        "mean_ms": 293.2,
+        "min_ms": 216.2,
+        "max_ms": 342.5,
+        "result_count": null
+      },
+      {
+        "query": "diffusion model",
+        "p50_ms": 330.9,
+        "mean_ms": 637.5,
+        "min_ms": 328.9,
+        "max_ms": 1252.8,
+        "result_count": null
+      },
+      {
+        "query": "federated learning",
+        "p50_ms": 311.6,
+        "mean_ms": 288.9,
+        "min_ms": 219.1,
+        "max_ms": 335.9,
+        "result_count": null
+      },
+      {
+        "query": "self-supervised contrastive",
+        "p50_ms": 324.9,
+        "mean_ms": 329.7,
+        "min_ms": 323.6,
+        "max_ms": 340.6,
+        "result_count": null
+      },
+      {
+        "query": "attention mechanism",
+        "p50_ms": 226.6,
+        "mean_ms": 458.2,
+        "min_ms": 221.1,
+        "max_ms": 926.8,
+        "result_count": 12127947
+      },
+      {
+        "query": "survey machine learning",
+        "p50_ms": 759.3,
+        "mean_ms": 619.9,
+        "min_ms": 199.5,
+        "max_ms": 901.0,
+        "result_count": null
+      }
+    ],
+    "avg_p50_ms": 447.7,
+    "n_successful": 10,
+    "n_failed": 0
+  },
+  "openalex": {
+    "queries": [
+      {
+        "query": "transformer",
+        "p50_ms": 802.6,
+        "mean_ms": 986.3,
+        "min_ms": 514.5,
+        "max_ms": 1641.9,
+        "result_count": 922058
+      },
+      {
+        "query": "language model",
+        "p50_ms": 813.3,
+        "mean_ms": 1333.8,
+        "min_ms": 664.5,
+        "max_ms": 2523.5,
+        "result_count": 4740221
+      },
+      {
+        "query": "reinforcement learning",
+        "p50_ms": 817.2,
+        "mean_ms": 922.2,
+        "min_ms": 554.4,
+        "max_ms": 1394.9,
+        "result_count": 716807
+      },
+      {
+        "query": "graph neural network",
+        "p50_ms": 670.1,
+        "mean_ms": 686.0,
+        "min_ms": 521.3,
+        "max_ms": 866.5,
+        "result_count": 711095
+      },
+      {
+        "query": "causal inference",
+        "p50_ms": 698.5,
+        "mean_ms": 965.4,
+        "min_ms": 511.6,
+        "max_ms": 1686.2,
+        "result_count": 446592
+      },
+      {
+        "query": "diffusion model",
+        "p50_ms": 699.7,
+        "mean_ms": 758.0,
+        "min_ms": 691.5,
+        "max_ms": 882.7,
+        "result_count": 2230067
+      },
+      {
+        "query": "federated learning",
+        "p50_ms": 638.2,
+        "mean_ms": 991.2,
+        "min_ms": 481.5,
+        "max_ms": 1854.0,
+        "result_count": 147362
+      },
+      {
+        "query": "self-supervised contrastive",
+        "p50_ms": 602.9,
+        "mean_ms": 638.6,
+        "min_ms": 509.6,
+        "max_ms": 803.4,
+        "result_count": 935767
+      },
+      {
+        "query": "attention mechanism",
+        "p50_ms": 726.2,
+        "mean_ms": 790.2,
+        "min_ms": 706.5,
+        "max_ms": 937.9,
+        "result_count": 3969881
+      },
+      {
+        "query": "survey machine learning",
+        "p50_ms": 641.0,
+        "mean_ms": 646.5,
+        "min_ms": 589.2,
+        "max_ms": 709.3,
+        "result_count": 1164798
+      }
+    ],
+    "avg_p50_ms": 711.0,
+    "n_successful": 10,
+    "n_failed": 0
+  },
+  "arxiv_api": {
+    "queries": [
+      {
+        "query": "transformer",
+        "p50_ms": 166.5,
+        "mean_ms": 248.7,
+        "min_ms": 148.6,
+        "max_ms": 431.0,
+        "result_count": null
+      },
+      {
+        "query": "language model",
+        "p50_ms": 142.5,
+        "mean_ms": 301.6,
+        "min_ms": 141.1,
+        "max_ms": 621.4,
+        "result_count": null
+      },
+      {
+        "query": "reinforcement learning",
+        "p50_ms": 160.1,
+        "mean_ms": 249.6,
+        "min_ms": 136.1,
+        "max_ms": 452.5,
+        "result_count": null
+      },
+      {
+        "query": "graph neural network",
+        "p50_ms": 155.7,
+        "mean_ms": 364.0,
+        "min_ms": 143.2,
+        "max_ms": 793.1,
+        "result_count": null
+      },
+      {
+        "query": "causal inference",
+        "p50_ms": 133.2,
+        "mean_ms": 229.4,
+        "min_ms": 128.4,
+        "max_ms": 426.7,
+        "result_count": null
+      },
+      {
+        "query": "diffusion model",
+        "p50_ms": 136.1,
+        "mean_ms": 273.5,
+        "min_ms": 127.4,
+        "max_ms": 557.0,
+        "result_count": null
+      },
+      {
+        "query": "federated learning",
+        "p50_ms": 135.5,
+        "mean_ms": 488.1,
+        "min_ms": 125.8,
+        "max_ms": 1203.2,
+        "result_count": null
+      },
+      {
+        "query": "self-supervised contrastive",
+        "p50_ms": 145.6,
+        "mean_ms": 219.9,
+        "min_ms": 119.2,
+        "max_ms": 394.9,
+        "result_count": null
+      },
+      {
+        "query": "attention mechanism",
+        "p50_ms": 162.6,
+        "mean_ms": 272.7,
+        "min_ms": 135.1,
+        "max_ms": 520.3,
+        "result_count": null
+      },
+      {
+        "query": "survey machine learning",
+        "p50_ms": 144.0,
+        "mean_ms": 286.6,
+        "min_ms": 137.5,
+        "max_ms": 578.5,
+        "result_count": null
+      }
+    ],
+    "avg_p50_ms": 148.2,
+    "n_successful": 10,
+    "n_failed": 0
+  },
+  "timestamp": "2026-03-19T01:48:42Z",
+  "note": "Remote API latencies include network RTT from Dionysus (Tailscale node, residential internet). Local numbers are database query time only. Comparison is for user experience context, not engine efficiency."
+}
