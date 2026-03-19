@@ -1,0 +1,744 @@
+{
+  "dimension": "D1",
+  "description": "Search Result Quality \u2014 FTS5 vs tsvector",
+  "corpus_size": 19252,
+  "top_k": 20,
+  "query_count": 20,
+  "summary": {
+    "avg_jaccard": 0.3897,
+    "avg_rbo": 0.31,
+    "min_jaccard": 0.0,
+    "max_jaccard": 1.0,
+    "h1_result": "FALSIFIED",
+    "h1_description": "Average Jaccard 0.390 < 0.5 threshold",
+    "high_agreement_queries": [
+      "single_specific",
+      "author_name",
+      "math_adjacent"
+    ],
+    "low_agreement_queries": [
+      "two_word",
+      "three_word",
+      "boolean_and",
+      "boolean_or",
+      "phrase",
+      "multi_field_broad",
+      "long_query",
+      "trending_topic",
+      "subfield",
+      "cross_domain",
+      "applied",
+      "stats_adjacent",
+      "method_specific"
+    ]
+  },
+  "per_query": [
+    {
+      "query_name": "single_common",
+      "query_text": "transformer",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.6667,
+      "rbo_p09": 0.3618,
+      "shared_count": 16,
+      "fts5_only_count": 4,
+      "tsvector_only_count": 4,
+      "fts5_only_ids": [
+        "2601.06273",
+        "2601.12456",
+        "2601.17257",
+        "2601.20854"
+      ],
+      "tsvector_only_ids": [
+        "2403.18276",
+        "2503.24067",
+        "2601.09467",
+        "2601.18274"
+      ],
+      "fts5_top5": [
+        "2601.10876",
+        "2410.15244",
+        "2601.03117",
+        "2502.16542",
+        "2304.10557"
+      ],
+      "tsvector_top5": [
+        "2504.12588",
+        "2511.04084",
+        "2511.04678",
+        "2502.16542",
+        "2601.03117"
+      ]
+    },
+    {
+      "query_name": "single_specific",
+      "query_text": "phenomenology",
+      "fts5_count": 16,
+      "tsvector_count": 16,
+      "jaccard": 1.0,
+      "rbo_p09": 0.5966,
+      "shared_count": 16,
+      "fts5_only_count": 0,
+      "tsvector_only_count": 0,
+      "fts5_only_ids": [],
+      "tsvector_only_ids": [],
+      "fts5_top5": [
+        "2409.11277",
+        "2601.11569",
+        "2508.19008",
+        "2601.03367",
+        "2601.05871"
+      ],
+      "tsvector_top5": [
+        "2409.11277",
+        "2508.19008",
+        "2601.03367",
+        "2601.11569",
+        "2601.08970"
+      ]
+    },
+    {
+      "query_name": "two_word",
+      "query_text": "language model",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.0256,
+      "rbo_p09": 0.0161,
+      "shared_count": 1,
+      "fts5_only_count": 19,
+      "tsvector_only_count": 19,
+      "fts5_only_ids": [
+        "2401.18034",
+        "2505.20445",
+        "2507.11832",
+        "2511.13368",
+        "2512.01557"
+      ],
+      "tsvector_only_ids": [
+        "2310.19531",
+        "2405.19631",
+        "2406.17651",
+        "2409.15298",
+        "2412.01212"
+      ],
+      "fts5_top5": [
+        "2601.13649",
+        "2511.13368",
+        "2601.08648",
+        "2505.20445",
+        "2601.15337"
+      ],
+      "tsvector_top5": [
+        "2412.01212",
+        "2511.09900",
+        "2406.17651",
+        "2512.22615",
+        "2310.19531"
+      ]
+    },
+    {
+      "query_name": "three_word",
+      "query_text": "reinforcement learning agent",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.1429,
+      "rbo_p09": 0.3518,
+      "shared_count": 5,
+      "fts5_only_count": 15,
+      "tsvector_only_count": 15,
+      "fts5_only_ids": [
+        "2411.05454",
+        "2505.00540",
+        "2506.09049",
+        "2509.09219",
+        "2509.23870"
+      ],
+      "tsvector_only_ids": [
+        "2406.08844",
+        "2411.12130",
+        "2503.09252",
+        "2505.08825",
+        "2507.14995"
+      ],
+      "fts5_top5": [
+        "2601.18419",
+        "2601.22149",
+        "2601.12886",
+        "2509.02547",
+        "2601.03413"
+      ],
+      "tsvector_top5": [
+        "2601.15141",
+        "2601.18419",
+        "2601.12886",
+        "2509.02547",
+        "2601.05509"
+      ]
+    },
+    {
+      "query_name": "boolean_and",
+      "query_text": "attention AND mechanism",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.2121,
+      "rbo_p09": 0.2925,
+      "shared_count": 7,
+      "fts5_only_count": 13,
+      "tsvector_only_count": 13,
+      "fts5_only_ids": [
+        "2412.17316",
+        "2501.01993",
+        "2504.06704",
+        "2508.13021",
+        "2510.09017"
+      ],
+      "tsvector_only_ids": [
+        "2407.14717",
+        "2503.07157",
+        "2507.15431",
+        "2509.26145",
+        "2512.14714"
+      ],
+      "fts5_top5": [
+        "2601.03329",
+        "2601.07894",
+        "2601.00919",
+        "2601.15380",
+        "2601.17334"
+      ],
+      "tsvector_top5": [
+        "2601.03329",
+        "2507.15431",
+        "2509.26145",
+        "2601.02415",
+        "2407.14717"
+      ]
+    },
+    {
+      "query_name": "boolean_or",
+      "query_text": "consciousness OR awareness",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.3333,
+      "rbo_p09": 0.608,
+      "shared_count": 10,
+      "fts5_only_count": 10,
+      "tsvector_only_count": 10,
+      "fts5_only_ids": [
+        "2501.19273",
+        "2502.11105",
+        "2504.16225",
+        "2505.00356",
+        "2512.11480"
+      ],
+      "tsvector_only_ids": [
+        "2411.01642",
+        "2505.01969",
+        "2512.09867",
+        "2601.01008",
+        "2601.03260"
+      ],
+      "fts5_top5": [
+        "2512.12802",
+        "2601.08864",
+        "2601.17060",
+        "2601.14901",
+        "2601.15334"
+      ],
+      "tsvector_top5": [
+        "2512.12802",
+        "2601.08864",
+        "2601.17060",
+        "2601.14901",
+        "2510.27251"
+      ]
+    },
+    {
+      "query_name": "phrase",
+      "query_text": "\"large language model\"",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.2903,
+      "rbo_p09": 0.4825,
+      "shared_count": 9,
+      "fts5_only_count": 11,
+      "tsvector_only_count": 11,
+      "fts5_only_ids": [
+        "2409.14038",
+        "2410.04054",
+        "2506.20941",
+        "2510.06924",
+        "2510.07213"
+      ],
+      "tsvector_only_ids": [
+        "2505.08464",
+        "2507.22533",
+        "2511.08614",
+        "2512.24518",
+        "2601.01321"
+      ],
+      "fts5_top5": [
+        "2406.17651",
+        "2601.03191",
+        "2601.07898",
+        "2506.20941",
+        "2601.09100"
+      ],
+      "tsvector_top5": [
+        "2406.17651",
+        "2510.16753",
+        "2601.03191",
+        "2601.13143",
+        "2601.09972"
+      ]
+    },
+    {
+      "query_name": "multi_field_broad",
+      "query_text": "neural network optimization",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.1111,
+      "rbo_p09": 0.2479,
+      "shared_count": 4,
+      "fts5_only_count": 16,
+      "tsvector_only_count": 16,
+      "fts5_only_ids": [
+        "2307.00344",
+        "2402.00152",
+        "2406.09132",
+        "2407.00449",
+        "2409.14123"
+      ],
+      "tsvector_only_ids": [
+        "2209.04078",
+        "2411.17782",
+        "2501.18792",
+        "2502.19890",
+        "2502.20580"
+      ],
+      "fts5_top5": [
+        "2505.01985",
+        "2402.00152",
+        "2601.17274",
+        "2510.24039",
+        "2512.24295"
+      ],
+      "tsvector_top5": [
+        "2601.17274",
+        "2502.19890",
+        "2512.24295",
+        "2505.01985",
+        "2209.04078"
+      ]
+    },
+    {
+      "query_name": "narrow_specific",
+      "query_text": "RLHF alignment",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.6,
+      "rbo_p09": 0.4457,
+      "shared_count": 15,
+      "fts5_only_count": 5,
+      "tsvector_only_count": 5,
+      "fts5_only_ids": [
+        "2508.06475",
+        "2510.22462",
+        "2510.22881",
+        "2512.23260",
+        "2601.19063"
+      ],
+      "tsvector_only_ids": [
+        "2502.04675",
+        "2601.03027",
+        "2601.04394",
+        "2601.04736",
+        "2601.15395"
+      ],
+      "fts5_top5": [
+        "2510.06092",
+        "2502.18770",
+        "2601.16403",
+        "2402.06147",
+        "2601.06108"
+      ],
+      "tsvector_top5": [
+        "2510.06092",
+        "2601.04736",
+        "2601.04394",
+        "2601.15395",
+        "2601.06108"
+      ]
+    },
+    {
+      "query_name": "long_query",
+      "query_text": "multi-agent system cooperative reinforcement learning",
+      "fts5_count": 0,
+      "tsvector_count": 13,
+      "jaccard": 0.0,
+      "rbo_p09": 0.0,
+      "shared_count": 0,
+      "fts5_only_count": 0,
+      "tsvector_only_count": 13,
+      "fts5_only_ids": [],
+      "tsvector_only_ids": [
+        "2411.05454",
+        "2502.03377",
+        "2506.09049",
+        "2510.03257",
+        "2511.17915"
+      ],
+      "fts5_top5": [],
+      "tsvector_top5": [
+        "2601.06485",
+        "2601.12886",
+        "2512.24325",
+        "2601.12028",
+        "2601.12657"
+      ]
+    },
+    {
+      "query_name": "author_name",
+      "query_text": "Vaswani",
+      "fts5_count": 0,
+      "tsvector_count": 0,
+      "jaccard": 1.0,
+      "rbo_p09": 0.0,
+      "shared_count": 0,
+      "fts5_only_count": 0,
+      "tsvector_only_count": 0,
+      "fts5_only_ids": [],
+      "tsvector_only_ids": [],
+      "fts5_top5": [],
+      "tsvector_top5": []
+    },
+    {
+      "query_name": "acronym_expansion",
+      "query_text": "GAN generative adversarial",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.4286,
+      "rbo_p09": 0.4635,
+      "shared_count": 12,
+      "fts5_only_count": 8,
+      "tsvector_only_count": 8,
+      "fts5_only_ids": [
+        "2204.13620",
+        "2504.21438",
+        "2506.13445",
+        "2512.21776",
+        "2601.01368"
+      ],
+      "tsvector_only_ids": [
+        "2207.00050",
+        "2403.05281",
+        "2507.12979",
+        "2512.23860",
+        "2601.01441"
+      ],
+      "fts5_top5": [
+        "2204.13620",
+        "2601.03839",
+        "2601.15681",
+        "2501.07033",
+        "2601.01368"
+      ],
+      "tsvector_top5": [
+        "2601.03839",
+        "2601.00189",
+        "2601.15681",
+        "2601.14773",
+        "2501.07033"
+      ]
+    },
+    {
+      "query_name": "trending_topic",
+      "query_text": "diffusion model image generation",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.1765,
+      "rbo_p09": 0.299,
+      "shared_count": 6,
+      "fts5_only_count": 14,
+      "tsvector_only_count": 14,
+      "fts5_only_ids": [
+        "2207.00050",
+        "2312.02625",
+        "2504.15473",
+        "2507.05964",
+        "2508.06625"
+      ],
+      "tsvector_only_ids": [
+        "2403.04279",
+        "2406.14815",
+        "2503.06884",
+        "2503.11720",
+        "2504.07960"
+      ],
+      "fts5_top5": [
+        "2601.22094",
+        "2601.20260",
+        "2601.14625",
+        "2507.12318",
+        "2512.03979"
+      ],
+      "tsvector_top5": [
+        "2601.22094",
+        "2601.03499",
+        "2507.14833",
+        "2601.19498",
+        "2509.00642"
+      ]
+    },
+    {
+      "query_name": "subfield",
+      "query_text": "graph neural network",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.3333,
+      "rbo_p09": 0.097,
+      "shared_count": 10,
+      "fts5_only_count": 10,
+      "tsvector_only_count": 10,
+      "fts5_only_ids": [
+        "2412.14738",
+        "2502.17999",
+        "2503.22252",
+        "2509.23101",
+        "2510.15583"
+      ],
+      "tsvector_only_ids": [
+        "2205.07266",
+        "2402.12937",
+        "2505.18289",
+        "2506.11700",
+        "2508.02600"
+      ],
+      "fts5_top5": [
+        "2503.22252",
+        "2411.02168",
+        "2510.15583",
+        "2505.02664",
+        "2601.14536"
+      ],
+      "tsvector_top5": [
+        "2505.18289",
+        "2505.22362",
+        "2601.02451",
+        "2506.11700",
+        "2601.04807"
+      ]
+    },
+    {
+      "query_name": "cross_domain",
+      "query_text": "federated learning privacy",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.2903,
+      "rbo_p09": 0.2918,
+      "shared_count": 9,
+      "fts5_only_count": 11,
+      "tsvector_only_count": 11,
+      "fts5_only_ids": [
+        "2503.05786",
+        "2504.01882",
+        "2505.13643",
+        "2509.05362",
+        "2509.14275"
+      ],
+      "tsvector_only_ids": [
+        "2503.15550",
+        "2506.00416",
+        "2507.14629",
+        "2510.23463",
+        "2601.01737"
+      ],
+      "fts5_top5": [
+        "2312.11220",
+        "2601.10701",
+        "2601.04121",
+        "2402.16028",
+        "2504.18007"
+      ],
+      "tsvector_top5": [
+        "2402.16028",
+        "2504.18007",
+        "2601.06466",
+        "2312.11220",
+        "2601.01737"
+      ]
+    },
+    {
+      "query_name": "math_adjacent",
+      "query_text": "theorem proof verification",
+      "fts5_count": 13,
+      "tsvector_count": 13,
+      "jaccard": 1.0,
+      "rbo_p09": 0.4025,
+      "shared_count": 13,
+      "fts5_only_count": 0,
+      "tsvector_only_count": 0,
+      "fts5_only_ids": [],
+      "tsvector_only_ids": [],
+      "fts5_top5": [
+        "2601.18944",
+        "2502.17925",
+        "2505.22846",
+        "2601.02803",
+        "2601.00995"
+      ],
+      "tsvector_top5": [
+        "2509.15506",
+        "2601.18944",
+        "2502.17925",
+        "2502.13137",
+        "2601.19605"
+      ]
+    },
+    {
+      "query_name": "applied",
+      "query_text": "robotics manipulation",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.25,
+      "rbo_p09": 0.1517,
+      "shared_count": 8,
+      "fts5_only_count": 12,
+      "tsvector_only_count": 12,
+      "fts5_only_ids": [
+        "2412.19500",
+        "2502.19389",
+        "2508.02604",
+        "2512.10481",
+        "2512.24029"
+      ],
+      "tsvector_only_ids": [
+        "2504.12636",
+        "2507.10672",
+        "2511.09555",
+        "2512.24638",
+        "2601.01618"
+      ],
+      "fts5_top5": [
+        "2601.20381",
+        "2601.01438",
+        "2508.02604",
+        "2512.24210",
+        "2601.05336"
+      ],
+      "tsvector_top5": [
+        "2511.09555",
+        "2504.12636",
+        "2601.20381",
+        "2601.21416",
+        "2601.19510"
+      ]
+    },
+    {
+      "query_name": "stats_adjacent",
+      "query_text": "causal inference",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.3333,
+      "rbo_p09": 0.4587,
+      "shared_count": 10,
+      "fts5_only_count": 10,
+      "tsvector_only_count": 10,
+      "fts5_only_ids": [
+        "2405.15325",
+        "2503.09098",
+        "2511.02531",
+        "2511.21603",
+        "2512.24564"
+      ],
+      "tsvector_only_ids": [
+        "2405.07979",
+        "2409.08934",
+        "2505.16051",
+        "2509.20211",
+        "2510.14073"
+      ],
+      "fts5_top5": [
+        "2505.18931",
+        "2601.00287",
+        "2601.14099",
+        "2601.11135",
+        "2511.21603"
+      ],
+      "tsvector_top5": [
+        "2505.18931",
+        "2601.11135",
+        "2405.07979",
+        "2601.02400",
+        "2509.19814"
+      ]
+    },
+    {
+      "query_name": "method_specific",
+      "query_text": "self-supervised contrastive",
+      "fts5_count": 0,
+      "tsvector_count": 20,
+      "jaccard": 0.0,
+      "rbo_p09": 0.0,
+      "shared_count": 0,
+      "fts5_only_count": 0,
+      "tsvector_only_count": 20,
+      "fts5_only_ids": [],
+      "tsvector_only_ids": [
+        "2312.16424",
+        "2411.03517",
+        "2501.04942",
+        "2501.13718",
+        "2505.05855"
+      ],
+      "fts5_top5": [],
+      "tsvector_top5": [
+        "2506.13717",
+        "2601.16608",
+        "2601.10735",
+        "2601.02289",
+        "2601.07666"
+      ]
+    },
+    {
+      "query_name": "very_common",
+      "query_text": "survey",
+      "fts5_count": 20,
+      "tsvector_count": 20,
+      "jaccard": 0.6,
+      "rbo_p09": 0.6338,
+      "shared_count": 15,
+      "fts5_only_count": 5,
+      "tsvector_only_count": 5,
+      "fts5_only_ids": [
+        "2404.17070",
+        "2405.10739",
+        "2509.06752",
+        "2601.08340",
+        "2601.15299"
+      ],
+      "tsvector_only_ids": [
+        "2304.00377",
+        "2504.01919",
+        "2506.13932",
+        "2510.10671",
+        "2601.07838"
+      ],
+      "fts5_top5": [
+        "2601.15307",
+        "2601.09504",
+        "2508.15658",
+        "2601.14270",
+        "2601.17005"
+      ],
+      "tsvector_top5": [
+        "2601.15307",
+        "2508.15658",
+        "2601.09504",
+        "2512.08179",
+        "2509.11080"
+      ]
+    }
+  ],
+  "timestamp": "2026-03-18T21:44:40Z"
+}

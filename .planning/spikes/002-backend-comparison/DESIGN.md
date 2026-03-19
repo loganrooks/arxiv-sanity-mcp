@@ -1,7 +1,7 @@
 ---
 question: "What are the empirical tradeoffs between SQLite and PostgreSQL for our workload, and at what thresholds should a user choose one over the other?"
 type: comparative
-status: designing
+status: complete
 round: 1
 linked_deliberation: deployment-portability.md
 depends_on: 001 (volume estimates, capability envelope)

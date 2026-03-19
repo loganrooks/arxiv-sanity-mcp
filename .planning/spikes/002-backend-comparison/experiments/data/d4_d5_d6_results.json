@@ -1,0 +1,214 @@
+{
+  "D4": {
+    "bulk_import": {
+      "sqlite": [
+        {
+          "scale": 5000,
+          "insert_time_s": 0.092,
+          "fts_build_time_s": 0.317,
+          "total_time_s": 0.409,
+          "db_size_bytes": 15314944
+        },
+        {
+          "scale": 10000,
+          "insert_time_s": 0.19,
+          "fts_build_time_s": 0.532,
+          "total_time_s": 0.723,
+          "db_size_bytes": 29380608
+        },
+        {
+          "scale": 19252,
+          "insert_time_s": 0.384,
+          "fts_build_time_s": 1.103,
+          "total_time_s": 1.487,
+          "db_size_bytes": 52875264
+        },
+        {
+          "scale": 50000,
+          "insert_time_s": 1.031,
+          "fts_build_time_s": 3.384,
+          "total_time_s": 4.415,
+          "db_size_bytes": 138240000
+        },
+        {
+          "scale": 100000,
+          "insert_time_s": 1.333,
+          "fts_build_time_s": 6.933,
+          "total_time_s": 8.266,
+          "db_size_bytes": 271777792
+        },
+        {
+          "scale": 215000,
+          "insert_time_s": 3.055,
+          "fts_build_time_s": 16.83,
+          "total_time_s": 19.885,
+          "db_size_bytes": 580100096
+        }
+      ],
+      "postgresql": [
+        {
+          "scale": 5000,
+          "insert_time_s": 0.287,
+          "tsvector_build_time_s": 2.072,
+          "total_time_s": 2.359,
+          "db_size_bytes": 31555584
+        },
+        {
+          "scale": 10000,
+          "insert_time_s": 0.531,
+          "tsvector_build_time_s": 4.253,
+          "total_time_s": 4.784,
+          "db_size_bytes": 61693952
+        },
+        {
+          "scale": 19252,
+          "insert_time_s": 1.075,
+          "tsvector_build_time_s": 7.486,
+          "total_time_s": 8.561,
+          "db_size_bytes": 112156672
+        },
+        {
+          "scale": 50000,
+          "insert_time_s": 2.613,
+          "tsvector_build_time_s": 21.167,
+          "total_time_s": 23.78,
+          "db_size_bytes": 280854528
+        },
+        {
+          "scale": 100000,
+          "insert_time_s": 5.239,
+          "tsvector_build_time_s": 39.366,
+          "total_time_s": 44.605,
+          "db_size_bytes": 542351360
+        },
+        {
+          "scale": 215000,
+          "insert_time_s": 10.674,
+          "tsvector_build_time_s": 87.33,
+          "total_time_s": 98.005,
+          "db_size_bytes": 1154498560
+        }
+      ]
+    },
+    "concurrent_pg": {
+      "write_rates": [
+        {
+          "target_writes_per_sec": 10,
+          "actual_writes": 7,
+          "write_errors": 0,
+          "search_p50_ms": 10.238,
+          "search_p95_ms": 27.677,
+          "search_mean_ms": 11.148
+        },
+        {
+          "target_writes_per_sec": 50,
+          "actual_writes": 32,
+          "write_errors": 0,
+          "search_p50_ms": 9.494,
+          "search_p95_ms": 25.623,
+          "search_mean_ms": 11.157
+        },
+        {
+          "target_writes_per_sec": 100,
+          "actual_writes": 61,
+          "write_errors": 0,
+          "search_p50_ms": 10.443,
+          "search_p95_ms": 30.662,
+          "search_mean_ms": 11.482
+        }
+      ]
+    }
+  },
+  "D5": {
+    "connection_setup": {
+      "sqlite": {
+        "p50_ms": 0.225,
+        "p95_ms": 0.312,
+        "mean_ms": 0.203
+      },
+      "postgresql": {
+        "p50_ms": 19.463,
+        "p95_ms": 27.347,
+        "mean_ms": 19.407
+      }
+    },
+    "backup_restore": {
+      "sqlite_19k": {
+        "backup_time_s": 0.028,
+        "restore_time_s": 0.019,
+        "file_size_bytes": 35991552
+      },
+      "postgresql_19k": {
+        "backup_time_s": 0.733,
+        "dump_size_bytes": 61075513,
+        "backup_error": null
+      }
+    },
+    "disk_footprint": [
+      {
+        "scale": 5000,
+        "sqlite_bytes": 15314944,
+        "sqlite_wal_bytes": 0,
+        "sqlite_total_bytes": 15314944,
+        "pg_bytes": 31555584,
+        "ratio": 2.06
+      },
+      {
+        "scale": 10000,
+        "sqlite_bytes": 29380608,
+        "sqlite_wal_bytes": 0,
+        "sqlite_total_bytes": 29380608,
+        "pg_bytes": 61693952,
+        "ratio": 2.1
+      },
+      {
+        "scale": 19252,
+        "sqlite_bytes": 52875264,
+        "sqlite_wal_bytes": 0,
+        "sqlite_total_bytes": 52875264,
+        "pg_bytes": 112156672,
+        "ratio": 2.12
+      },
+      {
+        "scale": 50000,
+        "sqlite_bytes": 138240000,
+        "sqlite_wal_bytes": 0,
+        "sqlite_total_bytes": 138240000,
+        "pg_bytes": 280854528,
+        "ratio": 2.03
+      },
+      {
+        "scale": 100000,
+        "sqlite_bytes": 271777792,
+        "sqlite_wal_bytes": 0,
+        "sqlite_total_bytes": 271777792,
+        "pg_bytes": 542351360,
+        "ratio": 2.0
+      },
+      {
+        "scale": 215000,
+        "sqlite_bytes": 580100096,
+        "sqlite_wal_bytes": 0,
+        "sqlite_total_bytes": 580100096,
+        "pg_bytes": 1154498560,
+        "ratio": 1.99
+      }
+    ]
+  },
+  "D6": {
+    "sqlite": {
+      "p50_ms": 14.559,
+      "p95_ms": 25.317,
+      "mean_ms": 15.627,
+      "runs": 10
+    },
+    "postgresql": {
+      "p50_ms": 20.749,
+      "p95_ms": 27.702,
+      "mean_ms": 20.761,
+      "runs": 10
+    },
+    "ratio": 1.43
+  },
+  "timestamp": "2026-03-18T22:12:36Z"
+}

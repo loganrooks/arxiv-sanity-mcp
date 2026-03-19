@@ -1,0 +1,3 @@
+# Large binary artifacts — regenerate via setup_spike002.py
+*.npy
+# Keep JSON results for reproducibility

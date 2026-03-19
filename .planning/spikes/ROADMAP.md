@@ -1,8 +1,8 @@
 # Spike Program: Deployment, Filtering, and Backend Architecture
 
 **Created:** 2026-03-15
-**Updated:** 2026-03-17
-**Status:** Spike 001 A1c complete (SQLite-only data). Spike 002 designed — comparative PostgreSQL benchmarks needed before deployment conclusions. Spike 001 A2/B/C address scoring/recommendation.
+**Updated:** 2026-03-18
+**Status:** Spike 001 A1c complete (SQLite-only data). Spike 002 designed and active — comparative PostgreSQL benchmarks needed before deployment conclusions. Spike 001 A2/B/C address scoring/recommendation.
 **Origin:** Post-Phase-10 deliberation on deployment and portability
 
 ## Context
@@ -13,7 +13,7 @@ After completing v0.1 (Phase 10: Agent Integration Test), interconnected areas o
 
 The spike program started as one question ("how do we deploy this?") but revealed two independent questions:
 
-1. **Deployment architecture** (answered by A1+A1c) — SQLite handles the full feature set at personal scale. PostgreSQL is an opt-in upgrade for multi-writer concurrency. The tier differentiator is GPU availability for embedding computation, not database features for search.
+1. **Deployment architecture** (partially answered by A1+A1c, Spike 002 in progress) — SQLite handles the full feature set at personal scale in isolation. PostgreSQL comparative data needed before concluding sufficiency — one-sided benchmarks cannot support comparative claims. Spike 002 provides the other side.
 
 2. **Scoring/recommendation design** (A2, B, C phases) — What signals predict paper importance? How should the recommendation system work? What filtering strategies optimize coverage vs volume? These inform v0.2 features, not deployment architecture.
 
@@ -68,11 +68,13 @@ Small experiments that validate the mitigations proposed in the deliberation upd
 | FTS5 vs tsvector quality | Do they return equivalent results for same queries? | Medium — needs PostgreSQL comparison |
 | Embedding quality (MiniLM vs SPECTER2) | Is a general model good enough for academic abstracts? | Medium — needs SPECTER2 |
 
-### Deprioritized
+### Active (Spike 002: Backend Comparison)
 
-| # | Question | Why deprioritized |
-|---|----------|-------------------|
-| 002 | PostgreSQL performance benchmarking | SQLite handles the workload. PostgreSQL advantage is architectural (multi-writer), not performance. Only relevant if multi-user demand emerges. |
+| # | Question | Type | Status | Key Outcome |
+|---|----------|------|--------|-------------|
+| 002 | PostgreSQL vs SQLite comparative benchmarks | Comparative | **Designed** | 6 dimensions: search quality, latency, vector search, writes, ops, workflow. DESIGN.md complete. Awaiting execution. |
+
+> **Epistemic correction (2026-03-17):** Spike 002 was initially deprioritized based on Spike 001's SQLite-only data. This was premature — comparative claims ("SQLite is sufficient") require comparative data. Spike 001 results are hypotheses under test, not conclusions.
 
 ## Open Design Questions
 
@@ -91,18 +93,20 @@ These emerged from the spike and deliberation work. They need design deliberatio
 ## Decision Flow
 
 ```
-Spike 001 A1c findings (DONE)
+Spike 001 A1c findings (DONE — SQLite-only baseline)
       ↓
-Deliberation updated (DONE — 2026-03-17)
+Spike 002 execution (ACTIVE — PostgreSQL comparative data)
       ↓
-Phase 11 (Distribution) ← ready to plan/execute
+Deliberation conclusion (BLOCKED on Spike 002 — both-backend data required)
       ↓
-Phase 12 (Storage Abstraction) ← ready to plan, revised scope
+Phase 11 (Distribution) ← blocked on deployment deliberation
       ↓
-Spike 001 A2/B/C (in parallel with implementation — informs v0.2 recommendation features)
+Phase 12 (Storage Abstraction) ← blocked on deployment deliberation
+      ↓
+Spike 001 A2/B/C (in parallel — informs v0.2 recommendation features)
 ```
 
-The deployment path is unblocked. Spike 001's remaining phases inform v0.2 feature design and can run in parallel with Phase 11/12 implementation.
+The deployment path is blocked on Spike 002 comparative data. Phase 11/12 planning requires both-backend evidence, not SQLite-only measurements.
 
 ## Principles
 

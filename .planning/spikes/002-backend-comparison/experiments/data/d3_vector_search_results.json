@@ -1,0 +1,203 @@
+{
+  "dimension": "D3",
+  "description": "Vector Search \u2014 pgvector vs Brute-Force Numpy",
+  "model": "all-MiniLM-L6-v2",
+  "embedding_dim": 384,
+  "top_k": 20,
+  "runs_per_query": 20,
+  "num_query_vectors": 5,
+  "hnsw_params": {
+    "m": 16,
+    "ef_construction": 64,
+    "ef_search": 40
+  },
+  "per_scale": [
+    {
+      "scale": 5000,
+      "setup": {
+        "insert_time_s": 5.038,
+        "hnsw_build_time_s": 1.82
+      },
+      "numpy_bruteforce": {
+        "p50_ms": 4.755,
+        "p95_ms": 6.022,
+        "mean_ms": 4.48,
+        "min_ms": 0.982,
+        "max_ms": 7.012
+      },
+      "pgvector_exact": {
+        "p50_ms": 3.03,
+        "p95_ms": 4.857,
+        "mean_ms": 3.326,
+        "min_ms": 2.526,
+        "max_ms": 6.49
+      },
+      "pgvector_hnsw": {
+        "p50_ms": 0.91,
+        "p95_ms": 1.541,
+        "mean_ms": 1.002,
+        "min_ms": 0.681,
+        "max_ms": 1.922
+      },
+      "hnsw_recall": 0.98
+    },
+    {
+      "scale": 10000,
+      "setup": {
+        "insert_time_s": 10.17,
+        "hnsw_build_time_s": 2.045
+      },
+      "numpy_bruteforce": {
+        "p50_ms": 3.004,
+        "p95_ms": 5.997,
+        "mean_ms": 3.204,
+        "min_ms": 0.465,
+        "max_ms": 7.657
+      },
+      "pgvector_exact": {
+        "p50_ms": 5.692,
+        "p95_ms": 7.995,
+        "mean_ms": 6.211,
+        "min_ms": 4.966,
+        "max_ms": 15.397
+      },
+      "pgvector_hnsw": {
+        "p50_ms": 0.742,
+        "p95_ms": 1.293,
+        "mean_ms": 0.799,
+        "min_ms": 0.57,
+        "max_ms": 1.576
+      },
+      "hnsw_recall": 0.99
+    },
+    {
+      "scale": 19252,
+      "setup": {
+        "insert_time_s": 18.87,
+        "hnsw_build_time_s": 3.771
+      },
+      "numpy_bruteforce": {
+        "p50_ms": 2.99,
+        "p95_ms": 6.023,
+        "mean_ms": 3.034,
+        "min_ms": 1.17,
+        "max_ms": 7.714
+      },
+      "pgvector_exact": {
+        "p50_ms": 11.375,
+        "p95_ms": 15.791,
+        "mean_ms": 11.879,
+        "min_ms": 9.767,
+        "max_ms": 21.672
+      },
+      "pgvector_hnsw": {
+        "p50_ms": 0.971,
+        "p95_ms": 1.397,
+        "mean_ms": 0.982,
+        "min_ms": 0.672,
+        "max_ms": 1.689
+      },
+      "hnsw_recall": 1.0,
+      "filtered_search": {
+        "filter_category": "cs.AI",
+        "filtered_count": 1318,
+        "numpy_prefilter": {
+          "p50_ms": 5.641,
+          "p95_ms": 6.046
+        },
+        "pgvector_filtered": {
+          "p50_ms": 8.066,
+          "p95_ms": 12.274
+        }
+      }
+    },
+    {
+      "scale": 50000,
+      "setup": {
+        "insert_time_s": 49.009,
+        "hnsw_build_time_s": 13.171
+      },
+      "numpy_bruteforce": {
+        "p50_ms": 5.016,
+        "p95_ms": 6.149,
+        "mean_ms": 4.965,
+        "min_ms": 3.019,
+        "max_ms": 6.994
+      },
+      "pgvector_exact": {
+        "p50_ms": 21.064,
+        "p95_ms": 26.535,
+        "mean_ms": 21.783,
+        "min_ms": 18.495,
+        "max_ms": 36.454
+      },
+      "pgvector_hnsw": {
+        "p50_ms": 0.772,
+        "p95_ms": 1.04,
+        "mean_ms": 0.78,
+        "min_ms": 0.612,
+        "max_ms": 1.344
+      },
+      "hnsw_recall": 0.97
+    },
+    {
+      "scale": 100000,
+      "setup": {
+        "insert_time_s": 100.398,
+        "hnsw_build_time_s": 31.274
+      },
+      "numpy_bruteforce": {
+        "p50_ms": 7.02,
+        "p95_ms": 10.559,
+        "mean_ms": 7.68,
+        "min_ms": 5.891,
+        "max_ms": 25.011
+      },
+      "pgvector_exact": {
+        "p50_ms": 37.366,
+        "p95_ms": 43.086,
+        "mean_ms": 37.725,
+        "min_ms": 32.904,
+        "max_ms": 47.073
+      },
+      "pgvector_hnsw": {
+        "p50_ms": 0.725,
+        "p95_ms": 1.232,
+        "mean_ms": 0.803,
+        "min_ms": 0.594,
+        "max_ms": 1.494
+      },
+      "hnsw_recall": 0.98
+    },
+    {
+      "scale": 215000,
+      "setup": {
+        "insert_time_s": 216.742,
+        "hnsw_build_time_s": 79.841
+      },
+      "numpy_bruteforce": {
+        "p50_ms": 13.745,
+        "p95_ms": 22.891,
+        "mean_ms": 15.048,
+        "min_ms": 11.287,
+        "max_ms": 38.889
+      },
+      "pgvector_exact": {
+        "p50_ms": 64.837,
+        "p95_ms": 80.331,
+        "mean_ms": 66.927,
+        "min_ms": 59.283,
+        "max_ms": 86.376
+      },
+      "pgvector_hnsw": {
+        "p50_ms": 0.594,
+        "p95_ms": 1.55,
+        "mean_ms": 0.715,
+        "min_ms": 0.476,
+        "max_ms": 1.767
+      },
+      "hnsw_recall": 0.91
+    }
+  ],
+  "timestamp": "2026-03-18T22:02:54Z"
+}

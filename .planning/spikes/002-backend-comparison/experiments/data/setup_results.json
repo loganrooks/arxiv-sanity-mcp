@@ -1,0 +1,39 @@
+{
+  "postgresql": {
+    "paper_count": 19252,
+    "insert_time_s": 1.194,
+    "tsvector_time_s": 6.655,
+    "gin_index_time_s": 1.652,
+    "total_size_bytes": 113352704,
+    "table_size_bytes": 59367424,
+    "index_size_bytes": 18087936
+  },
+  "embeddings": {
+    "model": "all-MiniLM-L6-v2",
+    "device": "cuda",
+    "model_load_time_s": 1.55,
+    "embed_time_s": 33.98,
+    "per_paper_ms": 1.765,
+    "shape": [
+      19252,
+      384
+    ],
+    "dtype": "float32",
+    "file_size_bytes": 29571072
+  },
+  "pgvector": {
+    "embedding_count": 19252,
+    "insert_time_s": 20.765,
+    "hnsw_build_time_s": 4.139,
+    "hnsw_params": {
+      "m": 16,
+      "ef_construction": 64
+    },
+    "hnsw_index_size": "38 MB",
+    "total_size_bytes": 71745536,
+    "table_size_bytes": 31547392,
+    "index_size_bytes": 40165376
+  },
+  "source_db": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/001-volume-filtering-scoring-landscape/experiments/data/spike_001_harvest.db",
+  "timestamp": "2026-03-18T21:44:22Z"
+}
