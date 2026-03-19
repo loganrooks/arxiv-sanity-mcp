@@ -1,9 +1,24 @@
 # Spike 002 Findings: SQLite vs PostgreSQL Backend Comparison
 
 **Date:** 2026-03-18
+**Status:** ROUND 1 — Provisional. Methodological gaps identified 2026-03-19 require Round 2 remediation before conclusions can be treated as final. See DESIGN.md Round 2 section.
 **Hardware:** Intel Xeon W-2125 (4c/8t), 32 GB RAM, GTX 1080 Ti (11 GB), NVMe SSD
 **Corpus:** 19,252 real arXiv papers (scaled to 215K via ID cycling for scale tests)
 **Embedding model:** all-MiniLM-L6-v2 (384-dim, normalized)
+
+### Methodological Caveats (added 2026-03-19)
+
+These issues were identified after Round 1 and will be addressed in Round 2:
+
+1. **D1 query-parsing confound:** FTS5 MATCH and PostgreSQL `websearch_to_tsquery` parse multi-word queries differently. Some measured divergence may be parser behavior, not search quality. Round 2 tests `plainto_tsquery` alongside.
+2. **D1 divergent results not inspected:** Jaccard measures disagreement, not which backend returns better papers. Neither has been evaluated against human relevance. "H1 falsified" should read "backends disagree" — not "one is better."
+3. **D1 stemming analysis not done:** DESIGN.md required identifying where stemming differences drive divergence. Not performed.
+4. **D2 baseline not reproduced:** DESIGN.md required re-running A1b to confirm measurement stability. Not performed.
+5. **Reference design comparison skipped:** Required by DESIGN.md — not performed.
+6. **DECISION.md not written:** Blocked on above gaps.
+7. **Scale data is synthetic:** 215K benchmarks use 19K unique papers cycled ~11x. Vocabulary doesn't grow with scale.
+
+D3-D6 measurements are methodologically sound and do not require remediation.
 
 ## Hypothesis Results
 

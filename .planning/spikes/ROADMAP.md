@@ -1,32 +1,49 @@
 # Spike Program: Deployment, Filtering, and Backend Architecture
 
 **Created:** 2026-03-15
-**Updated:** 2026-03-18
-**Status:** Spike 001 A1c complete (SQLite-only data). Spike 002 designed and active — comparative PostgreSQL benchmarks needed before deployment conclusions. Spike 001 A2/B/C address scoring/recommendation.
+**Updated:** 2026-03-19
+**Status:** Both spikes in progress. Spike 001 is 3/8 complete by its success criteria (A1, A1c done; A2, A3, B, C pending). Spike 002 Round 1 dimensions done but has methodological gaps requiring Round 2 remediation. Neither spike can be concluded yet. Deliberation blocked on spike completion.
 **Origin:** Post-Phase-10 deliberation on deployment and portability
 
 ## Context
 
 After completing v0.1 (Phase 10: Agent Integration Test), interconnected areas of design uncertainty emerged around deployment, filtering, recommendation, and backend architecture. A spike program was created to investigate empirically.
 
-### Key Discovery: Two Separate Questions
+### Key Discovery: Two Intertwined Questions
 
-The spike program started as one question ("how do we deploy this?") but revealed two independent questions:
+The spike program started as one question ("how do we deploy this?") but revealed two questions. Initially treated as independent, Spike 002 findings showed they are more intertwined than assumed:
 
-1. **Deployment architecture** (partially answered by A1+A1c, Spike 002 in progress) — SQLite handles the full feature set at personal scale in isolation. PostgreSQL comparative data needed before concluding sufficiency — one-sided benchmarks cannot support comparative claims. Spike 002 provides the other side.
+1. **Deployment architecture** (Spike 001 A1c + Spike 002) — Which backend, how to distribute. Spike 002 showed backend choice is a search quality decision (not just performance), which means deployment and search/recommendation design are connected.
 
-2. **Scoring/recommendation design** (A2, B, C phases) — What signals predict paper importance? How should the recommendation system work? What filtering strategies optimize coverage vs volume? These inform v0.2 features, not deployment architecture.
+2. **Scoring/recommendation design** (Spike 001 A2, A3, B, C) — What signals predict paper importance? What filtering strategies work? These inform v0.2 features AND the deployment story (filtering affects scale estimates, which affect backend choice; corpus structure validates pre-filtering mitigations in the deliberation).
 
-### Capability Envelope Summary (A1c)
+### Epistemic Correction (2026-03-19)
+
+Both spikes were prematurely declared closer to done than they are. Spike 001 branched into Spike 002 after A1c, and neither was completed. The deployment deliberation was declared "ready to conclude" when its empirical foundation is 3/8 complete by Spike 001's own success criteria, and Spike 002 has unfixed methodological confounds.
+
+See signal: `sig-2026-03-18-premature-spike002-closure`
+
+### Capability Envelope Summary (A1c — Spike 001)
 
 | Operation | Result | Implication |
 |-----------|--------|-------------|
 | FTS5 search | 30ms at 215K, 71ms at 500K | SQLite keyword search fine to 500K+ |
 | TF-IDF similarity | 516ms at 215K, <100ms at 50K | Use embeddings or pre-filter at scale |
-| Embedding search | 16ms at 215K (brute-force dot product) | pgvector comparison needed (Spike 002) |
+| Embedding search | 16ms at 215K (brute-force dot product) | pgvector is 5-23x faster (Spike 002 D3) |
 | Concurrent SQLite | Zero degradation with WAL mode | Harvest daemon + MCP server coexist |
 | Embedding compute | 35ms/paper CPU, 1.7ms/paper GPU (20x) | CPU incremental: 21s/day. Cold start: 2h overnight |
-| Memory (all features) | ~472 MB at 215K (TF-IDF + embeddings) | Fits on any laptop |
+| Memory (all features) | ~472 MB at 215K (TF-IDF + embeddings) | Fits on any laptop (but mmap not yet validated) |
+
+### Backend Comparison Summary (Spike 002 Round 1)
+
+| Dimension | SQLite | PostgreSQL | Gap |
+|-----------|--------|------------|-----|
+| Search quality | FTS5: different results (Jaccard 0.39), fails on hyphens | tsvector: better stemming, handles all queries | **Confound:** query parser differences not controlled for |
+| Search latency | 3.5–4.8x faster | Slower but interactive | Clean measurement |
+| Vector search | numpy brute-force (3–14ms, linear) | HNSW (0.6–1ms, near-constant, recall ≥0.91) | Clean measurement |
+| Writes | 5–6x faster bulk import | Both handle concurrent R+W | Clean measurement |
+| Operations | 87x faster connections, instant backup, 2x smaller | — | Clean measurement |
+| Workflow | 15ms (6-tool) | 21ms (6-tool), 1.4x | Simplified workflow, no vector search step |
 
 ### Architectural References
 
@@ -35,48 +52,66 @@ The spike program started as one question ("how do we deploy this?") but reveale
 - Doc 10 Q16/Q17: Processing promotion strategies
 - Deliberation: `.planning/deliberations/deployment-portability.md`
 - Full findings: `.planning/spikes/001-volume-filtering-scoring-landscape/FINDINGS.md`
+- Spike 002 findings: `.planning/spikes/002-backend-comparison/FINDINGS.md`
 
 ## Spike Sequence
 
-### Complete
+### Complete (verified)
 
 | # | Question | Type | Status | Key Outcome |
 |---|----------|------|--------|-------------|
-| 001 A1+A1c | Volume, scale, and capability envelope | Exploratory | **Complete** | Deployment question answered. SQLite sufficient. See capability summary above. |
+| 001 A1 | Volume mapping | Exploratory | **Complete** | 19K papers/month at 15 categories. Big4 = 12K/month. |
+| 001 A1b | FTS5 search benchmark | Exploratory | **Complete** | <40ms p50 at 215K. Linear scaling. |
+| 001 A1c | Capability envelope (TF-IDF, concurrent, embeddings) | Exploratory | **Complete** | See summary above. |
 
-### Active (Spike 001 remaining phases)
+### In Progress (Spike 002 Round 2: Remediation)
 
-| Phase | Question | Priority | Blocks |
-|-------|----------|----------|--------|
-| A2: Corpus visualization | What does the paper space look like structurally? | Medium | Informs B1-B2 signal design |
-| A3: Distribution analysis | What are the statistical properties of the corpus? | Medium | Informs B2-B3 |
-| B1: Signal literature review | What do existing recommenders use as features? | Medium | Informs B2 |
-| B2: Computed signal exploration | Which signals predict importance in our data? | Medium | Informs C1 |
-| B3: Importance analysis | Is "importance" one thing or multiple dimensions? | Medium | Informs C1 |
-| C1: Coverage-regret | What's the tradeoff shape for filtering strategies? | Lower | Informs promotion pipeline design |
-| C2: Promotion simulation | What are the resource costs of different strategies? | Lower | Informs v0.2 planning |
-| C3: Backend implications | At what scale do operations become slow? | **Deprioritized** | Mostly answered by A1c |
+| Item | What it fixes | Blocks |
+|------|-------------|--------|
+| D1-R1: Query-parsing confound | plainto_tsquery + FTS5 escaping | Accurate D1 conclusions |
+| D1-R2: Stemming analysis | Porter vs Snowball comparison | Understanding *why* results differ |
+| D1-R3: Result inspection | Are divergent papers better/worse/just different? | Whether quality gap matters |
+| D2-R: A1b baseline reproduction | Measurement stability confirmation | Trust in all latency comparisons |
+| D7: Reference design comparison | Our numbers in context of systems users know | Whether our latencies are "good" or "bad" |
+| QV1: Pre-filtered TF-IDF | Validates deliberation mitigation | Deliberation tier model |
+| QV2: mmap feature loading | Validates "instant startup" claim | Deliberation tier model |
+| QV3: MiniLM vs SPECTER2 | Embedding model choice | D3 may need re-evaluation if SPECTER2 is 768-dim |
+| D6-R: Workflow with vector search | Optional, if time permits | More accurate compound comparison |
 
-### Quick Validation Experiments (new, emerged from A1c findings)
+### Pending (Spike 001 remaining — A2, A3, B, C)
 
-Small experiments that validate the mitigations proposed in the deliberation update:
+**Dependency chain:**
+```
+A2 (corpus viz) ──┐
+A3 (distributions)─┼──→ B2 (computed signals) ──→ B3 (importance) ──→ C1 (coverage-regret) ──→ C2 (promotion sim)
+B1 (lit review) ───┘
+```
 
-| Experiment | What it validates | Effort |
-|-----------|------------------|--------|
-| Pre-filtered TF-IDF cosine | Does category scoping keep similarity <100ms at 215K? | Small — reuse A1c.1 script |
-| Memory-mapped feature loading | Is mmap actually near-instant for 472 MB? | Small — prototype |
-| ~~FTS5 vs tsvector quality~~ | ~~Do they return equivalent results for same queries?~~ | **Answered by Spike 002 D1** — No, Jaccard 0.39 |
-| Embedding quality (MiniLM vs SPECTER2) | Is a general model good enough for academic abstracts? | Medium — needs SPECTER2 |
+| Phase | Question | Priority | Blocks | Dependencies |
+|-------|----------|----------|--------|-------------|
+| **A2** | What does the paper space look like structurally? | **High** | Validates pre-filtering, informs B2 | None (uses existing embeddings) |
+| **A3** | Statistical properties of corpus features? | **High** | Informs B2-B3 normalization | None |
+| **B1** | What do existing recommenders use as signals? | **High** | Informs B2 signal selection | None (research task) |
+| **B2** | Which signals predict importance in our data? | Medium | Informs C1, B3 | A2, A3, B1. Needs OpenAlex enrichment (~500 papers). |
+| **B3** | Is importance one thing or multiple dimensions? | Medium | Informs C1, ranking model | B2 |
+| **C1** | Coverage-regret tradeoff shape? Elbow? | Medium | Informs C2, filtering design | B2, B3 |
+| **C2** | Resource costs of promotion strategies (1 year)? | Medium | Informs operational planning | C1, A1 |
+| ~~C3~~ | ~~Backend implications~~ | Deprioritized | Answered by A1c + Spike 002 | — |
 
-### Complete (Spike 002: Backend Comparison)
+### Spike 001 Success Criteria Scorecard
 
-| # | Question | Type | Status | Key Outcome |
-|---|----------|------|--------|-------------|
-| 002 | PostgreSQL vs SQLite comparative benchmarks | Comparative | **Complete** | H1 falsified (Jaccard 0.39 — backends return different papers). pgvector HNSW 5–23x faster than numpy. FTS5 3.5–4.8x faster for keyword search but fails on hyphens and has worse stemming. |
+| # | Criterion | Status |
+|---|-----------|--------|
+| 1 | Realistic paper volumes | **Answered** (A1) |
+| 2 | Structural landscape | **Unanswered** (A2 pending) |
+| 3 | Top 3-5 signals for scoring | **Unanswered** (B1-B3 pending) |
+| 4 | Coverage-regret tradeoff shape | **Unanswered** (C1 pending) |
+| 5 | Promotion strategy recommendation | **Unanswered** (C2 pending) |
+| 6 | 1-year resource requirements | **Unanswered** (C2 pending) |
+| 7 | Capability envelope | **Answered** (A1c) |
+| 8 | NLP feasibility limits on laptop | **Answered** (A1c) |
 
-> **Epistemic correction (2026-03-17):** Spike 002 was initially deprioritized based on Spike 001's SQLite-only data. This was premature — comparative claims ("SQLite is sufficient") require comparative data. Spike 001 results are hypotheses under test, not conclusions.
->
-> **Result (2026-03-18):** Spike 001's claims partially falsified. Choosing between backends is a search quality decision, not just a performance decision. Full findings in `002-backend-comparison/FINDINGS.md`.
+**Score: 3/8 answered.**
 
 ## Open Design Questions
 
@@ -90,25 +125,66 @@ These emerged from the spike and deliberation work. They need design deliberatio
 
 4. **Cold start UX** — What does `arxiv-mcp init` look like? Seed corpus selection, category config, progress bar, "ready to use" threshold.
 
-5. **Embedding model selection** — all-MiniLM-L6-v2 is general-purpose. SPECTER2 is academic-specific. Tradeoff between availability, speed, and domain relevance.
+5. **Embedding model selection** — all-MiniLM-L6-v2 is general-purpose. SPECTER2 is academic-specific. QV3 provides data; final selection is a design decision.
+
+6. **Search layer separation** — *(new, from Spike 002 D1)* Should search be extracted from the storage abstraction? If FTS5 ≠ tsvector, maybe search shouldn't be delegated to the database at all. Options: embedding-only search, standalone search engine (tantivy), or hybrid. This is a design question informed by D1 findings and QV3 results.
 
 ## Decision Flow
 
 ```
-Spike 001 A1c findings (DONE — SQLite-only baseline)
-      ↓
-Spike 002 findings (DONE — both-backend comparative data)
-      ↓
-Deliberation conclusion (UNBLOCKED — ready for design judgment)
-      ↓
-Phase 11 (Distribution) ← ready to plan after deliberation concludes
-      ↓
-Phase 12 (Storage Abstraction) ← ready to plan after deliberation concludes
-      ↓
-Spike 001 A2/B/C (in parallel — informs v0.2 recommendation features)
+Spike 001 A1c (DONE) ─────────────────────────┐
+                                                │
+Spike 002 Round 1 (DONE, has confounds) ───────┤
+                                                │
+Spike 002 Round 2: Remediation (IN PROGRESS) ──┤
+                                                ├──→ Deliberation conclusion
+Spike 001 A2 (PENDING — validates mitigations) ┤
+                                                │
+Spike 001 A3, B1 (PENDING — parallel) ─────────┤
+                                                │
+Spike 001 B2, B3 (PENDING — needs A2+A3+B1) ──┤
+                                                │
+Spike 001 C1, C2 (PENDING — needs B2+B3) ──────┘
+                                                │
+                                                ↓
+                                    Phase 11 (Distribution)
+                                                ↓
+                                    Phase 12 (Storage Abstraction)
 ```
 
-The deployment path is unblocked. Both-backend evidence is available. The remaining decision is a design judgment (default backend choice, whether to ship dual-backend), not an empirical question.
+The deliberation cannot conclude until:
+1. Spike 002 methodological gaps are fixed (Round 2)
+2. Spike 001 A2 validates the pre-filtering assumption
+3. Enough of B/C is done to answer the Spike 001 success criteria
+
+## Execution Order
+
+Recommended execution order considering dependencies and parallelizability:
+
+**Wave 1 (no dependencies, parallelizable):**
+- Spike 002 D1-R1, D1-R2, D1-R3 (D1 remediation)
+- Spike 002 D2-R (baseline reproduction)
+- Spike 001 A2 (corpus visualization — uses existing embeddings)
+- Spike 001 A3 (distribution analysis)
+- Spike 001 B1 (literature review — research task)
+
+**Wave 2 (depends on Wave 1):**
+- Spike 002 D7 (reference design comparison — live API calls)
+- Spike 002 QV1, QV2 (pre-filtered TF-IDF, mmap)
+- Spike 002 QV3 (MiniLM vs SPECTER2 — may affect D3 conclusions)
+- Spike 001 B2 (computed signals — needs A2, A3, B1)
+
+**Wave 3 (depends on Wave 2):**
+- Spike 001 B3 (importance analysis — needs B2)
+- Spike 002 FINDINGS.md update + DECISION.md
+
+**Wave 4 (depends on Wave 3):**
+- Spike 001 C1, C2 (coverage-regret, promotion sim — needs B2, B3)
+- Spike 001 FINDINGS.md update + DECISION.md
+
+**Wave 5:**
+- Deliberation conclusion
+- Phase 11/12 planning
 
 ## Principles
 
@@ -117,3 +193,4 @@ The deployment path is unblocked. Both-backend evidence is available. The remain
 3. **Spikes chain.** Later spikes use earlier findings to design better experiments.
 4. **New spikes can emerge.** This roadmap is a living document. Unexpected findings create new questions.
 5. **Rigor over speed.** Experiments should produce epistemologically reliable results — reproducible, falsifiable, with clear metrics and controlled variables.
+6. **Treat DESIGN.md as a checklist.** *(added 2026-03-19)* Before declaring any spike complete, mechanically verify every protocol item and success criterion. The signal `sig-2026-03-18-premature-spike002-closure` documents what happens when this isn't done.

@@ -1,8 +1,8 @@
 ---
 question: "What are the empirical tradeoffs between SQLite and PostgreSQL for our workload, and at what thresholds should a user choose one over the other?"
 type: comparative
-status: complete
-round: 1
+status: in_progress
+round: 2
 linked_deliberation: deployment-portability.md
 depends_on: 001 (volume estimates, capability envelope)
 ---
@@ -254,3 +254,179 @@ For reproducibility, the full query set used across Dimensions 1-2 should be def
 - **FINDINGS.md:** Side-by-side comparison tables for each dimension, reference design comparison
 - **DECISION.md:** Tradeoff map, user-facing guidance table, revised deliberation input
 - **Feeds into:** Deployment deliberation update, Phase 12 storage abstraction design
+
+---
+
+## Round 2: Remediation (added 2026-03-19)
+
+Round 1 executed all 6 dimensions but declared the spike complete prematurely. The following methodological gaps were identified. Each must be addressed before the spike can be considered complete.
+
+See signal: `sig-2026-03-18-premature-spike002-closure`
+
+### Round 1 Progress (what's done vs. what's not)
+
+| Item | Round 1 Status | Gap |
+|------|---------------|-----|
+| D1: Search quality — run queries, compute Jaccard/RBO | **Done** | Query-parsing confound, no result inspection, no stemming analysis |
+| D2: Search latency at scale | **Done** | A1b baseline not formally reproduced |
+| D3: Vector search comparison | **Done** | — |
+| D4: Write performance | **Done** | — |
+| D5: Operational characteristics | **Done** | — |
+| D6: Workflow comparison | **Done** | Simplified workflow, no vector search step |
+| Reference design comparison | **Not done** | Explicitly required by DESIGN.md, skipped entirely |
+| DECISION.md | **Not done** | Blocked on above gaps |
+
+### D1-R: Search Quality Remediation
+
+Round 1's D1 has a **query-parsing confound**. FTS5's MATCH syntax and PostgreSQL's `websearch_to_tsquery` parse multi-word queries differently. Part of the measured divergence is parser behavior, not search engine quality. Additionally, FTS5 "failures" on hyphenated terms are fixable with query preprocessing that any real application would do.
+
+**D1-R1: Control for query parsing**
+
+Hypothesis: Some of the Jaccard divergence is driven by query parser differences, not search quality differences.
+
+Protocol:
+1. For PostgreSQL, run all 20 queries with BOTH `websearch_to_tsquery` and `plainto_tsquery`
+2. For FTS5, preprocess queries to escape hyphens (replace `-` with space) and retry the 2 failed queries
+3. For multi-word queries, test FTS5 with explicit AND (e.g., `language AND model`) to match `plainto_tsquery` semantics
+4. Recompute Jaccard and RBO for each parser variant
+5. Report: how much of the divergence is parser-driven vs. stemmer/ranker-driven?
+
+**D1-R2: Stemming analysis**
+
+The DESIGN.md requires: "The analysis should identify where stemming differences drive result divergence."
+
+Protocol:
+1. For each query term across the 20 queries, compute the stem under both algorithms:
+   - FTS5: Porter stemmer (via Python `nltk.stem.PorterStemmer` or manual)
+   - PostgreSQL: English Snowball stemmer (via `SELECT to_tsvector('english', term)` to see tokens)
+2. Identify terms where stems differ
+3. For the highest-divergence queries (Jaccard < 0.3), trace whether stemming differences explain the divergence
+4. Report: which specific terms produce different stems, and how does this affect which papers are retrieved?
+
+**D1-R3: Divergent result inspection**
+
+The DESIGN.md requires: "Sample and inspect: are they relevant?"
+
+Protocol:
+1. For the 5 highest-divergence queries (by Jaccard), collect the papers unique to each backend
+2. Load paper titles and abstracts for each unique paper
+3. For each, assess: is this paper plausibly relevant to the query?
+4. Report: are the FTS5-only papers worse, equivalent, or just different from the tsvector-only papers?
+5. This is qualitative assessment, not a formal relevance judgment — but it provides signal on whether the Jaccard gap represents a quality gap or a diversity gap.
+
+### D2-R: Baseline Reproduction
+
+The DESIGN.md requires (Methodological Control #5): "Reproduce Spike 001 baselines: Re-run A1b FTS5 and A1c.3 embedding benchmarks first to confirm measurement stability."
+
+Protocol:
+1. Re-run the FTS5 benchmark at 19K and 215K scale points using the D2 script (which already does this)
+2. Compare Round 2's FTS5 numbers against Spike 001 A1b's original results (in `001/.../data/fts5_benchmark_results.json`)
+3. Acceptable variance: ±20% (same hardware, same data, minor OS/cache state differences)
+4. If variance exceeds 20%: investigate (thermal throttling, background processes, measurement methodology difference)
+5. Report: measurement stability confirmed or not, with specific numbers
+
+### D7: Reference Design Comparison
+
+This was specified in the original DESIGN.md and skipped entirely in Round 1.
+
+Protocol:
+1. **arxiv-sanity-lite**: Clone repo, examine search implementation, extract any published performance claims. Measure search latency if runnable, or use documented values. Note: this is a different architecture (Python for-loop search, not database full-text).
+
+2. **Semantic Scholar API**: Run 10 representative queries (subset of our 20), measure response times from this machine. Record:
+   - Search latency (p50, p95 over 10 calls per query)
+   - Result count
+   - Qualitative: do results look relevant?
+
+3. **OpenAlex API**: Same protocol as Semantic Scholar. Use `works` endpoint with `search` parameter.
+
+4. **arXiv API**: Same protocol. Use the search API endpoint.
+
+5. Compile into comparison table:
+
+| System | Search p50 | Search p95 | Local/Remote | Corpus size |
+|--------|----------|----------|------------|------------|
+| Our FTS5 (19K) | from D2 | from D2 | Local | 19K |
+| Our tsvector (19K) | from D2 | from D2 | Local | 19K |
+| Our HNSW (19K) | from D3 | from D3 | Local | 19K |
+| arxiv-sanity-lite | measured/documented | — | Local | ~30K typical |
+| Semantic Scholar API | measured | measured | Remote | 200M+ |
+| OpenAlex API | measured | measured | Remote | 250M+ |
+| arXiv API | measured | measured | Remote | 2M+ |
+
+6. Analysis: where do our numbers sit relative to systems users actually interact with?
+
+### D6-R: Workflow Revision (Optional)
+
+Round 1's D6 workflow used category-matching for "find_related," not actual similarity search. A workflow with embedding search steps would likely change the comparison.
+
+Protocol:
+1. Add a 7-tool workflow variant that includes an embedding similarity step
+2. Measure on both backends: SQLite+numpy vs PostgreSQL+pgvector
+3. Report: does vector search change the compound workflow comparison?
+
+### Quick Validation Experiments (folded into Spike 002)
+
+These validate mitigations asserted in the deployment deliberation. They use Spike 002 infrastructure.
+
+**QV1: Pre-filtered TF-IDF cosine**
+
+Question: Does category scoping keep TF-IDF similarity <100ms at 215K?
+
+Protocol:
+1. Load the 19K embeddings (or recompute TF-IDF matrix from Spike 001 A1c.1)
+2. Pre-filter to a single primary category (e.g., cs.AI — ~1,300 papers at 19K, ~15K at 215K)
+3. Compute cosine similarity on the filtered subset
+4. Measure at scale points: full corpus vs. filtered corpus
+5. Report: does pre-filtering bring TF-IDF similarity under 100ms at 215K?
+
+**QV2: Memory-mapped feature loading**
+
+Question: Is mmap actually near-instant for loading 472 MB of features?
+
+Protocol:
+1. Save embeddings (28 MB) and a synthetic TF-IDF matrix (~157 MB at 215K) as numpy files
+2. Measure load time: `np.load()` (full read) vs `np.memmap()` (memory-mapped)
+3. Measure time to first query after mmap (does the OS page fault cause a latency spike?)
+4. Measure at file sizes: 28 MB, 157 MB, 472 MB (combined)
+5. Report: is "instant startup" a valid claim?
+
+**QV3: MiniLM vs SPECTER2 embedding quality**
+
+Question: Is a general-purpose model good enough for academic abstracts, or does a domain-specific model produce meaningfully better embeddings?
+
+Protocol:
+1. Install `adapters` or download SPECTER2 model (allenai/specter2, 768-dim)
+2. Compute SPECTER2 embeddings for the 19K corpus (GPU)
+3. Pick 10 seed papers. For each, find top-10 similar papers under MiniLM and SPECTER2
+4. Compute overlap (Jaccard of top-10)
+5. Qualitative inspection: for 3 seed papers, do SPECTER2 results look more topically coherent?
+6. Measure: compute time per paper, embedding dimension, memory footprint
+7. Report: quality difference, compute cost tradeoff
+8. Note: if SPECTER2 is 768-dim (vs MiniLM 384-dim), brute-force search time and HNSW index size both ~double. The D3 comparison would need re-evaluation.
+
+### Alternative Architectural Approaches
+
+The D1 finding (FTS5 ≠ tsvector) raises a question that should be noted here but resolved in the deliberation: **should the search layer be separated from the storage layer?**
+
+Options to evaluate in the deliberation (not experiments — design considerations):
+1. Extract search as its own abstraction. Storage does CRUD; search has its own backend (embedding-based, tantivy, or delegated to DB).
+2. Always use embedding search for primary retrieval. Keyword search becomes a fallback, not the default. This makes backend choice irrelevant for search quality.
+3. Use a standalone search library (tantivy via Python bindings, whoosh) for consistent results regardless of storage backend.
+
+These are not spike experiments — they're design options that the deliberation should weigh using spike findings as evidence.
+
+### Revised Completion Checklist
+
+The spike is complete when ALL of the following are done:
+
+- [ ] D1-R1: Query-parsing confound controlled
+- [ ] D1-R2: Stemming analysis completed
+- [ ] D1-R3: Divergent results inspected
+- [ ] D2-R: A1b baseline reproduction confirmed
+- [ ] D7: Reference design comparison completed
+- [ ] QV1: Pre-filtered TF-IDF validated
+- [ ] QV2: mmap loading validated
+- [ ] QV3: MiniLM vs SPECTER2 compared
+- [ ] D6-R: Workflow with vector search (optional — do if time permits)
+- [ ] FINDINGS.md updated with all Round 2 results and caveats
+- [ ] DECISION.md written (tradeoff map, guidance table, deliberation input)

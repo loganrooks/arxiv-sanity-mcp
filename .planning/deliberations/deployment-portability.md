@@ -11,7 +11,7 @@ Lifecycle: open → concluded → adopted → evaluated → superseded
 -->
 
 **Date:** 2026-03-14
-**Status:** Open — Spike 002 complete, both-backend data now available. Tier model requires second revision. Remaining spike phases (A2, B, C) address scoring/filtering, not deployment.
+**Status:** Open — Spike 002 Round 1 done but has methodological gaps (Round 2 in progress). Spike 001 is 3/8 complete. Deliberation blocked on spike completion — see `.planning/spikes/ROADMAP.md` for full dependency chain and execution plan.
 **Trigger:** After Phase 10 (agent integration test) completion, user asked: "are we sure everything is working? how might one install this locally on another computer?" Investigation revealed the project is feature-complete but not deployment-ready. Subsequent deliberation expanded scope to include: backend flexibility (SQLite vs PostgreSQL), deployment tiers (personal vs hosted), arxiv-sanity-lite architecture comparison, and PyPI distribution.
 **Affects:** v0.1.x release, v0.2 milestone planning, new users, installation on apollo (MacBook), potential contributors
 **Related:**
@@ -481,10 +481,11 @@ The data is now sufficient for the deployment deliberation to reach a conclusion
 
 ## Decision Record
 
-**Decision:** Pending — both-backend data now available. Deployment deliberation can conclude. The remaining question is a design judgment (default backend, whether to ship both), not an empirical one.
+**Decision:** Pending — Spike 002 Round 1 data available but has methodological gaps (D1 confound, missing reference comparison, missing result inspection). Spike 001 is 3/8 complete (A2/A3/B/C pending). Deliberation cannot conclude until both spikes are done — the empirical foundation is incomplete.
 **Decided:** —
 **Implemented via:** not yet implemented
-**Signals addressed:** Spike 001 A1 (volume mapping), A1b (FTS5 benchmark), A1c.1 (TF-IDF), A1c.2 (concurrent SQLite), A1c.3 (embeddings), **Spike 002 D1–D6 (full backend comparison)**
+**Signals addressed:** Spike 001 A1 (volume mapping), A1b (FTS5 benchmark), A1c.1 (TF-IDF), A1c.2 (concurrent SQLite), A1c.3 (embeddings), Spike 002 D1–D6 Round 1 (provisional — see caveats in FINDINGS.md)
+**Signals pending:** Spike 002 Round 2 (D1 remediation, reference designs, quick validations), Spike 001 A2/A3/B/C
 
 ## Evaluation
 

@@ -65,15 +65,15 @@ The NLP intelligence layer (TF-IDF, SVM, embeddings) runs in Python, not the dat
 | A1c.1: TF-IDF Matrix Benchmark | **Complete** | 157 MB at 215K; cosine search 516ms (bottleneck is compute, not RAM) | `a1c_tfidf_benchmark.py` |
 | A1c.2: Concurrent SQLite R+W | **Complete** | WAL mode: zero degradation at 100 writes/s. Non-issue. | `a1c_concurrent_sqlite.py` |
 | A1c.3: Lightweight Embeddings | **Complete** | 16ms search at 215K (no pgvector needed). GPU 20x faster for compute. | `a1c_embedding_benchmark.py` |
-| A2: Corpus Visualization | Pending | — | — |
-| A2b: Interactive Explorer | Pending | — | — |
-| A3: Distribution Analysis | Pending | — | — |
-| B1: Signal Literature Review | Pending | — | — |
-| B2: Computed Signal Exploration | Pending | — | — |
-| B3: Importance Analysis | Pending | — | — |
-| C1: Coverage-Regret Analysis | Pending | — | — |
-| C2: Promotion Pipeline Sim | Pending | — | — |
-| C3: Backend Implications | Pending | — | — |
+| A2: Corpus Visualization | **Pending** | Protocol expanded 2026-03-19. Validates pre-filtering assumption. | — |
+| A2b: Interactive Explorer | Deferred | UMAP HTML from A2 sufficient for now | — |
+| A3: Distribution Analysis | **Pending** | Protocol expanded 2026-03-19 | — |
+| B1: Signal Literature Review | **Pending** | Protocol expanded 2026-03-19. Research task, no data needed. | — |
+| B2: Computed Signal Exploration | **Pending** | Requires B1, A2, A3. OpenAlex enrichment needed (~500 papers). | — |
+| B3: Importance Analysis | **Pending** | Requires B2. Factor analysis on signal matrix. | — |
+| C1: Coverage-Regret Analysis | **Pending** | Requires B2, B3. Simulated filtering strategies. | — |
+| C2: Promotion Pipeline Sim | **Pending** | Requires C1, A1. Resource projections. | — |
+| C3: Backend Implications | **Deprioritized** | Answered by A1c + Spike 002. Synthesis in deliberation. | — |
 
 ## Scope Evolution
 
@@ -143,41 +143,170 @@ These experiments measure whether key computational operations are feasible at o
 
 **A2: Corpus Visualization and Structure** — PENDING
 
-- Using the harvested sample, explore the corpus structure:
-  - Topic modeling (LDA or BERTopic) on abstracts — what clusters emerge naturally?
-  - Dimensionality reduction (UMAP or t-SNE) of TF-IDF vectors — visualize the paper space
-  - Category co-occurrence heatmap — how do categories overlap?
-  - Temporal patterns — submission rate by day/week/month, seasonal effects
-  - Author network — who publishes together, prolific author distribution
-- Output: visualizations, cluster descriptions, structural observations
-- **This is the most open-ended part.** We're looking at the data to see what patterns exist before deciding what to measure.
+*Question:* What does the paper space look like structurally? Do arXiv categories map to topical clusters?
 
-**A2b: Interactive Explorer Prototype** — PENDING
+*Why it matters:* The deployment deliberation assumes category-based pre-filtering is viable (e.g., "filter to cs.AI before computing TF-IDF similarity"). This assumption requires that categories correspond to topical clusters. If papers within a category are topically diffuse, category pre-filtering may exclude relevant papers. A2 also reveals whether our 15 configured categories carve the space meaningfully or arbitrarily.
 
-- Build a Streamlit (or Plotly Dash) app for interactive exploration of the harvested corpus
-- Not a polished product — a spike instrument for understanding the data
-- Output: working interactive app in experiments/explorer/
+*Protocol:*
+1. **Topic modeling (BERTopic):** Run BERTopic on the 19K paper abstracts using the Spike 002 MiniLM embeddings (already computed, 384-dim). Extract topic labels, sizes, and representative documents.
+2. **UMAP visualization:** Reduce the 384-dim embeddings to 2D via UMAP. Color by primary_category. Save as interactive HTML (plotly) and static PNG.
+3. **Category–topic alignment:** For each BERTopic topic, compute the distribution of primary_category values. Are topics dominated by one category (alignment) or spread across many (misalignment)?
+4. **Category co-occurrence heatmap:** For multi-category papers, compute pairwise co-occurrence counts. Visualize as heatmap.
+5. **Temporal patterns:** Submission rate by day-of-week and week-of-month for January 2026. Identify any cyclical patterns (conference deadlines, holidays).
+6. **Author frequency distribution:** How many papers does the median/90th/99th percentile author publish in one month?
+
+*Output:* Visualizations (saved as PNG + HTML), structural observations in FINDINGS.md.
+
+*Deployment relevance:* If categories align well with topics → category pre-filtering is valid. If they don't → pre-filtering mitigation in deliberation is questionable.
+
+**A2b: Interactive Explorer Prototype** — DEFERRED
+
+- Originally planned as a Streamlit app. Deferred — the UMAP interactive HTML from A2 provides sufficient exploration capability. Can revisit if A2 findings create demand for deeper exploration.
 
 **A3: Distribution Analysis** — PENDING
 
-- For the harvested sample, compute distributions of key features
-- Output: distribution plots, summary statistics, outlier identification
+*Question:* What are the statistical properties of key corpus features? What distributions do they follow?
+
+*Why it matters:* Distribution shapes affect ranking normalization, enrichment scheduling, and promotion pipeline design. Power-law distributions (common in bibliometrics) need different handling than normal distributions. Outlier identification reveals papers that break assumptions.
+
+*Protocol:*
+1. **Category distribution:** Paper counts by primary_category. Bar chart + Gini coefficient.
+2. **Abstract length distribution:** Histogram + summary stats (mean, median, std, min, max).
+3. **Title length distribution:** Same.
+4. **Author count per paper:** Distribution — how many authors is typical?
+5. **Category count per paper:** How many papers have multiple categories? Distribution of category_count.
+6. **Temporal distribution within the month:** Papers per day. Is the rate uniform or bursty?
+7. **Vocabulary analysis:** Unique terms in abstracts, term frequency distribution (Zipf's law fit). How many terms cover 80% of content?
+
+*Output:* Distribution plots (matplotlib, saved as PNG), summary statistics table in FINDINGS.md.
+
+*Dependencies:* None — uses existing harvest data.
 
 ### Phase B: Signal Research and Discovery
 
 **Objective:** Identify and evaluate candidate signals that could predict paper importance or relevance. Start with research, then compute and test.
 
-**B1:** Literature review of paper recommendation features
-**B2:** Computed signal exploration on retrospective sample with OpenAlex citations
-**B3:** Explore what "importance" means empirically
+**B1: Signal Literature Review** — PENDING
+
+*Question:* What signals do existing academic paper recommender systems use? What does the research literature say about predicting paper importance?
+
+*Why it matters:* Our current system uses a 5-signal composite ranker (seed_paper, followed_author, saved_query, category, negative_author) — all based on user-declared interest. We have no computed signals (citation velocity, author h-index, topic novelty, etc.). B1 establishes what the field considers effective before we start computing our own.
+
+*Protocol:*
+1. **Review existing systems:** arxiv-sanity (original + lite), Semantic Scholar recommendations, Google Scholar ranking, ResearchRabbit, Connected Papers, Elicit. For each: what signals do they use? What's their ranking approach?
+2. **Review literature:** Search for "academic paper recommendation" surveys (2020+). Key areas:
+   - Content-based filtering (TF-IDF, embeddings, topic models)
+   - Collaborative filtering (citation graphs, co-readership)
+   - Metadata signals (citation count, recency, venue, author metrics)
+   - Hybrid approaches
+3. **Compile candidate signal list:** For each signal, note: what data is needed, can we compute it from our sources (arXiv metadata + OpenAlex enrichment), approximate compute cost.
+4. **Classify signals by availability:**
+   - Available now: already in our schema
+   - Available via OpenAlex: requires enrichment API call
+   - Requires new data source: not currently accessible
+   - Requires user interaction data: needs usage history we don't have yet
+
+*Output:* Signal catalog with source, availability, and literature evidence. Written to FINDINGS.md.
+
+*Dependencies:* None — research task, no data computation needed.
+
+**B2: Computed Signal Exploration** — PENDING
+
+*Question:* Which candidate signals from B1 actually correlate with paper importance in our corpus?
+
+*Why it matters:* Literature tells us what signals exist in theory. B2 tests which ones are informative in practice for our specific corpus (15 arXiv categories, January 2026). A signal might be well-established in the literature but useless for our categories or time window.
+
+*Protocol:*
+1. **Enrich a sample:** Select ~500 papers from the 19K corpus (stratified by category). Fetch OpenAlex enrichment for each: citation count, cited_by_count, FWCI, topics, related works, author h-indices.
+2. **Compute candidate signals:** For each enriched paper, compute:
+   - Citation velocity (citations per month since publication — may be near-zero for January 2026 papers)
+   - Author h-index (max h-index among authors, from OpenAlex)
+   - Category entropy (how many categories vs. papers in those categories)
+   - Topic novelty (cosine distance from category centroid in embedding space)
+   - Reference overlap (Jaccard of references against user's library — simulated)
+   - Abstract readability (sentence length, technical term density)
+3. **Correlation analysis:** Compute pairwise correlations between signals. Compute correlation between each signal and available importance proxies (cited_by_count, FWCI if available).
+4. **Feature importance:** Train a simple classifier (random forest) to predict "highly cited" (top 20% by citation count) from computed signals. Extract feature importances.
+5. **Caveat:** January 2026 papers have had <2 months to accumulate citations. Citation-based importance proxies will be weak. Focus on signal structure and correlations rather than absolute predictive power.
+
+*Output:* Correlation matrix, feature importance ranking, signal evaluation table in FINDINGS.md.
+
+*Dependencies:* B1 (signal catalog), A2 (embeddings for topic novelty), A3 (distributions for normalization).
+
+**B3: Importance Analysis** — PENDING
+
+*Question:* Is "paper importance" one thing or multiple dimensions? Does it decompose into distinct factors?
+
+*Why it matters:* Our ranking system produces a single score. If importance is multidimensional (e.g., methodological significance vs. topical relevance vs. citation impact vs. novelty), a single score loses information. The interest profile model might need multiple axes rather than one composite.
+
+*Protocol:*
+1. Using the enriched sample from B2, collect all computed signals into a feature matrix.
+2. **PCA/Factor analysis:** How many principal components explain >80% of variance? Do the components have interpretable meanings (e.g., "impact" vs. "novelty" vs. "breadth")?
+3. **Cluster analysis on papers:** K-means or HDBSCAN on the signal feature matrix. Do distinct paper "types" emerge (landmark papers, survey papers, incremental papers, methodological papers)?
+4. **Qualitative validation:** For each cluster or factor, inspect 5 representative papers. Does the grouping make intuitive sense?
+
+*Output:* Factor analysis results, paper type taxonomy (if clusters emerge), recommendation for single-score vs. multi-axis ranking. Written to FINDINGS.md.
+
+*Dependencies:* B2 (computed signal matrix).
 
 ### Phase C: Tradeoff Mapping
 
 **Objective:** Map the tradeoffs between filtering strategies, promotion strategies, and resource requirements.
 
-**C1:** Coverage-regret analysis with candidate filtering strategies
-**C2:** Promotion pipeline simulation (resource projections)
-**C3:** Backend implications synthesis
+**C1: Coverage-Regret Analysis** — PENDING
+
+*Question:* What's the tradeoff shape for filtering strategies? Is there an elbow?
+
+*Why it matters:* We currently ingest ALL papers in configured categories. This means 12K-18K papers/month. Most of these are irrelevant to any particular user. Filtering reduces volume but risks missing important papers. C1 maps this tradeoff to find whether a "sweet spot" exists.
+
+*Protocol:*
+1. **Define importance proxy:** Using B2's findings, select the best available importance proxy (likely: cited_by_count from OpenAlex, or composite of top signals from B2).
+2. **Simulate filtering strategies:**
+   - Category-only (current): all papers in configured categories
+   - Keyword filter: papers matching user-defined keywords in title/abstract
+   - Citation threshold: papers by authors with h-index > X
+   - Embedding similarity: papers within cosine distance Y of user's seed papers
+   - Combined: keyword OR citation OR similarity (union)
+3. **For each strategy at various thresholds, measure:**
+   - Coverage: fraction of "important" papers retained (important = top 20% by proxy)
+   - Volume: total papers retained
+   - Regret: important papers missed
+4. **Plot coverage-volume curves.** Look for elbows where increasing filtering aggressiveness causes disproportionate coverage loss.
+5. **Sensitivity analysis:** How robust are results to the importance proxy choice?
+
+*Output:* Coverage-volume tradeoff curves, elbow identification, filtering strategy ranking. Written to FINDINGS.md.
+
+*Dependencies:* B2 (importance proxy), B3 (multi-dimensional importance consideration).
+
+**C2: Promotion Pipeline Simulation** — PENDING
+
+*Question:* What are the resource costs of different promotion strategies over 1 year of operation?
+
+*Why it matters:* ADR-0002 says "enrich lazily, embed selectively." C2 tests what "lazy" and "selective" mean concretely. How many OpenAlex API calls per month? How much GPU time for embedding? How much storage growth? These numbers determine whether the operational story is sustainable.
+
+*Protocol:*
+1. **Define promotion strategies:**
+   - S1: Embed only triaged papers (conservative — user-driven)
+   - S2: Embed top 10% by filtering score (moderate — semi-automatic)
+   - S3: Embed all ingested papers (aggressive — full coverage)
+   - S4: Enrich via OpenAlex, then embed enriched subset (two-stage)
+2. **For each strategy, project 12 months of operation at our measured ingestion rates:**
+   - OpenAlex API calls/month (rate limited at 10/s with email)
+   - GPU hours/month for embedding computation (using A1c.3 per-paper times)
+   - CPU hours/month if no GPU
+   - Storage growth: database size + embedding file size
+   - Total wall time for daily incremental processing
+3. **Cost table:** resource usage × 12 months, with and without GPU.
+
+*Output:* Resource projection table per strategy per tier. Written to FINDINGS.md.
+
+*Dependencies:* C1 (filtering thresholds inform promotion volumes), A1 (ingestion rates).
+
+**C3: Backend Implications Synthesis** — DEPRIORITIZED
+
+*Status:* Largely answered by Spike 001 A1c + Spike 002. Backend performance at scale is thoroughly measured. No additional experiments needed.
+
+*Remaining work:* Integrate C1/C2 findings with Spike 002 findings to produce final backend recommendation. This synthesis happens in the deliberation, not in an experiment.
 
 ## Success Criteria
 
