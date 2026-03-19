@@ -481,13 +481,98 @@ For the deliberation and DECISION.md:
 
 ### Round 3 Completion Checklist
 
-- [ ] C1-R7: Quality measurement (coherence, diversity, seed-relevance, novelty)
-- [ ] C1-R8: Parameterized precision-recall curves
-- [ ] C1-R9: Adaptive learning simulation (30-day user behavior)
-- [ ] Design notes: ingestion vs promotion architecture
-- [ ] Design notes: per-project mixture of experts
+- [x] C1-R7: Quality measurement (coherence, diversity, seed-relevance, novelty)
+- [x] C1-R8: Parameterized precision-recall curves
+- [x] C1-R9: Adaptive learning simulation — **showed simulation framework is uninformative** (circular ground truth)
+- [x] Null hypothesis testing — confirmed degradation was simulation artifact
+- [ ] C1-R10: Leave-one-out retrieval quality (avoids ground truth problem)
+- [ ] C1-R11: Retrieval + reranking pipeline comparison
+- [ ] C1-R12: Seed count sensitivity (cold-start curve)
+- [ ] C1-R13: Interest breadth sensitivity
+- [ ] C1-R14: Marginal signal value analysis
+- [ ] C1-R15: SPECTER2 quality profiles (coherence/diversity/novelty)
+- [ ] C1-R16: Bibliographic coupling vs embedding similarity
+- [ ] Systematic filtering landscape report
 - [ ] FINDINGS.md updated
 - [ ] DECISION.md written
+
+### C1-R10: Leave-One-Out Retrieval Quality
+
+The ground truth problem plagued R9 and the null hypothesis tests. Leave-one-out sidesteps it entirely: from a set of papers that ARE related, hold one out, see which approach finds it.
+
+Protocol:
+1. Identify 10 topically coherent paper clusters using BERTopic (or manually from A2 results)
+2. For each cluster, hold out each paper in turn
+3. Use remaining cluster papers as seeds
+4. For each approach (embedding, keyword, SVM, category, bibliographic coupling), rank ALL papers
+5. Measure: rank of held-out paper (lower = better)
+6. Report: mean reciprocal rank (MRR) per approach, stratified by cluster size and topic
+
+Why this works: the held-out paper is genuinely relevant by construction. No proxy needed.
+
+### C1-R11: Retrieval + Reranking Pipeline
+
+B1 found that production systems use multi-stage pipelines. Test whether two-stage approaches capture benefits of both dimensions.
+
+Protocol:
+1. **Stage 1 candidates:** keyword retrieve top-200, OR category retrieve, OR embedding retrieve top-200
+2. **Stage 2 rerank:** embedding similarity, OR SVM score, OR citation+FWCI score
+3. Test all 9 pipeline combinations (3 retrievers × 3 rerankers)
+4. Measure using leave-one-out MRR from R10
+5. Compare against best single-stage approach
+
+### C1-R12: Seed Count Sensitivity
+
+How much user input does each approach need?
+
+Protocol:
+1. For 5 interests, vary seed count: 1, 2, 3, 5, 10, 20 seeds
+2. At each count, measure quality metrics (coherence, seed-relevance, diversity, MRR from R10)
+3. Plot: seed count vs quality for each approach
+4. Identify: minimum viable seed count per approach (where quality stabilizes)
+
+### C1-R13: Interest Breadth Sensitivity
+
+Protocol:
+1. Define 3 breadth levels using BERTopic clusters:
+   - Narrow: papers from a single small cluster (e.g., "quantum computing circuits")
+   - Medium: papers from 2-3 related clusters (e.g., "NLP + reasoning")
+   - Broad: papers spanning 5+ clusters (e.g., "AI safety" — touches many fields)
+2. For each breadth level, run each approach, measure quality metrics
+3. Report: which approaches are robust to breadth? Which collapse?
+
+### C1-R14: Marginal Signal Value
+
+Protocol:
+1. Start with embedding-only retrieval (baseline quality)
+2. Add one signal at a time and measure quality delta:
+   - + keyword match boost (re-weight papers containing query terms)
+   - + citation count weight (boost cited papers)
+   - + author overlap weight (boost papers by followed authors)
+   - + category match weight (boost same-category papers)
+   - + bibliographic coupling (boost papers sharing references)
+3. Plot: cumulative quality improvement per signal added
+4. Identify: diminishing returns point
+
+### C1-R15: SPECTER2 Quality Profiles
+
+QV3 showed MiniLM and SPECTER2 disagree on similarity. Test how this affects actual quality metrics.
+
+Protocol:
+1. For 5 interests, compute quality metrics using MiniLM embeddings AND SPECTER2 embeddings
+2. Compare: coherence, seed-relevance, diversity, novelty, leave-one-out MRR
+3. Report: does SPECTER2's domain specificity translate to better quality, or just different quality?
+
+### C1-R16: Bibliographic Coupling
+
+Connected Papers' approach — papers sharing references are related. Test against embedding similarity.
+
+Protocol:
+1. From the OpenAlex enrichment cache (460 papers), extract referenced_works lists
+2. Compute pairwise bibliographic coupling (Jaccard of reference lists)
+3. For leave-one-out evaluation: rank held-out paper by bibliographic coupling score
+4. Compare MRR against embedding similarity MRR
+5. Test hybrid: embedding + bibliographic coupling weighted combination
 
 ## Success Criteria
 
