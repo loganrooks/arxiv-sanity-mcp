@@ -1,0 +1,5364 @@
+{
+  "metadata": {
+    "experiment": "W3.4: Asymmetric Pipeline Comparison",
+    "completed_at": "2026-03-20T04:16:32.292245+00:00",
+    "total_time_s": 241.0,
+    "corpus_size": 19252,
+    "n_profiles": 8,
+    "baseline_s1a_mrr_fresh": 0.3978616233751198,
+    "baseline_best_rrf_mrr": 0.31
+  },
+  "pipeline_cards": {
+    "S1a": {
+      "card": {
+        "strategy_id": "S1a",
+        "strategy_name": "MiniLM centroid (baseline)",
+        "config": {
+          "type": "baseline",
+          "model": "MiniLM"
+        },
+        "instruments": {
+          "leave_one_out_mrr": {
+            "mean": 0.3978616233751198,
+            "std": 0.08871250100730373,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "seed_proximity": {
+            "mean": 0.7643123045563698,
+            "std": 0.03455999440120537,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "topical_coherence": {
+            "mean": 0.643445278207461,
+            "std": 0.03873248328892759,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "cluster_diversity": {
+            "mean": 2.5416666666666665,
+            "std": 1.5269568501507245,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "novelty": {
+            "mean": 0.04583333333333334,
+            "std": 0.10095034532988098,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "category_surprise": {
+            "mean": 0.09375,
+            "std": 0.060056397105831556,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "coverage": {
+            "mean": 0.6861842105263158,
+            "std": 0.07772166197744067,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          }
+        },
+        "by_profile": {
+          "P1": {
+            "profile_id": "P1",
+            "profile_name": "RL for robotics",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.46771520146520135,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4677152014652014,
+                  0.4677152014652014,
+                  0.4677152014652014
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7798455556233724,
+                "std": 0.006600867239929418,
+                "values": [
+                  0.77068030834198,
+                  0.7828933000564575,
+                  0.7859630584716797
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6521615783373514,
+                "std": 0.0017011047497516476,
+                "values": [
+                  0.6517569422721863,
+                  0.6544176340103149,
+                  0.6503101587295532
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.3333333333333335,
+                "std": 0.4714045207910317,
+                "values": [
+                  4.0,
+                  3.0,
+                  3.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.03333333333333333,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.1,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.062360956446232366,
+                "values": [
+                  0.2,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.08164965809277258,
+                "values": [
+                  0.75,
+                  0.65,
+                  0.55
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P2": {
+            "profile_id": "P2",
+            "profile_name": "Language model reasoning",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.28222689075630253,
+                "std": 0.0,
+                "values": [
+                  0.28222689075630253,
+                  0.28222689075630253,
+                  0.28222689075630253
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8017237981160482,
+                "std": 0.005214373215861286,
+                "values": [
+                  0.7944265604019165,
+                  0.8062928915023804,
+                  0.8044519424438477
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.694302519162496,
+                "std": 0.005890297341363325,
+                "values": [
+                  0.686127245426178,
+                  0.6997747421264648,
+                  0.697005569934845
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.049999999999999996,
+                "std": 0.07071067811865475,
+                "values": [
+                  0.15,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.10000000000000002,
+                "std": 0.0408248290463863,
+                "values": [
+                  0.05,
+                  0.1,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.04082482904638629,
+                "values": [
+                  0.6,
+                  0.65,
+                  0.7
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P3": {
+            "profile_id": "P3",
+            "profile_name": "Quantum computing / quantum ML",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.34736758339699514,
+                "std": 0.0,
+                "values": [
+                  0.34736758339699514,
+                  0.34736758339699514,
+                  0.34736758339699514
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7510326306025187,
+                "std": 0.005948302262402835,
+                "values": [
+                  0.7445653080940247,
+                  0.7496075630187988,
+                  0.7589250206947327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6345778306325277,
+                "std": 0.006461776815911124,
+                "values": [
+                  0.6415277719497681,
+                  0.6362414956092834,
+                  0.6259642243385315
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.016666666666666666,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.0,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.65,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P4": {
+            "profile_id": "P4",
+            "profile_name": "AI safety / alignment",
+            "breadth": "Broad",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.49957341269841277,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4995734126984127,
+                  0.4995734126984127,
+                  0.4995734126984127
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8104023138682047,
+                "std": 0.009168064446704255,
+                "values": [
+                  0.7974427938461304,
+                  0.8172259330749512,
+                  0.8165382146835327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6899895469347636,
+                "std": 0.0017885190576033335,
+                "values": [
+                  0.6884682178497314,
+                  0.6925001740455627,
+                  0.6890002489089966
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6833333333333332,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.7,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P5": {
+            "profile_id": "P5",
+            "profile_name": "Graph neural networks",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.4638053467000834,
+                "std": 0.0,
+                "values": [
+                  0.4638053467000834,
+                  0.4638053467000834,
+                  0.4638053467000834
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7394536733627319,
+                "std": 0.021183239986921207,
+                "values": [
+                  0.7109745144844055,
+                  0.7456435561180115,
+                  0.7617429494857788
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6290229558944702,
+                "std": 0.003117828032284396,
+                "values": [
+                  0.6253358721733093,
+                  0.6329606175422668,
+                  0.6287723779678345
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.6666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  2.0,
+                  2.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.7894736842105262,
+                "std": 0.042973504259354,
+                "values": [
+                  0.7368421052631579,
+                  0.8421052631578947,
+                  0.7894736842105263
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P6": {
+            "profile_id": "P6",
+            "profile_name": "Diffusion models for generation",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.30999999999999994,
+                "std": 0.0,
+                "values": [
+                  0.30999999999999994,
+                  0.30999999999999994,
+                  0.30999999999999994
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7387824257214864,
+                "std": 0.0007770567605850673,
+                "values": [
+                  0.7382152676582336,
+                  0.7382508516311646,
+                  0.739881157875061
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.612612267335256,
+                "std": 0.007349552302277244,
+                "values": [
+                  0.6230059266090393,
+                  0.6074680089950562,
+                  0.6073628664016724
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.333333333333333,
+                "std": 1.247219128924647,
+                "values": [
+                  3.0,
+                  6.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.13333333333333333,
+                "std": 0.04714045207910317,
+                "values": [
+                  0.1,
+                  0.2,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.09999999999999999,
+                "std": 0.0408248290463863,
+                "values": [
+                  0.1,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6333333333333334,
+                "std": 0.11785113019775792,
+                "values": [
+                  0.55,
+                  0.55,
+                  0.8
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P7": {
+            "profile_id": "P7",
+            "profile_name": "Federated learning + privacy",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.5051208513708513,
+                "std": 0.0,
+                "values": [
+                  0.5051208513708513,
+                  0.5051208513708513,
+                  0.5051208513708513
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7843928535779318,
+                "std": 0.008453287785162675,
+                "values": [
+                  0.7734733819961548,
+                  0.7856382131576538,
+                  0.7940669655799866
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6644360621770223,
+                "std": 0.0028140618790370112,
+                "values": [
+                  0.6684120297431946,
+                  0.6622991561889648,
+                  0.6625970005989075
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.75,
+                "std": 0.04082482904638634,
+                "values": [
+                  0.8,
+                  0.75,
+                  0.7
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P8": {
+            "profile_id": "P8",
+            "profile_name": "Mathematical foundations of neural networks",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.30708370061311235,
+                "std": 0.0,
+                "values": [
+                  0.30708370061311235,
+                  0.30708370061311235,
+                  0.30708370061311235
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7088651855786642,
+                "std": 0.012461106149121808,
+                "values": [
+                  0.6917455792427063,
+                  0.7138044834136963,
+                  0.7210454940795898
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5704594651858012,
+                "std": 0.0037135402106455353,
+                "values": [
+                  0.565218448638916,
+                  0.5727894902229309,
+                  0.5733704566955566
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 5.0,
+                "std": 0.816496580927726,
+                "values": [
+                  6.0,
+                  5.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.15,
+                "std": 0.21213203435596428,
+                "values": [
+                  0.45,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.7,
+                  0.65,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          }
+        },
+        "resources": {
+          "query_latency_ms": {
+            "p50": 20.40956448763609,
+            "p95": 36.389452405273914,
+            "mean": 23.097303435206413
+          },
+          "index_time_s": null,
+          "incremental_update_ms": null,
+          "memory_mb": null,
+          "storage_mb": null,
+          "api_cost_per_paper": null,
+          "gpu_required": null,
+          "gpu_speedup": null
+        },
+        "qualitative": {},
+        "metadata": {
+          "evaluated_at": "2026-03-20T04:12:51.181276+00:00",
+          "n_profiles": 8,
+          "n_seed_sets_per_profile": 3,
+          "top_k": 20,
+          "corpus_size": 19252,
+          "embedding_dim": 384,
+          "n_clusters": 48
+        }
+      },
+      "profiling_time_s": 13.0
+    },
+    "P1": {
+      "card": {
+        "strategy_id": "P1",
+        "strategy_name": "TF-IDF->MiniLM (k=200)",
+        "config": {
+          "retriever": "S1d (TF-IDF cosine)",
+          "ranker": "S1a (MiniLM centroid)",
+          "retrieve_k": 200,
+          "architecture": "retrieve-rerank"
+        },
+        "instruments": {
+          "leave_one_out_mrr": {
+            "mean": 0.39180929614438703,
+            "std": 0.08891232475127413,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "seed_proximity": {
+            "mean": 0.7613259529074033,
+            "std": 0.03617186523816911,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "topical_coherence": {
+            "mean": 0.6397519831856092,
+            "std": 0.04167923618678754,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "cluster_diversity": {
+            "mean": 2.4583333333333335,
+            "std": 1.3533651474093096,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "novelty": {
+            "mean": 0.03958333333333334,
+            "std": 0.09572004173050118,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "category_surprise": {
+            "mean": 0.10208333333333335,
+            "std": 0.06993920971497715,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "coverage": {
+            "mean": 0.6216008771929825,
+            "std": 0.10597614663564733,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          }
+        },
+        "by_profile": {
+          "P1": {
+            "profile_id": "P1",
+            "profile_name": "RL for robotics",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.43876984126984125,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4387698412698412,
+                  0.4387698412698412,
+                  0.4387698412698412
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7760082681973776,
+                "std": 0.006782789345931702,
+                "values": [
+                  0.766457200050354,
+                  0.7800142765045166,
+                  0.781553328037262
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6429370443026224,
+                "std": 0.004422179188966281,
+                "values": [
+                  0.6423800587654114,
+                  0.6486100554466248,
+                  0.6378210186958313
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.3333333333333335,
+                "std": 0.4714045207910317,
+                "values": [
+                  4.0,
+                  3.0,
+                  3.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.03333333333333333,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.1,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.16666666666666666,
+                "std": 0.10274023338281627,
+                "values": [
+                  0.3,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.5166666666666666,
+                "std": 0.10274023338281628,
+                "values": [
+                  0.65,
+                  0.5,
+                  0.4
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P2": {
+            "profile_id": "P2",
+            "profile_name": "Language model reasoning",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.2881940026347921,
+                "std": 0.0,
+                "values": [
+                  0.2881940026347921,
+                  0.2881940026347921,
+                  0.2881940026347921
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7996246417363485,
+                "std": 0.0038091007434425117,
+                "values": [
+                  0.7943190932273865,
+                  0.8030850291252136,
+                  0.8014698028564453
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6962969303131104,
+                "std": 0.006340812053174841,
+                "values": [
+                  0.6906717419624329,
+                  0.7051573991775513,
+                  0.6930616497993469
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.049999999999999996,
+                "std": 0.07071067811865475,
+                "values": [
+                  0.15,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.08333333333333333,
+                "std": 0.023570226039551584,
+                "values": [
+                  0.05,
+                  0.1,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.5833333333333334,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.6,
+                  0.6,
+                  0.55
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P3": {
+            "profile_id": "P3",
+            "profile_name": "Quantum computing / quantum ML",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.34447115384615384,
+                "std": 0.0,
+                "values": [
+                  0.34447115384615384,
+                  0.34447115384615384,
+                  0.34447115384615384
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7505754828453064,
+                "std": 0.006289218254604704,
+                "values": [
+                  0.7435336709022522,
+                  0.7493909597396851,
+                  0.7588018178939819
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6341829697291056,
+                "std": 0.0052425694122863855,
+                "values": [
+                  0.6415964365005493,
+                  0.6303914785385132,
+                  0.6305609941482544
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.016666666666666666,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.0,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.0,
+                "values": [
+                  0.65,
+                  0.65,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P4": {
+            "profile_id": "P4",
+            "profile_name": "AI safety / alignment",
+            "breadth": "Broad",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.49957341269841277,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4995734126984127,
+                  0.4995734126984127,
+                  0.4995734126984127
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8104023138682047,
+                "std": 0.009168064446704255,
+                "values": [
+                  0.7974427938461304,
+                  0.8172259330749512,
+                  0.8165382146835327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6899895469347636,
+                "std": 0.0017885190576033335,
+                "values": [
+                  0.6884682178497314,
+                  0.6925001740455627,
+                  0.6890002489089966
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6833333333333332,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.7,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P5": {
+            "profile_id": "P5",
+            "profile_name": "Graph neural networks",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.4638053467000834,
+                "std": 0.0,
+                "values": [
+                  0.4638053467000834,
+                  0.4638053467000834,
+                  0.4638053467000834
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7388976414998373,
+                "std": 0.021932137121999432,
+                "values": [
+                  0.7093064188957214,
+                  0.7456435561180115,
+                  0.7617429494857788
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6290297706921896,
+                "std": 0.0031097734744457654,
+                "values": [
+                  0.6253563165664673,
+                  0.6329606175422668,
+                  0.6287723779678345
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.6666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  2.0,
+                  2.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.7894736842105262,
+                "std": 0.042973504259354,
+                "values": [
+                  0.7368421052631579,
+                  0.8421052631578947,
+                  0.7894736842105263
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P6": {
+            "profile_id": "P6",
+            "profile_name": "Diffusion models for generation",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.29775062656641604,
+                "std": 0.0,
+                "values": [
+                  0.29775062656641604,
+                  0.29775062656641604,
+                  0.29775062656641604
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7318586111068726,
+                "std": 0.003007323025758056,
+                "values": [
+                  0.7276116609573364,
+                  0.7341784238815308,
+                  0.7337857484817505
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6119822065035502,
+                "std": 0.004828735402089676,
+                "values": [
+                  0.6187039017677307,
+                  0.6075777411460876,
+                  0.6096649765968323
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.333333333333333,
+                "std": 0.9428090415820634,
+                "values": [
+                  3.0,
+                  5.0,
+                  5.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.08333333333333333,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.1,
+                  0.1,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.11666666666666665,
+                "std": 0.02357022603955158,
+                "values": [
+                  0.1,
+                  0.15,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.5,
+                "std": 0.04082482904638631,
+                "values": [
+                  0.45,
+                  0.5,
+                  0.55
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P7": {
+            "profile_id": "P7",
+            "profile_name": "Federated learning + privacy",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.5064301874595991,
+                "std": 0.0,
+                "values": [
+                  0.5064301874595991,
+                  0.5064301874595991,
+                  0.5064301874595991
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7818340261777242,
+                "std": 0.007934392290929057,
+                "values": [
+                  0.7713508605957031,
+                  0.7836101651191711,
+                  0.7905410528182983
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6563533345858256,
+                "std": 0.004665620518111691,
+                "values": [
+                  0.6627864837646484,
+                  0.6544067859649658,
+                  0.6518667340278625
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.16666666666666666,
+                "std": 0.02357022603955159,
+                "values": [
+                  0.15,
+                  0.2,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.04082482904638629,
+                "values": [
+                  0.7,
+                  0.65,
+                  0.6
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P8": {
+            "profile_id": "P8",
+            "profile_name": "Mathematical foundations of neural networks",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.29547979797979795,
+                "std": 0.0,
+                "values": [
+                  0.29547979797979795,
+                  0.29547979797979795,
+                  0.29547979797979795
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7014066378275553,
+                "std": 0.011891584456996342,
+                "values": [
+                  0.6865103244781494,
+                  0.7020953893661499,
+                  0.7156141996383667
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.557244062423706,
+                "std": 0.004525368926485882,
+                "values": [
+                  0.5587218403816223,
+                  0.5511125326156616,
+                  0.5618978142738342
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.333333333333333,
+                "std": 0.4714045207910317,
+                "values": [
+                  5.0,
+                  4.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.15,
+                "std": 0.21213203435596428,
+                "values": [
+                  0.45,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.06666666666666667,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.1,
+                  0.1,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6,
+                "std": 0.10801234497346433,
+                "values": [
+                  0.75,
+                  0.55,
+                  0.5
+                ],
+                "interpretation": ""
+              }
+            }
+          }
+        },
+        "resources": {
+          "query_latency_ms": {
+            "p50": 37.89495024830103,
+            "p95": 66.64342405274509,
+            "mean": 41.361062191426754
+          },
+          "index_time_s": null,
+          "incremental_update_ms": null,
+          "memory_mb": null,
+          "storage_mb": null,
+          "api_cost_per_paper": null,
+          "gpu_required": null,
+          "gpu_speedup": null
+        },
+        "qualitative": {},
+        "metadata": {
+          "evaluated_at": "2026-03-20T04:13:13.462180+00:00",
+          "n_profiles": 8,
+          "n_seed_sets_per_profile": 3,
+          "top_k": 20,
+          "corpus_size": 19252,
+          "embedding_dim": 384,
+          "n_clusters": 48
+        }
+      },
+      "profiling_time_s": 22.3
+    },
+    "P2": {
+      "card": {
+        "strategy_id": "P2",
+        "strategy_name": "TF-IDF->MiniLM (k=100)",
+        "config": {
+          "retriever": "S1d (TF-IDF cosine)",
+          "ranker": "S1a (MiniLM centroid)",
+          "retrieve_k": 100,
+          "architecture": "retrieve-rerank"
+        },
+        "instruments": {
+          "leave_one_out_mrr": {
+            "mean": 0.3894295382013067,
+            "std": 0.08563475254499955,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "seed_proximity": {
+            "mean": 0.7548980563879013,
+            "std": 0.039537578955099524,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "topical_coherence": {
+            "mean": 0.6273205826679865,
+            "std": 0.04975234939199516,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "cluster_diversity": {
+            "mean": 2.5833333333333335,
+            "std": 1.5252504348102607,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "novelty": {
+            "mean": 0.0625,
+            "std": 0.1293010054098575,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "category_surprise": {
+            "mean": 0.09583333333333334,
+            "std": 0.07058780977540591,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "coverage": {
+            "mean": 0.5317982456140351,
+            "std": 0.13097650828206003,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          }
+        },
+        "by_profile": {
+          "P1": {
+            "profile_id": "P1",
+            "profile_name": "RL for robotics",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.4088677988677989,
+                "std": 0.0,
+                "values": [
+                  0.4088677988677989,
+                  0.4088677988677989,
+                  0.4088677988677989
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7711998621622721,
+                "std": 0.007893764296026805,
+                "values": [
+                  0.7601042985916138,
+                  0.7778123617172241,
+                  0.7756829261779785
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6357973217964172,
+                "std": 0.005003692562812542,
+                "values": [
+                  0.6335596442222595,
+                  0.6427299380302429,
+                  0.6311023831367493
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.3333333333333335,
+                "std": 0.4714045207910317,
+                "values": [
+                  4.0,
+                  3.0,
+                  3.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.016666666666666666,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.05,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.10274023338281628,
+                "values": [
+                  0.25,
+                  0.15,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.43333333333333335,
+                "std": 0.10274023338281629,
+                "values": [
+                  0.55,
+                  0.45,
+                  0.3
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P2": {
+            "profile_id": "P2",
+            "profile_name": "Language model reasoning",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.2773809523809524,
+                "std": 0.0,
+                "values": [
+                  0.2773809523809524,
+                  0.2773809523809524,
+                  0.2773809523809524
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.796918789545695,
+                "std": 0.004257773064396042,
+                "values": [
+                  0.7911204099655151,
+                  0.8012240529060364,
+                  0.7984119057655334
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6918887893358866,
+                "std": 0.007315541433814145,
+                "values": [
+                  0.6887057423591614,
+                  0.7020053863525391,
+                  0.6849552392959595
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.049999999999999996,
+                "std": 0.07071067811865475,
+                "values": [
+                  0.15,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.10000000000000002,
+                "std": 1.3877787807814457e-17,
+                "values": [
+                  0.1,
+                  0.1,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.5166666666666667,
+                "std": 0.062360956446232345,
+                "values": [
+                  0.6,
+                  0.5,
+                  0.45
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P3": {
+            "profile_id": "P3",
+            "profile_name": "Quantum computing / quantum ML",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.364781746031746,
+                "std": 0.0,
+                "values": [
+                  0.364781746031746,
+                  0.364781746031746,
+                  0.364781746031746
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7424434026082357,
+                "std": 0.005423933156014777,
+                "values": [
+                  0.736476480960846,
+                  0.7412524819374084,
+                  0.7496012449264526
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6113064090410868,
+                "std": 0.008222171768162631,
+                "values": [
+                  0.6226595640182495,
+                  0.6078059673309326,
+                  0.6034536957740784
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.016666666666666666,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.0,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.5833333333333334,
+                "std": 0.04714045207910316,
+                "values": [
+                  0.65,
+                  0.55,
+                  0.55
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P4": {
+            "profile_id": "P4",
+            "profile_name": "AI safety / alignment",
+            "breadth": "Broad",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.495989010989011,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.49598901098901094,
+                  0.49598901098901094,
+                  0.49598901098901094
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8062008221944174,
+                "std": 0.00828635785180999,
+                "values": [
+                  0.7946628928184509,
+                  0.813745379447937,
+                  0.810194194316864
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6818131407101949,
+                "std": 0.0025874323476752946,
+                "values": [
+                  0.6786640286445618,
+                  0.68500155210495,
+                  0.681773841381073
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.5499999999999999,
+                "std": 0.04082482904638629,
+                "values": [
+                  0.6,
+                  0.55,
+                  0.5
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P5": {
+            "profile_id": "P5",
+            "profile_name": "Graph neural networks",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.4554720133667502,
+                "std": 0.0,
+                "values": [
+                  0.4554720133667502,
+                  0.4554720133667502,
+                  0.4554720133667502
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7363717158635458,
+                "std": 0.022125386986063547,
+                "values": [
+                  0.7064846754074097,
+                  0.743291974067688,
+                  0.7593384981155396
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6328169107437134,
+                "std": 0.0029830391448757688,
+                "values": [
+                  0.6286059617996216,
+                  0.634701669216156,
+                  0.6351431012153625
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.6666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  2.0,
+                  2.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.06666666666666667,
+                "std": 0.023570226039551584,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.7543859649122807,
+                "std": 0.024810764252159587,
+                "values": [
+                  0.7368421052631579,
+                  0.7894736842105263,
+                  0.7368421052631579
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P6": {
+            "profile_id": "P6",
+            "profile_name": "Diffusion models for generation",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.3212745098039215,
+                "std": 0.0,
+                "values": [
+                  0.3212745098039215,
+                  0.3212745098039215,
+                  0.3212745098039215
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7136900226275126,
+                "std": 0.0015446753551015533,
+                "values": [
+                  0.7128246426582336,
+                  0.7123856544494629,
+                  0.7158597707748413
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5742753942807516,
+                "std": 0.010982591871333857,
+                "values": [
+                  0.5894909501075745,
+                  0.5639674067497253,
+                  0.5693678259849548
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 5.333333333333333,
+                "std": 0.4714045207910317,
+                "values": [
+                  6.0,
+                  5.0,
+                  5.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.26666666666666666,
+                "std": 0.04714045207910316,
+                "values": [
+                  0.2,
+                  0.3,
+                  0.3
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.3333333333333333,
+                "std": 0.02357022603955158,
+                "values": [
+                  0.35,
+                  0.3,
+                  0.35
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P7": {
+            "profile_id": "P7",
+            "profile_name": "Federated learning + privacy",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.506926406926407,
+                "std": 0.0,
+                "values": [
+                  0.506926406926407,
+                  0.506926406926407,
+                  0.506926406926407
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7810158332188925,
+                "std": 0.008434876719660542,
+                "values": [
+                  0.7700344324111938,
+                  0.7824720144271851,
+                  0.7905410528182983
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6547183593114217,
+                "std": 0.003401335658364071,
+                "values": [
+                  0.6594989895820618,
+                  0.6527893543243408,
+                  0.6518667340278625
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.16666666666666666,
+                "std": 0.02357022603955159,
+                "values": [
+                  0.15,
+                  0.2,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6166666666666667,
+                "std": 0.023570226039551608,
+                "values": [
+                  0.65,
+                  0.6,
+                  0.6
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P8": {
+            "profile_id": "P8",
+            "profile_name": "Mathematical foundations of neural networks",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.28474386724386724,
+                "std": 0.0,
+                "values": [
+                  0.28474386724386724,
+                  0.28474386724386724,
+                  0.28474386724386724
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.6913440028826395,
+                "std": 0.013527969803991815,
+                "values": [
+                  0.6752070784568787,
+                  0.6905125379562378,
+                  0.7083123922348022
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5359483361244202,
+                "std": 0.009904743026911031,
+                "values": [
+                  0.5333128571510315,
+                  0.5253519415855408,
+                  0.5491802096366882
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.333333333333333,
+                "std": 0.4714045207910317,
+                "values": [
+                  5.0,
+                  4.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.16666666666666666,
+                "std": 0.23570226039551584,
+                "values": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.08333333333333333,
+                "std": 0.08498365855987976,
+                "values": [
+                  0.05,
+                  0.2,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.46666666666666673,
+                "std": 0.062360956446232366,
+                "values": [
+                  0.55,
+                  0.4,
+                  0.45
+                ],
+                "interpretation": ""
+              }
+            }
+          }
+        },
+        "resources": {
+          "query_latency_ms": {
+            "p50": 33.599129877984524,
+            "p95": 71.81812850758433,
+            "mean": 39.57626421004534
+          },
+          "index_time_s": null,
+          "incremental_update_ms": null,
+          "memory_mb": null,
+          "storage_mb": null,
+          "api_cost_per_paper": null,
+          "gpu_required": null,
+          "gpu_speedup": null
+        },
+        "qualitative": {},
+        "metadata": {
+          "evaluated_at": "2026-03-20T04:13:35.333186+00:00",
+          "n_profiles": 8,
+          "n_seed_sets_per_profile": 3,
+          "top_k": 20,
+          "corpus_size": 19252,
+          "embedding_dim": 384,
+          "n_clusters": 48
+        }
+      },
+      "profiling_time_s": 21.9
+    },
+    "P3": {
+      "card": {
+        "strategy_id": "P3",
+        "strategy_name": "MiniLM->TF-IDF (k=200)",
+        "config": {
+          "retriever": "S1a (MiniLM centroid)",
+          "ranker": "S1d (TF-IDF cosine)",
+          "retrieve_k": 200,
+          "architecture": "retrieve-rerank (reversed)",
+          "note": "Control: tests whether asymmetry direction matters"
+        },
+        "instruments": {
+          "leave_one_out_mrr": {
+            "mean": 0.11979763821167651,
+            "std": 0.06325133785410708,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "seed_proximity": {
+            "mean": 0.716548502445221,
+            "std": 0.03473114401195685,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "topical_coherence": {
+            "mean": 0.5663802189131578,
+            "std": 0.0418957643635188,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "cluster_diversity": {
+            "mean": 3.5833333333333335,
+            "std": 2.119682890329484,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "novelty": {
+            "mean": 0.10833333333333332,
+            "std": 0.13202482931462384,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "category_surprise": {
+            "mean": 0.1625,
+            "std": 0.07938566201357354,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "coverage": {
+            "mean": 0.2760964912280702,
+            "std": 0.11794963836275457,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          }
+        },
+        "by_profile": {
+          "P1": {
+            "profile_id": "P1",
+            "profile_name": "RL for robotics",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.09958333333333332,
+                "std": 1.3877787807814457e-17,
+                "values": [
+                  0.09958333333333333,
+                  0.09958333333333333,
+                  0.09958333333333333
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7401079535484314,
+                "std": 0.018464887316913512,
+                "values": [
+                  0.713995099067688,
+                  0.7530331611633301,
+                  0.7532956004142761
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.595774511496226,
+                "std": 0.015962261572960764,
+                "values": [
+                  0.5742625594139099,
+                  0.6124565005302429,
+                  0.6006044745445251
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.3333333333333335,
+                "std": 0.4714045207910317,
+                "values": [
+                  3.0,
+                  3.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.21666666666666667,
+                "std": 0.10274023338281627,
+                "values": [
+                  0.35,
+                  0.2,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.21666666666666665,
+                "std": 0.06236095644623235,
+                "values": [
+                  0.15,
+                  0.3,
+                  0.2
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P2": {
+            "profile_id": "P2",
+            "profile_name": "Language model reasoning",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.07245726495726496,
+                "std": 0.0,
+                "values": [
+                  0.07245726495726496,
+                  0.07245726495726496,
+                  0.07245726495726496
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7589601476987203,
+                "std": 0.0046966007591248094,
+                "values": [
+                  0.7523247003555298,
+                  0.7620224952697754,
+                  0.7625332474708557
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.621026615301768,
+                "std": 0.00300214423462312,
+                "values": [
+                  0.6187672019004822,
+                  0.6252692937850952,
+                  0.6190433502197266
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.0,
+                "std": 0.0,
+                "values": [
+                  4.0,
+                  4.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.15,
+                "std": 0.07071067811865475,
+                "values": [
+                  0.25,
+                  0.1,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.20000000000000004,
+                "std": 2.7755575615628914e-17,
+                "values": [
+                  0.2,
+                  0.2,
+                  0.2
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.13333333333333333,
+                "std": 0.02357022603955158,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.1
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P3": {
+            "profile_id": "P3",
+            "profile_name": "Quantum computing / quantum ML",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.09169337606837606,
+                "std": 0.0,
+                "values": [
+                  0.09169337606837606,
+                  0.09169337606837606,
+                  0.09169337606837606
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.6983782052993774,
+                "std": 0.02033032376079747,
+                "values": [
+                  0.6697417497634888,
+                  0.7104719877243042,
+                  0.7149208784103394
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5463073253631592,
+                "std": 0.005791010963714241,
+                "values": [
+                  0.5425257682800293,
+                  0.554489254951477,
+                  0.5419069528579712
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.3666666666666667,
+                "std": 0.023570226039551608,
+                "values": [
+                  0.35,
+                  0.4,
+                  0.35
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P4": {
+            "profile_id": "P4",
+            "profile_name": "AI safety / alignment",
+            "breadth": "Broad",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.11664862914862913,
+                "std": 1.3877787807814457e-17,
+                "values": [
+                  0.11664862914862914,
+                  0.11664862914862914,
+                  0.11664862914862914
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7570083538691202,
+                "std": 0.009767936717739878,
+                "values": [
+                  0.7435259222984314,
+                  0.7663547396659851,
+                  0.7611443996429443
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6096339821815491,
+                "std": 0.005420865510522937,
+                "values": [
+                  0.6172596216201782,
+                  0.6051385998725891,
+                  0.6065037250518799
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  5.0,
+                  4.0,
+                  5.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.13333333333333333,
+                "std": 0.02357022603955158,
+                "values": [
+                  0.15,
+                  0.1,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.26666666666666666,
+                "std": 0.04714045207910316,
+                "values": [
+                  0.2,
+                  0.3,
+                  0.3
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.19999999999999998,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.2,
+                  0.25,
+                  0.15
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P5": {
+            "profile_id": "P5",
+            "profile_name": "Graph neural networks",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.13392725695357274,
+                "std": 0.0,
+                "values": [
+                  0.13392725695357274,
+                  0.13392725695357274,
+                  0.13392725695357274
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.6986290613810221,
+                "std": 0.020976475589065145,
+                "values": [
+                  0.6704721450805664,
+                  0.7046198844909668,
+                  0.7207951545715332
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5707355539004008,
+                "std": 0.004960530454047055,
+                "values": [
+                  0.5659475922584534,
+                  0.5775699019432068,
+                  0.5686891674995422
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 1.4142135623730951,
+                "values": [
+                  4.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.03333333333333333,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.1,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.04714045207910317,
+                "values": [
+                  0.2,
+                  0.1,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.5087719298245613,
+                "std": 0.024810764252159563,
+                "values": [
+                  0.5263157894736842,
+                  0.5263157894736842,
+                  0.47368421052631576
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P6": {
+            "profile_id": "P6",
+            "profile_name": "Diffusion models for generation",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.278125,
+                "std": 0.0,
+                "values": [
+                  0.278125,
+                  0.278125,
+                  0.278125
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.6861945390701294,
+                "std": 0.0056877050289713925,
+                "values": [
+                  0.6940014362335205,
+                  0.6839686632156372,
+                  0.6806135177612305
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5181375741958618,
+                "std": 0.019781809748459517,
+                "values": [
+                  0.543125331401825,
+                  0.516538143157959,
+                  0.4947492480278015
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 7.0,
+                "std": 0.0,
+                "values": [
+                  7.0,
+                  7.0,
+                  7.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.3499999999999999,
+                "std": 0.04082482904638632,
+                "values": [
+                  0.4,
+                  0.3,
+                  0.35
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.0,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.25,
+                "std": 0.04082482904638629,
+                "values": [
+                  0.3,
+                  0.25,
+                  0.2
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P7": {
+            "profile_id": "P7",
+            "profile_name": "Federated learning + privacy",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.06598681139122316,
+                "std": 0.0,
+                "values": [
+                  0.06598681139122316,
+                  0.06598681139122316,
+                  0.06598681139122316
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7257156769434611,
+                "std": 0.013397227901348145,
+                "values": [
+                  0.7083228230476379,
+                  0.7279047966003418,
+                  0.7409194111824036
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5720842480659485,
+                "std": 0.002155410671014197,
+                "values": [
+                  0.574734091758728,
+                  0.5720641016960144,
+                  0.569454550743103
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.21666666666666667,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.25,
+                  0.25,
+                  0.15
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P8": {
+            "profile_id": "P8",
+            "profile_name": "Mathematical foundations of neural networks",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.09995943384101276,
+                "std": 1.3877787807814457e-17,
+                "values": [
+                  0.09995943384101277,
+                  0.09995943384101277,
+                  0.09995943384101277
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.6673940817515055,
+                "std": 0.007925125932735836,
+                "values": [
+                  0.656187117099762,
+                  0.6728776097297668,
+                  0.6731175184249878
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.49734194080034894,
+                "std": 0.005053314790094128,
+                "values": [
+                  0.4967016875743866,
+                  0.5038262009620667,
+                  0.4914979338645935
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 5.666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  5.0,
+                  6.0,
+                  6.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.19999999999999998,
+                "std": 0.1414213562373095,
+                "values": [
+                  0.4,
+                  0.1,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.062360956446232366,
+                "values": [
+                  0.15,
+                  0.2,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.31666666666666665,
+                "std": 0.04714045207910316,
+                "values": [
+                  0.35,
+                  0.35,
+                  0.25
+                ],
+                "interpretation": ""
+              }
+            }
+          }
+        },
+        "resources": {
+          "query_latency_ms": {
+            "p50": 48.22209943085909,
+            "p95": 77.90243979543447,
+            "mean": 52.54336081445217
+          },
+          "index_time_s": null,
+          "incremental_update_ms": null,
+          "memory_mb": null,
+          "storage_mb": null,
+          "api_cost_per_paper": null,
+          "gpu_required": null,
+          "gpu_speedup": null
+        },
+        "qualitative": {},
+        "metadata": {
+          "evaluated_at": "2026-03-20T04:14:01.951962+00:00",
+          "n_profiles": 8,
+          "n_seed_sets_per_profile": 3,
+          "top_k": 20,
+          "corpus_size": 19252,
+          "embedding_dim": 384,
+          "n_clusters": 48
+        }
+      },
+      "profiling_time_s": 26.6
+    },
+    "P4": {
+      "card": {
+        "strategy_id": "P4",
+        "strategy_name": "SPECTER2->MiniLM (k=200)",
+        "config": {
+          "retriever": "S1c (SPECTER2 adapter centroid)",
+          "ranker": "S1a (MiniLM centroid)",
+          "retrieve_k": 200,
+          "architecture": "retrieve-rerank",
+          "note": "Tests SPECTER2 candidate expansion despite score compression"
+        },
+        "instruments": {
+          "leave_one_out_mrr": {
+            "mean": 0.3964957124274074,
+            "std": 0.08893382622298214,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "seed_proximity": {
+            "mean": 0.7634877637028694,
+            "std": 0.035256973345280905,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "topical_coherence": {
+            "mean": 0.6426588346560796,
+            "std": 0.04020008666256835,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "cluster_diversity": {
+            "mean": 2.375,
+            "std": 1.2183492931011204,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "novelty": {
+            "mean": 0.0375,
+            "std": 0.07938566201357354,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "category_surprise": {
+            "mean": 0.09166666666666667,
+            "std": 0.05713045500334204,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "coverage": {
+            "mean": 0.6692982456140352,
+            "std": 0.0772166530693621,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          }
+        },
+        "by_profile": {
+          "P1": {
+            "profile_id": "P1",
+            "profile_name": "RL for robotics",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.46771520146520135,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4677152014652014,
+                  0.4677152014652014,
+                  0.4677152014652014
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7798455556233724,
+                "std": 0.006600867239929418,
+                "values": [
+                  0.77068030834198,
+                  0.7828933000564575,
+                  0.7859630584716797
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6521615783373514,
+                "std": 0.0017011047497516476,
+                "values": [
+                  0.6517569422721863,
+                  0.6544176340103149,
+                  0.6503101587295532
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.3333333333333335,
+                "std": 0.4714045207910317,
+                "values": [
+                  4.0,
+                  3.0,
+                  3.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.03333333333333333,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.1,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.062360956446232366,
+                "values": [
+                  0.2,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.08164965809277258,
+                "values": [
+                  0.75,
+                  0.65,
+                  0.55
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P2": {
+            "profile_id": "P2",
+            "profile_name": "Language model reasoning",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.27924077964519145,
+                "std": 0.0,
+                "values": [
+                  0.27924077964519145,
+                  0.27924077964519145,
+                  0.27924077964519145
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.800316592057546,
+                "std": 0.0041769013383588,
+                "values": [
+                  0.7944265604019165,
+                  0.8036494255065918,
+                  0.8028737902641296
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6946285963058472,
+                "std": 0.007702109361557851,
+                "values": [
+                  0.686127245426178,
+                  0.7047766447067261,
+                  0.6929818987846375
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.049999999999999996,
+                "std": 0.07071067811865475,
+                "values": [
+                  0.15,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.08333333333333333,
+                "std": 0.023570226039551584,
+                "values": [
+                  0.05,
+                  0.1,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6333333333333333,
+                "std": 0.023570226039551608,
+                "values": [
+                  0.6,
+                  0.65,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P3": {
+            "profile_id": "P3",
+            "profile_name": "Quantum computing / quantum ML",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.34736758339699514,
+                "std": 0.0,
+                "values": [
+                  0.34736758339699514,
+                  0.34736758339699514,
+                  0.34736758339699514
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7510326306025187,
+                "std": 0.005948302262402835,
+                "values": [
+                  0.7445653080940247,
+                  0.7496075630187988,
+                  0.7589250206947327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6345778306325277,
+                "std": 0.006461776815911124,
+                "values": [
+                  0.6415277719497681,
+                  0.6362414956092834,
+                  0.6259642243385315
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.016666666666666666,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.0,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.65,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P4": {
+            "profile_id": "P4",
+            "profile_name": "AI safety / alignment",
+            "breadth": "Broad",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.494781746031746,
+                "std": 0.0,
+                "values": [
+                  0.494781746031746,
+                  0.494781746031746,
+                  0.494781746031746
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8101110061009725,
+                "std": 0.008980437349955664,
+                "values": [
+                  0.7974427938461304,
+                  0.8172259330749512,
+                  0.8156642913818359
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6902608076731364,
+                "std": 0.00167608167160637,
+                "values": [
+                  0.6884682178497314,
+                  0.6925001740455627,
+                  0.689814031124115
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.02357022603955158,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.04714045207910316,
+                "values": [
+                  0.7,
+                  0.7,
+                  0.6
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P5": {
+            "profile_id": "P5",
+            "profile_name": "Graph neural networks",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.4638053467000834,
+                "std": 0.0,
+                "values": [
+                  0.4638053467000834,
+                  0.4638053467000834,
+                  0.4638053467000834
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7386764486630758,
+                "std": 0.020744793484469736,
+                "values": [
+                  0.7109745144844055,
+                  0.7441624999046326,
+                  0.7608923316001892
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.627230703830719,
+                "std": 0.0038762488718328096,
+                "values": [
+                  0.6253358721733093,
+                  0.6326329112052917,
+                  0.6237233281135559
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.6666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  2.0,
+                  2.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.7543859649122807,
+                "std": 0.024810764252159587,
+                "values": [
+                  0.7368421052631579,
+                  0.7894736842105263,
+                  0.7368421052631579
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P6": {
+            "profile_id": "P6",
+            "profile_name": "Diffusion models for generation",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.30999999999999994,
+                "std": 0.0,
+                "values": [
+                  0.30999999999999994,
+                  0.30999999999999994,
+                  0.30999999999999994
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7384379307428995,
+                "std": 0.001031634503720853,
+                "values": [
+                  0.7382152676582336,
+                  0.7373005747795105,
+                  0.7397979497909546
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6133443911870321,
+                "std": 0.0068556865884922625,
+                "values": [
+                  0.6230059266090393,
+                  0.6078124046325684,
+                  0.6092148423194885
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.6666666666666665,
+                "std": 0.4714045207910317,
+                "values": [
+                  3.0,
+                  4.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.10000000000000002,
+                "std": 1.3877787807814457e-17,
+                "values": [
+                  0.1,
+                  0.1,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.11666666666666665,
+                "std": 0.02357022603955158,
+                "values": [
+                  0.1,
+                  0.15,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6333333333333334,
+                "std": 0.11785113019775792,
+                "values": [
+                  0.55,
+                  0.55,
+                  0.8
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P7": {
+            "profile_id": "P7",
+            "profile_name": "Federated learning + privacy",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.5051208513708513,
+                "std": 0.0,
+                "values": [
+                  0.5051208513708513,
+                  0.5051208513708513,
+                  0.5051208513708513
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.78434685866038,
+                "std": 0.008400737198354753,
+                "values": [
+                  0.7734733819961548,
+                  0.7856382131576538,
+                  0.7939289808273315
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.663913369178772,
+                "std": 0.0032230248867101186,
+                "values": [
+                  0.6684120297431946,
+                  0.6622991561889648,
+                  0.6610289216041565
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.75,
+                "std": 0.04082482904638634,
+                "values": [
+                  0.8,
+                  0.75,
+                  0.7
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P8": {
+            "profile_id": "P8",
+            "profile_name": "Mathematical foundations of neural networks",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.3039341908091908,
+                "std": 0.0,
+                "values": [
+                  0.3039341908091908,
+                  0.3039341908091908,
+                  0.3039341908091908
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7051350871721903,
+                "std": 0.015145049458164112,
+                "values": [
+                  0.6841592192649841,
+                  0.7118722200393677,
+                  0.7193738222122192
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5651534001032511,
+                "std": 0.008400112409826412,
+                "values": [
+                  0.5537528395652771,
+                  0.5679617524147034,
+                  0.573745608329773
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.333333333333333,
+                "std": 0.4714045207910317,
+                "values": [
+                  4.0,
+                  5.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.11666666666666665,
+                "std": 0.1649915822768611,
+                "values": [
+                  0.35,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6,
+                "std": 0.0,
+                "values": [
+                  0.6,
+                  0.6,
+                  0.6
+                ],
+                "interpretation": ""
+              }
+            }
+          }
+        },
+        "resources": {
+          "query_latency_ms": {
+            "p50": 29.269453138113022,
+            "p95": 51.463337335735524,
+            "mean": 32.7640325576067
+          },
+          "index_time_s": null,
+          "incremental_update_ms": null,
+          "memory_mb": null,
+          "storage_mb": null,
+          "api_cost_per_paper": null,
+          "gpu_required": null,
+          "gpu_speedup": null
+        },
+        "qualitative": {},
+        "metadata": {
+          "evaluated_at": "2026-03-20T04:14:23.192258+00:00",
+          "n_profiles": 8,
+          "n_seed_sets_per_profile": 3,
+          "top_k": 20,
+          "corpus_size": 19252,
+          "embedding_dim": 384,
+          "n_clusters": 48
+        }
+      },
+      "profiling_time_s": 21.2
+    },
+    "P5": {
+      "card": {
+        "strategy_id": "P5",
+        "strategy_name": "(TF-IDF+MiniLM)->MiniLM (k=100 each)",
+        "config": {
+          "retrievers": [
+            "S1d (TF-IDF)",
+            "S1a (MiniLM)"
+          ],
+          "ranker": "S1a (MiniLM centroid)",
+          "retrieve_k_each": 100,
+          "architecture": "union-retrieve-rerank",
+          "note": "Candidate pool expansion without equal-weight fusion"
+        },
+        "instruments": {
+          "leave_one_out_mrr": {
+            "mean": 0.3978616233751198,
+            "std": 0.08871250100730373,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "seed_proximity": {
+            "mean": 0.7643123045563698,
+            "std": 0.03455999440120537,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "topical_coherence": {
+            "mean": 0.643445278207461,
+            "std": 0.03873248328892759,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "cluster_diversity": {
+            "mean": 2.5416666666666665,
+            "std": 1.5269568501507245,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "novelty": {
+            "mean": 0.04583333333333334,
+            "std": 0.10095034532988098,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "category_surprise": {
+            "mean": 0.09375,
+            "std": 0.060056397105831556,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "coverage": {
+            "mean": 0.6861842105263158,
+            "std": 0.07772166197744067,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          }
+        },
+        "by_profile": {
+          "P1": {
+            "profile_id": "P1",
+            "profile_name": "RL for robotics",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.46771520146520135,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4677152014652014,
+                  0.4677152014652014,
+                  0.4677152014652014
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7798455556233724,
+                "std": 0.006600867239929418,
+                "values": [
+                  0.77068030834198,
+                  0.7828933000564575,
+                  0.7859630584716797
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6521615783373514,
+                "std": 0.0017011047497516476,
+                "values": [
+                  0.6517569422721863,
+                  0.6544176340103149,
+                  0.6503101587295532
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.3333333333333335,
+                "std": 0.4714045207910317,
+                "values": [
+                  4.0,
+                  3.0,
+                  3.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.03333333333333333,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.1,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.062360956446232366,
+                "values": [
+                  0.2,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.08164965809277258,
+                "values": [
+                  0.75,
+                  0.65,
+                  0.55
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P2": {
+            "profile_id": "P2",
+            "profile_name": "Language model reasoning",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.28222689075630253,
+                "std": 0.0,
+                "values": [
+                  0.28222689075630253,
+                  0.28222689075630253,
+                  0.28222689075630253
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8017237981160482,
+                "std": 0.005214373215861286,
+                "values": [
+                  0.7944265604019165,
+                  0.8062928915023804,
+                  0.8044519424438477
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.694302519162496,
+                "std": 0.005890297341363325,
+                "values": [
+                  0.686127245426178,
+                  0.6997747421264648,
+                  0.697005569934845
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.049999999999999996,
+                "std": 0.07071067811865475,
+                "values": [
+                  0.15,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.10000000000000002,
+                "std": 0.0408248290463863,
+                "values": [
+                  0.05,
+                  0.1,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.04082482904638629,
+                "values": [
+                  0.6,
+                  0.65,
+                  0.7
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P3": {
+            "profile_id": "P3",
+            "profile_name": "Quantum computing / quantum ML",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.34736758339699514,
+                "std": 0.0,
+                "values": [
+                  0.34736758339699514,
+                  0.34736758339699514,
+                  0.34736758339699514
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7510326306025187,
+                "std": 0.005948302262402835,
+                "values": [
+                  0.7445653080940247,
+                  0.7496075630187988,
+                  0.7589250206947327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6345778306325277,
+                "std": 0.006461776815911124,
+                "values": [
+                  0.6415277719497681,
+                  0.6362414956092834,
+                  0.6259642243385315
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.016666666666666666,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.0,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.65,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P4": {
+            "profile_id": "P4",
+            "profile_name": "AI safety / alignment",
+            "breadth": "Broad",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.49957341269841277,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4995734126984127,
+                  0.4995734126984127,
+                  0.4995734126984127
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8104023138682047,
+                "std": 0.009168064446704255,
+                "values": [
+                  0.7974427938461304,
+                  0.8172259330749512,
+                  0.8165382146835327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6899895469347636,
+                "std": 0.0017885190576033335,
+                "values": [
+                  0.6884682178497314,
+                  0.6925001740455627,
+                  0.6890002489089966
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6833333333333332,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.7,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P5": {
+            "profile_id": "P5",
+            "profile_name": "Graph neural networks",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.4638053467000834,
+                "std": 0.0,
+                "values": [
+                  0.4638053467000834,
+                  0.4638053467000834,
+                  0.4638053467000834
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7394536733627319,
+                "std": 0.021183239986921207,
+                "values": [
+                  0.7109745144844055,
+                  0.7456435561180115,
+                  0.7617429494857788
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6290229558944702,
+                "std": 0.003117828032284396,
+                "values": [
+                  0.6253358721733093,
+                  0.6329606175422668,
+                  0.6287723779678345
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.6666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  2.0,
+                  2.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.7894736842105262,
+                "std": 0.042973504259354,
+                "values": [
+                  0.7368421052631579,
+                  0.8421052631578947,
+                  0.7894736842105263
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P6": {
+            "profile_id": "P6",
+            "profile_name": "Diffusion models for generation",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.30999999999999994,
+                "std": 0.0,
+                "values": [
+                  0.30999999999999994,
+                  0.30999999999999994,
+                  0.30999999999999994
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7387824257214864,
+                "std": 0.0007770567605850673,
+                "values": [
+                  0.7382152676582336,
+                  0.7382508516311646,
+                  0.739881157875061
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.612612267335256,
+                "std": 0.007349552302277244,
+                "values": [
+                  0.6230059266090393,
+                  0.6074680089950562,
+                  0.6073628664016724
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.333333333333333,
+                "std": 1.247219128924647,
+                "values": [
+                  3.0,
+                  6.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.13333333333333333,
+                "std": 0.04714045207910317,
+                "values": [
+                  0.1,
+                  0.2,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.09999999999999999,
+                "std": 0.0408248290463863,
+                "values": [
+                  0.1,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6333333333333334,
+                "std": 0.11785113019775792,
+                "values": [
+                  0.55,
+                  0.55,
+                  0.8
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P7": {
+            "profile_id": "P7",
+            "profile_name": "Federated learning + privacy",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.5051208513708513,
+                "std": 0.0,
+                "values": [
+                  0.5051208513708513,
+                  0.5051208513708513,
+                  0.5051208513708513
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7843928535779318,
+                "std": 0.008453287785162675,
+                "values": [
+                  0.7734733819961548,
+                  0.7856382131576538,
+                  0.7940669655799866
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6644360621770223,
+                "std": 0.0028140618790370112,
+                "values": [
+                  0.6684120297431946,
+                  0.6622991561889648,
+                  0.6625970005989075
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.75,
+                "std": 0.04082482904638634,
+                "values": [
+                  0.8,
+                  0.75,
+                  0.7
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P8": {
+            "profile_id": "P8",
+            "profile_name": "Mathematical foundations of neural networks",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.30708370061311235,
+                "std": 0.0,
+                "values": [
+                  0.30708370061311235,
+                  0.30708370061311235,
+                  0.30708370061311235
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7088651855786642,
+                "std": 0.012461106149121808,
+                "values": [
+                  0.6917455792427063,
+                  0.7138044834136963,
+                  0.7210454940795898
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5704594651858012,
+                "std": 0.0037135402106455353,
+                "values": [
+                  0.565218448638916,
+                  0.5727894902229309,
+                  0.5733704566955566
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 5.0,
+                "std": 0.816496580927726,
+                "values": [
+                  6.0,
+                  5.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.15,
+                "std": 0.21213203435596428,
+                "values": [
+                  0.45,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.7,
+                  0.65,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          }
+        },
+        "resources": {
+          "query_latency_ms": {
+            "p50": 119.13334764540195,
+            "p95": 149.95911847800016,
+            "mean": 117.50879913568497
+          },
+          "index_time_s": null,
+          "incremental_update_ms": null,
+          "memory_mb": null,
+          "storage_mb": null,
+          "api_cost_per_paper": null,
+          "gpu_required": null,
+          "gpu_speedup": null
+        },
+        "qualitative": {},
+        "metadata": {
+          "evaluated_at": "2026-03-20T04:15:17.213793+00:00",
+          "n_profiles": 8,
+          "n_seed_sets_per_profile": 3,
+          "top_k": 20,
+          "corpus_size": 19252,
+          "embedding_dim": 384,
+          "n_clusters": 48
+        }
+      },
+      "profiling_time_s": 54.0
+    },
+    "P6": {
+      "card": {
+        "strategy_id": "P6",
+        "strategy_name": "(TF-IDF+MiniLM+SPECTER2)->MiniLM (k=100 each)",
+        "config": {
+          "retrievers": [
+            "S1d (TF-IDF)",
+            "S1a (MiniLM)",
+            "S1c (SPECTER2)"
+          ],
+          "ranker": "S1a (MiniLM centroid)",
+          "retrieve_k_each": 100,
+          "architecture": "union-retrieve-rerank",
+          "note": "Maximum candidate expansion, MiniLM sole ranker"
+        },
+        "instruments": {
+          "leave_one_out_mrr": {
+            "mean": 0.3978616233751198,
+            "std": 0.08871250100730373,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "seed_proximity": {
+            "mean": 0.7643123045563698,
+            "std": 0.03455999440120537,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "topical_coherence": {
+            "mean": 0.643445278207461,
+            "std": 0.03873248328892759,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "cluster_diversity": {
+            "mean": 2.5416666666666665,
+            "std": 1.5269568501507245,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "novelty": {
+            "mean": 0.04583333333333334,
+            "std": 0.10095034532988098,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "category_surprise": {
+            "mean": 0.09375,
+            "std": 0.060056397105831556,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          },
+          "coverage": {
+            "mean": 0.6861842105263158,
+            "std": 0.07772166197744067,
+            "n_observations": 24,
+            "interpretation": "",
+            "by_profile": {}
+          }
+        },
+        "by_profile": {
+          "P1": {
+            "profile_id": "P1",
+            "profile_name": "RL for robotics",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.46771520146520135,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4677152014652014,
+                  0.4677152014652014,
+                  0.4677152014652014
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7798455556233724,
+                "std": 0.006600867239929418,
+                "values": [
+                  0.77068030834198,
+                  0.7828933000564575,
+                  0.7859630584716797
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6521615783373514,
+                "std": 0.0017011047497516476,
+                "values": [
+                  0.6517569422721863,
+                  0.6544176340103149,
+                  0.6503101587295532
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 3.3333333333333335,
+                "std": 0.4714045207910317,
+                "values": [
+                  4.0,
+                  3.0,
+                  3.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.03333333333333333,
+                "std": 0.047140452079103175,
+                "values": [
+                  0.1,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.13333333333333333,
+                "std": 0.062360956446232366,
+                "values": [
+                  0.2,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.08164965809277258,
+                "values": [
+                  0.75,
+                  0.65,
+                  0.55
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P2": {
+            "profile_id": "P2",
+            "profile_name": "Language model reasoning",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.28222689075630253,
+                "std": 0.0,
+                "values": [
+                  0.28222689075630253,
+                  0.28222689075630253,
+                  0.28222689075630253
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8017237981160482,
+                "std": 0.005214373215861286,
+                "values": [
+                  0.7944265604019165,
+                  0.8062928915023804,
+                  0.8044519424438477
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.694302519162496,
+                "std": 0.005890297341363325,
+                "values": [
+                  0.686127245426178,
+                  0.6997747421264648,
+                  0.697005569934845
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.049999999999999996,
+                "std": 0.07071067811865475,
+                "values": [
+                  0.15,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.10000000000000002,
+                "std": 0.0408248290463863,
+                "values": [
+                  0.05,
+                  0.1,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.65,
+                "std": 0.04082482904638629,
+                "values": [
+                  0.6,
+                  0.65,
+                  0.7
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P3": {
+            "profile_id": "P3",
+            "profile_name": "Quantum computing / quantum ML",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.34736758339699514,
+                "std": 0.0,
+                "values": [
+                  0.34736758339699514,
+                  0.34736758339699514,
+                  0.34736758339699514
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7510326306025187,
+                "std": 0.005948302262402835,
+                "values": [
+                  0.7445653080940247,
+                  0.7496075630187988,
+                  0.7589250206947327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6345778306325277,
+                "std": 0.006461776815911124,
+                "values": [
+                  0.6415277719497681,
+                  0.6362414956092834,
+                  0.6259642243385315
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.016666666666666666,
+                "std": 0.023570226039551587,
+                "values": [
+                  0.0,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.65,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P4": {
+            "profile_id": "P4",
+            "profile_name": "AI safety / alignment",
+            "breadth": "Broad",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.49957341269841277,
+                "std": 5.551115123125783e-17,
+                "values": [
+                  0.4995734126984127,
+                  0.4995734126984127,
+                  0.4995734126984127
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.8104023138682047,
+                "std": 0.009168064446704255,
+                "values": [
+                  0.7974427938461304,
+                  0.8172259330749512,
+                  0.8165382146835327
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6899895469347636,
+                "std": 0.0017885190576033335,
+                "values": [
+                  0.6884682178497314,
+                  0.6925001740455627,
+                  0.6890002489089966
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 2.0,
+                "std": 0.0,
+                "values": [
+                  2.0,
+                  2.0,
+                  2.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6833333333333332,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.7,
+                  0.7,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P5": {
+            "profile_id": "P5",
+            "profile_name": "Graph neural networks",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.4638053467000834,
+                "std": 0.0,
+                "values": [
+                  0.4638053467000834,
+                  0.4638053467000834,
+                  0.4638053467000834
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7394536733627319,
+                "std": 0.021183239986921207,
+                "values": [
+                  0.7109745144844055,
+                  0.7456435561180115,
+                  0.7617429494857788
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6290229558944702,
+                "std": 0.003117828032284396,
+                "values": [
+                  0.6253358721733093,
+                  0.6329606175422668,
+                  0.6287723779678345
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.6666666666666667,
+                "std": 0.4714045207910317,
+                "values": [
+                  2.0,
+                  2.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.7894736842105262,
+                "std": 0.042973504259354,
+                "values": [
+                  0.7368421052631579,
+                  0.8421052631578947,
+                  0.7894736842105263
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P6": {
+            "profile_id": "P6",
+            "profile_name": "Diffusion models for generation",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.30999999999999994,
+                "std": 0.0,
+                "values": [
+                  0.30999999999999994,
+                  0.30999999999999994,
+                  0.30999999999999994
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7387824257214864,
+                "std": 0.0007770567605850673,
+                "values": [
+                  0.7382152676582336,
+                  0.7382508516311646,
+                  0.739881157875061
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.612612267335256,
+                "std": 0.007349552302277244,
+                "values": [
+                  0.6230059266090393,
+                  0.6074680089950562,
+                  0.6073628664016724
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 4.333333333333333,
+                "std": 1.247219128924647,
+                "values": [
+                  3.0,
+                  6.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.13333333333333333,
+                "std": 0.04714045207910317,
+                "values": [
+                  0.1,
+                  0.2,
+                  0.1
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.09999999999999999,
+                "std": 0.0408248290463863,
+                "values": [
+                  0.1,
+                  0.15,
+                  0.05
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6333333333333334,
+                "std": 0.11785113019775792,
+                "values": [
+                  0.55,
+                  0.55,
+                  0.8
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P7": {
+            "profile_id": "P7",
+            "profile_name": "Federated learning + privacy",
+            "breadth": "Medium",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.5051208513708513,
+                "std": 0.0,
+                "values": [
+                  0.5051208513708513,
+                  0.5051208513708513,
+                  0.5051208513708513
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7843928535779318,
+                "std": 0.008453287785162675,
+                "values": [
+                  0.7734733819961548,
+                  0.7856382131576538,
+                  0.7940669655799866
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.6644360621770223,
+                "std": 0.0028140618790370112,
+                "values": [
+                  0.6684120297431946,
+                  0.6622991561889648,
+                  0.6625970005989075
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 1.0,
+                "std": 0.0,
+                "values": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.0,
+                "std": 0.0,
+                "values": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.15,
+                "std": 0.0,
+                "values": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.75,
+                "std": 0.04082482904638634,
+                "values": [
+                  0.8,
+                  0.75,
+                  0.7
+                ],
+                "interpretation": ""
+              }
+            }
+          },
+          "P8": {
+            "profile_id": "P8",
+            "profile_name": "Mathematical foundations of neural networks",
+            "breadth": "Narrow",
+            "instruments": {
+              "leave_one_out_mrr": {
+                "mean": 0.30708370061311235,
+                "std": 0.0,
+                "values": [
+                  0.30708370061311235,
+                  0.30708370061311235,
+                  0.30708370061311235
+                ],
+                "interpretation": ""
+              },
+              "seed_proximity": {
+                "mean": 0.7088651855786642,
+                "std": 0.012461106149121808,
+                "values": [
+                  0.6917455792427063,
+                  0.7138044834136963,
+                  0.7210454940795898
+                ],
+                "interpretation": ""
+              },
+              "topical_coherence": {
+                "mean": 0.5704594651858012,
+                "std": 0.0037135402106455353,
+                "values": [
+                  0.565218448638916,
+                  0.5727894902229309,
+                  0.5733704566955566
+                ],
+                "interpretation": ""
+              },
+              "cluster_diversity": {
+                "mean": 5.0,
+                "std": 0.816496580927726,
+                "values": [
+                  6.0,
+                  5.0,
+                  4.0
+                ],
+                "interpretation": ""
+              },
+              "novelty": {
+                "mean": 0.15,
+                "std": 0.21213203435596428,
+                "values": [
+                  0.45,
+                  0.0,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "category_surprise": {
+                "mean": 0.05000000000000001,
+                "std": 0.040824829046386304,
+                "values": [
+                  0.1,
+                  0.05,
+                  0.0
+                ],
+                "interpretation": ""
+              },
+              "coverage": {
+                "mean": 0.6666666666666666,
+                "std": 0.023570226039551553,
+                "values": [
+                  0.7,
+                  0.65,
+                  0.65
+                ],
+                "interpretation": ""
+              }
+            }
+          }
+        },
+        "resources": {
+          "query_latency_ms": {
+            "p50": 123.07412177324295,
+            "p95": 165.408993139863,
+            "mean": 124.54881150275469
+          },
+          "index_time_s": null,
+          "incremental_update_ms": null,
+          "memory_mb": null,
+          "storage_mb": null,
+          "api_cost_per_paper": null,
+          "gpu_required": null,
+          "gpu_speedup": null
+        },
+        "qualitative": {},
+        "metadata": {
+          "evaluated_at": "2026-03-20T04:16:32.291620+00:00",
+          "n_profiles": 8,
+          "n_seed_sets_per_profile": 3,
+          "top_k": 20,
+          "corpus_size": 19252,
+          "embedding_dim": 384,
+          "n_clusters": 48
+        }
+      },
+      "profiling_time_s": 75.1
+    }
+  },
+  "pipeline_ranking": {
+    "by_mrr": [
+      "P5",
+      "P6",
+      "P4",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "mrr_values": {
+      "P1": 0.391809,
+      "P2": 0.38943,
+      "P3": 0.119798,
+      "P4": 0.396496,
+      "P5": 0.397862,
+      "P6": 0.397862
+    },
+    "best_pipeline": "P5",
+    "best_pipeline_mrr": 0.397862,
+    "beats_s1a": false,
+    "beats_rrf": true
+  },
+  "candidate_pool_analysis": {
+    "summary": {
+      "mean_tfidf_minilm_overlap": 112.1,
+      "mean_tfidf_only": 87.9,
+      "mean_minilm_only": 87.9,
+      "mean_specter2_only": 61.9,
+      "mean_union_2": 287.9,
+      "mean_union_3": 349.8,
+      "total_tfidf_only_held_out": 6,
+      "total_specter2_only_held_out": 3,
+      "total_tfidf_held_out": 87,
+      "total_minilm_held_out": 96,
+      "total_specter2_held_out": 74,
+      "n_evaluations": 24
+    },
+    "per_evaluation": [
+      {
+        "profile_id": "P1",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 109,
+        "tfidf_only": 91,
+        "minilm_only": 91,
+        "specter2_only": 51,
+        "union_tfidf_minilm": 291,
+        "union_all_three": 342,
+        "tfidf_held_out": 3,
+        "minilm_held_out": 4,
+        "specter2_held_out": 3,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P1",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 104,
+        "tfidf_only": 96,
+        "minilm_only": 96,
+        "specter2_only": 46,
+        "union_tfidf_minilm": 296,
+        "union_all_three": 342,
+        "tfidf_held_out": 3,
+        "minilm_held_out": 4,
+        "specter2_held_out": 3,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P1",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 100,
+        "tfidf_only": 100,
+        "minilm_only": 100,
+        "specter2_only": 46,
+        "union_tfidf_minilm": 300,
+        "union_all_three": 346,
+        "tfidf_held_out": 3,
+        "minilm_held_out": 3,
+        "specter2_held_out": 2,
+        "tfidf_only_held_out": 1,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P2",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 107,
+        "tfidf_only": 93,
+        "minilm_only": 93,
+        "specter2_only": 73,
+        "union_tfidf_minilm": 293,
+        "union_all_three": 366,
+        "tfidf_held_out": 1,
+        "minilm_held_out": 1,
+        "specter2_held_out": 2,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 1
+      },
+      {
+        "profile_id": "P2",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 102,
+        "tfidf_only": 98,
+        "minilm_only": 98,
+        "specter2_only": 67,
+        "union_tfidf_minilm": 298,
+        "union_all_three": 365,
+        "tfidf_held_out": 1,
+        "minilm_held_out": 1,
+        "specter2_held_out": 2,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 1
+      },
+      {
+        "profile_id": "P2",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 100,
+        "tfidf_only": 100,
+        "minilm_only": 100,
+        "specter2_only": 69,
+        "union_tfidf_minilm": 300,
+        "union_all_three": 369,
+        "tfidf_held_out": 1,
+        "minilm_held_out": 1,
+        "specter2_held_out": 2,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 1
+      },
+      {
+        "profile_id": "P3",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 143,
+        "tfidf_only": 57,
+        "minilm_only": 57,
+        "specter2_only": 66,
+        "union_tfidf_minilm": 257,
+        "union_all_three": 323,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 4,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P3",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 146,
+        "tfidf_only": 54,
+        "minilm_only": 54,
+        "specter2_only": 38,
+        "union_tfidf_minilm": 254,
+        "union_all_three": 292,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 5,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P3",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 145,
+        "tfidf_only": 55,
+        "minilm_only": 55,
+        "specter2_only": 44,
+        "union_tfidf_minilm": 255,
+        "union_all_three": 299,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 5,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P4",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 127,
+        "tfidf_only": 73,
+        "minilm_only": 73,
+        "specter2_only": 60,
+        "union_tfidf_minilm": 273,
+        "union_all_three": 333,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 5,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P4",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 128,
+        "tfidf_only": 72,
+        "minilm_only": 72,
+        "specter2_only": 57,
+        "union_tfidf_minilm": 272,
+        "union_all_three": 329,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 5,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P4",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 123,
+        "tfidf_only": 77,
+        "minilm_only": 77,
+        "specter2_only": 56,
+        "union_tfidf_minilm": 277,
+        "union_all_three": 333,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 4,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P5",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 112,
+        "tfidf_only": 88,
+        "minilm_only": 88,
+        "specter2_only": 70,
+        "union_tfidf_minilm": 288,
+        "union_all_three": 358,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 4,
+        "specter2_held_out": 4,
+        "tfidf_only_held_out": 1,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P5",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 124,
+        "tfidf_only": 76,
+        "minilm_only": 76,
+        "specter2_only": 62,
+        "union_tfidf_minilm": 276,
+        "union_all_three": 338,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 4,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P5",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 131,
+        "tfidf_only": 69,
+        "minilm_only": 69,
+        "specter2_only": 60,
+        "union_tfidf_minilm": 269,
+        "union_all_three": 329,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 3,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P6",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 90,
+        "tfidf_only": 110,
+        "minilm_only": 110,
+        "specter2_only": 63,
+        "union_tfidf_minilm": 310,
+        "union_all_three": 373,
+        "tfidf_held_out": 2,
+        "minilm_held_out": 2,
+        "specter2_held_out": 1,
+        "tfidf_only_held_out": 2,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P6",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 95,
+        "tfidf_only": 105,
+        "minilm_only": 105,
+        "specter2_only": 61,
+        "union_tfidf_minilm": 305,
+        "union_all_three": 366,
+        "tfidf_held_out": 4,
+        "minilm_held_out": 4,
+        "specter2_held_out": 1,
+        "tfidf_only_held_out": 1,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P6",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 106,
+        "tfidf_only": 94,
+        "minilm_only": 94,
+        "specter2_only": 67,
+        "union_tfidf_minilm": 294,
+        "union_all_three": 361,
+        "tfidf_held_out": 4,
+        "minilm_held_out": 4,
+        "specter2_held_out": 2,
+        "tfidf_only_held_out": 1,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P7",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 136,
+        "tfidf_only": 64,
+        "minilm_only": 64,
+        "specter2_only": 40,
+        "union_tfidf_minilm": 264,
+        "union_all_three": 304,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 4,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P7",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 131,
+        "tfidf_only": 69,
+        "minilm_only": 69,
+        "specter2_only": 44,
+        "union_tfidf_minilm": 269,
+        "union_all_three": 313,
+        "tfidf_held_out": 4,
+        "minilm_held_out": 5,
+        "specter2_held_out": 4,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P7",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 135,
+        "tfidf_only": 65,
+        "minilm_only": 65,
+        "specter2_only": 49,
+        "union_tfidf_minilm": 265,
+        "union_all_three": 314,
+        "tfidf_held_out": 5,
+        "minilm_held_out": 5,
+        "specter2_held_out": 4,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P8",
+        "seed_set": 0,
+        "tfidf_minilm_overlap": 58,
+        "tfidf_only": 142,
+        "minilm_only": 142,
+        "specter2_only": 105,
+        "union_tfidf_minilm": 342,
+        "union_all_three": 447,
+        "tfidf_held_out": 1,
+        "minilm_held_out": 4,
+        "specter2_held_out": 1,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P8",
+        "seed_set": 1,
+        "tfidf_minilm_overlap": 61,
+        "tfidf_only": 139,
+        "minilm_only": 139,
+        "specter2_only": 94,
+        "union_tfidf_minilm": 339,
+        "union_all_three": 433,
+        "tfidf_held_out": 3,
+        "minilm_held_out": 4,
+        "specter2_held_out": 2,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      },
+      {
+        "profile_id": "P8",
+        "seed_set": 2,
+        "tfidf_minilm_overlap": 77,
+        "tfidf_only": 123,
+        "minilm_only": 123,
+        "specter2_only": 97,
+        "union_tfidf_minilm": 323,
+        "union_all_three": 420,
+        "tfidf_held_out": 2,
+        "minilm_held_out": 5,
+        "specter2_held_out": 2,
+        "tfidf_only_held_out": 0,
+        "specter2_only_held_out": 0
+      }
+    ]
+  }
+}
