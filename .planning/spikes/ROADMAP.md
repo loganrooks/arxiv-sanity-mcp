@@ -56,62 +56,86 @@ See signal: `sig-2026-03-18-premature-spike002-closure`
 
 ## Spike Sequence
 
-### Complete (verified)
+### Complete
 
 | # | Question | Type | Status | Key Outcome |
 |---|----------|------|--------|-------------|
 | 001 A1 | Volume mapping | Exploratory | **Complete** | 19K papers/month at 15 categories. Big4 = 12K/month. |
 | 001 A1b | FTS5 search benchmark | Exploratory | **Complete** | <40ms p50 at 215K. Linear scaling. |
-| 001 A1c | Capability envelope (TF-IDF, concurrent, embeddings) | Exploratory | **Complete** | See summary above. |
+| 001 A1c | Capability envelope (TF-IDF, concurrent, embeddings) | Exploratory | **Complete** | All ops feasible to 215K+. See summary above. |
+| 001 A2 | Corpus structure/visualization | Exploratory | **Complete** | Topic purity 0.40, 60.6% multi-category papers |
+| 001 A3 | Distribution analysis | Exploratory | **Complete** | Gini 0.83, Zipf vocabulary, median 4 authors |
+| 001 B1 | Signal literature review | Exploratory | **Complete** | Embeddings replacing TF-IDF (50.79%), hybrid systems dominate (55.56%) |
+| 001 B2 | Computed signal exploration | Exploratory | **Complete** | FWCI r=0.75, content signals near-zero vs citations |
+| 001 B3 | Importance analysis | Exploratory | **Complete** | Multi-dimensional: bibliometric vs content vs structural |
+| 001 C1 | Coverage-regret + filtering (Rounds 1-3 partial) | Exploratory | **Complete with gaps** | No sharp elbow, 12 strategies profiled, smooth tradeoff. Round 3 items R10-R16 not run. |
+| 001 C2 | Promotion pipeline simulation | Exploratory | **Complete** | All strategies feasible (1-13s GPU/day) |
+| 002 D1-D6 | Backend comparison (6 dimensions) | Comparative | **Complete** | FTS5≠tsvector (Jaccard 0.39), pgvector HNSW 5-23x faster |
+| 002 D1-R | Search quality remediation | Comparative | **Complete** | Divergence is ranking-function-driven, not quality gap |
+| 002 D2-R | Baseline reproduction | Comparative | **Complete** | 20-60% drift; ratios valid, absolutes have variance |
+| 002 D7 | Reference design comparison | Comparative | **Complete** | All our ops 20-100x faster than external APIs |
+| 002 QV1-3 | Quick validations | Exploratory | **Complete** | Pre-filter works, mmap instant, MiniLM/SPECTER2 Jaccard 0.178 |
 
-### In Progress (Spike 002 Round 2: Remediation)
+### Outstanding (from Spikes 001/002 — carried into Spike 003)
 
-| Item | What it fixes | Blocks |
-|------|-------------|--------|
-| D1-R1: Query-parsing confound | plainto_tsquery + FTS5 escaping | Accurate D1 conclusions |
-| D1-R2: Stemming analysis | Porter vs Snowball comparison | Understanding *why* results differ |
-| D1-R3: Result inspection | Are divergent papers better/worse/just different? | Whether quality gap matters |
-| D2-R: A1b baseline reproduction | Measurement stability confirmation | Trust in all latency comparisons |
-| D7: Reference design comparison | Our numbers in context of systems users know | Whether our latencies are "good" or "bad" |
-| QV1: Pre-filtered TF-IDF | Validates deliberation mitigation | Deliberation tier model |
-| QV2: mmap feature loading | Validates "instant startup" claim | Deliberation tier model |
-| QV3: MiniLM vs SPECTER2 | Embedding model choice | D3 may need re-evaluation if SPECTER2 is 768-dim |
-| D6-R: Workflow with vector search | Optional, if time permits | More accurate compound comparison |
+These items were designed but never executed. They are subsumed into Spike 003's design.
 
-### Pending (Spike 001 remaining — A2, A3, B, C)
+| # | Item | Original spike | Now addressed by |
+|---|------|---------------|-----------------|
+| 001 C1-R10 | Leave-one-out retrieval quality | Spike 001 Round 3 | Spike 003 — core evaluation metric in harness |
+| 001 C1-R11 | Retrieval + reranking pipeline comparison | Spike 001 Round 3 | Spike 003 W3.4 |
+| 001 C1-R12 | Seed count sensitivity (cold-start curve) | Spike 001 Round 3 | Spike 003 W4.1 |
+| 001 C1-R13 | Interest breadth sensitivity | Spike 001 Round 3 | Spike 003 W4.2 |
+| 001 C1-R14 | Marginal signal value analysis | Spike 001 Round 3 | Spike 003 W3.5 |
+| 001 C1-R15 | SPECTER2 quality profiles | Spike 001 Round 3 | Spike 003 S1c profiling |
+| 001 C1-R16 | Bibliographic coupling vs embedding similarity | Spike 001 Round 3 | Spike 003 S3a profiling |
+| 001 | Round 2 FINDINGS.md integration | Spike 001 | Pending — results exist in data files but not integrated into FINDINGS.md |
+| 001 | DESIGN.md checklist update (Round 2+3) | Spike 001 | Pending — experiments were run but checklist items not marked complete |
+| 002 D6-R | Workflow + vector search | Spike 002 | Deferred — optional, main comparison done |
+| 002 | DESIGN.md checklist update (Round 2) | Spike 002 | Pending — experiments were run but checklist items not marked complete |
+| 002 | FINDINGS.md Round 2 integration | Spike 002 | Pending — Round 2 results in DECISION.md but FINDINGS.md still says "ROUND 1" |
 
-**Dependency chain:**
-```
-A2 (corpus viz) ──┐
-A3 (distributions)─┼──→ B2 (computed signals) ──→ B3 (importance) ──→ C1 (coverage-regret) ──→ C2 (promotion sim)
-B1 (lit review) ───┘
-```
+### In Progress (Spike 003: Comprehensive Strategy Profiling)
 
-| Phase | Question | Priority | Blocks | Dependencies |
-|-------|----------|----------|--------|-------------|
-| **A2** | What does the paper space look like structurally? | **High** | Validates pre-filtering, informs B2 | None (uses existing embeddings) |
-| **A3** | Statistical properties of corpus features? | **High** | Informs B2-B3 normalization | None |
-| **B1** | What do existing recommenders use as signals? | **High** | Informs B2 signal selection | None (research task) |
-| **B2** | Which signals predict importance in our data? | Medium | Informs C1, B3 | A2, A3, B1. Needs OpenAlex enrichment (~500 papers). |
-| **B3** | Is importance one thing or multiple dimensions? | Medium | Informs C1, ranking model | B2 |
-| **C1** | Coverage-regret tradeoff shape? Elbow? | Medium | Informs C2, filtering design | B2, B3 |
-| **C2** | Resource costs of promotion strategies (1 year)? | Medium | Informs operational planning | C1, A1 |
-| ~~C3~~ | ~~Backend implications~~ | Deprioritized | Answered by A1c + Spike 002 | — |
+**Status:** DESIGN.md complete. Wave 0 not started.
+
+**Supersedes** the originally planned Spike 003 (SPECTER2 adapter only) and the 7 outstanding Spike 001 Round 3 items above.
+
+Full design: `.planning/spikes/003-strategy-profiling/DESIGN.md`
+
+**Purpose**: Complete quality/resource/behavioral profiles of all 44 viable strategies — individually, in combination, and across user contexts — producing a structured dataset for the installer and recommendation system configuration.
+
+| Wave | Status | Content | Dependencies |
+|------|--------|---------|-------------|
+| W0 | **Pending** | SPECTER2 fix, eval harness, interest profiles, enrichment expansion | None (4 items parallelizable) |
+| W1 | Pending | 44 strategies screened at default config | W0 |
+| W2 | Pending | Parameter sensitivity for passing strategies | W1 rankings |
+| W3 | Pending | Pairwise combinations, pipelines, ensemble, marginal value | W2 configs |
+| W4 | Pending | Cold start, breadth, backend, scale, negative signals | W3 combinations |
+| W5 | Pending | Profile dataset, installer logic, documentation | W4 |
+
+### Pending (parallel work)
+
+| Item | Status | Can run parallel with | Blocks |
+|------|--------|----------------------|--------|
+| Deliberation rewrite | **Not started** | Spike 003 (uses existing Spike 001+002 data) | Deliberation conclusion |
+| Spike 001/002 DESIGN.md cleanup | Not started | Anything | Nothing (housekeeping) |
+| Spike 001/002 FINDINGS.md integration | Not started | Anything | Nothing (housekeeping) |
 
 ### Spike 001 Success Criteria Scorecard
 
 | # | Criterion | Status |
 |---|-----------|--------|
-| 1 | Realistic paper volumes | **Answered** (A1) |
-| 2 | Structural landscape | **Unanswered** (A2 pending) |
-| 3 | Top 3-5 signals for scoring | **Unanswered** (B1-B3 pending) |
-| 4 | Coverage-regret tradeoff shape | **Unanswered** (C1 pending) |
-| 5 | Promotion strategy recommendation | **Unanswered** (C2 pending) |
-| 6 | 1-year resource requirements | **Unanswered** (C2 pending) |
-| 7 | Capability envelope | **Answered** (A1c) |
-| 8 | NLP feasibility limits on laptop | **Answered** (A1c) |
+| 1 | Realistic paper volumes | **Answered** (A1) — 19K/month at 15 categories |
+| 2 | Structural landscape | **Answered** (A2) — topic purity 0.40, 60.6% multi-category |
+| 3 | Top 3-5 signals for scoring | **Answered** (B1-B2) — embeddings, FWCI, citations, bibcoupling, user signals |
+| 4 | Coverage-regret tradeoff shape | **Answered** (C1) — no sharp elbow, smooth tradeoff, configurable slider |
+| 5 | Promotion strategy recommendation | **Answered** (C1-C2) — two-layer: wide ingestion + adaptive promotion |
+| 6 | 1-year resource requirements | **Answered** (C2) — 1-13s GPU/day, 1.5-15 GB/year |
+| 7 | Capability envelope | **Answered** (A1c) — all ops feasible to 215K+ |
+| 8 | NLP feasibility limits on laptop | **Answered** (A1c) — no infeasibility at tested scales |
 
-**Score: 3/8 answered.**
+**Score: 8/8 answered.** Qualified limitations in DECISION.md (SPECTER2 taint, proxy metrics, one month of data).
 
 ## Open Design Questions
 
@@ -129,62 +153,35 @@ These emerged from the spike and deliberation work. They need design deliberatio
 
 6. **Search layer separation** — *(new, from Spike 002 D1)* Should search be extracted from the storage abstraction? If FTS5 ≠ tsvector, maybe search shouldn't be delegated to the database at all. Options: embedding-only search, standalone search engine (tantivy), or hybrid. This is a design question informed by D1 findings and QV3 results.
 
-## Decision Flow
+## Decision Flow (current)
 
 ```
-Spike 001 A1c (DONE) ─────────────────────────┐
-                                                │
-Spike 002 Round 1 (DONE, has confounds) ───────┤
-                                                │
-Spike 002 Round 2: Remediation (IN PROGRESS) ──┤
-                                                ├──→ Deliberation conclusion
-Spike 001 A2 (PENDING — validates mitigations) ┤
-                                                │
-Spike 001 A3, B1 (PENDING — parallel) ─────────┤
-                                                │
-Spike 001 B2, B3 (PENDING — needs A2+A3+B1) ──┤
-                                                │
-Spike 001 C1, C2 (PENDING — needs B2+B3) ──────┘
-                                                │
-                                                ↓
-                                    Phase 11 (Distribution)
-                                                ↓
-                                    Phase 12 (Storage Abstraction)
+Spike 001 (COMPLETE — 8/8 criteria) ─────────────┐
+                                                   │
+Spike 002 (COMPLETE — tradeoff map, DECISION.md) ─┤
+                                                   │
+Spike 003 (IN PROGRESS — strategy profiling) ──────┤
+  W0: SPECTER2 fix + eval harness                 │
+  W1: 44 strategies screened                       ├──→ Deliberation conclusion
+  W2: Config sensitivity                          │         │
+  W3: Combinations + pipelines                    │         ↓
+  W4: Context sensitivity                         │    Phase 11 (Distribution)
+  W5: Synthesis → strategy_profiles.json          │         │
+                                                   │         ↓
+Deliberation rewrite (PARALLEL with Spike 003) ────┘    Phase 12 (Storage Abstraction)
 ```
 
-The deliberation cannot conclude until:
-1. Spike 002 methodological gaps are fixed (Round 2)
-2. Spike 001 A2 validates the pre-filtering assumption
-3. Enough of B/C is done to answer the Spike 001 success criteria
+**What blocks the deliberation:**
+1. ~~Spike 002 Round 2~~ — DONE
+2. ~~Spike 001 success criteria~~ — DONE (8/8)
+3. Spike 003 strategy profiles — needed for installer recommendations and strategy architecture
+4. Deliberation rewrite — uses existing Spike 001+002 data, can run NOW in parallel
 
-## Execution Order
-
-Recommended execution order considering dependencies and parallelizability:
-
-**Wave 1 (no dependencies, parallelizable):**
-- Spike 002 D1-R1, D1-R2, D1-R3 (D1 remediation)
-- Spike 002 D2-R (baseline reproduction)
-- Spike 001 A2 (corpus visualization — uses existing embeddings)
-- Spike 001 A3 (distribution analysis)
-- Spike 001 B1 (literature review — research task)
-
-**Wave 2 (depends on Wave 1):**
-- Spike 002 D7 (reference design comparison — live API calls)
-- Spike 002 QV1, QV2 (pre-filtered TF-IDF, mmap)
-- Spike 002 QV3 (MiniLM vs SPECTER2 — may affect D3 conclusions)
-- Spike 001 B2 (computed signals — needs A2, A3, B1)
-
-**Wave 3 (depends on Wave 2):**
-- Spike 001 B3 (importance analysis — needs B2)
-- Spike 002 FINDINGS.md update + DECISION.md
-
-**Wave 4 (depends on Wave 3):**
-- Spike 001 C1, C2 (coverage-regret, promotion sim — needs B2, B3)
-- Spike 001 FINDINGS.md update + DECISION.md
-
-**Wave 5:**
-- Deliberation conclusion
-- Phase 11/12 planning
+**Parallelization opportunities:**
+- **Deliberation rewrite** can start immediately (uses existing data, doesn't need Spike 003)
+- **Spike 003 W0 items** are independent of each other (SPECTER2, harness, profiles, enrichment)
+- **Spike 003 W1 sub-waves** (1A, 1B, 1C, 1D) are independent of each other
+- **Qualitative reviews** spawn as parallel agents at each review checkpoint
 
 ## Principles
 
