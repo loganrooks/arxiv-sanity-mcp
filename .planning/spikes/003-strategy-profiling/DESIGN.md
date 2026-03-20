@@ -1,8 +1,8 @@
 ---
 question: "What are the complete quality, resource, and behavioral profiles of every viable recommendation/filtering strategy — individually, in combination, and across user contexts — so that users can make informed configuration choices at install time?"
 type: exploratory + comparative
-status: complete
-round: 1
+status: building
+round: 2
 linked_deliberation: deployment-portability.md
 depends_on:
   - 001 (corpus, embeddings, B1 signal catalog, quality metrics, qualitative review)
@@ -1343,3 +1343,53 @@ This spike succeeds if we can provide grounded answers to:
 - Spike 001 A1/A1b/A1c capability envelope measurements (latency at scale, concurrent access, etc.) — these stand as-is
 - Spike 002 backend comparison findings (D1-D6) — these stand as-is with Round 2 caveats
 - The deployment-portability deliberation — this spike FEEDS the deliberation but doesn't conclude it
+
+---
+
+## Round 2: Gap-Fill and Extensions (added during execution)
+
+Round 1 (W0-W5) completed the core profiling. During execution, coverage gaps and new questions emerged. These are documented here for traceability.
+
+### Gap-fill experiments (completed)
+
+| Experiment | Original gap | Outcome | Findings |
+|-----------|-------------|---------|----------|
+| W1A-gap: BM25 keyword search (S1e) | S1e/S1f not profiled in W1A | **Rejected** | MRR 0.074, worse than TF-IDF on every metric, 4.7x slower |
+| W3.4-gap: Cross-encoder reranking (S4a) | S4a not tested in W3.4 | **Rejected** | Domain mismatch (MS MARCO), 71-85% MRR loss, 700-940x slower |
+| W1C-gap: Enrichment expansion + S3a re-profile | S3a data-limited (95/19K coverage) | **Rejected** | Expanded to 4,603 papers, but MRR only 0.019. Algorithm valid but 19% coverage ceiling on recent papers. Original 0.467 discrimination was small-sample inflation. |
+
+### Research extensions (completed)
+
+| Research | Question | Finding | Artifact |
+|----------|---------|---------|----------|
+| API embedding cost analysis | Are API embeddings cost-viable? | Yes — $0.04-0.50 for full corpus, under $4/yr for daily updates. Cost is irrelevant; quality is the open question. | `experiments/data/batch_pricing_research.md`, `API-EMBEDDING-COST-ANALYSIS.md` (Spike 001 dir) |
+| Batch pricing research | Do batch APIs change the cost analysis? | No — 33-50% discounts on already-trivial costs. No verdict changes. | `experiments/data/batch_pricing_research.md` |
+| Embedding model landscape | What recent open-source models exist? | No new academic-specific models since SPECTER2. Three general-purpose candidates worth screening: Stella v5 400M, Qwen3-Embedding-0.6B, GTE-large-en-v1.5. | `experiments/data/embedding_model_landscape.md` |
+
+### Extensions in progress
+
+| Experiment | Question | Status | Design |
+|-----------|---------|--------|--------|
+| Voyage AI embedding screening | Does voyage-4 / voyage-4-large capture a different signal than MiniLM/SPECTER2? | **Running** — Phase 1 (100-paper Jaccard screening), auto-advances to Phase 2 (full corpus) if non-redundant, Phase 3 (kNN + MMR strategy patterns) if interesting | `experiments/voyage_screening.py` |
+
+### Extensions not yet started
+
+| Experiment | Question | Blocked by | Priority |
+|-----------|---------|-----------|----------|
+| Local model screening (Stella v5, Qwen3, GTE) | Do recent general-purpose models add value over MiniLM? | GPU time, model downloads | Medium — screen after Voyage results |
+| kNN per-seed retrieval | Does per-seed kNN outperform centroid averaging? | None (can use existing MiniLM embeddings) | High — addresses a known weakness of centroid approach |
+| MMR diversity-aware retrieval | Does MMR solve the coherence-diversity tension? | None | High — well-established technique, never tested |
+| Embedding-based ingestion filtering | Can embeddings pre-filter at harvest time to reduce corpus? | Needs design deliberation (risks missing serendipitous discoveries) | Low — design question, not just experiment |
+| S5f per-project learned weights | Can the system learn optimal strategy weights from triage behavior? | No real user data; simulation shown to be circular (Spike 001 C1-R9) | Blocked — needs real users |
+| S2h author h-index | Does author prestige correlate with paper quality for recommendations? | 65K OpenAlex author API calls (~109 min) | Low — likely a weak booster signal |
+
+### Synthesis update needed
+
+The W5 DECISION.md and FINDINGS.md were written before gap-fill experiments completed. They need updating to incorporate:
+- BM25 rejection
+- Cross-encoder rejection
+- S3a re-profile rejection
+- API cost analysis
+- Embedding landscape research
+- Voyage screening results (when complete)
+- Any kNN/MMR results if tested
