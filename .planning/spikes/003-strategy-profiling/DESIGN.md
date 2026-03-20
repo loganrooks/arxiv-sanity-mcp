@@ -1,7 +1,7 @@
 ---
 question: "What are the complete quality, resource, and behavioral profiles of every viable recommendation/filtering strategy — individually, in combination, and across user contexts — so that users can make informed configuration choices at install time?"
 type: exploratory + comparative
-status: building
+status: complete
 round: 1
 linked_deliberation: deployment-portability.md
 depends_on:
