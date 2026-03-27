@@ -1,16 +1,21 @@
 # Spike 003: Strategy Profiling -- Findings
 
-**Spike duration:** W0-W5 across one session
-**Corpus:** 19,252 arXiv papers (January 2026 OAI-PMH harvest)
-**Profiles:** 8 interest profiles, 3 seed selections each, 24 observations per strategy
-**Instruments:** leave-one-out MRR, seed proximity, topical coherence, cluster diversity, novelty, category surprise, coverage
-**Qualitative review:** 9 reviews (3 strategies x 3 profiles), AI-assessed
+**Status:** CLOSED WITH QUALIFICATIONS — see Section 8
+**Spike duration:** W0-W5 across three sessions (execution, gap-fills, qualitative review completion + epistemic revision)
+**Corpus:** 19,252 arXiv papers (OAI-PMH harvest, 57% Jan 2026, 34% 2025, 9% older; CS/ML-dominated)
+**Profiles:** 8 interest profiles, 3 seed selections each, 24 observations per strategy. Profiles constructed from MiniLM-based BERTopic clustering (entanglement documented in Section 8).
+**Instruments:** leave-one-out MRR (entangled with MiniLM), seed proximity, topical coherence, cluster diversity, novelty, category surprise, coverage
+**Qualitative review:** 21 reviews across 4 checkpoints (W1: 9 reviews, W3: 3, W4.1: 3, W5.4: 3, extensions: 3), AI-assessed
 
 ---
 
 ## 1. Executive Summary
 
-Three content-based strategies survived profiling as viable: MiniLM centroid (S1a), TF-IDF cosine (S1d), and SPECTER2 proximity adapter (S1c). They capture three distinct quality dimensions -- semantic precision, keyword precision, and cross-community discovery -- that are genuinely complementary (Jaccard overlap 0.179, 9 unique held-out recoveries across strategies) but incommensurable: every attempt to fuse them into a single ranking degrades the best performer (MiniLM). The correct architecture is parallel views, not fusion. Metadata strategies are boosters or pre-filters, not rankers. Graph strategies are algorithmically valid but data-limited. All remaining strategies (SVM, title-only, raw centroid) were eliminated with measured cause.
+Two content-based strategies survived profiling as default views: MiniLM centroid (S1a) and TF-IDF cosine (S1d). They capture two distinct quality dimensions — semantic precision and keyword precision — that are genuinely complementary (Jaccard overlap 0.179, different held-out recoveries) but incommensurable: fusion degrades quality on aggregate, though W3 qualitative review found it helps narrow technical topics. SPECTER2 proximity adapter (S1c) was initially included as a third view but the W5.4 qualitative review found it qualitatively redundant with MiniLM (45-60% overlap, score compression making ranking noise). The default architecture is two parallel views; fusion and kNN retrieval have profile-dependent niches.
+
+Metadata strategies are boosters or pre-filters, not rankers. Graph strategies are algorithmically valid but data-limited. SVM, title-only variants, and raw centroid were eliminated with measured cause. The Voyage AI embedding verdict is INCONCLUSIVE due to insufficient screening methodology (see Section 8).
+
+**The most important meta-finding:** Three of four prescribed qualitative review checkpoints were initially skipped. When performed, they contradicted quantitative conclusions in multiple cases. Quantitative metrics and qualitative review are not competing methods where one validates the other — they are complementary modes of inquiry that produce different knowledge. Skipping qualitative review doesn't reduce confidence; it produces wrong conclusions.
 
 ---
 
@@ -173,14 +178,38 @@ No single metric captures all three. A system offering only one strategy is leav
 
 ## 8. Critical Limitations
 
-1. **Circular evaluation bias.** LOO-MRR uses MiniLM-defined clusters. All quantitative comparisons between MiniLM and non-embedding strategies are systematically biased in MiniLM's favor. We partially mitigate with qualitative review and held-out recovery, but the bias cannot be fully removed without model-independent ground truth.
+### Limitations of the experimental apparatus
 
-2. **Single month of data.** January 2026 may have seasonal effects (post-AAAI submission, pre-ICML deadline). Strategy profiles might shift for other months. We cannot assess this without multi-month evaluation.
+1. **Evaluation framework entanglement.** The entire evaluation pipeline — BERTopic clusters, interest profiles, seed papers, held-out papers, LOO-MRR ground truth — is built on MiniLM's representation of the corpus. "Relevant" in this evaluation means "relevant as MiniLM would define it." Cross-family comparisons (MiniLM vs TF-IDF vs SPECTER2) are systematically biased toward MiniLM. Within-family comparisons (e.g., MiniLM float32 vs float16) are unaffected. Qualitative review partially corrects the bias by assessing relevance from titles/abstracts directly.
 
-3. **No human judges.** All quality assessments are either mathematical proxies or AI-generated. We cannot know whether users would prefer MiniLM's semantically tight recommendations over TF-IDF's keyword-precise ones without asking real users.
+2. **No human relevance judgments.** All quality assessments are mathematical proxies or AI-generated narratives. We have no ground truth for whether human researchers would agree with the strategy characterizations. The AI qualitative reviews are internally consistent and caught real issues (TF-IDF undervaluation, SPECTER2 redundancy), but systematic AI reviewer bias cannot be ruled out.
 
-4. **Synthetic scale testing.** The -54% TF-IDF degradation at 50K is from duplicated corpus data. Real 50K data would have different vocabulary distribution and potentially different degradation characteristics.
+3. **Interest profiles are AI-constructed.** The 8 profiles were selected by mapping BERTopic topics to research areas by name, then selecting papers from those topics. A paper that MiniLM embeds poorly cannot appear in any profile. Real researchers' interests may not align with MiniLM's clustering of the topic space.
 
-5. **Limited enrichment.** Graph strategies (S3a) and citation-based metadata strategies (S2d/S2e) are untestable at current enrichment coverage. The 95/19252 coverage provides an existence proof (the algorithm works) but not a quality profile.
+### Limitations of the corpus
 
-6. **AI qualitative reviewer.** The qualitative reviews that corrected the MRR bias are themselves potentially biased. We have no ground truth for reviewer accuracy. The reviews are consistent across strategies and profiles, which increases confidence, but systematic AI reviewer bias cannot be ruled out.
+4. **Single month of data (primarily).** 57% of papers are from January 2026, 34% from 2025, 9% older updates. Seasonal effects (post-AAAI, pre-ICML) may skew the corpus. Multi-month evaluation would be needed to assess stability.
+
+5. **CS/ML domain dominance.** 77% of papers are in the top 15 CS categories. Findings may not generalize to other arXiv domains (physics, math, biology) where vocabulary density, community structure, and citation patterns differ.
+
+6. **Low citation maturity.** Most papers are weeks to months old. Citation-based strategies (FWCI, bibliographic coupling, co-citation) were effectively non-functional. On a corpus with mature citations, the strategy landscape could be substantially different.
+
+7. **Synthetic scale testing.** The -54% TF-IDF degradation at 50K is from duplicated corpus data that preserves vocabulary but not diversity. Real scaling effects may differ.
+
+### Methodological failures during execution
+
+8. **Skipped qualitative checkpoints.** Three of four prescribed qualitative review checkpoints were skipped in the initial session. When later performed, they contradicted quantitative conclusions in multiple cases (SPECTER2 redundancy, fusion profile-dependence, kNN niche utility, cold-start echo chambers). The initial DECISION.md contained materially wrong conclusions as a result.
+
+9. **Voyage screening methodology.** The Voyage embedding screening used a 100-paper pool (20% selectivity), top-K Jaccard as sole metric, 2/8 profiles, and no qualitative review. Every aspect of this methodology is insufficient. The Voyage verdict has been changed from STOP to INCONCLUSIVE. See `sig-2026-03-20-jaccard-screening-methodology`.
+
+10. **Extension experiments designed ad-hoc.** Gap-fill and extension experiments (Voyage, BM25, cross-encoder, kNN/MMR) were designed without the epistemic rigor of the core DESIGN.md. They appear in FINDINGS.md alongside rigorously designed experiments without distinction. See `sig-2026-03-20-spike-experimental-design-rigor`.
+
+11. **Confidence levels originally overstated.** The initial DECISION.md used blanket HIGH/MEDIUM/LOW confidence that collapsed measurement accuracy, interpretation validity, and extrapolation reliability. Revised to use a three-level framework (measurement / interpretation / extrapolation) with explicit conditions. See DECISION.md Section 8.
+
+### What these limitations mean for downstream decisions
+
+The findings ARE informative about how retrieval strategies behave on recent CS/ML arXiv papers. The strategy characterizations (MiniLM for semantic precision, TF-IDF for keyword precision, their complementarity) are well-supported by both quantitative and qualitative evidence and are likely to hold within the tested domain. The architectural decision (parallel views, two views not three, centroid retrieval) is reasonable as a v1 default.
+
+What the findings CANNOT support: claims about optimal strategy for other domains, claims about API embedding redundancy (Voyage verdict inconclusive), claims that the specific MRR numbers reflect true quality differences between strategies (evaluation framework entanglement), or claims that human researchers would agree with the AI qualitative assessments.
+
+The honest summary: we know more than we did before Spike 003, but less than the initial DECISION.md claimed. The most reliable findings are the qualitative characterizations of strategy behavior and the elimination decisions. The least reliable are the cross-family quantitative rankings and the Voyage screening.

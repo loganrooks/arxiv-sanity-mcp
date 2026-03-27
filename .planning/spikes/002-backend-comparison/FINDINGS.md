@@ -26,6 +26,19 @@ D3-D6 measurements are methodologically sound and do not require remediation.
 |------------|--------|---------|
 | **H1:** FTS5 and tsvector return substantially similar results | **FALSIFIED** | Average Jaccard 0.39 (below 0.5 threshold). 13/20 queries show low agreement. |
 | **H2:** PostgreSQL tsvector latency differs measurably from FTS5 | **CONFIRMED** | tsvector is 3.5–4.8x slower across all scale points. |
+
+> **Qualification (Spike 003):** The H1 result ("FALSIFIED") uses
+> Top-K Jaccard as its sole criterion. Spike 003's Voyage screening
+> experience (sig-2026-03-20-jaccard-screening-methodology) documented
+> five specific limitations of Jaccard as a decision metric: it collapses
+> the nature of divergence, is sensitive to pool size, cannot distinguish
+> boundary noise from meaningful divergence, and should not be used as
+> a sole decision criterion. "Backends disagree" is supported; "one
+> backend has better search quality" is not. No qualitative review of
+> the divergent results was performed. Spike 003's W1 cross-strategy
+> summary found that strategies with Jaccard 0.179 all produced ~80%
+> on-topic results -- divergence in overlap does not necessarily imply
+> quality divergence.
 | **H3a:** pgvector HNSW latency differs from numpy brute-force | **CONFIRMED** | HNSW is 5–23x faster than numpy, near-constant ~0.8ms regardless of scale. |
 | **H3b:** pgvector filtered search provides an advantage | **MIXED** | pgvector filtered is slower than numpy pre-filter at 19K (8ms vs 5.6ms), but ergonomically simpler. |
 | **H4:** Write performance differs between backends | **CONFIRMED** | PostgreSQL is 3–5x slower for bulk import; both handle concurrent reads+writes without degradation. |
@@ -54,6 +67,14 @@ D3-D6 measurements are methodologically sound and do not require remediation.
 **FTS5 failures:** Two queries fail entirely — "self-supervised contrastive" and "multi-agent system cooperative reinforcement learning" — because FTS5 parses hyphens as syntax. tsvector handles both correctly.
 
 **Implication:** Choosing between FTS5 and tsvector is not just a performance decision — it is a **retrieval quality** decision. They are not interchangeable search backends.
+
+> **Qualification (Spike 003):** This conclusion is stronger than
+> the evidence supports. The divergence is measured (Jaccard 0.39) but
+> its quality implications are not. The DECISION.md correctly softened
+> this to "Both sets of results are plausible upon inspection." The
+> difference is driven by ranking functions (BM25 vs cover density) and
+> query parsing, not by one backend finding objectively better papers.
+> This remains an open question pending qualitative review.
 
 ## Dimension 2: Search Latency at Scale
 
@@ -178,6 +199,12 @@ The compound workflow shows only 1.4x difference (6ms absolute). Both are well u
 | Dimension | SQLite advantage | PostgreSQL advantage | Magnitude |
 |-----------|-----------------|---------------------|-----------|
 | **Search quality** | — | Better stemming, handles hyphens, no parse errors | **Major** (Jaccard 0.39) |
+
+> **Qualification (Spike 003):** "Major" magnitude is based on
+> Jaccard divergence, not on demonstrated quality difference. The
+> DECISION.md Tradeoff Map corrected this assessment. Backends return
+> different papers; neither has been shown to return better papers.
+
 | **Search latency** | 3.5–4.8x faster | — | Moderate (both <500ms) |
 | **Vector search** | — | HNSW 5–23x faster, near-constant time | **Major** |
 | **Bulk import** | 5–6x faster | — | Minor (cold start only) |
@@ -196,6 +223,12 @@ The compound workflow shows only 1.4x difference (6ms absolute). Both are well u
 | "SQLite is sufficient for personal scale" | **Partially supported** | True for latency and write performance. False for search quality (FTS5 returns different papers than tsvector) and vector search (HNSW dramatically outperforms numpy). |
 | "pgvector unnecessary at personal scale" | **Falsified** | HNSW is 5–23x faster than brute-force numpy and scales near-constantly. At 215K, the gap is 0.6ms vs 14ms. The index provides genuine value even at modest scale. |
 | "Tier differentiator is GPU, not database" | **Partially supported** | GPU matters for embedding computation (20x from Spike 001). But the database matters for both search quality and vector search speed. The tier model needs both dimensions. |
+
+> **Qualification (Spike 003):** The "pgvector unnecessary" claim
+> was correctly identified as falsified by Spike 002's latency data.
+> The "search quality" assessment (FTS5 returns different papers than
+> tsvector) remains methodologically incomplete per Spike 003's Jaccard
+> critique -- "different" is measured, "worse" is not.
 
 ## What These Numbers Don't Tell You
 

@@ -115,6 +115,16 @@ Qualitative review (3 seeds, 15 papers each) showed:
 
 **Implication:** System should use both models and expose the distinction to users.
 
+> **Qualification (Spike 003):** This complementarity claim was based
+> on SPECTER2 without the proximity adapter (fixed in Spike 003 W0.1)
+> and on a qualitative review methodology later found insufficient by
+> Spike 003's own standards. The W5.4 qualitative review with the corrected
+> adapter found SPECTER2 redundant with MiniLM for CS/ML papers.
+> The complementarity between MiniLM and TF-IDF IS confirmed by Spike 003
+> (Jaccard 0.179, different held-out recoveries 2/15 vs 5/15).
+> Reframe: the confirmed complementarity is semantic embedding vs lexical
+> matching, not MiniLM vs SPECTER2.
+
 ### "Quality" is not one dimension
 
 Three distinct values emerged from qualitative analysis:

@@ -46,11 +46,32 @@ Voyage AI's general-purpose embedding models (voyage-4, voyage-4-large) may capt
 
 4. **No seed showed Voyage capturing a genuinely different signal.** Even the lowest overlap (seed 2601.18811, Jaccard 0.429-0.481) tracks with MiniLM vs SPECTER2 both being low for that seed (0.538), indicating a generally hard paper for embedding-based retrieval rather than Voyage seeing something unique.
 
-### Verdict: STOP (PARTIAL_OVERLAP)
+### Verdict: INCONCLUSIVE (methodology insufficient)
 
-Both Voyage models fall in the partial overlap zone (Jaccard 0.6-0.8) with both local models. They do not meet the "genuinely different" threshold (< 0.6 with both) nor the "redundant" threshold (> 0.8 with either). They sit in the space between MiniLM and SPECTER2, adding no new signal axis.
+> **Epistemic qualification (2026-03-20):** This verdict was originally STOP (PARTIAL_OVERLAP). It has been revised to INCONCLUSIVE after reviewing the methodology against the spike's own epistemic standards. See signal `sig-2026-03-20-jaccard-screening-methodology`.
 
-**Decision:** Do not proceed to Phase 2 (full corpus embedding). Voyage embeddings would be a marginal refinement of the existing signal space, not a genuinely distinct perspective worth the API dependency.
+The original Jaccard-based screening has fundamental limitations that prevent a confident stop/go decision:
+
+1. **Top-K Jaccard is a coarse instrument.** It collapses "different how?" into a single number. Papers at rank #19 vs #21 count as categorical disagreement. All disagreements are treated equally regardless of magnitude. The measure cannot distinguish boundary noise from meaningful divergence.
+
+2. **The sample is too narrow.** Only 2 of 8 interest profiles were tested (P1, P3). Per-seed Jaccard ranged from 0.429 to 0.905 — variance too high for the aggregate to be representative. Profiles where Voyage might add the most value (broad/cross-domain P4, P7; trending P6) were never tested.
+
+3. **The baseline is invalid.** Decision thresholds were calibrated against MiniLM-SPECTER2 overlap (Jaccard 0.732) as the "known different" reference point. The W5.4 qualitative review subsequently found SPECTER2 is qualitatively redundant with MiniLM (45-60% paper overlap, score compression makes ranking noise). The "known different" baseline was not actually different.
+
+4. **No qualitative layer.** The spike's DESIGN.md states "instruments detect, they don't evaluate" and "qualitative review is first-class, not a validation step." Yet this screening used a single quantitative instrument as the sole decision criterion. The ~28% of papers Voyage finds differently from MiniLM were never examined for what *kind* of papers they are.
+
+5. **Contradicted by other findings.** The W3 qualitative review found fusion helps narrow topics despite worse MRR. The W5.4 review found SPECTER2 is redundant despite looking different on Jaccard. Both demonstrate that quantitative overlap measures can mislead in either direction.
+
+**What survives from the original screening:**
+- voyage-4 and voyage-4-large are near-identical (Jaccard 0.920) — testing both is unnecessary
+- Voyage overlaps SPECTER2 more than MiniLM — it may sit closer to the citation-graph signal axis
+- Cost is negligible ($0.04-0.50 for full corpus)
+
+**What is needed for a proper verdict:**
+- Qualitative review of Voyage-unique papers (the ~28% MiniLM doesn't find) across a broader profile set
+- Rank correlation (Kendall's tau) alongside or instead of top-K Jaccard
+- Semantic clustering of divergent papers to determine if divergence is signal or noise
+- Testing across all 8 profiles, especially P4 (broad) and P7 (cross-domain)
 
 ### Cost of the Screening
 

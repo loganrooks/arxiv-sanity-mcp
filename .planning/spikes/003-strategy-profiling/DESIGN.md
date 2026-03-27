@@ -1366,30 +1366,36 @@ Round 1 (W0-W5) completed the core profiling. During execution, coverage gaps an
 | Batch pricing research | Do batch APIs change the cost analysis? | No — 33-50% discounts on already-trivial costs. No verdict changes. | `experiments/data/batch_pricing_research.md` |
 | Embedding model landscape | What recent open-source models exist? | No new academic-specific models since SPECTER2. Three general-purpose candidates worth screening: Stella v5 400M, Qwen3-Embedding-0.6B, GTE-large-en-v1.5. | `experiments/data/embedding_model_landscape.md` |
 
-### Extensions in progress
+### Extensions completed
 
-| Experiment | Question | Status | Design |
-|-----------|---------|--------|--------|
-| Voyage AI embedding screening | Does voyage-4 / voyage-4-large capture a different signal than MiniLM/SPECTER2? | **Running** — Phase 1 (100-paper Jaccard screening), auto-advances to Phase 2 (full corpus) if non-redundant, Phase 3 (kNN + MMR strategy patterns) if interesting | `experiments/voyage_screening.py` |
+| Experiment | Question | Status | Finding |
+|-----------|---------|--------|---------|
+| Voyage AI embedding screening | Does voyage-4 / voyage-4-large capture a different signal than MiniLM/SPECTER2? | **INCONCLUSIVE** | Jaccard-based screening found partial overlap (0.717 with MiniLM). Originally verdicted STOP, but methodology was insufficient — see `sig-2026-03-20-jaccard-screening-methodology`. Needs qualitative review of divergent papers before a proper verdict. |
+| kNN per-seed retrieval | Does per-seed kNN outperform centroid averaging? | **Completed** | Aggregate MRR -58%, but profile-dependent. Works for densely-populated topics (P4). Centroid remains default; kNN has a niche. |
+| MMR diversity-aware retrieval | Does MMR solve the coherence-diversity tension? | **Completed** | Marginal (+6.6% diversity, -2.8% MRR). Best contributions are novel-angle papers, not redundancy reduction. Optional toggle at most. |
 
 ### Extensions not yet started
 
 | Experiment | Question | Blocked by | Priority |
 |-----------|---------|-----------|----------|
-| Local model screening (Stella v5, Qwen3, GTE) | Do recent general-purpose models add value over MiniLM? | GPU time, model downloads | Medium — screen after Voyage results |
-| kNN per-seed retrieval | Does per-seed kNN outperform centroid averaging? | None (can use existing MiniLM embeddings) | High — addresses a known weakness of centroid approach |
-| MMR diversity-aware retrieval | Does MMR solve the coherence-diversity tension? | None | High — well-established technique, never tested |
+| Voyage qualitative evaluation | What kind of papers does Voyage find that MiniLM doesn't? | Voyage screening data exists; needs qualitative review across all 8 profiles | **High** — Jaccard screening was insufficient (sig-2026-03-20) |
+| Local model screening (Stella v5, Qwen3, GTE) | Do recent general-purpose models add value over MiniLM? | GPU time, model downloads. **Methodology note:** must use qualitative review, not Jaccard alone | Medium |
 | Embedding-based ingestion filtering | Can embeddings pre-filter at harvest time to reduce corpus? | Needs design deliberation (risks missing serendipitous discoveries) | Low — design question, not just experiment |
 | S5f per-project learned weights | Can the system learn optimal strategy weights from triage behavior? | No real user data; simulation shown to be circular (Spike 001 C1-R9) | Blocked — needs real users |
 | S2h author h-index | Does author prestige correlate with paper quality for recommendations? | 65K OpenAlex author API calls (~109 min) | Low — likely a weak booster signal |
 
 ### Synthesis update needed
 
-The W5 DECISION.md and FINDINGS.md were written before gap-fill experiments completed. They need updating to incorporate:
+The W5 DECISION.md and FINDINGS.md were written before gap-fill experiments and qualitative reviews completed. They need updating to incorporate:
 - BM25 rejection
 - Cross-encoder rejection
 - S3a re-profile rejection
 - API cost analysis
 - Embedding landscape research
-- Voyage screening results (when complete)
-- Any kNN/MMR results if tested
+- Voyage screening revision (INCONCLUSIVE, not STOP)
+- kNN/MMR results
+- **W3 qualitative review** (fusion helps narrow topics, MRR contradicted in 2/3 cases)
+- **W4.1 qualitative review** (seed heterogeneity > seed count, TF-IDF disqualifying at cold start)
+- **W5.4 qualitative review** (SPECTER2 redundant with MiniLM, two views not three)
+- **Extensions qualitative review** (kNN profile-dependent, not universally catastrophic)
+- Signal: `sig-2026-03-20-jaccard-screening-methodology` (Jaccard insufficient for embedding comparison)

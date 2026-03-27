@@ -364,6 +364,14 @@ Full catalog: `experiments/data/b1_signal_literature_review.md`
 
 **Limitation:** Near-zero citations for January 2026 papers. Correlations show signal structure, not predictive power.
 
+> **Qualification (Spike 003):** These correlations are based on
+> 460 enriched papers with near-zero citation maturity. Spike 003 found
+> FWCI and citation signals non-functional at 2.6% enrichment coverage
+> (S2d/S2e). The correlation structure is informative about signal
+> relationships but does not demonstrate operational utility. Bibliographic
+> coupling (listed as signal #4 in DECISION.md) requires enrichment
+> expansion from 0.5% to meaningful coverage before it becomes operational.
+
 ## Phase B3: Importance Analysis — Complete (2026-03-19)
 
 At least 2 distinct importance dimensions visible: bibliometric impact (FWCI, citations — avg |r|=0.57) and content properties (topic novelty, length — avg |r|=0.08). Structural signals (author count, references) are intermediate (avg |r|=0.28).
@@ -384,6 +392,12 @@ No static strategy dramatically outperforms random against near-zero citation pr
 
 **Fair cross-model evaluation:** Each embedding model wins on its own clusters, loses on the other's. Neither is "better" — they capture different similarity dimensions. Consensus papers (agreed by both) have higher category overlap with seed (0.40 vs 0.32/0.33).
 
+> **Qualification (Spike 003):** This "fair cross-model evaluation"
+> reproduces the circular evaluation bias documented in Spike 003
+> Section 8.1. Each model winning on its own clusters is tautological
+> when clusters are defined by the model's own embeddings. The conclusion
+> "neither is better" may be correct but this evidence does not support it.
+
 **12-strategy comparison on model-independent ground truth (category co-membership):**
 
 | Strategy | R@100 | What it captures |
@@ -398,7 +412,26 @@ No static strategy dramatically outperforms random against near-zero citation pr
 
 **Caveat:** Category co-membership favors metadata-based strategies by construction. Embedding models find papers related in ways categories don't capture — validated by qualitative review.
 
+> **Qualification (Spike 003):** Cross-family R@100 comparisons in
+> this table (e.g., co-author 82% vs MiniLM 17%) use category
+> co-membership as ground truth, which systematically favors metadata-based
+> strategies. Spike 003 documented this class of evaluation framework
+> entanglement in Section 8.1. Within-family comparisons (e.g., among
+> metadata strategies) remain valid. Cross-family comparisons should not
+> be interpreted as quality rankings.
+
 ### Qualitative Review (3 seeds, 15 papers each)
+
+> **Qualification (Spike 003):** All SPECTER2 findings in this section
+> used the base model without the proximity adapter. Spike 003 W0.1 fixed
+> the adapter loading; the corrected model changes ~35% of top-20 results.
+> The W5.4 qualitative review with the corrected adapter found SPECTER2
+> qualitatively redundant with MiniLM for CS/ML papers (45-60% overlap,
+> score compression making ranking noise). The "discovery potential"
+> attribution to SPECTER2 is not confirmed under corrected loading.
+> The three quality dimensions framework (topical precision, methodological
+> kinship, discovery potential) remains valuable but is not attributable
+> to specific models as stated here.
 
 AI agent reviewed consensus, MiniLM-only, and SPECTER2-only recommendations:
 - MiniLM captures **topical precision** (papers using similar language)
