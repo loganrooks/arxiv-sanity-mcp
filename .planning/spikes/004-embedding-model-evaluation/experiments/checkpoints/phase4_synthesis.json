@@ -1,0 +1,12 @@
+{
+  "phase": "phase4_synthesis",
+  "status": "templates_generated",
+  "findings_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/FINDINGS.md",
+  "decision_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/DECISION.md",
+  "evidence_summary": {
+    "n_models_compared": 4,
+    "n_reviews_completed": 32,
+    "sample_validation": "GO"
+  },
+  "timestamp": "2026-03-28T02:19:30.942183+00:00"
+}
