@@ -1,0 +1,231 @@
+{
+  "phase": "phase3_review_inputs",
+  "n_reviews": 32,
+  "reviews": [
+    {
+      "model": "specter2",
+      "profile": "P1",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P1.json"
+    },
+    {
+      "model": "specter2",
+      "profile": "P2",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P2_blind.json"
+    },
+    {
+      "model": "specter2",
+      "profile": "P3",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P3_blind.json"
+    },
+    {
+      "model": "specter2",
+      "profile": "P4",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P4.json"
+    },
+    {
+      "model": "specter2",
+      "profile": "P5",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P5.json"
+    },
+    {
+      "model": "specter2",
+      "profile": "P6",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P6.json"
+    },
+    {
+      "model": "specter2",
+      "profile": "P7",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P7.json"
+    },
+    {
+      "model": "specter2",
+      "profile": "P8",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P8.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P1",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P1.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P2",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P2.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P3",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P3_blind.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P4",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P4.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P5",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P5.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P6",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P6_blind.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P7",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P7.json"
+    },
+    {
+      "model": "stella",
+      "profile": "P8",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P8.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P1",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P1.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P2",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P2.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P3",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P3.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P4",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P4.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P5",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P5.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P6",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P6_blind.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P7",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P7.json"
+    },
+    {
+      "model": "qwen3",
+      "profile": "P8",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/qwen3_P8_blind.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P1",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P1.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P2",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P2.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P3",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P3.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P4",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P4.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P5",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P5.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P6",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P6_blind.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P7",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P7.json"
+    },
+    {
+      "model": "gte",
+      "profile": "P8",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P8_blind.json"
+    }
+  ],
+  "timestamp": "2026-03-28T02:14:00.114448+00:00"
+}
