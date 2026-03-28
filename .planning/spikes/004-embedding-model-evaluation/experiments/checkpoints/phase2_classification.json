@@ -1,0 +1,91 @@
+{
+  "phase": "phase2_classification",
+  "classifications": {
+    "specter2": {
+      "classification": "divergent",
+      "min_jaccard_20": 0.3793,
+      "mean_jaccard_20": 0.61,
+      "upgraded": false,
+      "upgrade_reasons": [
+        "category_recall_diverges_>10pp",
+        "score_separation_differs_notably"
+      ],
+      "per_profile_jaccard_20": {
+        "P1": 0.7391,
+        "P2": 0.5385,
+        "P3": 0.3793,
+        "P4": 0.8182,
+        "P5": 0.6667,
+        "P6": 0.6,
+        "P7": 0.6,
+        "P8": 0.5385
+      }
+    },
+    "stella": {
+      "classification": "divergent",
+      "min_jaccard_20": 0.3793,
+      "mean_jaccard_20": 0.5738,
+      "upgraded": false,
+      "upgrade_reasons": [
+        "score_separation_differs_notably"
+      ],
+      "per_profile_jaccard_20": {
+        "P1": 0.7391,
+        "P2": 0.5385,
+        "P3": 0.4286,
+        "P4": 0.6667,
+        "P5": 0.8182,
+        "P6": 0.3793,
+        "P7": 0.4815,
+        "P8": 0.5385
+      }
+    },
+    "qwen3": {
+      "classification": "divergent",
+      "min_jaccard_20": 0.3333,
+      "mean_jaccard_20": 0.5501,
+      "upgraded": false,
+      "upgrade_reasons": [
+        "category_recall_diverges_>10pp",
+        "score_separation_differs_notably"
+      ],
+      "per_profile_jaccard_20": {
+        "P1": 0.5385,
+        "P2": 0.5385,
+        "P3": 0.5385,
+        "P4": 0.6667,
+        "P5": 0.8182,
+        "P6": 0.3333,
+        "P7": 0.5385,
+        "P8": 0.4286
+      }
+    },
+    "gte": {
+      "classification": "divergent",
+      "min_jaccard_20": 0.4815,
+      "mean_jaccard_20": 0.6388,
+      "upgraded": false,
+      "upgrade_reasons": [
+        "category_recall_diverges_>10pp",
+        "score_separation_differs_notably"
+      ],
+      "per_profile_jaccard_20": {
+        "P1": 0.6667,
+        "P2": 0.6667,
+        "P3": 0.6,
+        "P4": 0.7391,
+        "P5": 0.8182,
+        "P6": 0.5385,
+        "P7": 0.6,
+        "P8": 0.4815
+      }
+    }
+  },
+  "review_coverage_table": {
+    "divergent": "All 8 profiles, full W1 template, 2 blind comparisons",
+    "mid_overlap": "5 profiles (3 divergent + 1 median + 1 high), full W1, 1 blind",
+    "high_overlap": "3 profiles (2 divergent + 1 random), abbreviated review",
+    "near_identical": "2 profiles (most divergent + 1 random), abbreviated review"
+  },
+  "timestamp": "2026-03-28T02:13:22.352351+00:00"
+}

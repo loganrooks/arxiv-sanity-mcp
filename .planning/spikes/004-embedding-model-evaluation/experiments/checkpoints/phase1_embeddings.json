@@ -1,0 +1,14 @@
+{
+  "phase": "phase1_embeddings",
+  "sample_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/003-strategy-profiling/experiments/data/sample_2000.json",
+  "n_papers": 2000,
+  "models": {
+    "voyage": {
+      "model_key": "voyage",
+      "status": "FAILED",
+      "error": "No module named 'voyageai'",
+      "timestamp": "2026-03-28T02:13:06.070556+00:00"
+    }
+  },
+  "last_updated": "2026-03-28T02:13:06.070575+00:00"
+}

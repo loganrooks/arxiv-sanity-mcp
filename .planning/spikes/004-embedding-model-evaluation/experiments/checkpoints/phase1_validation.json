@@ -1,0 +1,367 @@
+{
+  "phase": "phase1_validation",
+  "verdict": "GO",
+  "baseline_validation": {
+    "status": "PASS",
+    "threshold": 0.8,
+    "profiles": {
+      "P1": {
+        "jaccard_sample_vs_full_restricted": 1.0,
+        "pass": true,
+        "sample_top20_in_full_top20": 9
+      },
+      "P3": {
+        "jaccard_sample_vs_full_restricted": 1.0,
+        "pass": true,
+        "sample_top20_in_full_top20": 6
+      },
+      "P4": {
+        "jaccard_sample_vs_full_restricted": 1.0,
+        "pass": true,
+        "sample_top20_in_full_top20": 11
+      }
+    }
+  },
+  "challenger_degeneracy": {
+    "minilm": {
+      "status": "PASS",
+      "n_flagged_profiles": 0,
+      "profiles": {
+        "P1": {
+          "top20_spread": 0.044026,
+          "top20_gap": 0.492356,
+          "max_score": 0.873117,
+          "flags": []
+        },
+        "P2": {
+          "top20_spread": 0.036054,
+          "top20_gap": 0.460242,
+          "max_score": 0.845385,
+          "flags": []
+        },
+        "P3": {
+          "top20_spread": 0.055192,
+          "top20_gap": 0.497596,
+          "max_score": 0.803095,
+          "flags": []
+        },
+        "P4": {
+          "top20_spread": 0.067813,
+          "top20_gap": 0.539853,
+          "max_score": 0.920653,
+          "flags": []
+        },
+        "P5": {
+          "top20_spread": 0.051049,
+          "top20_gap": 0.423046,
+          "max_score": 0.820579,
+          "flags": []
+        },
+        "P6": {
+          "top20_spread": 0.053461,
+          "top20_gap": 0.412962,
+          "max_score": 0.798088,
+          "flags": []
+        },
+        "P7": {
+          "top20_spread": 0.064406,
+          "top20_gap": 0.501779,
+          "max_score": 0.906608,
+          "flags": []
+        },
+        "P8": {
+          "top20_spread": 0.060531,
+          "top20_gap": 0.403997,
+          "max_score": 0.806745,
+          "flags": []
+        }
+      }
+    },
+    "specter2": {
+      "status": "PASS",
+      "n_flagged_profiles": 0,
+      "profiles": {
+        "P1": {
+          "top20_spread": 0.00756,
+          "top20_gap": 0.120937,
+          "max_score": 0.97588,
+          "flags": []
+        },
+        "P2": {
+          "top20_spread": 0.006612,
+          "top20_gap": 0.099516,
+          "max_score": 0.972794,
+          "flags": []
+        },
+        "P3": {
+          "top20_spread": 0.009083,
+          "top20_gap": 0.086769,
+          "max_score": 0.961865,
+          "flags": []
+        },
+        "P4": {
+          "top20_spread": 0.010314,
+          "top20_gap": 0.109053,
+          "max_score": 0.98655,
+          "flags": []
+        },
+        "P5": {
+          "top20_spread": 0.009345,
+          "top20_gap": 0.078593,
+          "max_score": 0.961383,
+          "flags": []
+        },
+        "P6": {
+          "top20_spread": 0.008057,
+          "top20_gap": 0.080077,
+          "max_score": 0.967996,
+          "flags": []
+        },
+        "P7": {
+          "top20_spread": 0.012246,
+          "top20_gap": 0.10354,
+          "max_score": 0.979963,
+          "flags": []
+        },
+        "P8": {
+          "top20_spread": 0.008844,
+          "top20_gap": 0.086241,
+          "max_score": 0.965943,
+          "flags": []
+        }
+      }
+    },
+    "stella": {
+      "status": "PASS",
+      "n_flagged_profiles": 0,
+      "profiles": {
+        "P1": {
+          "top20_spread": 0.02833,
+          "top20_gap": 0.291543,
+          "max_score": 0.900856,
+          "flags": []
+        },
+        "P2": {
+          "top20_spread": 0.026194,
+          "top20_gap": 0.282779,
+          "max_score": 0.898751,
+          "flags": []
+        },
+        "P3": {
+          "top20_spread": 0.03039,
+          "top20_gap": 0.300354,
+          "max_score": 0.896711,
+          "flags": []
+        },
+        "P4": {
+          "top20_spread": 0.035074,
+          "top20_gap": 0.353334,
+          "max_score": 0.937753,
+          "flags": []
+        },
+        "P5": {
+          "top20_spread": 0.028649,
+          "top20_gap": 0.24071,
+          "max_score": 0.85439,
+          "flags": []
+        },
+        "P6": {
+          "top20_spread": 0.029891,
+          "top20_gap": 0.220937,
+          "max_score": 0.862995,
+          "flags": []
+        },
+        "P7": {
+          "top20_spread": 0.04141,
+          "top20_gap": 0.31382,
+          "max_score": 0.934931,
+          "flags": []
+        },
+        "P8": {
+          "top20_spread": 0.034177,
+          "top20_gap": 0.285717,
+          "max_score": 0.914478,
+          "flags": []
+        }
+      }
+    },
+    "qwen3": {
+      "status": "PASS",
+      "n_flagged_profiles": 0,
+      "profiles": {
+        "P1": {
+          "top20_spread": 0.041527,
+          "top20_gap": 0.388407,
+          "max_score": 0.795043,
+          "flags": []
+        },
+        "P2": {
+          "top20_spread": 0.044976,
+          "top20_gap": 0.415555,
+          "max_score": 0.854702,
+          "flags": []
+        },
+        "P3": {
+          "top20_spread": 0.055559,
+          "top20_gap": 0.359197,
+          "max_score": 0.799195,
+          "flags": []
+        },
+        "P4": {
+          "top20_spread": 0.053406,
+          "top20_gap": 0.491025,
+          "max_score": 0.89605,
+          "flags": []
+        },
+        "P5": {
+          "top20_spread": 0.049136,
+          "top20_gap": 0.341329,
+          "max_score": 0.77351,
+          "flags": []
+        },
+        "P6": {
+          "top20_spread": 0.047605,
+          "top20_gap": 0.33971,
+          "max_score": 0.798245,
+          "flags": []
+        },
+        "P7": {
+          "top20_spread": 0.056597,
+          "top20_gap": 0.419048,
+          "max_score": 0.886429,
+          "flags": []
+        },
+        "P8": {
+          "top20_spread": 0.067477,
+          "top20_gap": 0.331003,
+          "max_score": 0.818567,
+          "flags": []
+        }
+      }
+    },
+    "gte": {
+      "status": "PASS",
+      "n_flagged_profiles": 0,
+      "profiles": {
+        "P1": {
+          "top20_spread": 0.030468,
+          "top20_gap": 0.241475,
+          "max_score": 0.866339,
+          "flags": []
+        },
+        "P2": {
+          "top20_spread": 0.027863,
+          "top20_gap": 0.254177,
+          "max_score": 0.888733,
+          "flags": []
+        },
+        "P3": {
+          "top20_spread": 0.035054,
+          "top20_gap": 0.226022,
+          "max_score": 0.854799,
+          "flags": []
+        },
+        "P4": {
+          "top20_spread": 0.037895,
+          "top20_gap": 0.317517,
+          "max_score": 0.930399,
+          "flags": []
+        },
+        "P5": {
+          "top20_spread": 0.027269,
+          "top20_gap": 0.230339,
+          "max_score": 0.872947,
+          "flags": []
+        },
+        "P6": {
+          "top20_spread": 0.034976,
+          "top20_gap": 0.242619,
+          "max_score": 0.903413,
+          "flags": []
+        },
+        "P7": {
+          "top20_spread": 0.044995,
+          "top20_gap": 0.290586,
+          "max_score": 0.90816,
+          "flags": []
+        },
+        "P8": {
+          "top20_spread": 0.03866,
+          "top20_gap": 0.20613,
+          "max_score": 0.878282,
+          "flags": []
+        }
+      }
+    },
+    "voyage": {
+      "status": "SKIP",
+      "reason": "embeddings not found"
+    }
+  },
+  "structural_comparison": {
+    "specter2": {
+      "per_profile_jaccard_100": {
+        "P1": 0.6667,
+        "P2": 0.5385,
+        "P3": 0.4815,
+        "P4": 0.4925,
+        "P5": 0.3889,
+        "P6": 0.5038,
+        "P7": 0.5152,
+        "P8": 0.4706
+      },
+      "mean_jaccard_100": 0.5072,
+      "min_jaccard_100": 0.3889,
+      "note": "High (>0.9) = same pool; Low (<0.5) = investigate bias vs real difference"
+    },
+    "stella": {
+      "per_profile_jaccard_100": {
+        "P1": 0.5873,
+        "P2": 0.5748,
+        "P3": 0.5625,
+        "P4": 0.6393,
+        "P5": 0.5152,
+        "P6": 0.4599,
+        "P7": 0.6129,
+        "P8": 0.5385
+      },
+      "mean_jaccard_100": 0.5613,
+      "min_jaccard_100": 0.4599,
+      "note": "High (>0.9) = same pool; Low (<0.5) = investigate bias vs real difference"
+    },
+    "qwen3": {
+      "per_profile_jaccard_100": {
+        "P1": 0.6393,
+        "P2": 0.4815,
+        "P3": 0.5038,
+        "P4": 0.5748,
+        "P5": 0.5038,
+        "P6": 0.4286,
+        "P7": 0.5748,
+        "P8": 0.5267
+      },
+      "mean_jaccard_100": 0.5292,
+      "min_jaccard_100": 0.4286,
+      "note": "High (>0.9) = same pool; Low (<0.5) = investigate bias vs real difference"
+    },
+    "gte": {
+      "per_profile_jaccard_100": {
+        "P1": 0.6129,
+        "P2": 0.5385,
+        "P3": 0.4599,
+        "P4": 0.5625,
+        "P5": 0.5038,
+        "P6": 0.5038,
+        "P7": 0.5152,
+        "P8": 0.5152
+      },
+      "mean_jaccard_100": 0.5265,
+      "min_jaccard_100": 0.4599,
+      "note": "High (>0.9) = same pool; Low (<0.5) = investigate bias vs real difference"
+    },
+    "voyage": {
+      "status": "SKIP"
+    }
+  },
+  "timestamp": "2026-03-28T02:13:10.025014+00:00"
+}
