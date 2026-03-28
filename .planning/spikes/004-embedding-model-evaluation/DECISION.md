@@ -2,7 +2,7 @@
 spike: "004"
 status: complete
 date: 2026-03-28
-voyage_status: pending
+voyage_status: complete (8% failure rate, API rate limiting)
 confidence: interpretation-level (not extrapolation)
 ---
 
@@ -46,18 +46,24 @@ The current provisional arrangement of MiniLM primary + TF-IDF secondary should 
 - Best suited as a diversity signal in fusion, not as a standalone view
 - Worth investigating with a post-filter to remove vocabulary-match noise
 
-**Voyage-4**: pending. Cannot assess until API embedding completes.
+**Voyage-4** shows the most interesting divergence of any model on P2 (LM reasoning, J@20=0.333, 8 truly unique papers) with qualitative confirmation of value. But:
+- API dependency conflicts with local-first project values
+- 8% embedding failure rate from rate limiting
+- Provider-side model drift makes findings non-reproducible
+- Operationally impractical for local-first deployment (~117 min for 2000 papers at free tier)
+- The signal is genuinely valuable — reasoning failure modes that no other model surfaces
+- Best suited as an optional API-dependent view for users who accept the trade-off, not as a default
 
 ### Evidence insufficient
 
-None for the 4 local models — each received full evaluation. Voyage is pending.
+None — all 5 challengers received full evaluation (40 qualitative reviews total).
 
 ## Deferred Questions Updated
 
 ### From Spike 003
 
 **"Do API embeddings add value?"**
-→ **Still deferred.** Voyage embedding in progress. Will be updated as an addendum.
+→ **Yes, on some profiles.** Voyage-4 surfaces genuinely different papers on P2 (LM reasoning) that no local model finds. But the value is profile-dependent (P1 is nearly redundant with MiniLM), and the API dependency conflicts with local-first project values. The value exists but the delivery mechanism is problematic.
 
 **"Would a different second view model be better than TF-IDF?"**
 → **Answer: No, but the question is wrong.** No embedding model is a better *second view* than TF-IDF because embedding models and TF-IDF capture genuinely orthogonal signals. The real question is: should there be a *third* view? The evidence supports offering optional third views (SPECTER2 and GTE) but not replacing TF-IDF.
@@ -102,7 +108,7 @@ SPECTER2 and GTE are both local-first compatible with modest resource requiremen
 
 ## Limitations of This Decision
 
-1. **Only 4 of 5 challengers evaluated.** Voyage results pending.
+1. **Voyage 8% failure rate.** 160/2000 papers failed to embed due to API rate limiting. Effective pool ~1840 papers.
 2. **CS/ML domain only.** SPECTER2's advantage on specialized vocabulary may be larger in physics, biology, or humanities. Cannot extrapolate.
 3. **AI-assessed quality.** No human researcher confirmed that the divergent papers are actually valuable. The "absent researcher" remains absent.
 4. **2000-paper sample.** Effects at full corpus scale (19K+) may differ. The sample validation was strong (GO) but inherently limited.

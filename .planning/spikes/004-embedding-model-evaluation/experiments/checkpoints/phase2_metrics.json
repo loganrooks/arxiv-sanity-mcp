@@ -4,7 +4,8 @@
     "specter2",
     "stella",
     "qwen3",
-    "gte"
+    "gte",
+    "voyage"
   ],
   "profiles": [
     "P1",
@@ -103,8 +104,8 @@
           "n_baseline_unique": 4,
           "n_shared": 16,
           "model_unique_categories": {
-            "cs.RO": 2,
-            "cs.LG": 2
+            "cs.LG": 2,
+            "cs.RO": 2
           },
           "baseline_unique_categories": {
             "cs.LG": 4
@@ -315,10 +316,10 @@
           },
           "baseline_unique_categories": {
             "quant-ph": 5,
-            "cs.CV": 1,
             "cs.IT": 1,
             "cs.LG": 1,
-            "cs.SE": 1
+            "cs.SE": 1,
+            "cs.CV": 1
           },
           "model_unique_ids": [
             "1106.1445",
@@ -353,9 +354,9 @@
           },
           "baseline_unique_categories": {
             "quant-ph": 8,
-            "q-bio.QM": 1,
+            "cs.LG": 1,
             "cs.CV": 1,
-            "cs.LG": 1
+            "q-bio.QM": 1
           },
           "model_unique_ids": [
             "1106.1445",
@@ -453,12 +454,12 @@
           "n_baseline_unique": 2,
           "n_shared": 18,
           "model_unique_categories": {
-            "cs.CR": 1,
-            "cs.AI": 1
+            "cs.AI": 1,
+            "cs.CR": 1
           },
           "baseline_unique_categories": {
-            "cs.CL": 1,
-            "cs.LG": 1
+            "cs.LG": 1,
+            "cs.CL": 1
           },
           "model_unique_ids": [
             "2402.06147",
@@ -476,8 +477,8 @@
           "model_unique_categories": {
             "cs.CL": 4,
             "cs.CR": 3,
-            "cs.LG": 1,
-            "cs.AI": 1
+            "cs.AI": 1,
+            "cs.LG": 1
           },
           "baseline_unique_categories": {
             "cs.CL": 3,
@@ -695,8 +696,8 @@
           },
           "baseline_unique_categories": {
             "cs.CV": 3,
-            "astro-ph.GA": 1,
-            "physics.geo-ph": 1
+            "physics.geo-ph": 1,
+            "astro-ph.GA": 1
           },
           "model_unique_ids": [
             "2410.23530",
@@ -719,19 +720,19 @@
           "n_shared": 11,
           "model_unique_categories": {
             "cs.CV": 6,
-            "cs.LG": 1,
             "cs.AI": 1,
+            "cs.LG": 1,
             "eess.IV": 1
           },
           "baseline_unique_categories": {
             "cs.CV": 2,
-            "cs.IR": 1,
-            "cs.CL": 1,
             "eess.AS": 1,
-            "cs.IT": 1,
+            "physics.geo-ph": 1,
+            "cs.CL": 1,
             "cs.SD": 1,
+            "cs.IR": 1,
             "cs.CR": 1,
-            "physics.geo-ph": 1
+            "cs.IT": 1
           },
           "model_unique_ids": [
             "2306.04321",
@@ -972,11 +973,11 @@
           "baseline_unique_categories": {
             "cs.LG": 4,
             "math.NA": 2,
-            "math.ST": 1,
             "stat.ML": 1,
-            "stat.ME": 1,
+            "math.OC": 1,
             "math.SP": 1,
-            "math.OC": 1
+            "math.ST": 1,
+            "stat.ME": 1
           },
           "model_unique_ids": [
             "2311.08745",
@@ -1218,8 +1219,8 @@
             "cs.AI": 3
           },
           "baseline_unique_categories": {
-            "cs.AI": 3,
             "cs.CL": 3,
+            "cs.AI": 3,
             "cs.CV": 1
           },
           "model_unique_ids": [
@@ -1345,8 +1346,8 @@
           },
           "baseline_unique_categories": {
             "quant-ph": 6,
-            "q-bio.QM": 1,
-            "q-fin.CP": 1
+            "q-fin.CP": 1,
+            "q-bio.QM": 1
           },
           "model_unique_ids": [
             "2411.02535",
@@ -1436,10 +1437,10 @@
           "n_baseline_unique": 4,
           "n_shared": 16,
           "model_unique_categories": {
-            "cs.CV": 1,
-            "cs.CR": 1,
+            "cs.LG": 1,
             "cs.AI": 1,
-            "cs.LG": 1
+            "cs.CR": 1,
+            "cs.CV": 1
           },
           "baseline_unique_categories": {
             "cs.CL": 3,
@@ -1469,8 +1470,8 @@
             "cs.LG": 1
           },
           "baseline_unique_categories": {
-            "cs.LG": 2,
             "cs.CL": 2,
+            "cs.LG": 2,
             "cs.AI": 1,
             "eess.SY": 1
           },
@@ -1667,8 +1668,8 @@
           },
           "baseline_unique_categories": {
             "cs.CV": 7,
-            "astro-ph.GA": 1,
-            "physics.geo-ph": 1
+            "physics.geo-ph": 1,
+            "astro-ph.GA": 1
           },
           "model_unique_ids": [
             "2410.23530",
@@ -1700,17 +1701,17 @@
           "model_unique_categories": {
             "cs.CV": 5,
             "eess.IV": 3,
-            "cs.LG": 1,
-            "cs.AI": 1
+            "cs.AI": 1,
+            "cs.LG": 1
           },
           "baseline_unique_categories": {
             "cs.CV": 4,
-            "cs.CL": 1,
             "eess.AS": 1,
-            "cs.IT": 1,
+            "physics.geo-ph": 1,
+            "cs.CL": 1,
             "cs.SD": 1,
             "cs.CR": 1,
-            "physics.geo-ph": 1
+            "cs.IT": 1
           },
           "model_unique_ids": [
             "2306.04321",
@@ -1937,10 +1938,10 @@
           "n_baseline_unique": 6,
           "n_shared": 14,
           "model_unique_categories": {
-            "cs.LG": 2,
             "stat.ML": 2,
-            "math.NA": 1,
-            "math.ST": 1
+            "cs.LG": 2,
+            "math.ST": 1,
+            "math.NA": 1
           },
           "baseline_unique_categories": {
             "cs.LG": 6
@@ -1968,16 +1969,16 @@
           "n_shared": 12,
           "model_unique_categories": {
             "cs.LG": 6,
-            "stat.ML": 1,
-            "math.ST": 1
+            "math.ST": 1,
+            "stat.ML": 1
           },
           "baseline_unique_categories": {
             "cs.LG": 3,
-            "math.NA": 1,
+            "math.OC": 1,
+            "math.SP": 1,
             "math.ST": 1,
             "stat.ME": 1,
-            "math.SP": 1,
-            "math.OC": 1
+            "math.NA": 1
           },
           "model_unique_ids": [
             "2210.05607",
@@ -2222,8 +2223,8 @@
             "cs.AI": 2
           },
           "baseline_unique_categories": {
-            "cs.AI": 3,
             "cs.CL": 3,
+            "cs.AI": 3,
             "cs.CV": 1,
             "eess.IV": 1
           },
@@ -2314,8 +2315,8 @@
           "n_shared": 14,
           "model_unique_categories": {
             "quant-ph": 4,
-            "q-bio.QM": 1,
-            "cs.LG": 1
+            "cs.LG": 1,
+            "q-bio.QM": 1
           },
           "baseline_unique_categories": {
             "quant-ph": 3,
@@ -2434,10 +2435,10 @@
           "n_baseline_unique": 4,
           "n_shared": 16,
           "model_unique_categories": {
+            "cs.LG": 1,
             "cs.CL": 1,
-            "cs.CR": 1,
             "cs.AI": 1,
-            "cs.LG": 1
+            "cs.CR": 1
           },
           "baseline_unique_categories": {
             "cs.CL": 3,
@@ -2467,8 +2468,8 @@
             "cs.LG": 1
           },
           "baseline_unique_categories": {
-            "cs.LG": 2,
             "cs.CL": 2,
+            "cs.LG": 2,
             "cs.AI": 1,
             "cs.CV": 1,
             "eess.SY": 1
@@ -2579,10 +2580,10 @@
             "cs.LG": 4
           },
           "baseline_unique_categories": {
-            "cs.IT": 1,
-            "cs.SI": 1,
             "cs.LG": 1,
-            "cs.AI": 1
+            "cs.AI": 1,
+            "cs.SI": 1,
+            "cs.IT": 1
           },
           "model_unique_ids": [
             "2410.01308",
@@ -2662,15 +2663,15 @@
             "cs.CV": 4,
             "cs.CL": 2,
             "cs.CR": 2,
-            "cs.IR": 1,
-            "cs.SD": 1
+            "cs.SD": 1,
+            "cs.IR": 1
           },
           "baseline_unique_categories": {
             "cs.CV": 6,
+            "physics.geo-ph": 1,
             "cs.AI": 1,
-            "astro-ph.GA": 1,
             "eess.IV": 1,
-            "physics.geo-ph": 1
+            "astro-ph.GA": 1
           },
           "model_unique_ids": [
             "2309.06135",
@@ -2703,15 +2704,15 @@
           "n_shared": 13,
           "model_unique_categories": {
             "cs.CV": 5,
-            "cs.CR": 1,
-            "cs.CL": 1
+            "cs.CL": 1,
+            "cs.CR": 1
           },
           "baseline_unique_categories": {
             "cs.CV": 3,
-            "cs.LG": 1,
             "eess.AS": 1,
+            "physics.geo-ph": 1,
             "cs.IT": 1,
-            "physics.geo-ph": 1
+            "cs.LG": 1
           },
           "model_unique_ids": [
             "2309.06135",
@@ -2929,10 +2930,10 @@
           "n_shared": 12,
           "model_unique_categories": {
             "cs.LG": 4,
-            "math.NA": 1,
+            "math.OC": 1,
             "math.ST": 1,
-            "cs.CV": 1,
-            "math.OC": 1
+            "math.NA": 1,
+            "cs.CV": 1
           },
           "baseline_unique_categories": {
             "cs.LG": 7,
@@ -2965,18 +2966,18 @@
           "n_shared": 9,
           "model_unique_categories": {
             "cs.LG": 8,
+            "math.OC": 1,
             "math.ST": 1,
-            "cs.CV": 1,
-            "math.OC": 1
+            "cs.CV": 1
           },
           "baseline_unique_categories": {
             "cs.LG": 4,
             "math.OC": 2,
-            "math.NA": 1,
-            "math.ST": 1,
             "stat.ML": 1,
+            "math.SP": 1,
+            "math.ST": 1,
             "stat.ME": 1,
-            "math.SP": 1
+            "math.NA": 1
           },
           "model_unique_ids": [
             "2308.14555",
@@ -3100,8 +3101,8 @@
           "n_baseline_unique": 6,
           "n_shared": 14,
           "model_unique_categories": {
-            "cs.LG": 3,
-            "cs.RO": 3
+            "cs.RO": 3,
+            "cs.LG": 3
           },
           "baseline_unique_categories": {
             "cs.LG": 4,
@@ -3191,13 +3192,13 @@
           "model_unique_categories": {
             "cs.IR": 1,
             "cs.CV": 1,
-            "cs.AI": 1,
-            "eess.IV": 1
+            "eess.IV": 1,
+            "cs.AI": 1
           },
           "baseline_unique_categories": {
             "cs.CL": 2,
-            "cs.AI": 1,
-            "cs.CV": 1
+            "cs.CV": 1,
+            "cs.AI": 1
           },
           "model_unique_ids": [
             "2411.11930",
@@ -3222,8 +3223,8 @@
             "cs.IR": 1
           },
           "baseline_unique_categories": {
-            "cs.AI": 3,
             "cs.CL": 3,
+            "cs.AI": 3,
             "cs.CV": 1
           },
           "model_unique_ids": [
@@ -3309,8 +3310,8 @@
           "n_shared": 15,
           "model_unique_categories": {
             "quant-ph": 3,
-            "q-bio.QM": 1,
-            "cs.AI": 1
+            "cs.AI": 1,
+            "q-bio.QM": 1
           },
           "baseline_unique_categories": {
             "quant-ph": 3,
@@ -3557,10 +3558,10 @@
             "cs.LG": 4
           },
           "baseline_unique_categories": {
-            "cs.IT": 1,
-            "cs.SI": 1,
             "cs.LG": 1,
-            "cs.AI": 1
+            "cs.AI": 1,
+            "cs.SI": 1,
+            "cs.IT": 1
           },
           "model_unique_ids": [
             "2410.01308",
@@ -3668,19 +3669,19 @@
           "n_shared": 13,
           "model_unique_categories": {
             "cs.CV": 3,
+            "cs.CL": 1,
             "cs.AI": 1,
             "cs.GR": 1,
-            "cs.CL": 1,
             "eess.IV": 1
           },
           "baseline_unique_categories": {
-            "cs.IR": 1,
-            "cs.LG": 1,
             "eess.AS": 1,
-            "cs.IT": 1,
-            "cs.SD": 1,
             "cs.CV": 1,
-            "cs.CR": 1
+            "cs.SD": 1,
+            "cs.IR": 1,
+            "cs.CR": 1,
+            "cs.IT": 1,
+            "cs.LG": 1
           },
           "model_unique_ids": [
             "2306.04321",
@@ -3767,8 +3768,8 @@
           "n_shared": 15,
           "model_unique_categories": {
             "cs.LG": 2,
-            "cs.CV": 1,
             "cs.DC": 1,
+            "cs.CV": 1,
             "cs.IR": 1
           },
           "baseline_unique_categories": {
@@ -3797,8 +3798,8 @@
           "model_unique_categories": {
             "cs.LG": 4,
             "cs.CV": 1,
-            "cs.IR": 1,
-            "cs.CR": 1
+            "cs.CR": 1,
+            "cs.IR": 1
           },
           "baseline_unique_categories": {
             "cs.CR": 5,
@@ -3927,11 +3928,11 @@
           "baseline_unique_categories": {
             "cs.LG": 3,
             "math.OC": 2,
-            "math.NA": 1,
-            "math.ST": 1,
             "stat.ML": 1,
+            "math.SP": 1,
+            "math.ST": 1,
             "stat.ME": 1,
-            "math.SP": 1
+            "math.NA": 1
           },
           "model_unique_ids": [
             "2403.05809",
@@ -3968,7 +3969,1019 @@
           "2601.17987"
         ]
       }
+    },
+    "voyage": {
+      "P1": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.5247,
+          "p_value": 2.45447378719459e-269
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.8182,
+          "jaccard_at_50": 0.7241,
+          "jaccard_at_100": 0.6
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.6,
+          "jaccard_at_50": 0.5385,
+          "jaccard_at_100": 0.4925
+        },
+        "score_distribution": {
+          "mean": 0.418799,
+          "std": 0.155536,
+          "top20_mean": 0.81459,
+          "top20_std": 0.038754,
+          "rest_mean": 0.414801,
+          "separation": 0.399789,
+          "max": 0.887749,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.286399,
+          "std": 0.154138,
+          "top20_mean": 0.773832,
+          "top20_std": 0.044026,
+          "rest_mean": 0.281476,
+          "separation": 0.492356,
+          "max": 0.873117,
+          "min": -0.17273
+        },
+        "category_recall": {
+          "recall": 0.8,
+          "matches": 16,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "minilm_category_recall": {
+          "recall": 0.85,
+          "matches": 17,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "loo_mrr": {
+          "mrr": 0.0118,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 2,
+          "n_baseline_unique": 2,
+          "n_shared": 18,
+          "model_unique_categories": {
+            "cs.LG": 2
+          },
+          "baseline_unique_categories": {
+            "cs.RO": 1,
+            "cs.LG": 1
+          },
+          "model_unique_ids": [
+            "2305.19922",
+            "2601.18107"
+          ],
+          "baseline_unique_ids": [
+            "2501.19128",
+            "2601.07821"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 5,
+          "n_baseline_unique": 5,
+          "n_shared": 15,
+          "model_unique_categories": {
+            "cs.RO": 3,
+            "cs.LG": 2
+          },
+          "baseline_unique_categories": {
+            "cs.LG": 4,
+            "cs.RO": 1
+          },
+          "model_unique_ids": [
+            "2305.19922",
+            "2505.20425",
+            "2506.00070",
+            "2601.12169",
+            "2601.18107"
+          ],
+          "baseline_unique_ids": [
+            "2303.05092",
+            "2501.19128",
+            "2601.07821",
+            "2601.08726",
+            "2601.20687"
+          ]
+        },
+        "n_truly_unique": 2,
+        "truly_unique_ids": [
+          "2305.19922",
+          "2601.18107"
+        ]
+      },
+      "P2": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.5238,
+          "p_value": 2.1308528347117305e-268
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.3333,
+          "jaccard_at_50": 0.6129,
+          "jaccard_at_100": 0.4706
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.2903,
+          "jaccard_at_50": 0.4085,
+          "jaccard_at_100": 0.3986
+        },
+        "score_distribution": {
+          "mean": 0.441176,
+          "std": 0.159094,
+          "top20_mean": 0.78261,
+          "top20_std": 0.051001,
+          "rest_mean": 0.437727,
+          "separation": 0.344883,
+          "max": 0.914817,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.2986,
+          "std": 0.163238,
+          "top20_mean": 0.754239,
+          "top20_std": 0.036054,
+          "rest_mean": 0.293998,
+          "separation": 0.460242,
+          "max": 0.845385,
+          "min": -0.143308
+        },
+        "category_recall": {
+          "recall": 0.6,
+          "matches": 12,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "minilm_category_recall": {
+          "recall": 0.65,
+          "matches": 13,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "loo_mrr": {
+          "mrr": 0.0361,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 10,
+          "n_baseline_unique": 10,
+          "n_shared": 10,
+          "model_unique_categories": {
+            "cs.CL": 6,
+            "cs.AI": 3,
+            "cs.CV": 1
+          },
+          "baseline_unique_categories": {
+            "cs.CL": 7,
+            "cs.AI": 2,
+            "cs.CV": 1
+          },
+          "model_unique_ids": [
+            "2312.02317",
+            "2411.11930",
+            "2502.15401",
+            "2512.20144",
+            "2601.02739",
+            "2601.02902",
+            "2601.03672",
+            "2601.11517",
+            "2601.12499",
+            "2601.19917"
+          ],
+          "baseline_unique_ids": [
+            "2305.14934",
+            "2503.10095",
+            "2506.14641",
+            "2508.17627",
+            "2601.02714",
+            "2601.03769",
+            "2601.04157",
+            "2601.10775",
+            "2601.14560",
+            "2601.17420"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 11,
+          "n_baseline_unique": 11,
+          "n_shared": 9,
+          "model_unique_categories": {
+            "cs.CL": 7,
+            "cs.AI": 4
+          },
+          "baseline_unique_categories": {
+            "cs.CL": 6,
+            "cs.AI": 3,
+            "cs.CV": 1,
+            "eess.IV": 1
+          },
+          "model_unique_ids": [
+            "2312.02317",
+            "2502.15401",
+            "2512.20144",
+            "2601.02739",
+            "2601.02902",
+            "2601.03682",
+            "2601.09805",
+            "2601.11517",
+            "2601.12499",
+            "2601.19917",
+            "2601.21909"
+          ],
+          "baseline_unique_ids": [
+            "2503.10095",
+            "2506.14641",
+            "2512.04359",
+            "2512.24297",
+            "2601.01011",
+            "2601.02714",
+            "2601.03769",
+            "2601.06289",
+            "2601.08758",
+            "2601.10775",
+            "2601.17420"
+          ]
+        },
+        "n_truly_unique": 8,
+        "truly_unique_ids": [
+          "2312.02317",
+          "2502.15401",
+          "2512.20144",
+          "2601.02739",
+          "2601.02902",
+          "2601.11517",
+          "2601.12499",
+          "2601.19917"
+        ]
+      },
+      "P3": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.386,
+          "p_value": 9.363363930040206e-147
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.5385,
+          "jaccard_at_50": 0.5625,
+          "jaccard_at_100": 0.4388
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.6,
+          "jaccard_at_50": 0.4493,
+          "jaccard_at_100": 0.3889
+        },
+        "score_distribution": {
+          "mean": 0.413892,
+          "std": 0.139279,
+          "top20_mean": 0.731969,
+          "top20_std": 0.051785,
+          "rest_mean": 0.410679,
+          "separation": 0.32129,
+          "max": 0.855906,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.202944,
+          "std": 0.118386,
+          "top20_mean": 0.695565,
+          "top20_std": 0.055192,
+          "rest_mean": 0.197968,
+          "separation": 0.497596,
+          "max": 0.803095,
+          "min": -0.129236
+        },
+        "category_recall": {
+          "recall": 0.7,
+          "matches": 14,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "minilm_category_recall": {
+          "recall": 0.75,
+          "matches": 15,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "loo_mrr": {
+          "mrr": 0.0867,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 6,
+          "n_baseline_unique": 6,
+          "n_shared": 14,
+          "model_unique_categories": {
+            "quant-ph": 4,
+            "cs.AI": 1,
+            "q-bio.QM": 1
+          },
+          "baseline_unique_categories": {
+            "quant-ph": 4,
+            "cs.SE": 1,
+            "cs.ET": 1
+          },
+          "model_unique_ids": [
+            "2508.15267",
+            "2601.00656",
+            "2601.01877",
+            "2601.02064",
+            "2601.02818",
+            "2601.06332"
+          ],
+          "baseline_unique_ids": [
+            "2312.15547",
+            "2502.04271",
+            "2505.16714",
+            "2507.02577",
+            "2510.09824",
+            "2601.18710"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 5,
+          "n_baseline_unique": 5,
+          "n_shared": 15,
+          "model_unique_categories": {
+            "quant-ph": 3,
+            "cs.IT": 1,
+            "cs.AI": 1
+          },
+          "baseline_unique_categories": {
+            "quant-ph": 4,
+            "cs.ET": 1
+          },
+          "model_unique_ids": [
+            "2601.01877",
+            "2601.02064",
+            "2601.02818",
+            "2601.14226",
+            "2601.18198"
+          ],
+          "baseline_unique_ids": [
+            "2502.04271",
+            "2510.09824",
+            "2512.24173",
+            "2601.18710",
+            "2601.19635"
+          ]
+        },
+        "n_truly_unique": 3,
+        "truly_unique_ids": [
+          "2601.01877",
+          "2601.02064",
+          "2601.02818"
+        ]
+      },
+      "P4": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.582,
+          "p_value": 0.0
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.6667,
+          "jaccard_at_50": 0.6393,
+          "jaccard_at_100": 0.5625
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.4286,
+          "jaccard_at_50": 0.5385,
+          "jaccard_at_100": 0.4388
+        },
+        "score_distribution": {
+          "mean": 0.414149,
+          "std": 0.163631,
+          "top20_mean": 0.864566,
+          "top20_std": 0.037629,
+          "rest_mean": 0.409599,
+          "separation": 0.454967,
+          "max": 0.932551,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.250946,
+          "std": 0.151952,
+          "top20_mean": 0.785401,
+          "top20_std": 0.067813,
+          "rest_mean": 0.245547,
+          "separation": 0.539853,
+          "max": 0.920653,
+          "min": -0.125156
+        },
+        "category_recall": {
+          "recall": 0.85,
+          "matches": 17,
+          "k": 20,
+          "n_seed_categories": 3
+        },
+        "minilm_category_recall": {
+          "recall": 0.9,
+          "matches": 18,
+          "k": 20,
+          "n_seed_categories": 3
+        },
+        "loo_mrr": {
+          "mrr": 0.1062,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 4,
+          "n_baseline_unique": 4,
+          "n_shared": 16,
+          "model_unique_categories": {
+            "cs.LG": 1,
+            "cs.AI": 1,
+            "cs.CR": 1,
+            "cs.CL": 1
+          },
+          "baseline_unique_categories": {
+            "cs.CL": 2,
+            "cs.LG": 1,
+            "cs.CR": 1
+          },
+          "model_unique_ids": [
+            "2601.04666",
+            "2601.07200",
+            "2601.09321",
+            "2601.18998"
+          ],
+          "baseline_unique_ids": [
+            "2509.06350",
+            "2601.03594",
+            "2601.04199",
+            "2601.16466"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 8,
+          "n_baseline_unique": 8,
+          "n_shared": 12,
+          "model_unique_categories": {
+            "cs.CL": 3,
+            "cs.CR": 3,
+            "cs.AI": 1,
+            "cs.LG": 1
+          },
+          "baseline_unique_categories": {
+            "cs.CL": 2,
+            "cs.LG": 2,
+            "cs.CR": 1,
+            "cs.AI": 1,
+            "cs.CV": 1,
+            "eess.SY": 1
+          },
+          "model_unique_ids": [
+            "2411.08862",
+            "2508.10029",
+            "2509.05367",
+            "2601.03699",
+            "2601.04666",
+            "2601.09321",
+            "2601.10173",
+            "2601.18998"
+          ],
+          "baseline_unique_ids": [
+            "2309.06135",
+            "2505.15515",
+            "2601.00968",
+            "2601.03594",
+            "2601.04199",
+            "2601.09721",
+            "2601.15698",
+            "2601.17642"
+          ]
+        },
+        "n_truly_unique": 3,
+        "truly_unique_ids": [
+          "2601.04666",
+          "2601.09321",
+          "2601.18998"
+        ]
+      },
+      "P5": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.4763,
+          "p_value": 2.7081407858869316e-222
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.7391,
+          "jaccard_at_50": 0.5152,
+          "jaccard_at_100": 0.4706
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.6,
+          "jaccard_at_50": 0.4925,
+          "jaccard_at_100": 0.3986
+        },
+        "score_distribution": {
+          "mean": 0.455797,
+          "std": 0.155296,
+          "top20_mean": 0.799805,
+          "top20_std": 0.031008,
+          "rest_mean": 0.452322,
+          "separation": 0.347483,
+          "max": 0.867234,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.282898,
+          "std": 0.13556,
+          "top20_mean": 0.701714,
+          "top20_std": 0.051049,
+          "rest_mean": 0.278668,
+          "separation": 0.423046,
+          "max": 0.820579,
+          "min": -0.10824
+        },
+        "category_recall": {
+          "recall": 0.9,
+          "matches": 18,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "minilm_category_recall": {
+          "recall": 0.9,
+          "matches": 18,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "loo_mrr": {
+          "mrr": 0.0333,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 3,
+          "n_baseline_unique": 3,
+          "n_shared": 17,
+          "model_unique_categories": {
+            "cs.LG": 2,
+            "cs.IT": 1
+          },
+          "baseline_unique_categories": {
+            "cs.LG": 2,
+            "cs.IT": 1
+          },
+          "model_unique_ids": [
+            "2508.02600",
+            "2601.04517",
+            "2601.06381"
+          ],
+          "baseline_unique_ids": [
+            "2503.01805",
+            "2601.17469",
+            "2601.18198"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 5,
+          "n_baseline_unique": 5,
+          "n_shared": 15,
+          "model_unique_categories": {
+            "cs.LG": 4,
+            "cs.IT": 1
+          },
+          "baseline_unique_categories": {
+            "cs.LG": 2,
+            "cs.IT": 1,
+            "cs.AI": 1,
+            "cs.SI": 1
+          },
+          "model_unique_ids": [
+            "2410.01308",
+            "2601.02451",
+            "2601.04517",
+            "2601.06381",
+            "2601.14536"
+          ],
+          "baseline_unique_ids": [
+            "2501.01203",
+            "2601.03062",
+            "2601.11954",
+            "2601.17469",
+            "2601.18198"
+          ]
+        },
+        "n_truly_unique": 2,
+        "truly_unique_ids": [
+          "2601.04517",
+          "2601.06381"
+        ]
+      },
+      "P6": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.5365,
+          "p_value": 1.6087364933032926e-281
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.4815,
+          "jaccard_at_50": 0.5385,
+          "jaccard_at_100": 0.4388
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.2903,
+          "jaccard_at_50": 0.4925,
+          "jaccard_at_100": 0.4388
+        },
+        "score_distribution": {
+          "mean": 0.437951,
+          "std": 0.153754,
+          "top20_mean": 0.741331,
+          "top20_std": 0.046383,
+          "rest_mean": 0.434887,
+          "separation": 0.306444,
+          "max": 0.861621,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.278548,
+          "std": 0.144298,
+          "top20_mean": 0.687381,
+          "top20_std": 0.053461,
+          "rest_mean": 0.274419,
+          "separation": 0.412962,
+          "max": 0.798088,
+          "min": -0.103409
+        },
+        "category_recall": {
+          "recall": 0.8,
+          "matches": 16,
+          "k": 20,
+          "n_seed_categories": 3
+        },
+        "minilm_category_recall": {
+          "recall": 0.8,
+          "matches": 16,
+          "k": 20,
+          "n_seed_categories": 3
+        },
+        "loo_mrr": {
+          "mrr": 0.0336,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 7,
+          "n_baseline_unique": 7,
+          "n_shared": 13,
+          "model_unique_categories": {
+            "cs.CV": 4,
+            "cs.CL": 1,
+            "cs.LG": 1,
+            "eess.IV": 1
+          },
+          "baseline_unique_categories": {
+            "cs.CV": 5,
+            "physics.geo-ph": 1,
+            "cs.CL": 1
+          },
+          "model_unique_ids": [
+            "2410.23530",
+            "2506.21170",
+            "2507.18988",
+            "2601.02881",
+            "2601.03499",
+            "2601.12283",
+            "2601.15102"
+          ],
+          "baseline_unique_ids": [
+            "2403.04279",
+            "2406.18944",
+            "2503.06884",
+            "2503.21791",
+            "2511.16870",
+            "2601.04056",
+            "2601.09213"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 11,
+          "n_baseline_unique": 11,
+          "n_shared": 9,
+          "model_unique_categories": {
+            "cs.CV": 6,
+            "eess.IV": 2,
+            "cs.AI": 1,
+            "cs.LG": 1,
+            "astro-ph.GA": 1
+          },
+          "baseline_unique_categories": {
+            "cs.CV": 3,
+            "eess.AS": 1,
+            "physics.geo-ph": 1,
+            "cs.LG": 1,
+            "cs.CL": 1,
+            "cs.SD": 1,
+            "cs.IR": 1,
+            "cs.CR": 1,
+            "cs.IT": 1
+          },
+          "model_unique_ids": [
+            "2306.04321",
+            "2410.23530",
+            "2501.01761",
+            "2504.13745",
+            "2506.16233",
+            "2507.18988",
+            "2601.02881",
+            "2601.03499",
+            "2601.09044",
+            "2601.12283",
+            "2601.15102"
+          ],
+          "baseline_unique_ids": [
+            "2403.04279",
+            "2502.10495",
+            "2503.06884",
+            "2503.21791",
+            "2506.08457",
+            "2506.12198",
+            "2512.04501",
+            "2601.04056",
+            "2601.13140",
+            "2601.20391",
+            "2601.21284"
+          ]
+        },
+        "n_truly_unique": 6,
+        "truly_unique_ids": [
+          "2410.23530",
+          "2507.18988",
+          "2601.02881",
+          "2601.03499",
+          "2601.12283",
+          "2601.15102"
+        ]
+      },
+      "P7": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.4675,
+          "p_value": 2.62766346379037e-214
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.4815,
+          "jaccard_at_50": 0.6667,
+          "jaccard_at_100": 0.5625
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.3793,
+          "jaccard_at_50": 0.6129,
+          "jaccard_at_100": 0.4085
+        },
+        "score_distribution": {
+          "mean": 0.406469,
+          "std": 0.145328,
+          "top20_mean": 0.797993,
+          "top20_std": 0.049853,
+          "rest_mean": 0.402515,
+          "separation": 0.395478,
+          "max": 0.918185,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.26172,
+          "std": 0.128292,
+          "top20_mean": 0.758481,
+          "top20_std": 0.064406,
+          "rest_mean": 0.256702,
+          "separation": 0.501779,
+          "max": 0.906608,
+          "min": -0.119048
+        },
+        "category_recall": {
+          "recall": 0.95,
+          "matches": 19,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "minilm_category_recall": {
+          "recall": 0.95,
+          "matches": 19,
+          "k": 20,
+          "n_seed_categories": 2
+        },
+        "loo_mrr": {
+          "mrr": 0.0938,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 7,
+          "n_baseline_unique": 7,
+          "n_shared": 13,
+          "model_unique_categories": {
+            "cs.LG": 5,
+            "cs.CR": 1,
+            "cs.DC": 1
+          },
+          "baseline_unique_categories": {
+            "cs.LG": 4,
+            "cs.CR": 2,
+            "cs.CL": 1
+          },
+          "model_unique_ids": [
+            "2405.09037",
+            "2410.05637",
+            "2510.07132",
+            "2512.24286",
+            "2601.01053",
+            "2601.14687",
+            "2601.17183"
+          ],
+          "baseline_unique_ids": [
+            "2312.11220",
+            "2402.16028",
+            "2503.05786",
+            "2506.22727",
+            "2601.00785",
+            "2601.02307",
+            "2601.17512"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 9,
+          "n_baseline_unique": 9,
+          "n_shared": 11,
+          "model_unique_categories": {
+            "cs.LG": 7,
+            "cs.CR": 2
+          },
+          "baseline_unique_categories": {
+            "cs.CR": 5,
+            "cs.LG": 3,
+            "cs.CL": 1
+          },
+          "model_unique_ids": [
+            "2405.09037",
+            "2410.05637",
+            "2412.07454",
+            "2507.14629",
+            "2510.07132",
+            "2601.01053",
+            "2601.14687",
+            "2601.17183",
+            "2601.19745"
+          ],
+          "baseline_unique_ids": [
+            "2202.11393",
+            "2402.16028",
+            "2412.02578",
+            "2503.05786",
+            "2506.22727",
+            "2601.00785",
+            "2601.02307",
+            "2601.04641",
+            "2601.12105"
+          ]
+        },
+        "n_truly_unique": 6,
+        "truly_unique_ids": [
+          "2405.09037",
+          "2410.05637",
+          "2510.07132",
+          "2601.01053",
+          "2601.14687",
+          "2601.17183"
+        ]
+      },
+      "P8": {
+        "rank_correlation_vs_minilm": {
+          "kendall_tau": 0.4979,
+          "p_value": 9.572867417737664e-243
+        },
+        "jaccard_vs_minilm": {
+          "jaccard_at_20": 0.5385,
+          "jaccard_at_50": 0.5152,
+          "jaccard_at_100": 0.5504
+        },
+        "jaccard_vs_tfidf": {
+          "jaccard_at_20": 0.3793,
+          "jaccard_at_50": 0.4085,
+          "jaccard_at_100": 0.4184
+        },
+        "score_distribution": {
+          "mean": 0.447844,
+          "std": 0.154895,
+          "top20_mean": 0.773105,
+          "top20_std": 0.043033,
+          "rest_mean": 0.444559,
+          "separation": 0.328547,
+          "max": 0.870661,
+          "min": 0.0
+        },
+        "minilm_score_distribution": {
+          "mean": 0.274815,
+          "std": 0.136566,
+          "top20_mean": 0.674773,
+          "top20_std": 0.060531,
+          "rest_mean": 0.270775,
+          "separation": 0.403997,
+          "max": 0.806745,
+          "min": -0.115075
+        },
+        "category_recall": {
+          "recall": 0.9,
+          "matches": 18,
+          "k": 20,
+          "n_seed_categories": 4
+        },
+        "minilm_category_recall": {
+          "recall": 0.9,
+          "matches": 18,
+          "k": 20,
+          "n_seed_categories": 4
+        },
+        "loo_mrr": {
+          "mrr": 0.0229,
+          "n_evaluated": 5,
+          "caveat": "MiniLM-entangled: clusters defined by MiniLM. Use as reference, not decision criterion."
+        },
+        "divergent_vs_minilm": {
+          "n_model_unique": 6,
+          "n_baseline_unique": 6,
+          "n_shared": 14,
+          "model_unique_categories": {
+            "cs.LG": 4,
+            "cs.AI": 1,
+            "math.NA": 1
+          },
+          "baseline_unique_categories": {
+            "cs.LG": 5,
+            "math.OC": 1
+          },
+          "model_unique_ids": [
+            "2311.16086",
+            "2405.07098",
+            "2407.17092",
+            "2410.14951",
+            "2410.17764",
+            "2601.03162"
+          ],
+          "baseline_unique_ids": [
+            "2210.05607",
+            "2601.01853",
+            "2601.05732",
+            "2601.12604",
+            "2601.14026",
+            "2601.21750"
+          ]
+        },
+        "divergent_vs_tfidf": {
+          "n_model_unique": 9,
+          "n_baseline_unique": 9,
+          "n_shared": 11,
+          "model_unique_categories": {
+            "cs.LG": 8,
+            "cs.AI": 1
+          },
+          "baseline_unique_categories": {
+            "math.OC": 2,
+            "cs.LG": 2,
+            "stat.ML": 1,
+            "math.SP": 1,
+            "math.ST": 1,
+            "stat.ME": 1,
+            "math.NA": 1
+          },
+          "model_unique_ids": [
+            "2311.16086",
+            "2405.07098",
+            "2407.18384",
+            "2410.14951",
+            "2410.17764",
+            "2502.20580",
+            "2509.18766",
+            "2512.24381",
+            "2601.03162"
+          ],
+          "baseline_unique_ids": [
+            "2103.03191",
+            "2409.20207",
+            "2411.04400",
+            "2505.24529",
+            "2509.25778",
+            "2510.04237",
+            "2601.01853",
+            "2601.17562",
+            "2601.20341"
+          ]
+        },
+        "n_truly_unique": 5,
+        "truly_unique_ids": [
+          "2311.16086",
+          "2405.07098",
+          "2410.14951",
+          "2410.17764",
+          "2601.03162"
+        ]
+      }
     }
   },
-  "timestamp": "2026-03-28T02:13:22.326352+00:00"
+  "timestamp": "2026-03-28T04:13:10.675934+00:00"
 }

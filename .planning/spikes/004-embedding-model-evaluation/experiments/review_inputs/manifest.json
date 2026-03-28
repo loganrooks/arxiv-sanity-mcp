@@ -1,6 +1,6 @@
 {
   "phase": "phase3_review_inputs",
-  "n_reviews": 32,
+  "n_reviews": 40,
   "reviews": [
     {
       "model": "specter2",
@@ -225,7 +225,63 @@
       "type": "blind_comparison",
       "depth": "full",
       "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P8_blind.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P1",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P1.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P2",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P2_blind.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P3",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P3.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P4",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P4.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P5",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P5.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P6",
+      "type": "blind_comparison",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P6_blind.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P7",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P7.json"
+    },
+    {
+      "model": "voyage",
+      "profile": "P8",
+      "type": "characterization",
+      "depth": "full",
+      "path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P8.json"
     }
   ],
-  "timestamp": "2026-03-28T02:14:00.114448+00:00"
+  "timestamp": "2026-03-28T04:13:24.942084+00:00"
 }

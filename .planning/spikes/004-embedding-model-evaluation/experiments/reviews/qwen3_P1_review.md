@@ -176,55 +176,31 @@ Adversarial training in reinforcement learning (RL) is challenging because pertu
 
 ---
 
-## Review
+## Review Instructions
 
-### Per-paper assessment
+You are reviewing the top-20 recommendations from qwen3 for the profile "RL for robotics".
+Papers marked [DIVERGENT] are in qwen3's top-20 but NOT in MiniLM's.
 
-1. **Paper 1 [2601.20668] GPO** -- Direct seed (is a seed paper). Legged robot locomotion via RL with novel action-space shaping. Core topic. Score 0.7950.
-2. **Paper 2 [2601.20846] Sim-to-real via neural stylisation** -- Direct seed. Sim-to-real RL transfer for contact-rich robotic cutting. Core topic. Score 0.7892.
-3. **Paper 3 [2505.22094] ReinFlow** -- Direct seed. Flow matching policy fine-tuning with online RL for robotic control. Core topic. Score 0.7863.
-4. **Paper 4 [2505.06357] DAPPER** -- Direct seed. Preference-based RL for robot skill acquisition on legged robots. Core topic. Score 0.7850.
-5. **Paper 5 [2601.15761] SigEnt-SAC** -- Direct seed. Off-policy actor-critic for real-world robot learning with minimal data. Core topic. Score 0.7842.
-6. **Paper 6 [2509.18631] Sim-and-real co-training** -- Direct connection. Domain adaptation for sim-to-real policy transfer using optimal transport, directly adjacent to the sim-to-real seed. Easily discoverable via sim-to-real literature. Score 0.7399.
-7. **Paper 7 [2504.16680] Uncertainty-aware world model MBRL** -- Direct connection. Offline model-based RL for real robots with epistemic uncertainty, closely related to the real-world deployment theme across multiple seeds. Discoverable but substantive. Score 0.7289.
-8. **Paper 8 [2505.18763] GenPO** -- Direct connection. Diffusion-based policies for on-policy RL in robotic locomotion and manipulation. Adjacent to ReinFlow seed (flow/diffusion policy families). Score 0.7284.
-9. **Paper 9 [2509.04069] DRLR** -- Direct connection. Demonstration-guided deep RL for robotics tasks with sim-to-real deployment. Overlaps with multiple seeds thematically. Score 0.7219.
-10. **Paper 10 [2601.00675] RoboReward** -- Adjacent. Vision-language reward models for robot RL. Shifts focus from policy optimization to reward design, but directly serves the RL-for-robotics pipeline. Discoverable via robotics RL venues. Score 0.7106.
-11. **Paper 11 [2509.25756] SAC Flow** -- Direct connection. Flow-based policies for off-policy RL in robotic manipulation. Close sibling of ReinFlow and GenPO. Score 0.7025.
-12. **Paper 12 [2601.07821] Failure-Aware RL** -- Direct connection. Safety-aware offline-to-online RL for real-world manipulation. Addresses a practical deployment concern (IR Failures) for RL in robotics. Score 0.7014.
-13. **Paper 13 [DIVERGENT] [2601.18107] MoReBRAC** -- Adjacent. Model-based offline RL with synthetic transition augmentation, benchmarked on MuJoCo. No explicit robotic hardware deployment, but the framing around "safety-critical domains like industrial robotics" and the offline RL methodology are adjacent to the seeds' concerns. This is a genuine signal -- it surfaces the offline RL data-augmentation line of work that the seeds touch on indirectly. A robotics RL researcher would likely find this via D4RL benchmark literature but might not have it on their radar as a robotics-relevant paper. Score 0.6924.
-14. **Paper 14 [2512.17853] AnyTask** -- Direct connection. Automated task and data generation for sim-to-real policy learning, combining LLM-guided planning with RL. Highly relevant to the sim-to-real theme. Score 0.6879.
-15. **Paper 15 [DIVERGENT] [2601.11143] Hydraulic quadruped locomotion** -- Direct connection. RL for sim-to-real transfer on a heavy hydraulic quadruped robot (>300 kg). Directly relevant to legged locomotion seeds (GPO, DAPPER). The divergence from MiniLM is somewhat surprising given how topically aligned this is -- it may be that the hydraulic/actuator-modeling framing caused MiniLM to miss it. Genuinely useful paper for this profile. Easily discoverable via robotics locomotion venues. Score 0.6863.
-16. **Paper 16 [DIVERGENT] [2601.01803] Moments Matter -- PPO stability** -- Adjacent. Distributional RL for stabilizing policy optimization in continuous control, evaluated on Walker2D. No explicit robotics deployment, but the stability concern for PPO-based locomotion policies is directly relevant to seeds like GPO. A meaningful signal about RL optimization foundations that a robotics researcher might miss. Score 0.6856.
-17. **Paper 17 [DIVERGENT] [2601.12730] DCPO -- distribution-centric policy optimization** -- Noise/tangential. This paper is about RL for LLM training (GRPO, entropy collapse in LLM reasoning), not robotics. The "reinforcement learning" vocabulary matches, but the application domain (LLM alignment/reasoning) is completely disjoint from the seed profile. This is a vocabulary-match false positive. Score 0.6856.
-18. **Paper 18 [2601.06748] TT-VLA** -- Adjacent. Test-time RL adaptation for vision-language-action models in robotics. Shifts from training-time to inference-time RL, which is a genuinely different angle. Relevant to the VLA+RL intersection. Score 0.6845.
-19. **Paper 19 [DIVERGENT] [2512.24740] Microrobot locomotion with RL** -- Adjacent/provocative. RL for sub-centimeter quadrupedal microrobot locomotion with on-device edge ML constraints. This is a genuinely different scale and constraint regime than the seeds' macro-scale robots. The connection (RL for legged locomotion + sim-to-real) is real, but the hardware constraints (ARM Cortex-M0, 5 MHz, Int8 quantization) introduce concerns absent from the seeds. A productive provocation -- would a researcher interested in standard-scale robot RL want to know about microrobot constraints? Possibly yes, for understanding deployment limits. Score 0.6830.
-20. **Paper 20 [DIVERGENT] [2601.07118] Reward-preserving adversarial RL** -- Adjacent. Adversarial training for robust RL with adaptive perturbation strength. No robotics deployment, but the robustness-under-perturbation concern is relevant to sim-to-real transfer. This sits at the RL theory/robustness boundary. A researcher focused on sim-to-real might find this useful for understanding domain randomization alternatives. Score 0.6726.
+### Full Review (all sections required)
 
-### Set-level assessment
+1. **Per-paper assessment**: For each paper:
+   - Connection to seeds (direct, adjacent, provocative, noise)
+   - For DIVERGENT papers especially: is this a genuinely different signal?
+   - Discoverability: would a researcher find this via other means?
 
-This set maps a recognizable research landscape centered on RL for robotic control, with strong coverage of the core methodological threads:
+2. **Set-level assessment**:
+   - Does this set map a research landscape or just list similar papers?
+   - Coverage: methods, applications, critiques, foundations?
+   - What's conspicuously absent?
+   - How does the character of divergent papers differ from shared papers?
 
-**Well covered:** Policy optimization variants (PPO-based, SAC-based, flow/diffusion-based), sim-to-real transfer, offline-to-online RL, demonstration-guided RL, reward design, safety/failure awareness, legged locomotion, manipulation.
+3. **Emergent observations**:
+   - What kind of signal does this model capture that MiniLM doesn't?
+   - Is the divergence signal (coherent, valuable) or noise (scattered, irrelevant)?
+   - Any productive provocations among the recommendations?
 
-**Coverage gaps:** No papers on multi-agent RL for robotics, no manipulation-specific dexterity work beyond generic benchmarks, no RL for aerial or underwater robots (except the microrobot divergent paper), no explicit work on reward shaping or curriculum learning for robotics, no coverage of the RL-from-human-feedback angle specific to robotics (RoboReward partially addresses this). No papers on RL hardware acceleration or real-time control architectures.
+4. **Absent researcher note**:
+   - What would you need to know about the researcher to assess this properly?
 
-**Character of divergent papers:** Mixed quality. Two of the six divergent papers (hydraulic quadruped, microrobot) are directly robotics-relevant and represent genuine additions. Two more (MoReBRAC, moments-matter PPO stability) are adjacent RL theory that a robotics researcher might find useful. One (reward-preserving adversarial RL) is marginally relevant. One (DCPO for LLM training) is clear noise from vocabulary overlap between "RL for robotics" and "RL for LLMs."
-
-The set leans heavily toward method papers and has limited coverage of applications beyond locomotion and generic manipulation benchmarks. No critique papers or foundational analyses of when RL fails for robotics.
-
-### Emergent observations
-
-Qwen3's divergence signal is partially coherent. The model picks up on RL-for-locomotion papers that MiniLM misses (hydraulic quadruped is a genuine find), and it surfaces RL theory papers (distributional critics, adversarial training) that sit at the boundary of the profile. However, the DCPO paper reveals that Qwen3's embedding space does not cleanly separate "RL for robotics" from "RL for LLMs" -- both share the vocabulary of policy optimization, entropy, exploration-exploitation, and PPO.
-
-The microrobot paper is the most interesting provocation in the set. It introduces hardware-constrained RL deployment at a scale none of the seeds consider, which could spark useful thinking about deployment constraints more broadly.
-
-With 14/20 overlap (6 unique), Qwen3 shows moderate divergence from MiniLM on this profile. The divergent papers are roughly 3 genuine, 2 adjacent, 1 noise -- a reasonable hit rate but not exceptional.
-
-### Absent researcher note
-
-Assessment depends heavily on whether the researcher is: (a) a robotics engineer looking for deployable RL methods for a specific platform, (b) an RL researcher using robotics as a benchmark domain, or (c) a systems researcher interested in the full pipeline from simulation to hardware. For (a), the hydraulic quadruped and microrobot papers are more valuable; for (b), the RL theory divergent papers (MoReBRAC, moments-matter) are more relevant; for (c), the sim-to-real papers dominate regardless. The DCPO false positive would be equally useless for all three.
-
-### Metric divergence flags
-
-The overlap of 14/20 with MiniLM is moderate but not surprising for a well-defined topical profile like "RL for robotics." No strong contradiction between qualitative impression and the quantitative overlap figure. The scores for divergent papers (0.68-0.69 range) are noticeably lower than the shared papers (0.70-0.79), which aligns with the qualitative sense that the divergent papers are more peripheral. The one clear noise paper (DCPO, score 0.6856) scores comparably to genuinely relevant divergent papers (hydraulic quadruped, 0.6863), suggesting the similarity scores do not reliably distinguish topical relevance from vocabulary overlap in the tail of the distribution.
+5. **Metric divergence flags**:
+   - Does your qualitative impression contradict quantitative expectations?

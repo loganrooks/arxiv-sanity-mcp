@@ -176,55 +176,31 @@ Large language models (LLMs) are increasingly deployed as intelligent tutoring s
 
 ---
 
-## Review
+## Review Instructions
 
-### Per-paper assessment
+You are reviewing the top-20 recommendations from qwen3 for the profile "Language model reasoning".
+Papers marked [DIVERGENT] are in qwen3's top-20 but NOT in MiniLM's.
 
-1. **Paper 1 [2601.03559] DiffCoT** -- Direct seed. Diffusion-styled CoT reasoning reformulating CoT as iterative denoising. Core topic. Score 0.8547.
-2. **Paper 2 [2601.08058] Latent computational mode** -- Direct connection. Discovers latent reasoning features in LLMs that can substitute for explicit CoT, directly challenging the necessity of CoT. Would be found via CoT literature but offers a genuinely contrarian perspective. Score 0.8504.
-3. **Paper 3 [2506.14641] Zero-shot vs few-shot CoT** -- Direct seed. Revisits whether CoT exemplars help strong models, finding they primarily align output format. Core topic. Score 0.8436.
-4. **Paper 4 [2601.03769] EntroCoT** -- Direct connection. Entropy-based segmentation and evaluation of CoT reasoning traces, addressing "answer right but reasoning wrong." Directly extends the seed concern about CoT quality. Score 0.8399.
-5. **Paper 5 [2507.11408] KisMATH / CCGraphs** -- Direct connection. Causal graph extraction from CoT traces for mathematical reasoning, investigating whether LLMs internally realize reasoning structures. Adjacent to seeds' concern about CoT mechanisms. Score 0.8258.
-6. **Paper 6 [2508.01191] CoT as mirage** -- Direct connection (critical). Tests whether CoT reasoning reflects genuine learned reasoning or distribution-dependent inductive bias. A critique paper -- directly relevant and challenging to the CoT paradigm the seeds inhabit. Score 0.8169.
-7. **Paper 7 [2601.10775] LLMs for Game Theory** -- Direct seed. Entropy-guided in-context learning with adaptive CoT for sequential decision-making. Core topic. Score 0.8106.
-8. **Paper 8 [2501.01203] HetGCoT** -- Direct seed. Graph-enhanced CoT for academic question answering. Core topic. Score 0.7871.
-9. **Paper 9 [2503.10095] Cognitive-Mental-LLM** -- Direct seed. Evaluating CoT reasoning techniques for mental health text classification. Core topic. Score 0.7825.
-10. **Paper 10 [2601.03682] FSLR** -- Direct connection. First-step logical reasoning to address logical relationship understanding failures in CoT-SFT. Directly improves on CoT training methodology. Score 0.7694.
-11. **Paper 11 [2510.24940] SemCoT** -- Direct connection. Accelerating CoT via semantically-aligned implicit tokens. Addresses efficiency without sacrificing CoT quality. Score 0.7606.
-12. **Paper 12 [2305.14934] GRACE** -- Direct connection. Discriminator-guided step-level verification for CoT decoding. Addresses error propagation in multi-step reasoning. Score 0.7592.
-13. **Paper 13 [DIVERGENT] [2502.15401] Problem-solving logic guided curriculum ICL** -- Adjacent. Curriculum-based in-context learning using problem-solving logic analysis rather than surface features. This is a genuine signal -- it shifts from CoT prompting to ICL example selection via deeper structural analysis, which complements the seeds' focus on CoT quality. A researcher focused on CoT might not find this directly via CoT keywords since it emphasizes ICL curriculum design. Score 0.7509.
-14. **Paper 14 [2601.09805] Attention-aware intervention for logical reasoning** -- Direct connection. Inference-time attention reweighting to improve logical reasoning in CoT. Non-interactive, end-to-end approach. Score 0.7507.
-15. **Paper 15 [DIVERGENT] [2411.11930] AtomThink -- multimodal slow thinking** -- Adjacent/provocative. Extends CoT-style "slow thinking" to multimodal LLMs with atomic step reasoning. The connection to the seeds' text-only CoT focus is real but extends to vision-language reasoning. This surfaces a genuinely different dimension (multimodality) that text-CoT seeds do not cover. A researcher narrowly focused on text CoT might miss this, but one interested in the broader reasoning paradigm would value it. Score 0.7449.
-16. **Paper 16 [DIVERGENT] [2601.04254] Scaling trends for multi-hop reasoning** -- Adjacent. Controlled study of multi-hop contextual reasoning in mid-scale LLMs, examining multi-agent amplification and MoE scaling. The connection to CoT is indirect -- this is about reasoning capability scaling rather than CoT methodology. A genuine but tangential signal about what makes models reason better. Score 0.7373.
-17. **Paper 17 [DIVERGENT] [2601.19917] PILOT -- planning via latent optimization** -- Adjacent. Internalizing strategic planning from teacher models into compact LLMs via latent guidance vectors. Not specifically about CoT but about the broader challenge of multi-step reasoning in smaller models. The connection is that CoT is one mechanism for the planning capacity this paper tries to internalize differently. Potentially valuable for researchers thinking about alternatives to explicit CoT. Score 0.7310.
-18. **Paper 18 [DIVERGENT] [2512.04359] Entropy-guided RL for LLM reasoning** -- Adjacent. RL with semantic and token entropy signals to improve LLM reasoning while avoiding entropy collapse. Connects to the entropy theme in seed [2601.10775] and to the broader question of training reasoning capabilities. Not specifically CoT-focused but addresses the reasoning capacity that CoT leverages. Score 0.7257.
-19. **Paper 19 [DIVERGENT] [2601.11517] Do explanations generalize across LRMs?** -- Adjacent/provocative. Tests whether CoT explanations from one large reasoning model generalize to others. Directly relevant to the question of whether CoT captures genuine reasoning vs. model-specific patterns. This is a provocative paper for the CoT community -- if explanations do not generalize, what does that say about CoT as a reasoning mechanism? Score 0.7220.
-20. **Paper 20 [2601.14560] PedagogicalRL-Thinking** -- Adjacent. RL-based training of reasoning traces for educational tutoring. Extends CoT reasoning to a specific application domain with pedagogical theory. Score 0.7211.
+### Full Review (all sections required)
 
-### Set-level assessment
+1. **Per-paper assessment**: For each paper:
+   - Connection to seeds (direct, adjacent, provocative, noise)
+   - For DIVERGENT papers especially: is this a genuinely different signal?
+   - Discoverability: would a researcher find this via other means?
 
-This set provides strong coverage of the CoT reasoning landscape with good depth across several dimensions:
+2. **Set-level assessment**:
+   - Does this set map a research landscape or just list similar papers?
+   - Coverage: methods, applications, critiques, foundations?
+   - What's conspicuously absent?
+   - How does the character of divergent papers differ from shared papers?
 
-**Well covered:** CoT methodology (DiffCoT, EntroCoT, SemCoT, GRACE), CoT evaluation and critique (mirage paper, KisMATH, generalization of explanations), logical reasoning improvements (FSLR, attention-aware intervention), efficiency (SemCoT, implicit reasoning), applications (game theory, mental health, education, academic QA).
+3. **Emergent observations**:
+   - What kind of signal does this model capture that MiniLM doesn't?
+   - Is the divergence signal (coherent, valuable) or noise (scattered, irrelevant)?
+   - Any productive provocations among the recommendations?
 
-**Coverage balance:** The set includes both CoT advocacy papers (improvements, new methods) and critical/questioning papers (CoT as mirage, explanation generalization), which gives it genuine landscape-mapping quality rather than just listing similar positive results.
+4. **Absent researcher note**:
+   - What would you need to know about the researcher to assess this properly?
 
-**Coverage gaps:** No papers on CoT for code generation or formal verification. No papers on CoT distillation (training smaller models to produce CoT). Limited coverage of tool-augmented reasoning where CoT guides tool use. No papers on CoT evaluation benchmarks or standardized metrics for reasoning quality.
-
-**Character of divergent papers:** The 6 divergent papers form a coherent cluster around "reasoning beyond narrow CoT" -- they address multimodal reasoning (AtomThink), reasoning scaling (multi-hop study), planning internalization (PILOT), RL-for-reasoning training (entropy-guided RL), and explanation generalization. This is a meaningfully different signal from the shared papers, which tend to be more narrowly about CoT prompting methodology. The divergent papers broaden the aperture from "how to do CoT better" to "how does reasoning work in LLMs more broadly."
-
-### Emergent observations
-
-Qwen3 appears to capture a broader "reasoning in LLMs" signal compared to MiniLM's likely tighter "chain-of-thought prompting" signal. The divergent papers are notably coherent -- all 6 are genuinely about reasoning in some form, and none are obvious noise. This is the strongest divergence signal quality across the Qwen3 reviews so far.
-
-The most productive provocation is the combination of the "CoT as mirage" paper (shared) with the "do explanations generalize" paper (divergent). Together they raise a fundamental question: if CoT is distribution-dependent and model-specific, what does that mean for the entire CoT research program? A researcher who encounters both papers in the same recommendation set is better served than one who sees only the methodological improvement papers.
-
-The AtomThink paper is the other notable provocation -- it suggests that the slow-thinking paradigm can be extended to multimodal settings with atomic step decomposition, which is a direction most text-CoT researchers have not considered.
-
-### Absent researcher note
-
-The key unknown is whether the researcher is: (a) a CoT methodology researcher focused on improving prompting techniques, (b) a reasoning researcher interested in the broader question of how LLMs reason, or (c) an application developer using CoT as a tool for downstream tasks. For (a), the shared papers are more valuable and the divergent papers are distractions. For (b), the divergent papers are the most interesting part of the set. For (c), the application papers (game theory, mental health, education) are most relevant. The profile name "Language model reasoning" is ambiguous between these interpretations.
-
-### Metric divergence flags
-
-With 14/20 overlap (6 unique), Qwen3 shows moderate divergence from MiniLM. The qualitative impression is that this divergence is unusually coherent and valuable -- all 6 divergent papers are genuinely about reasoning and none are noise. This is a better hit rate than the P1 review and may indicate that Qwen3's embedding space captures a broader conceptual neighborhood for "reasoning" than MiniLM does. The divergent paper scores (0.72-0.75) sit in a narrower and higher band than P1's divergent scores (0.67-0.69), which aligns with the qualitative sense that these divergent papers are more topically relevant.
+5. **Metric divergence flags**:
+   - Does your qualitative impression contradict quantitative expectations?

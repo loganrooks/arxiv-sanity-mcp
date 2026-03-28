@@ -294,8 +294,58 @@
       }
     },
     "voyage": {
-      "status": "SKIP",
-      "reason": "embeddings not found"
+      "status": "PASS",
+      "n_flagged_profiles": 0,
+      "profiles": {
+        "P1": {
+          "top20_spread": 0.038754,
+          "top20_gap": 0.399789,
+          "max_score": 0.887749,
+          "flags": []
+        },
+        "P2": {
+          "top20_spread": 0.051001,
+          "top20_gap": 0.344883,
+          "max_score": 0.914817,
+          "flags": []
+        },
+        "P3": {
+          "top20_spread": 0.051785,
+          "top20_gap": 0.32129,
+          "max_score": 0.855906,
+          "flags": []
+        },
+        "P4": {
+          "top20_spread": 0.037629,
+          "top20_gap": 0.454967,
+          "max_score": 0.932551,
+          "flags": []
+        },
+        "P5": {
+          "top20_spread": 0.031008,
+          "top20_gap": 0.347483,
+          "max_score": 0.867234,
+          "flags": []
+        },
+        "P6": {
+          "top20_spread": 0.046383,
+          "top20_gap": 0.306444,
+          "max_score": 0.861621,
+          "flags": []
+        },
+        "P7": {
+          "top20_spread": 0.049853,
+          "top20_gap": 0.395478,
+          "max_score": 0.918185,
+          "flags": []
+        },
+        "P8": {
+          "top20_spread": 0.043033,
+          "top20_gap": 0.328547,
+          "max_score": 0.870661,
+          "flags": []
+        }
+      }
     }
   },
   "structural_comparison": {
@@ -360,8 +410,20 @@
       "note": "High (>0.9) = same pool; Low (<0.5) = investigate bias vs real difference"
     },
     "voyage": {
-      "status": "SKIP"
+      "per_profile_jaccard_100": {
+        "P1": 0.6,
+        "P2": 0.4706,
+        "P3": 0.4388,
+        "P4": 0.5625,
+        "P5": 0.4706,
+        "P6": 0.4388,
+        "P7": 0.5625,
+        "P8": 0.5504
+      },
+      "mean_jaccard_100": 0.5118,
+      "min_jaccard_100": 0.4388,
+      "note": "High (>0.9) = same pool; Low (<0.5) = investigate bias vs real difference"
     }
   },
-  "timestamp": "2026-03-28T02:13:10.025014+00:00"
+  "timestamp": "2026-03-28T04:12:58.785691+00:00"
 }

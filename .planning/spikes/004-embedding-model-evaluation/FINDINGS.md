@@ -2,7 +2,7 @@
 spike: "004"
 status: complete
 date: 2026-03-28
-voyage_status: pending (API embedding in progress)
+voyage_status: complete (8% embedding failure rate — 160/2000 papers, rate limit)
 ---
 
 # Spike 004 Findings: Embedding Model Evaluation
@@ -15,7 +15,7 @@ These findings hold for:
 - **Profiles**: 8 interest profiles constructed from MiniLM BERTopic clusters
 - **Assessment**: AI qualitative review (no human judges)
 - **Sample validation**: GO (perfect MiniLM baseline, no challenger degeneracy)
-- **Voyage-4**: Pending — API embedding in progress. Findings below cover 4 local challengers only.
+- **Voyage-4**: Complete with 8% embedding failure rate (160/2000 papers failed due to API rate limiting). Effective pool ~1840 papers. Findings cover all 5 challengers.
 
 ### Standing caveats
 - Interest profiles are MiniLM-entangled (constructed from MiniLM BERTopic clusters)
@@ -31,15 +31,15 @@ These findings hold for:
 | Stella v5 400M | 1024 | divergent | 0.379 | 0.574 | 81s |
 | Qwen3-Embedding-0.6B | 1024 | divergent | 0.333 | 0.550 | 98s |
 | GTE-large-en-v1.5 | 1024 | divergent | 0.481 | 0.639 | 117s |
-| Voyage-4 | 1024 | *pending* | — | — | ~37 min (API) |
+| Voyage-4 | 1024 | divergent | 0.333 | 0.575 | ~117 min (API, rate-limited) |
 
-All four local challengers classified **divergent** (min J@20 < 0.8 on at least one profile). This was unexpected — the design anticipated some models would fall into mid-overlap or high-overlap bands.
+All five challengers classified **divergent** (min J@20 < 0.8 on at least one profile). This was unexpected — the design anticipated some models would fall into mid-overlap or high-overlap bands.
 
 ## Pre-registered Predictions
 
 | ID | Prediction | Result | Notes |
 |----|-----------|--------|-------|
-| P1 | Voyage J@20 > 0.717 (Spike 003) on larger sample | PENDING | Voyage embedding in progress |
+| P1 | Voyage J@20 > 0.717 (Spike 003) on larger sample | **MIXED** | P1: J@20=0.818 (confirmed — higher on larger sample). But P2: J@20=0.333 (dramatically divergent on LM reasoning). Mean 0.575 — Voyage is not redundant, it's profile-dependent. |
 | P2 | At least one local model J@20 < 0.7 on 2+ profiles | **CONFIRMED** | All 4 models show J@20 < 0.7 on 3+ profiles. Qwen3 shows < 0.6 on 4/8. |
 | P3 | SPECTER2 redundancy holds across all 8 profiles | **FALSIFIED** | SPECTER2 J@20 = 0.379 on P3 (Quantum), 0.538 on P2/P8. Redundancy finding from Spike 003 does not generalize. |
 | P4 | Divergent models show qualitatively different paper types | **CONFIRMED** | Each model captures a distinct signal character (see per-model findings) |
@@ -175,6 +175,39 @@ GTE's wider methodological envelope is a modest but real signal. It is the safes
 
 #### Qualitative review summary
 GTE captures a broader methodological envelope than MiniLM — pulling in foundational work not explicitly labeled for the target domain. Divergent papers are coherent and mildly valuable, extending profiles into methodology substrate without losing topical coherence. No noise observed. No strong productive provocations. The most conservative challenger — least divergent, most correlated, lowest risk.
+
+### Voyage-4
+
+**Classification:** divergent
+**Signal character:** Broad semantic similarity with strong profile-dependence. Most MiniLM-like on narrow profiles (P1 RL: J@20=0.818), most divergent on broad conceptual profiles (P2 LM reasoning: J@20=0.333). Lowest mean tau (0.500) of all challengers.
+**Limitation:** 8% embedding failure rate (160/2000 papers). Effective pool ~1840 papers.
+
+| Profile | J@20 vs MiniLM | Tau | Cat Recall | J@20 vs TF-IDF | Truly Unique |
+|---------|---------------|-----|------------|----------------|-------------|
+| P1 | 0.818 | 0.525 | 0.80 | 0.538 | 2 |
+| P2 | 0.333 | 0.524 | 0.60 | 0.481 | 8 |
+| P3 | 0.538 | 0.386 | 0.70 | 0.538 | 3 |
+| P4 | 0.667 | 0.582 | 0.85 | 0.481 | 3 |
+| P5 | 0.739 | 0.476 | 0.90 | 0.667 | 2 |
+| P6 | 0.481 | 0.536 | 0.80 | 0.481 | 6 |
+| P7 | 0.481 | 0.468 | 0.95 | 0.481 | 6 |
+| P8 | 0.538 | 0.498 | 0.90 | 0.333 | 5 |
+
+#### Measurement confidence
+Medium. Voyage embeddings are API-generated with provider-side model that cannot be version-pinned. 8% failure rate means 160 papers are missing from comparisons. These papers never appear in top-K (they score 0), so top-K rankings are valid but computed over a smaller effective pool. Findings are not reproducible at checkpoint level due to potential API model drift.
+
+#### Interpretation
+Voyage shows the most extreme profile-dependence of any model: J@20 ranges from 0.818 (P1) to 0.333 (P2). On P1 (narrow, well-defined RL for robotics), Voyage agrees with MiniLM almost completely — 18/20 shared papers. On P2 (broader LM reasoning), it diverges dramatically with 8 truly unique papers.
+
+The blind comparison on P2 was the most consequential Voyage review. The reviewer found the divergent papers are *not noise* — they surface reasoning failure modes and alternative mechanisms that are genuinely valuable and complementary to MiniLM's CoT methodology focus. A model with the lowest quantitative agreement is producing qualitatively excellent recommendations.
+
+The lowest mean tau of all challengers (0.500) suggests Voyage structures the similarity space quite differently from MiniLM at a global level, even where top-K overlap is high.
+
+#### Extrapolation conditions
+Voyage's profile-dependence pattern — high agreement on narrow profiles, high divergence on broad conceptual profiles — may be a general property of larger embedding models (1024-dim) vs MiniLM (384-dim). But this cannot be confirmed without testing on additional profiles and domains. The API dependency and 8% failure rate are practical constraints that limit Voyage's utility for this project's local-first architecture.
+
+#### Qualitative review summary
+Voyage captures broader conceptual similarity on open-ended profiles. Its P2 divergence was qualitatively validated as the most interesting finding of the entire spike — reasoning failure modes and alternative reasoning mechanisms that none of the other models or TF-IDF surface. But: API dependency, provider drift risk, rate limiting, and 8% failure rate make it operationally problematic. The signal is real; the delivery mechanism is unreliable for local-first deployment.
 
 ## Cross-Model Analysis
 

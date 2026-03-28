@@ -79,6 +79,25 @@
         "P7": 0.6,
         "P8": 0.4815
       }
+    },
+    "voyage": {
+      "classification": "divergent",
+      "min_jaccard_20": 0.3333,
+      "mean_jaccard_20": 0.5747,
+      "upgraded": false,
+      "upgrade_reasons": [
+        "score_separation_differs_notably"
+      ],
+      "per_profile_jaccard_20": {
+        "P1": 0.8182,
+        "P2": 0.3333,
+        "P3": 0.5385,
+        "P4": 0.6667,
+        "P5": 0.7391,
+        "P6": 0.4815,
+        "P7": 0.4815,
+        "P8": 0.5385
+      }
     }
   },
   "review_coverage_table": {
@@ -87,5 +106,5 @@
     "high_overlap": "3 profiles (2 divergent + 1 random), abbreviated review",
     "near_identical": "2 profiles (most divergent + 1 random), abbreviated review"
   },
-  "timestamp": "2026-03-28T02:13:22.352351+00:00"
+  "timestamp": "2026-03-28T04:13:10.693156+00:00"
 }
