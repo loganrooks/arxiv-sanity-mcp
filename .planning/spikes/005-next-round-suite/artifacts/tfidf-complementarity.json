@@ -1,0 +1,2858 @@
+{
+  "analysis": "tfidf_complementarity",
+  "k_values": [
+    20,
+    50,
+    100
+  ],
+  "profiles": {
+    "P1": {
+      "profile_name": "RL for robotics",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 23,
+            "union_size_minilm_plus_tfidf": 23,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 3,
+            "tfidf_only_count": 3,
+            "model_truly_unique_count": 3,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 18,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7826,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7391
+          },
+          "50": {
+            "union_size_minilm_plus_model": 56,
+            "union_size_minilm_plus_tfidf": 66,
+            "union_delta_vs_tfidf": -10,
+            "model_only_count": 6,
+            "tfidf_only_count": 16,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 14,
+            "union_seed_category_matches_minilm_plus_model": 33,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5893,
+            "union_seed_category_matches_minilm_plus_tfidf": 37,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5606
+          },
+          "100": {
+            "union_size_minilm_plus_model": 120,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -14,
+            "model_only_count": 20,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 12,
+            "tfidf_truly_unique_count": 26,
+            "union_seed_category_matches_minilm_plus_model": 61,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5083,
+            "union_seed_category_matches_minilm_plus_tfidf": 61,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4552
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 23,
+            "union_size_minilm_plus_tfidf": 23,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 3,
+            "tfidf_only_count": 3,
+            "model_truly_unique_count": 3,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 19,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8261,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7391
+          },
+          "50": {
+            "union_size_minilm_plus_model": 58,
+            "union_size_minilm_plus_tfidf": 66,
+            "union_delta_vs_tfidf": -8,
+            "model_only_count": 8,
+            "tfidf_only_count": 16,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 14,
+            "union_seed_category_matches_minilm_plus_model": 36,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6207,
+            "union_seed_category_matches_minilm_plus_tfidf": 37,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5606
+          },
+          "100": {
+            "union_size_minilm_plus_model": 126,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -8,
+            "model_only_count": 26,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 18,
+            "tfidf_truly_unique_count": 26,
+            "union_seed_category_matches_minilm_plus_model": 64,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5079,
+            "union_seed_category_matches_minilm_plus_tfidf": 61,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4552
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 23,
+            "union_delta_vs_tfidf": 3,
+            "model_only_count": 6,
+            "tfidf_only_count": 3,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 19,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7308,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7391
+          },
+          "50": {
+            "union_size_minilm_plus_model": 60,
+            "union_size_minilm_plus_tfidf": 66,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 10,
+            "tfidf_only_count": 16,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 12,
+            "union_seed_category_matches_minilm_plus_model": 34,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5667,
+            "union_seed_category_matches_minilm_plus_tfidf": 37,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5606
+          },
+          "100": {
+            "union_size_minilm_plus_model": 122,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -12,
+            "model_only_count": 22,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 15,
+            "tfidf_truly_unique_count": 27,
+            "union_seed_category_matches_minilm_plus_model": 60,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4918,
+            "union_seed_category_matches_minilm_plus_tfidf": 61,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4552
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 24,
+            "union_size_minilm_plus_tfidf": 23,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 4,
+            "tfidf_only_count": 3,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 18,
+            "union_seed_category_match_rate_minilm_plus_model": 0.75,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7391
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 66,
+            "union_delta_vs_tfidf": -5,
+            "model_only_count": 11,
+            "tfidf_only_count": 16,
+            "model_truly_unique_count": 8,
+            "tfidf_truly_unique_count": 13,
+            "union_seed_category_matches_minilm_plus_model": 37,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6066,
+            "union_seed_category_matches_minilm_plus_tfidf": 37,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5606
+          },
+          "100": {
+            "union_size_minilm_plus_model": 124,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -10,
+            "model_only_count": 24,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 16,
+            "tfidf_truly_unique_count": 26,
+            "union_seed_category_matches_minilm_plus_model": 58,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4677,
+            "union_seed_category_matches_minilm_plus_tfidf": 61,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4552
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 21,
+            "union_size_minilm_plus_tfidf": 23,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 1,
+            "tfidf_only_count": 3,
+            "model_truly_unique_count": 1,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 17,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8095,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7391
+          },
+          "50": {
+            "union_size_minilm_plus_model": 60,
+            "union_size_minilm_plus_tfidf": 66,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 10,
+            "tfidf_only_count": 16,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 12,
+            "union_seed_category_matches_minilm_plus_model": 33,
+            "union_seed_category_match_rate_minilm_plus_model": 0.55,
+            "union_seed_category_matches_minilm_plus_tfidf": 37,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5606
+          },
+          "100": {
+            "union_size_minilm_plus_model": 127,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -7,
+            "model_only_count": 27,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 18,
+            "tfidf_truly_unique_count": 25,
+            "union_seed_category_matches_minilm_plus_model": 62,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4882,
+            "union_seed_category_matches_minilm_plus_tfidf": 61,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4552
+          }
+        }
+      }
+    },
+    "P2": {
+      "profile_name": "Language model reasoning",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 6,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 5,
+            "union_seed_category_matches_minilm_plus_model": 16,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6154,
+            "union_seed_category_matches_minilm_plus_tfidf": 16,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5926
+          },
+          "50": {
+            "union_size_minilm_plus_model": 64,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 14,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 12,
+            "tfidf_truly_unique_count": 15,
+            "union_seed_category_matches_minilm_plus_model": 35,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5469,
+            "union_seed_category_matches_minilm_plus_tfidf": 31,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4627
+          },
+          "100": {
+            "union_size_minilm_plus_model": 130,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -4,
+            "model_only_count": 30,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 24,
+            "tfidf_truly_unique_count": 28,
+            "union_seed_category_matches_minilm_plus_model": 65,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5,
+            "union_seed_category_matches_minilm_plus_tfidf": 57,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4254
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 6,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 3,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 15,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5769,
+            "union_seed_category_matches_minilm_plus_tfidf": 16,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5926
+          },
+          "50": {
+            "union_size_minilm_plus_model": 59,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -8,
+            "model_only_count": 9,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 15,
+            "union_seed_category_matches_minilm_plus_model": 32,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5424,
+            "union_seed_category_matches_minilm_plus_tfidf": 31,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4627
+          },
+          "100": {
+            "union_size_minilm_plus_model": 127,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -7,
+            "model_only_count": 27,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 20,
+            "tfidf_truly_unique_count": 27,
+            "union_seed_category_matches_minilm_plus_model": 58,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4567,
+            "union_seed_category_matches_minilm_plus_tfidf": 57,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4254
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 6,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 5,
+            "union_seed_category_matches_minilm_plus_model": 16,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6154,
+            "union_seed_category_matches_minilm_plus_tfidf": 16,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5926
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 11,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 9,
+            "tfidf_truly_unique_count": 15,
+            "union_seed_category_matches_minilm_plus_model": 33,
+            "union_seed_category_match_rate_minilm_plus_model": 0.541,
+            "union_seed_category_matches_minilm_plus_tfidf": 31,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4627
+          },
+          "100": {
+            "union_size_minilm_plus_model": 135,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 35,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 27,
+            "tfidf_truly_unique_count": 26,
+            "union_seed_category_matches_minilm_plus_model": 64,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4741,
+            "union_seed_category_matches_minilm_plus_tfidf": 57,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4254
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 24,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 4,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 5,
+            "union_seed_category_matches_minilm_plus_model": 13,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5417,
+            "union_seed_category_matches_minilm_plus_tfidf": 16,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5926
+          },
+          "50": {
+            "union_size_minilm_plus_model": 64,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 14,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 12,
+            "tfidf_truly_unique_count": 15,
+            "union_seed_category_matches_minilm_plus_model": 34,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5312,
+            "union_seed_category_matches_minilm_plus_tfidf": 31,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4627
+          },
+          "100": {
+            "union_size_minilm_plus_model": 130,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -4,
+            "model_only_count": 30,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 21,
+            "tfidf_truly_unique_count": 25,
+            "union_seed_category_matches_minilm_plus_model": 62,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4769,
+            "union_seed_category_matches_minilm_plus_tfidf": 57,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4254
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 25,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 5,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 3,
+            "tfidf_truly_unique_count": 5,
+            "union_seed_category_matches_minilm_plus_model": 16,
+            "union_seed_category_match_rate_minilm_plus_model": 0.64,
+            "union_seed_category_matches_minilm_plus_tfidf": 16,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5926
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 11,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 9,
+            "tfidf_truly_unique_count": 15,
+            "union_seed_category_matches_minilm_plus_model": 33,
+            "union_seed_category_match_rate_minilm_plus_model": 0.541,
+            "union_seed_category_matches_minilm_plus_tfidf": 31,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4627
+          },
+          "100": {
+            "union_size_minilm_plus_model": 133,
+            "union_size_minilm_plus_tfidf": 134,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 33,
+            "tfidf_only_count": 34,
+            "model_truly_unique_count": 23,
+            "tfidf_truly_unique_count": 24,
+            "union_seed_category_matches_minilm_plus_model": 62,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4662,
+            "union_seed_category_matches_minilm_plus_tfidf": 57,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4254
+          }
+        }
+      }
+    },
+    "P3": {
+      "profile_name": "Quantum computing / quantum ML",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 29,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 4,
+            "model_only_count": 9,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 8,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 23,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7931,
+            "union_seed_category_matches_minilm_plus_tfidf": 19,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.76
+          },
+          "50": {
+            "union_size_minilm_plus_model": 59,
+            "union_size_minilm_plus_tfidf": 61,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 9,
+            "tfidf_only_count": 11,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 9,
+            "union_seed_category_matches_minilm_plus_model": 28,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4746,
+            "union_seed_category_matches_minilm_plus_tfidf": 30,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4918
+          },
+          "100": {
+            "union_size_minilm_plus_model": 135,
+            "union_size_minilm_plus_tfidf": 138,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 35,
+            "tfidf_only_count": 38,
+            "model_truly_unique_count": 30,
+            "tfidf_truly_unique_count": 33,
+            "union_seed_category_matches_minilm_plus_model": 32,
+            "union_seed_category_match_rate_minilm_plus_model": 0.237,
+            "union_seed_category_matches_minilm_plus_tfidf": 32,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.2319
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 28,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 3,
+            "model_only_count": 8,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 22,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7857,
+            "union_seed_category_matches_minilm_plus_tfidf": 19,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.76
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 61,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 11,
+            "tfidf_only_count": 11,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 7,
+            "union_seed_category_matches_minilm_plus_model": 30,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4918,
+            "union_seed_category_matches_minilm_plus_tfidf": 30,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4918
+          },
+          "100": {
+            "union_size_minilm_plus_model": 128,
+            "union_size_minilm_plus_tfidf": 138,
+            "union_delta_vs_tfidf": -10,
+            "model_only_count": 28,
+            "tfidf_only_count": 38,
+            "model_truly_unique_count": 26,
+            "tfidf_truly_unique_count": 36,
+            "union_seed_category_matches_minilm_plus_model": 33,
+            "union_seed_category_match_rate_minilm_plus_model": 0.2578,
+            "union_seed_category_matches_minilm_plus_tfidf": 32,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.2319
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 6,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 19,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7308,
+            "union_seed_category_matches_minilm_plus_tfidf": 19,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.76
+          },
+          "50": {
+            "union_size_minilm_plus_model": 59,
+            "union_size_minilm_plus_tfidf": 61,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 9,
+            "tfidf_only_count": 11,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 8,
+            "union_seed_category_matches_minilm_plus_model": 30,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5085,
+            "union_seed_category_matches_minilm_plus_tfidf": 30,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4918
+          },
+          "100": {
+            "union_size_minilm_plus_model": 133,
+            "union_size_minilm_plus_tfidf": 138,
+            "union_delta_vs_tfidf": -5,
+            "model_only_count": 33,
+            "tfidf_only_count": 38,
+            "model_truly_unique_count": 30,
+            "tfidf_truly_unique_count": 35,
+            "union_seed_category_matches_minilm_plus_model": 32,
+            "union_seed_category_match_rate_minilm_plus_model": 0.2406,
+            "union_seed_category_matches_minilm_plus_tfidf": 32,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.2319
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 25,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 5,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 2,
+            "union_seed_category_matches_minilm_plus_model": 18,
+            "union_seed_category_match_rate_minilm_plus_model": 0.72,
+            "union_seed_category_matches_minilm_plus_tfidf": 19,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.76
+          },
+          "50": {
+            "union_size_minilm_plus_model": 60,
+            "union_size_minilm_plus_tfidf": 61,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 10,
+            "tfidf_only_count": 11,
+            "model_truly_unique_count": 9,
+            "tfidf_truly_unique_count": 10,
+            "union_seed_category_matches_minilm_plus_model": 29,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4833,
+            "union_seed_category_matches_minilm_plus_tfidf": 30,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4918
+          },
+          "100": {
+            "union_size_minilm_plus_model": 137,
+            "union_size_minilm_plus_tfidf": 138,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 37,
+            "tfidf_only_count": 38,
+            "model_truly_unique_count": 34,
+            "tfidf_truly_unique_count": 35,
+            "union_seed_category_matches_minilm_plus_model": 31,
+            "union_seed_category_match_rate_minilm_plus_model": 0.2263,
+            "union_seed_category_matches_minilm_plus_tfidf": 32,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.2319
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 27,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 7,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 3,
+            "tfidf_truly_unique_count": 1,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7407,
+            "union_seed_category_matches_minilm_plus_tfidf": 19,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.76
+          },
+          "50": {
+            "union_size_minilm_plus_model": 62,
+            "union_size_minilm_plus_tfidf": 61,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 12,
+            "tfidf_only_count": 11,
+            "model_truly_unique_count": 10,
+            "tfidf_truly_unique_count": 9,
+            "union_seed_category_matches_minilm_plus_model": 28,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4516,
+            "union_seed_category_matches_minilm_plus_tfidf": 30,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.4918
+          },
+          "100": {
+            "union_size_minilm_plus_model": 137,
+            "union_size_minilm_plus_tfidf": 138,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 37,
+            "tfidf_only_count": 38,
+            "model_truly_unique_count": 30,
+            "tfidf_truly_unique_count": 31,
+            "union_seed_category_matches_minilm_plus_model": 33,
+            "union_seed_category_match_rate_minilm_plus_model": 0.2409,
+            "union_seed_category_matches_minilm_plus_tfidf": 32,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.2319
+          }
+        }
+      }
+    },
+    "P4": {
+      "profile_name": "AI safety / alignment",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 22,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -5,
+            "model_only_count": 2,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 7,
+            "union_seed_category_matches_minilm_plus_model": 19,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8636,
+            "union_seed_category_matches_minilm_plus_tfidf": 22,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8148
+          },
+          "50": {
+            "union_size_minilm_plus_model": 60,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -8,
+            "model_only_count": 10,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 14,
+            "union_seed_category_matches_minilm_plus_model": 48,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8,
+            "union_seed_category_matches_minilm_plus_tfidf": 48,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7059
+          },
+          "100": {
+            "union_size_minilm_plus_model": 134,
+            "union_size_minilm_plus_tfidf": 132,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 34,
+            "tfidf_only_count": 32,
+            "model_truly_unique_count": 30,
+            "tfidf_truly_unique_count": 28,
+            "union_seed_category_matches_minilm_plus_model": 98,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7313,
+            "union_seed_category_matches_minilm_plus_tfidf": 93,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7045
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 24,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 4,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 5,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8333,
+            "union_seed_category_matches_minilm_plus_tfidf": 22,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8148
+          },
+          "50": {
+            "union_size_minilm_plus_model": 58,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -10,
+            "model_only_count": 8,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 12,
+            "union_seed_category_matches_minilm_plus_model": 47,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8103,
+            "union_seed_category_matches_minilm_plus_tfidf": 48,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7059
+          },
+          "100": {
+            "union_size_minilm_plus_model": 122,
+            "union_size_minilm_plus_tfidf": 132,
+            "union_delta_vs_tfidf": -10,
+            "model_only_count": 22,
+            "tfidf_only_count": 32,
+            "model_truly_unique_count": 17,
+            "tfidf_truly_unique_count": 27,
+            "union_seed_category_matches_minilm_plus_model": 93,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7623,
+            "union_seed_category_matches_minilm_plus_tfidf": 93,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7045
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 24,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 4,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 3,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 21,
+            "union_seed_category_match_rate_minilm_plus_model": 0.875,
+            "union_seed_category_matches_minilm_plus_tfidf": 22,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8148
+          },
+          "50": {
+            "union_size_minilm_plus_model": 63,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -5,
+            "model_only_count": 13,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 12,
+            "union_seed_category_matches_minilm_plus_model": 50,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7937,
+            "union_seed_category_matches_minilm_plus_tfidf": 48,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7059
+          },
+          "100": {
+            "union_size_minilm_plus_model": 127,
+            "union_size_minilm_plus_tfidf": 132,
+            "union_delta_vs_tfidf": -5,
+            "model_only_count": 27,
+            "tfidf_only_count": 32,
+            "model_truly_unique_count": 21,
+            "tfidf_truly_unique_count": 26,
+            "union_seed_category_matches_minilm_plus_model": 94,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7402,
+            "union_seed_category_matches_minilm_plus_tfidf": 93,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7045
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 23,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -4,
+            "model_only_count": 3,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8696,
+            "union_seed_category_matches_minilm_plus_tfidf": 22,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8148
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -7,
+            "model_only_count": 11,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 5,
+            "tfidf_truly_unique_count": 12,
+            "union_seed_category_matches_minilm_plus_model": 49,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8033,
+            "union_seed_category_matches_minilm_plus_tfidf": 48,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7059
+          },
+          "100": {
+            "union_size_minilm_plus_model": 128,
+            "union_size_minilm_plus_tfidf": 132,
+            "union_delta_vs_tfidf": -4,
+            "model_only_count": 28,
+            "tfidf_only_count": 32,
+            "model_truly_unique_count": 21,
+            "tfidf_truly_unique_count": 25,
+            "union_seed_category_matches_minilm_plus_model": 96,
+            "union_seed_category_match_rate_minilm_plus_model": 0.75,
+            "union_seed_category_matches_minilm_plus_tfidf": 93,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7045
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 23,
+            "union_size_minilm_plus_tfidf": 27,
+            "union_delta_vs_tfidf": -4,
+            "model_only_count": 3,
+            "tfidf_only_count": 7,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 21,
+            "union_seed_category_match_rate_minilm_plus_model": 0.913,
+            "union_seed_category_matches_minilm_plus_tfidf": 22,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8148
+          },
+          "50": {
+            "union_size_minilm_plus_model": 62,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 12,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 12,
+            "union_seed_category_matches_minilm_plus_model": 50,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8065,
+            "union_seed_category_matches_minilm_plus_tfidf": 48,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7059
+          },
+          "100": {
+            "union_size_minilm_plus_model": 132,
+            "union_size_minilm_plus_tfidf": 132,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 32,
+            "tfidf_only_count": 32,
+            "model_truly_unique_count": 26,
+            "tfidf_truly_unique_count": 26,
+            "union_seed_category_matches_minilm_plus_model": 99,
+            "union_seed_category_match_rate_minilm_plus_model": 0.75,
+            "union_seed_category_matches_minilm_plus_tfidf": 93,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7045
+          }
+        }
+      }
+    },
+    "P5": {
+      "profile_name": "Graph neural networks",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 24,
+            "union_size_minilm_plus_tfidf": 24,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 4,
+            "tfidf_only_count": 4,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8333,
+            "union_seed_category_matches_minilm_plus_tfidf": 20,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8333
+          },
+          "50": {
+            "union_size_minilm_plus_model": 68,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 18,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 16,
+            "tfidf_truly_unique_count": 16,
+            "union_seed_category_matches_minilm_plus_model": 39,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5735,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5735
+          },
+          "100": {
+            "union_size_minilm_plus_model": 144,
+            "union_size_minilm_plus_tfidf": 142,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 44,
+            "tfidf_only_count": 42,
+            "model_truly_unique_count": 37,
+            "tfidf_truly_unique_count": 35,
+            "union_seed_category_matches_minilm_plus_model": 77,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5347,
+            "union_seed_category_matches_minilm_plus_tfidf": 76,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5352
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 22,
+            "union_size_minilm_plus_tfidf": 24,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 2,
+            "tfidf_only_count": 4,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.9091,
+            "union_seed_category_matches_minilm_plus_tfidf": 20,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8333
+          },
+          "50": {
+            "union_size_minilm_plus_model": 69,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 19,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 17,
+            "tfidf_truly_unique_count": 16,
+            "union_seed_category_matches_minilm_plus_model": 36,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5217,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5735
+          },
+          "100": {
+            "union_size_minilm_plus_model": 132,
+            "union_size_minilm_plus_tfidf": 142,
+            "union_delta_vs_tfidf": -10,
+            "model_only_count": 32,
+            "tfidf_only_count": 42,
+            "model_truly_unique_count": 26,
+            "tfidf_truly_unique_count": 36,
+            "union_seed_category_matches_minilm_plus_model": 69,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5227,
+            "union_seed_category_matches_minilm_plus_tfidf": 76,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5352
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 22,
+            "union_size_minilm_plus_tfidf": 24,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 2,
+            "tfidf_only_count": 4,
+            "model_truly_unique_count": 1,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.9091,
+            "union_seed_category_matches_minilm_plus_tfidf": 20,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8333
+          },
+          "50": {
+            "union_size_minilm_plus_model": 65,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 15,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 11,
+            "tfidf_truly_unique_count": 14,
+            "union_seed_category_matches_minilm_plus_model": 36,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5538,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5735
+          },
+          "100": {
+            "union_size_minilm_plus_model": 133,
+            "union_size_minilm_plus_tfidf": 142,
+            "union_delta_vs_tfidf": -9,
+            "model_only_count": 33,
+            "tfidf_only_count": 42,
+            "model_truly_unique_count": 27,
+            "tfidf_truly_unique_count": 36,
+            "union_seed_category_matches_minilm_plus_model": 68,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5113,
+            "union_seed_category_matches_minilm_plus_tfidf": 76,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5352
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 22,
+            "union_size_minilm_plus_tfidf": 24,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 2,
+            "tfidf_only_count": 4,
+            "model_truly_unique_count": 1,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.9091,
+            "union_seed_category_matches_minilm_plus_tfidf": 20,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8333
+          },
+          "50": {
+            "union_size_minilm_plus_model": 62,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 12,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 13,
+            "union_seed_category_matches_minilm_plus_model": 34,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5484,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5735
+          },
+          "100": {
+            "union_size_minilm_plus_model": 133,
+            "union_size_minilm_plus_tfidf": 142,
+            "union_delta_vs_tfidf": -9,
+            "model_only_count": 33,
+            "tfidf_only_count": 42,
+            "model_truly_unique_count": 29,
+            "tfidf_truly_unique_count": 38,
+            "union_seed_category_matches_minilm_plus_model": 62,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4662,
+            "union_seed_category_matches_minilm_plus_tfidf": 76,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5352
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 24,
+            "union_size_minilm_plus_tfidf": 24,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 4,
+            "tfidf_only_count": 4,
+            "model_truly_unique_count": 2,
+            "tfidf_truly_unique_count": 2,
+            "union_seed_category_matches_minilm_plus_model": 22,
+            "union_seed_category_match_rate_minilm_plus_model": 0.9167,
+            "union_seed_category_matches_minilm_plus_tfidf": 20,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8333
+          },
+          "50": {
+            "union_size_minilm_plus_model": 65,
+            "union_size_minilm_plus_tfidf": 68,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 15,
+            "tfidf_only_count": 18,
+            "model_truly_unique_count": 14,
+            "tfidf_truly_unique_count": 17,
+            "union_seed_category_matches_minilm_plus_model": 34,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5231,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5735
+          },
+          "100": {
+            "union_size_minilm_plus_model": 140,
+            "union_size_minilm_plus_tfidf": 142,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 40,
+            "tfidf_only_count": 42,
+            "model_truly_unique_count": 32,
+            "tfidf_truly_unique_count": 34,
+            "union_seed_category_matches_minilm_plus_model": 66,
+            "union_seed_category_match_rate_minilm_plus_model": 0.4714,
+            "union_seed_category_matches_minilm_plus_tfidf": 76,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5352
+          }
+        }
+      }
+    },
+    "P6": {
+      "profile_name": "Diffusion models for generation",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 25,
+            "union_size_minilm_plus_tfidf": 28,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 5,
+            "tfidf_only_count": 8,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 7,
+            "union_seed_category_matches_minilm_plus_model": 19,
+            "union_seed_category_match_rate_minilm_plus_model": 0.76,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6071
+          },
+          "50": {
+            "union_size_minilm_plus_model": 65,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 15,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 12,
+            "tfidf_truly_unique_count": 14,
+            "union_seed_category_matches_minilm_plus_model": 42,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6462,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5821
+          },
+          "100": {
+            "union_size_minilm_plus_model": 133,
+            "union_size_minilm_plus_tfidf": 137,
+            "union_delta_vs_tfidf": -4,
+            "model_only_count": 33,
+            "tfidf_only_count": 37,
+            "model_truly_unique_count": 26,
+            "tfidf_truly_unique_count": 30,
+            "union_seed_category_matches_minilm_plus_model": 82,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6165,
+            "union_seed_category_matches_minilm_plus_tfidf": 71,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5182
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 29,
+            "union_size_minilm_plus_tfidf": 28,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 9,
+            "tfidf_only_count": 8,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 22,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7586,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6071
+          },
+          "50": {
+            "union_size_minilm_plus_model": 66,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 16,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 12,
+            "tfidf_truly_unique_count": 13,
+            "union_seed_category_matches_minilm_plus_model": 39,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5909,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5821
+          },
+          "100": {
+            "union_size_minilm_plus_model": 137,
+            "union_size_minilm_plus_tfidf": 137,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 37,
+            "tfidf_only_count": 37,
+            "model_truly_unique_count": 27,
+            "tfidf_truly_unique_count": 27,
+            "union_seed_category_matches_minilm_plus_model": 81,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5912,
+            "union_seed_category_matches_minilm_plus_tfidf": 71,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5182
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 30,
+            "union_size_minilm_plus_tfidf": 28,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 10,
+            "tfidf_only_count": 8,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 20,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6667,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6071
+          },
+          "50": {
+            "union_size_minilm_plus_model": 65,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 15,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 11,
+            "tfidf_truly_unique_count": 13,
+            "union_seed_category_matches_minilm_plus_model": 38,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5846,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5821
+          },
+          "100": {
+            "union_size_minilm_plus_model": 140,
+            "union_size_minilm_plus_tfidf": 137,
+            "union_delta_vs_tfidf": 3,
+            "model_only_count": 40,
+            "tfidf_only_count": 37,
+            "model_truly_unique_count": 27,
+            "tfidf_truly_unique_count": 24,
+            "union_seed_category_matches_minilm_plus_model": 77,
+            "union_seed_category_match_rate_minilm_plus_model": 0.55,
+            "union_seed_category_matches_minilm_plus_tfidf": 71,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5182
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 28,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 6,
+            "tfidf_only_count": 8,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 19,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7308,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6071
+          },
+          "50": {
+            "union_size_minilm_plus_model": 66,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 16,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 9,
+            "tfidf_truly_unique_count": 10,
+            "union_seed_category_matches_minilm_plus_model": 39,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5909,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5821
+          },
+          "100": {
+            "union_size_minilm_plus_model": 133,
+            "union_size_minilm_plus_tfidf": 137,
+            "union_delta_vs_tfidf": -4,
+            "model_only_count": 33,
+            "tfidf_only_count": 37,
+            "model_truly_unique_count": 20,
+            "tfidf_truly_unique_count": 24,
+            "union_seed_category_matches_minilm_plus_model": 73,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5489,
+            "union_seed_category_matches_minilm_plus_tfidf": 71,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5182
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 27,
+            "union_size_minilm_plus_tfidf": 28,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 7,
+            "tfidf_only_count": 8,
+            "model_truly_unique_count": 5,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 19,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7037,
+            "union_seed_category_matches_minilm_plus_tfidf": 17,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6071
+          },
+          "50": {
+            "union_size_minilm_plus_model": 62,
+            "union_size_minilm_plus_tfidf": 67,
+            "union_delta_vs_tfidf": -5,
+            "model_only_count": 12,
+            "tfidf_only_count": 17,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 12,
+            "union_seed_category_matches_minilm_plus_model": 38,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6129,
+            "union_seed_category_matches_minilm_plus_tfidf": 39,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5821
+          },
+          "100": {
+            "union_size_minilm_plus_model": 136,
+            "union_size_minilm_plus_tfidf": 137,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 36,
+            "tfidf_only_count": 37,
+            "model_truly_unique_count": 23,
+            "tfidf_truly_unique_count": 24,
+            "union_seed_category_matches_minilm_plus_model": 79,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5809,
+            "union_seed_category_matches_minilm_plus_tfidf": 71,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5182
+          }
+        }
+      }
+    },
+    "P7": {
+      "profile_name": "Federated learning + privacy",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 25,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 5,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 3,
+            "tfidf_truly_unique_count": 3,
+            "union_seed_category_matches_minilm_plus_model": 23,
+            "union_seed_category_match_rate_minilm_plus_model": 0.92,
+            "union_seed_category_matches_minilm_plus_tfidf": 23,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.92
+          },
+          "50": {
+            "union_size_minilm_plus_model": 60,
+            "union_size_minilm_plus_tfidf": 59,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 10,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 9,
+            "tfidf_truly_unique_count": 8,
+            "union_seed_category_matches_minilm_plus_model": 49,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8167,
+            "union_seed_category_matches_minilm_plus_tfidf": 42,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7119
+          },
+          "100": {
+            "union_size_minilm_plus_model": 132,
+            "union_size_minilm_plus_tfidf": 140,
+            "union_delta_vs_tfidf": -8,
+            "model_only_count": 32,
+            "tfidf_only_count": 40,
+            "model_truly_unique_count": 31,
+            "tfidf_truly_unique_count": 39,
+            "union_seed_category_matches_minilm_plus_model": 82,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6212,
+            "union_seed_category_matches_minilm_plus_tfidf": 82,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5857
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 27,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 7,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 24,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8889,
+            "union_seed_category_matches_minilm_plus_tfidf": 23,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.92
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 59,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 11,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 8,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 45,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7377,
+            "union_seed_category_matches_minilm_plus_tfidf": 42,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7119
+          },
+          "100": {
+            "union_size_minilm_plus_model": 124,
+            "union_size_minilm_plus_tfidf": 140,
+            "union_delta_vs_tfidf": -16,
+            "model_only_count": 24,
+            "tfidf_only_count": 40,
+            "model_truly_unique_count": 21,
+            "tfidf_truly_unique_count": 37,
+            "union_seed_category_matches_minilm_plus_model": 79,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6371,
+            "union_seed_category_matches_minilm_plus_tfidf": 82,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5857
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 6,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 5,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 23,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8846,
+            "union_seed_category_matches_minilm_plus_tfidf": 23,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.92
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 59,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 11,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 8,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 47,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7705,
+            "union_seed_category_matches_minilm_plus_tfidf": 42,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7119
+          },
+          "100": {
+            "union_size_minilm_plus_model": 127,
+            "union_size_minilm_plus_tfidf": 140,
+            "union_delta_vs_tfidf": -13,
+            "model_only_count": 27,
+            "tfidf_only_count": 40,
+            "model_truly_unique_count": 23,
+            "tfidf_truly_unique_count": 36,
+            "union_seed_category_matches_minilm_plus_model": 78,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6142,
+            "union_seed_category_matches_minilm_plus_tfidf": 82,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5857
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 25,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 5,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 21,
+            "union_seed_category_match_rate_minilm_plus_model": 0.84,
+            "union_seed_category_matches_minilm_plus_tfidf": 23,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.92
+          },
+          "50": {
+            "union_size_minilm_plus_model": 60,
+            "union_size_minilm_plus_tfidf": 59,
+            "union_delta_vs_tfidf": 1,
+            "model_only_count": 10,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 6,
+            "union_seed_category_matches_minilm_plus_model": 45,
+            "union_seed_category_match_rate_minilm_plus_model": 0.75,
+            "union_seed_category_matches_minilm_plus_tfidf": 42,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7119
+          },
+          "100": {
+            "union_size_minilm_plus_model": 132,
+            "union_size_minilm_plus_tfidf": 140,
+            "union_delta_vs_tfidf": -8,
+            "model_only_count": 32,
+            "tfidf_only_count": 40,
+            "model_truly_unique_count": 28,
+            "tfidf_truly_unique_count": 36,
+            "union_seed_category_matches_minilm_plus_model": 78,
+            "union_seed_category_match_rate_minilm_plus_model": 0.5909,
+            "union_seed_category_matches_minilm_plus_tfidf": 82,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5857
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 25,
+            "union_size_minilm_plus_tfidf": 25,
+            "union_delta_vs_tfidf": 0,
+            "model_only_count": 5,
+            "tfidf_only_count": 5,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 4,
+            "union_seed_category_matches_minilm_plus_model": 23,
+            "union_seed_category_match_rate_minilm_plus_model": 0.92,
+            "union_seed_category_matches_minilm_plus_tfidf": 23,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.92
+          },
+          "50": {
+            "union_size_minilm_plus_model": 61,
+            "union_size_minilm_plus_tfidf": 59,
+            "union_delta_vs_tfidf": 2,
+            "model_only_count": 11,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 5,
+            "union_seed_category_matches_minilm_plus_model": 46,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7541,
+            "union_seed_category_matches_minilm_plus_tfidf": 42,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7119
+          },
+          "100": {
+            "union_size_minilm_plus_model": 131,
+            "union_size_minilm_plus_tfidf": 140,
+            "union_delta_vs_tfidf": -9,
+            "model_only_count": 31,
+            "tfidf_only_count": 40,
+            "model_truly_unique_count": 23,
+            "tfidf_truly_unique_count": 32,
+            "union_seed_category_matches_minilm_plus_model": 87,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6641,
+            "union_seed_category_matches_minilm_plus_tfidf": 82,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.5857
+          }
+        }
+      }
+    },
+    "P8": {
+      "profile_name": "Mathematical foundations of neural networks",
+      "per_model": {
+        "specter2": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 29,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 6,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 9,
+            "union_seed_category_matches_minilm_plus_model": 23,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8846,
+            "union_seed_category_matches_minilm_plus_tfidf": 24,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8276
+          },
+          "50": {
+            "union_size_minilm_plus_model": 68,
+            "union_size_minilm_plus_tfidf": 73,
+            "union_delta_vs_tfidf": -5,
+            "model_only_count": 18,
+            "tfidf_only_count": 23,
+            "model_truly_unique_count": 10,
+            "tfidf_truly_unique_count": 15,
+            "union_seed_category_matches_minilm_plus_model": 53,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7794,
+            "union_seed_category_matches_minilm_plus_tfidf": 52,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7123
+          },
+          "100": {
+            "union_size_minilm_plus_model": 136,
+            "union_size_minilm_plus_tfidf": 145,
+            "union_delta_vs_tfidf": -9,
+            "model_only_count": 36,
+            "tfidf_only_count": 45,
+            "model_truly_unique_count": 29,
+            "tfidf_truly_unique_count": 38,
+            "union_seed_category_matches_minilm_plus_model": 91,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6691,
+            "union_seed_category_matches_minilm_plus_tfidf": 89,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6138
+          }
+        },
+        "stella": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 29,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 6,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 4,
+            "tfidf_truly_unique_count": 7,
+            "union_seed_category_matches_minilm_plus_model": 24,
+            "union_seed_category_match_rate_minilm_plus_model": 0.9231,
+            "union_seed_category_matches_minilm_plus_tfidf": 24,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8276
+          },
+          "50": {
+            "union_size_minilm_plus_model": 67,
+            "union_size_minilm_plus_tfidf": 73,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 17,
+            "tfidf_only_count": 23,
+            "model_truly_unique_count": 9,
+            "tfidf_truly_unique_count": 15,
+            "union_seed_category_matches_minilm_plus_model": 52,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7761,
+            "union_seed_category_matches_minilm_plus_tfidf": 52,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7123
+          },
+          "100": {
+            "union_size_minilm_plus_model": 130,
+            "union_size_minilm_plus_tfidf": 145,
+            "union_delta_vs_tfidf": -15,
+            "model_only_count": 30,
+            "tfidf_only_count": 45,
+            "model_truly_unique_count": 22,
+            "tfidf_truly_unique_count": 37,
+            "union_seed_category_matches_minilm_plus_model": 91,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7,
+            "union_seed_category_matches_minilm_plus_tfidf": 89,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6138
+          }
+        },
+        "qwen3": {
+          "20": {
+            "union_size_minilm_plus_model": 28,
+            "union_size_minilm_plus_tfidf": 29,
+            "union_delta_vs_tfidf": -1,
+            "model_only_count": 8,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 7,
+            "tfidf_truly_unique_count": 8,
+            "union_seed_category_matches_minilm_plus_model": 24,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8571,
+            "union_seed_category_matches_minilm_plus_tfidf": 24,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8276
+          },
+          "50": {
+            "union_size_minilm_plus_model": 67,
+            "union_size_minilm_plus_tfidf": 73,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 17,
+            "tfidf_only_count": 23,
+            "model_truly_unique_count": 11,
+            "tfidf_truly_unique_count": 17,
+            "union_seed_category_matches_minilm_plus_model": 49,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7313,
+            "union_seed_category_matches_minilm_plus_tfidf": 52,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7123
+          },
+          "100": {
+            "union_size_minilm_plus_model": 131,
+            "union_size_minilm_plus_tfidf": 145,
+            "union_delta_vs_tfidf": -14,
+            "model_only_count": 31,
+            "tfidf_only_count": 45,
+            "model_truly_unique_count": 20,
+            "tfidf_truly_unique_count": 34,
+            "union_seed_category_matches_minilm_plus_model": 89,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6794,
+            "union_seed_category_matches_minilm_plus_tfidf": 89,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6138
+          }
+        },
+        "gte": {
+          "20": {
+            "union_size_minilm_plus_model": 27,
+            "union_size_minilm_plus_tfidf": 29,
+            "union_delta_vs_tfidf": -2,
+            "model_only_count": 7,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 6,
+            "tfidf_truly_unique_count": 8,
+            "union_seed_category_matches_minilm_plus_model": 24,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8889,
+            "union_seed_category_matches_minilm_plus_tfidf": 24,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8276
+          },
+          "50": {
+            "union_size_minilm_plus_model": 65,
+            "union_size_minilm_plus_tfidf": 73,
+            "union_delta_vs_tfidf": -8,
+            "model_only_count": 15,
+            "tfidf_only_count": 23,
+            "model_truly_unique_count": 11,
+            "tfidf_truly_unique_count": 19,
+            "union_seed_category_matches_minilm_plus_model": 47,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7231,
+            "union_seed_category_matches_minilm_plus_tfidf": 52,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7123
+          },
+          "100": {
+            "union_size_minilm_plus_model": 132,
+            "union_size_minilm_plus_tfidf": 145,
+            "union_delta_vs_tfidf": -13,
+            "model_only_count": 32,
+            "tfidf_only_count": 45,
+            "model_truly_unique_count": 24,
+            "tfidf_truly_unique_count": 37,
+            "union_seed_category_matches_minilm_plus_model": 90,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6818,
+            "union_seed_category_matches_minilm_plus_tfidf": 89,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6138
+          }
+        },
+        "voyage": {
+          "20": {
+            "union_size_minilm_plus_model": 26,
+            "union_size_minilm_plus_tfidf": 29,
+            "union_delta_vs_tfidf": -3,
+            "model_only_count": 6,
+            "tfidf_only_count": 9,
+            "model_truly_unique_count": 5,
+            "tfidf_truly_unique_count": 8,
+            "union_seed_category_matches_minilm_plus_model": 23,
+            "union_seed_category_match_rate_minilm_plus_model": 0.8846,
+            "union_seed_category_matches_minilm_plus_tfidf": 24,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.8276
+          },
+          "50": {
+            "union_size_minilm_plus_model": 67,
+            "union_size_minilm_plus_tfidf": 73,
+            "union_delta_vs_tfidf": -6,
+            "model_only_count": 17,
+            "tfidf_only_count": 23,
+            "model_truly_unique_count": 11,
+            "tfidf_truly_unique_count": 17,
+            "union_seed_category_matches_minilm_plus_model": 49,
+            "union_seed_category_match_rate_minilm_plus_model": 0.7313,
+            "union_seed_category_matches_minilm_plus_tfidf": 52,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.7123
+          },
+          "100": {
+            "union_size_minilm_plus_model": 132,
+            "union_size_minilm_plus_tfidf": 145,
+            "union_delta_vs_tfidf": -13,
+            "model_only_count": 32,
+            "tfidf_only_count": 45,
+            "model_truly_unique_count": 21,
+            "tfidf_truly_unique_count": 34,
+            "union_seed_category_matches_minilm_plus_model": 86,
+            "union_seed_category_match_rate_minilm_plus_model": 0.6515,
+            "union_seed_category_matches_minilm_plus_tfidf": 89,
+            "union_seed_category_match_rate_minilm_plus_tfidf": 0.6138
+          }
+        }
+      }
+    }
+  },
+  "model_summary": {
+    "specter2": {
+      "k20__union_size_minilm_plus_model": {
+        "mean": 25.0,
+        "min": 22.0,
+        "max": 29.0,
+        "range": 7.0,
+        "std": 2.0
+      },
+      "k20__union_size_minilm_plus_tfidf": {
+        "mean": 26.0,
+        "min": 23.0,
+        "max": 29.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__union_delta_vs_tfidf": {
+        "mean": -1.0,
+        "min": -5.0,
+        "max": 4.0,
+        "range": 9.0,
+        "std": 2.5495
+      },
+      "k20__model_only_count": {
+        "mean": 5.0,
+        "min": 2.0,
+        "max": 9.0,
+        "range": 7.0,
+        "std": 2.0
+      },
+      "k20__tfidf_only_count": {
+        "mean": 6.0,
+        "min": 3.0,
+        "max": 9.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__model_truly_unique_count": {
+        "mean": 4.25,
+        "min": 2.0,
+        "max": 8.0,
+        "range": 6.0,
+        "std": 1.7854
+      },
+      "k20__tfidf_truly_unique_count": {
+        "mean": 5.25,
+        "min": 3.0,
+        "max": 9.0,
+        "range": 6.0,
+        "std": 2.0463
+      },
+      "k20__union_seed_category_matches_minilm_plus_model": {
+        "mean": 20.125,
+        "min": 16.0,
+        "max": 23.0,
+        "range": 7.0,
+        "std": 2.4717
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.8066,
+        "min": 0.6154,
+        "max": 0.92,
+        "range": 0.3046,
+        "std": 0.0883
+      },
+      "k20__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 19.75,
+        "min": 16.0,
+        "max": 24.0,
+        "range": 8.0,
+        "std": 2.8174
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.7618,
+        "min": 0.5926,
+        "max": 0.92,
+        "range": 0.3274,
+        "std": 0.1063
+      },
+      "k50__union_size_minilm_plus_model": {
+        "mean": 62.5,
+        "min": 56.0,
+        "max": 68.0,
+        "range": 12.0,
+        "std": 4.1231
+      },
+      "k50__union_size_minilm_plus_tfidf": {
+        "mean": 66.125,
+        "min": 59.0,
+        "max": 73.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__union_delta_vs_tfidf": {
+        "mean": -3.625,
+        "min": -10.0,
+        "max": 1.0,
+        "range": 11.0,
+        "std": 3.5685
+      },
+      "k50__model_only_count": {
+        "mean": 12.5,
+        "min": 6.0,
+        "max": 18.0,
+        "range": 12.0,
+        "std": 4.1231
+      },
+      "k50__tfidf_only_count": {
+        "mean": 16.125,
+        "min": 9.0,
+        "max": 23.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__model_truly_unique_count": {
+        "mean": 9.5,
+        "min": 4.0,
+        "max": 16.0,
+        "range": 12.0,
+        "std": 3.6056
+      },
+      "k50__tfidf_truly_unique_count": {
+        "mean": 13.125,
+        "min": 8.0,
+        "max": 16.0,
+        "range": 8.0,
+        "std": 2.7585
+      },
+      "k50__union_seed_category_matches_minilm_plus_model": {
+        "mean": 40.875,
+        "min": 28.0,
+        "max": 53.0,
+        "range": 25.0,
+        "std": 8.1461
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.6533,
+        "min": 0.4746,
+        "max": 0.8167,
+        "range": 0.3421,
+        "std": 0.1214
+      },
+      "k50__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 39.75,
+        "min": 30.0,
+        "max": 52.0,
+        "range": 22.0,
+        "std": 7.1019
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.6001,
+        "min": 0.4627,
+        "max": 0.7123,
+        "range": 0.2496,
+        "std": 0.0932
+      },
+      "k100__union_size_minilm_plus_model": {
+        "mean": 133.0,
+        "min": 120.0,
+        "max": 144.0,
+        "range": 24.0,
+        "std": 6.265
+      },
+      "k100__union_size_minilm_plus_tfidf": {
+        "mean": 137.75,
+        "min": 132.0,
+        "max": 145.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__union_delta_vs_tfidf": {
+        "mean": -4.75,
+        "min": -14.0,
+        "max": 2.0,
+        "range": 16.0,
+        "std": 5.1174
+      },
+      "k100__model_only_count": {
+        "mean": 33.0,
+        "min": 20.0,
+        "max": 44.0,
+        "range": 24.0,
+        "std": 6.265
+      },
+      "k100__tfidf_only_count": {
+        "mean": 37.75,
+        "min": 32.0,
+        "max": 45.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__model_truly_unique_count": {
+        "mean": 27.375,
+        "min": 12.0,
+        "max": 37.0,
+        "range": 25.0,
+        "std": 6.8179
+      },
+      "k100__tfidf_truly_unique_count": {
+        "mean": 32.125,
+        "min": 26.0,
+        "max": 39.0,
+        "range": 13.0,
+        "std": 4.5672
+      },
+      "k100__union_seed_category_matches_minilm_plus_model": {
+        "mean": 73.5,
+        "min": 32.0,
+        "max": 98.0,
+        "range": 66.0,
+        "std": 19.41
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.5523,
+        "min": 0.237,
+        "max": 0.7313,
+        "range": 0.4943,
+        "std": 0.141
+      },
+      "k100__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 70.125,
+        "min": 32.0,
+        "max": 93.0,
+        "range": 61.0,
+        "std": 18.5906
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.5087,
+        "min": 0.2319,
+        "max": 0.7045,
+        "range": 0.4726,
+        "std": 0.1335
+      }
+    },
+    "stella": {
+      "k20__union_size_minilm_plus_model": {
+        "mean": 25.625,
+        "min": 22.0,
+        "max": 29.0,
+        "range": 7.0,
+        "std": 2.2879
+      },
+      "k20__union_size_minilm_plus_tfidf": {
+        "mean": 26.0,
+        "min": 23.0,
+        "max": 29.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__union_delta_vs_tfidf": {
+        "mean": -0.375,
+        "min": -3.0,
+        "max": 3.0,
+        "range": 6.0,
+        "std": 2.1176
+      },
+      "k20__model_only_count": {
+        "mean": 5.625,
+        "min": 2.0,
+        "max": 9.0,
+        "range": 7.0,
+        "std": 2.2879
+      },
+      "k20__tfidf_only_count": {
+        "mean": 6.0,
+        "min": 3.0,
+        "max": 9.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__model_truly_unique_count": {
+        "mean": 4.125,
+        "min": 2.0,
+        "max": 7.0,
+        "range": 5.0,
+        "std": 1.8329
+      },
+      "k20__tfidf_truly_unique_count": {
+        "mean": 4.5,
+        "min": 3.0,
+        "max": 7.0,
+        "range": 4.0,
+        "std": 1.3229
+      },
+      "k20__union_seed_category_matches_minilm_plus_model": {
+        "mean": 20.75,
+        "min": 15.0,
+        "max": 24.0,
+        "range": 9.0,
+        "std": 2.7726
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.8127,
+        "min": 0.5769,
+        "max": 0.9231,
+        "range": 0.3462,
+        "std": 0.1044
+      },
+      "k20__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 19.75,
+        "min": 16.0,
+        "max": 24.0,
+        "range": 8.0,
+        "std": 2.8174
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.7618,
+        "min": 0.5926,
+        "max": 0.92,
+        "range": 0.3274,
+        "std": 0.1063
+      },
+      "k50__union_size_minilm_plus_model": {
+        "mean": 62.375,
+        "min": 58.0,
+        "max": 69.0,
+        "range": 11.0,
+        "std": 4.0601
+      },
+      "k50__union_size_minilm_plus_tfidf": {
+        "mean": 66.125,
+        "min": 59.0,
+        "max": 73.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__union_delta_vs_tfidf": {
+        "mean": -3.75,
+        "min": -10.0,
+        "max": 2.0,
+        "range": 12.0,
+        "std": 4.4371
+      },
+      "k50__model_only_count": {
+        "mean": 12.375,
+        "min": 8.0,
+        "max": 19.0,
+        "range": 11.0,
+        "std": 4.0601
+      },
+      "k50__tfidf_only_count": {
+        "mean": 16.125,
+        "min": 9.0,
+        "max": 23.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__model_truly_unique_count": {
+        "mean": 8.5,
+        "min": 2.0,
+        "max": 17.0,
+        "range": 15.0,
+        "std": 4.1533
+      },
+      "k50__tfidf_truly_unique_count": {
+        "mean": 12.25,
+        "min": 6.0,
+        "max": 16.0,
+        "range": 10.0,
+        "std": 3.5267
+      },
+      "k50__union_seed_category_matches_minilm_plus_model": {
+        "mean": 39.625,
+        "min": 30.0,
+        "max": 52.0,
+        "range": 22.0,
+        "std": 7.1927
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.6365,
+        "min": 0.4918,
+        "max": 0.8103,
+        "range": 0.3185,
+        "std": 0.1147
+      },
+      "k50__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 39.75,
+        "min": 30.0,
+        "max": 52.0,
+        "range": 22.0,
+        "std": 7.1019
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.6001,
+        "min": 0.4627,
+        "max": 0.7123,
+        "range": 0.2496,
+        "std": 0.0932
+      },
+      "k100__union_size_minilm_plus_model": {
+        "mean": 128.25,
+        "min": 122.0,
+        "max": 137.0,
+        "range": 15.0,
+        "std": 4.4371
+      },
+      "k100__union_size_minilm_plus_tfidf": {
+        "mean": 137.75,
+        "min": 132.0,
+        "max": 145.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__union_delta_vs_tfidf": {
+        "mean": -9.5,
+        "min": -16.0,
+        "max": 0.0,
+        "range": 16.0,
+        "std": 4.6368
+      },
+      "k100__model_only_count": {
+        "mean": 28.25,
+        "min": 22.0,
+        "max": 37.0,
+        "range": 15.0,
+        "std": 4.4371
+      },
+      "k100__tfidf_only_count": {
+        "mean": 37.75,
+        "min": 32.0,
+        "max": 45.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__model_truly_unique_count": {
+        "mean": 22.125,
+        "min": 17.0,
+        "max": 27.0,
+        "range": 10.0,
+        "std": 3.586
+      },
+      "k100__tfidf_truly_unique_count": {
+        "mean": 31.625,
+        "min": 26.0,
+        "max": 37.0,
+        "range": 11.0,
+        "std": 4.8974
+      },
+      "k100__union_seed_category_matches_minilm_plus_model": {
+        "mean": 71.0,
+        "min": 33.0,
+        "max": 93.0,
+        "range": 60.0,
+        "std": 18.4187
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.5545,
+        "min": 0.2578,
+        "max": 0.7623,
+        "range": 0.5045,
+        "std": 0.1472
+      },
+      "k100__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 70.125,
+        "min": 32.0,
+        "max": 93.0,
+        "range": 61.0,
+        "std": 18.5906
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.5087,
+        "min": 0.2319,
+        "max": 0.7045,
+        "range": 0.4726,
+        "std": 0.1335
+      }
+    },
+    "qwen3": {
+      "k20__union_size_minilm_plus_model": {
+        "mean": 26.0,
+        "min": 22.0,
+        "max": 30.0,
+        "range": 8.0,
+        "std": 2.2361
+      },
+      "k20__union_size_minilm_plus_tfidf": {
+        "mean": 26.0,
+        "min": 23.0,
+        "max": 29.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__union_delta_vs_tfidf": {
+        "mean": 0.0,
+        "min": -3.0,
+        "max": 3.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__model_only_count": {
+        "mean": 6.0,
+        "min": 2.0,
+        "max": 10.0,
+        "range": 8.0,
+        "std": 2.2361
+      },
+      "k20__tfidf_only_count": {
+        "mean": 6.0,
+        "min": 3.0,
+        "max": 9.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__model_truly_unique_count": {
+        "mean": 4.5,
+        "min": 1.0,
+        "max": 7.0,
+        "range": 6.0,
+        "std": 1.8028
+      },
+      "k20__tfidf_truly_unique_count": {
+        "mean": 4.5,
+        "min": 3.0,
+        "max": 8.0,
+        "range": 5.0,
+        "std": 1.6583
+      },
+      "k20__union_seed_category_matches_minilm_plus_model": {
+        "mean": 20.25,
+        "min": 16.0,
+        "max": 24.0,
+        "range": 8.0,
+        "std": 2.3318
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.7837,
+        "min": 0.6154,
+        "max": 0.9091,
+        "range": 0.2937,
+        "std": 0.1044
+      },
+      "k20__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 19.75,
+        "min": 16.0,
+        "max": 24.0,
+        "range": 8.0,
+        "std": 2.8174
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.7618,
+        "min": 0.5926,
+        "max": 0.92,
+        "range": 0.3274,
+        "std": 0.1063
+      },
+      "k50__union_size_minilm_plus_model": {
+        "mean": 62.625,
+        "min": 59.0,
+        "max": 67.0,
+        "range": 8.0,
+        "std": 2.6428
+      },
+      "k50__union_size_minilm_plus_tfidf": {
+        "mean": 66.125,
+        "min": 59.0,
+        "max": 73.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__union_delta_vs_tfidf": {
+        "mean": -3.5,
+        "min": -6.0,
+        "max": 2.0,
+        "range": 8.0,
+        "std": 2.6458
+      },
+      "k50__model_only_count": {
+        "mean": 12.625,
+        "min": 9.0,
+        "max": 17.0,
+        "range": 8.0,
+        "std": 2.6428
+      },
+      "k50__tfidf_only_count": {
+        "mean": 16.125,
+        "min": 9.0,
+        "max": 23.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__model_truly_unique_count": {
+        "mean": 8.625,
+        "min": 6.0,
+        "max": 11.0,
+        "range": 5.0,
+        "std": 2.0578
+      },
+      "k50__tfidf_truly_unique_count": {
+        "mean": 12.125,
+        "min": 6.0,
+        "max": 17.0,
+        "range": 11.0,
+        "std": 3.3704
+      },
+      "k50__union_seed_category_matches_minilm_plus_model": {
+        "mean": 39.625,
+        "min": 30.0,
+        "max": 50.0,
+        "range": 20.0,
+        "std": 7.3644
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.6313,
+        "min": 0.5085,
+        "max": 0.7937,
+        "range": 0.2852,
+        "std": 0.1069
+      },
+      "k50__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 39.75,
+        "min": 30.0,
+        "max": 52.0,
+        "range": 22.0,
+        "std": 7.1019
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.6001,
+        "min": 0.4627,
+        "max": 0.7123,
+        "range": 0.2496,
+        "std": 0.0932
+      },
+      "k100__union_size_minilm_plus_model": {
+        "mean": 131.0,
+        "min": 122.0,
+        "max": 140.0,
+        "range": 18.0,
+        "std": 5.2202
+      },
+      "k100__union_size_minilm_plus_tfidf": {
+        "mean": 137.75,
+        "min": 132.0,
+        "max": 145.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__union_delta_vs_tfidf": {
+        "mean": -6.75,
+        "min": -14.0,
+        "max": 3.0,
+        "range": 17.0,
+        "std": 5.9739
+      },
+      "k100__model_only_count": {
+        "mean": 31.0,
+        "min": 22.0,
+        "max": 40.0,
+        "range": 18.0,
+        "std": 5.2202
+      },
+      "k100__tfidf_only_count": {
+        "mean": 37.75,
+        "min": 32.0,
+        "max": 45.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__model_truly_unique_count": {
+        "mean": 23.75,
+        "min": 15.0,
+        "max": 30.0,
+        "range": 15.0,
+        "std": 4.603
+      },
+      "k100__tfidf_truly_unique_count": {
+        "mean": 30.5,
+        "min": 24.0,
+        "max": 36.0,
+        "range": 12.0,
+        "std": 4.8477
+      },
+      "k100__union_seed_category_matches_minilm_plus_model": {
+        "mean": 70.25,
+        "min": 32.0,
+        "max": 94.0,
+        "range": 62.0,
+        "std": 18.1435
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.5377,
+        "min": 0.2406,
+        "max": 0.7402,
+        "range": 0.4996,
+        "std": 0.1424
+      },
+      "k100__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 70.125,
+        "min": 32.0,
+        "max": 93.0,
+        "range": 61.0,
+        "std": 18.5906
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.5087,
+        "min": 0.2319,
+        "max": 0.7045,
+        "range": 0.4726,
+        "std": 0.1335
+      }
+    },
+    "gte": {
+      "k20__union_size_minilm_plus_model": {
+        "mean": 24.5,
+        "min": 22.0,
+        "max": 27.0,
+        "range": 5.0,
+        "std": 1.5
+      },
+      "k20__union_size_minilm_plus_tfidf": {
+        "mean": 26.0,
+        "min": 23.0,
+        "max": 29.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__union_delta_vs_tfidf": {
+        "mean": -1.5,
+        "min": -4.0,
+        "max": 1.0,
+        "range": 5.0,
+        "std": 1.5811
+      },
+      "k20__model_only_count": {
+        "mean": 4.5,
+        "min": 2.0,
+        "max": 7.0,
+        "range": 5.0,
+        "std": 1.5
+      },
+      "k20__tfidf_only_count": {
+        "mean": 6.0,
+        "min": 3.0,
+        "max": 9.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__model_truly_unique_count": {
+        "mean": 3.125,
+        "min": 1.0,
+        "max": 6.0,
+        "range": 5.0,
+        "std": 1.536
+      },
+      "k20__tfidf_truly_unique_count": {
+        "mean": 4.625,
+        "min": 2.0,
+        "max": 8.0,
+        "range": 6.0,
+        "std": 1.8666
+      },
+      "k20__union_seed_category_matches_minilm_plus_model": {
+        "mean": 19.125,
+        "min": 13.0,
+        "max": 24.0,
+        "range": 11.0,
+        "std": 2.9342
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.7813,
+        "min": 0.5417,
+        "max": 0.9091,
+        "range": 0.3674,
+        "std": 0.1139
+      },
+      "k20__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 19.75,
+        "min": 16.0,
+        "max": 24.0,
+        "range": 8.0,
+        "std": 2.8174
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.7618,
+        "min": 0.5926,
+        "max": 0.92,
+        "range": 0.3274,
+        "std": 0.1063
+      },
+      "k50__union_size_minilm_plus_model": {
+        "mean": 62.375,
+        "min": 60.0,
+        "max": 66.0,
+        "range": 6.0,
+        "std": 2.1759
+      },
+      "k50__union_size_minilm_plus_tfidf": {
+        "mean": 66.125,
+        "min": 59.0,
+        "max": 73.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__union_delta_vs_tfidf": {
+        "mean": -3.75,
+        "min": -8.0,
+        "max": 1.0,
+        "range": 9.0,
+        "std": 3.0311
+      },
+      "k50__model_only_count": {
+        "mean": 12.375,
+        "min": 10.0,
+        "max": 16.0,
+        "range": 6.0,
+        "std": 2.1759
+      },
+      "k50__tfidf_only_count": {
+        "mean": 16.125,
+        "min": 9.0,
+        "max": 23.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__model_truly_unique_count": {
+        "mean": 8.5,
+        "min": 5.0,
+        "max": 12.0,
+        "range": 7.0,
+        "std": 2.1213
+      },
+      "k50__tfidf_truly_unique_count": {
+        "mean": 12.25,
+        "min": 6.0,
+        "max": 19.0,
+        "range": 13.0,
+        "std": 3.5969
+      },
+      "k50__union_seed_category_matches_minilm_plus_model": {
+        "mean": 39.25,
+        "min": 29.0,
+        "max": 49.0,
+        "range": 20.0,
+        "std": 6.6474
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.6296,
+        "min": 0.4833,
+        "max": 0.8033,
+        "range": 0.32,
+        "std": 0.1079
+      },
+      "k50__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 39.75,
+        "min": 30.0,
+        "max": 52.0,
+        "range": 22.0,
+        "std": 7.1019
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.6001,
+        "min": 0.4627,
+        "max": 0.7123,
+        "range": 0.2496,
+        "std": 0.0932
+      },
+      "k100__union_size_minilm_plus_model": {
+        "mean": 131.125,
+        "min": 124.0,
+        "max": 137.0,
+        "range": 13.0,
+        "std": 3.6207
+      },
+      "k100__union_size_minilm_plus_tfidf": {
+        "mean": 137.75,
+        "min": 132.0,
+        "max": 145.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__union_delta_vs_tfidf": {
+        "mean": -6.625,
+        "min": -13.0,
+        "max": -1.0,
+        "range": 12.0,
+        "std": 3.7396
+      },
+      "k100__model_only_count": {
+        "mean": 31.125,
+        "min": 24.0,
+        "max": 37.0,
+        "range": 13.0,
+        "std": 3.6207
+      },
+      "k100__tfidf_only_count": {
+        "mean": 37.75,
+        "min": 32.0,
+        "max": 45.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__model_truly_unique_count": {
+        "mean": 24.125,
+        "min": 16.0,
+        "max": 34.0,
+        "range": 18.0,
+        "std": 5.4644
+      },
+      "k100__tfidf_truly_unique_count": {
+        "mean": 30.75,
+        "min": 24.0,
+        "max": 38.0,
+        "range": 14.0,
+        "std": 5.8256
+      },
+      "k100__union_seed_category_matches_minilm_plus_model": {
+        "mean": 68.75,
+        "min": 31.0,
+        "max": 96.0,
+        "range": 65.0,
+        "std": 19.136
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.5261,
+        "min": 0.2263,
+        "max": 0.75,
+        "range": 0.5237,
+        "std": 0.1493
+      },
+      "k100__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 70.125,
+        "min": 32.0,
+        "max": 93.0,
+        "range": 61.0,
+        "std": 18.5906
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.5087,
+        "min": 0.2319,
+        "max": 0.7045,
+        "range": 0.4726,
+        "std": 0.1335
+      }
+    },
+    "voyage": {
+      "k20__union_size_minilm_plus_model": {
+        "mean": 24.75,
+        "min": 21.0,
+        "max": 27.0,
+        "range": 6.0,
+        "std": 1.9203
+      },
+      "k20__union_size_minilm_plus_tfidf": {
+        "mean": 26.0,
+        "min": 23.0,
+        "max": 29.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__union_delta_vs_tfidf": {
+        "mean": -1.25,
+        "min": -4.0,
+        "max": 2.0,
+        "range": 6.0,
+        "std": 1.7854
+      },
+      "k20__model_only_count": {
+        "mean": 4.75,
+        "min": 1.0,
+        "max": 7.0,
+        "range": 6.0,
+        "std": 1.9203
+      },
+      "k20__tfidf_only_count": {
+        "mean": 6.0,
+        "min": 3.0,
+        "max": 9.0,
+        "range": 6.0,
+        "std": 1.9365
+      },
+      "k20__model_truly_unique_count": {
+        "mean": 3.125,
+        "min": 1.0,
+        "max": 5.0,
+        "range": 4.0,
+        "std": 1.3636
+      },
+      "k20__tfidf_truly_unique_count": {
+        "mean": 4.375,
+        "min": 1.0,
+        "max": 8.0,
+        "range": 7.0,
+        "std": 2.1759
+      },
+      "k20__union_seed_category_matches_minilm_plus_model": {
+        "mean": 20.125,
+        "min": 16.0,
+        "max": 23.0,
+        "range": 7.0,
+        "std": 2.4717
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.816,
+        "min": 0.64,
+        "max": 0.92,
+        "range": 0.28,
+        "std": 0.1027
+      },
+      "k20__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 19.75,
+        "min": 16.0,
+        "max": 24.0,
+        "range": 8.0,
+        "std": 2.8174
+      },
+      "k20__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.7618,
+        "min": 0.5926,
+        "max": 0.92,
+        "range": 0.3274,
+        "std": 0.1063
+      },
+      "k50__union_size_minilm_plus_model": {
+        "mean": 62.5,
+        "min": 60.0,
+        "max": 67.0,
+        "range": 7.0,
+        "std": 2.1794
+      },
+      "k50__union_size_minilm_plus_tfidf": {
+        "mean": 66.125,
+        "min": 59.0,
+        "max": 73.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__union_delta_vs_tfidf": {
+        "mean": -3.625,
+        "min": -6.0,
+        "max": 2.0,
+        "range": 8.0,
+        "std": 3.12
+      },
+      "k50__model_only_count": {
+        "mean": 12.5,
+        "min": 10.0,
+        "max": 17.0,
+        "range": 7.0,
+        "std": 2.1794
+      },
+      "k50__tfidf_only_count": {
+        "mean": 16.125,
+        "min": 9.0,
+        "max": 23.0,
+        "range": 14.0,
+        "std": 4.0755
+      },
+      "k50__model_truly_unique_count": {
+        "mean": 8.75,
+        "min": 6.0,
+        "max": 14.0,
+        "range": 8.0,
+        "std": 2.6339
+      },
+      "k50__tfidf_truly_unique_count": {
+        "mean": 12.375,
+        "min": 5.0,
+        "max": 17.0,
+        "range": 12.0,
+        "std": 3.8058
+      },
+      "k50__union_seed_category_matches_minilm_plus_model": {
+        "mean": 38.875,
+        "min": 28.0,
+        "max": 50.0,
+        "range": 22.0,
+        "std": 7.8172
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.6213,
+        "min": 0.4516,
+        "max": 0.8065,
+        "range": 0.3549,
+        "std": 0.1194
+      },
+      "k50__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 39.75,
+        "min": 30.0,
+        "max": 52.0,
+        "range": 22.0,
+        "std": 7.1019
+      },
+      "k50__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.6001,
+        "min": 0.4627,
+        "max": 0.7123,
+        "range": 0.2496,
+        "std": 0.0932
+      },
+      "k100__union_size_minilm_plus_model": {
+        "mean": 133.5,
+        "min": 127.0,
+        "max": 140.0,
+        "range": 13.0,
+        "std": 3.7749
+      },
+      "k100__union_size_minilm_plus_tfidf": {
+        "mean": 137.75,
+        "min": 132.0,
+        "max": 145.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__union_delta_vs_tfidf": {
+        "mean": -4.25,
+        "min": -13.0,
+        "max": 0.0,
+        "range": 13.0,
+        "std": 4.4931
+      },
+      "k100__model_only_count": {
+        "mean": 33.5,
+        "min": 27.0,
+        "max": 40.0,
+        "range": 13.0,
+        "std": 3.7749
+      },
+      "k100__tfidf_only_count": {
+        "mean": 37.75,
+        "min": 32.0,
+        "max": 45.0,
+        "range": 13.0,
+        "std": 4.1458
+      },
+      "k100__model_truly_unique_count": {
+        "mean": 24.5,
+        "min": 18.0,
+        "max": 32.0,
+        "range": 14.0,
+        "std": 4.3301
+      },
+      "k100__tfidf_truly_unique_count": {
+        "mean": 28.75,
+        "min": 24.0,
+        "max": 34.0,
+        "range": 10.0,
+        "std": 4.1458
+      },
+      "k100__union_seed_category_matches_minilm_plus_model": {
+        "mean": 71.75,
+        "min": 33.0,
+        "max": 99.0,
+        "range": 66.0,
+        "std": 19.2208
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_model": {
+        "mean": 0.5392,
+        "min": 0.2409,
+        "max": 0.75,
+        "range": 0.5091,
+        "std": 0.1483
+      },
+      "k100__union_seed_category_matches_minilm_plus_tfidf": {
+        "mean": 70.125,
+        "min": 32.0,
+        "max": 93.0,
+        "range": 61.0,
+        "std": 18.5906
+      },
+      "k100__union_seed_category_match_rate_minilm_plus_tfidf": {
+        "mean": 0.5087,
+        "min": 0.2319,
+        "max": 0.7045,
+        "range": 0.4726,
+        "std": 0.1335
+      }
+    }
+  },
+  "timestamp": "2026-03-30T13:20:30.662622+00:00"
+}

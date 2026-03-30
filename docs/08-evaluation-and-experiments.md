@@ -265,6 +265,24 @@ Undervalued paper discovery:
 
 Measure: fraction of surfaced papers that users later save/cite, novelty of discoveries vs baseline, serendipity dial calibration.
 
+### Experiment 7
+Evaluation framework robustness:
+- compare profile construction methods,
+- vary seed selection explicitly,
+- measure which model findings survive framework changes.
+
+### Experiment 8
+Model x retrieval-method interaction:
+- centroid vs kNN-per-seed,
+- compare the same models under different retrieval geometry assumptions,
+- measure which differences are method-stable.
+
+### Experiment 9
+Function-in-use evaluation:
+- blind compare a small set of candidate configurations,
+- use research-task completion rather than list quality alone,
+- measure whether blind-spot papers actually help.
+
 ## Working conclusion
 
 The system should be built so that strong comparisons are easy to run and easy to document.
