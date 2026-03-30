@@ -23,17 +23,28 @@ These findings hold for:
 - All qualitative judgments are AI-generated substitutes for researcher judgment
 - Blind comparison reviews were fully completed for SPECTER2 only; other models' blind reviews contain paper data but limited written assessment. This is a methodology gap — most qualitative depth comes from characterization reviews.
 
+## Methodological Correction
+
+Post-execution analysis revealed that per-profile J@20 is highly seed-sensitive (range up to 0.360 on a single profile depending on which 5 seed papers are used). The classification of all models as "divergent" was based on per-profile J@20 thresholds — the metric the Codex review explicitly warned against giving gatekeeping authority (finding #5), and that PROTOCOL.md Section 2 was designed to de-emphasize.
+
+**Stable metrics tell a clearer story.** Kendall's tau (full ranking correlation) varies by only 0.006-0.013 across seed choices. Mean J@20 varies by 0.033-0.087. The per-profile J@20 headlines in the original synthesis were the noisiest signal; the aggregate picture and tau are robust.
+
+The findings below are corrected to lead with seed-stable metrics. Per-profile J@20 is retained as supplementary detail, not as primary evidence.
+
 ## Model Overview
 
-| Model | Dim | Classification | Min J@20 | Mean J@20 | Embed Time |
-|-------|-----|---------------|----------|-----------|------------|
-| SPECTER2 + adapter | 768 | divergent | 0.379 | 0.610 | 49s |
-| Stella v5 400M | 1024 | divergent | 0.379 | 0.574 | 81s |
-| Qwen3-Embedding-0.6B | 1024 | divergent | 0.333 | 0.550 | 98s |
-| GTE-large-en-v1.5 | 1024 | divergent | 0.481 | 0.639 | 117s |
-| Voyage-4 | 1024 | divergent | 0.333 | 0.575 | ~117 min (API, rate-limited) |
+| Model | Dim | Mean tau vs MiniLM | Mean J@100 | Mean J@20 | Embed Time |
+|-------|-----|--------------------|-----------|-----------|------------|
+| SPECTER2 + adapter | 768 | 0.563 | 0.507 | 0.610 | 49s |
+| Stella v5 400M | 1024 | 0.640 | 0.561 | 0.574 | 81s |
+| Qwen3-Embedding-0.6B | 1024 | 0.590 | 0.529 | 0.550 | 98s |
+| GTE-large-en-v1.5 | 1024 | 0.637 | 0.526 | 0.639 | 117s |
+| Voyage-4 | 1024 | 0.483 | 0.499 | 0.575 | ~117 min (API) |
 
-All five challengers classified **divergent** (min J@20 < 0.8 on at least one profile). This was unexpected — the design anticipated some models would fall into mid-overlap or high-overlap bands.
+All models show moderate rank correlation with MiniLM (tau 0.48-0.64) — genuinely different rankings, not redundant, not random. Voyage is the most different (tau 0.483); Stella and GTE are the most similar (tau ~0.64). These findings are stable across seed choices (tau range < 0.014 across all seed variants tested).
+
+**Tau stability across seed choices (range across 5 seed variants):**
+SPECTER2: 0.006 | Stella: 0.008 | Qwen3: 0.013 | GTE: 0.013 | Voyage: 0.010
 
 ## Pre-registered Predictions
 
@@ -46,9 +57,11 @@ All five challengers classified **divergent** (min J@20 < 0.8 on at least one pr
 | P5 | At least one model has better score separation than MiniLM | **CONFIRMED** | SPECTER2 shows extreme score compression (all >0.95 on P1); Qwen3 shows wider score spread. Both are "different" rather than "better" — score distribution character varies by model. |
 | P6 | No single model dominates all 8 profiles | **CONFIRMED** | Model rankings vary substantially by profile. P3 and P6 are the most discriminating profiles. |
 
-### Prediction P3 is the most consequential falsification.
+### Prediction P3: falsified, but with caveats
 
-Spike 003 found SPECTER2 redundant with MiniLM on P1, P3, P4 (3 profiles, 100-paper pool, 20% selectivity). On the 2000-paper sample with 1% selectivity, SPECTER2 diverges dramatically on P3 (J@20=0.379) and substantially on P2, P8 (J@20=0.538). This validates the Spike 003 epistemic revision's concern about methodology: the small sample with high selectivity collapsed genuine model differences.
+Spike 003 found SPECTER2 redundant with MiniLM on P1, P3, P4 (3 profiles, 100-paper pool, 20% selectivity). On the 2000-paper sample, SPECTER2 shows tau=0.563 with MiniLM (moderate correlation, not redundant) and mean J@100=0.507 (roughly half of the top-100 papers differ). This is robust across seed choices.
+
+**Caveat:** The specific per-profile J@20 values (e.g., P3=0.379 with first_5 seeds) are seed-sensitive — the same profile gives J@20=0.739 with different seeds. The falsification rests on the stable aggregate picture (tau, J@100), not on any single per-profile J@20 value.
 
 ## Per-Model Findings
 
