@@ -8,29 +8,33 @@ confidence: interpretation-level (not extrapolation)
 
 # Spike 004 Decision: Embedding Model Evaluation
 
+## What this spike decided vs what it cannot decide
+
+This spike can characterize how models differ from MiniLM. It cannot determine which differences are valuable to researchers. Every recommendation below is at most "Chosen for now" — provisional pending human evaluation.
+
 ## Decision-Readiness Classes
 
-### Retain default (MiniLM + TF-IDF) — YES, with qualification
+### Retain default (MiniLM + TF-IDF) — YES
 
-The current provisional arrangement of MiniLM primary + TF-IDF secondary should remain the default. No model demonstrated sufficient advantage to warrant replacement, and the local-first, zero-dependency nature of MiniLM + TF-IDF aligns with project values.
+The current arrangement should remain. This is the most defensible decision because:
+- MiniLM + TF-IDF complementarity is the spike program's strongest finding (Spike 003, model-independent, confirmed qualitatively and quantitatively)
+- No model demonstrated it was *better* — only that it was *different*
+- Local-first, zero-dependency, fast
+- Changing the default requires evidence this spike structurally cannot produce (human quality assessment)
 
-**However**, the finding that all models are substantially divergent from MiniLM — and that each captures a genuinely different signal axis — means the two-view architecture is leaving discoverable papers on the table. The question is not whether to replace MiniLM but whether to add optional third views.
+### Candidates: further investigation (all)
 
-### Candidates: optional experimental view
+The original synthesis promoted SPECTER2 and GTE to "optional experimental view" status. This was overclaimed. The evidence supports "further investigation" for all challengers, not operational recommendations for any.
 
-**SPECTER2** merits being offered as an optional third view for users working in specialized scientific domains (quantum, mathematical foundations, any field with distinctive scientific vocabulary). Evidence:
-- Dramatically different signal on P3 (J@20=0.379) with qualitative confirmation of value
-- Strongly preferred over MiniLM in blind comparison on P3
-- Coherent divergent papers across all profiles — no noise
-- Already local, already fast (49s for 2000 papers), no new dependencies
-- Score compression is a known limitation for within-topic ranking
+**SPECTER2** — produces different rankings (tau=0.563). AI reviewers describe the divergent papers favorably, including in blind comparison on P2/P3. But: the AI reviewer's judgment is unvalidated, the characterization as "citation-community signal" is a narrative, and the blind comparisons had full written assessment only for SPECTER2 (potential selection bias in what we examined most carefully). Merits investigation with human evaluation.
 
-**GTE** merits being offered as an optional third view for users who want broader methodological coverage. Evidence:
-- Consistently finds foundational methodology papers MiniLM misses
-- Highest tau correlation with MiniLM (least disruptive to add)
-- No noise observed in any review
-- Local-first, moderate resource requirements (117s, 1024-dim)
-- But: modest divergence — the value-add over MiniLM is real but not dramatic
+**GTE** — most correlated with MiniLM (tau=0.637) while still finding some different papers. AI reviewers describe divergent papers as methodologically broader. Merits investigation but the case is thinner than SPECTER2's because the divergence is more modest.
+
+**Voyage** — most different from MiniLM (tau=0.483). P2 blind comparison is the strongest single piece of qualitative evidence in the spike. But: API dependency, 8% failure rate, provider drift, local-first conflict. The signal may be real; the delivery is operationally problematic for this project.
+
+**Stella** — moderate divergence (tau=0.640) with AI-described deployment-realism signal. xformers dependency is a practical constraint. Thinnest evidence case of the local models.
+
+**Qwen3** — most divergent local model (tau=0.590) but with demonstrated noise (vocabulary-match false positive). Highest discovery potential if noise can be filtered. Merits investigation specifically on noise characteristics.
 
 ### Candidates: further investigation
 
@@ -66,7 +70,7 @@ None — all 5 challengers received full evaluation (40 qualitative reviews tota
 → **Yes, on some profiles.** Voyage-4 surfaces genuinely different papers on P2 (LM reasoning) that no local model finds. But the value is profile-dependent (P1 is nearly redundant with MiniLM), and the API dependency conflicts with local-first project values. The value exists but the delivery mechanism is problematic.
 
 **"Would a different second view model be better than TF-IDF?"**
-→ **Answer: No, but the question is wrong.** No embedding model is a better *second view* than TF-IDF because embedding models and TF-IDF capture genuinely orthogonal signals. The real question is: should there be a *third* view? The evidence supports offering optional third views (SPECTER2 and GTE) but not replacing TF-IDF.
+→ **Unanswered.** The Codex review (Blocker 3) explicitly noted this question requires TF-IDF in the comparison frame. PROTOCOL.md Section 4 added TF-IDF metrics, which were computed. But the synthesis never used them to answer this question. What the data shows: all embedding models have low overlap with TF-IDF (orthogonal signals, as expected). What it doesn't show: whether MiniLM + SPECTER2 covers more *relevant* papers than MiniLM + TF-IDF. "Relevant" requires human ground truth we don't have.
 
 ## Architecture Implications
 
@@ -76,21 +80,23 @@ None — all 5 challengers received full evaluation (40 qualitative reviews tota
 
 No change warranted. Both MiniLM and TF-IDF provide distinct, valuable signals. The low J@20 between challengers and TF-IDF (mean 0.29-0.54) confirms TF-IDF's signal is genuinely different from all embedding approaches.
 
-### Optional third views — Chosen for now (new)
+### Additional views — Open (not "Chosen for now")
 
-The architecture should support optional additional views without requiring them. Concrete recommendation:
-1. SPECTER2 as "scientific-community" view — available when user works in specialized domains
-2. GTE as "methodology-breadth" view — available when user wants wider methodological coverage
-3. Both are local-first and require no API dependencies
+The original synthesis recommended SPECTER2 and GTE as optional views. This was premature. The evidence supports:
+- Models produce different rankings (stable finding)
+- Some models find papers neither MiniLM nor TF-IDF surface (measured)
+- AI reviewers describe these papers favorably (unvalidated)
 
-This is "Chosen for now" because:
-- Only tested on CS/ML profiles
-- AI qualitative review, no human confirmation
-- MiniLM-entangled profiles may understate the value of views that structure the space differently
+The evidence does not support:
+- That the different papers are valuable to researchers (no human evaluation)
+- That specific models should be offered as named views (the "signal axis" labels are AI narratives)
+- That the architecture should change based on this spike alone
+
+**The architecture should remain model-agnostic** (Spike 003 already recommended this). Whether and which additional views to offer is an open question that requires human evaluation to close.
 
 ### View architecture — Open
 
-The question of how many views to offer, how to name them, and whether to fuse them automatically vs presenting them as alternatives remains open. This spike provides characterization data but not UX evidence.
+Remains fully open. This spike produced characterization data but not quality data, UX evidence, or architectural guidance.
 
 ## User Situation Considerations (Success Criterion 6)
 

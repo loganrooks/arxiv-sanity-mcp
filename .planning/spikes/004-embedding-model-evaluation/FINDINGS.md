@@ -23,13 +23,26 @@ These findings hold for:
 - All qualitative judgments are AI-generated substitutes for researcher judgment
 - Blind comparison reviews were fully completed for SPECTER2 only; other models' blind reviews contain paper data but limited written assessment. This is a methodology gap — most qualitative depth comes from characterization reviews.
 
-## Methodological Correction
+## What this spike can and cannot claim
 
-Post-execution analysis revealed that per-profile J@20 is highly seed-sensitive (range up to 0.360 on a single profile depending on which 5 seed papers are used). The classification of all models as "divergent" was based on per-profile J@20 thresholds — the metric the Codex review explicitly warned against giving gatekeeping authority (finding #5), and that PROTOCOL.md Section 2 was designed to de-emphasize.
+The Codex design review (2026-03-21, Blocker 3) explicitly separated three questions:
+1. **"Different from MiniLM"** — the experiment can answer this
+2. **"Better second view than TF-IDF"** — requires TF-IDF in the comparison frame (added in PROTOCOL.md Section 4, computed in Phase 2, but insufficiently used in synthesis)
+3. **"Strong enough to revise architecture"** — requires evidence this spike cannot produce
 
-**Stable metrics tell a clearer story.** Kendall's tau (full ranking correlation) varies by only 0.006-0.013 across seed choices. Mean J@20 varies by 0.033-0.087. The per-profile J@20 headlines in the original synthesis were the noisiest signal; the aggregate picture and tau are robust.
+**This spike can claim:** Models produce different rankings from MiniLM (tau is stable, seed-robust). The AI qualitative reviews describe what kind of papers each model finds that MiniLM doesn't.
 
-The findings below are corrected to lead with seed-stable metrics. Per-profile J@20 is retained as supplementary detail, not as primary evidence.
+**This spike cannot claim:** That any model is *better* than MiniLM. That the divergent papers are *valuable* to actual researchers. That the "signal axis" characterizations (citation-community, deployment-realism, etc.) reflect real properties of the models rather than narratives fitted to small samples of divergent papers by an AI reviewer.
+
+**The MiniLM-centrism problem.** The Codex review and DESIGN.md both identified the evaluation framework's MiniLM entanglement as a structural condition. PROTOCOL.md acknowledged it. But the execution still treated MiniLM as ground truth: all comparisons are hub-and-spoke through MiniLM, all qualitative reviews frame MiniLM as the reference, and the synthesis asked "how does Model X differ from MiniLM?" rather than "how do all models relate to each other and to what researchers actually want?" No model-to-model comparison matrix was computed. No model-independent quality assessment was performed beyond category recall.
+
+This is the Pattern A failure identified by the Codex review across all spikes: methodological self-awareness outruns executable protocol.
+
+## Methodological corrections
+
+**Seed sensitivity.** Post-execution analysis found per-profile J@20 varies by up to 0.360 depending on seed choice. Tau varies by only 0.006-0.013. Mean J@20 varies by 0.033-0.087. Findings lead with seed-stable metrics; per-profile J@20 is supplementary.
+
+**Jaccard gatekeeping.** Despite explicit design critiques (Codex finding #5, PROTOCOL.md Section 2), the original synthesis led with J@20 and classified models by J@20 thresholds. The classification of all models as "divergent" is an artifact of using per-profile J@20 as the gate.
 
 ## Model Overview
 
@@ -41,7 +54,7 @@ The findings below are corrected to lead with seed-stable metrics. Per-profile J
 | GTE-large-en-v1.5 | 1024 | 0.637 | 0.526 | 0.639 | 117s |
 | Voyage-4 | 1024 | 0.483 | 0.499 | 0.575 | ~117 min (API) |
 
-All models show moderate rank correlation with MiniLM (tau 0.48-0.64) — genuinely different rankings, not redundant, not random. Voyage is the most different (tau 0.483); Stella and GTE are the most similar (tau ~0.64). These findings are stable across seed choices (tau range < 0.014 across all seed variants tested).
+All models show moderate rank correlation with MiniLM (tau 0.48-0.64). This tells us the models produce different rankings — not how good those rankings are. "Different from MiniLM" is not "better than MiniLM" or "worse than MiniLM." Without human ground truth, we cannot make quality claims. These tau values are stable across seed choices (range < 0.014 across all seed variants tested).
 
 **Tau stability across seed choices (range across 5 seed variants):**
 SPECTER2: 0.006 | Stella: 0.008 | Qwen3: 0.013 | GTE: 0.013 | Voyage: 0.010
@@ -53,7 +66,7 @@ SPECTER2: 0.006 | Stella: 0.008 | Qwen3: 0.013 | GTE: 0.013 | Voyage: 0.010
 | P1 | Voyage J@20 > 0.717 (Spike 003) on larger sample | **MIXED** | P1: J@20=0.818 (confirmed — higher on larger sample). But P2: J@20=0.333 (dramatically divergent on LM reasoning). Mean 0.575 — Voyage is not redundant, it's profile-dependent. |
 | P2 | At least one local model J@20 < 0.7 on 2+ profiles | **CONFIRMED** | All 4 models show J@20 < 0.7 on 3+ profiles. Qwen3 shows < 0.6 on 4/8. |
 | P3 | SPECTER2 redundancy holds across all 8 profiles | **FALSIFIED** | SPECTER2 J@20 = 0.379 on P3 (Quantum), 0.538 on P2/P8. Redundancy finding from Spike 003 does not generalize. |
-| P4 | Divergent models show qualitatively different paper types | **CONFIRMED** | Each model captures a distinct signal character (see per-model findings) |
+| P4 | Divergent models show qualitatively different paper types | **PARTIALLY CONFIRMED** | AI reviewers describe different paper types per model, but: (a) characterizations are from non-blind reviews where model identity was known, (b) "signal axis" labels are AI-generated narratives, not validated properties, (c) seed sensitivity means different seeds might produce different characterizations |
 | P5 | At least one model has better score separation than MiniLM | **CONFIRMED** | SPECTER2 shows extreme score compression (all >0.95 on P1); Qwen3 shows wider score spread. Both are "different" rather than "better" — score distribution character varies by model. |
 | P6 | No single model dominates all 8 profiles | **CONFIRMED** | Model rankings vary substantially by profile. P3 and P6 are the most discriminating profiles. |
 
@@ -67,8 +80,8 @@ Spike 003 found SPECTER2 redundant with MiniLM on P1, P3, P4 (3 profiles, 100-pa
 
 ### SPECTER2 + proximity adapter
 
-**Classification:** divergent
-**Signal character:** Methodological/citation-community similarity. Trained on scientific documents, captures within-community relatedness that general-purpose models miss.
+**Rank correlation with MiniLM:** tau = 0.563 (moderate, stable across seeds)
+**AI reviewer characterization (non-blind, unvalidated):** Divergent papers tend toward methodological/citation-community similarity. This is an AI-generated narrative about a small number of divergent papers, not a validated property of the model.
 
 | Profile | J@20 vs MiniLM | Tau | Cat Recall | J@20 vs TF-IDF | Truly Unique |
 |---------|---------------|-----|------------|----------------|-------------|
@@ -99,8 +112,8 @@ SPECTER2 finds papers that share methodology and citation-community membership. 
 
 ### Stella v5 400M
 
-**Classification:** divergent
-**Signal character:** Deployment-realism and practical engineering concerns. Surfaces papers about hardware constraints, real-world deployment, and operational considerations.
+**Rank correlation with MiniLM:** tau = 0.640 (moderate-high, most correlated local challenger)
+**AI reviewer characterization (non-blind, unvalidated):** Divergent papers tend toward deployment-realism and practical engineering concerns. Unvalidated narrative — see qualification above.
 
 | Profile | J@20 vs MiniLM | Tau | Cat Recall | J@20 vs TF-IDF | Truly Unique |
 |---------|---------------|-----|------------|----------------|-------------|
@@ -131,8 +144,8 @@ Stella favors the algorithmic substrate and deployment layer, where MiniLM favor
 
 ### Qwen3-Embedding-0.6B
 
-**Classification:** divergent
-**Signal character:** Widest divergence of all models but with vocabulary-match noise. Captures both genuine cross-domain connections and false positives from shared terminology.
+**Rank correlation with MiniLM:** tau = 0.590 (moderate)
+**AI reviewer characterization (non-blind, unvalidated):** Widest divergence with vocabulary-match noise (one clear false positive on P1). Unvalidated narrative — see qualification above.
 
 | Profile | J@20 vs MiniLM | Tau | Cat Recall | J@20 vs TF-IDF | Truly Unique |
 |---------|---------------|-----|------------|----------------|-------------|
@@ -161,8 +174,8 @@ Most divergent but least reliable. Genuine finds include papers MiniLM misses du
 
 ### GTE-large-en-v1.5
 
-**Classification:** divergent
-**Signal character:** Wider methodological envelope. Captures foundational methodology papers that aren't explicitly labeled for the target domain.
+**Rank correlation with MiniLM:** tau = 0.637 (moderate-high, tied with Stella as most correlated)
+**AI reviewer characterization (non-blind, unvalidated):** Wider methodological envelope. Unvalidated narrative — see qualification above.
 
 | Profile | J@20 vs MiniLM | Tau | Cat Recall | J@20 vs TF-IDF | Truly Unique |
 |---------|---------------|-----|------------|----------------|-------------|
@@ -191,8 +204,8 @@ GTE captures a broader methodological envelope than MiniLM — pulling in founda
 
 ### Voyage-4
 
-**Classification:** divergent
-**Signal character:** Broad semantic similarity with strong profile-dependence. Most MiniLM-like on narrow profiles (P1 RL: J@20=0.818), most divergent on broad conceptual profiles (P2 LM reasoning: J@20=0.333). Lowest mean tau (0.500) of all challengers.
+**Rank correlation with MiniLM:** tau = 0.483 (lowest of all challengers — most different from MiniLM, but "most different" ≠ "best" or "worst")
+**AI reviewer characterization (blind on P2, non-blind on others, unvalidated):** Broad semantic similarity with strong profile-dependence. The P2 blind comparison was the strongest qualitative evidence in the spike (reviewer did not know model identity).
 **Limitation:** 8% embedding failure rate (160/2000 papers). Effective pool ~1840 papers.
 
 | Profile | J@20 vs MiniLM | Tau | Cat Recall | J@20 vs TF-IDF | Truly Unique |
@@ -224,43 +237,44 @@ Voyage captures broader conceptual similarity on open-ended profiles. Its P2 div
 
 ## Cross-Model Analysis
 
-### Signal axes identified
+### AI-generated signal characterizations (unvalidated)
 
-The four challengers cluster into distinct signal types:
+The AI qualitative reviews describe each model's divergent papers as clustering into distinct types. These characterizations are reported as reviewer observations, not as validated properties of the models:
 
-1. **Citation-community (SPECTER2)**: Trained on scientific documents, captures within-community relatedness. Strongest on specialized scientific vocabulary domains.
-2. **Deployment-realism (Stella)**: Surfaces practical engineering and deployment considerations. Favors algorithmic substrate over perception layer.
-3. **Vocabulary-sensitive general (Qwen3)**: Widest aperture, captures cross-domain vocabulary matches. Includes both genuine finds and noise.
-4. **Methodological-envelope (GTE)**: Widens the methodological scope of recommendations. Most conservative, highest correlation with MiniLM.
+1. **SPECTER2**: Divergent papers described as methodological/citation-community related. Based on non-blind reviews across 8 profiles + 2 blind comparisons (P2, P3) where SPECTER2 was preferred.
+2. **Stella**: Divergent papers described as deployment-realism and engineering concerns. Based on non-blind reviews only (blind reviews for P3, P6 had limited written assessment).
+3. **Qwen3**: Divergent papers described as vocabulary-sensitive with noise. One clear false positive identified on P1 (RL-for-LLMs scored comparably to RL-for-robotics). Based on non-blind reviews.
+4. **GTE**: Divergent papers described as widening the methodological envelope. Based on non-blind reviews.
+5. **Voyage**: P2 blind comparison found divergent papers surface reasoning failure modes. This is the strongest qualitative evidence in the spike — the reviewer did not know model identity and still preferred the divergent set.
 
-These are genuinely different signal axes, not different rankings of the same papers. The "truly unique" counts (papers in Model X's top-20 but in neither MiniLM's nor TF-IDF's) range from 1-8 per profile, confirming each model accesses a region of the paper space that the current MiniLM + TF-IDF arrangement misses.
+**What these characterizations cannot support:** That the models have stable, intrinsic "signal axes." These labels come from AI reviewers examining small numbers of divergent papers (2-8 per profile) using one particular seed set. Different seeds or different profiles might produce different characterizations of the same model. The labels are observations, not conclusions.
 
-### MoReBRAC observation
+### "Truly unique" papers — what the data actually shows
 
-The offline RL data augmentation paper "MoReBRAC" appeared as a divergent pick for SPECTER2, Stella, and GTE — three of four challengers found it, but MiniLM did not. This suggests a potential systematic MiniLM blind spot for papers framed as general-purpose methodology rather than domain-specific application.
+All challengers find papers that both MiniLM and TF-IDF miss (1-8 per profile). This is the most model-independent quantitative finding: the current two-view arrangement has blind spots that other models can partially fill. But "truly unique" means "not in either baseline's top-20" — it does not mean "valuable" or "relevant." Whether these papers matter to researchers is unknown.
 
-### TF-IDF comparison frame
+### TF-IDF comparison frame (partially addressed)
 
-All challengers show very low J@20 vs TF-IDF (mean 0.29-0.54 across profiles). This means the embedding models and TF-IDF find substantially different papers, as expected. More importantly, all challengers find papers that **both** MiniLM and TF-IDF miss (the "truly unique" column). This is evidence for a third signal axis beyond the current two-view architecture.
+PROTOCOL.md Section 4 committed to answering: "Is Model X a better complement to MiniLM than TF-IDF?" Phase 2 computed J@20 vs TF-IDF for all models. But the synthesis did not properly use this data to answer the architectural question. What the data shows:
 
-No challenger is a better *replacement* for MiniLM — they diverge too much to serve as drop-in substitutes. The question is whether any is a valuable *third view*.
+- All embedding models have low overlap with TF-IDF (J@20 = 0.29-0.67), confirming embedding and lexical retrieval are genuinely orthogonal — as expected and already established in Spike 003.
+- The "truly unique" column counts papers in neither MiniLM's nor TF-IDF's top-20. This is evidence that additional models access unexplored regions of the paper space. But it says nothing about the *quality* of those regions.
+- **The question "better complement to MiniLM than TF-IDF?" remains unanswered.** Answering it would require comparing the complementarity structure: does MiniLM + SPECTER2 cover more *relevant* papers than MiniLM + TF-IDF? We measured coverage but not relevance (no ground truth).
 
-### Profile dependence
+### Profile dependence (seed-sensitive caveat)
 
-Model rankings vary substantially by profile:
+The "truly unique" counts below are from one seed set (first_5). Different seeds would produce different counts. The per-profile pattern is illustrative, not definitive.
 
-| Profile | Most unique model | Least unique model | Most discriminating |
-|---------|------------------|-------------------|-------------------|
-| P1 (RL robotics) | Qwen3 (6) | — | Moderate |
-| P2 (LM reasoning) | Qwen3/SPECTER2 (4) | GTE (2) | Moderate |
-| P3 (Quantum) | SPECTER2 (8) | GTE (2) | **High** — SPECTER2 excels |
-| P4 (AI safety) | Qwen3 (3) | SPECTER2/Stella/GTE (2) | Low — models converge |
-| P5 (Graph NNs) | SPECTER2 (4) | GTE/Qwen3 (1) | Low — all converge |
-| P6 (Diffusion) | Stella (7) | — | **High** — Stella/Qwen3 diverge most |
-| P7 (Fed learning) | Stella (6) | SPECTER2 (3) | Moderate |
-| P8 (Math foundations) | Qwen3 (7) | — | **High** — all models diverge |
-
-P3, P6, and P8 are the most discriminating profiles — they show the largest model differences and are the profiles where a third view would add the most value.
+| Profile | Most unique model | Least unique model |
+|---------|------------------|-------------------|
+| P1 (RL robotics) | Qwen3 (6) | — |
+| P2 (LM reasoning) | Voyage (8) | GTE (2) |
+| P3 (Quantum) | SPECTER2 (8) | GTE (2) |
+| P4 (AI safety) | Qwen3/Voyage (3) | SPECTER2/Stella/GTE (2) |
+| P5 (Graph NNs) | SPECTER2 (4) | GTE/Qwen3 (1) |
+| P6 (Diffusion) | Stella (7) | — |
+| P7 (Fed learning) | Stella/Voyage (6) | SPECTER2 (3) |
+| P8 (Math foundations) | Qwen3 (7) | — |
 
 ## Methodology Notes
 
