@@ -1,12 +1,13 @@
 # Knowledge Store Index
 
-**Generated:** 2026-03-20T23:50:12Z
-**Total entries:** 12
+**Generated:** 2026-03-30T13:01:04Z
+**Total entries:** 13
 
-## Signals (7)
+## Signals (8)
 
 | ID | Project | Severity | Lifecycle | Tags | Date | Status |
 |----|---------|----------|-----------|------|------|--------|
+| sig-2026-03-30-explorer-reasoning-effort-high-at-most | arxiv-mcp | notable | detected | agent-orchestration,explorer-agents,reasoning-effort,resource-discipline | 2026-03-30 | active |
 | sig-2026-03-20-orchestrator-self-exec-and-retry-loop | arxiv-mcp | notable | detected | delegation-failure,retry-without-diagnosis,orchestrator-discipline | 2026-03-20 | active |
 | sig-2026-03-20-agent-acted-without-asking | arxiv-mcp | notable | detected | agent-behavior,feedback,unauthorized-action,gsd-framework | 2026-03-20 | active |
 | sig-2026-03-20-deliberation-naming-convention | arxiv-mcp | notable | detected | gsd-framework,deliberation,naming-convention,artifact-navigation | 2026-03-20 | active |
