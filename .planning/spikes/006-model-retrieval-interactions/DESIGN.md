@@ -54,6 +54,7 @@ This spike stays cheap because it uses existing embeddings and does not yet requ
 
 - Model x retrieval method x profile family
 - Report subset-aware distributions, not single-seed outcomes
+- Report complementarity against the incumbent `MiniLM + TF-IDF` arrangement, not only pairwise model similarity
 
 ### Phase 3: Interaction synthesis
 
@@ -65,8 +66,9 @@ This spike stays cheap because it uses existing embeddings and does not yet requ
 
 1. Every Spike 004 challenger has both centroid and kNN outputs.
 2. The spike produces an explicit interaction table: model, retrieval method, profile family, and whether the comparative story changed.
-3. The output names a provisional shortlist of model families for Spikes 007 and 008.
-4. Any shortlist is marked `[chosen for now]`, not settled.
+3. The spike produces an explicit complementarity table against `MiniLM + TF-IDF`.
+4. The output names a provisional shortlist of model families for Spikes 007 and 008.
+5. Any shortlist is marked `[chosen for now]`, not settled.
 
 ## Guardrails
 

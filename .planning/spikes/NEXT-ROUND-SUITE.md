@@ -54,6 +54,12 @@ The shortlist itself remains **Open** until 005 and 006 complete.
 - Whether 008 can include even a small amount of human judgment rather than AI-only agent evaluation.
 - Whether H2 remains a standalone spike after 005/006 or collapses into a narrower mechanistic appendix for the shortlisted candidates.
 
+## What This Suite Is Not
+
+- It is not a race to crown a new default model.
+- It is not a commitment to deploy new views.
+- It is not a proof that representational differences matter to researchers.
+
 ## Required Gate
 
 Before any of Spikes 005-008 execute:

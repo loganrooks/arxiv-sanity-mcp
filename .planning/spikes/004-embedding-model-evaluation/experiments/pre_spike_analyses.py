@@ -2,9 +2,9 @@
 """
 Pre-spike analyses for the next spike round.
 
-Produces three grounded artifacts from existing Spike 004 assets:
+Produces three JSON artifacts from existing Spike 004 assets:
 1. Full pairwise model-to-model tau matrix
-2. Seed sensitivity characterization across available grounded seed variants
+2. Seed sensitivity characterization across available checked-in seed variants
 3. MiniLM+challenger vs MiniLM+TF-IDF complementarity comparison
 
 Usage:
@@ -25,8 +25,7 @@ import compare_models as base
 
 
 SPIKE_004_DIR = Path(__file__).resolve().parent.parent
-SPIKE_005_DIR = SPIKE_004_DIR.parent / "005-next-round-suite"
-ARTIFACT_DIR = SPIKE_005_DIR / "artifacts"
+ARTIFACT_DIR = SPIKE_004_DIR / "experiments" / "checkpoints" / "checked_in_variant_artifacts"
 SAMPLE_PATH = base.SPIKE_003_DIR / "experiments" / "data" / "sample_2000.json"
 
 MODELS = ["minilm", "specter2", "stella", "qwen3", "gte", "voyage"]
@@ -207,7 +206,7 @@ def run_pairwise_analysis(
         "analysis": "pairwise_tau_matrix",
         "seed_variants_used": K5_VARIANT_NAMES,
         "models": PAIRWISE_MODELS,
-        "mean_tau_matrix_across_profiles_and_grounded_k5_variants": mean_matrix,
+        "mean_tau_matrix_across_profiles_and_checked_in_k5_variants": mean_matrix,
         "pair_statistics": pair_stats,
         "per_profile": per_profile,
     }
@@ -222,7 +221,7 @@ def run_seed_sensitivity_analysis(
     results = {
         "analysis": "seed_sensitivity",
         "variants": {
-            "grounded_k5_variants": K5_VARIANT_NAMES,
+            "checked_in_k5_variants": K5_VARIANT_NAMES,
             "explicit_seed_count_variants": COUNT_VARIANT_NAMES,
         },
         "profiles": {},
@@ -294,7 +293,7 @@ def run_seed_sensitivity_analysis(
                     target[metric_name].append(value)
 
             model_summaries[model_key] = {
-                "grounded_k5_variant_summary": {
+                "checked_in_k5_variant_summary": {
                     metric_name: summarize_metric(values)
                     for metric_name, values in k5_variant_values.items()
                     if values
