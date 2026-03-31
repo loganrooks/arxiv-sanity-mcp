@@ -55,6 +55,7 @@ The immediate question is not merely whether to save review output to files. The
 - How much interpretation should happen before a local observation becomes an upstream recommendation?
 - How do we preserve openness in the response space without falling into indefinite meta-deliberation?
 - What kinds of artifacts should link project-local experimentation to upstream learning?
+- How should research, philosophical lenses, and reference designs inform workflow redesign without being used as false authority?
 
 ## Analysis
 
@@ -82,6 +83,14 @@ The immediate question is not merely whether to save review output to files. The
 - **Rebuttal:** This can become bureaucratic if every minor issue triggers a full deliberation cycle.
 - **Qualifier:** Probably the right default, provided the gate is lightweight and only escalates to deeper deliberation when the issue appears structurally important.
 
+### Option D: Plural Praxis Translation Layer
+
+- **Claim:** Treat deliberation as one node inside a broader procedural praxis that translates multiple input types into concrete workflow proposals: local signals, project artifacts, research traces, philosophical lenses, and reference designs.
+- **Grounds:** The current issue cannot be fully understood by signal classification alone. It involves memory and retention practices, workflow contracts, the interpretation of recurrence, and the problem of how local experience should inform upstream change. Different intellectual sources illuminate different parts of that problem.
+- **Warrant:** A workflow learns better when it does not force every issue into a single form of reasoning. Signals are good at detection, deliberations at interpretation, research at situating prior art, philosophical lenses at exposing hidden assumptions, and reference designs at showing concrete alternative arrangements. A translation layer can hold these together without letting any single source dominate.
+- **Rebuttal:** This risks becoming rhetorically rich but procedurally vague unless the translation into design proposals is explicit and bounded.
+- **Qualifier:** Strong candidate if made concrete through a small set of required artifact fields and response categories.
+
 ## Tensions
 
 1. **Speed vs interpretation**
@@ -99,20 +108,97 @@ The immediate question is not merely whether to save review output to files. The
 5. **Memory vs foreclosure**
    Stiegler's relevance here is practical: artifact systems shape what is retained and therefore what becomes actionable. Better retention can either deepen learning or prematurely harden one interpretation into workflow doctrine.
 
+6. **Plural sources vs false authority**
+   Research, philosophy, and reference designs can deepen design judgment, but they can also be misused as prestige cover for decisions that still require local testing and qualification.
+
 ## Recommendation
 
-**Current leaning:** Option C.
+**Current leaning:** Option C implemented inside Option D.
 
-The project likely needs a lightweight propagation gate with explicit layers:
+The project likely needs a lightweight propagation gate with explicit layers, but that gate should sit inside a broader praxis rather than functioning as the whole response mechanism.
 
-1. **Local issue**
-   A concrete symptom in this repo. Capture it as a signal or artifact.
+### Proposed procedural praxis
 
-2. **Portable gap candidate**
-   Ask: would another project using the same workflow likely hit this? What is the minimal abstraction of the issue?
+1. **Capture**
+   Record the local symptom as a signal, review artifact, or execution note.
 
-3. **Upstream concern**
-   Ask: does the issue expose a missing contract, missing gate, or faulty abstraction in GSDR itself?
+2. **Interpret**
+   Use a short deliberation only when the issue touches contracts, abstractions, or recurring orchestration patterns.
+
+3. **Translate**
+   For issues that survive interpretation, produce a small translation artifact or section with:
+   - source traces: local artifacts, research inputs, philosophical lenses, reference designs
+   - what each source affords
+   - what each source does not license
+   - candidate response types
+
+4. **Respond**
+   Choose among response types rather than assuming every issue wants the same kind of fix.
+
+5. **Propagate**
+   Escalate upstream only when the issue has been stated at the level of missing contract, missing gate, or faulty abstraction.
+
+### Response repertoire
+
+The response space should remain explicitly plural. A project-level deliberation should help open and compare these options, not determine them exhaustively.
+
+Possible response types:
+
+1. **Interpretive change**
+   Reclassify the issue without changing tooling. Example: tighten how signals are read before escalation.
+
+2. **Artifact change**
+   Add or reorganize durable artifacts. Example: require designated review outputs under `.planning/.../reviews/`.
+
+3. **Procedural change**
+   Change the required sequence or checkpoints. Example: require `artifact_path` in review requests.
+
+4. **Sensor or signal change**
+   Add detection, recurrence tracking, or better clustering for workflow issues.
+
+5. **Governance change**
+   Introduce criteria for when local issues become portable-gap candidates or upstream concerns.
+
+6. **Local overlay**
+   Patch project-local workflow behavior without changing upstream immediately.
+
+7. **Upstream design proposal**
+   When justified, propose a reusable change to GSDR itself.
+
+### Intellectual inputs and what they afford
+
+This praxis should not treat philosophy or research as ornamental. It should use them as different kinds of disciplined constraint.
+
+- **Dewey**
+  Treat workflow friction as an indeterminate situation that requires inquiry, not instant classification.
+
+- **Stiegler**
+  Ask what the artifact and retention system makes visible, forgettable, or actionable.
+
+- **Mayo**
+  Require severe enough checks before claiming an issue is portable or upstream-worthy.
+
+- **Lakatos**
+  Ask whether workflow modifications are progressive or merely protective patches around anomalies.
+
+- **Cartwright / patchy-capacity thinking**
+  Expect many workflow interventions to be locally valid before they are general.
+
+- **Reference designs**
+  Use them through critical inheritance: extract patterns, preconditions, and trade-offs rather than copying surface forms.
+
+### Concrete design direction for GSDR
+
+If this line of thought is adopted, the likely concrete proposals are not just "more deliberation." They are things like:
+
+1. A required `artifact_path` field in reusable review specs and review-oriented skills.
+2. A project-local `UPSTREAM-GAPS.md` or equivalent queue that aggregates portable-gap candidates without forcing immediate upstream action.
+3. A lightweight translation template for turning signals plus lenses plus reference designs into concrete workflow proposals.
+4. A propagation gate that asks the same questions every time:
+   - what is local here?
+   - what appears portable?
+   - what abstraction or contract failure is being alleged?
+   - what evidence would falsify that allegation?
 
 Only the third layer should drive upstream patch proposals. The second layer is where short project-level deliberation belongs. Not every signal needs full deliberation, but signals that concern workflow contracts, interpretation discipline, or recurring orchestration patterns probably do.
 
@@ -120,6 +206,8 @@ Only the third layer should drive upstream patch proposals. The second layer is 
 1. What are the minimum tests for moving from local issue to portable gap candidate?
 2. Should project-local overlays be preferred over upstream patches until recurrence is shown?
 3. What artifact should aggregate local divergences into a usable upstream feedback queue?
+4. What is the smallest useful "translation artifact" between signal and concrete GSDR design proposal?
+5. Which philosophical lenses are actually useful often enough to operationalize, and how do we keep them from becoming decorative vocabulary?
 
 ## Predictions
 
