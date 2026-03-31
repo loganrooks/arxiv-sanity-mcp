@@ -19,7 +19,7 @@ What is the shortest sequence of spikes that can turn the current representation
 
 The pre-spike analyses show three distinct uncertainties that should not be collapsed into one protocol:
 
-1. **Framework robustness**: do current model differences survive alternative profile construction and grounded seed variation?
+1. **Framework robustness**: do current model differences survive alternative profile construction and checked-in seed variation?
 2. **Retrieval interaction**: do centroid vs kNN retrieval choices change which models or view-combinations look useful?
 3. **Function-in-use**: do the surviving alternative views actually help complete research tasks or surface blind spots researchers would value?
 

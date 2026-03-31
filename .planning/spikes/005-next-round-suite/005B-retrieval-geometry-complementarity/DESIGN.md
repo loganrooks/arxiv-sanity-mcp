@@ -54,7 +54,7 @@ Implement `kNN-per-seed` for the candidate models using the existing 2000-paper 
 
 ### Phase 2: Comparative run
 
-For each candidate model, each robust profile family from 005A, and each grounded seed variant:
+For each candidate model, each robust profile family from 005A, and each checked-in seed variant:
 
 - compute top-K sets under centroid and kNN
 - compare pairwise tau and overlap changes

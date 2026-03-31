@@ -19,19 +19,17 @@ These analyses were run on the checked-in Spike 004 sample embeddings and the ex
 
 ## Methodological scope
 
-- **Grounded**: all three analyses use repo-local assets only.
-- **Grounded**: pairwise model comparison uses the 2000-paper sample embeddings already produced in Spike 004.
-- **Grounded**: complementarity analysis uses the same sample and the same TF-IDF construction used in Spike 004 Phase 2.
-- **Grounded but limited**: seed-sensitivity uses the seed variants explicitly available in `interest_profiles.json`.
+- **Artifact-reported**: all three analyses use repo-local assets only.
+- **Artifact-reported**: pairwise model comparison uses the 2000-paper sample embeddings already produced in Spike 004.
+- **Artifact-reported**: complementarity analysis uses the same sample and the same TF-IDF construction used in Spike 004 Phase 2.
+- **Artifact-reported but limited**: seed-sensitivity uses the seed variants explicitly available in `interest_profiles.json`.
 - **Open**: the repo-local seed assets do not encode the full "five fixed-5-seed variants" language mentioned in the March 30 checkpoint. The formal sensitivity characterization below is therefore bounded by the assets we can actually trace in-repo.
 
 ## Analysis 1: Model-to-model pairwise tau matrix
 
-### Grounded results
+### Artifact-reported results
 
-The full pairwise matrix does **not** support the hub-and-spoke simplification "all challengers just differ from MiniLM in roughly the same way." It also strengthens the case that the lexical baseline is still structurally distinct enough to deserve baseline status in every downstream comparison.
-
-Lowest mean pairwise taus across profiles and grounded 5-seed variants:
+Lowest mean pairwise taus across profiles and checked-in 5-seed variants:
 
 - `TF-IDF ↔ Voyage`: `0.3698`
 - `TF-IDF ↔ SPECTER2`: `0.3774`
@@ -53,10 +51,10 @@ Highest mean pairwise taus:
 
 ### Interpretation
 
-- **Grounded**: Voyage is not merely "another challenger to MiniLM." It is also the most orthogonal model relative to the other challengers.
-- **Grounded**: TF-IDF remains one of the most orthogonal signals in the full matrix, especially relative to `Voyage` and `SPECTER2`.
-- **Grounded**: Qwen3, Stella, GTE, and MiniLM occupy a more tightly related neighborhood than Voyage does.
-- **Grounded**: SPECTER2 remains a structurally distinct comparison target. It is not interchangeable with the "general semantic" cluster, and it is also not especially close to Voyage.
+- **Derived**: Voyage is not merely "another challenger to MiniLM." It is also the most orthogonal model relative to the other challengers.
+- **Derived**: TF-IDF remains one of the most orthogonal signals in the full matrix, especially relative to `Voyage` and `SPECTER2`.
+- **Derived**: Qwen3, Stella, GTE, and MiniLM occupy a more tightly related neighborhood than Voyage does.
+- **Derived**: SPECTER2 remains a structurally distinct comparison target. It is not interchangeable with the "general semantic" cluster, and it is also not especially close to Voyage.
 - **Chosen for now**: the next suite should reason about at least three comparison families, not a single challenger family:
   - `MiniLM / Stella / GTE / Qwen3` as a more correlated semantic family
   - `SPECTER2` as a distinct scientific-community-style family
@@ -69,7 +67,7 @@ Highest mean pairwise taus:
 
 Two variant sets were available in-repo:
 
-1. **Grounded 5-seed variants**
+1. **Checked-in 5-seed variants**
    - `seed_papers_first5`
    - `subset_5`
    - `subset_10_first5`
@@ -80,11 +78,11 @@ Two variant sets were available in-repo:
    - `subset_10`
    - `subset_15`
 
-The first set isolates multiple grounded 5-seed choices. The second mixes seed membership and seed count. Both are informative; neither should be mistaken for a complete fixed-K robustness study.
+The first set isolates multiple checked-in 5-seed choices. The second mixes seed membership and seed count. Both are informative; neither should be mistaken for a complete fixed-K robustness study.
 
-### Grounded results
+### Artifact-reported results
 
-Across the grounded 5-seed variants:
+Across the checked-in 5-seed variants:
 
 - `J@20` remains much more volatile than tau on most profile/model pairs.
 - The largest `J@20` ranges were:
@@ -98,7 +96,7 @@ Across the grounded 5-seed variants:
   - `Qwen3 / P5`: `0.0659`
   - `Voyage / P3`: `0.0656`
 
-Profile sensitivity is uneven rather than global:
+Strongest instability profiles by model:
 
 - `P3 (Quantum)` is the strongest tau-instability profile for `SPECTER2`, `GTE`, and `Voyage`.
 - `P1 (RL for robotics)` is the strongest `J@20` instability profile for `Stella`, `GTE`, and `Voyage`.
@@ -106,14 +104,14 @@ Profile sensitivity is uneven rather than global:
 
 ### Interpretation
 
-- **Grounded**: seed sensitivity is profile-specific, not uniform across the evaluation set.
-- **Grounded**: `J@20` remains the less stable instrument, but tau is not invariant under the grounded variant set either.
+- **Derived**: seed sensitivity is profile-specific, not uniform across the evaluation set.
+- **Derived**: `J@20` remains the less stable instrument, but tau is not invariant under the checked-in variant set either.
 - **Open**: because the repo-local variants are not a pure fixed-K family, we still do not have a definitive answer to "how stable are findings under fixed-size seed replacement alone?"
 - **Chosen for now**: the next suite should treat seed variation as a design variable in its own right rather than a post-hoc caveat.
 
 ## Analysis 3: `MiniLM + challenger` vs `MiniLM + TF-IDF`
 
-### Grounded aggregate result
+### Artifact-reported aggregate result
 
 At `K=20`, none of the challengers clearly beats `MiniLM + TF-IDF` on aggregate union size:
 
@@ -125,7 +123,7 @@ At `K=20`, none of the challengers clearly beats `MiniLM + TF-IDF` on aggregate 
 
 At `K=100`, all challengers are worse on mean union size than `MiniLM + TF-IDF`.
 
-### Grounded profile-level wins and losses
+### Artifact-reported profile-level wins and losses
 
 Profiles where challengers beat `MiniLM + TF-IDF` on `K=20` union size:
 
@@ -144,9 +142,9 @@ Mixed / tie profiles:
 
 - `P5`: `SPECTER2` and `Voyage` tie TF-IDF on union size; others lose
 
-### Category-grounded nuance
+### Category-match data
 
-Although TF-IDF remains stronger on union size overall, challenger unions often have **higher seed-category match rates** than `MiniLM + TF-IDF`. This means the challengers are often adding different **on-category** papers rather than just generic noise.
+Challenger unions often have **higher seed-category match rates** than `MiniLM + TF-IDF`.
 
 Examples:
 
@@ -157,8 +155,8 @@ Examples:
 
 ### Interpretation
 
-- **Grounded**: the question "better second view than TF-IDF?" still does not collapse to a global yes for any challenger.
-- **Grounded**: the right frame is profile-conditional and value-conditional, not global replacement.
+- **Derived**: the question "better second view than TF-IDF?" still does not collapse to a global yes for any challenger.
+- **Interpretive**: the right frame is profile-conditional and value-conditional, not global replacement.
 - **Chosen for now**: the next suite should test challenger complementarity only on the profiles where challengers materially win or tie:
   - `P1`, `P3`, `P5`, `P6`, `P7`
 - **Chosen for now**: `P2`, `P4`, and `P8` should serve as controls where TF-IDF remains the incumbent complement to beat.
@@ -185,7 +183,7 @@ Examples:
 
 ### Open
 
-- Whether the grounded 5-seed variants are sufficient or whether a dedicated fixed-K seed generator should be built before any claims are made.
+- Whether the checked-in 5-seed variants are sufficient or whether a dedicated fixed-K seed generator should be built before any claims are made.
 - Whether `Voyage` should remain in the execution-critical path or only as a cached comparison/control.
 - Whether `Qwen3` and `Stella` are meaningfully distinct enough to both deserve full downstream task-based evaluation.
 

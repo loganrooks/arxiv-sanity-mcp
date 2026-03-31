@@ -109,12 +109,16 @@ A successful early contribution is one that makes the project:
 
 ## CONTEXT.md epistemic discipline
 
-When creating or updating CONTEXT.md files for phase planning:
+When creating or updating CONTEXT.md files and other planning artifacts:
 
-### Separate grounded decisions from inferences
-- **Grounded**: Decision traceable to a specific passage in user-authored docs (01-11), an accepted ADR, or explicit user instruction. Cite the source.
-- **Inferred**: Decision made by AI based on patterns, analogies, or judgment. Mark explicitly as `[inferred]` or `[chosen for now]` with reasoning.
-- **Never** present an inference as if it were grounded.
+### Separate traceable claims from derived and interpretive ones
+- **Source-traceable**: Claim directly restates a specific passage in user-authored docs (01-11), an accepted ADR, or an explicit user instruction. Cite the source.
+- **Artifact-reported**: Claim directly reports what an inspected code path, experiment artifact, log, or checked-in output says. Keep scope narrow and name the artifact.
+- **Derived**: Claim combines traceable items with a small, explicit inferential step. Mark it as `[derived]` and state the bridge.
+- **Interpretive**: Claim depends on substantive framing, analogy, or explanatory judgment. Mark it as `[interpretive]` or `[chosen for now]` with reasoning.
+- **Never** present a derived or interpretive claim as if it were source-traceable or artifact-reported.
+- Avoid bare `grounded` as an epistemic label in new planning artifacts. It is too overloaded and too easily heard as "validated" or "settled."
+- Older artifacts may still use the legacy `grounded / inferred` language. Treat it as historical terminology, not the preferred schema for new work.
 
 ### Do not close Open Questions without authority
 - Items in `docs/10-open-questions.md` are **intentionally unresolved** by the user.

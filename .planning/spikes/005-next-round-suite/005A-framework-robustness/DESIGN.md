@@ -1,5 +1,5 @@
 ---
-question: "How much of the current model divergence survives alternative profile construction and grounded seed variation?"
+question: "How much of the current model divergence survives alternative profile construction and checked-in seed variation?"
 type: robustness + comparative
 status: draft
 depends_on:
@@ -17,11 +17,11 @@ addresses:
 
 ## Question
 
-Do the model differences reported so far survive variation in profile construction and grounded seed variants, or are they mainly artifacts of the current MiniLM-built evaluation frame?
+Do the model differences reported so far survive variation in profile construction and checked-in seed variants, or are they mainly artifacts of the current MiniLM-built evaluation frame?
 
 ## Why this spike comes first
 
-The pre-spike analyses established three grounded facts:
+The pre-spike analyses support three derived findings:
 
 1. challengers do not form a single bloc,
 2. seed sensitivity is profile-specific rather than uniform,
@@ -42,7 +42,7 @@ That combination makes framework robustness the highest-value next step. Without
   - current MiniLM-based profiles,
   - category-based profiles,
   - SPECTER2-based profiles.
-- Grounded seed variants will be carried through as an explicit dimension of the report.
+- Checked-in seed variants will be carried through as an explicit dimension of the report.
 
 ### Open
 
@@ -76,7 +76,7 @@ That combination makes framework robustness the highest-value next step. Without
 Build two alternative profile families matching the current 8-profile coverage as closely as possible:
 
 1. **Category-based profiles**
-   - grounded in metadata rather than any embedding space
+   - based on metadata rather than any embedding space
    - designed to reduce MiniLM entanglement
 
 2. **SPECTER2-derived profiles**
@@ -85,7 +85,7 @@ Build two alternative profile families matching the current 8-profile coverage a
 
 ### Phase 2: Comparative rerun
 
-For each profile family and grounded seed variant:
+For each profile family and checked-in seed variant:
 
 - recompute pairwise tau matrices
 - recompute MiniLM-vs-challenger and TF-IDF-vs-challenger overlaps
