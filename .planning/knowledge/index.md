@@ -1,12 +1,13 @@
 # Knowledge Store Index
 
-**Generated:** 2026-03-30T13:01:04Z
-**Total entries:** 13
+**Generated:** 2026-03-31T19:31:03Z
+**Total entries:** 14
 
-## Signals (8)
+## Signals (9)
 
 | ID | Project | Severity | Lifecycle | Tags | Date | Status |
 |----|---------|----------|-----------|------|------|--------|
+| sig-2026-03-31-delegated-reviews-need-designated-artifacts | arxiv-mcp | notable | detected | agent-orchestration,review-workflows,artifact-discipline,external-reviews | 2026-03-31 | active |
 | sig-2026-03-30-explorer-reasoning-effort-high-at-most | arxiv-mcp | notable | detected | agent-orchestration,explorer-agents,reasoning-effort,resource-discipline | 2026-03-30 | active |
 | sig-2026-03-20-orchestrator-self-exec-and-retry-loop | arxiv-mcp | notable | detected | delegation-failure,retry-without-diagnosis,orchestrator-discipline | 2026-03-20 | active |
 | sig-2026-03-20-agent-acted-without-asking | arxiv-mcp | notable | detected | agent-behavior,feedback,unauthorized-action,gsd-framework | 2026-03-20 | active |
@@ -25,4 +26,9 @@
 | spk-2026-03-20-strategy-profiling | arxiv-sanity-mcp | confirmed | recommendation-strategies,MiniLM,SPECTER2,TF-IDF,parallel-views,fusion,evaluation-bias,cold-start,context-sensitivity,voyage-ai,knn,mmr,centroid-retrieval | 2026-03-20 | active |
 | spk-2026-03-20-w1c-gap-openalex-enrichment | arxiv-sanity-mcp | rejected | bibliographic-coupling,openalex,graph-strategies,reference-data,api-enrichment,related-works | 2026-03-20 | active |
 | spk-2026-03-19-003-w1a-content-strategy-profiles | arxiv-sanity-mcp | confirmed | recommendation-strategies,embeddings,MiniLM,SPECTER2,TF-IDF,SVM,content-based-filtering,centroid-similarity | 2026-03-19 | active |
+
+## Lessons (0)
+
+| ID | Project | Category | Tags | Date | Status |
+|----|---------|----------|------|------|--------|
 
