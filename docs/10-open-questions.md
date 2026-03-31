@@ -145,3 +145,13 @@ Examples:
 
 These are not forbidden.
 They are simply not default assumptions.
+
+## 19. How should delegated reviews and external critiques be artifactized by default?
+
+When an agent or external model performs a design review, critique, or evaluation pass, should the output be required to land in a designated artifact rather than only appearing in terminal output?
+
+Sub-questions:
+- Should review requests default to a named artifact such as `REVIEW.md`, `CRITIQUE.md`, or a dated file under `.planning/`?
+- Should the artifact path be part of the review contract, alongside scope, epistemic schema, and output format?
+- How should temporary exploratory reviews differ from durable review artifacts that influence planning decisions?
+- If a workflow later becomes a reusable skill, what persistence contract should that skill enforce by default?
