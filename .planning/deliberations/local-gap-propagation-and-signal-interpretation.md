@@ -10,6 +10,7 @@ Deliberation template grounded in:
 Additional orientation used here:
 - Stiegler, interpretively: tooling and workflows are not neutral channels; they shape what becomes visible, memorable, and actionable
 - Reflexive-hermeneutic caution: the "grounds" never gather themselves cleanly; apparent unity is partly an effect of our categories, nouns, and procedural forms
+- Trace-attentive reading: what presents itself as one issue or one ground can still carry readable traces of plurality, other contexts, and pre-theoretical understandings that should inform praxis
 -->
 
 **Date:** 2026-03-31
@@ -57,7 +58,7 @@ The immediate question is not merely whether to save review output to files. The
 - How do we preserve openness in the response space without falling into indefinite meta-deliberation?
 - What kinds of artifacts should link project-local experimentation to upstream learning?
 - How should research, philosophical lenses, and reference designs inform workflow redesign without being used as false authority?
-- How do we make our own interpretive horizon more explicit without pretending it can ever be rendered fully present to itself?
+- How do we attend responsibly to traces of plurality, background horizons, and other ways of signifying that remain partially present within what is disclosed?
 
 ## Analysis
 
@@ -93,13 +94,13 @@ The immediate question is not merely whether to save review output to files. The
 - **Rebuttal:** This risks becoming rhetorically rich but procedurally vague unless the translation into design proposals is explicit and bounded.
 - **Qualifier:** Strong candidate if made concrete through a small set of required artifact fields and response categories.
 
-### Option E: Reflexive Horizon Discipline
+### Option E: Reflexive Trace-Attunement
 
-- **Claim:** Add an explicit reflexive step to the praxis in which the project names, however incompletely, the theoretical horizon from which it is reading the issue, including the implicit unities and exclusions carried by its own terms.
-- **Grounds:** The conversation has sharpened that the problem is not only how to aggregate sources, but how to read the supposed sameness of "the issue," "the grounds," or "the workflow" as already marked by multiplicity and difference. Without this reflexive step, the translation layer may still smuggle in a hidden meta-framework while presenting itself as plural.
-- **Warrant:** If the grounds never gather themselves cleanly, then responsible praxis requires some discursive attempt to expose the categories, absences, and practical interests through which gathering occurs. This does not achieve full self-transparency; it makes the interpretive scene less naive.
-- **Rebuttal:** Reflexive disclosure can expand indefinitely and become a substitute for intervention if it is not constrained by practical stakes.
-- **Qualifier:** Necessary as a discipline, but only if operationalized lightly and tied to concrete decisions.
+- **Claim:** Add an explicit step in which the project attends to the traces of plurality, other contexts, and pre-theoretical understandings carried within what appears as a single issue, rather than relying only on a declaration of "our horizon."
+- **Grounds:** The conversation has sharpened that the issue is not merely that multiple lenses exist, nor merely that we should confess our own framing. It is that what is disclosed as one thing can still signify otherwise, and can carry traces of multiplicity within its apparent sameness. If these traces are ignored, the translation layer may still consolidate too quickly around one reading while calling itself plural.
+- **Warrant:** Responsible praxis requires more than self-positioning. It requires disciplined attention to the traces of what the current framing leaves partially unsaid but not wholly absent: missing standpoints, alternative uses, neighboring contexts, sedimented assumptions, and different practical inheritances. This does not dissolve disclosure into pure multiplicity; it resists mistaking the gathered presentation for exhaustive presence.
+- **Rebuttal:** This can become vague or ornamental unless tied to specific prompts and concrete design consequences.
+- **Qualifier:** Necessary as a discipline, but only if operationalized lightly and linked to actual response options.
 
 ## Tensions
 
@@ -122,11 +123,11 @@ The immediate question is not merely whether to save review output to files. The
    Research, philosophy, and reference designs can deepen design judgment, but they can also be misused as prestige cover for decisions that still require local testing and qualification.
 
 7. **Reflexive responsibility vs regress**
-   The project should render its own horizon more explicit, but complete self-presence is impossible. The praxis must therefore acknowledge both the necessity and the limit of self-critique.
+   The project should attend to the traces of other possible readings and background commitments, but complete explicitness is impossible. The praxis must therefore acknowledge both the necessity and the limit of reflexive work.
 
 ## Recommendation
 
-**Current leaning:** Option C implemented inside Option D, with Option E as a standing discipline on how the translation work is done.
+**Current leaning:** Option C implemented inside Option D, with Option E as a standing discipline on how translation and response are conducted.
 
 The project likely needs a lightweight propagation gate with explicit layers, but that gate should sit inside a broader praxis rather than functioning as the whole response mechanism.
 
@@ -138,12 +139,13 @@ The project likely needs a lightweight propagation gate with explicit layers, bu
 2. **Interpret**
    Use a short deliberation only when the issue touches contracts, abstractions, or recurring orchestration patterns.
 
-3. **Reflexively situate**
-   Add a short horizon note before translation:
+3. **Attend to traces**
+   Add a short trace-attunement note before translation:
    - what terms are doing the conceptual gathering here?
-   - what implicit unities are being assumed?
-   - what absences, standpoints, or practical interests may be shaping the reading?
-   - what cannot be made fully explicit but still needs to be acknowledged?
+   - what multiplicities or other contexts are still traceable within this gathered presentation?
+   - what pre-theoretical understandings, practical inheritances, or absent standpoints may be shaping the issue as currently named?
+   - what alternative significations remain plausible even if they are not the primary operational framing?
+   - what cannot be made fully explicit but still should be acknowledged?
 
 4. **Translate**
    For issues that survive interpretation, produce a small translation artifact or section with:
@@ -186,7 +188,7 @@ Possible response types:
    When justified, propose a reusable change to GSDR itself.
 
 8. **Lexical or conceptual revision**
-   Change the vocabulary or categories through which the issue is being understood when those categories are themselves part of the problem.
+   Change the vocabulary or categories through which the issue is being understood when the current gathering terms suppress relevant traces of plurality or background commitments.
 
 ### Intellectual inputs and what they afford
 
@@ -211,7 +213,7 @@ This praxis should not treat philosophy or research as ornamental. It should use
   Use them through critical inheritance: extract patterns, preconditions, and trade-offs rather than copying surface forms.
 
 - **Reflexive-hermeneutic discipline**
-  Treat key terms as provisional gathering points rather than self-identical essences; ask what multiplicities they suppress and what practical consequences follow from that suppression.
+  Treat key terms as provisional gathering points rather than self-identical essences; ask what traces of multiplicity, background horizons, and alternative significations remain readable within them, and what practical consequences follow from ignoring those traces.
 
 ### Concrete design direction for GSDR
 
@@ -225,7 +227,7 @@ If this line of thought is adopted, the likely concrete proposals are not just "
    - what appears portable?
    - what abstraction or contract failure is being alleged?
    - what evidence would falsify that allegation?
-5. A short `horizon note` field in deliberation or review artifacts, capturing the operative framing, missing standpoints, and limits of explicit self-accounting.
+5. A short `trace-attunement note` field in deliberation or review artifacts, capturing the operative framing, missing standpoints, background commitments, and traces of plausible alternative readings.
 6. A `counter-reading` field for major workflow proposals: what materially different interpretation of the same issue remains plausible?
 
 Only the third layer should drive upstream patch proposals. The second layer is where short project-level deliberation belongs. Not every signal needs full deliberation, but signals that concern workflow contracts, interpretation discipline, or recurring orchestration patterns probably do.
@@ -236,7 +238,7 @@ Only the third layer should drive upstream patch proposals. The second layer is 
 3. What artifact should aggregate local divergences into a usable upstream feedback queue?
 4. What is the smallest useful "translation artifact" between signal and concrete GSDR design proposal?
 5. Which philosophical lenses are actually useful often enough to operationalize, and how do we keep them from becoming decorative vocabulary?
-6. How much reflexive disclosure is enough to improve judgment without paralyzing action?
+6. How much trace-attentive reflexive work is enough to improve judgment without paralyzing action?
 
 ## Predictions
 
