@@ -1,12 +1,13 @@
 # Knowledge Store Index
 
-**Generated:** 2026-03-31T19:31:03Z
-**Total entries:** 14
+**Generated:** 2026-04-16T18:40:15Z
+**Total entries:** 15
 
-## Signals (9)
+## Signals (10)
 
 | ID | Project | Severity | Lifecycle | Tags | Date | Status |
 |----|---------|----------|-----------|------|------|--------|
+| sig-2026-04-16-inter-milestone-exploration-gap | arxiv-mcp | notable | detected | gsd-framework,milestone-lifecycle,inter-milestone-exploration,process-gap | 2026-04-16 | active |
 | sig-2026-03-31-delegated-reviews-need-designated-artifacts | arxiv-mcp | notable | detected | agent-orchestration,review-workflows,artifact-discipline,external-reviews | 2026-03-31 | active |
 | sig-2026-03-30-explorer-reasoning-effort-high-at-most | arxiv-mcp | notable | detected | agent-orchestration,explorer-agents,reasoning-effort,resource-discipline | 2026-03-30 | active |
 | sig-2026-03-20-orchestrator-self-exec-and-retry-loop | arxiv-mcp | notable | detected | delegation-failure,retry-without-diagnosis,orchestrator-discipline | 2026-03-20 | active |
