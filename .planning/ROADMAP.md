@@ -1,5 +1,8 @@
 # Roadmap: arXiv Discovery MCP
 
+> **Status:** `v0.1` is complete and this roadmap is now frozen as the shipped milestone roadmap.
+> **Current work:** post-v0.1 inter-milestone exploration. See [v0.1-MILESTONE.md](./milestones/v0.1-MILESTONE.md) and [NEXT-ROUND-SUITE.md](./spikes/NEXT-ROUND-SUITE.md).
+
 ## Overview
 
 This roadmap delivers an MCP-native research discovery substrate. Phases 1-6 built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, enrichment adapters, MCP server (13 tools, 4 resources, 3 prompts), validation with real workflows, and content normalization. Phases 7-8 closed gaps identified by the v1 milestone audit. Phases 9-10 handle release packaging and real-world agent integration testing. Semantic search is deferred to v2.
@@ -20,7 +23,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 6: Content Normalization** - Content variant model, multi-backend parsing, rights-gated content serving, MCP content tool
 - [x] **Phase 7: MCP Surface Parity** - Wire profile-ranked search, workflow-enriched results, create_profile, and suggest_signals into MCP (GAP CLOSURE) (completed 2026-03-13)
 - [x] **Phase 8: Infrastructure Fixes** - Enrichment schema alignment, test fixture scoping, docstring and import fixes (GAP CLOSURE)
-- [ ] **Phase 9: Release Packaging** - LICENSE, README rewrite, pyproject.toml metadata, CHANGELOG, GitHub repo, CI pipeline, v0.1.0 tag
+- [x] **Phase 9: Release Packaging** - LICENSE, README rewrite, pyproject.toml metadata, CHANGELOG, GitHub repo, CI pipeline, v0.1.0 tag
 - [x] **Phase 10: Agent Integration Test** - Real MCP server configuration, agent research session, setup documentation from actual usage (completed 2026-03-14)
 
 ## Phase Details
@@ -195,7 +198,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 | 6. Content Normalization | 4/4 | Complete | 2026-03-13 |
 | 7. MCP Surface Parity | 2/2 | Complete | 2026-03-13 |
 | 8. Infrastructure Fixes | 2/2 | Complete | 2026-03-13 |
-| 9. Release Packaging | 2/3 | In Progress | - |
+| 9. Release Packaging | 3/3 | Complete | 2026-03-14 |
 | 10. Agent Integration Test | 3/3 | Complete   | 2026-03-14 |
 
 ### Phase 9: Release Packaging

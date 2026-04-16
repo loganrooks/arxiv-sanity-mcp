@@ -8,11 +8,27 @@ An MCP-native research discovery substrate centered on arXiv, designed for agent
 
 Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results — not a generic "chat with papers" wrapper.
 
+## Current State
+
+`v0.1` has shipped and is now treated as a completed milestone.
+
+The project is currently in **post-v0.1 inter-milestone exploration**:
+
+- the implementation milestone is complete
+- the active work is spike and deliberation work
+- that work is intended to shape the next milestone rather than extend `v0.1` in-place
+
+Primary active references:
+
+- [v0.1-MILESTONE.md](./milestones/v0.1-MILESTONE.md)
+- [NEXT-ROUND-SUITE.md](./spikes/NEXT-ROUND-SUITE.md)
+- [local-gap-propagation-and-signal-interpretation.md](./deliberations/local-gap-propagation-and-signal-interpretation.md)
+
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+`v0.1` shipped. The validated milestone requirement set is the completed `v0.1` requirement surface in [REQUIREMENTS.md](./REQUIREMENTS.md), which is now treated as frozen pending the next milestone.
 
 ### Active
 
@@ -92,4 +108,4 @@ Stack A (metadata + lexical + graph) → Stack B (+ selective local semantic). B
 | Multiple content backends behind one interface | Docling, Marker, GROBID all have strengths | — Pending |
 
 ---
-*Last updated: 2026-03-08 after initialization*
+*Last updated: 2026-04-16 after v0.1 completion and transition to inter-milestone exploration*

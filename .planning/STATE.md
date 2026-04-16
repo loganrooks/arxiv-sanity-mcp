@@ -3,9 +3,10 @@ gsd_state_version: 1.0
 milestone: v0.1
 milestone_name: milestone
 status: complete
-stopped_at: Session resumed; proceeding to spike-program design-next-spike-round from project-level checkpoint
-last_updated: "2026-03-30T12:52:46Z"
-last_activity: 2026-03-30 -- Resumed from project-level checkpoint into spike-program pre-spike analyses and next-round spike design.
+post_milestone_state: inter-milestone-exploration
+stopped_at: v0.1 marked complete; continuing in post-v0.1 inter-milestone spike exploration
+last_updated: "2026-04-16T18:50:00Z"
+last_activity: 2026-04-16 -- v0.1 frozen as completed milestone; active work remains spike-program inquiry shaping the next milestone.
 progress:
   total_phases: 11
   completed_phases: 11
@@ -21,14 +22,15 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** All phases complete. v0.1 milestone ready for final review.
+**Current focus:** `v0.1` is complete and frozen. Active work is post-v0.1 inter-milestone spike exploration to shape the next milestone.
 
 ## Current Position
 
-Phase: 10 of 11 (Agent Integration Test)
-Plan: 3 of 3 in current phase (Plans 01-03 complete)
-Status: Phase 10 complete. All critical fixes applied, README validated, friction report finalized.
-Last activity: 2026-03-14 -- Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
+Milestone: `v0.1` complete
+Implementation roadmap: frozen pending next milestone definition
+Status: post-v0.1 inter-milestone exploration
+Active work: spike-program design, review, and deliberation to determine the shape of the next milestone
+Last implementation activity: 2026-03-14 -- Phase 10 Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
 
 Progress: [██████████] 100% (31/31 plans)
 
@@ -219,6 +221,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T12:52:46Z
-Stopped at: Session resumed, proceeding to spike-program / design-next-spike-round. Start with the 3 pre-spike analyses on existing data, then structure the next spike suite.
-Resume file: Consumed project-level handoff `.planning/.continue-here.md` on 2026-03-30. Active work is outside the completed v0.1 roadmap phases.
+Last session: 2026-04-16T18:50:00Z
+Stopped at: `v0.1` treated as complete historical milestone; current work is explicitly post-v0.1 spike-program exploration.
+Resume file: No active phase resume file. Use spike-program artifacts and deliberations as the active context surface.

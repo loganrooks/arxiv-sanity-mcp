@@ -1,5 +1,8 @@
 # Requirements: arXiv Discovery MCP
 
+> **Status:** This file is the completed `v0.1` requirement set and is now frozen pending definition of the next milestone.
+> **Current work:** post-v0.1 inter-milestone exploration. See [v0.1-MILESTONE.md](./milestones/v0.1-MILESTONE.md) and [NEXT-ROUND-SUITE.md](./spikes/NEXT-ROUND-SUITE.md).
+
 **Defined:** 2026-03-08
 **Core Value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
 
