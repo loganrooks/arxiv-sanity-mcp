@@ -51,9 +51,9 @@ This spike should shift that prior upward if centroid vs `kNN-per-seed` material
    The point here is to discover whether the apparent clusters from the pre-spike matrix survive retrieval variation.
 
 3. Run on the **frameworks named in the 005 handoff**.
-   - `MiniLM`-derived remains the default carried-forward frame.
-   - If 005 shows that one alternative profile family materially changed a comparative classification or the second-view story, 006 must include that alternative frame too.
-   - If 005 shows no material inversion, 006 may stay on the incumbent frame only and must say so explicitly.
+   - `[artifact-reported]` 005 carried forward the saved `MiniLM`-derived family as the incumbent frame.
+   - `[artifact-reported]` 005 also carried forward the `category + lexical` family as the required alternative frame.
+   - `[chosen for now]` The `SPECTER2`-refined family is not a required 006 frame. It may be used later only if the two carried frames remain decision-relevant and ambiguous after the main 006 pass.
 
 4. 006 must not end in a vague "shortlist." It must classify each model family as:
    - `carry forward`
@@ -116,3 +116,4 @@ Execution should follow [ITERATIVE-SPIKE-WORKFLOW.md](../ITERATIVE-SPIKE-WORKFLO
 - Do not upgrade kNN merely because it increases diversity; diversity is not yet user value.
 - Do not use one profile or one seed choice as the decisive case.
 - If 005 shows strong framework dependence, interpret 006 within each framework family rather than averaging the issue away.
+- Treat `Qwen3` as a specifically weakened case from 005, not as a presumptive shortlist candidate.

@@ -106,8 +106,9 @@ Current execution-readiness conclusion:
 
 ## Immediate Next Steps
 
-1. Prepare and execute `005` using [ITERATIVE-SPIKE-WORKFLOW.md](./ITERATIVE-SPIKE-WORKFLOW.md).
-2. Produce `005`'s required durable outputs: `QUALITATIVE-REVIEW.md`, `POSTERIOR.md`, `HANDOFF.md`, `FINDINGS.md`, and `DECISION.md`.
-3. Use `005/HANDOFF.md` to determine the exact frame carried into `006`.
-4. Continue the suite through `006`-`008` under the same artifact contract.
-5. Use the resulting findings, together with deliberations, to define the next milestone.
+1. Treat `005` as complete. Its durable outputs are now available under [005-evaluation-framework-robustness](./005-evaluation-framework-robustness).
+2. Treat `006` phase 1 quantitative setup as complete. Its checkpoint and review surface now exist under [006-model-retrieval-interactions/experiments](./006-model-retrieval-interactions/experiments).
+3. Complete the mandatory `006` qualitative pass on the bounded interaction-case set from [phase1_interaction_cases.json](./006-model-retrieval-interactions/experiments/review_inputs/phase1_interaction_cases.json).
+4. Produce `006`'s durable outputs and use `006/HANDOFF.md` to decide the shortlist carried into `007` and `008`.
+5. Continue the suite through `007`-`008` under the same artifact contract.
+6. Use the resulting findings, together with deliberations, to define the next milestone.
