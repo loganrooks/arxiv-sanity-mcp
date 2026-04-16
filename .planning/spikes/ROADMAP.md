@@ -26,7 +26,7 @@ There are two major research tracks represented in the repo:
    - Status: historical input set for later milestone shaping
 
 2. **Retrieval / recommendation comparison track**
-   - Spike `004` and drafted suite `005`-`008`
+   - Spike `004`, completed `005`, completed `006`, and drafted `007`-`008`
    - Main question: do alternative retrieval and recommendation configurations reveal robust, meaningful, and functionally valuable differences beyond the current baseline?
    - Status: active program
 
@@ -54,8 +54,8 @@ The active spike program is trying to reduce uncertainty around:
 
 | Spike | Question | Status |
 |------|----------|--------|
-| [005-evaluation-framework-robustness](./005-evaluation-framework-robustness/DESIGN.md) | Do current findings survive alternative profile-construction frames? | Drafted, not yet executable |
-| [006-model-retrieval-interactions](./006-model-retrieval-interactions/DESIGN.md) | Are observed differences model effects, retrieval-geometry effects, or both? | Drafted, not yet executable |
+| [005-evaluation-framework-robustness](./005-evaluation-framework-robustness/DESIGN.md) | Do current findings survive alternative profile-construction frames? | Complete |
+| [006-model-retrieval-interactions](./006-model-retrieval-interactions/DESIGN.md) | Are observed differences model effects, retrieval-geometry effects, or both? | Complete |
 | [007-training-data-mechanism-probes](./007-training-data-mechanism-probes/DESIGN.md) | Can shortlisted differences be explained mechanistically? | Drafted, downstream of 005/006 |
 | [008-function-in-use-and-blind-spots](./008-function-in-use-and-blind-spots/DESIGN.md) | Do surviving differences matter in actual research use? | Drafted, downstream of 005-007 |
 
@@ -65,13 +65,13 @@ Canonical suite wrapper:
 
 ## Current Gate
 
-The next-round suite is **structurally ready to execute**.
+The next-round suite is **mid-execution**.
 
-The suite-level blocking issues from the earlier design reviews have been resolved in the current planning artifacts. The current gate is now operational rather than structural:
+Structural execution blockers were resolved earlier. The current gate is now downstream narrowing:
 
-- execute `005` using the workflow and artifact contract below
-- preserve the required handoff / posterior / qualitative review outputs during execution
-- avoid collapsing back into terminal-only summaries or ad hoc artifact placement
+- treat `005` and `006` as completed inquiry steps
+- use `006/HANDOFF.md` to execute `007` on the narrowed four-family shortlist
+- avoid reopening dropped families or the full configuration matrix without a new explicit reason
 
 Primary review artifact:
 
@@ -107,8 +107,8 @@ Current execution-readiness conclusion:
 ## Immediate Next Steps
 
 1. Treat `005` as complete. Its durable outputs are now available under [005-evaluation-framework-robustness](./005-evaluation-framework-robustness).
-2. Treat `006` phase 1 quantitative setup as complete. Its checkpoint and review surface now exist under [006-model-retrieval-interactions/experiments](./006-model-retrieval-interactions/experiments).
-3. Complete the mandatory `006` qualitative pass on the bounded interaction-case set from [phase1_interaction_cases.json](./006-model-retrieval-interactions/experiments/review_inputs/phase1_interaction_cases.json).
-4. Produce `006`'s durable outputs and use `006/HANDOFF.md` to decide the shortlist carried into `007` and `008`.
-5. Continue the suite through `007`-`008` under the same artifact contract.
+2. Treat `006` as complete. Its checkpoint, qualitative review, and handoff now exist under [006-model-retrieval-interactions](./006-model-retrieval-interactions).
+3. Execute `007` on the four-family shortlist named in [006/HANDOFF.md](./006-model-retrieval-interactions/HANDOFF.md).
+4. Use `007` to narrow the live challenger set to at most two for `008`.
+5. Continue the suite through `008` under the same artifact contract.
 6. Use the resulting findings, together with deliberations, to define the next milestone.
