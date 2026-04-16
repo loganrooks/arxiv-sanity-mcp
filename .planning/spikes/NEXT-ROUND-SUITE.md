@@ -47,11 +47,31 @@ This is justified by the pre-spike matrix:
 
 The shortlist itself remains **Open** until 005 and 006 complete.
 
+## Inter-Spike Handoff Contract
+
+The suite should not rely on vague terms like "survive" or "shortlist" without explicit outputs. The current handoff contract is:
+
+1. **005 -> 006**
+   - `005` must classify each model family as `near-redundant`, `distinct but not currently complementary`, `candidate complementary second view`, or `blocked / unclear` within each profile-construction family.
+   - `005` must explicitly say whether `006` runs only the incumbent `MiniLM`-derived frame or must also carry one alternative frame that materially changed the picture.
+
+2. **006 -> 007/008**
+   - `006` must assign every model family to `carry forward`, `drop for now`, or `ambiguous / needs later functional test`.
+   - `006` must produce a provisional shortlist of at most four model families or concrete configurations.
+
+3. **007 -> 008**
+   - `007` must either narrow the live candidate set further or explicitly state that mechanism probes failed to discriminate.
+   - `007` must not reopen the full comparison set by default.
+
+4. **008 closeout**
+   - `008` must compare the incumbent control plus at most two shortlisted challengers in one pass.
+   - `008` requires a pre-registered task matrix, explicit `selected` vs `contributed` tracing, and a human adjudication gate before it can count as more than an AI-only pilot.
+
 ## Open
 
-- Whether the challenger-derived profile family in 005 should be `SPECTER2`-based, `GTE`-based, or both.
-- Whether 006 should evaluate one or two profile-construction families after 005.
-- Whether 008 can include even a small amount of human judgment rather than AI-only agent evaluation.
+- Whether 005 ultimately needs both `SPECTER2`- and `GTE`-derived profile families rather than the current `SPECTER2`-first / `GTE`-fallback plan.
+- Which alternative profile-construction family, if any, 005 will require 006 to carry forward alongside the incumbent frame.
+- What exact human-adjudication format 008 can realistically support: who reviews, how many outputs, and with what rubric.
 - Whether H2 remains a standalone spike after 005/006 or collapses into a narrower mechanistic appendix for the shortlisted candidates.
 
 ## What This Suite Is Not
@@ -64,4 +84,6 @@ The shortlist itself remains **Open** until 005 and 006 complete.
 
 Before any of Spikes 005-008 execute:
 - an independent design critic must review the suite and each spike `DESIGN.md` against [SPIKE-DESIGN-PRINCIPLES.md](./SPIKE-DESIGN-PRINCIPLES.md) and [METHODOLOGY.md](./METHODOLOGY.md)
+- the priors in [HYPOTHESES-005.md](./HYPOTHESES-005.md) must be treated as live inputs, not post-hoc ornament
+- the mandatory qualitative-review phases and handoff contracts in `005`-`008` must be treated as execution gates, not optional interpretation aids
 - any critique that identifies a Pattern A risk must be resolved structurally, not merely acknowledged in caveats

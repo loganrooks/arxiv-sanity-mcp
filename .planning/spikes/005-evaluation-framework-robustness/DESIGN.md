@@ -32,6 +32,13 @@ This is the highest-leverage next experiment because it attacks the strongest un
 - **Primary:** `H4`
 - **Secondary:** the framework-dependent part of `H2`
 
+## Prior Credence And Update Target
+
+- `[chosen for now]` Prior `P(H4) = 0.80`
+- `[chosen for now]` Prior `P(framework-dependent portion of H2) = 0.60`
+
+This spike should shift those priors upward if alternative profile families materially change the comparative classifications of multiple model families or reverse the current second-view story. It should shift them downward if the main comparative picture remains stable across all three profile-construction families and the qualitative review sees the same kind of divergence rather than only the same metric deltas.
+
 ## Chosen For Now
 
 1. Compare **three profile-construction families**:
@@ -45,12 +52,25 @@ This is the highest-leverage next experiment because it attacks the strongest un
 3. Keep the evaluation question thin:
    this spike is about **ranking robustness under framework variation**, not about user value and not about architecture closure.
 
+4. For this spike, each model family must receive one comparative classification per profile family:
+   - `near-redundant`
+   - `distinct but not currently complementary`
+   - `candidate complementary second view`
+   - `blocked / unclear`
+
+5. A Spike 004 comparative claim counts as **framework-robust** only if its classification stays unchanged in at least 2 of the 3 profile-construction families and no alternative family reverses it in the mandatory qualitative review. Claims that fail this test must be carried forward as framework-dependent, not averaged into a synthetic middle.
+
 ## Experimental Shape
 
 ### Phase 1: Build alternative profile families
 
 - Produce category-derived profiles that do not depend on any embedding model.
+- For the `category`-derived family, use metadata-only construction:
+  - identify the smallest arXiv category set covering at least `80%` of the original seed-category mass,
+  - form the candidate pool from papers in that category union,
+  - and derive the profile seed set from lexical matching over the existing profile label plus seed titles/abstracts.
 - Produce one challenger-derived profile family from a non-MiniLM model.
+- For the challenger-derived family, reuse the existing clustering / profile-construction pipeline with `SPECTER2` embeddings first and `GTE` only if `SPECTER2` proves operationally unusable.
 - Record where human judgment was needed in the profile-construction process.
 
 ### Phase 2: Re-run the current comparison frame
@@ -59,18 +79,30 @@ This is the highest-leverage next experiment because it attacks the strongest un
 - Compare all systems under each profile-construction family.
 - Preserve subset-aware reporting; do not collapse to one seed choice.
 
-### Phase 3: Robustness synthesis
+### Phase 3: Mandatory qualitative review
+
+- For every profile family that changes a model's comparative classification, run a qualitative review of the affected recommendation deltas.
+- Review the cases where a model becomes newly complementary, newly redundant, or meaningfully less coherent under a different profile family.
+- If the qualitative review and the quantitative classification disagree, carry the disagreement forward explicitly rather than forcing a single verdict.
+
+### Phase 4: Robustness synthesis and 006 handoff
 
 - Identify findings that are stable across profile-construction families.
 - Identify findings that invert or weaken materially when the framework changes.
 - Separate "framework-robust" from "framework-dependent" claims explicitly.
+- Produce a handoff note for Spike 006 naming:
+  - which profile family remains the incumbent comparison frame,
+  - whether an alternative profile family caused a material inversion and must be carried forward into 006,
+  - and which model families are now `clearly live`, `clearly weakened`, or `still ambiguous`.
 
 ## Success Criteria
 
 1. At least three profile-construction families are evaluated or one failed family is explicitly replaced with a justified fallback.
 2. The spike produces a table of ranking changes across profile families for every system.
-3. The output explicitly states which Spike 004 findings survive framework variation and which do not.
-4. No system is promoted or demoted architecturally on the basis of this spike alone.
+3. The spike includes a mandatory qualitative review pass over every material classification change.
+4. The output explicitly states which Spike 004 findings are `framework-robust`, which are `framework-dependent`, and which remain `blocked / unclear`.
+5. The output includes an explicit 006 handoff naming whether one or two profile-construction families must be carried forward.
+6. No system is promoted or demoted architecturally on the basis of this spike alone.
 
 ## Guardrails
 

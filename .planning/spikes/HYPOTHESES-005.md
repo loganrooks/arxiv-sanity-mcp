@@ -24,6 +24,24 @@ The hypotheses are structured as:
 - **Falsification conditions**: What observations would undermine the mechanism, not just the prediction (a prediction can fail because the experiment was bad; a mechanism is challenged when the pattern of failure is inconsistent with the theory)
 - **Scope**: Under what conditions the hypothesis is expected to hold
 
+## Operational priors for this round
+
+These are `[chosen for now]` starting credences for the active `005`-`008` suite. They are not settled beliefs and not claims that the hypotheses are already well supported. They exist to make the next round report probability movement rather than binary verdicts.
+
+| Hypothesis | Prior credence | Why this is the current prior |
+|------------|----------------|-------------------------------|
+| `H1` | `0.70` | Spike 004 strengthened the case that list- and metric-based comparison underdetermines function-in-use, but no direct task evidence exists yet. |
+| `H2` | `0.60` | Training-data differences plausibly shape what kind of relatedness a model encodes, but most current mechanism stories are still narrative rather than tested. |
+| `H3` | `0.75` | Retrieval method already proved consequential in Spike 003, and Spike 004 tested challengers only under centroid retrieval. |
+| `H4` | `0.80` | The current profile frame is MiniLM-derived, so framework dependence is the most explicit unresolved auxiliary assumption in the program. |
+| `H5` | `0.45` | A blind-spot region exists in the current outputs, but whether it matters in research use remains untested and should not be assumed. |
+
+### Update convention
+
+- Each spike should report how much it moved the relevant priors, not just whether a hypothesis "won."
+- A shift of `< 0.10` is weak evidence, `0.10-0.25` is moderate evidence, and `> 0.25` is strong evidence for planning purposes.
+- Every posterior update should name the evidence that caused the shift and the main reversal conditions that would move the credence back.
+
 ---
 
 ## H1: Evaluation method shapes which strategies appear best

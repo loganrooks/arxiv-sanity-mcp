@@ -115,10 +115,14 @@ Pay particular attention to these failure modes:
 - the design says one thing but the protocol tests another
 - metrics are present but not matched to the claim type
 - qualitative review is mentioned but not structurally required
+- prior credences or probability-shift targets are absent
+- handoff terms like `survive`, `shortlist`, or `live` are used without operational outputs
 - a baseline or incumbent is rhetorically displaced without direct comparison
 - framework dependence is named but not varied
 - mechanism stories are asserted before the design has isolated them
 - task-based claims are made from list-based evidence
+- a task harness is deferred to execution time instead of pre-registered
+- human absence is acknowledged but no concrete evaluator-plurality gate follows
 - human absence is acknowledged but the design still talks as if researcher value is settled
 - open questions are silently closed by design wording
 
