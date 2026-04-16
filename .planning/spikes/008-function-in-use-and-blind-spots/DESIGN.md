@@ -47,13 +47,17 @@ This spike should shift `H1` upward only if task-based evaluation materially cha
 3. Run at most **three configurations** in one pass:
    - the incumbent control,
    - plus up to two shortlisted challengers or ambiguous candidates from 006/007.
+   - `[chosen for now]` The current 007 handoff selects `SPECTER2` and `Voyage` for the first pass, with `Stella` retained only as an explicit fallback if `Voyage` proves impractical during execution prep.
 
 4. Use a **mixed task set**:
    - exploratory tasks
    - confirmatory tasks
 
 5. Use a **representative profile set**, not all 8 by default.
-   Chosen for now, the likely anchor profiles are `P3`, `P5`, `P7`, `P8`, plus one control profile such as `P1` or `P4`.
+   `[chosen for now]` The first-pass task matrix should include:
+   - one broad conceptual profile (`P2`)
+   - one specialized technical profile (`P3` or `P8`)
+   - one denser control profile (`P5` or `P7`)
 
 6. Human adjudication is a required closeout gate.
    If a human check cannot be run, 008 may produce an AI-only pilot artifact, but it may not close `H1` or `H5` and may not support an architectural recommendation.

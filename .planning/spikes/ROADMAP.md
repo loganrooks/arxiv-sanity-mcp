@@ -26,7 +26,7 @@ There are two major research tracks represented in the repo:
    - Status: historical input set for later milestone shaping
 
 2. **Retrieval / recommendation comparison track**
-   - Spike `004`, completed `005`, completed `006`, and drafted `007`-`008`
+   - Spike `004`, completed `005`, completed `006`, completed `007`, and drafted `008`
    - Main question: do alternative retrieval and recommendation configurations reveal robust, meaningful, and functionally valuable differences beyond the current baseline?
    - Status: active program
 
@@ -56,8 +56,8 @@ The active spike program is trying to reduce uncertainty around:
 |------|----------|--------|
 | [005-evaluation-framework-robustness](./005-evaluation-framework-robustness/DESIGN.md) | Do current findings survive alternative profile-construction frames? | Complete |
 | [006-model-retrieval-interactions](./006-model-retrieval-interactions/DESIGN.md) | Are observed differences model effects, retrieval-geometry effects, or both? | Complete |
-| [007-training-data-mechanism-probes](./007-training-data-mechanism-probes/DESIGN.md) | Can shortlisted differences be explained mechanistically? | Drafted, downstream of 005/006 |
-| [008-function-in-use-and-blind-spots](./008-function-in-use-and-blind-spots/DESIGN.md) | Do surviving differences matter in actual research use? | Drafted, downstream of 005-007 |
+| [007-training-data-mechanism-probes](./007-training-data-mechanism-probes/DESIGN.md) | Can shortlisted differences be explained mechanistically? | Complete |
+| [008-function-in-use-and-blind-spots](./008-function-in-use-and-blind-spots/DESIGN.md) | Do surviving differences matter in actual research use? | Drafted, downstream of completed 005-007 |
 
 Canonical suite wrapper:
 
@@ -67,11 +67,12 @@ Canonical suite wrapper:
 
 The next-round suite is **mid-execution**.
 
-Structural execution blockers were resolved earlier. The current gate is now downstream narrowing:
+Structural execution blockers were resolved earlier. The current gate is now the first functional pass:
 
 - treat `005` and `006` as completed inquiry steps
-- use `006/HANDOFF.md` to execute `007` on the narrowed four-family shortlist
-- avoid reopening dropped families or the full configuration matrix without a new explicit reason
+- treat `007` as the completed narrowing step
+- use `007/HANDOFF.md` to execute `008` on the named three-configuration comparison frame
+- avoid reopening deferred families or the full configuration matrix without a new explicit reason
 
 Primary review artifact:
 
@@ -82,7 +83,7 @@ Primary review artifact:
 Current execution-readiness conclusion:
 
 1. the artifact contract is now defined at the program level
-2. the `007 -> 008` narrowing branch is now explicit
+2. the `007 -> 008` narrowing branch is now exercised rather than merely specified
 3. `008` has a lightweight but concrete human-adjudication gate
 
 ## Working Rules
@@ -106,9 +107,11 @@ Current execution-readiness conclusion:
 
 ## Immediate Next Steps
 
-1. Treat `005` as complete. Its durable outputs are now available under [005-evaluation-framework-robustness](./005-evaluation-framework-robustness).
-2. Treat `006` as complete. Its checkpoint, qualitative review, and handoff now exist under [006-model-retrieval-interactions](./006-model-retrieval-interactions).
-3. Execute `007` on the four-family shortlist named in [006/HANDOFF.md](./006-model-retrieval-interactions/HANDOFF.md).
-4. Use `007` to narrow the live challenger set to at most two for `008`.
-5. Continue the suite through `008` under the same artifact contract.
-6. Use the resulting findings, together with deliberations, to define the next milestone.
+1. Treat `007` as complete. Its checkpoint, qualitative review, posterior, and handoff now exist under [007-training-data-mechanism-probes](./007-training-data-mechanism-probes).
+2. Use [007/HANDOFF.md](./007-training-data-mechanism-probes/HANDOFF.md) to execute `008` on:
+   - incumbent `MiniLM + TF-IDF`
+   - `SPECTER2`
+   - `Voyage`
+3. If `Voyage` must be substituted for execution reasons, record that branch explicitly before task runs begin.
+4. Continue the suite through `008` under the same artifact contract.
+5. Use the resulting findings, together with deliberations, to define the next milestone.

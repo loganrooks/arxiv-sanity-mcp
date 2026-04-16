@@ -1,7 +1,7 @@
 ---
 question: "For the model families that remain live after framework and retrieval checks, are their differences predictable from training-data and community-structure hypotheses rather than from ad hoc narratives?"
 type: mechanistic + comparative
-status: drafted
+status: complete
 round: 1
 depends_on:
   - 005 (evaluation framework robustness)
