@@ -69,6 +69,7 @@ This spike should shift those priors upward if alternative profile families mate
   - identify the smallest arXiv category set covering at least `80%` of the original seed-category mass,
   - form the candidate pool from papers in that category union,
   - and derive the profile seed set from lexical matching over the existing profile label plus seed titles/abstracts.
+- This family is metadata-based at the representation layer, but it is still seed-anchored at the interest-definition layer and should be interpreted that narrowly.
 - Produce one challenger-derived profile family from a non-MiniLM model.
 - For the challenger-derived family, reuse the existing clustering / profile-construction pipeline with `SPECTER2` embeddings first and `GTE` only if `SPECTER2` proves operationally unusable.
 - Record where human judgment was needed in the profile-construction process.
@@ -103,6 +104,16 @@ This spike should shift those priors upward if alternative profile families mate
 4. The output explicitly states which Spike 004 findings are `framework-robust`, which are `framework-dependent`, and which remain `blocked / unclear`.
 5. The output includes an explicit 006 handoff naming whether one or two profile-construction families must be carried forward.
 6. No system is promoted or demoted architecturally on the basis of this spike alone.
+
+## Required Durable Outputs
+
+- `QUALITATIVE-REVIEW.md`
+- `POSTERIOR.md`
+- `HANDOFF.md`
+- `FINDINGS.md`
+- `DECISION.md`
+
+Execution should follow [ITERATIVE-SPIKE-WORKFLOW.md](../ITERATIVE-SPIKE-WORKFLOW.md).
 
 ## Guardrails
 

@@ -68,6 +68,7 @@ This spike should shift `H1` upward only if task-based evaluation materially cha
   - one shortlist-building / triage task.
 - Standardize the prompt frame, tool budget, turn budget, context budget, and stopping condition across configurations.
 - Write the task matrix before execution; task design is not allowed to drift configuration by configuration.
+- Write the task matrix to `TASK-MATRIX.md` before any configuration runs begin.
 
 ### Phase 2: Configuration runs
 
@@ -89,7 +90,27 @@ This spike should shift `H1` upward only if task-based evaluation materially cha
 ### Phase 5: Evaluator plurality and human adjudication
 
 - Run at least one human review pass over a sampled set of task outputs and claimed blind-spot contributions.
+- The output-quality rubric has four dimensions:
+  - **task fulfillment**: does the output actually accomplish the stated task?
+  - **evidence quality**: are claims supported by relevant papers with adequate provenance?
+  - **blind-spot contribution quality**: did challenger-only papers materially improve the output, or are they decorative / redundant?
+  - **research usefulness**: would the resulting output be more useful to a researcher than the matched control output?
+- Human judgments should use a three-level scale for each dimension:
+  - `better`
+  - `same / mixed`
+  - `worse`
+- Sample exactly **four task instances** for the human gate:
+  - one exploratory
+  - one confirmatory
+  - one shortlist-building / triage
+  - one ambiguity case where blind-spot contribution or evaluator disagreement is most consequential
+- Review outputs from **all compared configurations** for each sampled task instance. With the incumbent plus at most two challengers, this caps the human gate at **12 outputs**.
+- Record the sampled outputs, rubric, and adjudication results in `HUMAN-ADJUDICATION.md`.
 - If human review is unavailable, stop at `pilot only / incomplete` rather than treating AI-only evaluation as a completed functional verdict.
+- If human review reverses the winner relative to the agent-side reading on any sampled task instance, mark that instance `disputed`.
+- If two or more sampled task instances are `disputed`, `008` may not close `H1` or `H5`; it must report a mixed or pilot-only result.
+- If exactly one sampled task instance is `disputed`, carry the disagreement explicitly in `POSTERIOR.md` and weaken the strength of the posterior update.
+- Human review is authoritative for function-in-use claims, but not for low-level trace facts such as whether a paper was selected, cited, or contributed.
 
 ## Success Criteria
 
@@ -100,6 +121,17 @@ This spike should shift `H1` upward only if task-based evaluation materially cha
 5. The output identifies where evaluator disagreement changes the conclusion.
 6. Human adjudication is present or the spike is explicitly marked `pilot only / incomplete`.
 7. Any architectural recommendation remains at most `[chosen for now]` unless human judgment materially supports it.
+
+## Required Durable Outputs
+
+- `TASK-MATRIX.md`
+- `QUALITATIVE-REVIEW.md`
+- `POSTERIOR.md`
+- `HUMAN-ADJUDICATION.md`
+- `FINDINGS.md`
+- `DECISION.md`
+
+Execution should follow [ITERATIVE-SPIKE-WORKFLOW.md](../ITERATIVE-SPIKE-WORKFLOW.md).
 
 ## Guardrails
 

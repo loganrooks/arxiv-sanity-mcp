@@ -60,12 +60,36 @@ The suite should not rely on vague terms like "survive" or "shortlist" without e
    - `006` must produce a provisional shortlist of at most four model families or concrete configurations.
 
 3. **007 -> 008**
-   - `007` must either narrow the live candidate set further or explicitly state that mechanism probes failed to discriminate.
+   - `007` must either narrow the live candidate set to at most **two challengers** or explicitly state that mechanism probes failed to discriminate.
    - `007` must not reopen the full comparison set by default.
+   - If more than two challengers remain live, `007` must rank them and select the top two for `008` using this order:
+     1. strongest evidence of complementarity against the incumbent from `006`
+     2. strongest surviving mechanism support from `007`
+     3. if still tied, greater structural distinctness from the incumbent
+   - Any live candidate excluded from `008` must be recorded in `007/HANDOFF.md` as deferred, not silently dropped.
 
 4. **008 closeout**
    - `008` must compare the incumbent control plus at most two shortlisted challengers in one pass.
    - `008` requires a pre-registered task matrix, explicit `selected` vs `contributed` tracing, and a human adjudication gate before it can count as more than an AI-only pilot.
+
+## Artifact Contract
+
+Execution for the active suite is governed by:
+
+- [ITERATIVE-SPIKE-WORKFLOW.md](./ITERATIVE-SPIKE-WORKFLOW.md)
+
+At minimum, the active suite now requires these durable root-level artifacts:
+
+- `QUALITATIVE-REVIEW.md`
+- `POSTERIOR.md`
+- `HANDOFF.md` for `005`-`007`
+- `TASK-MATRIX.md` for `008`
+- `HUMAN-ADJUDICATION.md` for `008`
+
+External or independent critiques should be written as dated artifacts under:
+
+- `.planning/spikes/reviews/`
+- or `.planning/spikes/<spike>/reviews/`
 
 ## Open
 
@@ -84,6 +108,7 @@ The suite should not rely on vague terms like "survive" or "shortlist" without e
 
 Before any of Spikes 005-008 execute:
 - an independent design critic must review the suite and each spike `DESIGN.md` against [SPIKE-DESIGN-PRINCIPLES.md](./SPIKE-DESIGN-PRINCIPLES.md) and [METHODOLOGY.md](./METHODOLOGY.md)
+- the artifact contract in [ITERATIVE-SPIKE-WORKFLOW.md](./ITERATIVE-SPIKE-WORKFLOW.md) must be treated as part of the execution protocol
 - the priors in [HYPOTHESES-005.md](./HYPOTHESES-005.md) must be treated as live inputs, not post-hoc ornament
 - the mandatory qualitative-review phases and handoff contracts in `005`-`008` must be treated as execution gates, not optional interpretation aids
 - any critique that identifies a Pattern A risk must be resolved structurally, not merely acknowledged in caveats

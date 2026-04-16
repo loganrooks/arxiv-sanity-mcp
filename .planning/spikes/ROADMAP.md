@@ -65,23 +65,25 @@ Canonical suite wrapper:
 
 ## Current Gate
 
-The next-round suite is **not ready to execute yet**.
+The next-round suite is **structurally ready to execute**.
 
-The current blocking condition is structural, not empirical:
+The suite-level blocking issues from the earlier design reviews have been resolved in the current planning artifacts. The current gate is now operational rather than structural:
 
-- the independent design review found blocker-level issues
-- those need to be resolved in the suite and per-spike designs before execution begins
+- execute `005` using the workflow and artifact contract below
+- preserve the required handoff / posterior / qualitative review outputs during execution
+- avoid collapsing back into terminal-only summaries or ad hoc artifact placement
 
 Primary review artifact:
 
 - [SPIKE-DESIGN-REVIEW-SPEC.md](./SPIKE-DESIGN-REVIEW-SPEC.md)
+- [ITERATIVE-SPIKE-WORKFLOW.md](./ITERATIVE-SPIKE-WORKFLOW.md)
+- [2026-04-16-next-round-suite-execution-readiness-review.md](./reviews/2026-04-16-next-round-suite-execution-readiness-review.md)
 
-Primary review findings currently in force:
+Current execution-readiness conclusion:
 
-1. qualitative review must be structurally required
-2. prior credences / probability-shift framing must be added
-3. inter-spike handoff contracts must be made explicit
-4. `008` needs a clearer task-harness and human-evaluation position
+1. the artifact contract is now defined at the program level
+2. the `007 -> 008` narrowing branch is now explicit
+3. `008` has a lightweight but concrete human-adjudication gate
 
 ## Working Rules
 
@@ -96,6 +98,7 @@ Primary review findings currently in force:
 - [STRATEGY-SPACE.md](./STRATEGY-SPACE.md)
 - [METHODOLOGY.md](./METHODOLOGY.md)
 - [SPIKE-DESIGN-PRINCIPLES.md](./SPIKE-DESIGN-PRINCIPLES.md)
+- [ITERATIVE-SPIKE-WORKFLOW.md](./ITERATIVE-SPIKE-WORKFLOW.md)
 - [HYPOTHESES-005.md](./HYPOTHESES-005.md)
 - [PRE-SPIKE-ANALYSES.md](./004-embedding-model-evaluation/PRE-SPIKE-ANALYSES.md)
 - [comparative-characterization-and-nonadditive-evaluation-praxis.md](../deliberations/comparative-characterization-and-nonadditive-evaluation-praxis.md)
@@ -103,7 +106,8 @@ Primary review findings currently in force:
 
 ## Immediate Next Steps
 
-1. Patch the `005`-`008` suite to resolve the blocker review findings.
-2. Decide and document the iterative spike-workflow contract for shared code reuse, review outputs, and execution gating.
-3. Execute `005` only after the suite becomes structurally ready.
-4. Use the resulting findings, together with deliberations, to define the next milestone.
+1. Prepare and execute `005` using [ITERATIVE-SPIKE-WORKFLOW.md](./ITERATIVE-SPIKE-WORKFLOW.md).
+2. Produce `005`'s required durable outputs: `QUALITATIVE-REVIEW.md`, `POSTERIOR.md`, `HANDOFF.md`, `FINDINGS.md`, and `DECISION.md`.
+3. Use `005/HANDOFF.md` to determine the exact frame carried into `006`.
+4. Continue the suite through `006`-`008` under the same artifact contract.
+5. Use the resulting findings, together with deliberations, to define the next milestone.

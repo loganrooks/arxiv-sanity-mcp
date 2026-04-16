@@ -86,6 +86,11 @@ This spike should shift that prior upward only if the shortlisted model families
   - which candidate configurations remain live,
   - which mechanism stories are strengthened enough to motivate function-in-use testing,
   - and which candidates remain live only as unresolved functional comparisons rather than mechanism-backed ones.
+- If more than two challengers remain live, rank them and select the top two for `008` using this order:
+  1. strongest evidence of complementarity against the incumbent from `006`
+  2. strongest surviving mechanism support from this spike
+  3. if still tied, greater structural distinctness from the incumbent
+- Record any excluded live candidate in `HANDOFF.md` as deferred, not dropped.
 
 ## Success Criteria
 
@@ -93,7 +98,17 @@ This spike should shift that prior upward only if the shortlisted model families
 2. Citation/community probes are either run against adequate metadata coverage or explicitly marked `blocked`.
 3. The spike includes a mandatory qualitative review over representative supporting and contradictory cases.
 4. The output distinguishes supported mechanistic evidence from narrative residue.
-5. The spike narrows the candidate set or explicitly reports that mechanism probes failed to discriminate among them.
+5. The spike narrows the challenger set for `008` to at most two or explicitly reports that mechanism probes failed to discriminate among them.
+
+## Required Durable Outputs
+
+- `QUALITATIVE-REVIEW.md`
+- `POSTERIOR.md`
+- `HANDOFF.md`
+- `FINDINGS.md`
+- `DECISION.md`
+
+Execution should follow [ITERATIVE-SPIKE-WORKFLOW.md](../ITERATIVE-SPIKE-WORKFLOW.md).
 
 ## Guardrails
 

@@ -101,6 +101,16 @@ This spike should shift that prior upward if centroid vs `kNN-per-seed` material
 6. The output names a provisional shortlist of at most four model families or concrete configurations for Spikes 007 and 008.
 7. Any shortlist is marked `[chosen for now]`, not settled.
 
+## Required Durable Outputs
+
+- `QUALITATIVE-REVIEW.md`
+- `POSTERIOR.md`
+- `HANDOFF.md`
+- `FINDINGS.md`
+- `DECISION.md`
+
+Execution should follow [ITERATIVE-SPIKE-WORKFLOW.md](../ITERATIVE-SPIKE-WORKFLOW.md).
+
 ## Guardrails
 
 - Do not upgrade kNN merely because it increases diversity; diversity is not yet user value.

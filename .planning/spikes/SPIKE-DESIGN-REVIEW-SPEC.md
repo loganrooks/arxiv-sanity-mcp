@@ -24,6 +24,7 @@ Provide the reviewer with:
 - the target spike or suite design files
 - [SPIKE-DESIGN-PRINCIPLES.md](/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/SPIKE-DESIGN-PRINCIPLES.md)
 - [METHODOLOGY.md](/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/METHODOLOGY.md)
+- [ITERATIVE-SPIKE-WORKFLOW.md](/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/ITERATIVE-SPIKE-WORKFLOW.md)
 - relevant prior spike findings, decisions, open questions, and pre-spike analyses
 - the core project docs that define values and evaluation posture:
   - [docs/01-project-vision.md](/home/rookslog/workspace/projects/arxiv-sanity-mcp/docs/01-project-vision.md)
@@ -117,6 +118,7 @@ Pay particular attention to these failure modes:
 - qualitative review is mentioned but not structurally required
 - prior credences or probability-shift targets are absent
 - handoff terms like `survive`, `shortlist`, or `live` are used without operational outputs
+- the design requires durable outputs but does not name artifact paths or canonical filenames
 - a baseline or incumbent is rhetorically displaced without direct comparison
 - framework dependence is named but not varied
 - mechanism stories are asserted before the design has isolated them
@@ -142,4 +144,5 @@ Use this when handing the spec to another system:
 > Findings first, ordered by severity.
 > Focus on structural weaknesses, epistemic slippage, hidden assumptions, sequencing errors, and missing gates.
 > Use the repo's epistemic schema (`source-traceable`, `artifact-reported`, `derived`, `interpretive`, `chosen for now`, `open`).
+> Check whether the design names the required durable artifacts and paths from `ITERATIVE-SPIKE-WORKFLOW.md`.
 > Prefer concrete file references and minimal corrective direction over long summaries.
