@@ -1,4 +1,4 @@
-# arXiv category configuration for arxiv-mcp
+# arXiv category configuration for arxiv-sanity-mcp
 #
 # This mirrors arxiv-sanity's original scope: CS, statistics ML, and
 # ML-adjacent math/engineering categories. Categories are configurable
