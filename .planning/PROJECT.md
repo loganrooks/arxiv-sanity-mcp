@@ -106,6 +106,7 @@ Stack A (metadata + lexical + graph) → Stack B (+ selective local semantic). B
 | arXiv as initial corpus | Core use case, manageable scope | — Pending |
 | OpenAlex as primary enrichment | Best open data, free API, rich graph | — Pending |
 | Multiple content backends behind one interface | Docling, Marker, GROBID all have strengths | — Pending |
+| v0.2 ships multi-lens substrate (ADR-0005) | ADR-0001 honored in implementation; lens abstraction validated by shipping a second lens (citation/community); profile primitive generalized to bundle-of-signals | — Pending |
 
 ---
-*Last updated: 2026-04-16 after v0.1 completion and transition to inter-milestone exploration*
+*Last updated: 2026-04-25 after multi-lens redirection and Phase 3 property audit (Opus rerun)*

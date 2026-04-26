@@ -3,10 +3,10 @@ gsd_state_version: 1.0
 milestone: v0.1
 milestone_name: milestone
 status: complete
-post_milestone_state: inter-milestone-exploration
-stopped_at: v0.1 marked complete; continuing in post-v0.1 inter-milestone spike exploration
-last_updated: "2026-04-16T18:50:00Z"
-last_activity: 2026-04-16 -- v0.1 frozen as completed milestone; active work remains spike-program inquiry shaping the next milestone.
+post_milestone_state: v0.2-defined-planning-pending
+stopped_at: v0.2 architectural shape committed via ADR-0005 (multi-lens substrate); detailed v0.2 plan still to be written.
+last_updated: "2026-04-25T20:00:00Z"
+last_activity: 2026-04-25 -- multi-lens redirection committed (ADR-0005). Phase 3 property audit (Opus rerun) confirmed profile primitive is lens-extensible while MCP tool signatures and storage are coupled; Option B (refactor + ship 2 lenses) committed. v0.1 stays frozen.
 progress:
   total_phases: 11
   completed_phases: 11
