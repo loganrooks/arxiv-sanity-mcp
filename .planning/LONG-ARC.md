@@ -38,6 +38,7 @@ Architectural commitments that current and near-term planning must preserve:
 - **Longitudinal state.** Workflow state, triage history, profile evolution, dismissed recommendations are durable across sessions. The profile is not a session-bound construct.
 - **Inspectability of every signal.** ADR-0003 binds; no hidden ranker state.
 - **MCP-native operations.** Per ADR-0004, MCP is the workflow substrate, not a thin search wrapper. Steering, intersection, lens-disagreement, and explanation are first-class operations exposed via MCP.
+- **Explicit profile elicitation.** Any future profile-learning mechanism — behavior-derived (what was read, time-on-page, returned-to, dismissed), citation-anchor-derived, curated-prose, or otherwise — must require explicit researcher confirmation per signal addition. Implicit learning from behavior is foreclosed by VISION's anti-vision (`VISION.md:84`) and re-affirmed here as a v0.2-committed protected seam, even though no v0.2 phase implements it. This converts deferral-protection (the anti-vision is currently preserved by behavior-derived signals being out of scope per `MILESTONE.md` v0.2 deferrals) into mechanism-protection at the doctrine layer, so the seam survives the v0.2 → v0.3 transition where behavior-derived signals may enter scope.
 
 ## Anti-patterns to detect
 
@@ -69,6 +70,7 @@ These are deferred. Current planning should not silently decide them.
 - **Fusion strategy.** RRF preferred *if fusion is used*. Fusion is one option among steering, intersection, lens-disagreement, and per-paper explanation; default is not fusion.
 - **Methodological-lens taxonomy.** Curated method-tag taxonomy vs classifier vs hybrid. Open.
 - **Profile-elicitation alternatives timing.** Behavior-derived, citation-anchor-derived, researcher-curated prose. Likely post-v0.2; possibly a small upfront spike if needed to de-risk the bundle-of-signals abstraction.
+- **Semantic-lens embedding-model selection.** v0.1 baseline (TF-IDF + lexical) carries forward into v0.2; the "semantic" lens label is preserved for backward compatibility but does not yet imply dense embeddings. Revisit at v0.3 or earlier if pilot signals warrant. The rename-or-preserve question (whether to retire the `semantic` label in favor of `lexical`/`tfidf_lexical` when a real embedding lens ships) is part of that revisit, not a v0.2 decision. If a future v0.2 phase introduces dense embeddings (currently scoped out per `milestones/v0.2-MILESTONE.md` deferrals), the rename becomes coordinated with the substantive change rather than a standalone breaking change.
 - **`008` fate.** Reshape as longitudinal pilot using multi-lens, shelve, or run for partial signal. Pending vision document interaction with v0.2 plan.
 - **Phase ordering revision.** Whether Phase 6 (content normalization) and citation-graph data integration should be pulled forward into v0.2 to support citation/community lens. Likely yes; explicit decision deferred to v0.2 plan.
 - **Eventual storage backend if multi-lens scales.** PostgreSQL with denormalized citations may suffice for years; pgvector or graph-DB introduction is not committed.
