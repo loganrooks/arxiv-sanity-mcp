@@ -4,6 +4,16 @@
 > Numbers in this document reflect pre-04.1 state (307 tests → now 357, 150 papers → now 154, 5 proposed tools → 9 shipped). Recommendations in §3-4 were implemented in Phase 04.1.
 > Intended audience: future arxiv-sanity-mcp development sessions.
 
+## Status as of 2026-04-26
+
+*Added per governance audit synthesis G-B1. Covers §§5-7; §§3-4 are already annotated in the header above. External ecosystem claims in this document (tool counts, paper counts, arxiv-scan pipeline state) have not been re-verified after 2026-03-11.*
+
+**§5 — Literature Review Feature Priorities:** Mostly shipped in v0.1. Multi-seed expansion and provenance tracking shipped in Phase 04.1 (`find_related_papers` accepts list of seeds). Watch-based monitoring with enriched deltas shipped in Phase 04.1/05. Cross-source relatedness (OpenAlex `related_works`) surfaced via MCP paper resource. BibTeX export and bulk triage remain open; profile description field and snapshots are v2 scope per REQUIREMENTS.md.
+
+**§6 — Cross-Project Import Strategy:** Import strategy implemented in Phase 05 (05-01-PLAN.md). Import script ingested arxiv-scan papers (126 papers, not 150 — actual import used paper-index-data.json value scores), set triage states, created tension-vocabulary interest profile. The import served as Phase 05's validation dataset; MCP ranking was compared against human arxiv-scan triage decisions (doc 06 resolved). OpenAlex enrichment path established.
+
+**§7 — MCP v1 Surface:** Closed by what shipped. v0.1 ships 13 tools (not the 5 proposed here), 4 resources (matching this §), 3 prompts (literature-review-session, daily-digest, triage-shortlist — not the 2 proposed here). Tool count exceeded the 5-10 heuristic cited at bottom of §7; MCP-07 in REQUIREMENTS.md has been reframed (governance audit synthesis commit 1) to "tool count justified by user-intent grouping" rather than numeric cap.
+
 ---
 
 ## 1. Foundation Audit: What It Got Right
