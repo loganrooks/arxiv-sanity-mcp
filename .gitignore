@@ -36,3 +36,4 @@ htmlcov/
 
 # Claude Code local tooling (GSD framework, hooks, agents)
 .claude/
+.planning/measurement/session-meta-postlude/session-meta-postlude.jsonl
