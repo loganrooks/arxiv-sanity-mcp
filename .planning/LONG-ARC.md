@@ -44,7 +44,7 @@ Architectural commitments that current and near-term planning must preserve:
 
 Patterns we have already drifted into once. Current planning must watch for them and call them out when they appear.
 
-- **Tournament narrowing.** Sequentially pruning the candidate set toward a winner under "disciplined" framing. Even when local steps look reasonable, narrow-by-default violates ADR-0001's coexistence intent. **Counter-posture:** rank-and-deprioritize, not eliminate. Multi-lens framing replaces winner-pick.
+- **Tournament narrowing.** Sequentially pruning the candidate set toward a winner under "disciplined" framing. Even when local steps look reasonable, narrow-by-default violates the coexistence posture ADR-0001 commits us to (capability claim about the architecture); LONG-ARC operationalizes it as a posture-to-honor at the implementation layer. **Counter-posture:** rank-and-deprioritize, not eliminate. Multi-lens framing replaces winner-pick.
 - **Single-lens "interface" by accident.** Shipping a lens abstraction alongside only one lens — the abstraction ends up shaped exactly to that lens, and the second lens reveals the abstraction was wrong only after consumers depend on it. **Counter-posture:** validate abstractions by shipping a second implementation, not by design alone (ADR-0005).
 - **Silent defaults.** A reference frame (MiniLM, TF-IDF, the incumbent profile family) becomes the implicit baseline that all alternatives are measured against, even when nothing argued for it being baseline. **Counter-posture:** name the reference frame explicitly; require challengers to be measured against multiple frames or against task outcomes, not against the frame itself.
 - **ADR violation by gradual local-reasonable steps.** Each step locally defensible; cumulative drift away from an accepted ADR. The 005-008 spike chain did this to ADR-0001 over weeks. **Counter-posture:** periodic ADR-against-current-work audits at deliberation boundaries; ADRs are read at planning time, not just at writing time.
@@ -100,7 +100,7 @@ These are directions current planning must preserve. They are not immediate scop
 - **Cite this file** when phase sequencing, architectural seams, or rewrite-trigger decisions materially interact with long-arc posture.
 - **Preserve future seams** without padding the current phase into a later one. Lens-extensibility, bundle-of-signals primitive, longitudinal state — these stay open even when not active.
 - **Record explicit non-actions** when the correct move is to defer rather than silently decide. Add to "Explicit non-decisions" above.
-- **Run an ADR-against-current-work audit at each deliberation boundary.** The 005-008 drift was invisible from inside the spike program; periodic explicit audit is the counter-posture.
+- **Run an ADR-against-current-work audit at each deliberation boundary.** The 005-008 drift was invisible from inside the spike program; periodic explicit audit is the counter-posture. *Operational-hook status: pending. The audit cadence, ownership, and artifact format are tracked for the gsd-2 long-horizon-planning uplift to integrate as a project-agnostic workflow primitive. Until then, the discipline is self-imposed at deliberation boundaries; no specific cadence is committed.*
 - **Watch for anti-patterns.** Name them when they appear; do not let them ride.
 - **Escalate to VISION.md** only when the question is product identity or eventual platform shape, not planning doctrine.
 

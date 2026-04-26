@@ -6,7 +6,7 @@
 
 ## Context
 
-ADR-0001 commits the project to exploration-first architecture: "multiple retrieval and ranking strategies can coexist" as a binding posture. From v0.1 onward, the spike program (005-008) drifted toward a tournament-narrowing frame ("which embedding model wins") that quietly violated this commitment — a drift made visible only by the 2026-04-25 paired-review and the multi-lens redirection deliberation. ADR-0001's coexistence claim had been treated as design aspiration rather than implementation requirement.
+ADR-0001 commits the project to exploration-first architecture: "multiple retrieval and ranking strategies can coexist." This ADR upgrades that capability claim to a delivery commitment — at least two shipped lens implementations — on the basis of the property audit's evidence that single-lens "interfaces" shape themselves around the lens that ships. From v0.1 onward, the spike program (005-008) drifted toward a tournament-narrowing frame ("which embedding model wins") that quietly violated ADR-0001's coexistence posture — a drift made visible only by the 2026-04-25 paired-review and the multi-lens redirection deliberation. ADR-0001's coexistence claim had been treated as design aspiration rather than implementation requirement.
 
 A Property audit of the Phase 3 (interest modeling) implementation, run at Opus 4.7 with explicit model override, produced these verdicts:
 
