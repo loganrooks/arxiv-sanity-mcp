@@ -1,7 +1,11 @@
 ---
 question: "For the shortlisted configurations, which ones help actual research tasks, and do their so-called blind-spot papers contribute to outputs rather than merely increasing difference metrics?"
 type: comparative + task-evaluation
-status: drafted
+status: superseded
+superseded_by:
+  - ../../../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md
+  - ../../milestones/v0.2-MILESTONE.md (Phase 17 — Longitudinal Pilot Harness)
+  - SUPERSESSION.md
 round: 1
 depends_on:
   - 005 (evaluation framework robustness)
@@ -15,7 +19,9 @@ linked_references:
   - ../004-embedding-model-evaluation/PRE-SPIKE-ANALYSES.md
 ---
 
-# Spike 008: Function-In-Use And Blind-Spot Value
+> **SUPERSEDED 2026-04-25.** The tournament-narrowing premise of this design — three configurations (incumbent + two challengers), winner-picking via task-based evaluation — is no longer load-bearing for the v0.2 architecture. The multi-lens redirection committed in [ADR-0005](../../../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md) replaces "which embedding model wins" with "ship a multi-lens substrate honoring ADR-0001's coexistence commitment." The function-in-use evaluation question survives in altered form as v0.2 Phase 17 (longitudinal pilot harness using multi-lens). This document is preserved as evidence — do not execute as written. See [SUPERSESSION.md](./SUPERSESSION.md) for rationale.
+
+# Spike 008: Function-In-Use And Blind-Spot Value (SUPERSEDED)
 
 ## Question
 
