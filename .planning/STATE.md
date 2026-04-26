@@ -4,9 +4,9 @@ milestone: v0.2
 milestone_name: multi-lens-substrate
 status: planning
 post_milestone_state: v0.2-active-planning
-stopped_at: Post-Wave-2/Wave-3/Wave-4 governance and plan-revision audit cycle. v0.2 architectural shape committed via ADR-0005; v0.2 phase plans (Phases 12-17) authored and in-progress governance doc refresh. Wave 4 governance-doc edits in progress.
-last_updated: "2026-04-26T00:00:00Z"
-last_activity: 2026-04-26 -- Wave 3 commits landed (9f19634, 7614be3, 013625a); Wave 4 governance-doc edits underway. v0.1 is complete and frozen at 2026-03-14.
+stopped_at: Post-Wave-4 governance-doc audit cycle complete. Waves 1, 3, and 4 of plan-revision/governance commits all landed; v0.2 phase plans (Phases 12-17) authored and on hold pending gsd-2 long-horizon-planning uplift evaluation. Wave 5 (exemplar AGENTS/CLAUDE harvest) is the next governance step; mid-horizon (gsd-2 uplift) is a substantial standalone initiative.
+last_updated: "2026-04-26T07:00:00Z"
+last_activity: 2026-04-26 -- Wave 4 governance-doc edits complete (9 commits b483f20..de00e38); governance synthesis revised with G-B-tier dispositions (80cda50); PROJECT.md full refresh (21e7832) + INDEX.md corrections (0d397b4) post-refresh. v0.1 complete and frozen 2026-03-14.
 progress:
   total_phases: 11
   completed_phases: 11
@@ -27,9 +27,9 @@ See: .planning/PROJECT.md (updated 2026-03-08)
 ## Current Position
 
 Milestone: `v0.2` active (planning phase)
-Implementation roadmap: Phases 12-17 authored; blocked pending gsd-2 uplift evaluation
-Status: post-audit plan-revision cycle (Wave 4 governance-doc edits)
-Active work: Wave 4 governance-doc edits (synthesis `.planning/audits/2026-04-26-governance-audit-synthesis.md`)
+Implementation roadmap: Phases 12-17 authored; on hold pending gsd-2 uplift evaluation (see handoff §6 mid-horizon framing)
+Status: post-Wave-4 governance-doc audit cycle complete. Waves 1, 3, 4 all landed.
+Active work: none in progress; awaiting (a) Wave 5 exemplar AGENTS/CLAUDE harvest (Logan provides exemplars) OR (b) mid-horizon gsd-2 uplift initiation (Logan's call per handoff Tension 2)
 Last implementation activity: 2026-03-14 -- Phase 10 Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
 
 Progress: [██████████] 100% (31/31 plans) — v0.1 historical; v0.2 plans not yet tracked here
@@ -198,10 +198,11 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-- Wave 4 governance-doc edits (9 commits; see `.planning/audits/2026-04-26-governance-audit-synthesis.md` §8)
-- Wave 5: exemplar harvest for AGENTS.md / CLAUDE.md restructuring (deferred pending Logan providing exemplar files)
-- gsd-2 uplift initiative (mid-horizon; separate multi-session initiative)
-- Phase 12 plan 1 authoring (blocked on gsd-2 uplift evaluation; see LONG-ARC.md and handoff)
+- Wave 5: exemplar harvest for AGENTS.md / CLAUDE.md restructuring (deferred pending Logan providing exemplar files; see handoff §7 Wave 5)
+- gsd-2 uplift initiative (mid-horizon; substantial standalone initiative; see handoff §6 for the corrected project-agnostic framing)
+- Phase 12 plan 1 authoring (on hold pending gsd-2 uplift evaluation; see LONG-ARC.md and handoff Tension 2 for resolution shapes)
+- Q1/Q4/Q16 Logan validation (foundation-audit closures from Phase 04.1 / Quick Task 1; tracker in §"Pending Validations" below)
+- Two INDEX.md verification items addressed via PROJECT.md refresh (2026-04-26): local-gap-propagation reframed as GSDR-signal-system-scoped (not primary active reference); spike-epistemic-rigor symlink note added
 
 ### Roadmap Evolution
 
@@ -237,6 +238,7 @@ Recent decisions affecting current work:
 
 ## Session Continuity
 
-Last session: 2026-04-26T00:00:00Z
-Stopped at: Wave 4 governance-doc edits in progress (commit 4 of 9). Read `.planning/handoffs/2026-04-26-post-wave-2-handoff.md` and `.planning/audits/2026-04-26-governance-audit-synthesis.md` §8 to resume.
-Resume file: No active phase resume file. Use Wave 4 synthesis §8 commit list as the active execution surface.
+Last session: 2026-04-26T07:00:00Z
+Stopped at: Post-Wave-4 + post-PROJECT.md-refresh. Waves 1, 3, 4 of plan-revision/governance commits all landed. Awaiting Logan's call on next horizon: Wave 5 (exemplar harvest) or mid-horizon gsd-2 uplift.
+Resume file: `.planning/handoffs/2026-04-26-post-wave-4-handoff.md` — read first for full context restoration.
+Cross-references: prior handoff `.planning/handoffs/2026-04-26-post-wave-2-handoff.md` (predecessor; partly superseded); revised v0.2 synthesis `.planning/audits/2026-04-25-v0.2-plan-audit-synthesis.md`; revised governance synthesis `.planning/audits/2026-04-26-governance-audit-synthesis.md` (with §2.5 G-B-tier dispositions).
