@@ -15,7 +15,7 @@ Additional orientation used here:
 -->
 
 **Date:** 2026-04-16
-**Status:** Open
+**Status:** Open — recommendation deferred pending artifact pressure pass (2026-04-25)
 **Trigger:** Conversation during execution of the `005`-`008` spike suite raised a direct critique of the suite's narrowing logic. The question was whether the current sequence is genuinely anti-regret and challenge-seeking, or whether it prematurely closes options based on a few rounds of experiments while claiming more than those experiments can legitimately support.
 **Affects:** Active `005`-`008` spike suite, future spike sequencing, spike closeout discipline, handoff design, interpretation discipline
 **Related:**
@@ -28,6 +28,7 @@ Additional orientation used here:
 - [007 HANDOFF.md](../spikes/007-training-data-mechanism-probes/HANDOFF.md)
 - [2026-04-16-next-round-suite-execution-readiness-review.md](../spikes/reviews/2026-04-16-next-round-suite-execution-readiness-review.md)
 - [comparative-characterization-and-nonadditive-evaluation-praxis.md](./comparative-characterization-and-nonadditive-evaluation-praxis.md)
+- [2026-04-16-sequential-narrowing-deliberation-review.md](./reviews/2026-04-16-sequential-narrowing-deliberation-review.md) (independent review, lodged 2026-04-25)
 
 ## Situation
 
@@ -163,3 +164,90 @@ Each spike `FINDINGS.md`, `POSTERIOR.md`, or `HANDOFF.md` should include a short
 `[chosen for now]` The current spike suite is neither naively verificationist nor naively falsificationist. It is better described as a bounded, fallibilist, auxiliary-aware sequential program that still contains residual closure pressure. That pressure is not fatal, but it should be made more explicit and more revisable.
 
 `[chosen for now]` The next methodological patch should therefore not be "abolish narrowing" or "widen every later spike." It should be to require every narrowing step to carry its own challenge surface and inference-limit statement, so the suite records not just what it chose, but what remained contestable and why.
+
+> **Status note (2026-04-25):** The two `[chosen for now]` claims above are preserved as a record of what was concluded on 2026-04-16. They have since been re-examined; see the *Review and Status Update* section below. They should not be treated as binding for the next handoff or for `008`.
+
+## Review and Status Update — 2026-04-25
+
+A review of this deliberation was written nine days after it was filed: [2026-04-16-sequential-narrowing-deliberation-review.md](./reviews/2026-04-16-sequential-narrowing-deliberation-review.md).
+
+### What the review found
+
+The framing is mostly right, the conclusion is directionally right but procedurally understrength. Specifically:
+
+- **The Option A-D space is constructed.** A and C differ only in artifact discipline; B and D differ only in degree of closure-aversion. Alternatives that are not represented include parallel rather than sequential narrowing, criterion-triggered reopening, and explicit auxiliary-bundle freeze statements. The space was drawn in a way that makes Option C the only sensible answer.
+- **"Challenge surface" is documentation, not mechanism.** A prose section saying a branch *could* be reopened does not create a process that *actually reopens* it. Without a trigger, the section is epistemic insurance paperwork.
+- **The philosophy is mobilised as atmospherics.** Mayo, Duhem-Quine, Lakatos, and van Fraassen are named but the actual recommendation does not draw on their machinery (severity arguments, auxiliary-bundle disclosure, progressive-vs-degenerating shifts, empirical adequacy at the bounded scope tested).
+- **The deliberation does not apply its own discipline to itself.** It never asks what would reverse its own recommendation.
+- **"Anti-regret" does unexamined work.** Decision-theoretic regret presumes enumerable branches and priceable losses that spike work does not have cleanly. "Reversibility budget" or "commitment debt" would be more honest.
+- **No concrete failure mode anchors the analysis.** The argument is doctrinal rather than risk-anchored.
+
+The review proposes a richer remedy set: challenge surface (prose) + pre-registered reopening trigger per narrowing step (mechanism) + auxiliary-bundle freeze statement (Duhem-Quine operationalised) + an `[evidence-weakened] / [cost-deferred] / [both]` decision tag on every excluded branch.
+
+### Decision: pressure the artifacts before adopting any remedy
+
+Selecting a remedy now — whether the original Option C, the review's expanded set, or any blend — would repeat the original mistake the review identifies: choosing a patch from a constructed option space without anchoring in concrete failure modes present in the existing handoffs.
+
+State of the suite at time of pressure pass: `005` / `006` / `007` are complete (`DECISION` / `FINDINGS` / `HANDOFF` / `POSTERIOR` / `QUALITATIVE-REVIEW` present in each). `008` exists only as `DESIGN.md` + `TASK-MATRIX.md` and has not been run. `005-next-round-suite/` and `NEXT-ROUND-SUITE.md` exist at the spikes root, so a "next wave" frame is already present in the program independent of `008`. This means the pressure pass is not only a closeout / discipline question — it feeds a real, multi-dimensional design decision.
+
+The next move is therefore neither (a) implement Option C as written, nor (b) implement the review's expanded remedy. It is:
+
+1. **Pressure-test the `005` / `006` / `007` `HANDOFF.md` artifacts** by running diagnostic questions against them as a read-and-annotate pass. The pass produces a separate artifact (per-handoff annotations or a single `HANDOFF-PRESSURE.md`) that records findings without overwriting the handoffs themselves. The handoffs are evidence; pressuring them must not destroy the evidence.
+
+   The pass scope also includes `NEXT-ROUND-SUITE.md` and `008/DESIGN.md`. If pressure-pass findings reshape `008`, they likely reshape the next wave too, and the next wave is partially designed already, so reshaping it cheaply is possible *now*. Reading these artifacts in the same pass keeps cross-wave effects visible rather than serialising them.
+
+   Diagnostic questions, per handoff:
+   - Which exclusions are evidence-weakened, which are cost-deferred, which are both? Tag them retrospectively and note where the classification resists clean assignment.
+   - What would actually reopen each excluded branch? Write the trigger as if it had to fire. If it cannot be written concretely, the branch is closed in practice regardless of bounded language.
+   - Which auxiliary bundle was held fixed? List it. Note whether the list is short and namable or sprawling and implicit.
+   - Where does the prose drift from "posterior shift under conditions" toward "family that matters"? Mark the sentences.
+   - What does this handoff *not* legitimately tell us?
+   - **Redesign signal:** Which excluded branch, if reclassified from `[evidence-weakened]` to `[cost-deferred]` (or to `[both]`) by the pressure pass, would force `008` to be redrawn rather than merely augmented? Which would force `005` / `006` / `007` to be retroactively patched? Which would touch `NEXT-ROUND-SUITE.md`? Which would touch `METHODOLOGY.md` or `SPIKE-DESIGN-PRINCIPLES.md`? Which touch nothing local but warrant an ADR amendment?
+
+   For each finding, the pass annotation should name *which cells in the response space below the finding actuates.* This keeps the response space honest instead of pre-collapsed into binaries.
+
+2. **Use what surfaces** to compose a response from the multi-dimensional space below, rather than from a flat list of pre-named alternatives.
+
+   **Dimensions of response:**
+
+   | Dimension | Range |
+   |---|---|
+   | **Subject** | `008` itself · the pre-`008` chain (`005` / `006` / `007` retroactively, or a `007.5`) · the post-`008` plan (`NEXT-ROUND-SUITE.md`) · methodology layer (`METHODOLOGY.md`, `SPIKE-DESIGN-PRINCIPLES.md`) · artifact discipline (templates, decision-tag standards, deferred-branch registry) · the deliberations themselves · the interpretation layer (how findings reach product / architecture / ADRs) |
+   | **Nature** | augment · narrow · widen · split · reorder · replace · reframe · defer · abandon · retroactively patch |
+   | **Trigger** | evidence reversal · auxiliary-bundle gap · interpretive drift · cost reassessment · goal drift · methodological discovery |
+   | **Scope of effect** | local to a spike · local to the wave · cross-wave (program) · cross-program (project — touches ADRs) |
+
+   Branches are products of these dimensions, not a flat list. A non-exhaustive sample of live combinations the pass may actuate, beyond the obvious "augment `008` with discipline" and "redraw `008` from scratch":
+
+   - **Retroactively patch `005` / `006` / `007`** with new tags and a `[reopened]` annotation, before `008` is touched. Subject: pre-`008` chain. Nature: retroactively patch. Trigger: evidence reversal.
+   - **Insert a `007.5`** — small targeted probe addressing the highest-impact failure mode the pass surfaces (typically: one auxiliary not previously varied), shoring up the narrowing premise before `008` rides on it.
+   - **Split `008`** into a confirmatory mechanism-backed test plus a cheap reopening probe on a branch the pass rehabilitates (e.g., `Stella`-under-rerank). Two postures rather than one.
+   - **Run `008` plus a counter-`008` in parallel** — one tests the narrowing, one deliberately tests an excluded branch. The program produces two postures rather than one.
+   - **Defer `008` indefinitely** with conditions for revisit registered. The narrowing premise is shaky enough that running the expensive test now would burn budget on contestable inputs.
+   - **Abandon `008`** — premise unrecoverable; reallocate cost to a different question.
+   - **Replace `008` with a different *kind* of test** answering the same question — e.g., function-in-use via longitudinal observation or live triage rather than offline evaluation. Same question, different epistemic regime.
+   - **Reframe the question** — pass reveals "which family wins" was always the wrong frame; the right question is about composition or stack discipline, and `008` is replaced with a test of a different question.
+   - **Modify only the methodology, not the spikes** — `METHODOLOGY.md` and `SPIKE-DESIGN-PRINCIPLES.md` get new discipline (auxiliary-bundle freeze, decision tags, reopening-trigger requirement); `008` runs as designed because no specific finding contests its premise.
+   - **Modify only the artifact discipline** — handoff templates change, registries get added, spikes don't.
+   - **Convert `008` from confirmatory to exploratory** — same setup, stance change. No winner-picking output, no narrowing handoff. A change in epistemic posture rather than scope.
+   - **Pre-register a reopening protocol** that fires after `008` runs as designed — discipline added, scope unchanged, commitment debt bounded in advance.
+   - **Modify only `NEXT-ROUND-SUITE.md`** — `008` is fine on its own terms; what changes is what comes after.
+   - **Modify the deliberation itself** — the deliberation's option space was the wrong space; rewrite or supersede, with no direct effect on any spike.
+   - **Spawn a parallel exploratory program** — fork, not continue, not abandon.
+   - **Cross-program effect** — pass findings warrant an ADR amendment (e.g., touching `ADR-0001` exploration-first, or `ADR-0002` lazy enrichment, in this region of the design space).
+
+   Some compose (retroactive patch of `005`-`007` + `008` augmented + new templates + amended `NEXT-ROUND-SUITE.md`). Some are mutually exclusive (abandon vs. augment). The right response is rarely a single cell.
+
+3. **Then return here** and compose the actual response — incorporate Option C as originally written, adopt the review's expanded set, write a follow-up deliberation grounded in the artifacts, or some combination drawn from the dimensional space above. The choice is made *against evidence from the handoffs* rather than from doctrine.
+
+### Status of original recommendation
+
+The original Provisional Conclusion (Option C with a challenge-surface section) is **deferred, not rejected.** It may still be the right answer, in whole or in part, after the pressure pass. But it should be chosen against evidence from the artifacts rather than from the constructed option space the deliberation originally drew.
+
+### Status of this deliberation
+
+**Open — recommendation deferred pending artifact pressure pass.** The pass is the next concrete move; until it is run, neither this deliberation nor its review should be treated as having settled the question.
+
+### Self-application note
+
+The dimensional reframing above is also a self-application of the review's critique to the addendum's own first draft, which initially compressed the post-pressure response into "run as planned, run with added discipline, or reshape `008`." That was the same constructed-option-space mistake at smaller scale. The dimensional table is the corrected frame; if a future addition to this addendum collapses it again, that collapse should itself be flagged.
