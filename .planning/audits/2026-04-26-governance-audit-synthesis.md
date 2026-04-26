@@ -477,6 +477,23 @@ These are AGENTS.md / CLAUDE.md substantive content edits. Logan has noted exemp
 
 **Why deferred:** bundles cleanly with G-D3. Trivial in isolation; not worth a separate commit.
 
+### 4.5. Dispositions on G-D items (recorded 2026-04-26 — pointer to Wave 5 exemplar harvest)
+
+All four G-D items have been dispositioned per the Wave 5 exemplar harvest at `.planning/audits/2026-04-26-wave-5-exemplar-harvest.md` §10. Mirroring the Wave 4 §2.5 pattern, the harvest records dispositions with full reasoning, explicit assumptions, "where my reasoning may be wrong" notes, citation-trust hierarchy, and cross-cutting meta-concerns (including a recommendation-churn observation across multiple turns of deliberation). Logan reviewed across two explicit justification rounds and accepted dispositions as Claude recommended.
+
+Disposition summary:
+
+- **G-D1** (AGENTS.md "Known difficulty patterns" section) → shape (a) **with refinement** — verbatim cite-back to `LONG-ARC.md:46-54` per pattern. Full reasoning at harvest §10.2.
+- **G-D2** (AGENTS.md ADR-citation example fix) → shape (a) — verbatim quote + misquote-vs-correct contrast as teaching example. Full reasoning at harvest §10.3.
+- **G-D3** (CLAUDE.md restructuring) → shape (a) **full split, lean keep nice-to-have**. Mandatory: doctrine load-points section + G-D4 fix. Nice-to-have, kept: calibrated-tradeoff preamble + positive-declarative reframing. Full reasoning at harvest §10.4 (including the recommendation-stability note covering shifts during deliberation).
+- **G-D4** (Stack-D silent-default fix) → shape (a) **with verification step** — re-check Stack-D foreclosure status against ADR-0005 before pinning the gloss. Full reasoning at harvest §10.5.
+
+Plus a new question Logan raised (LONG-ARC.md / VISION.md integration with runtime governance) dispositioned as **α + β + γ + δ-as-pointer-note**, full reasoning at harvest §10.6.
+
+Pre-Wave-5 sequencing (per harvest §7): governance synthesis pointer (this addendum) → cross-vendor codex dispatch on harvest §5 + §11 (~30-min focused diagnostic on gsd-2-vocabulary-mapping question) → Gemini doc reading-notes file → Wave 5 commits 1-3 in fresh session.
+
+For full disposition reasoning, citation-trust hierarchy, recommendation-churn observation, and meta-concerns, read `.planning/audits/2026-04-26-wave-5-exemplar-harvest.md` §10 in full. The G-D items above are not re-litigated in §6/§7/§8 of this synthesis; they are now dispositioned per the harvest.
+
 ## 5. Deferred to gsd-2 uplift initiative
 
 Two findings whose right operationalization depends on the gsd-2 uplift design.
