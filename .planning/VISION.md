@@ -31,9 +31,9 @@ The platform is for someone whose research practice is shaped over months and ye
 - arxiv-sanity's value lives in a session. Ours has to live across years — longitudinal memory of what was read, dismissed, returned to, cited, and disagreed-with is part of the platform, not a session log.
 - arxiv-sanity is observational. Ours is **steerable** — the researcher selects between lenses, composes them, and inspects per-lens reasoning per recommendation.
 
-## Load-bearing surface: the multi-lens substrate
+## The multi-lens claim
 
-The architecturally load-bearing claim of this platform is that *no single retrieval lens can serve practicing AI research*. AI research is intensely community-structured (specific labs, specific conferences, specific paper threads), methodologically diverse (RLHF vs DPO vs constitutional AI as distinct conversations, not a topic cluster), and rapidly paradigm-shifting (mechanistic interpretability papers are topically similar but methodologically diverse). Topic-cluster representation, semantic similarity, citation neighborhoods, author/affiliation signals, benchmark/dataset signals, and method-tag signals each surface different parts of the literature. The substrate exposes them as first-class lenses, not as fusion ingredients to be averaged.
+The platform's central claim is that *no single retrieval lens can serve practicing AI research*. AI research is intensely community-structured (specific labs, specific conferences, specific paper threads), methodologically diverse (RLHF vs DPO vs constitutional AI as distinct conversations, not a topic cluster), and rapidly paradigm-shifting (mechanistic interpretability papers are topically similar but methodologically diverse). Topic-cluster representation, semantic similarity, citation neighborhoods, author/affiliation signals, benchmark/dataset signals, and method-tag signals each surface different parts of the literature. The substrate exposes them as first-class lenses, not as fusion ingredients to be averaged.
 
 Lens architecture must be validated by use, not by design — the abstraction is most likely to be right when *at least two* lenses are shipped against it. This is committed in ADR-0005.
 

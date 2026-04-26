@@ -39,6 +39,18 @@ The substrate commits to:
 
 Cost target: ~2 months of engineering + spike work. The 005-008 spike chain is reshaped, not abandoned: tournament narrowing is parked; the semantic-lens spike work continues but as lens-design, not as winner-pick.
 
+## Considered and rejected
+
+Three alternatives to the multi-lens substrate were considered before settling on the decision above. They are recorded here so future architecture readers see the option space without following a deliberation-doc breadcrumb.
+
+(i) **Refactor + 0 lenses, paired internal review.** Refactor the existing single-lens stack into a `Lens`-shaped abstraction, ship 0 new lens implementations, and rely on paired internal review of the abstraction's adequacy. Rejected: paired review of an unimplemented-second-lens abstraction cannot detect the failure mode the property audit named — single-lens "interfaces" shape themselves around the lens that ships, and that shape only reveals itself when a second lens issues real queries. Review of the design alone reproduces the trap.
+
+(ii) **Lens abstraction + thin second lens scoped only to test surface and storage shape.** Ship the abstraction with a stub second-lens implementation that exists to exercise the API surface and storage layer, but does not produce real recommendations. Rejected: API review against a sketched-but-unimplemented second lens cannot surface storage-shape problems that only manifest when a second lens issues real queries against the substrate — Property 3's coupling is observable only against retrieval-shaped data. The stub validates the interface; it does not validate the substrate.
+
+(iii) **Defer abstraction; run two parallel pipelines first.** Build the citation/community pipeline as a second standalone retrieval system, run both single-lens pipelines in production for some period, and extract the abstraction from the observed shape. Rejected: two parallel pipelines do not exercise the consumer-side coexistence problem (MCP tool surface, `SearchResult` shape, profile dispatch) that the abstraction must solve. The abstraction is what the consumers depend on; building two pipelines first defers the consumer-side design until both are in production, at which point the cost of the abstraction is the cost of changing two consumers instead of one.
+
+The chosen path (ship the abstraction with at least two real lens implementations) accepts ~2 months of engineering as the cost of validating the abstraction by use rather than by design.
+
 ## Consequences
 
 ### Positive
