@@ -18,6 +18,8 @@ provenance: >
 
 # Spike Research Methodology
 
+> **Relationship to `.planning/foundation-audit/METHODOLOGY.md`:** This document covers *spike research design and interpretation* — interpretive lenses (six lenses for reading spike results), paired-review practice disciplines (A through F), and model-verification disciplines for audit and spike work. The foundation-audit METHODOLOGY covers *decision-review epistemic discipline* — how to evaluate whether project decisions rest on adequate epistemic grounds, trace evidence chains, and audit inference integrity. The two documents are complementary; consult this one for spike design, paired-review dispatch, and audit interpretation; consult the foundation-audit METHODOLOGY for structured decision review. Cross-reference: `.planning/foundation-audit/METHODOLOGY.md`.
+
 This document captures reusable critical lenses for spike design and interpretation. It complements SPIKE-DESIGN-PRINCIPLES.md (practical rules) with interpretive frameworks (analytical orientations that require judgment to apply).
 
 **How to use this document**: Before designing a spike, an independent design critic should read each lens and ask whether the spike design is vulnerable to what the lens diagnoses. After execution, the findings critic should apply each lens to check whether the interpretation is warranted. The phase-mapping table at the end specifies which lenses apply when.
@@ -113,6 +115,8 @@ The pair caught more together than either alone in the 2026-04-25 cycle. Cross-v
 **Concrete change:** Audit-level remedies do not get adopted from single-reader output if the framing is contestable. Schedule a paired review before composition.
 
 **Concrete change (extension, status: Hypothesis pending second methodology-audit cycle):** Same-vendor adversarial dispatches must not include other audits of the same artifact set as references, even at lower effort levels or earlier dates. Anchoring on prior findings produces delta-on-prior reasoning, which suppresses net-new finding discovery and inherits prior framings even where independent reading would re-evaluate them. The dispatching prompt must include an explicit forbidden-reading list naming all prior audits of the same artifact set; the agent's compliance is verifiable in its tool-use trace. The contaminated 2026-04-25 xhigh dispatch (preserved at `.planning/audits/2026-04-25-v0.2-plan-audit-opus-adversarial-xhigh-contaminated.md`) is the documented evidence base; the comparison at `.planning/audits/2026-04-25-v0.2-plan-audit-comparison.md` characterizes the observed effects (net-new finding suppression in two categories; one finding flipped from problem to strength under independent reading; prior framings inherited where independent reading would re-evaluate). Status remains `Hypothesis` until a second methodology-audit cycle either confirms or weakens the pattern.
+
+*2026-04-26 update:* Second test of this discipline (governance-doc paired audit cycle, dispatched 2026-04-26 with M1's forbidden-reading list applied) produced the structural-divergence / substance-convergence pattern paired audits are supposed to produce — see `.planning/audits/2026-04-26-governance-audit-comparison.md` §4. Status remains Hypothesis pending further cycles.
 
 **When it catches what others miss:** Single readers tend to overreach on framing claims they cannot fully cross-check; pairs surface the overreach. Self-review does not work for contestable framings — the same author cannot independently audit their own register.
 

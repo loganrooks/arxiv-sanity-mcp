@@ -1,5 +1,7 @@
 # Foundation Audit — Justification Methodology
 
+> **Relationship to `.planning/spikes/METHODOLOGY.md`:** This document covers *decision-review epistemic discipline* — how to evaluate whether project decisions rest on adequate epistemic grounds, trace evidence chains, and assess inference integrity. The spikes METHODOLOGY covers *spike research design and interpretation* — interpretive lenses, paired-review practice, and model-verification disciplines for audit and spike work. The two documents are complementary; consult this one for foundation-audit-style decision reviews and the spikes METHODOLOGY for spike design and paired-review dispatch. Cross-reference: `.planning/spikes/METHODOLOGY.md`.
+
 ## Purpose
 
 Criteria and processes for evaluating whether project decisions rest on adequate epistemic grounds. Used during the Phase 5 foundation audit and available for future decision review.
