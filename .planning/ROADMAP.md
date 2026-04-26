@@ -361,7 +361,7 @@ Plans:
   2. Capture is opt-in / explicit; no silent profile mutation (LONG-ARC anti-pattern: silent defaults)
   3. Pilot kickoff: weekly review cadence with Logan; first capture window starts and runs for at least four weeks
   4. Mid-pilot review at week 2: friction surfaced, lens-usage patterns characterized, capture-schema gaps recorded
-  5. End-of-window review: pilot artifact produced summarizing lens usage, agreement/disagreement patterns, suspected v0.3 priorities
+  5. End-of-window review: pilot artifact produced reporting against three separated categories — **(1) usage evidence** (which lenses were invoked, in what combinations, by user-explicit selection vs default), **(2) friction evidence** (where the multi-lens API was confusing, where lens-disagreement output was unhelpful, where the pilot harness failed to capture intent), **(3) value hypotheses** (what selections persisted — returned-to vs dismissed-once; instances where multi-lens results led to selections single-lens results would have missed, where the data shape supports inference, not as causal claim). The three categories must not be conflated; the artifact reports against schema-version-as-captured
   6. `008/SUPERSESSION.md` is finalized as part of this phase's documentation; the longitudinal-pilot harness is the canonical successor
 **Plans:** 2 plans
 
