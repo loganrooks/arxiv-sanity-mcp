@@ -1,11 +1,13 @@
 # Roadmap: arXiv Discovery MCP
 
-> **Status:** `v0.1` is complete and this roadmap is now frozen as the shipped milestone roadmap.
-> **Current work:** post-v0.1 inter-milestone exploration. See [v0.1-MILESTONE.md](./milestones/v0.1-MILESTONE.md) and [NEXT-ROUND-SUITE.md](./spikes/NEXT-ROUND-SUITE.md).
+> **Status:** `v0.1` (Phases 1-10) is complete and frozen as the shipped milestone roadmap. `v0.2` (Phases 12-17) is the active multi-lens substrate milestone, committed via [ADR-0005](../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md) on 2026-04-25.
+> **Current work:** v0.2 multi-lens substrate planning. See [v0.2-MILESTONE.md](./milestones/v0.2-MILESTONE.md), [VISION.md](./VISION.md), [LONG-ARC.md](./LONG-ARC.md).
 
 ## Overview
 
-This roadmap delivers an MCP-native research discovery substrate. Phases 1-6 built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, enrichment adapters, MCP server (13 tools, 4 resources, 3 prompts), validation with real workflows, and content normalization. Phases 7-8 closed gaps identified by the v1 milestone audit. Phases 9-10 handle release packaging and real-world agent integration testing. Semantic search is deferred to v2.
+`v0.1` (Phases 1-6) built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, enrichment adapters, MCP server (13 tools, 4 resources, 3 prompts), validation with real workflows, and content normalization. Phases 7-8 closed gaps identified by the v1 milestone audit. Phases 9-10 handled release packaging and real-world agent integration testing.
+
+`v0.2` (Phases 12-17) ships a multi-lens MCP substrate honoring [ADR-0001](../docs/adrs/ADR-0001-exploration-first.md)'s coexistence commitment in implementation, not only in design. At least two lenses (existing semantic + new citation/community) ship; the profile primitive generalizes to a bundle-of-signals shape; lens-disagreement and intersection are first-class MCP operations; the superseded `008` tournament is replaced with a longitudinal pilot harness. Architectural commit: [ADR-0005](../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md). Property-audit-grounded Option B selection: [`audits/2026-04-25-phase-3-property-audit-opus.md`](./audits/2026-04-25-phase-3-property-audit-opus.md).
 
 ## Phases
 
@@ -25,6 +27,15 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 8: Infrastructure Fixes** - Enrichment schema alignment, test fixture scoping, docstring and import fixes (GAP CLOSURE)
 - [x] **Phase 9: Release Packaging** - LICENSE, README rewrite, pyproject.toml metadata, CHANGELOG, GitHub repo, CI pipeline, v0.1.0 tag
 - [x] **Phase 10: Agent Integration Test** - Real MCP server configuration, agent research session, setup documentation from actual usage (completed 2026-03-14)
+
+### v0.2 Phases (Multi-Lens Substrate, planned 2026-04-25)
+
+- [ ] **Phase 12: Lens Abstraction Primitives** - `Lens` protocol, scorer registry, `ProfileRankingService` as dispatcher, generalized `SearchResult` with backward compat
+- [ ] **Phase 13: MCP Surface Lens-Awareness** - `lens=` parameter on the four discovery tools, `RankerSnapshot` lens identity, CLI updates
+- [ ] **Phase 14: Citation Graph Data Integration** - OpenAlex coverage spike, citation edge storage retrieval-shaped, backfill from existing 126 papers, ingestion path for new papers
+- [ ] **Phase 15: Citation/Community Lens** - Lens implementation, per-lens scorers and explanations, lens-extensibility design walkthrough for hypothetical third lens
+- [ ] **Phase 16: Lens-Disagreement and Intersection Operations** - First-class MCP operations: papers in lens A but not lens B, set intersection, per-paper cross-lens explanation
+- [ ] **Phase 17: Longitudinal Pilot Harness** - Pilot with Logan replacing the superseded `008` tournament; capture lens usage, selections, dismissals, returns
 
 ## Phase Details
 
@@ -185,7 +196,8 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
+- v0.1: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 (complete)
+- v0.2: 12 -> 13 -> 16 -> 17 with 14 and 15 in parallel where dependencies permit. Critical path: 12 → 13 → 16 → 17. Phase 14 parallels 12; Phase 15 follows 12 and 14.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -200,6 +212,12 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 04.1 -> 5 -> 6 -> 7 -> 8 ->
 | 8. Infrastructure Fixes | 2/2 | Complete | 2026-03-13 |
 | 9. Release Packaging | 3/3 | Complete | 2026-03-14 |
 | 10. Agent Integration Test | 3/3 | Complete   | 2026-03-14 |
+| 12. Lens Abstraction Primitives | 0/3 | Planned | — |
+| 13. MCP Surface Lens-Awareness | 0/2 | Planned | — |
+| 14. Citation Graph Data Integration | 0/3 | Planned | — |
+| 15. Citation/Community Lens | 0/3 | Planned | — |
+| 16. Lens-Disagreement and Intersection Ops | 0/2 | Planned | — |
+| 17. Longitudinal Pilot Harness | 0/2 | Planned | — |
 
 ### Phase 9: Release Packaging
 
@@ -236,3 +254,110 @@ Plans:
 - [ ] 10-01-PLAN.md -- MCP server configuration in Claude Code, database verification, connectivity test
 - [ ] 10-02-PLAN.md -- Agent research session (5 E2E flows), session log, friction report
 - [ ] 10-03-PLAN.md -- README validation, critical ergonomic fixes, friction report finalization
+
+### Phase 12: Lens Abstraction Primitives
+
+**Goal:** Refactor the existing single-lens ranking pipeline into a multi-lens substrate without behavioral regression. `Lens` protocol exists with a scorer registry; `ProfileRankingService` becomes a dispatcher; `SearchResult` carries per-lens score components alongside legacy composite for backward compatibility.
+**Depends on:** Nothing (refactor of existing code)
+**Requirements:** LENS-01, LENS-02 (semantic side), LENS-04, LENS-05
+**Success Criteria** (what must be TRUE):
+  1. A `Lens` protocol exists in `interest/` (or equivalent location) and the existing semantic-lens scorers are registered as the first lens implementation
+  2. `ProfileRankingService` dispatches to a registered lens by name; existing single-pipeline behavior is preserved by default and validated against v0.1 regression tests
+  3. `RankingPipeline.score_paper`'s hard-sequenced calls are replaced by a registry-driven dispatcher; new scorers register without modifying `score_paper`
+  4. `SearchResult` (and `ProfileSearchResult`) carry `lens_scores: dict[str, float]` and `per_lens_explanations: dict[str, RankingExplanation]` as additive optional fields; legacy `score` and `ranking_explanation` continue to mean composite over the active lens
+  5. All v0.1 tests pass without modification (backward-compat verification)
+**Plans:** 3 plans
+
+Plans:
+- [ ] 12-01-PLAN.md -- `Lens` protocol design, scorer registry, semantic-lens registration, regression tests preserving v0.1 behavior
+- [ ] 12-02-PLAN.md -- `ProfileRankingService` refactor to dispatcher pattern; `_load_profile_context` generalized; default lens preserved
+- [ ] 12-03-PLAN.md -- `SearchResult` generalization with backward-compat default; `RankerSnapshot` lens identity; per-lens explanation surface
+
+### Phase 13: MCP Surface Lens-Awareness
+
+**Goal:** The four discovery MCP tools accept a `lens=` parameter; default behavior is unchanged for existing consumers; new consumers can request specific lenses or combinations. CLI mirrors the surface.
+**Depends on:** Phase 12
+**Requirements:** MCP-08, MCP-09
+**Success Criteria** (what must be TRUE):
+  1. `search_papers`, `browse_recent`, `find_related_papers`, `get_paper` accept an optional `lens=` parameter (single lens name or list); when omitted, behavior matches v0.1
+  2. `find_related_papers` (which lacked profile awareness in v0.1) accepts both `lens=` and `profile_slug=` parameters
+  3. `RankerSnapshot` (and equivalent provenance objects) records which lens(es) produced the result set and which scorers ran
+  4. CLI flags mirror MCP parameters; CLI tests cover the new flag combinations
+  5. MCP tool docstrings document the new parameter; tool naming tests confirm semantics
+**Plans:** 2 plans
+
+Plans:
+- [ ] 13-01-PLAN.md -- `lens=` parameter on the four discovery tools; dispatcher wiring; backward-compat tests; `RankerSnapshot` lens identity
+- [ ] 13-02-PLAN.md -- CLI flag updates; CLI integration tests; tool naming and docstring updates
+
+### Phase 14: Citation Graph Data Integration
+
+**Goal:** Citation edge data is stored in retrieval-shaped form (queryable table or denormalized projection from `PaperEnrichment.related_works`); existing 126 papers are backfilled; new papers acquire citation edges via the existing OpenAlex enrichment path. Provenance fields per ADR-0003 record source, retrieval timestamp, and freshness window.
+**Depends on:** Nothing (parallelizable with Phase 12)
+**Requirements:** CITE-01, CITE-04
+**Success Criteria** (what must be TRUE):
+  1. OpenAlex coverage spike completes: edge density per paper, freshness profile, missingness pattern characterized for the 126-paper corpus; results recorded in a spike artifact
+  2. Citation edge schema designed: edges table or `PaperEnrichment` projection (decision recorded with rationale); migration written and applied
+  3. Provenance fields per edge: source API (`openalex` initially), retrieval timestamp, freshness window; schema review confirms ADR-0003 compliance
+  4. Backfill of existing 126 papers complete; edge counts and sample queries verify integration
+  5. Ingestion path: new papers acquire citation edges via `EnrichmentService` (or equivalent) without bulk re-fetch
+**Plans:** 3 plans
+
+Plans:
+- [ ] 14-01-PLAN.md -- OpenAlex coverage spike (1-2 days); citation source decision artifact (OpenAlex first, Semantic Scholar deferred)
+- [ ] 14-02-PLAN.md -- Citation edge schema design and migration; provenance fields per ADR-0003
+- [ ] 14-03-PLAN.md -- Backfill from existing `PaperEnrichment.related_works`; new-paper ingestion path; integration tests
+
+### Phase 15: Citation/Community Lens
+
+**Goal:** A working citation/community lens implementation: traversal of citation edges, co-citation neighborhood computation, freshness handling, per-lens scorers, per-lens explanations naming cited papers and relationship types. Includes a design walkthrough demonstrating that adding a hypothetical third lens (e.g., author/affiliation) requires no consumer-side changes.
+**Depends on:** Phase 12, Phase 14
+**Requirements:** LENS-02 (citation/community side), LENS-03, CITE-02, CITE-03
+**Success Criteria** (what must be TRUE):
+  1. `CitationCommunityLens` implementation registered in the lens registry from Phase 12
+  2. Lens performs at minimum: direct-citation retrieval (papers cited by seed), citation depth-2 traversal, co-citation neighborhood (papers cited together with seed)
+  3. Per-lens scorers compute relevance scores from citation graph features (e.g., shortest path, co-citation count, citation recency)
+  4. Per-lens explanations name cited papers, relationship type (direct citation, co-citation, citation depth), and the evidence basis (which edges contributed)
+  5. Freshness handling: lens reports edge retrieval timestamps; stale-edge policy documented
+  6. Design walkthrough document: walks through how a hypothetical author/affiliation lens would register and function, surfacing any abstraction gaps in the lens interface; produced before Phase 16 begins
+**Plans:** 3 plans
+
+Plans:
+- [ ] 15-01-PLAN.md -- `CitationCommunityLens` implementation: edge traversal, co-citation neighborhoods, freshness handling
+- [ ] 15-02-PLAN.md -- Per-lens scorers and explanations; integration with `RankingPipeline` registry; tests
+- [ ] 15-03-PLAN.md -- Lens-extensibility design walkthrough for hypothetical third lens; abstraction-gap audit
+
+### Phase 16: Lens-Disagreement and Intersection Operations
+
+**Goal:** First-class MCP operations exposing lens-disagreement, set intersection, and per-paper cross-lens explanation across the two shipped lenses. These operations are not fusion; they preserve per-lens results and expose the structure of agreement and disagreement.
+**Depends on:** Phase 13, Phase 15
+**Requirements:** LDIS-01, LDIS-02, LDIS-03
+**Success Criteria** (what must be TRUE):
+  1. MCP exposes a way to request "papers in lens A but not lens B" — either a dedicated tool, a `mode=disagreement` parameter on existing tools, or a composable filter; design choice recorded with rationale
+  2. MCP exposes set intersection across two or more lenses: papers surfaced by all selected lenses
+  3. Per-paper cross-lens explanation: when a paper is returned from a multi-lens query, the response includes which lenses surfaced it and per-lens score components
+  4. Tests cover: pure agreement, pure disagreement, partial overlap, single-lens edge cases
+  5. CLI flags mirror MCP operations
+**Plans:** 2 plans
+
+Plans:
+- [ ] 16-01-PLAN.md -- Operation design (separate tools vs mode parameter vs composable filter); MCP surface; CLI flags
+- [ ] 16-02-PLAN.md -- Implementation, cross-lens explanation surface, tests, agent-flow validation
+
+### Phase 17: Longitudinal Pilot Harness
+
+**Goal:** Replace the superseded `008` tournament with a longitudinal pilot harness running with one user (Logan). Capture lens usage at session level, triage events with timestamps, lens-of-record per event. Pilot runs continuously for at least four weeks; capture is durable and exportable.
+**Depends on:** Phase 13, Phase 15, Phase 16
+**Requirements:** LPILOT-01, LPILOT-02, LPILOT-03
+**Success Criteria** (what must be TRUE):
+  1. Capture schema designed: session-level lens usage, query log with lens(es) selected, triage events (selection, dismissal, return-to-paper), per-event lens-of-record, durable storage
+  2. Capture is opt-in / explicit; no silent profile mutation (LONG-ARC anti-pattern: silent defaults)
+  3. Pilot kickoff: weekly review cadence with Logan; first capture window starts and runs for at least four weeks
+  4. Mid-pilot review at week 2: friction surfaced, lens-usage patterns characterized, capture-schema gaps recorded
+  5. End-of-window review: pilot artifact produced summarizing lens usage, agreement/disagreement patterns, suspected v0.3 priorities
+  6. `008/SUPERSESSION.md` is finalized as part of this phase's documentation; the longitudinal-pilot harness is the canonical successor
+**Plans:** 2 plans
+
+Plans:
+- [ ] 17-01-PLAN.md -- Harness design, capture schema, durable storage, opt-in mechanism, MCP integration
+- [ ] 17-02-PLAN.md -- Pilot kickoff, weekly review cadence, mid-pilot review, end-of-window review, `008` supersession finalization
