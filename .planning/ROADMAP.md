@@ -351,7 +351,7 @@ Plans:
 **Depends on:** Phase 13, Phase 15, Phase 16
 **Requirements:** LPILOT-01, LPILOT-02, LPILOT-03
 **Success Criteria** (what must be TRUE):
-  1. Capture schema designed: session-level lens usage, query log with lens(es) selected, triage events (selection, dismissal, return-to-paper), per-event lens-of-record, durable storage
+  1. Capture schema designed: session-level lens usage, query log with lens(es) selected, triage events (selection, dismissal, return-to-paper), per-event multi-lens attribution (set-valued, not singular), durable storage, exportability. Capture-schema change-control rule: mid-pilot schema additions are allowed; mid-pilot reinterpretation of existing fields is forbidden. Schema is versioned; the end-of-window artifact reports against schema version
   2. Capture is opt-in / explicit; no silent profile mutation (LONG-ARC anti-pattern: silent defaults)
   3. Pilot kickoff: weekly review cadence with Logan; first capture window starts and runs for at least four weeks
   4. Mid-pilot review at week 2: friction surfaced, lens-usage patterns characterized, capture-schema gaps recorded

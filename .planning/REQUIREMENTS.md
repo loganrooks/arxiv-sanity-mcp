@@ -126,7 +126,7 @@ Requirements for the multi-lens substrate milestone. Each maps to v0.2 phases (1
 ### Longitudinal Pilot
 
 - [ ] **LPILOT-01**: Harness captures lens usage at session level (which lens(es) selected, which queries issued)
-- [ ] **LPILOT-02**: Harness captures triage events with timestamps: selection, dismissal, return-to-paper after dismissal, lens-of-record per event
+- [ ] **LPILOT-02**: Harness captures triage events with timestamps: selection, dismissal, return-to-paper after dismissal. For each event, captures the set of lens(es) that surfaced the paper for that event (multi-valued; never assumes one-lens-per-event), plus the user's explicit lens selection if any (separate field). Multi-lens attribution is preserved through analysis — the analysis layer must not reduce events to a single lens-of-record
 - [ ] **LPILOT-03**: Pilot runs continuously through Logan's research practice for at least four weeks; capture is durable and exportable
 
 ### MCP Surface Lens-Awareness
