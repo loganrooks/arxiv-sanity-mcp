@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 An MCP-native research discovery substrate inspired by arxiv-sanity. The goal is to help researchers and agents discover, triage, and monitor arXiv papers through MCP tools, resources, and prompts — not a "chat with papers" wrapper.
 
-**Current status:** Phases 1-5 + 04.1 complete. 403 tests passing, CLI operational, MCP server with 10 tools + 4 resources + 3 prompts. Validated with real data (126 imported papers, doc 06 resolved). Phase 6 (Content Normalization) is next.
+**Current status:** v0.1 shipped 2026-03-14 (10 phases complete, including 04.1; 13 MCP tools, 4 resources, 3 prompts; current pytest collection ~493 tests). v0.2 (multi-lens substrate) is the active milestone — Phases 12-17. See [STATE.md](.planning/STATE.md) for live state.
 
 ## Accepted ADRs (Settled Decisions)
 
