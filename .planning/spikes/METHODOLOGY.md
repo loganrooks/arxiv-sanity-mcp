@@ -94,6 +94,74 @@ Where evaluators agree: high confidence regardless of which model is evaluated. 
 
 **When it catches what others miss**: When a finding appears to be about the hypothesis but is actually about the evaluation framework. The MiniLM-entanglement discovery was exactly this — "SPECTER2 is divergent" was partly about SPECTER2 and partly about using MiniLM-derived profiles.
 
+## Practice disciplines
+
+Added 2026-04-25 after the methodology-audit cycle (pressure pass + paired AI review + operationalization audit + property audit). The six lenses above are interpretive — they govern how a finding should be read. The disciplines below are operational — they govern how reviews, audits, and remedies should be produced. Both layers matter; the audit cycle showed that lens-rigor without practice-rigor produces high-confidence-but-wrong artifacts.
+
+### A. Paired review for framing claims
+
+**Diagnoses:** Single-reader audit memos and framing critiques propagated as ground truth. The 2026-04-25 pressure pass on the 005-008 handoffs claimed the suite contract did not pre-register a tiebreaker (it did, at `NEXT-ROUND-SUITE.md:65-69`), and ranked findings "highest impact" by fiat. Both errors caught only by paired review (cross-vendor + same-vendor).
+
+**Recommends:** For audits or critiques whose framing claims are load-bearing on remedies, dispatch a paired review before adopting remedies. Pair structurally:
+
+- **Cross-vendor reader** (e.g., GPT via codex CLI, xhigh effort) — catches substance more readily; reads carefully against the artifacts; less attuned to in-house rhetorical patterns.
+- **Same-vendor adversarial reader** (fresh Claude session, xhigh effort) — catches register more readily; better at spotting Anthropic-internal rhetorical inflation, all-caps emphasis labels, prescriptive consequences ("Forces:") that overrun their diagnostic grounds.
+
+The pair caught more together than either alone in the 2026-04-25 cycle. Cross-vendor saw substance; same-vendor saw register; both converged on a single textual fact that anchored the most reliable signal.
+
+**Concrete change:** Audit-level remedies do not get adopted from single-reader output if the framing is contestable. Schedule a paired review before composition.
+
+**When it catches what others miss:** Single readers tend to overreach on framing claims they cannot fully cross-check; pairs surface the overreach. Self-review does not work for contestable framings — the same author cannot independently audit their own register.
+
+### B. Model verification before delegating gating audits
+
+**Diagnoses:** Audits dispatched to default sub-agents whose model is unverified, with verdicts then propagated as if they were known-quality. The 2026-04-25 Property audit was first dispatched to a default Explore agent (likely Haiku/Sonnet), reached "Property 1 = coupled" by reading an early alembic migration as current state, and missed that a later migration superseded it. Re-running with `model: "opus"` flipped the verdict; one direct read of the later migration confirmed the rerun.
+
+**Recommends:** For audits that gate roadmap or architectural decisions:
+
+- Do them directly, or dispatch with explicit `model: "opus"` (or known-quality equivalent).
+- Default sub-agents (Explore in particular) are for cheap surface searches: file location, symbol presence, pattern matching. They are not for evidence claims that supersede each other across migrations or require independent reasoning about coupling.
+
+**Cost test:** if a wrong verdict would cost more than half a day of rework or would propagate into a roadmap commit, the model must be known.
+
+**Concrete change:** Audit dispatches must record the reviewer's model as part of the artifact's frontmatter. Audits with unverified model are marked `provisional` and do not gate decisions.
+
+### C. Single-reader factual claims about the codebase need verification
+
+**Diagnoses:** Claims of the form "X is current state" or "Y exists in the code" propagated without checking. The 2026-04-25 first audit cited a CHECK constraint from migration 003 as binding; verification (`ls alembic/versions/` + reading migration 005) took 30 seconds and reversed the verdict.
+
+**Recommends:** Before propagating a load-bearing claim about the codebase, verify it. The cost is seconds; the cost of acting on a wrong claim is whatever the downstream commitment is worth.
+
+**Concrete change:** For audits, every load-bearing factual claim cites a file:line. Verifications run as a cheap pass before remedies are written.
+
+**When it catches what others miss:** Memory-of-pattern claims ("this is how this codebase usually works") are uniquely vulnerable. The verification step is non-negotiable when a claim is doing remedy-shaping work.
+
+### D. Calibrated language as default register, not closing-section exception
+
+**Diagnoses:** Confidence calibration confined to a closing footnote ("findings 1 and 2 are framing claims and may be wrong") while the prose above used unhedged rhetorical inflation ("load-bearing," "highest-impact," all-caps "CRITICAL," "Forces:"). The closing calibration does not reach the prose it qualifies. The 2026-04-25 pressure pass exhibited this pattern at the audit layer, replicating exactly what it diagnosed in the spike layer.
+
+**Recommends:** Hedged, calibrated language runs through the prose. Confidence levels are stated where claims are made, not in a closing section. Rhetorical labels ("load-bearing," "critical," all-caps emphasis) require argument under them, not in lieu of argument.
+
+**Concrete change:** Reviewers reading audit drafts flag rhetorical-inflation tokens ("Forces:", all-caps emphasis, "load-bearing," "highest-impact") and require either supporting argument or tonal de-escalation.
+
+**When it catches what others miss:** Closure-pressure recurs at every layer of work. Calibration that does not propagate to register is not calibration.
+
+### E. Pressure-test artifacts before adopting remedies
+
+**Diagnoses:** Deliberations propose remedies from a constructed option space (Options A/B/C/D) without anchoring in concrete failure modes present in the artifacts the remedies would patch. The 2026-04-16 deliberation on sequential narrowing initially landed at Option C (challenge surface) drawn from a four-option space the deliberation itself constructed; the independent review identified that the option space was constructed to make C the only sensible answer.
+
+**Recommends:** When a deliberation proposes patches, run diagnostic questions against the underlying evidence (handoffs, artifacts, source) *before* composing remedies. The pressure pass produces a separate artifact that does not overwrite the source evidence.
+
+**Concrete change:** Multi-stage deliberation: situation → analysis → pressure pass on the underlying evidence → composition of remedy from the surfaced findings, not from the originally-constructed option space.
+
+### F. Pattern-watch at every layer of work
+
+**Diagnoses:** The closure-pressure pattern (premature commitment, rhetorical inflation, prescriptive remedies overrunning diagnostic grounds) recurred at the spike layer (005-008 narrowing toward a winner), at the audit layer (pressure pass overreach), and at the meta-audit layer (six confident reorientation components walked back to a smaller set under assumption audit). Each layer's discipline did not transfer to the next.
+
+**Recommends:** When auditing a layer below, audit also the audit's own susceptibility to the pattern. Self-application is part of the discipline, not optional polish.
+
+**Concrete change:** Methodology-audit artifacts include a self-application section explicitly addressing whether the audit itself exhibits what it diagnoses.
+
 ## Phase-Mapping: When to Apply Each Lens
 
 | Phase | Lens | What to check |
