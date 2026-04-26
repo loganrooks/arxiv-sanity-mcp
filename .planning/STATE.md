@@ -1,12 +1,12 @@
 ---
 gsd_state_version: 1.0
-milestone: v0.1
-milestone_name: milestone
-status: complete
-post_milestone_state: v0.2-defined-planning-pending
-stopped_at: v0.2 architectural shape committed via ADR-0005 (multi-lens substrate); detailed v0.2 plan still to be written.
-last_updated: "2026-04-25T20:00:00Z"
-last_activity: 2026-04-25 -- multi-lens redirection committed (ADR-0005). Phase 3 property audit (Opus rerun) confirmed profile primitive is lens-extensible while MCP tool signatures and storage are coupled; Option B (refactor + ship 2 lenses) committed. v0.1 stays frozen.
+milestone: v0.2
+milestone_name: multi-lens-substrate
+status: planning
+post_milestone_state: v0.2-active-planning
+stopped_at: Post-Wave-2/Wave-3/Wave-4 governance and plan-revision audit cycle. v0.2 architectural shape committed via ADR-0005; v0.2 phase plans (Phases 12-17) authored and in-progress governance doc refresh. Wave 4 governance-doc edits in progress.
+last_updated: "2026-04-26T00:00:00Z"
+last_activity: 2026-04-26 -- Wave 3 commits landed (9f19634, 7614be3, 013625a); Wave 4 governance-doc edits underway. v0.1 is complete and frozen at 2026-03-14.
 progress:
   total_phases: 11
   completed_phases: 11
@@ -22,24 +22,27 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** `v0.1` is complete and frozen. Active work is post-v0.1 inter-milestone spike exploration to shape the next milestone.
+**Current focus:** v0.2 (multi-lens substrate) is the active milestone. Phases 12-17 are planned; implementation begins after gsd-2 uplift evaluation (see LONG-ARC.md and handoff). v0.1 is complete and frozen.
 
 ## Current Position
 
-Milestone: `v0.1` complete
-Implementation roadmap: frozen pending next milestone definition
-Status: post-v0.1 inter-milestone exploration
-Active work: spike-program design, review, and deliberation to determine the shape of the next milestone
+Milestone: `v0.2` active (planning phase)
+Implementation roadmap: Phases 12-17 authored; blocked pending gsd-2 uplift evaluation
+Status: post-audit plan-revision cycle (Wave 4 governance-doc edits)
+Active work: Wave 4 governance-doc edits (synthesis `.planning/audits/2026-04-26-governance-audit-synthesis.md`)
 Last implementation activity: 2026-03-14 -- Phase 10 Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
 
-Progress: [██████████] 100% (31/31 plans)
+Progress: [██████████] 100% (31/31 plans) — v0.1 historical; v0.2 plans not yet tracked here
 
-## Performance Metrics
+## v0.1 Historical Metrics
+
+*These metrics are for the completed v0.1 milestone (Phases 1-10, shipped 2026-03-14). v0.2 velocity will be tracked separately once Phase 12 implementation begins.*
 
 **Velocity:**
-- Total plans completed: 23
-- Average duration: 12.6 min
-- Total execution time: 5.0 hours
+- Total v0.1 plans completed: 31 (phases 1-10 including Phase 04.1)
+  - *Note: velocity table below shows 23 — that figure covers Phases 01-04 only (the phases with per-plan timing data). Plans 05-10 were tracked but not included in the avg/plan table. 31 is the correct total-plans-completed.*
+- Average duration (Phases 01-04): 12.6 min
+- Total execution time (Phases 01-04): 5.0 hours
 
 **By Phase:**
 
@@ -195,7 +198,10 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- Wave 4 governance-doc edits (9 commits; see `.planning/audits/2026-04-26-governance-audit-synthesis.md` §8)
+- Wave 5: exemplar harvest for AGENTS.md / CLAUDE.md restructuring (deferred pending Logan providing exemplar files)
+- gsd-2 uplift initiative (mid-horizon; separate multi-session initiative)
+- Phase 12 plan 1 authoring (blocked on gsd-2 uplift evaluation; see LONG-ARC.md and handoff)
 
 ### Roadmap Evolution
 
@@ -221,6 +227,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-16T18:50:00Z
-Stopped at: `v0.1` treated as complete historical milestone; current work is explicitly post-v0.1 spike-program exploration.
-Resume file: No active phase resume file. Use spike-program artifacts and deliberations as the active context surface.
+Last session: 2026-04-26T00:00:00Z
+Stopped at: Wave 4 governance-doc edits in progress (commit 1 of 9). Read `.planning/handoffs/2026-04-26-post-wave-2-handoff.md` and `.planning/audits/2026-04-26-governance-audit-synthesis.md` §8 to resume.
+Resume file: No active phase resume file. Use Wave 4 synthesis §8 commit list as the active execution surface.

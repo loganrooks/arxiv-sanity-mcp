@@ -90,7 +90,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **MCP-04**: MCP server exposes canonical resources: paper://{arxiv_id}, collection://{slug}, profile://{slug}, watch://{slug}/deltas
 - [x] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
 - [x] **MCP-06**: Tool names describe user intent, not implementation (find_related_papers, not search_embeddings)
-- [x] **MCP-07** [chosen for now]: MCP tool set stays at 5-10 tools maximum to limit context token cost (no traceable source; sensible heuristic but not a firm requirement)
+- [x] **MCP-07** [chosen for now]: MCP tool count is justified and grouped by user intent — tools are organized around user-facing workflows, not arbitrary count caps. *[Post-audit correction 2026-04-26: original "5-10 tools maximum" framing was a heuristic inconsistent with the 13-tool shipped state; reframed to capture the actual intent: count is justified by workflow grouping, not capped by heuristic.]*
 
 ### MCP Validation
 

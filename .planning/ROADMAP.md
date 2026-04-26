@@ -7,7 +7,7 @@
 
 `v0.1` (Phases 1-6) built the core: metadata foundation, workflow state, interest modeling with inspectable ranking, enrichment adapters, MCP server (13 tools, 4 resources, 3 prompts), validation with real workflows, and content normalization. Phases 7-8 closed gaps identified by the v1 milestone audit. Phases 9-10 handled release packaging and real-world agent integration testing.
 
-`v0.2` (Phases 12-17) ships a multi-lens MCP substrate honoring [ADR-0001](../docs/adrs/ADR-0001-exploration-first.md)'s coexistence commitment in implementation, not only in design. At least two lenses (existing semantic + new citation/community) ship; the profile primitive generalizes to a bundle-of-signals shape; lens-disagreement and intersection are first-class MCP operations; the superseded `008` tournament is replaced with a longitudinal pilot harness. Architectural commit: [ADR-0005](../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md). Property-audit-grounded Option B selection: [`audits/2026-04-25-phase-3-property-audit-opus.md`](./audits/2026-04-25-phase-3-property-audit-opus.md).
+`v0.2` (Phases 12-17) ships a multi-lens MCP substrate honoring [ADR-0001](../docs/adrs/ADR-0001-exploration-first.md)'s coexistence commitment in implementation, not only in design. At least two lenses (existing semantic + new citation/community) ship; the profile primitive generalizes to a bundle-of-signals shape; lens-disagreement and intersection are first-class MCP operations; the superseded `008` tournament is replaced with a longitudinal pilot harness. Architectural commit: [ADR-0005](../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md) — the live authority for this decision and the deliberation that preceded it. The property audit ([`audits/2026-04-25-phase-3-property-audit-opus.md`](./audits/2026-04-25-phase-3-property-audit-opus.md)) was the gating evidence at decision time; ADR-0005 is the durable record. *[Post-audit correction 2026-04-26: prior wording cited the property audit as the primary reference; ADR-0005 and the deliberation are the primary live authority.]*
 
 ## Phases
 
@@ -62,7 +62,7 @@ Plans:
 **Requirements**: WKFL-01, WKFL-02, WKFL-03, WKFL-04, WKFL-05, WKFL-06, WKFL-07, WKFL-08
 **Success Criteria** (what must be TRUE):
   1. User can create named collections and add/remove papers from them
-  2. User can mark papers with triage states (unseen, shortlisted, dismissed, read, cite-later) and batch-triage multiple papers at once
+  2. User can mark papers with triage states (unseen, seen, shortlisted, dismissed, read, cite-later) and batch-triage multiple papers at once *[Post-audit correction 2026-04-26: "seen" omitted from original success criteria; WKFL-03 includes it and it shipped in Phase 04.1]*
   3. User can save a query with parameters, ranking mode, and filters, then re-run it on demand
   4. User can create a watch (saved query + cadence + checkpoint) and get delta results showing only papers new since the last checkpoint
 **Plans**: 3 plans
