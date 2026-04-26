@@ -43,6 +43,16 @@ Use these labels when proposing changes:
 
 When proposing changes: new durable decisions → ADR; new experiments → `docs/08`; new unresolved issues → `docs/10`; new external patterns → `docs/04`.
 
+## Governance Read-Order Map
+
+**New contributor:** `PROJECT.md` → `VISION.md` → `LONG-ARC.md` → `docs/adrs/` (ADRs 0001-0005) → `AGENTS.md` → `.planning/ROADMAP.md` → `.planning/REQUIREMENTS.md` → `.planning/STATE.md`
+
+**Agent starting a session:** This file → `.planning/STATE.md` → relevant phase plan → `AGENTS.md` (if work touches agent-conduct issues)
+
+**Epistemic / methodology questions:** `.planning/spikes/METHODOLOGY.md` (interpretive lenses + practice disciplines) and `.planning/foundation-audit/METHODOLOGY.md` (decision-review epistemic discipline) — see relationship note at top of each file for scope split
+
+**Deliberation history:** `.planning/deliberations/INDEX.md`
+
 ## Roadmap Phases
 
 Phase 1 (metadata substrate) → Phase 2 (workflow state) → Phase 3 (interest modeling) → Phase 4 (enrichment adapters) → Phase 04.1 (MCP v1) → Phase 5 (MCP validation) → Phase 6 (content normalization).
