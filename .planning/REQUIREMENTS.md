@@ -140,17 +140,19 @@ Deferred to future release. Tracked but not in current roadmap.
 
 ### Semantic Search
 
-- **SEMA-01**: System computes SPECTER2 embeddings selectively for user-touched/saved papers
-- **SEMA-02**: Semantic search via pgvector for embedded paper cohorts
+- **SEMA-01**: System computes embeddings selectively for user-touched/saved papers; specific embedding model selected via lens-design analysis at v2 planning time
+- **SEMA-02**: Semantic search via vector index for embedded paper cohorts; specific index implementation selected at v2 planning time
 - **SEMA-03**: Hybrid retrieval: lexical candidates + semantic reranking
 - **SEMA-04**: Profile-driven recommendation using embedded interest profiles
 
 ### Advanced Enrichment
 
-- **ADVN-01**: Semantic Scholar adapter for recommendations and SPECTER2 embeddings
+- **ADVN-01**: Citation/recommendation adapter for an additional source beyond OpenAlex; specific source selected via lens-design analysis at v2 planning time
 - **ADVN-02**: Crossref/OpenCitations adapter for broader citation graph
 - **ADVN-03**: Citation-context analysis (supporting/contrasting/mentioning)
 - **ADVN-04**: Popularity/trending signals from external sources (citation velocity, GitHub stars)
+
+> **Historical candidates considered at write-time (2026-Q1):** SPECTER2 was the embedding-model candidate for SEMA-01; pgvector was the vector-index candidate for SEMA-02; Semantic Scholar was the additional-citation-source candidate for ADVN-01. Listed for context; not load-bearing on v2 planning. The technology choice is open per the LONG-ARC anti-pattern against treating embedding-model selection as architecturally load-bearing (`LONG-ARC.md` "Embedding-model choice as load-bearing decision" anti-pattern).
 
 ### Advanced Workflows
 
