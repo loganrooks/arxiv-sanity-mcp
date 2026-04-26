@@ -271,3 +271,19 @@ CONTEXT specified polite pool access via email. Implementation has no `openalex_
 - MCP sequencing contradicts project identity
 
 **Bottom line:** The code is competently built. But "competently built to the wrong spec" is a different problem than "process debt." The spec itself (CONTEXT.md files) contains product opinions the user never made.
+
+---
+
+## Resolution Status (added 2026-04-26 per governance audit synthesis)
+
+*This matrix was added retroactively per the 2026-04-26 governance audit synthesis (G-A4). Future audits with cross-cutting findings should produce this matrix as part of their deliverable, not retroactively. Logan may want to verify individual item statuses against the full commit history; status claims below reflect available artifact evidence.*
+
+| Issue | Status | Resolution artifact |
+|---|---|---|
+| I1 (signal_type CHECK constraint) | RESOLVED | `.planning/quick/1-foundation-fixes-extensible-schemas-remo/1-SUMMARY.md` — alembic migration 005 dropped the CHECK constraint; application-level validation in `signals.py` |
+| I2 (flat scorer, not multi-stage pipeline) | OPEN — preserved as design choice; revisit if multi-lens scoring requires multi-stage refactor | No resolution artifact; the flat weighted-sum scorer ships as-is |
+| I3 (negative demotion as implicit category inference) | RESOLVED | `.planning/quick/1-foundation-fixes-extensible-schemas-remo/1-SUMMARY.md` — `apply_negative_demotion` changed to direct ID matching only |
+| I4 (single enrichment record per paper) | RESOLVED | `.planning/quick/1-foundation-fixes-extensible-schemas-remo/1-SUMMARY.md` — alembic migration 006, composite PK (arxiv_id, source_api) |
+| I5 (Open Questions Q1, Q4, Q16 closures pending user validation) | PARTIAL — closures recorded in `docs/10-open-questions.md`; user validation tracker moved to `.planning/STATE.md` "Pending Validations" section | `docs/10-open-questions.md` lines 9, 31, 104; STATE.md pending-validations table |
+| I6 (OpenAlex email config missing) | RESOLVED | `.planning/quick/1-foundation-fixes-extensible-schemas-remo/1-SUMMARY.md` — `openalex_email` added as Settings field |
+| F1-F12 (process/documentation findings; see §2-§3 above) | Mixed — requirements extraction category-errors annotated in REQUIREMENTS.md; ADR-scope-creep documented in FINDINGS.md §3 Finding B; speculative product strategy removed from CONTEXT files | Quick Task 1 commit `7570d4c` (docs); various REQUIREMENTS.md annotations |

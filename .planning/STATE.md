@@ -225,8 +225,18 @@ Recent decisions affecting current work:
 |---|-------------|------|--------|-----------|
 | 1 | Foundation fixes: extensible schemas, remove implicit demotion, epistemic discipline | 2026-03-11 | 27ae31f | [1-foundation-fixes](./quick/1-foundation-fixes-extensible-schemas-remo/) |
 
+## Pending Validations (carried over from foundation-audit)
+
+| Open Question | Closed by | Pending action | Status |
+|---|---|---|---|
+| Q1 — What is the right default notion of interest state? | Quick Task 1 (application-validated signal types, no DB constraint) | Logan validates the closure rationale | PENDING |
+| Q4 — Which external enrichments are worth the dependency cost? | Quick Task 1 (OpenAlex as sole source; composite PK for multi-source extensibility) | Logan validates the closure rationale | PENDING |
+| Q16 — What is the right processing intensity promotion strategy? | Quick Task 1 (demand-driven promotion only) | Logan validates the closure rationale | PENDING |
+
+*Source: `.planning/foundation-audit/FINDINGS.md` finding I5; closures recorded in `docs/10-open-questions.md` (Q1 at line 9, Q4 at line 31, Q16 at line 104). Each marked "Resolved during implementation (pending user validation)."*
+
 ## Session Continuity
 
 Last session: 2026-04-26T00:00:00Z
-Stopped at: Wave 4 governance-doc edits in progress (commit 1 of 9). Read `.planning/handoffs/2026-04-26-post-wave-2-handoff.md` and `.planning/audits/2026-04-26-governance-audit-synthesis.md` §8 to resume.
+Stopped at: Wave 4 governance-doc edits in progress (commit 4 of 9). Read `.planning/handoffs/2026-04-26-post-wave-2-handoff.md` and `.planning/audits/2026-04-26-governance-audit-synthesis.md` §8 to resume.
 Resume file: No active phase resume file. Use Wave 4 synthesis §8 commit list as the active execution surface.
