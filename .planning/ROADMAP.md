@@ -297,7 +297,11 @@ Plans:
 **Depends on:** Nothing (parallelizable with Phase 12)
 **Requirements:** CITE-01, CITE-04
 **Success Criteria** (what must be TRUE):
-  1. OpenAlex coverage spike completes: edge density per paper, freshness profile, missingness pattern characterized for the 126-paper corpus; results recorded in a spike artifact
+  1. OpenAlex coverage spike completes: edge density per paper, freshness profile, missingness pattern characterized for the 126-paper corpus; results recorded in a spike artifact. Spike scope includes content-presence verification on the existing 126 papers (`SELECT COUNT(*) WHERE related_works IS NOT NULL`) to close the loop on whether enrichment data is already present in the corpus or only present going forward.
+  1a. Pre-registered decision matrix governs the storage-shape commitment in Phase 14 plan 2. Thresholds K (median cited-by edges per paper) and X (missingness on AI/CS papers post-2023) are decided in 14-01-PLAN.md *before* the spike runs, with rationale recorded.
+     - **Outcome A (sufficient):** median ≥K edges *and* missingness ≤X%. Action: proceed with OpenAlex-only as committed.
+     - **Outcome B (intermediate):** between thresholds A and C. Action: proceed with OpenAlex-only for v0.2 but flag in 14-02 schema design that Semantic Scholar adapter is more likely needed in v0.3 than current "deferred" framing suggests.
+     - **Outcome C (insufficient):** median \<K edges *or* missingness >X%. Action: re-deliberate citation source choice; pre-registered options are (i) pull Semantic Scholar adapter into v0.2 (extends timeline), (ii) defer citation lens to v0.3, (iii) ship v0.2 with thin citation lens explicitly scoped to direct-citation-only (no co-citation neighborhoods).
   2. Citation edge schema designed: edges table or `PaperEnrichment` projection (decision recorded with rationale); migration written and applied
   3. Provenance fields per edge: source API (`openalex` initially), retrieval timestamp, freshness window; schema review confirms ADR-0003 compliance
   4. Backfill of existing 126 papers complete; edge counts and sample queries verify integration
