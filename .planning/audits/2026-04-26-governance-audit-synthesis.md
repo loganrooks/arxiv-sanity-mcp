@@ -1,7 +1,7 @@
 ---
 type: audit-synthesis
-status: draft-pending-exemplar-review-and-Logan-decisions
-date: 2026-04-26
+status: revised-2026-04-26-with-G-B-tier-dispositions
+date: 2026-04-26 (revised same day)
 target: governance-doc set (ADRs 0001-0004 + AGENTS + CLAUDE + REQUIREMENTS-outside-v0.2 + ROADMAP-outside-12-17 + STATE + foundation-audit + ECOSYSTEM-COMMENTARY)
 inputs:
   - 2026-04-26-governance-audit-cross-vendor.md (primary)
@@ -18,20 +18,44 @@ purpose: |
   noted exemplar AGENTS.md / CLAUDE.md from other projects to harvest
   principles from); the synthesis flags those rather than committing.
 revision_note: |
-  This is a draft synthesis. Like the v0.2 plan synthesis, it will likely
-  need revision after Logan's dispositions on the Adopt-with-shape items,
-  and especially after the exemplar AGENTS.md / CLAUDE.md harvest informs
-  the deferred dispositions.
+  Original synthesis (committed 51abefc) was a draft pending Logan's
+  dispositions on the four Adopt-with-shape items (G-B1..G-B4). This
+  revision records those dispositions in a new §2.5.
+
+  Provenance of the dispositions: proposed by Claude (opus-4-7, xhigh
+  effort) in the post-Wave-3 onboarding session 2026-04-26, after
+  reading the relevant source documents (ECOSYSTEM-COMMENTARY.md,
+  REQUIREMENTS.md v2 sections, ADR-0005 in current state, governance
+  comparison §3). Logan reviewed and accepted them with the explicit
+  instruction to include everything — recommendations, explicit
+  assumptions, reasoning, AND the "where my reasoning may be wrong"
+  sections. §2.5 below records all of that.
+
+  The original §2 "Adopt with Logan's call on shape" is preserved
+  intact as the synthesis's original analysis with its original
+  recommendations. §2.5 records the dispositions; one (G-B3) diverges
+  from the original synthesis recommendation and the divergence is
+  documented inline.
+
+  Other deferred items (AGENTS/CLAUDE substantive edits in §4, gsd-2
+  uplift items in §5) remain deferred pending exemplar review and the
+  mid-horizon initiative respectively. This revision does not touch
+  those.
+
+  Sequencing impact: §8 Wave 4 commit list is updated to reflect the
+  dispositioned shapes (commit 3 absorbs the G-B4 interim note to
+  LONG-ARC; commit 5 reflects G-B1 shape-(a)-lite; commit 6 reflects
+  G-B3 shape-(c)).
 ---
 
 # Audit Synthesis — Governance-Doc Plan Revisions
 
-## 0. Disposition summary
+## 0. Disposition summary (revised)
 
 | Tier | Count | Action |
 |---|---:|---|
 | **Adopt now (commit-ready edits)** | 5 | Uncontested edits with multi-audit convergence; no exemplar-review dependency |
-| **Adopt with Logan's call on shape** | 4 | Logan picks among 2-3 proposed shapes |
+| **Adopt with shape (dispositioned 2026-04-26)** | 4 | Shape decisions recorded in §2.5; one (G-B3) diverges from original §2 recommendation |
 | **Adopt at structural layer** | 3 | Structural changes to governance set (read-order map, audit closeout matrix, deliberation index) |
 | **Deferred pending exemplar review** | 4 | AGENTS.md / CLAUDE.md substantive edits — wait for exemplar harvest |
 | **Deferred to gsd-2 uplift initiative** | 2 | Issues whose right fix depends on the gsd-2 uplift design (e.g., per-phase ADR-against-plan audit operationalization) |
@@ -39,7 +63,16 @@ revision_note: |
 
 Total: 21 actionable items derived from 25 substantive findings in the comparison (12 strong-convergent → 11 actionable + 1 dropped; 9 single-audit → adjudicated; 1 substantive divergence → adopt SV's read; 3 self-discounted single-audit → drop or defer).
 
-**Sequencing:** see §8. The Adopt-now items can land before the exemplar review. The deferred-pending-exemplar items wait. The deferred-to-gsd-2-uplift items wait for the mid-horizon initiative.
+**Sequencing:** see §8 (updated to reflect dispositioned shapes). The Adopt-now items can land before the exemplar review. The deferred-pending-exemplar items wait. The deferred-to-gsd-2-uplift items wait for the mid-horizon initiative.
+
+**Disposition revision summary table (G-B-tier):**
+
+| Item | Original §2 recommendation | §2.5 disposition | Change |
+|---|---|---|---|
+| G-B1 | shape (a) full inline status table | shape (a)-lite — §-by-§ status, no per-recommendation table | **Narrow** |
+| G-B2 | shape (a) minimal one-sentence reframe | shape (a) | None |
+| G-B3 | shape (a) capability-with-illustrative ("e.g., SPECTER2 or equivalent") | shape (c) — strip names; record candidates in separate "Historical candidates" note | **Diverge** |
+| G-B4 | shape (c) defer to gsd-2 uplift + one-line "operational-hook-pending" note | shape (c) + interim note made explicit about non-commitment of cadence | **Refine** |
 
 ## 1. Adopt now — commit-ready edits
 
@@ -208,7 +241,151 @@ The G-A3 edit to ADR-0005:9 owns the stronger commitment. Logan could go further
 
 **Recommendation:** Shape (c). The discipline is real and important; operationalizing it ad-hoc in arxiv-sanity-mcp now would create an arxiv-sanity-mcp-specific convention that the gsd-2 uplift would either supersede or fight. Better to let the uplift initiative design the operational hook as a project-agnostic capability. **In the meantime,** add a one-line note to LONG-ARC.md:96-103 — "ADR-against-plan audit cadence is operational-hook-pending; tracked for gsd-2 uplift integration." Keeps the gap visible without committing to a local solution. Logan's call on whether to additionally take shape (a) as an interim measure.
 
-## 3. Adopt at structural layer
+## 2.5. Dispositions on Adopt-with-shape items (recorded 2026-04-26)
+
+This section records the dispositions on the four Adopt-with-shape items, including reasoning, explicit assumptions, and where-the-reasoning-may-be-wrong sections per Logan's instruction. Provenance: dispositions proposed by Claude (opus-4-7, xhigh effort) in the post-Wave-3 onboarding session 2026-04-26 after reading ECOSYSTEM-COMMENTARY.md, REQUIREMENTS.md v2 sections, ADR-0005 in current state, and the governance comparison §3. Logan reviewed and accepted them.
+
+The original §2 above is preserved intact as the synthesis's original analysis with its original "Recommendation:" lines. §2.5 supplies the operative dispositions; one (G-B3) diverges from the original synthesis recommendation, and the divergence is documented inline.
+
+### G-B1 — ECOSYSTEM-COMMENTARY status annotations: shape (a)-lite
+
+**Disposition:** Add a `## Status as of 2026-04-26` section at the top of `.planning/ECOSYSTEM-COMMENTARY.md`, after the existing pre-04.1 note (lines 3-5), that does §-by-§ status (a few lines per §) — *not* the full per-recommendation table the original §2 shape (a) proposed.
+
+**Assumptions:**
+
+1. The doc still has load-bearing value as a rationale source. Evidence: `ROADMAP.md:142` cites `.planning/ECOSYSTEM-COMMENTARY.md §3` as the Phase-5/6 resequencing rationale. If we deprecate the doc, that citation becomes a pointer to a deprecated artifact.
+2. Per-recommendation file:line citations (full §2 shape (a)) are bookkeeping that will go stale faster than the prose summary. The narrower §-by-§ status decays slower.
+3. Shape (b) (deprecation pointer) loses information the author wrote about their own past thinking. The user's methodological orientation toward "traces over erasure" disfavors that move.
+
+**Reasoning:**
+
+- The doc's own top note (lines 3-5) **already** annotates §3-4 as implemented. The doc is partially status-annotated; the missing parts are §5-7. The original §2 framing (do the whole doc) over-scopes the actual gap.
+- §5 (feature priorities): many shipped in v0.1 (multi-seed expansion, watch-based monitoring, etc.); some still open.
+- §6 (cross-project import strategy): implemented in Phase 5.
+- §7 (MCP v1 surface): closed by what shipped (13 tools, 4 resources, 3 prompts).
+- Three short status paragraphs covering §5/§6/§7 do the work without committing to a maintenance burden.
+
+**Diverges from §2 recommendation:** narrows the scope. §2 shape (a) is the full per-recommendation status table. §2.5 disposition is §-level status (briefer, slower-decaying). Cost differential: ~10-20 minutes either way; not large.
+
+**Where my reasoning may be wrong:**
+
+- If the doc is genuinely archaeological (no future reader will consult it for rationale), §2 shape (b) deprecation pointer is right and §2.5 is over-investing.
+- I'm assuming `ROADMAP.md:142`'s single citation is evidence of load-bearing-ness; that's a single citation and may not be enough to establish the doc's value.
+- The §-level status may itself go stale faster than I expect; if it does, future-me has to redo or remove it.
+
+### G-B2 — ADR-0005 reframe of ADR-0001 commitment: shape (a)
+
+**Disposition:** shape (a) — the minimal one-sentence reframe already in G-A3 (which lands in Wave 4 commit 3). No additional "Relationship to ADR-0001" subsection is added.
+
+**Assumptions:**
+
+1. ADR length matters for re-readability. ADRs that are scanned more get more attention; longer ADRs get less.
+2. ADR-0005 is already gaining a "Considered and rejected" subsection (~150 words; landed at commit `9f19634` in Wave 3). Adding another subsection compounds the bloat.
+3. Systematic interventions belong upstream (in templates / methodology), not in retrofits to a single ADR.
+
+**Reasoning:**
+
+- The substantive fix is "ADR-0005 owns the upgrade-from-capability-to-delivery; ADR-0001 stands as warrant rather than as source." G-A3's in-line edit at ADR-0005:9 does exactly this in the document's natural location (the Context section).
+- A "Relationship to ADR-0001" subsection would elaborate but not add new substance.
+- The pattern the audit caught (CR1: derivative documents inflate ADR modal verbs) is general. The right systematic intervention is in `docs/templates/` — require future ADRs that build on existing ADRs to include explicit relationship framing. That's an upstream fix that prevents recurrence; bloating ADR-0005 doesn't prevent recurrence in ADR-0006+.
+- `docs/templates/` is in the comparison's joint blind spots (§5 item 2). It wasn't audited. If we want to follow this thread, that's a separate audit/edit cycle, not part of Wave 4.
+
+**Where my reasoning may be wrong:**
+
+- If the doctrine-relationship pattern needs to be modeled explicitly because future ADRs will build on this one, shape (b) is defensible. The template-fix path I'm leaning on may not happen in any reasonable timeframe; if it doesn't, the retrofit-via-subsection becomes more attractive.
+- ADR length may matter less than I assume. Readers who care about doctrine will read carefully; the bloat concern may be aesthetic rather than functional.
+
+### G-B3 — v2-deferred technology-name reframe: shape (c) (DIVERGES from §2 recommendation)
+
+**Disposition:** Strip technology names from SEMA-01, SEMA-02, ADVN-01 (capability-only language). Add a separate "Historical candidates" note at the end of the v2 section recording that SPECTER2, pgvector, and Semantic Scholar were the candidates considered at write-time (2026-Q1).
+
+**This diverges from the original §2 recommendation of shape (a).**
+
+**Assumptions:**
+
+1. Anchoring effects are real and this team is documented-susceptible. Evidence: the 005-008 spike chain let MiniLM become a silent default; the property audit (`.planning/audits/2026-04-25-phase-3-property-audit-opus.md`) and the multi-lens redirection deliberation are the trace of that failure.
+2. Requirements docs get read at planning time; git history doesn't. What the requirement says has more weight than what the commit says.
+3. Historical traces of "what was considered" have nonzero value for future planners, but should not be load-bearing on requirement language.
+
+**Reasoning:**
+
+- The audit finding (SV C2, adopted in synthesis comparison §3) frames this as the LONG-ARC anti-pattern "embedding-model choice as load-bearing decision" recurring at the requirements layer. That framing is the central justification for editing.
+- §2 shape (a) — "e.g., SPECTER2 or equivalent" — does not actually defuse the anchoring. "e.g." is a hedge that preserves the privileged candidate. A future v2 planner reading SEMA-01 sees SPECTER2 first; their default is to start there; "or equivalent" gets noticed only if they're already thinking critically.
+- The team has documented evidence (005-008) that they don't reliably think critically about silent defaults. Shape (a) is therefore a half-measure that pretends to address the anti-pattern while leaving the failure mode in place.
+- §2 shape (b) (full removal) is honest but loses historical information.
+- Shape (c) (capability + history-note) is honest about the requirement (it's a capability, technology-open) AND preserves the trace (the candidates considered are recorded as history, not as requirement). This is the trace-preserving move that doesn't anchor.
+- Cost differential between (a) and (c): trivial. ~5 minutes either way.
+
+**Why I diverge from the §2 recommendation:**
+
+- §2 reasoning for (a) was that "(b) is overcorrection (strips useful information)." §2 did not consider shape (c).
+- The shape (c) framing addresses both concerns (b)'s information-loss concern AND (a)'s anchoring concern, at no extra cost.
+
+**Concrete edit shape:**
+
+SEMA-01 becomes: "System computes embeddings selectively for user-touched/saved papers; specific embedding model selected via lens-design analysis at v2 planning time."
+
+SEMA-02 becomes: "Semantic search via vector index for embedded paper cohorts; specific index implementation selected at v2 planning time."
+
+ADVN-01 becomes: "Citation/recommendation adapter for an additional source beyond OpenAlex; specific source selected via lens-design analysis at v2 planning time."
+
+After ADVN-04 (or at the end of the v2 section), add:
+
+> **Historical candidates considered at write-time (2026-Q1):** SPECTER2 was the embedding-model candidate for SEMA-01; pgvector was the vector-index candidate for SEMA-02; Semantic Scholar was the additional-citation-source candidate for ADVN-01. Listed for context; not load-bearing on v2 planning. The technology choice is open per the LONG-ARC anti-pattern against treating embedding-model selection as architecturally load-bearing (`LONG-ARC.md:46-52`).
+
+**Scope check:** apply only to SEMA-01, SEMA-02, ADVN-01 (the named instances of the anti-pattern). Don't touch SEMA-03/04 (already capability-only) or ADVN-02-04 (broader citation-graph candidates, not the documented embedding-model anti-pattern instance). ADVN-04's "GitHub stars" example is anti-pattern-adjacent and could be touched if a broader sweep is wanted; default scope is minimal (three requirement codes).
+
+**Where my reasoning may be wrong:**
+
+- My shape (c) is more work than (a) (minimally) and the anchoring concern may be overstated. The team has been more vigilant since the 005-008 cycle; shape (a) might be OK now.
+- The "Historical candidates" note may itself become a silent default for future planners who read it as "these were the right answers, why are we questioning them?" That risk is mitigated by the explicit "Listed for context; not load-bearing" framing, but mitigation isn't elimination.
+- I'm extrapolating from one documented failure (005-008 / MiniLM) to a general team-susceptibility-to-anchoring claim. One data point is weak evidence; the team may not actually be as susceptible as I'm framing.
+
+### G-B4 — Per-phase ADR-against-plan audit operational hook: shape (c) with refined interim note
+
+**Disposition:** shape (c) — defer the substantive operational design to the gsd-2 uplift. Add an interim note to LONG-ARC.md:96-103 that is explicit about the interim being honest non-commitment, not a fake discipline.
+
+**Concrete interim note text:**
+
+> Operational-hook status: pending. The audit cadence, ownership, and artifact format are tracked for the gsd-2 long-horizon-planning uplift to integrate as a project-agnostic workflow primitive. Until then, the discipline is self-imposed at deliberation boundaries; no specific cadence is committed.
+
+**Assumptions:**
+
+1. Self-discipline does not reliably operate audit cadences for this project. Evidence: the 005-008 drift took weeks to catch; the discipline existed in spirit but not in mechanism. The team's own diagnosis (LONG-ARC.md:46-52 anti-patterns; A7 mitigation in Wave 1) is that vigilance-over-mechanism recapitulates the failure.
+2. gsd-2 uplift will eventually formalize this. Evidence: handoff §6 explicitly lists G-U1 (per-phase ADR-against-plan audit operational hook) as a target intervention surface for the uplift.
+3. Honest "we have a gap; the long-term fix is in scope but not now" is better than fake "we have a discipline" — calibrated language as default register (LONG-ARC anti-pattern: closure pressure at every layer).
+
+**Reasoning:**
+
+- §2 shape (a) "document the practice" without operational hook is closure-pressure. It claims the discipline exists when the documented evidence is that the discipline doesn't reliably operate without a workflow primitive.
+- §2 shape (b) "propose ADR-0006 now" commits to a local operational shape that will likely conflict with whatever the gsd-2 uplift designs. The handoff §6 framing of the uplift as project-agnostic means whatever ADR-0006 commits to may have to be unwound when the uplift designs differently.
+- §2 shape (c) defers the substantive design but leaves the gap visible. Adding the interim note prevents the deferral from being silent.
+
+**Refinement over §2's shape-(c) interim note:**
+
+§2 proposed: "ADR-against-plan audit cadence is operational-hook-pending; tracked for gsd-2 uplift integration."
+
+§2.5 proposes (above): "Operational-hook status: pending... Until then, the discipline is self-imposed at deliberation boundaries; no specific cadence is committed."
+
+The §2.5 version is fully honest about the state — it explicitly says the discipline is self-imposed and no cadence is committed, rather than only flagging the operational-hook as pending. This matches the calibrated-language register the team's METHODOLOGY discipline D names.
+
+**Risk being accepted:**
+
+The gsd-2 uplift may take months. During that time, Phase 12-17 plans could be authored without the audit hook. Mitigation: A7 (already landed in Wave 1) operationalizes the anti-pattern watch at specific phase-boundary checkpoints (Phase 15 plan 3 + Phase 16 plan 1). That's narrower than a full ADR-against-plan audit, but it's not nothing. The remaining gap is ADR-0001/0002/0003/0004-against-plan checks at phase boundaries that don't already have A7 coverage.
+
+**Where my reasoning may be wrong:**
+
+- If gsd-2 uplift is much further off than the handoff implies, the cost of leaving the gap is higher and §2 shape (a) becomes more attractive as interim despite the closure-pressure concern.
+- A7's coverage may be more limited than I'm framing — Phase 15 plan 3 + Phase 16 plan 1 are anti-pattern checkpoints specifically, not ADR-broadly checkpoints. The "remaining gap" may be larger than the wording above implies.
+- The "self-discipline doesn't work" claim rests heavily on the 005-008 evidence. Different teams (and the same team after a bad outcome) may operate differently. The claim could be over-generalized.
+
+### Cross-cutting: where these dispositions could be collectively wrong
+
+- **All four dispositions assume the original synthesis (§§1-7) is broadly correct.** I did not audit the synthesis itself for whether its findings stand on the underlying audits. The single-author synthesis caveat in §10 applies to the original synthesis; I'm building on it, so any errors in §§1-7 propagate.
+- **The dispositions assume Wave 4 will execute roughly as scoped.** If Wave 4 gets pre-empted (e.g., by exemplar harvest happening sooner than expected, or by gsd-2 uplift starting earlier), some dispositions may need re-revision.
+- **The dispositions are single-author (Claude) plus user acceptance.** Logan accepted them but did not independently re-derive each. If Logan's acceptance was time-pressured rather than considered, dispositions may carry errors that paired review would catch. The discipline-A pattern (paired review for framing claims) was not applied to this dispositions set; if any disposition becomes contested in Wave 4 execution, paired re-read is the recommended remediation per the v0.2 synthesis §10.
+
+
 
 Three structural changes to the governance set itself. Each is independent and could be done in any order.
 
@@ -364,19 +541,19 @@ These are findings that appeared in only one audit; they need explicit dispositi
 
 The v0.2 plan synthesis used 3 waves separated by the governance audit. This synthesis adds Wave 4 (governance-doc edits) and acknowledges the gsd-2 uplift initiative as a downstream wave.
 
-### Wave 4 — governance-doc Adopt-now + with-shape edits
+### Wave 4 — governance-doc Adopt-now + with-shape edits (revised with dispositioned shapes)
 
-Lands after Logan's dispositions on B-tier and the v0.2 synthesis Wave 3 commits land (B-tier of v0.2 synthesis touches some of the same documents — ADR-0005, MILESTONE.md, LONG-ARC.md — and should land first to avoid commit conflicts).
+Lands after the v0.2 synthesis Wave 3 commits land (Wave 3 touched ADR-0005, MILESTONE.md, LONG-ARC.md; Wave 3 commits 9f19634, 7614be3, 013625a are landed as of 2026-04-26). G-B-tier shapes are dispositioned per §2.5.
 
 1. **Plan-revision commit 1 (STATE.md refresh):** G-A1 + row 19 (Phase 2 success criteria post-audit note) + row 22 (ROADMAP audit-citation reframe) + row 10 (MCP-07 reframe in REQUIREMENTS.md).
 2. **Plan-revision commit 2 (CLAUDE.md minimal currency):** G-A2 only. Structural restructuring waits for exemplar review.
-3. **Plan-revision commit 3 (ADR-doctrine pass):** G-A3 — re-verify ADR citations against ADR text; touches LONG-ARC.md, MILESTONE.md, ADR-0005.
+3. **Plan-revision commit 3 (ADR-doctrine pass + G-B4 interim note):** G-A3 — re-verify ADR citations against ADR text; touches LONG-ARC.md, MILESTONE.md, ADR-0005. Per §2.5 G-B2 disposition, G-A3's ADR-0005:9 reframe is the operative ADR-0001 reframe; no additional "Relationship to ADR-0001" subsection. Per §2.5 G-B4 disposition, also adds the interim note to LONG-ARC.md:96-103: "Operational-hook status: pending. The audit cadence, ownership, and artifact format are tracked for the gsd-2 long-horizon-planning uplift to integrate as a project-agnostic workflow primitive. Until then, the discipline is self-imposed at deliberation boundaries; no specific cadence is committed."
 4. **Plan-revision commit 4 (foundation-audit closeout):** G-A4 + G-A5 — closeout matrix in FINDINGS.md; pending-validation tracker in STATE.md.
-5. **Plan-revision commit 5 (ECOSYSTEM-COMMENTARY status):** G-B1 (whichever shape Logan picks).
-6. **Plan-revision commit 6 (v2 tech-naming reframe):** G-B3 (whichever shape Logan picks).
+5. **Plan-revision commit 5 (ECOSYSTEM-COMMENTARY status):** G-B1 per §2.5 disposition — shape (a)-lite. Add `## Status as of 2026-04-26` section after the existing pre-04.1 note (lines 3-5) with §-by-§ status (a few lines per §) covering §5/§6/§7 specifically. NOT the full per-recommendation table.
+6. **Plan-revision commit 6 (v2 tech-naming reframe):** G-B3 per §2.5 disposition — shape (c). Strip technology names from SEMA-01, SEMA-02, ADVN-01 (capability-only language). Add a separate "Historical candidates" note at the end of the v2 section recording SPECTER2/pgvector/Semantic Scholar as 2026-Q1 candidates considered. Concrete edit text in §2.5 G-B3.
 7. **Plan-revision commit 7 (governance read-order map):** G-S1 (added to CLAUDE.md as a small section, even if CLAUDE.md restructuring is deferred).
 8. **Plan-revision commit 8 (deliberation index):** G-S3.
-9. **Plan-revision commit 9 (METHODOLOGY relationship note):** G-S4.
+9. **Plan-revision commit 9 (METHODOLOGY relationship note + M1 second-test annotation):** G-S4 + the §9 M1 annotation note.
 
 ### Wave 5 — exemplar AGENTS.md / CLAUDE.md harvest + deferred dispositions
 
