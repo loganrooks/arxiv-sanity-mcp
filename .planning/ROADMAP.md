@@ -325,6 +325,7 @@ Plans:
   4. Per-lens explanations name cited papers, relationship type (direct citation, co-citation, citation depth), and the evidence basis (which edges contributed)
   5. Freshness handling: lens reports edge retrieval timestamps; stale-edge policy documented
   6. Design walkthrough document: walks through how a hypothetical author/affiliation lens would register and function, surfacing any abstraction gaps in the lens interface; produced before Phase 16 begins
+  7. Anti-pattern check (plan 3): the lens-extensibility walkthrough verifies that no scoring/aggregation step in the implemented substrate has a single-lens-as-default behavior; per-lens framing is preserved at the *implementation* layer, not just the interface layer. If the check finds tournament-narrowing structure, the walkthrough surfaces it as a finding to address before Phase 16
 **Plans:** 3 plans
 
 Plans:
@@ -343,6 +344,7 @@ Plans:
   3. Per-paper cross-lens explanation: when a paper is returned from a multi-lens query, the response includes which lenses surfaced it and per-lens score components
   4. Tests cover: pure agreement, pure disagreement, partial overlap, single-lens edge cases
   5. CLI flags mirror MCP operations
+  6. Anti-pattern check (plan 1): no scoring fusion is the implicit default in any new MCP path; pattern explicitly checked at this phase boundary; if any code path defaults to fusion without explicit `mode='fusion'`, the path is flagged as architectural debt and added to the synthesis backlog
 **Plans:** 2 plans
 
 Plans:
