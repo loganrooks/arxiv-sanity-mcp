@@ -2,6 +2,7 @@
 status: standing-reference
 date: 2026-03-30
 scope: critical lenses for spike research design and interpretation
+audit_synthesis: 2026-04-25-v0.2-plan-audit-synthesis.md
 related:
   - .planning/spikes/SPIKE-DESIGN-PRINCIPLES.md (practical rules — complements this document)
   - .planning/spikes/HYPOTHESES-005.md (hypotheses generated using these lenses)
@@ -110,6 +111,8 @@ Added 2026-04-25 after the methodology-audit cycle (pressure pass + paired AI re
 The pair caught more together than either alone in the 2026-04-25 cycle. Cross-vendor saw substance; same-vendor saw register; both converged on a single textual fact that anchored the most reliable signal.
 
 **Concrete change:** Audit-level remedies do not get adopted from single-reader output if the framing is contestable. Schedule a paired review before composition.
+
+**Concrete change (extension, status: Hypothesis pending second methodology-audit cycle):** Same-vendor adversarial dispatches must not include other audits of the same artifact set as references, even at lower effort levels or earlier dates. Anchoring on prior findings produces delta-on-prior reasoning, which suppresses net-new finding discovery and inherits prior framings even where independent reading would re-evaluate them. The dispatching prompt must include an explicit forbidden-reading list naming all prior audits of the same artifact set; the agent's compliance is verifiable in its tool-use trace. The contaminated 2026-04-25 xhigh dispatch (preserved at `.planning/audits/2026-04-25-v0.2-plan-audit-opus-adversarial-xhigh-contaminated.md`) is the documented evidence base; the comparison at `.planning/audits/2026-04-25-v0.2-plan-audit-comparison.md` characterizes the observed effects (net-new finding suppression in two categories; one finding flipped from problem to strength under independent reading; prior framings inherited where independent reading would re-evaluate). Status remains `Hypothesis` until a second methodology-audit cycle either confirms or weakens the pattern.
 
 **When it catches what others miss:** Single readers tend to overreach on framing claims they cannot fully cross-check; pairs surface the overreach. Self-review does not work for contestable framings — the same author cannot independently audit their own register.
 
