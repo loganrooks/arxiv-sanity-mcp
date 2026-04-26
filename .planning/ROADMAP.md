@@ -284,6 +284,7 @@ Plans:
   3. `RankerSnapshot` (and equivalent provenance objects) records which lens(es) produced the result set and which scorers ran
   4. CLI flags mirror MCP parameters; CLI tests cover the new flag combinations
   5. MCP tool docstrings document the new parameter; tool naming tests confirm semantics
+  6. Multi-value `lens=` semantics implemented per ADR-0005's per-lens-dict default; explicit `mode=` parameters route to Phase 16 ops; fusion is opt-in via `mode='fusion'`
 **Plans:** 2 plans
 
 Plans:

@@ -131,7 +131,7 @@ Requirements for the multi-lens substrate milestone. Each maps to v0.2 phases (1
 
 ### MCP Surface Lens-Awareness
 
-- [ ] **MCP-08**: Discovery tools (`search_papers`, `browse_recent`, `find_related_papers`, `get_paper`) accept a `lens=` parameter; default preserves v0.1 behavior
+- [ ] **MCP-08**: Discovery tools (`search_papers`, `browse_recent`, `find_related_papers`, `get_paper`) accept a `lens=` parameter; default and multi-value semantics per ADR-0005 (single-lens semantic when omitted; per-lens dict when a list is passed without explicit `mode=`)
 - [ ] **MCP-09**: `RankerSnapshot` (and equivalent provenance objects) identifies which lens(es) produced the result set
 
 ## v2 Requirements
