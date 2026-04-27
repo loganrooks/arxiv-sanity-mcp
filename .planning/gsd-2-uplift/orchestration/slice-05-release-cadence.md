@@ -23,21 +23,22 @@ If a question reads to you as inviting interpretation rather than observation, s
 
 Answer concretely with source / git citations and (for Q1) raw command output.
 
-**Preflight (run before Q1):**
+**Preflight (run before Q1) — diagnostic only; do not write to the gsd-2 clone:**
 
 ```bash
 cd ~/workspace/projects/gsd-2-explore/
 git rev-parse --is-shallow-repository
+git log --oneline | wc -l                              # commits visible
+git log --since="6 months ago" --pretty=format:"%h" | wc -l   # commits in 6-mo window
 ```
 
-If the repository is shallow (`true`) and the 6-month window or full tag history would be truncated by the shallow boundary, deepen the clone before running Q1's history queries:
+If the repository is shallow (`true`) and the 6-month window appears truncated (commits-in-6mo equals total-commits-visible, suggesting the shallow boundary cuts inside the window):
 
-```bash
-git fetch --unshallow --tags 2>/dev/null || git fetch --deepen=500 --tags
-git log --since="6 months ago" --pretty=format:"%h %ai" | wc -l   # confirm full window now visible
-```
+- **Do not run `git fetch` / `--unshallow` / `--deepen` yourself.** Per the preamble, gsd-2 is a read-only target for the slice agent. Modifying the clone is the dispatcher's responsibility (OVERVIEW §2.1 reserves deepening for cases like this).
+- **Report the truncation in section (i) of your output** with: shallow-status, total-commits-visible, commits-in-6mo-window, and the caveat "history truncated at shallow boundary; cadence numbers are lower bound; dispatcher should deepen the clone and re-dispatch slice 5 if precise cadence is needed."
+- **Proceed with Q1** using available history; surface the caveat per-claim (e.g., "commits/week ≥ X over visible window; true value may be higher if pre-shallow commits exist").
 
-If deepening fails (network restricted; partial fetch), include the exact error in section (i) and report Q1 with the caveat "history truncated at shallow boundary; cadence numbers are lower bound."
+If the repository is not shallow, or the shallow boundary falls before the 6-month window, proceed normally.
 
 1. **Release cadence** — run these and include raw output:
 

@@ -72,7 +72,7 @@ git log --oneline | head -20  # sanity check
 ls -la  # confirm directory layout
 ```
 
-Shallow depth is intentional. If a slice needs deeper history, deepen the clone for that slice.
+Shallow depth is intentional. If a slice needs deeper history, the dispatcher deepens the clone before dispatching that slice — the slice agent treats gsd-2 as read-only and does not run `git fetch` itself. Slice 5 specifically: if its preflight (`git rev-parse --is-shallow-repository` + 6-month commit count) reports truncation, deepen with `git -C ~/workspace/projects/gsd-2-explore/ fetch --unshallow --tags` (or `--deepen=500 --tags` if `--unshallow` fails) before re-dispatching slice 5.
 
 ### §2.2 Output paths
 
@@ -206,7 +206,7 @@ After synthesis lands, evaluate paired-synthesis escalation criterion (synthesis
 
 ## §4. Pilot-gate disposition criteria
 
-After slice 1 (pilot) output lands at `.planning/gsd-2-uplift/exploration/01-mental-model-output.md`, review before proceeding. Disposition options below; **no disposition is default** — choose after reading the pilot. Naming order is alphabetical-by-action, not preference order.
+After slice 1 (pilot) output lands at `.planning/gsd-2-uplift/exploration/01-mental-model-output.md`, review before proceeding. Disposition options below; **no disposition is default** — choose after reading the pilot. Listing order roughly tracks "least to most divergent from plan" for readability; it is **not** preference order, and listing first does not imply preferring first.
 
 ### §4.1 Proceed-parallel
 
@@ -396,7 +396,12 @@ Append-only. Initially empty.
 
 **2026-04-27 — within-artifact revisions applied.** Per Logan's disposition (option 1: apply revisions, then re-audit focused on revised W1 preamble + slices 1/4/5 with gsd-2 present). Revisions covered findings 1.1-1.4 (framing-leakage), 2.1-2.4 (closure pressure), 4.1-4.2 (coverage watchlist + slice 4/5 deprecation split), 5.1-5.4 (operational bugs), 8.2 (cancellation artifact). Findings 8.3 (stop-loss) deferred. Auditor's interpretive caveat (§10) noted; revisions retained calibration for B4 long-horizon split and B5 contribution-culture in the deferred re-audit.
 
-**2026-04-27 — focused cross-vendor re-audit dispatch.** *[populated when re-audit completes — track outcome here.]*
+**2026-04-27 — focused cross-vendor re-audit landed.** Codex GPT-5.5 xhigh re-audit per Logan's option-1 disposition. Output at `cross-vendor-reaudit.md`. Verdict: **addendum-needed, then proceed to pilot.** All 15 prior findings resolved (13 fully, 2 partially → corresponding to the 2 new findings below). Re-audit §2 confirmed slice-fit against now-present gsd-2 (TypeScript/Node repo with substantial top-level surfaces; partition adequate; preamble watchlist likely to fire on real surfaces — debug mode, teams workflow, dashboard, security all visible at top level). Two new minor findings:
+
+- **Re-audit §3.1**: §4 ordering claim ("alphabetical-by-action") didn't match actual order (least-to-most-divergent). Fix applied: corrected the claim to match.
+- **Re-audit §3.2**: slice 5 deepening conflicted with read-only gsd-2 framing. Fix applied: slice 5 preflight is now diagnostic-only (no `git fetch`); OVERVIEW §2.1 reserves deepening to dispatcher with explicit command; slice 5 reports truncation + lower-bound caveats and dispatcher re-dispatches if precise cadence is needed.
+
+**2026-04-27 — pre-pilot disposition: clean to proceed.** With addendum fixes applied, no further structural revisions before pilot. Pilot dispatch (slice 1, codex GPT-5.5 high) is the next substantive action; pending Logan's go-ahead per the disposition discipline.
 
 ### §11.2 Pilot disposition
 
