@@ -4,9 +4,9 @@ milestone: v0.2
 milestone_name: multi-lens-substrate
 status: planning
 post_milestone_state: v0.2-active-planning
-stopped_at: Post-Wave-4 governance-doc audit cycle complete. Waves 1, 3, and 4 of plan-revision/governance commits all landed; v0.2 phase plans (Phases 12-17) authored and on hold pending gsd-2 long-horizon-planning uplift evaluation. Wave 5 (exemplar AGENTS/CLAUDE harvest) is the next governance step; mid-horizon (gsd-2 uplift) is a substantial standalone initiative.
-last_updated: "2026-04-26T07:00:00Z"
-last_activity: 2026-04-26 -- Wave 4 governance-doc edits complete (9 commits b483f20..de00e38); governance synthesis revised with G-B-tier dispositions (80cda50); PROJECT.md full refresh (21e7832) + INDEX.md corrections (0d397b4) post-refresh. v0.1 complete and frozen 2026-03-14.
+stopped_at: Wave 5 governance-doc commits 1-3 complete (AGENTS.md anti-patterns + deliberation boundaries + ADR-citation fix; CLAUDE.md doctrine load-points + Stack-D gloss + calibrated preamble; this STATE.md update). Stage 1 audit findings integrated (Option α). Cross-vendor dispatch deferred and archived to .planning/audits/archive/ per DECISION-SPACE §1.1. v0.2 phase plans (Phases 12-17) authored and on hold pending gsd-2 uplift first-wave exploration. Next: Logan's call on whether/when to dispatch first-wave 5-slice parallel-Explore exploration for the gsd-2 uplift initiative (post-Stage-1 handoff §11).
+last_updated: "2026-04-27T07:30:00Z"
+last_activity: 2026-04-27 -- Stage 2 of post-Wave-5-disposition arc complete: Stage 1 audit landed (8f5a1b1) + integrated (52c09e0); deferral commit archiving dispatch package + harvest §10.9 / §11 addenda (3ff6d8d); Wave 5 commit 1 AGENTS.md (654ebe0); Wave 5 commit 2 CLAUDE.md (f1e2699); Wave 5 commit 3 STATE.md (this commit). gsd-2 uplift initiative genesised at .planning/gsd-2-uplift/ (DECISION-SPACE.md + INITIATIVE.md). v0.1 complete and frozen 2026-03-14.
 progress:
   total_phases: 11
   completed_phases: 11
@@ -27,9 +27,9 @@ See: .planning/PROJECT.md (updated 2026-03-08)
 ## Current Position
 
 Milestone: `v0.2` active (planning phase)
-Implementation roadmap: Phases 12-17 authored; on hold pending gsd-2 uplift evaluation (see handoff §6 mid-horizon framing)
-Status: post-Wave-4 governance-doc audit cycle complete. Waves 1, 3, 4 all landed.
-Active work: none in progress; awaiting (a) Wave 5 exemplar AGENTS/CLAUDE harvest (Logan provides exemplars) OR (b) mid-horizon gsd-2 uplift initiation (Logan's call per handoff Tension 2)
+Implementation roadmap: Phases 12-17 authored; on hold pending gsd-2 uplift first-wave exploration (see post-Stage-1 handoff §11 + INITIATIVE.md §5)
+Status: Wave 5 governance-doc commits + Stage 2 deferral / audit-integration commits complete. gsd-2 uplift initiative genesised as standalone forthcoming project staged at `.planning/gsd-2-uplift/`.
+Active work: none in progress; awaiting Logan's call on whether/when to dispatch first-wave 5-slice parallel-Explore exploration for gsd-2 uplift (per post-Stage-1 handoff §11; INITIATIVE.md §5 first-wave plan).
 Last implementation activity: 2026-03-14 -- Phase 10 Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
 
 Progress: [██████████] 100% (31/31 plans) — v0.1 historical; v0.2 plans not yet tracked here
@@ -198,11 +198,14 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-- Wave 5: exemplar harvest for AGENTS.md / CLAUDE.md restructuring (deferred pending Logan providing exemplar files; see handoff §7 Wave 5)
-- gsd-2 uplift initiative (mid-horizon; substantial standalone initiative; see handoff §6 for the corrected project-agnostic framing)
-- Phase 12 plan 1 authoring (on hold pending gsd-2 uplift evaluation; see LONG-ARC.md and handoff Tension 2 for resolution shapes)
-- Q1/Q4/Q16 Logan validation (foundation-audit closures from Phase 04.1 / Quick Task 1; tracker in §"Pending Validations" below)
-- Two INDEX.md verification items addressed via PROJECT.md refresh (2026-04-26): local-gap-propagation reframed as GSDR-signal-system-scoped (not primary active reference); spike-epistemic-rigor symlink note added
+- gsd-2 uplift first-wave dispatch — 5-slice parallel-Explore exploration of gsd-2 (mental-model / architecture+Pi SDK / workflow-surface / artifact-lifecycle+extension+migration / long-horizon-features+meta-evolution). Pilot slice 1 first; review; parallel slices 2-5; synthesis. Awaits Logan's go-ahead per post-Stage-1 handoff §11. Setup: shallow-clone gsd-2 to `~/workspace/projects/gsd-2-explore/`. Explorer prompts (5) drafted at dispatch time per INITIATIVE.md §5. (See `.planning/gsd-2-uplift/INITIATIVE.md` + `DECISION-SPACE.md` §1.4.)
+- gsd-2 uplift incubation checkpoint — after first-wave synthesis, before second-wave scoping. Re-evaluate goal articulation + R2/R3 hybrid + metaquestion (`is uplift-of-gsd-2 the right shape?`) per DECISION-SPACE §2.3. Mandatory; not pro-forma.
+- Stage 1 audit findings — quality + minor findings deferred from the audit-integration commit (52c09e0). Specifically: §A decision-table compression of §1.2 confidence bifurcation; "Logan's framing" parenthetical in §4.5; §3 prefix vs §5.1 deliverables-vs-informing tension; R2-base contingency phrasing in INITIATIVE.md §2; "load-bearing" overuse + confidence-distribution tilt; cancellation procedure / re-articulation date / attention-budget vs v0.2. Address opportunistically; not blocking.
+- Phase 12 plan 1 authoring (on hold pending gsd-2 uplift first-wave findings + incubation checkpoint; see LONG-ARC.md and post-Stage-1 handoff §11 for sequencing)
+- Q1/Q4/Q16 Logan validation (foundation-audit closures from Phase 04.1 / Quick Task 1; tracker in §"Pending Validations" below; orthogonal to uplift work)
+- Codification of session-disciplines (closure-pressure recurrence detection; comfort-language detection; performative-vs-operational openness; non-exhaustive-listings; push-for-assumptions) in METHODOLOGY.md or AGENTS.md — wait until 2-3 deliberation logs land before codifying (per DECISION-SPACE §3.9). Current: 2 logs (2026-04-25 + 2026-04-26).
+- Migration of `.planning/gsd-2-uplift/` artifacts to dedicated repo when that repo is created (per INITIATIVE.md §7 migration trigger).
+- Two INDEX.md verification items addressed via PROJECT.md refresh (2026-04-26): local-gap-propagation reframed as GSDR-signal-system-scoped (not primary active reference); spike-epistemic-rigor symlink note added.
 
 ### Roadmap Evolution
 
@@ -238,7 +241,7 @@ Recent decisions affecting current work:
 
 ## Session Continuity
 
-Last session: 2026-04-26T07:00:00Z
-Stopped at: Post-Wave-4 + post-PROJECT.md-refresh. Waves 1, 3, 4 of plan-revision/governance commits all landed. Awaiting Logan's call on next horizon: Wave 5 (exemplar harvest) or mid-horizon gsd-2 uplift.
-Resume file: `.planning/handoffs/2026-04-26-post-wave-4-handoff.md` — read first for full context restoration.
-Cross-references: prior handoff `.planning/handoffs/2026-04-26-post-wave-2-handoff.md` (predecessor; partly superseded); revised v0.2 synthesis `.planning/audits/2026-04-25-v0.2-plan-audit-synthesis.md`; revised governance synthesis `.planning/audits/2026-04-26-governance-audit-synthesis.md` (with §2.5 G-B-tier dispositions).
+Last session: 2026-04-27T07:30:00Z
+Stopped at: Stage 2 of post-Wave-5-disposition session arc complete. Stage 1 audit landed + integrated (Option α); cross-vendor dispatch deferred and archived; Wave 5 governance commits 1-3 (AGENTS.md / CLAUDE.md / STATE.md) landed. gsd-2 uplift initiative genesised at `.planning/gsd-2-uplift/`. Awaiting Logan's call on whether/when to dispatch gsd-2 first-wave exploration (per post-Stage-1 handoff §11).
+Resume file: `.planning/handoffs/2026-04-27-post-stage-1-uplift-genesis-handoff.md` — read first for full context restoration. (Note: this handoff was written post-Stage-1, with Stage 2 commits 4-6 then pending; those Stage 2 commits have now also landed, so the handoff's §3.1 trajectory map is partly superseded — Stages 1 + 2 are complete, Stage 3 onward is pending.)
+Cross-references: predecessor handoff `.planning/handoffs/2026-04-26-post-wave-5-disposition-handoff.md`; further-predecessor `.planning/handoffs/2026-04-26-post-wave-4-handoff.md`; load-bearing decision-space `.planning/gsd-2-uplift/DECISION-SPACE.md`; initiative-staging `.planning/gsd-2-uplift/INITIATIVE.md`; deliberation log `.planning/deliberations/2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md`; Stage 1 audit report `.planning/audits/2026-04-27-stage-1-artifacts-audit-report.md`.
