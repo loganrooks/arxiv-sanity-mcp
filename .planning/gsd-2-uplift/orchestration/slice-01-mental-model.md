@@ -6,7 +6,7 @@
 
 ## Slice scope
 
-**This slice covers:** what gsd-2 *is* — its mental model, mission, target user, agentic-development stance, and current development status. Read source + README to build a careful first-pass characterization.
+**This slice covers:** what gsd-2 *is* — its mental model, mission, target user, stance toward agent vs human use (if any), and current development status. Read source + README to build a careful first-pass characterization.
 
 **This slice does NOT cover:**
 - Architecture / runtime / Pi SDK relationship (slice 2)
@@ -26,7 +26,7 @@ Answer concretely with source citations. Use a sub-heading per question in secti
 
 3. **Who is the target user?** Solo developers? Teams? Organizations? What does the user know coming in? What does gsd-2 expect the user to bring? Is the audience claim grounded in the implementation, or aspirational?
 
-4. **What is gsd-2's stance toward agentic development?** Is gsd-2 an agent-orchestration framework, an agent-assisted planning framework, a workflow-templating tool, something else? How does it expect agents to interact with its artifacts? What does it leave to humans vs delegate to agents?
+4. **Does gsd-2 present itself as agent-facing, human-facing, or both?** Resist confirming or rejecting any specific category (agent-orchestration framework / agent-assisted planning / workflow-templating / etc.) before establishing the existence of agent-facing surfaces. If agent-facing: what interaction surfaces are visible? If human-facing: how does the system present its work to a human user? If both: how is the boundary articulated (or is it implicit)? Cite where the stance is stated or implied — README, source, top-level docs.
 
 5. **What is the current development status?** Active, mature, experimental? Last commit; release cadence at-a-glance (a quick look — detailed cadence analysis is slice 5's scope, so don't dive deep).
 
@@ -45,7 +45,7 @@ Write to `~/workspace/projects/arxiv-sanity-mcp/.planning/gsd-2-uplift/explorati
 - A reader who has never seen gsd-2 should come away knowing what it is and who it's for, with concrete enough understanding to formulate substantive questions for slices 2-5.
 - Q1 answer should distinguish "what gsd-2 advertises" from "what gsd-2 actually does in source" — those may differ.
 - Q4 answer is load-bearing for the dispatching project's downstream decisions; if you can't answer it cleanly from source, flag in open-questions specifically.
-- If gsd-2's mission feels divergent from agentic-development-tooling (e.g., it's actually a generic project-management tool with agent integrations bolted on), surface that as direction-shifting evidence — the dispatching project's characterization-aim assumes gsd-2 is in the agential-development framework space.
+- If gsd-2's self-presentation diverges substantially from what its source actually does (e.g., README claims X stance; source supports Y), surface that as direction-shifting evidence. Do not characterize gsd-2 against any category the dispatching project might have in mind — describe gsd-2 in its own terms.
 
 ## Pilot-specific note
 

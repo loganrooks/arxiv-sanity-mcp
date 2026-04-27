@@ -12,9 +12,10 @@ Per decision B2 selective audit:
   - Output reads off-target (didn't address the diagnostic questions)
   - Output makes claims load-bearing on second-wave-scoping decisions
   - Framing-leakage suspected (output uses dispatching-project vocabulary)
-- **Skip if:** output is concrete, well-grounded, well-cited, calibration is honest, no direction-shifting evidence surfaced (low downstream stakes).
+  - Unexplained omissions in the slice's own scope (areas the slice should have covered but didn't address)
+- **Skip if:** output is concrete, well-grounded, well-cited, calibration is honest, AND there are no claims that would materially affect second-wave-scoping decisions, AND no unexplained in-scope omissions. **Do not** treat absence of surfaced direction-shifting evidence as a skip criterion — absence may mean the slice missed it. Stake-level is determined by what the slice claims load-bearing on, not by whether the slice flagged itself as load-bearing.
 
-Disposition decision goes in OVERVIEW §12 dispositions log.
+Disposition decision goes in OVERVIEW §11 dispositions log.
 
 ## Auditor role
 

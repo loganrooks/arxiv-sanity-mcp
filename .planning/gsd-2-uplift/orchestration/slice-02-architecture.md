@@ -28,7 +28,7 @@ Answer concretely with source citations.
 
 4. **How does gsd-2 ship?** Package manager (pip / npm / cargo / other); install path (`pip install gsd-2` / git clone / something else); runtime dependencies (requirements.txt / package.json / equivalent); lock-files; whether it's installable as a library, an executable, or both.
 
-5. **What's the agent-runtime contract?** When agents (Claude Code, Pi-mono agents, etc.) interact with gsd-2, what's the API surface — auto-loaded files (AGENTS.md / CLAUDE.md / equivalent), slash commands, hooks, MCP tools, library calls, something else? Cite where in source the contract is defined.
+5. **Is there an agent-runtime contract?** First establish whether gsd-2 defines an interaction contract for agents at all. If yes: what's the API surface — auto-loaded files (AGENTS.md / CLAUDE.md / equivalent), slash commands, hooks, MCP tools, library calls, something else? Cite where in source the contract is defined. If no explicit contract exists, describe what behavior an agent invoking gsd-2 would observe in practice. If the question doesn't fit gsd-2's design (e.g., gsd-2 is purely human-facing), say so concretely.
 
 ## Slice-specific forbidden reading
 
@@ -44,9 +44,9 @@ Write to `~/workspace/projects/arxiv-sanity-mcp/.planning/gsd-2-uplift/explorati
 
 ## What "good slice 2 output" looks like
 
-- A reader should be able to draw a one-page architecture diagram (substrate / gsd-2 / agent-runtime / artifacts) from your output without re-reading gsd-2.
+- A reader should be able to draw a one-page architecture diagram (substrate / gsd-2 / agent-runtime if any / artifacts) from your output without re-reading gsd-2.
 - Q2 (gsd-2 vs Pi SDK boundary) is load-bearing for the dispatching project's downstream decisions; if the boundary is unclear from source, flag concretely.
-- Q5 (agent-runtime contract) is also load-bearing; if the contract is implicit (no explicit API definition), describe what behavior agents would observe rather than what's "documented."
+- Q5 (agent-runtime contract) is also load-bearing; if the contract is implicit (no explicit API definition), describe what behavior agents would observe rather than what's "documented." If no agent-runtime contract exists at all, that itself is a load-bearing observation — surface concretely.
 - If gsd-2 substantially overlaps in identity with Pi SDK such that "gsd-2 vs Pi SDK" isn't a meaningful distinction, surface that — it would shift the dispatching project's understanding of what it would be relating to.
 
 ---

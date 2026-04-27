@@ -24,11 +24,13 @@ Answer concretely with source citations and (for Q5) raw `gh` output.
 
 1. **What artifacts does gsd-2 produce?** Files, directories, structured outputs in users' projects. What's the schema of each (key fields; required vs optional; format)? What's the lifecycle (created when; updated when; deleted when; long-lived vs ephemeral)? Cite where in source the artifacts are defined / written.
 
-2. **What extension surfaces exist?** Plugin system? Module override / monkey-patch points? Configuration that changes behavior substantively (not just turning features on/off)? Commands or hooks that third-party code can register? Subclassing / interface-implementation patterns? Be concrete — cite where in source extension is permitted, and what shape the extension must take.
+2. **Are there extension surfaces?** First establish whether gsd-2 exposes any mechanism for external code to plug in. If yes: plugin system? Module override / monkey-patch points? Configuration that changes behavior substantively (not just turning features on/off)? Commands or hooks that third-party code can register? Subclassing / interface-implementation patterns? Be concrete — cite where in source extension surfaces appear, and what shape extensions must take. If no extension surfaces exist (gsd-2 expects monolithic forking rather than extending), say so directly with citations.
 
 3. **What migration tooling exists?** Does gsd-2 have a `migrate` command or equivalent for converting other tooling's artifacts (e.g., another framework's planning directories, or earlier gsd versions) into gsd-2's artifact format? What does it convert; what doesn't it convert; what fails-loudly vs silently-drops? Cite where the migrator is implemented.
 
-4. **How does gsd-2 install / update / version?** Package manager + install path (covered briefly in slice 2 Q4; here go deeper); release artifacts (PyPI / npm / GitHub releases / something); version-bumping mechanism; deprecation policy in code (deprecation warnings / removal-after-N-versions / etc.).
+4. **How does gsd-2 install / update / version?** Package manager + install path (covered briefly in slice 2 Q4; here go deeper); release artifacts (PyPI / npm / GitHub releases / something); version-bumping mechanism; lock-file conventions; install-time vs run-time dependencies.
+
+   Note: deprecation policy and breaking-change communication are slice 5's territory (Q2). Limit Q4 to installation/update/version *implementation surfaces* — leave the *communication of breaking changes* to slice 5.
 
 5. **Light contribution-culture probe** — run these `gh` CLI commands and include raw output in your "What I read" section, then summarize in section (ii) Q5 with **counts and cited timestamps only** (do not characterize qualitatively):
 
@@ -46,6 +48,8 @@ Answer concretely with source citations and (for Q5) raw `gh` output.
    - Issue counts: total in last 20; closed / open breakdown.
    - Whether `CONTRIBUTING.md` exists; if yes, list the section headers and any structural requirements (e.g., "PRs require accompanying ADR" or "all PRs must be linked to an issue").
    - Stargazer + fork counts (one-line each).
+
+   **Fallback if `gh` is unavailable.** If any of the `gh` invocations fail (auth missing; network restricted; repo not accessible at this name), include the exact error output verbatim in section (i), then proceed with whatever local evidence is available — `CONTRIBUTING.md` if present in the clone; `README.md` references to issues/PRs; commit messages mentioning PRs. Mark Q5 as **incomplete (gh probe failed)** in section (ii). Do not skip the question silently.
 
 ## Slice-specific forbidden reading
 
@@ -67,7 +71,7 @@ The contribution-culture probe raw `gh` output goes in section (i) ("What I read
 - Q2 (extension surfaces) is the most load-bearing diagnostic in this slice. **If extension surfaces are unclear, flag concretely.** Do not over-claim ("gsd-2 has an extension system") if the evidence is "there's a `plugins/` directory with one example." Calibrate.
 - Q3 (migration tooling) bears on whether the dispatching project could migrate its existing artifacts to gsd-2's frame — but the slice's job is to characterize what migration *exists*, not to evaluate whether dispatching-project-specific migration is feasible (that's downstream).
 - Q5 contribution-culture probe: this slice produces raw observations only. If the project's PR/issue history is wildly active or completely dormant, that surfaces direction-shifting evidence (extreme posture matters); flag in open-questions if so, but do not interpret intermediate cases.
-- If extension surfaces are *absent* (gsd-2 expects monolithic forking rather than extending), surface this concretely — it would shift the dispatching project's R2/R1 disposition per their own DECISION-SPACE.md (which you can't read; the project will integrate this with their own framing in synthesis).
+- If extension surfaces are *absent* (gsd-2 expects monolithic forking rather than extending), surface this concretely as direction-shifting evidence in your open-questions section. Downstream synthesis will integrate this with the project's own framing.
 
 ---
 

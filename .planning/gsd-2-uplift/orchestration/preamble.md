@@ -39,6 +39,17 @@ If your slice's reading suggests the dispatching project's characterization-aim 
 - **Do not adopt the dispatching project's vocabulary** if you encounter it leaking through gsd-2's documentation; report what you see using gsd-2's own terms or neutral terms.
 - **If you encounter material outside your slice's scope but flag-worthy**, note in your open-questions section; do not expand the slice.
 
+## Cross-slice watchlist
+
+The slicing intentionally focuses on five domains; some areas were considered and not made into their own slices. If any of the following appear central in gsd-2's source (not merely present), flag with citations in your open-questions section so synthesis can integrate:
+
+- **Failure modes / debugging.** Specific debugging affordances (debug commands; structured failure outputs; recovery protocols).
+- **Multi-user / collaboration.** Concurrent-editing primitives; team workflow surface; cross-user state sharing.
+- **Telemetry / observability.** Logging, metrics, tracing, or audit-trail surfaces beyond what a per-task tool produces.
+- **Security model.** Trust boundaries, sandboxing, secrets handling, capability/permission systems.
+
+These belong in open-questions, not in your main answers, unless they directly answer a diagnostic question your slice already poses.
+
 ## Standard forbidden reading (applies to all slices)
 
 You **must not** read the following before producing your slice output. Reading them would anchor your framing to the dispatching project's prior thinking — which is exactly what cross-vendor exploration is meant to avoid.

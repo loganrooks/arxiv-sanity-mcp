@@ -244,6 +244,20 @@ Mitigation: default to conditional structure on load-bearing recommendations. Re
 
 This is the discipline DECISION-SPACE §4.6 (push-for-assumptions) operationalized at the recommendation stage rather than waiting for user-push.
 
+### B.5 Dispatching evidence-collection before its preconditions are satisfied
+
+Post-orchestration-package-commit, Claude dispatched the cross-vendor pre-pilot audit on the orchestration package without first running OVERVIEW §2.1's setup commands (cloning gsd-2 to `~/workspace/projects/gsd-2-explore/`). The auditor flagged the absence (§4.4 / §10 of `cross-vendor-audit.md`); within-artifact findings remained valid but coverage-gap and source-fit findings were limited. Logan surfaced the pattern explicitly: "we definitely need to set up gsd-2 explore, and that should have been done before the audit."
+
+This is a sub-pattern of B.1 (skill-heuristic shallow-match), but distinct enough to record separately: B.1 is about Claude reaching for a tool whose triggers shallow-match the situation; B.5 is about Claude executing a procedure (dispatch the audit) without verifying that procedure's documented preconditions (run §2.1 first). The documented procedure was *in front of Claude* — OVERVIEW §2 had been authored that same session — but the preconditions weren't checked because the dispatch trigger ("Logan said do cross-vendor audit") was strong enough to bypass the precondition-check.
+
+When it matters: any time Claude executes a procedure whose preconditions are documented in an artifact Claude itself authored or has read recently. The strong-trigger override is precisely what makes this dangerous.
+
+Mitigation: before any artifact-producing dispatch, scan the artifact's own preconditions section. If it has a §1 setup or §2 setup or "before X, run Y" prescription, run those first. Treat the artifact's own discipline as binding even when the immediate trigger is a Logan instruction — "do X" usually presupposes "the preconditions for X are met"; surface to Logan if they aren't.
+
+Limit: like B.1, this requires Claude to read its own situation accurately. The mitigation is procedural (scan-preconditions-before-dispatch) rather than interpretive — easier to operationalize than B.1's deeper context-reading, but only as good as Claude's discipline in actually performing the scan.
+
+Cross-pattern note: B.1 and B.5 together suggest the meta-pattern is "Claude reaches for action shape (skill / dispatch / procedure execution) before verifying the action shape fits the actual situation." Strong triggers bypass verification. The user-adjudication check (Logan surfacing both occurrences) remains the most reliable correction in-session.
+
 ## §C. Single-author fallibility caveat
 
 Same caveat as harvest §10 footer, the prior deliberation log §E, and DECISION-SPACE.md §0. This document is Claude (Opus 4.7 at xhigh effort) interpretive structuring of session decisions. If any decision feels mis-recorded in Logan's read, re-deliberation supersedes this log.

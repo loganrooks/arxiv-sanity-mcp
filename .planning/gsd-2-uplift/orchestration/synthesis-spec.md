@@ -4,7 +4,7 @@ This is the W3 synthesis specification per decisions B2 (same-vendor synthesis a
 
 ## When to dispatch
 
-After all 5 slice outputs land + W2 audits land (mandatory slice 4 audit + any selective audits dispatched per B2). Synthesis runs after audit-disposition for each slice is recorded in OVERVIEW §12.
+After all 5 slice outputs land + W2 audits land (mandatory slice 4 audit + any selective audits dispatched per B2). Synthesis runs after audit-disposition for each slice is recorded in OVERVIEW §11.
 
 ## Synthesizer role
 
@@ -42,7 +42,7 @@ The synthesizer reads:
 4. **INITIATIVE.md** at `.planning/gsd-2-uplift/INITIATIVE.md`, specifically:
    - §1 (goal articulation)
    - §3 (open framing questions)
-5. **OVERVIEW §12 dispositions log** for the wave's per-slice disposition history.
+5. **OVERVIEW §11 dispositions log** for the wave's per-slice disposition history.
 
 ## Synthesis output
 
@@ -159,19 +159,27 @@ For each above: synthesis-level recommendation about what to look at and why, gi
 
 ## §7. Single-author + same-vendor caveat
 
-This synthesis is a same-vendor (Claude Opus xhigh) reading of the slices and audits. Same-vendor framing-leakage caveat applies. If the paired-synthesis escalation criterion (per OVERVIEW §7.4) was met, a cross-vendor synthesis was also dispatched; comparison goes in <output path of comparison>. If not escalated, this synthesis is the single-author synthesis input to incubation-checkpoint.
+This synthesis is a same-vendor (Claude Opus xhigh) reading of the slices and audits. Same-vendor framing-leakage caveat applies. If the paired-synthesis escalation criterion (per "Paired-synthesis escalation criterion" section below) was met, a cross-vendor synthesis was also dispatched; comparison goes in <output path of comparison>. If not escalated, this synthesis is the single-author synthesis input to incubation-checkpoint.
 ```
 
 ## Paired-synthesis escalation criterion
 
 Per decision B3 + dispatch-readiness deliberation §B.2:
 
-After the first synthesis lands, evaluate: **does this synthesis's claims, if accepted at face value, change a decision in DECISION-SPACE.md?**
+After the first synthesis lands, evaluate against the following triggers. **Any one** trigger warrants escalation; the bar is calibrated low because synthesis is the last evidence-stage before incubation-checkpoint.
 
-- **Yes** (R2 verdict flips; metaquestion answer flips; design-shape narrows decisively; long-horizon framing-axis shifts): **escalate to paired-synthesis.** Dispatch a cross-vendor codex synthesizer independently with same inputs (slices + audits + DECISION-SPACE.md framing + INITIATIVE.md framing). Compare outputs. Write comparison artifact at `.planning/gsd-2-uplift/exploration/SYNTHESIS-COMPARISON.md`. Both syntheses + comparison feed incubation-checkpoint.
-- **No** (synthesis confirms operating frame; refinements only): **single synthesis suffices.**
+Escalation triggers:
 
-The escalation decision is itself a disposition step (record in OVERVIEW §12.5). Cost of escalation: ~2x synthesis dispatch + comparison drafting. Cost of not-escalating-when-warranted: incubation-checkpoint operating on a same-vendor-blinded synthesis.
+1. **Decision-shifting claims.** Synthesis claims, if accepted at face value, would change a decision in DECISION-SPACE.md (R2 verdict flips; metaquestion answer flips; design-shape narrows decisively; long-horizon framing-axis shifts).
+2. **Load-bearing no-change claims.** Synthesis does not flip a decision but supplies the *primary rationale* for keeping the operating frame intact — i.e., the incubation-checkpoint's confidence in not-pivoting depends substantially on this synthesis's reading.
+3. **Major contradiction resolution.** Synthesis resolves a contradiction between two or more slices in a way that materially shapes downstream interpretation.
+4. **High-uncertainty interpretive claims at load-bearing positions.** Synthesis carries claims marked medium-low confidence that the incubation-checkpoint would rely on (e.g., "extension surfaces appear to support R2 with caveats X, Y" — caveats whose interpretation a second reader might calibrate differently).
+
+If any trigger fires: **escalate to paired-synthesis.** Dispatch a cross-vendor codex synthesizer independently with same inputs (slices + audits + DECISION-SPACE.md framing + INITIATIVE.md framing). Compare outputs. Write comparison artifact at `.planning/gsd-2-uplift/exploration/SYNTHESIS-COMPARISON.md`. Both syntheses + comparison feed incubation-checkpoint.
+
+If none fires (synthesis is genuinely refinement-only with no load-bearing positions): **single synthesis suffices.**
+
+The escalation decision is itself a disposition step (record in OVERVIEW §11.5). Cost of escalation: ~2x synthesis dispatch + comparison drafting. Cost of not-escalating-when-warranted: incubation-checkpoint operating on a same-vendor-blinded synthesis at a load-bearing moment.
 
 ## Synthesis discipline
 

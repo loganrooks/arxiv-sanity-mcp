@@ -22,13 +22,13 @@ Answer concretely with source citations.
 
 1. **What slash commands or CLI commands does gsd-2 expose?** List them. Group by purpose if the grouping is clear from gsd-2's own structure. Per command: name; what it does; what artifacts it produces or consumes.
 
-2. **What automation does gsd-2 provide?** Auto-loops? Auto-execution of plans? Auto-verification? Auto-loading of context? What gets automated and what is left to manual user invocation? Where is the human-vs-machine line drawn?
+2. **Does gsd-2 provide automation, and if so what?** First establish whether gsd-2 automates anything beyond standard CLI command invocation. If yes: auto-loops? Auto-execution of plans? Auto-verification? Auto-loading of context? Cite specifics. What gets automated and what is left to manual user invocation? If a meaningful human-vs-machine distinction surfaces in source, describe how it is drawn; if no such distinction is articulated, say so.
 
 3. **What hooks does gsd-2 expose?** Pre-tool, post-tool, lifecycle hooks (session-start / session-stop / etc.). How are they configured (config file / decorator / runtime registration)? What can users do at hook-time? Cite specific hook points in source.
 
 4. **What testing primitives exist?** Test discovery; test execution; test verification gsd-2 supports for users' projects. Also: how is gsd-2 itself tested (test directory; CI configuration; test pattern)?
 
-5. **Where does the user touch gsd-2 vs where does the agent touch gsd-2?** Is there a clean human / agent split (humans run command X; agents read file Y), or are they mixed (humans and agents both invoke the same surface)? Are there parts of gsd-2 designed for human-only use? Agent-only use?
+5. **Does gsd-2 distinguish user-facing from agent-facing surfaces?** First establish whether such a distinction exists in source — gsd-2 may treat all callers identically, or it may split surfaces explicitly. If a distinction exists: describe it concretely (humans run command X; agents read file Y; parts of gsd-2 designed for human-only or agent-only use). If no distinction exists, say so directly. Cite source for whatever you find.
 
 ## Slice-specific forbidden reading
 
@@ -45,9 +45,8 @@ Write to `~/workspace/projects/arxiv-sanity-mcp/.planning/gsd-2-uplift/explorati
 
 - A reader should be able to anticipate "if I (as user) want to do X, gsd-2 expects me to do Y" for the major X's gsd-2 supports.
 - Q1 (commands list) is foundational for downstream slices; be exhaustive within reason. If gsd-2 has 20+ commands, list them in a table; if 5-10, list them prosaically.
-- Q5 (human vs agent surface split) is load-bearing for the dispatching project's downstream decisions; flag any ambiguity concretely.
-- If gsd-2's automation surface is so thin that "agentic-development framework" feels like an overclaim, surface that — it would shift the dispatching project's characterization-aim.
-- If gsd-2's automation is much richer than expected (heavy auto-loops; deep hook system; built-in agent orchestration), surface that too — it would shift downstream design decisions about what to build vs what gsd-2 already provides.
+- Q5 (whether/how user-vs-agent surfaces are distinguished) is load-bearing for the dispatching project's downstream decisions; flag any ambiguity concretely. If no distinction exists in source, that itself is the answer.
+- If gsd-2's automation surface is thinner or richer than the README suggests, surface the divergence concretely with citations. Do not characterize gsd-2 against any category the dispatching project might have in mind — describe the automation in its own terms.
 
 ---
 

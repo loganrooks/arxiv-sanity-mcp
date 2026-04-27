@@ -145,7 +145,7 @@ codex exec \
 ```
 
 **Verification after dispatch:**
-- `ls -la .planning/gsd-2-uplift/exploration/0${SLICE_NUM}-${SLICE_NAME}-output.md` — confirm file exists and is non-empty.
+- `ls -la .planning/gsd-2-uplift/exploration/${SLICE_NUM}-${SLICE_NAME}-output.md` — confirm file exists and is non-empty.
 - Read the frontmatter; confirm `status: complete`.
 - If file missing or empty: recover from rollout-jsonl per §2.3.
 
@@ -206,44 +206,50 @@ After synthesis lands, evaluate paired-synthesis escalation criterion (synthesis
 
 ## §4. Pilot-gate disposition criteria
 
-After slice 1 (pilot) output lands at `.planning/gsd-2-uplift/exploration/01-mental-model-output.md`, review before proceeding. Disposition options:
+After slice 1 (pilot) output lands at `.planning/gsd-2-uplift/exploration/01-mental-model-output.md`, review before proceeding. Disposition options below; **no disposition is default** — choose after reading the pilot. Naming order is alphabetical-by-action, not preference order.
 
-### §4.1 Proceed-parallel (default)
+### §4.1 Proceed-parallel
 
-**Criteria:** pilot output is concrete, well-grounded, low framing-leakage. Slice 1 prompt-shape is right; calibration discipline was honored; output is reader-useful (~150-300 lines; sections (i)-(v) populated; calibration labels present; flagged divergences concrete).
+**Criteria:** pilot output is concrete, well-grounded, low framing-leakage. Slice 1 prompt-shape is right; calibration discipline was honored; output is reader-useful (~150-300 lines; sections (i)-(v) populated; calibration labels present; flagged divergences concrete). No direction-shifting evidence surfaced that would warrant pause-for-targeted-evidence.
 
 **Action:** dispatch slices 2-5 in parallel using §3.3 (with any minor calibration tweaks based on pilot output).
 
 **Calibration tweaks** that may apply:
-- If pilot's Q4 (agentic-development stance) was thin, strengthen Q4-equivalent questions in slices 3 + 4
+- If pilot's Q4 (agent/human stance) was thin, strengthen Q4-equivalent questions in slices 3 + 4
 - If pilot cited README too often relative to source, strengthen "verify against source" framing in 2-5 (already present; can be amplified)
 - If pilot's open-questions section flagged the slice-1 prompt itself as ambiguous, revise per the flag and re-dispatch only if material; otherwise note for retrospective
 
-### §4.2 Re-slice
+### §4.2 Hold for targeted evidence
+
+**Criteria:** pilot output surfaces plausible-but-not-dispositive direction-shifting evidence (e.g., gsd-2's mission reads partially divergent from project assumptions; one slice-2/3/4/5 question's answer is foreshadowed by pilot in a way that could shift later slices' framing). Not enough to flip the metaquestion (that's §4.6 territory) but enough that parallel dispatch would build on a shaky foundation.
+
+**Action:** pause parallel dispatch; gather narrowly-targeted additional evidence (e.g., dispatch a single slice-2 read first; or have Logan read gsd-2 directly per §10; or revise the framing-leakage in remaining slice prompts before parallel). Then re-evaluate disposition.
+
+### §4.3 Re-slice
 
 **Criteria:** pilot reveals slicing partition is wrong-shaped. E.g., slice 1's Q2 (problem solved) bleeds into slice 5's territory; or Q3 (target user) requires slice 3 (workflow surface) context to answer cleanly.
 
-**Action:** redesign slicing; revise slice prompts before parallel dispatch. May require structural rework (escalate to §4.5 if shift is fundamental).
+**Action:** redesign slicing; revise slice prompts before parallel dispatch. May require structural rework (escalate to §4.6 if shift is fundamental).
 
-### §4.3 De-escalate to Option A
+### §4.4 De-escalate to Option A
 
 **Criteria:** pilot output is uniformly high quality (concrete; well-grounded; low framing-leakage) — selective audit's marginal value drops if all slices look like this. Combined audit-and-synthesis (1 agent) becomes attractive.
 
 **Action:** dispatch slices 2-5 parallel; after their outputs land, run combined audit-and-synthesis (one xhigh same-vendor agent doing both) instead of separate W2 + W3.
 
-### §4.4 Escalate to Option C
+### §4.5 Escalate to Option C
 
 **Criteria:** pilot output reveals problems — framing leaks despite forbidden-reading; outputs shallow on key questions; cross-vendor agent reads gsd-2 in ways suggesting paired same-vendor reading would surface different things.
 
 **Action:** dispatch slices 2-5 paired (cross-vendor + same-vendor independent reads with forbidden-reading on each other); compare per slice; W2 audit is paired-reading comparison rather than per-output critique.
 
-### §4.5 Change approach entirely
+### §4.6 Change approach entirely
 
 **Criteria:** cross-vendor approach itself isn't working — codex can't read gsd-2 productively at this level of detail; slicing is fundamentally mis-shaped; characterization-aim is itself wrong.
 
 **Action:** pause; surface to Logan; re-disposition with deliberation log entry. Triggers re-evaluation of B2/B3 wave-structure decisions. May produce different exploration shape entirely.
 
-### §4.6 Disposition record
+### §4.7 Disposition record
 
 Whichever disposition lands, record in §11 with:
 - Pilot output summary (3-5 sentences)
@@ -287,12 +293,27 @@ A slice output (pilot or any of 2-5) surfaces direction-shifting evidence suffic
 
 1. **Pause** remaining slice dispatches (if pivot triggers mid-W1).
 2. **Surface to Logan** with focused summary: which slice; what evidence; which §3 question(s) the evidence addresses; provisional read of metaquestion + R2/R3 viability impact.
-3. **Re-disposition** via deliberation log entry. Possible outcomes:
-   - **Confirm pivot:** uplift-of-gsd-2 not the right shape; second-wave scopes a different direction.
+3. **Write a pivot-disposition artifact** at `.planning/gsd-2-uplift/exploration/PIVOT-DISPOSITION.md` (or, for less-than-full-pivot dispositions, append the §11.7 entry per the schema below). This converts pivot decisions from chat-state into durable planning state — without an artifact, cancellation/redirection becomes invisible to future readers and reviewers.
+
+   PIVOT-DISPOSITION.md schema (required fields):
+   ```
+   ---
+   trigger_slice: <01 / 02 / 03 / 04 / 05>
+   trigger_date: <YYYY-MM-DD>
+   evidence_summary: <2-3 sentences; cite slice output's section + line>
+   metaquestion_impact: <flips / shifts but does not flip / orthogonal>
+   r2_r3_viability_impact: <high / medium / low / none>
+   disposition: <confirm-pivot / confirm-continue / re-shape>
+   rationale: <2-5 sentences>
+   followup_artifacts: <list of INITIATIVE.md / DECISION-SPACE.md sections that will update>
+   ---
+   ```
+4. **Re-disposition** via deliberation log entry. Possible outcomes (matching the artifact's `disposition` field):
+   - **Confirm pivot:** the project's first-wave-aim is not the right shape; second-wave scopes a different direction (or cancels).
    - **Confirm continue:** evidence is real but insufficient to flip metaquestion; finish slices for fuller picture.
    - **Re-shape exploration:** evidence shifts question-shape; remaining slices' prompts revised.
-4. **Update INITIATIVE.md / DECISION-SPACE.md** per re-disposition outcome.
-5. **Resume or close W1** depending on re-disposition.
+5. **Update INITIATIVE.md / DECISION-SPACE.md** per re-disposition outcome (§3 framing questions + §1.7 metaquestion + §1.8 R2/R3 hybrid as applicable).
+6. **Resume or close W1** depending on re-disposition.
 
 ### §7.3 What's not a pivot trigger
 
@@ -367,7 +388,15 @@ Append-only. Initially empty.
 
 ### §11.1 Pre-pilot
 
-*[empty]*
+**2026-04-27 — orchestration package authored.** Single-author Claude (Opus 4.7 xhigh) draft of OVERVIEW.md + preamble.md + 5 slice specs + audit-spec.md + synthesis-spec.md. Committed at `edefdaf` (2026-04-27).
+
+**2026-04-27 — pre-pilot cross-vendor audit dispatched.** Codex GPT-5.5 xhigh audit of the orchestration package per Logan's call (extending §2.5's recommended same-vendor pre-pilot pass to cross-vendor). Output at `cross-vendor-audit.md`. Verdict: **material → revise package then proceed** (no critical findings). Findings spanned framing-leakage in slice prompts, closure pressure in pilot/audit/synthesis disposition language, operational bugs (path verification, stale §-references, missing gh fallback, shallow-clone preflight), slice 4/5 deprecation overlap, missing cancellation-pathway artifact, and a coverage watchlist for known omitted areas (debugging, collaboration, telemetry, security).
+
+**2026-04-27 — preflight failure recorded.** The pre-pilot cross-vendor audit was dispatched *before* gsd-2 was cloned to `~/workspace/projects/gsd-2-explore/`. OVERVIEW §2.1 prescribes the clone before any dispatch; the dispatcher (Claude) skipped this step. Auditor flagged absence at §4.4 / §10. Surfaced by Logan; gsd-2 cloned post-audit. Most audit findings are within-artifact and remain valid; coverage-gap and source-fit findings were limited by the absence and will be re-checked in the focused re-audit. Pattern recorded as methodological observation §B.5 in `.planning/deliberations/2026-04-27-dispatch-readiness-deliberation.md`.
+
+**2026-04-27 — within-artifact revisions applied.** Per Logan's disposition (option 1: apply revisions, then re-audit focused on revised W1 preamble + slices 1/4/5 with gsd-2 present). Revisions covered findings 1.1-1.4 (framing-leakage), 2.1-2.4 (closure pressure), 4.1-4.2 (coverage watchlist + slice 4/5 deprecation split), 5.1-5.4 (operational bugs), 8.2 (cancellation artifact). Findings 8.3 (stop-loss) deferred. Auditor's interpretive caveat (§10) noted; revisions retained calibration for B4 long-horizon split and B5 contribution-culture in the deferred re-audit.
+
+**2026-04-27 — focused cross-vendor re-audit dispatch.** *[populated when re-audit completes — track outcome here.]*
 
 ### §11.2 Pilot disposition
 
@@ -388,6 +417,10 @@ Append-only. Initially empty.
 ### §11.6 Incubation-checkpoint outcome
 
 *[empty — populated when checkpoint runs; though strictly speaking that's outside this orchestration's scope]*
+
+### §11.7 Mid-stream pivot dispositions (if any)
+
+*[empty — populated by §7.2 pivot procedure if triggered. Schema lives in §7.2.]*
 
 ## §12. Cross-references
 
