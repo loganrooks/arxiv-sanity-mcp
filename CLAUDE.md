@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file is auto-loaded as runtime context for agents working in this repository under the current Claude Code runtime. It defines project identity, accepted decisions, and routing pointers — not behavioral discipline (see `AGENTS.md`). The bias is toward stability of decisions already made and explicit pointers for decisions that need to be re-checked. For genuinely trivial tasks, use judgment. The current placement of doctrine load-points (§ "Doctrine load-points" below) is current-runtime-shaped; if the runtime or substrate changes, that section's location and shape are reviewable.
 
 ## What This Project Is
 
@@ -10,18 +10,29 @@ An MCP-native research discovery substrate inspired by arxiv-sanity. The goal is
 
 ## Accepted ADRs (Settled Decisions)
 
-- **ADR-0001 — Exploration-first architecture:** Multiple retrieval/ranking strategies must coexist; interest state is not reduced to tags; unresolved questions stay documented.
+- **ADR-0001 — Exploration-first architecture:** Multiple retrieval and ranking strategies can coexist (capability commitment per `docs/adrs/ADR-0001-exploration-first.md:22`, not a directive that every decision *must* engage multiple strategies); interest state is not reduced to tags; unresolved questions stay documented.
 - **ADR-0002 — Metadata-first, lazy enrichment:** Ingest metadata eagerly, enrich lazily, embed selectively.
 - **ADR-0003 — License and provenance first:** Track provenance for all content and ranking signals; respect reuse constraints per content type.
 - **ADR-0004 — MCP as workflow substrate:** Design MCP layer for agent workflows (collections, saved queries, triage state), not as a thin search wrapper.
 
 ## Key Architectural Constraints
 
-- **Do not prematurely commit** to a retrieval family, ranking stack, vector DB, or MCP surface shape.
+- **Do not prematurely commit** to a retrieval family, ranking stack, vector DB, or MCP surface shape (the negation is the point — early commitment is the failure mode).
 - **Preferred abstractions:** paper, content variant, interest profile, collection, saved query, watch, triage state, result set, ranking explanation.
-- **Do not** assume tags are the canonical taste representation, dense retrieval is the winner, or "paper chat" is the product.
+- **Treat tags as one signal among several**, not the canonical taste primitive; **treat dense retrieval as one lens among several**, not the default; **the product is discovery and triage**, not paper-chat. (Reframed from earlier negations; the underlying commitments are unchanged.)
 - **Implementation bias:** metadata mirror → lexical baseline → workflow state → graph enrichments → selective semantic retrieval.
-- **Stack trajectory:** Stack A (metadata + lexical + graph) moving toward Stack B (+ selective local semantic). Not Stack D.
+- **Stack trajectory:** Stack A (metadata + lexical + graph) moving toward Stack B (+ selective local semantic). The maximalist Stack D (full local hybrid research platform — see `docs/05-architecture-hypotheses.md:118`) is foreclosed because it commits compute and complexity that v0.x has no evidence to justify; the trajectory remains open if v0.3+ evidence warrants reopening.
+
+## Doctrine load-points
+
+Read the listed document before editing or proposing changes that match the trigger. (Current Claude Code runtime placement; the routing-by-trigger shape itself is durable across runtimes, but specific load-points are reviewable when surfaces change.)
+
+- **Touching ranking, retrieval, or lens-architecture code** → `LONG-ARC.md` (anti-patterns), `docs/adrs/ADR-0001`, `docs/adrs/ADR-0005`.
+- **Adding a new abstraction or signal type** → `LONG-ARC.md` (protected seams), `VISION.md` (anti-vision section).
+- **Touching MCP tool, resource, or prompt surfaces** → `docs/adrs/ADR-0004`, `LONG-ARC.md` (MCP-native operations).
+- **Proposing rights-affecting changes** (license, redistribution, content storage) → `docs/adrs/ADR-0003`.
+- **Proposing changes to enrichment cost or scheduling** → `docs/adrs/ADR-0002`.
+- **Proposing changes to the spike program structure or methodology** → `.planning/spikes/METHODOLOGY.md`, `LONG-ARC.md` (doctrine-interaction-with-spike-program).
 
 ## Status Markers
 
