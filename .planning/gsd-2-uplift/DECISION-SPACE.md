@@ -314,6 +314,176 @@ DECISION-SPACE.md's structure (decisions / recommendations not yet decisions / o
 
 **Log reference.** Deliberation log §9.
 
+### §1.11 First-wave aim — "characterize gsd-2 carefully enough that second-wave can decide whether/what to do"
+
+**Decision (B1).** First-wave exploration's aim is articulated as: "characterize gsd-2 carefully enough that second-wave can decide whether/what to do." Replaces the Claude-proposed earlier framing "build the evidence base second-wave scoping needs to make load-bearing decisions" — that framing was structurally biased toward decision-feeding output, which would crowd out direction-shifting evidence in cases where the right finding is "uplift is not the right shape."
+
+**Full reasoning.** The earlier framing pre-supposed second-wave is happening AND that first-wave's role is to feed second-wave decisions. Per §3.1 (validation mechanism for goal articulation) + the Stage 1 audit's §8.1 finding (cancellation procedure not codified), the metaquestion explicitly preserves "uplift may not be the right shape." Decision-feeding bias suppresses cancellation-as-substantive-output.
+
+The reframe operationally enacts the §1.7 C-with-non-exhaustive-teeth stance: agents characterize-not-feed; "no, don't proceed" stays a substantive output rather than a marked-as-unlikely option. Cancellation possibility moves from preserved-in-listing to operational-in-aim.
+
+**Determining assumptions.**
+1. Cancellation is a real possibility, not pro-forma (per §3.1 + Stage 1 audit §8.1).
+2. First-wave bias is a real failure mode — decision-feeding output crowds out direction-shifting evidence.
+3. Sentence-level reframe carries the substantive work — agents reading the aim absorb the framing.
+4. "Characterize gsd-2" is operationalizable enough to direct slice work (sub-aims per slice scope it concretely).
+
+**What would change the decision.**
+- *If you read the metaquestion as essentially-decided* (proceed unless something dramatic surfaces). Original framing is honest; reframe is performative.
+- *If first-wave findings are likely unsurprising* (gsd-2 well-understood; metaquestion mostly settled). Reframe adds little value.
+- *If "characterize gsd-2" proves too vague to operationalize* in slice prompts. Original framing scales better; reframe wasn't carrying the operational load.
+
+**Confidence.** Medium-high. Reframe rests on cancellation-teeth being live (assumption 1, supported by Stage 1 audit §8.1) and on first-wave-bias being real (assumption 2, plausible from general agent behavior under aim-shaped instructions). The rephrase is small; the operational consequence depends on agents reading the aim and absorbing it.
+
+**Log reference.** Dispatch-readiness deliberation log §3.
+
+### §1.12 Wave structure — D′ (pilot-gated cross-vendor exploration + selective same-vendor audit + same-vendor synthesis)
+
+**Decision (B2).** Wave structure is **D′**: pilot-then-parallel cross-vendor exploration (W1); selective same-vendor audit per slice (W2); same-vendor synthesis (W3); incubation checkpoint; second-wave-scoping.
+
+Operationally:
+- W1-pilot: cross-vendor codex on slice 1 (mental-model). Disposition gate: review pilot output; calibrate prompts; decide proceed-parallel vs re-slice vs change approach.
+- W1-parallel: cross-vendor codex on slices 2-5 in parallel.
+- W2: same-vendor audit (Claude xhigh) per slice — slice 4 always (R2-viability load-bearing per §1.8); other slices conditional on (a) cross-vendor output reads thin / off-target / framing-leakaged OR (b) cross-vendor output makes claims load-bearing on second-wave-scoping decisions. Audit-disposition decided after each slice's W1 output lands.
+- W3: same-vendor synthesis (Claude xhigh) — pulls patterns across slices; integrates audit findings; produces SYNTHESIS.md or equivalent that incubation-checkpoint reads from.
+- Incubation: per §2.3.
+- Second-wave-scoping: per §1.6.
+
+**Full reasoning.** Three other candidate structures considered (deliberation log §4):
+- Option A (minimal: combined W2+W3) — conflates audit and synthesis; same agent doing both has incentive to confirm own synthesis (closure-pressure-internal).
+- Option B (per-slice mandatory audit) — commits to audit-shape before knowing whether all slices warrant it; audit's marginal value drops when output is concrete-and-correct.
+- Option C (paired exploration; strict M1) — doubles exploration cost. M1 is strongest when both readings of *same artifact* would surface different things; for gsd-2 source-reading, both readings would mostly converge on what source says — divergence would be on interpretation (closer to register / framing — exactly where same-vendor catches more). Same-vendor at audit-stage captures M1 benefit at half the cost.
+
+D's pilot gate operationalizes the medium-low slicing confidence per §1.4. Pilot reveals slicing-rightness before parallel-burning all dispatches.
+
+D′'s selective audit refines D — audit-disposition per-slice based on what cross-vendor produces, rather than pre-committing to audit-all or audit-none.
+
+**Determining assumptions.**
+1. Cross-vendor output quality varies per slice.
+2. Slice 4 is genuinely load-bearing (R2 viability gates the operating frame per §1.8).
+3. Audit cost is non-trivial (~xhigh dispatch each).
+4. Per-slice audit-disposition adds operational burden but is cheaper than the audits themselves.
+5. Pilot is itself a disposition gate — it can flip recommendation from D′ → C or D′ → A.
+
+**What would change the decision.**
+- *If you'd rather not maintain per-slice audit-disposition decisions* (operational burden ≠ worth it). Pre-commit to audit-all (B) or audit-none (A); selective audit's cost is the disposition step itself.
+- *If pilot reveals cross-vendor reads gsd-2 well across the board* (concrete, well-grounded, low framing-leakage). Audit's marginal value drops; A becomes attractive.
+- *If pilot reveals problems* (slicing wrong-shaped; framing leaks despite forbidden-reading; outputs shallow). Case for stricter pairing strengthens; C may become warranted, OR re-slicing supersedes wave-structure question.
+- *If you treat strict M1 application as the load-bearing methodology commitment* — C is right; its higher cost buys higher rigor on the most epistemically-loaded artifact this initiative will produce.
+
+**Confidence.** Medium. D′ is the moderate-rigor path; the strict-M1 case (Option C) is real and would shift the call if the initiative's load-bearing-ness is read higher. Pilot output disposes whether to escalate, settle, or hold D′-shape.
+
+**Log reference.** Dispatch-readiness deliberation log §4.
+
+### §1.13 Cross-vendor scope — W1 only; W2 + W3 same-vendor; paired-synthesis at W3 reserved as conditional escalation
+
+**Decision (B3).** W1 (exploration) uses cross-vendor codex (GPT-5.5 high). W2 (audit) and W3 (synthesis) use same-vendor (Claude xhigh). Paired-synthesis at W3 (cross-vendor + same-vendor independent synthesis with comparison) is **reserved as conditional escalation** if W3 output drives operating-frame-update decisions at incubation-checkpoint stage.
+
+**Full reasoning.** The three waves call for different vendor-readings:
+
+- W1 (exploration): read of gsd-2 source. Substance question. Cross-vendor's strength per METHODOLOGY.md:110 ("catches substance more readily; reads carefully against the artifacts; less attuned to in-house rhetorical patterns"). Same-vendor reading would inherit α/β/γ/δ vocabulary, artifact-mapping framings, and the harness-uplift-as-the-goal frame.
+- W2 (audit): register check on cross-vendor outputs. Catches framing leaks the cross-vendor reader couldn't catch (because the leaks were in the prompt). Same-vendor's strength per METHODOLOGY.md:111 ("catches register more readily; better at spotting Anthropic-internal rhetorical inflation").
+- W3 (synthesis): pattern integration across slices + audit findings. Synthesis is *Claude's framing of what the exploration showed*. Cross-vendor synthesis would either (a) produce synthesis from cross-vendor outputs alone (same blindness as cross-vendor exploration to in-house framings); or (b) be handed audited outputs + our framings (at which point we've imported in-house register and same-vendor at xhigh is the better tool).
+
+Paired-synthesis at W3 reserved because W3 is the load-bearing artifact for incubation-checkpoint. If synthesis drives operating-frame-update decisions, strict M1 application warrants paired-synthesis. Reserved-as-conditional rather than baseline because: (i) cost is real (~2x synthesis dispatch); (ii) sub-strict-M1 with audit catching what slips through is the moderate-rigor path consistent with B2; (iii) escalation is cheap to add if W3 output proves heavier than expected.
+
+**Determining assumptions.**
+1. Synthesis is more interpretive than exploration (which is more observational).
+2. In-house framing is load-bearing register at synthesis stage (we have to integrate findings into the decision-space).
+3. Same-vendor at xhigh handles in-house register without leakage at audit/synthesis stages *because* we use it explicitly under M1 framing — assumes M1 discipline holds, which past sessions show holds-but-imperfectly.
+
+**What would change the decision.**
+- *If synthesis turns out to be primarily-observational* ("here are the cross-slice patterns the agents found"). Cross-vendor synthesis is fine; removes one same-vendor framing-leak risk.
+- *If you read cross-vendor as load-bearing for synthesis framing* (you want an outsider's view of what gsd-2 looks like, not just an outsider's view per-slice). Cross-vendor synthesis adds value at the cost of in-house-register coherence with downstream artifacts.
+- *If W3 output proves to drive operating-frame-update decisions heavily* — escalate to paired-synthesis (cross-vendor + same-vendor independent synthesis with comparison). This is the strongest pushback against B3 baseline; flagged in deliberation log §B.2 as previously-undersold.
+
+**Confidence.** Medium. Recognized strict-M1-undersell at W3 stage; conditional escalation flag is the mitigation.
+
+**Log reference.** Dispatch-readiness deliberation log §5.
+
+### §1.14 Slice 5 — provisional split pending pilot
+
+**Decision (B4).** Slice 5 (long-horizon-relevant features + meta-evolution) is **provisionally split**: slice 5 covers concrete observable patterns (release cadence, breaking-change posture, feature inventory bearing on long-horizon support); abstract long-horizon-relevance interpretation moves to W3 synthesis. **Revise based on pilot output** if cross-vendor handles abstract framing fine on this codebase.
+
+**Full reasoning.** Slice 5 carries two distinct components:
+- (5a) Concrete observable patterns: release cadence (commit history, version tags, CHANGELOG); breaking-change policy (semver discipline, deprecation history); long-horizon-relevant features (multi-milestone scaffolding, release artifacts, prod/dev distinctions). Read-from-source.
+- (5b) Abstract interpretation: gsd-2's long-horizon-relevance per our frame — does it support agential development across multiple milestones in the way we mean? Requires interpreting features against our long-horizon-development frame.
+
+5a is concrete; cross-vendor codex handles it well. 5b is abstract interpretive framing; per M1 character ("catches substance more readily; less attuned to in-house rhetorical patterns") cross-vendor likely produces shallower output. 5b living in synthesis stage gives it cross-slice context (workflow + extension + lifecycle + cadence); long-horizon interpretation is built over multiple slice outputs, not slice-local.
+
+Provisional because pilot may reveal cross-vendor handles abstract framing fine. If so, slice 5 stays whole; if pilot shows shallow output on abstract questions, slice 5 splits as described. Pattern-shape is consistent with §B.3 methodological observation (provisional-disposition-pending-pilot as honest about epistemic state).
+
+**Determining assumptions.**
+1. Cross-vendor codex genuinely struggles with abstract interpretive framing on this kind of question — plausible from M1 character; unverified on this specific codebase.
+2. Long-horizon-relevance interpretation requires cross-slice context — i.e., not slice-local; built over multiple slice outputs.
+3. The split doesn't fragment slice 5 unnaturally — "concrete observable patterns about gsd-2's release / breaking-change posture" is a coherent slice content.
+
+**What would change the decision.**
+- *If pilot reveals cross-vendor handles abstract interpretive framing fine* — keep slice 5 whole; assumption 1 was wrong.
+- *If long-horizon interpretation is more localized* (gsd-2 has clear long-horizon stance the slice can read directly). Moving to synthesis is overkill.
+- *If split fragments slice 5 unnaturally* ("release cadence" is itself partly interpretive — "fast" cadence depends on comparison frame). Splitting is artificial.
+- *If you'd rather have all interpretation happen in slices* (per "agents are responsible for surfacing interpretation alongside observation"). Don't split — register choice between exploration-as-pure-observation vs exploration-with-light-interpretation.
+
+**Confidence.** Medium-low on the split's right-shape (assumption 1 unverified on this codebase). Pilot disposes.
+
+**Log reference.** Dispatch-readiness deliberation log §6.
+
+### §1.15 Contribution culture probe — light in slice 4; deep deferred conditional on R2 verdict
+
+**Decision (B5).** Slice 4 includes a **light contribution-culture probe** as part of its R2-viability content: read CONTRIBUTING.md if it exists; check recent PR activity (last N PRs, merged/rejected ratio if visible); note maintainer responsiveness signals; cite raw observations. **Deep probe** (characterizing maintainer engagement, reading PR threads, evaluating contribution culture qualitatively) **deferred** until first-wave findings warrant — specifically, conditional on R2 viability per §1.8 verdict from slice 4.
+
+**Full reasoning.** R3 viability per §1.8 depends on (a) gsd-2 maintainers being open to PRs, and (b) contribution culture / acceptance posture. (a) is a quick check; (b) is interpretive.
+
+Deep probe pre-commits to the R2+R3 hybrid being viable AND PRs being the natural extension path. Since R2 viability is the gating question, deep probe before R2 verdict is premature. Light probe gives "is gsd-2 unmaintained / hostile / responsive" — enough to know whether to invest in deep probe.
+
+Slice 4 is the natural home — artifact-lifecycle + extension-surfaces + migration + distribution slice. Contribution culture is operationally about "what does the path-to-upstream-contribution look like" — distribution/upstream-related, fits slice 4.
+
+**Determining assumptions.**
+1. R2 viability is the gating question; R3 is a refinement that depends on R2 outcome.
+2. Cross-vendor codex can do a light contribution-culture probe via gh CLI or repo browsing.
+3. Deep probe value depends on first-wave's R2 verdict — if R2 not viable, R1 fallback activates and R3 doesn't matter.
+
+**What would change the decision.**
+- *If you'd rather pre-commit to R2+R3 hybrid* (don't treat R3 as conditional on R2). Deep probe in W1 is warranted.
+- *If contribution culture is a deal-breaker risk* (gsd-2 unmaintained or hostile would invalidate the whole hybrid even if R2 surfaces are good). Light probe might miss the signal — deep probe is safer.
+- *If you'd rather make R3 a synthesis-stage question* (look at it after R2 is settled). Defer entirely; slice 4 doesn't probe contribution culture at all.
+- *If R3 information is not load-bearing for any second-wave scoping decision* (we'd build the same R2 design either way). No probe needed.
+
+**Confidence.** Medium-high. Light-probe-first is consistent with §1.8's conditional structure (R2 base; R3 hybrid where workflow allows; R1 fallback).
+
+**Log reference.** Dispatch-readiness deliberation log §7.
+
+### §1.16 Orchestration codification venue — new sibling ORCHESTRATION.md
+
+**Decision (B6).** Orchestration plan codified at **`.planning/gsd-2-uplift/ORCHESTRATION.md`** as a new sibling artifact alongside INITIATIVE.md and DECISION-SPACE.md. INITIATIVE.md §5 gets a pointer to it.
+
+ORCHESTRATION.md content: per-slice prompts (5); pilot-gate criteria; W2 audit specs; W3 synthesis spec; per-wave dispositions; setup checklist (clone location; codex-CLI pitfall reminders; output paths); failure-mode handling; mid-stream pivot protocol per deliberation log §9(d).
+
+**Full reasoning.** INITIATIVE.md is staging artifact (per its own §0): "forward-staging for the gsd-2 uplift initiative... NOT a scoping document." Orchestration plan is *living plan that updates per wave* — operational, not staging.
+
+These are different artifact types with different lifecycles:
+- INITIATIVE.md is durable across waves; updates rarely; migrates to dedicated repo when one exists (per INITIATIVE.md §7).
+- ORCHESTRATION.md updates per wave; carries prompts + audit specs + synthesis spec + per-wave dispositions; project-internal-bound (lives where the dispatch happens).
+
+Embedding orchestration in INITIATIVE.md would (a) bloat past staging-artifact size (estimated 300-500 lines once prompts and audit specs land); (b) conflate staging-artifact-content with operational-planning-content; (c) complicate migration to dedicated repo — orchestration is project-internal, staging is dedicated-repo-bound.
+
+Sibling pattern is consistent with how DECISION-SPACE.md and the deliberation log already sit alongside INITIATIVE.md.
+
+**Determining assumptions.**
+1. Orchestration content WILL grow — 5 prompts (~30-60 lines each = 150-300 lines), audit specs (~50 lines), synthesis spec (~30 lines), per-wave dispositions (~50 lines accumulated). Realistic estimate is 300-500 lines.
+2. Migration trigger fires (dedicated repo created) at some point. If never, the migration argument falls.
+3. INITIATIVE.md stays focused on staging — orchestration crowds out staging clarity.
+
+**What would change the decision.**
+- *If orchestration stays small* (light prompts; no audit specs codified; synthesis spec one paragraph). Embed in INITIATIVE.md §5; slight bloat acceptable.
+- *If you prefer artifact-count discipline* (don't proliferate siblings). Embed and accept the bloat.
+- *If migration trigger doesn't fire*. Same-artifact is fine; migration argument moot.
+- *If you treat orchestration as scoping-artifact-bound* (read it as part of staging contract). Consolidate into INITIATIVE.md.
+
+**Confidence.** Medium-high. Sibling-with-revisable-to-embedded is the safer starting shape; reversing later (sibling → embedded) is cheaper than the other direction.
+
+**Log reference.** Dispatch-readiness deliberation log §8.
+
 ## §2. Recommendations not yet decisions
 
 These are Claude's standing recommendations that haven't been confirmed (or rejected) by Logan in the current session. They ride on the same conditional structure as decisions but are flagged as recommendations.

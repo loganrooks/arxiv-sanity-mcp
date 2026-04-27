@@ -35,7 +35,15 @@ These seven files were produced in the 2026-04-25 multi-lens redirection and spi
 
 | File | Date | Status | Summary | Produced |
 |---|---|---|---|---|
-| [2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md](2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md) | 2026-04-26 | **active** (decisions reached; implementation in progress) | Cross-vendor dispatch deferral and gsd-2 uplift initiative genesis: Wave 5 step 1 dispatch deferred to gsd-2 uplift work after closure-pressure-comfort-language reframe; larger framing reframe (artifact-mapping is sub-question of harness-uplift goal); R2-base + R2+R3-hybrid upstream relationship; metaquestion C-with-non-exhaustive-teeth; G-D3 Option A confirmed; INITIATIVE.md + DECISION-SPACE.md as session deliverables | `.planning/gsd-2-uplift/DECISION-SPACE.md`; `.planning/gsd-2-uplift/INITIATIVE.md` (forthcoming); deferral commit; Wave 5 commits 1-3 (forthcoming) |
+| [2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md](2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md) | 2026-04-26 | **active** (decisions reached; implementation in progress; partly extended by 2026-04-27 follow-on) | Cross-vendor dispatch deferral and gsd-2 uplift initiative genesis: Wave 5 step 1 dispatch deferred to gsd-2 uplift work after closure-pressure-comfort-language reframe; larger framing reframe (artifact-mapping is sub-question of harness-uplift goal); R2-base + R2+R3-hybrid upstream relationship; metaquestion C-with-non-exhaustive-teeth; G-D3 Option A confirmed; INITIATIVE.md + DECISION-SPACE.md as session deliverables | `.planning/gsd-2-uplift/DECISION-SPACE.md`; `.planning/gsd-2-uplift/INITIATIVE.md`; deferral commit; Wave 5 commits 1-3 (all landed); follow-on dispatch-readiness deliberation (2026-04-27) |
+
+---
+
+## Dated deliberations (2026-04-27 session)
+
+| File | Date | Status | Summary | Produced |
+|---|---|---|---|---|
+| [2026-04-27-dispatch-readiness-deliberation.md](2026-04-27-dispatch-readiness-deliberation.md) | 2026-04-27 | **active** (decisions reached; implementation pending — orchestration drafting) | First-wave dispatch readiness deliberation: opened with /schedule-offer error and Logan's push-back ("we should be thinking about this now, not scheduling"); honest assessment that planning was outline not plan; reframed first-wave aim from decision-feeding to characterize-for-decision (B1); committed wave structure D′ (pilot-gated cross-vendor exploration + selective same-vendor audit + same-vendor synthesis) (B2); cross-vendor scoped to W1 only with strict-M1 paired-synthesis reserved as conditional escalation (B3); slice 5 provisionally split pending pilot (B4); contribution-culture light probe in slice 4 with deep probe deferred (B5); ORCHESTRATION.md as new sibling artifact (B6) | `.planning/gsd-2-uplift/DECISION-SPACE.md` §1.11-§1.16 (decisions B1-B6 added); `.planning/gsd-2-uplift/ORCHESTRATION.md` (forthcoming per B6); INITIATIVE.md §5 aim reframe + ORCHESTRATION.md pointer (forthcoming) |
 
 ---
 
