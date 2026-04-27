@@ -782,6 +782,12 @@ If Logan's disposition acceptance is firm and committed across the package, this
 
 The other items I'm more confident in.
 
+### 10.14 Forward-reference to subsequent session deliberation
+
+Subsequent session 2026-04-26 (post-Wave-5-disposition handoff onboarding) reframed several dispositions in §10. Specifically: §10.9 paired-audit disposition shifted from `do-it` to `defer` (closure-pressure-comfort-language reframe + larger framing reframe); §10.6 LONG-ARC/VISION integration was preserved with operating-frame status but the artifact-mapping framing was recognized as one candidate sub-question of a larger uplift goal not yet scoped; §10.4 G-D3 nice-to-have was confirmed Option A given migration timing read of weeks-to-months.
+
+For full session dynamics: `.planning/deliberations/2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md`. For the load-bearing decision-space reference: `.planning/gsd-2-uplift/DECISION-SPACE.md`.
+
 ## 11. Candidate uplift primitives — soft note (post-disposition footer)
 
 Wave 5 outputs may be referenced when gsd-2 work begins. The α/β/γ patterns in §5 (doctrine load-points map; anti-pattern self-check; deliberation-boundary protocol) and the δ pointer-note describe shapes that *might* generalize as workflow primitives in an extended gsd-2.

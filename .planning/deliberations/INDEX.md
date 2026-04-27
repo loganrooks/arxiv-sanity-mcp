@@ -31,6 +31,14 @@ These seven files were produced in the 2026-04-25 multi-lens redirection and spi
 
 ---
 
+## Dated deliberations (2026-04-26 session)
+
+| File | Date | Status | Summary | Produced |
+|---|---|---|---|---|
+| [2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md](2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md) | 2026-04-26 | **active** (decisions reached; implementation in progress) | Cross-vendor dispatch deferral and gsd-2 uplift initiative genesis: Wave 5 step 1 dispatch deferred to gsd-2 uplift work after closure-pressure-comfort-language reframe; larger framing reframe (artifact-mapping is sub-question of harness-uplift goal); R2-base + R2+R3-hybrid upstream relationship; metaquestion C-with-non-exhaustive-teeth; G-D3 Option A confirmed; INITIATIVE.md + DECISION-SPACE.md as session deliverables | `.planning/gsd-2-uplift/DECISION-SPACE.md`; `.planning/gsd-2-uplift/INITIATIVE.md` (forthcoming); deferral commit; Wave 5 commits 1-3 (forthcoming) |
+
+---
+
 ## Undated deliberations (pre-2026-04-25)
 
 These files use the template format without `---` frontmatter; dates are from inline `**Date:**` field.
