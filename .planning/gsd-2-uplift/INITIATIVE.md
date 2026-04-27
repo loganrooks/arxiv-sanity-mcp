@@ -128,19 +128,25 @@ The goal as articulated is provisional. Stress-testing path is itself open: re-a
 
 ## §5. First-wave exploration plan
 
-Per DECISION-SPACE §1.4. Five-slice parallel-Explore dispatch with refined slicing covering ~8 question-areas:
+**Aim of first-wave (per DECISION-SPACE §1.11 / decision B1):** characterize gsd-2 carefully enough that second-wave can decide whether/what to do. The aim explicitly preserves cancellation possibility — "no, uplift is not the right shape" remains a substantive output if first-wave evidence supports it. Decision-feeding-bias is the failure mode to avoid: agents tasked with feeding decisions tend to generate decision-feeding output even when the right finding is direction-shifting.
+
+**Operational shape (per DECISION-SPACE §1.4 + §1.12 / decision B2):** wave structure D′ — pilot-gated cross-vendor exploration + selective same-vendor audit + same-vendor synthesis. See ORCHESTRATION.md (forthcoming) for per-wave specifics.
+
+**Vendor scope (per DECISION-SPACE §1.13 / decision B3):** W1 (exploration) cross-vendor; W2 (audit) and W3 (synthesis) same-vendor; paired-synthesis at W3 reserved as conditional escalation.
+
+**Five-slice partition (per §1.4; refined per §1.14 / decision B4):**
 
 1. Mental model + mission + target user.
 2. Architecture + runtime + Pi SDK relationship.
 3. Workflow surface + automation + testing.
-4. Artifact lifecycle + extension surfaces + migration tooling + distribution/install. *(Load-bearing for R2 viability per DECISION-SPACE §1.8 change-conditions: this slice's findings determine whether the R2-extension operating frame survives or whether R1 fallback activates.)*
-5. Long-horizon-relevant features + gaps + meta-evolution (gsd-2's own release cadence + breaking-change policy).
+4. Artifact lifecycle + extension surfaces + migration tooling + distribution/install. *(Load-bearing for R2 viability per DECISION-SPACE §1.8 change-conditions: this slice's findings determine whether the R2-extension operating frame survives or whether R1 fallback activates. Includes light contribution-culture probe per §1.15 / decision B5.)*
+5. Concrete observable patterns: gsd-2's release cadence + breaking-change posture + long-horizon-relevant *features*. *(Provisionally split per B4: abstract long-horizon-relevance interpretation moves to W3 synthesis where cross-slice context is available; pilot disposes whether the split holds.)*
 
 **Calibration on this slicing**: confidence on the specific slice partition is *medium-low* per DECISION-SPACE §1.4 (working without ground truth on gsd-2's internal structure). Confidence on parallel-Explore as the right shape is medium-high. The pilot-slice approach below is the hedge against the medium-low slicing confidence — first-wave subagents should treat the slice list as a working partition, not an authoritative carve-up; if a slice feels wrong-shaped during execution, surface that as a finding rather than working around it.
 
 Pilot dispatch slice 1 first; review output; calibrate; then parallel dispatch slices 2-5. Setup: shallow-clone gsd-2 to a sibling location (e.g., `~/workspace/projects/gsd-2-explore/`).
 
-Explorer prompts have not been drafted yet; per option D they pair with first-wave-dispatch decision. When dispatch is committed, prompts go at `.planning/gsd-2-uplift/exploration/0X-<slice>.md`; outputs at `.planning/gsd-2-uplift/exploration/0X-<slice>-output.md`.
+Per-slice prompts, audit specs, synthesis spec, pilot-gate criteria, setup checklist (codex-CLI pitfall reminders; output paths), failure-mode handling, and mid-stream pivot protocol are codified in **`.planning/gsd-2-uplift/ORCHESTRATION.md`** (forthcoming per decision B6). ORCHESTRATION.md is the living wave-execution plan; INITIATIVE.md (this artifact) stays focused on staging.
 
 After first-wave outputs are synthesized, an **incubation checkpoint** runs (DECISION-SPACE §2.3): re-read goal articulation, check direction-shifting evidence per §3.1 starter list and beyond, check whether R1/R2/R3 hybrid has narrowed, decide whether second-wave proceeds on current direction or re-disposition needed.
 
@@ -184,20 +190,32 @@ STATE.md pending-todo updates at migration time to reflect the new home.
 
 **Predecessor records.**
 - `.planning/handoffs/2026-04-26-post-wave-5-disposition-handoff.md` — predecessor handoff.
-- `.planning/audits/2026-04-26-wave-5-exemplar-harvest.md` — Wave 5 dispositions including §10.6 LONG-ARC/VISION integration shapes (current-runtime-scoped; α/β/γ/δ defined here) and §11 uplift soft note. §10.14 forward-references this initiative.
+- `.planning/handoffs/2026-04-27-post-stage-1-uplift-genesis-handoff.md` — Stage 1 closeout handoff (partly superseded; Stages 1 + 2 now complete).
+- `.planning/audits/2026-04-26-wave-5-exemplar-harvest.md` — Wave 5 dispositions including §10.6 LONG-ARC/VISION integration shapes (current-runtime-scoped; α/β/γ/δ defined here), §10.9 deferral addendum, and §11 uplift soft note with reframe addendum. §10.14 forward-references this initiative.
+- `.planning/audits/2026-04-27-stage-1-artifacts-audit-report.md` — Stage 1 artifacts audit findings (integrated per Option α).
+- `.planning/deliberations/2026-04-27-dispatch-readiness-deliberation.md` — first-wave dispatch readiness deliberation; produced decisions B1-B6 in DECISION-SPACE.md §1.11-§1.16.
 - `.planning/research/gemini-deep-research/READING-NOTES.md` — Gemini doc reading-notes.
-- `.planning/deliberations/2026-04-25-recording-deliberations-extensively.md` — meta-deliberation establishing the deliberation-log discipline that this initiative-staging artifact and its sibling log instantiate.
+- `.planning/deliberations/2026-04-25-recording-deliberations-extensively.md` — meta-deliberation establishing the deliberation-log discipline that this initiative-staging artifact and its sibling logs instantiate.
 
 **Project-level reference (transitive via DECISION-SPACE.md).**
 - `.planning/LONG-ARC.md` — anti-patterns and calibrated-language register source.
 - `.planning/VISION.md` — arxiv-sanity-mcp's product vision; relevant if uplift becomes a roadmap dependency.
 - `.planning/spikes/METHODOLOGY.md` — interpretive lenses and practice disciplines (M1 paired-review at line 112; methodology home for codification per DECISION-SPACE §3.9 if/when triggered).
 
+**Landed (post-Stage-2 as of 2026-04-27).**
+- Deferral commit (harvest §10.9 deferral addendum + §11 reframe addendum + dispatch package archival to `.planning/audits/archive/`).
+- Wave 5 commits 1-3 (AGENTS.md anti-patterns + deliberation boundaries + ADR-citation fix; CLAUDE.md doctrine load-points + Stack-D gloss + calibrated preamble; STATE.md frontmatter currency + uplift pending-todos).
+- Stage 1 audit landed and integrated (Option α — 3 important findings + convergent §9.1 calibration-propagation).
+- Dispatch-readiness deliberation produced decisions B1-B6 (DECISION-SPACE.md §1.11-§1.16).
+
 **Forthcoming.**
-- Deferral commit (harvest §10.9 + §11 + dispatch package archival).
-- Wave 5 commits 1-3 (AGENTS.md, CLAUDE.md, STATE.md).
-- Optional post-Wave-5-execution handoff.
-- Explorer prompts (5 slices) when first-wave dispatch is committed.
+- `.planning/gsd-2-uplift/ORCHESTRATION.md` (per decision B6) — wave-execution living plan: per-slice prompts (5); pilot-gate criteria; W2 audit specs; W3 synthesis spec; per-wave dispositions; setup checklist (clone location; codex-CLI pitfall reminders; output paths); failure-mode handling; mid-stream pivot protocol.
+- Light orchestration-plan audit before pilot dispatch (per dispatch-readiness deliberation §9(f); single same-vendor xhigh pass on ORCHESTRATION.md).
+- Pilot dispatch of slice 1 (cross-vendor codex; gpt-5.5 high). Disposition gate: review pilot output; calibrate prompts; decide proceed-parallel vs re-slice vs change approach.
+- Parallel dispatch of slices 2-5 (cross-vendor) after pilot disposition.
+- Selective W2 audits (same-vendor Claude xhigh; slice 4 always; others conditional per B2).
+- W3 synthesis (same-vendor Claude xhigh; paired-synthesis escalation reserved per B3).
+- Incubation checkpoint per DECISION-SPACE §2.3.
 
 ---
 
