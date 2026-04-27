@@ -1,5 +1,17 @@
 # Wave 5 Cross-Vendor Vocabulary-Mapping Check — 2026-04-26
 
+> **STATUS — DEFERRED 2026-04-26 / archived 2026-04-27. Historical artifact, not active work.**
+>
+> This dispatch package was deferred during the 2026-04-26 → 2026-04-27 session arc per harvest §10.9 deferral addendum and DECISION-SPACE §1.1 (`.planning/gsd-2-uplift/DECISION-SPACE.md`). The artifact-mapping framing it embodies was recognized as one candidate sub-question of a larger gsd-2 uplift goal, not the question itself; the dispatch's narrowly-scoped one-directional question is doing pre-uplift early-signal work that uplift work itself will do better — once it can read gsd-2 source, ask both directions equally, and ground in the actual goal rather than a candidate sub-question.
+>
+> **If a vendor-vendor diagnostic is later useful for gsd-2 uplift work**: write a fresh prompt under that scoping's framing. **Do not adapt this prompt** — its current form embodies a framing that may not be the right starting point for uplift-scoped work, and adapting it would propagate the narrow framing.
+>
+> Full session dynamics: `.planning/deliberations/2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md`. Decision-space reference: `.planning/gsd-2-uplift/DECISION-SPACE.md` §1.1. Forward-reference at harvest §10.14.
+
+---
+
+## Original README content (retained as historical record)
+
 Pre-Wave-5 step 2 in the dispositioned commit sequence at `.planning/audits/2026-04-26-wave-5-exemplar-harvest.md` §7. This is a **focused diagnostic**, not a full re-audit.
 
 ## What this is

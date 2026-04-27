@@ -1,5 +1,9 @@
 # Cross-Vendor Vocabulary-Mapping Check — harvest §5 + §11
 
+> **STATUS — DEFERRED 2026-04-26 / archived 2026-04-27. Historical artifact, not active dispatch.**
+>
+> This prompt was deferred during the 2026-04-26 → 2026-04-27 session arc per harvest §10.9 deferral addendum and DECISION-SPACE §1.1 (`.planning/gsd-2-uplift/DECISION-SPACE.md`). **Do not run this prompt as-is.** **Do not adapt this prompt** for gsd-2 uplift work — its current form embodies a framing (artifact-vocabulary-mapping into gsd-2) that was reframed during the session as one candidate sub-question of a larger uplift goal, not the question itself. If a vendor-vendor diagnostic is later useful, write a fresh prompt under uplift scoping rather than adapting this one. See README.md in this directory for full deferral context.
+
 ## Your role
 
 You are a focused second reader for a governance harvest produced by Claude (Opus 4.7) at `/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/audits/2026-04-26-wave-5-exemplar-harvest.md`. Your job is to answer **one diagnostic question** about §5 (LONG-ARC.md / VISION.md integration) and §11 (candidate uplift primitives soft note).

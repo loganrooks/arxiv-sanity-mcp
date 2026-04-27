@@ -657,7 +657,11 @@ Stated once and applied across all per-item dispositions. If any of these turn o
 
 ### 10.9 Paired audit — cross-vendor codex on §5 + §11, scoped vocabulary-mapping question
 
-**Disposition:** cross-vendor codex (gpt-5.5) dispatch, ~30-min focused, scoped to §5 (LONG-ARC/VISION integration) and §11 (uplift soft note) only — not full harvest re-audit. Scope question: "do these α/β/γ patterns map onto gsd-2's existing artifact vocabulary (PROJECT.md / DECISIONS.md / KNOWLEDGE.md / RUNTIME.md / STATE.md), or do they require new artifact classes that gsd-2 doesn't currently have?" Output written to `.planning/audits/2026-04-26-wave-5-paired-vocabulary-check.md`.
+**Deferral addendum 2026-04-26 / archived 2026-04-27 (post-disposition).** This disposition was reframed during the subsequent session arc — see §10.14 forward-reference and DECISION-SPACE.md §1.1. Final state: dispatch is **deferred**, not run. The dispatch package was moved to `.planning/audits/archive/2026-04-26-wave-5-paired-audit-package/` with deferral notices prepended to README + prompt. Three independent reasons drove the deferral: (i) the "cheap insurance" framing in the original recommendation was comfort-language whose structural claims were not earned by the dispatch's actual shape; (ii) the artifact-mapping framing this dispatch embodies was reframed as one candidate sub-question of a larger gsd-2 uplift goal, not the question itself; (iii) cleaner posture is archival-not-input — uplift scoping work, once it can read gsd-2 source and ground in the actual goal, will do this diagnostic better than a README-only one-directional dispatch. **Do not adapt this prompt** if a vendor-vendor diagnostic is later useful — write fresh under uplift scoping. The original disposition record below is preserved as historical context, not active plan.
+
+---
+
+**Original disposition (now superseded by deferral addendum above):** cross-vendor codex (gpt-5.5) dispatch, ~30-min focused, scoped to §5 (LONG-ARC/VISION integration) and §11 (uplift soft note) only — not full harvest re-audit. Scope question: "do these α/β/γ patterns map onto gsd-2's existing artifact vocabulary (PROJECT.md / DECISIONS.md / KNOWLEDGE.md / RUNTIME.md / STATE.md), or do they require new artifact classes that gsd-2 doesn't currently have?" Output written to `.planning/audits/2026-04-26-wave-5-paired-vocabulary-check.md`.
 
 **Disposition trace 2026-04-26:** Logan briefly considered overriding to "skip"; after Claude explained what the audit was for and what would be lost by skipping, Logan reversed and confirmed "let's still do it." Final disposition: do-it.
 
@@ -789,6 +793,10 @@ Subsequent session 2026-04-26 (post-Wave-5-disposition handoff onboarding) refra
 For full session dynamics: `.planning/deliberations/2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md`. For the load-bearing decision-space reference: `.planning/gsd-2-uplift/DECISION-SPACE.md`.
 
 ## 11. Candidate uplift primitives — soft note (post-disposition footer)
+
+> **Reframe addendum 2026-04-27.** The original §11 below positioned the artifact-mapping question ("where do VISION.md / LONG-ARC.md / METHODOLOGY.md fit in gsd-2's existing vocabulary?") as the natural mapping question for gsd-2 uplift work. During the subsequent session arc that framing was recognized as **one candidate sub-question** of a larger uplift goal — "uplift gsd-2 (and the surrounding agent-development infrastructure) to support agential development across longer horizons of development, complexity scaling, and shifting determining conditions of the design situation" — not the question itself. The α/β/γ/δ shapes below are current-runtime-shaped Claude-constructions; their uplift-relevance is open and is part of what first-wave exploration will inform. See `.planning/gsd-2-uplift/DECISION-SPACE.md` §1.2 (framing reframe) and `.planning/gsd-2-uplift/INITIATIVE.md` §1 (goal as articulated) for the load-bearing reframe; §10.14 of this harvest forward-references the same. The original §11 text below is preserved as historical record of the position at disposition time, not as active operating frame.
+
+---
 
 Wave 5 outputs may be referenced when gsd-2 work begins. The α/β/γ patterns in §5 (doctrine load-points map; anti-pattern self-check; deliberation-boundary protocol) and the δ pointer-note describe shapes that *might* generalize as workflow primitives in an extended gsd-2.
 
