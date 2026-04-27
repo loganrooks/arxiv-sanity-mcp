@@ -121,20 +121,22 @@ The goal as articulated is provisional. Stress-testing path is itself open: re-a
 | Pi SDK (`github.com/badlogic/pi-mono`) | high (verifiable; gsd-2's substrate) | First-wave slice 2 investigates relationship |
 | RTK (`github.com/rtk-ai/rtk`) | high (verifiable; gsd-2's CLI tooling) | First-wave slice 2-3 references |
 | arxiv-sanity-mcp project-internal experience | medium (codifies real observed lessons) | LONG-ARC.md anti-patterns; METHODOLOGY.md disciplines; 005-008 spike-program drift case; the audit-cycle deliberations |
-| Wave 5 outputs (α/β/γ/δ shapes per harvest §5 / §10.6; harvest §11 soft note; archived dispatch package) | low to medium (current-runtime-shaped; uplift-relevance is open) | Reference for what shapes Claude constructed during current-runtime governance work; not authoritative for uplift design. α = doctrine load-points map; β = anti-pattern self-check; γ = deliberation-boundary protocol; δ-pointer-note = forward-looking protected-seams change-control |
-| Gemini deep-research doc + reading-notes | mechanism-accurate; framing-misaligned | Reference for gsd-2 mechanism descriptions only; framing on uplift question is misaligned per reading-notes |
+| Wave 5 outputs (α/β/γ/δ shapes per harvest §5 / §10.6; harvest §11 soft note; archived dispatch package) | low to medium (current-runtime-shaped; uplift-relevance is open) | Reference for what shapes Claude constructed during current-runtime governance work; not authoritative for uplift design. For α/β/γ/δ definitions see harvest §5 / §10.6; intentionally not glossed here to avoid anchoring first-wave subagents to current-runtime vocabulary. |
+| Gemini deep-research doc + reading-notes | gsd-2 README mechanism descriptions accurate; framing on the uplift question misaligned | Reference for gsd-2 mechanism descriptions only; the doc's interpretive framing of the uplift question is misaligned per reading-notes — do not import the doc's framing alongside its mechanism content. |
 
 *Trust labels follow the harvest §10.11 hierarchy: high (verifiable + provided/public + observable); medium (project-internal; codifies real observed experience); low (real but limited or contextual). "Low" means treat with calibrated skepticism, not ignore.*
 
 ## §5. First-wave exploration plan
 
-Per DECISION-SPACE §1.4. Five-slice parallel-Explore dispatch with refined slicing covering 8 question-areas:
+Per DECISION-SPACE §1.4. Five-slice parallel-Explore dispatch with refined slicing covering ~8 question-areas:
 
 1. Mental model + mission + target user.
 2. Architecture + runtime + Pi SDK relationship.
 3. Workflow surface + automation + testing.
-4. Artifact lifecycle + extension surfaces + migration tooling + distribution/install.
+4. Artifact lifecycle + extension surfaces + migration tooling + distribution/install. *(Load-bearing for R2 viability per DECISION-SPACE §1.8 change-conditions: this slice's findings determine whether the R2-extension operating frame survives or whether R1 fallback activates.)*
 5. Long-horizon-relevant features + gaps + meta-evolution (gsd-2's own release cadence + breaking-change policy).
+
+**Calibration on this slicing**: confidence on the specific slice partition is *medium-low* per DECISION-SPACE §1.4 (working without ground truth on gsd-2's internal structure). Confidence on parallel-Explore as the right shape is medium-high. The pilot-slice approach below is the hedge against the medium-low slicing confidence — first-wave subagents should treat the slice list as a working partition, not an authoritative carve-up; if a slice feels wrong-shaped during execution, surface that as a finding rather than working around it.
 
 Pilot dispatch slice 1 first; review output; calibrate; then parallel dispatch slices 2-5. Setup: shallow-clone gsd-2 to a sibling location (e.g., `~/workspace/projects/gsd-2-explore/`).
 

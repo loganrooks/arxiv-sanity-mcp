@@ -54,7 +54,7 @@ The dispatch is structurally a second opinion under bounded conditions, not insu
 - *If first-wave exploration is delayed substantially (months+).* Then immediate signal on artifact-mapping is more valuable. (Argues for; current expectation is weeks-to-months.)
 - *If the artifact-mapping framing turns out to be the right framing after all.* Then a vendor-vendor diagnostic on it is useful. (Argues for; currently treated as one candidate among many.)
 
-**Confidence.** High. Three independent reasons converged: comfort-language detection, reframe to larger goal, archival-not-input cleaner posture. Disposition stable across remaining session.
+**Confidence.** Medium-high. Three independent reasons converged in the final disposition: comfort-language detection, reframe to larger goal, archival-not-input cleaner posture. Tempered against §4.3 (churn signals confidence-instability): the dispatch has moved 6+ times across the broader session window (deliberation log §B3; harvest §10.9 predecessor); the current "defer" position is post-recognition-of-the-pattern, but it has not been stress-tested across a fresh session or under counter-pressure. The "high" label would imply stress-survival the reframes did not undergo (they were Logan-pushed, not stress-survived); medium-high reflects within-session reframe-survival without overclaiming fresh-session stability.
 
 **Log reference.** Deliberation log §2-§3.
 
@@ -110,7 +110,7 @@ The revised position keeps the option-D discipline for explorer prompts (still p
 
 ### §1.4 First-wave: 5-slice parallel-Explore exploration with refined slicing
 
-**Decision.** When first-wave dispatch is committed, exploration uses 5 parallel Explore-agent dispatches with the following slicing (refined to cover 8 question-areas):
+**Decision.** When first-wave dispatch is committed, exploration uses 5 parallel Explore-agent dispatches with the following slicing (refined to cover ~8 question-areas, where "~8" is informal sizing — see audit 2026-04-27 §1.2 for note that the exact count is not reconstructable; the slice list below is the load-bearing structure):
 
 1. **Mental model + mission + target user** — what gsd-2 is, problem it solves, for whom.
 2. **Architecture + runtime + Pi SDK relationship** — how gsd-2 is built, what's substrate vs gsd-2-specific, how things compose.
@@ -122,7 +122,7 @@ Pilot dispatch of slice 1 first; review output; calibrate prompts; then parallel
 
 Each agent produces ~150-300 line structured summary at `.planning/gsd-2-uplift/exploration/0X-<slice>-output.md` with sections: (i) what I read; (ii) calibrated findings; (iii) what I deliberately did NOT read; (iv) open questions surfaced; (v) flags where README claims diverge from source observations.
 
-**Full reasoning.** Token-efficient exploration requires bounded parallel reads. The 5-slice structure covers 8 question-areas (originally 5 slices missed distribution/install and gsd-2's-own-evolution; refined to fold these into slice 4 and slice 5 respectively). Slice 4 is loaded but coherent (everything about "how gsd-2 meets the world").
+**Full reasoning.** Token-efficient exploration requires bounded parallel reads. The 5-slice structure covers ~8 question-areas (originally 5 slices missed distribution/install and gsd-2's-own-evolution; refined to fold these into slice 4 and slice 5 respectively; "~8" is informal sizing language, not a precise enumeration). Slice 4 is loaded but coherent (everything about "how gsd-2 meets the world").
 
 The slicing remains open per non-exhaustive-listings discipline. If first-wave reveals a slice-overflow problem, re-slice. Other candidate slices considered but not added: failure-modes/debugging, multi-user/collaborative scenarios, telemetry/observability, security model. Explorer prompts include "if you encounter X, flag for follow-up" hooks for these.
 
@@ -291,7 +291,7 @@ Decision space: A (keep both); B (drop both); C1 (preamble only); C2 (reframing 
 
 ### §1.10 Deliberation log + DECISION-SPACE.md as session deliverables
 
-**Decision.** This session produces two coupled artifacts: deliberation log (`.planning/deliberations/2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md`, ~1000 lines, third-person, dynamics-faithful) and DECISION-SPACE.md (this document, ~300-500 lines, distillation, decision/recommendation/open-question mapping). Plus INDEX.md update + harvest §10 forward-reference.
+**Decision.** This session produces two coupled artifacts: deliberation log (`.planning/deliberations/2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md`, ~440 lines, third-person, dynamics-faithful) and DECISION-SPACE.md (this document, ~560 lines, distillation, decision/recommendation/open-question mapping). Plus INDEX.md update + harvest §10 forward-reference.
 
 Other documents reference DECISION-SPACE.md as load-bearing reference; DECISION-SPACE.md references the log for full session dynamics.
 
@@ -506,7 +506,7 @@ Recurring patterns observed during this session, recorded for future-session pat
 
 ### §4.5 Non-exhaustive-listings discipline (Logan's framing)
 
-**Observation.** Logan's listings are starting sets, not exhaustive sets. Per Logan: "my listings are never meant to be exhaustive, that's where your thinking takes over." Applied throughout the session to: migration paths (Claude surfaced 7+ additional onboarding situations); slicing (refined to cover 8 question-areas, surfacing distribution/install + meta-evolution); direction-shifting evidence types (non-exhaustive starter list framing).
+**Observation.** Logan's listings are starting sets, not exhaustive sets. Per Logan: "my listings are never meant to be exhaustive, that's where your thinking takes over." Applied throughout the session to: migration paths (Claude surfaced 7+ additional onboarding situations); slicing (refined to cover ~8 question-areas, surfacing distribution/install + meta-evolution); direction-shifting evidence types (non-exhaustive starter list framing).
 
 **When it matters.** When user provides an enumeration during framing or scoping work.
 
