@@ -42,7 +42,14 @@ The synthesizer reads:
 4. **INITIATIVE.md** at `.planning/gsd-2-uplift/INITIATIVE.md`, specifically:
    - §1 (goal articulation)
    - §3 (open framing questions)
-5. **OVERVIEW §11 dispositions log** for the wave's per-slice disposition history.
+5. **Framing-widening artifact** at `.planning/deliberations/2026-04-28-framing-widening.md`, specifically:
+   - Part I §1 (R1-R5 design space; widens DECISION-SPACE §1.8)
+   - Part I §2 (six-context long-horizon plurality; widens DECISION-SPACE §3.6)
+   - Part I §3 (project-anchoring framework)
+   - Part I §4 (plural significations of "uplift")
+   - Part I §5 (preservation/revision boundary)
+   - Part II §9 (deferred items log — synthesis may flag items as load-bearing for incubation)
+6. **OVERVIEW §11 dispositions log** for the wave's per-slice disposition history.
 
 ## Synthesis output
 

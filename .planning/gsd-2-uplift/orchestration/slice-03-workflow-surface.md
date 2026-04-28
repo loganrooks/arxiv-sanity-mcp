@@ -22,7 +22,11 @@ Answer concretely with source citations.
 
 1. **What slash commands or CLI commands does gsd-2 expose?** List them. Group by purpose if the grouping is clear from gsd-2's own structure. Per command: name; what it does; what artifacts it produces or consumes.
 
-2. **Does gsd-2 provide automation, and if so what?** First establish whether gsd-2 automates anything beyond standard CLI command invocation. If yes: auto-loops? Auto-execution of plans? Auto-verification? Auto-loading of context? Cite specifics. What gets automated and what is left to manual user invocation? If a meaningful human-vs-machine distinction surfaces in source, describe how it is drawn; if no such distinction is articulated, say so.
+2. **Does gsd-2 provide automation, and if so what?** First establish whether gsd-2 automates anything beyond standard CLI command invocation. If yes: auto-loops? Auto-execution of plans? Auto-verification? Auto-loading of context? Cite specifics. What gets automated and what is left to manual user invocation?
+
+   **Specifically: are there multiple workflow engines or dispatch shapes within gsd-2's automation?** Resist assuming a single engine; read source to verify. If multiple shapes exist (e.g., agent-prompted vs deterministic; phase-based vs graph-based; one-shot vs multi-phase; markdown-driven vs YAML-driven), describe each: what does it execute; what state does it persist; how does it advance through work; what's its lifecycle. Cite source for each shape. If only one shape exists, say so directly.
+
+   If a meaningful human-vs-machine distinction surfaces in source (separate from the engine question), describe how it is drawn; if no such distinction is articulated, say so.
 
 3. **What hooks does gsd-2 expose?** Pre-tool, post-tool, lifecycle hooks (session-start / session-stop / etc.). How are they configured (config file / decorator / runtime registration)? What can users do at hook-time? Cite specific hook points in source.
 
