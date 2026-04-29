@@ -33,7 +33,7 @@ Read the listed document before editing or proposing changes that match the trig
 - **Proposing rights-affecting changes** (license, redistribution, content storage) → `docs/adrs/ADR-0003`.
 - **Proposing changes to enrichment cost or scheduling** → `docs/adrs/ADR-0002`.
 - **Proposing changes to the spike program structure or methodology** → `.planning/spikes/METHODOLOGY.md`, `LONG-ARC.md` (doctrine-interaction-with-spike-program).
-- **Editing or proposing changes to `.planning/gsd-2-uplift/` artifacts, OR explicitly reasoning about whether arxiv-sanity-mcp's spike-program / foundation-audit / deliberation outputs constitute substrate-behavior evidence (vs. project-specific decisions)** → `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (test-case-vs-substrate clarification; standing context for the diagnostic loop).
+- **Editing or proposing changes to `.planning/gsd-2-uplift/` artifacts, OR editing `.planning/STATE.md` / coordination layers in ways that record gsd-2-uplift status, OR explicitly reasoning about whether arxiv-sanity-mcp's spike-program / foundation-audit / deliberation outputs constitute substrate-behavior evidence (vs. project-specific decisions)** → `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (test-case-vs-substrate clarification; standing context for the diagnostic loop).
 
 ## Status Markers
 
