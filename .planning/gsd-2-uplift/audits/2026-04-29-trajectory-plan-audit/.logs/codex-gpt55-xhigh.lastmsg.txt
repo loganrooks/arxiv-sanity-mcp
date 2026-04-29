@@ -1,0 +1,7 @@
+Wrote the audit to [PLAN-AUDIT.md](/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/gsd-2-uplift/audits/2026-04-29-trajectory-plan-audit/PLAN-AUDIT.md:1). It is 200 lines. Classification breakdown: 9 findings total, with 1 Class A, 6 Class B, and 2 Class C.
+
+The Class C findings are both traceability/extraction-shape issues: the plan file lives outside the repo while the Phase A commit map treats it as committable, and Phase G’s move/stay map conflicts with `INITIATIVE.md §7` on whether `DECISION-SPACE.md` and deliberation records stay in arxiv-sanity-mcp. The most concerning lens questions were commit traceability, fresh-session onboarding, and negative-space coverage.
+
+Confidence is medium-high overall. Main self-flagged concern: as cross-vendor codex I may be less sensitive to in-house Claude+Logan register, so the audit likely catches explicit artifact/control contradictions better than subtle comfort-language leakage.
+
+Surprise relative to the plan’s own prediction: the plan mostly does live up to framing-as-load-bearing on deliberation discipline. The serious defects are not premature incubation closure; they are custody mechanics around the load-bearing plan artifact and extraction provenance.
