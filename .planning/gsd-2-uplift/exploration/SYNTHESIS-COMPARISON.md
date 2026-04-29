@@ -5,7 +5,7 @@ synthesizers:
   - same-vendor: Claude Opus xhigh (.planning/gsd-2-uplift/exploration/SYNTHESIS.md; 609 lines)
   - cross-vendor: codex GPT-5.5 high (.planning/gsd-2-uplift/exploration/SYNTHESIS-CROSS.md; 207 lines)
 comparison_author: Claude (Opus 4.7, xhigh effort) in-session-collaborative with Logan per D5a recommendation in `.planning/deliberations/2026-04-28-w2-audit-dispositions-and-synthesis-readiness.md`
-status: draft-complete (full §0-§6 landed; in-session-collaborative; §2.1 R4 disposition-timing + §5 axes await Logan adjudication at incubation per D5a)
+status: committed-with-audit-addendum (full §0-§6 landed; §7 audit addendum landed 2026-04-29 post-premise-bleed-audit per Logan disposition; §2.1 R4 disposition-timing + §5 axes await Logan adjudication at incubation per D5a)
 inputs:
   - .planning/gsd-2-uplift/exploration/SYNTHESIS.md
   - .planning/gsd-2-uplift/exploration/SYNTHESIS-CROSS.md
@@ -419,4 +419,44 @@ Three divergence-types per `2026-04-28-comparison-drafting-decisions.md` DC4 typ
 
 ---
 
-*[Draft complete 2026-04-28. §0-§6 landed (in-session-collaborative per D5a); §2.1 R4 disposition-timing characterization + §5 axes are surfacing-shape, not adjudications — Logan adjudicates at incubation. Subject to the same fallibility caveat as `DECISION-SPACE.md §0`. Per handoff §6.5: this comparison feeds incubation; it does not pre-decide incubation's questions. The in-session-collaboration caveat (§6.3) applies to all comparison-author-shaped reading.]*
+## §7. Premise-bleed audit addendum (post-comparison-draft)
+
+**What this addendum records.** A premise-bleed audit (cross-vendor codex GPT-5.5 high + same-vendor Claude xhigh independent) was conducted on this comparison and the upstream initiative artifacts before incubation adjudication on §2.1 + §5. Audit folder: `.planning/gsd-2-uplift/audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/` (`AUDIT-SPEC.md` + `FINDINGS.md` + `FINDINGS-STEP2.md` + `DIFFERENTIAL.md` + `DISPOSITION.md`). Both reads converged that premise-bleed is largely localized to early staging artifacts and that the synthesis chain substantially corrected vocabulary-level bleed; both reads diverged on whether the integration grammar of §5 (R1-R5 / six-context / four-act) applied without explicit "inputs not observed facts" framing at point-of-use is itself narrowly load-bearing residual. This addendum records the load-bearing carry-forward.
+
+### §7.1 Reading-frame for §5 axes (point-of-use foregrounding)
+
+Per `SYNTHESIS-CROSS §6` framing-leakage caveat (`SYNTHESIS-CROSS.md:203`):
+
+> *"The R1-R5 and six-context frames are useful inputs, not observed facts in gsd-2. Where they overfit the evidence, incubation should loosen them rather than treat this synthesis as authority."*
+
+This caveat applies symmetrically to **all of §5** (metaquestion / R-mix / context-anchoring / side-probes / cross-axis integration). Read §5's axis-questions as:
+
+- **Inputs Logan brought in via framing-widening**, not observed facts in gsd-2.
+- **Loose-able if they overfit**: per `framing-widening §9` items 16-17, frame revision at incubation is a licit move; if a §5 axis-question is read as already-pre-disposing the deliberation-shape, the comparison should be revised, not the framing forced to fit (per §6.5 disposition-stop discipline).
+- **One register among several**: per `META-SYNTHESIS §2 item 3` typed-extension vocabulary and `META-SYNTHESIS §3` prohibited articulations (at `.planning/gsd-2-uplift/audits/2026-04-28-cross-vendor-codebase-understanding-audit/wave-3/META-SYNTHESIS.md`), the integration grammar should not be treated as same-kind observed-facts; surface selection precedes R-strategy assignment.
+
+### §7.2 Artifact-side carry-forward (audit residuals not requiring §5 revision)
+
+Two artifact-text residuals are operationally widened by `framing-widening` but text remains:
+
+- **`INITIATIVE.md §3.2 candidate-design-shapes` ("patcher / skills / hybrid").** Was a starter list under v1-GSD framing; superseded by `SYNTHESIS.md §2.5` four-act mapping + this comparison's §5.2 R1-R5 decomposition. Read INITIATIVE.md §3.2 as historical staging vocabulary, not as candidate set.
+- **`DECISION-SPACE.md §1.8` (R2-base + R2+R3 hybrid).** Operationally widened by `framing-widening §5` (`framing-widening.md:251`) to R1-R5 with R4 elevated and R3 conditional. Read §1.8 as the pre-W1 working hypothesis; current R-mix is at this comparison's §5.2.
+
+### §7.3 What the audit did not surface
+
+- No vocabulary-import bleed survives to this comparison's incubation-facing §5 axes.
+- The §3.3 framing-leakage asymmetric-coverage observation + §4.4 framing-import drift observation + §6.3 D5a in-session-collaboration caveat + §6.5 frame-revision discipline jointly constitute the comparison's self-audit machinery.
+- The §2.1 R4 disposition-timing divergence is already explicitly surfaced as Logan-adjudication; no premise-bleed conclusion changes its disposition.
+
+### §7.4 Cross-references
+
+- `audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/AUDIT-SPEC.md` (lens + method).
+- `audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/FINDINGS.md` (Step-1 cross-vendor codex GPT-5.5 high; 6 instances; 1A/5B/0C).
+- `audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/FINDINGS-STEP2.md` (Step-2 same-vendor Claude xhigh independent; 9 instances; 4A/3B/2C narrow).
+- `audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/DIFFERENTIAL.md` (post-hoc differential; reconciliation analysis; recommendation trace).
+- `audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/DISPOSITION.md` (Logan's disposition + reasoning).
+- `DECISION-SPACE.md §1.17` (audit-methodology decision).
+
+---
+
+*[Draft complete 2026-04-28; §7 audit addendum landed 2026-04-29 (commit-with-addendum disposition per Logan, post-cross-vendor + same-vendor-independent premise-bleed audit). §0-§6 landed (in-session-collaborative per D5a); §2.1 R4 disposition-timing characterization + §5 axes are surfacing-shape, not adjudications — Logan adjudicates at incubation. Subject to the same fallibility caveat as `DECISION-SPACE.md §0`. Per handoff §6.5: this comparison feeds incubation; it does not pre-decide incubation's questions. The in-session-collaboration caveat (§6.3) applies to all comparison-author-shaped reading; §7.1 reading-frame applies to §5 axes at point-of-use.]*
