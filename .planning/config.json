@@ -9,6 +9,11 @@
     "plan_check": true,
     "verifier": true,
     "nyquist_validation": true,
-    "auto_advance": true
-  }
+    "auto_advance": true,
+    "text_mode": false,
+    "research_before_questions": false,
+    "discuss_mode": "exploratory",
+    "skip_discuss": false
+  },
+  "gsd_reflect_version": "1.18.3"
 }
