@@ -575,6 +575,33 @@ Per `DECISION-SPACE.md §1.17` (audit-methodology decision) + `.planning/deliber
 
 **Phase C complete pending C→D boundary pause.** Working-tree commit (incubation-checkpoint surgical revisions + §7.9 addendum + DECISION-SPACE.md §1.18 revisions + audit folder) lands as Phase C atomic per plan §4.1. After commit: §6.2 per-phase verification + Logan green-light at C→D boundary per §0.7 hybrid autonomy before Phase D first-target dispatch begins.
 
+### §11.6.10 Trajectory plan Phase C step 6 — Phase D entry pre-mini-spec amendment (2026-04-29; §7.10 negative-space survey)
+
+**Trigger.** After Phase C steps 3-5 atomic commit (`e1da6ae`) + Phase C VERIFICATION.md goal-delivered commit (`98505f1`), Logan prompted negative-space survey on §7.9.3 four gates + §7.5 P5 pre-D parallel probe: *"is there anything we aren't considering that we should?"*
+
+**Survey.** Main-thread Claude (Opus 4.7, xhigh effort) surveyed gaps drawing on Phase A-C standing context + audit-arc trail + RELATIONSHIP-TO-PARENT.md + framing-widening §9 + spike-program METHODOLOGY.md + AGENTS.md + available-skills awareness (gsd-2 primitives surfaced). Result: 20 gaps surfaced — 7 H-tier (load-bearing for Phase D coherence) + 5 M-tier (quality-of-spike concerns) + 8 L-tier (light reminders).
+
+**H-tier headlines** (per §7.10.1):
+- H1: Architectural shape of "decision-trace skill/workflow" undefined.
+- H2: R-strategy implicit in §7.3.c may be miscoded (R2 vs R4-by-construction).
+- H3: Existing gsd-2 primitives unmapped (`/gsdr:deliberate`, `/gsdr:reflect`, `/gsdr:audit`, `/gsdr:spike`, etc.).
+- H4: Falsification criteria absent at gate 3 mini-spec.
+- H5: Substrate-evidence vs first-target-evidence channel separation unguarded (re-fires §7.4 audit-priority surface if not addressed).
+- H6: gsd-2 codebase access perimeter undefined (work-location for Phase D).
+- H7: Phase D output staging contradicts §0.3 trajectory framing (substrate-work-inside-test-case-repo).
+
+**Logan-disposition.** *"lets do the first then, we need to preserve auditability"* — addendum-shape addition at INCUBATION-CHECKPOINT.md §7.10 rather than collapsing the survey into Phase D entry first-step work. Different provenance from §7.9 (auditor-driven) preserves audit trail.
+
+**§7.10 amendment landed.** INCUBATION-CHECKPOINT.md §7.10 carries: §7.10.0 origin/provenance + D5a recursion acknowledgment; §7.10.1 H-tier; §7.10.2 M-tier; §7.10.3 L-tier; §7.10.4 recommended Phase D entry work-flow (Step 0 pre-D parallel probes [P5 + codebase-snapshot] → Step 1 design-space framing → Step 2 practical decisions → Step 3 mini-spec drafting [gate 3 amended] → Step 4 gates 1+2+4 + L-tier disposition → Step 5 Phase D entry audit paired per §2.4 row D → Step 6 Logan green-light); §7.10.5 executor checklist; §7.10.6 audit-priority risks at §7.10 layer (D5a recursion / survey-completeness / closure-pressure / performative-vs-operational / integration-grammar-as-fact / recommendation-as-prescription); §7.10.7 cross-references.
+
+**DISPOSITION.md §8 records amendment.** Provenance separation rationale + recommended work-flow + Phase D entry audit reads §7.10 + gate dispositions + mini-spec together (per plan §2.4 row D paired discipline). Why no separate paired audit on §7.10: §7.10 is pre-Phase-D-entry survey work, lower stakes than Phase C dispositions; Phase D entry audit reading §7.10 alongside gate dispositions is proportional to stakes.
+
+**Trajectory plan §1.4 NOT modified.** §7.10 work-flow recommended-not-prescribed; Logan-disposes whether to follow or alternative at Phase D entry. If §7.10 work-flow proves load-bearing post-Phase-D, future amendment to plan §1.4 codifies as standing Phase D entry discipline (per audit-evidence rather than design-decision).
+
+**Phase C step 6 atomic commit.** INCUBATION-CHECKPOINT.md §7.10 + DISPOSITION.md §8 + STATE.md frontmatter + this §11.6.10 record. After commit: Logan green-light at C→D boundary per plan §0.7 hybrid autonomy before Phase D first-target dispatch begins.
+
+**Methodology continuity.** §7.10 amendment-shape landing parallels SYNTHESIS-COMPARISON.md §7 audit addendum precedent + INCUBATION-CHECKPOINT.md §7.9 audit addendum precedent — pattern: load-bearing artifact at point-of-use carries amendment-shape addition with provenance preservation; structural correction discipline (audit) reads amendment alongside primary disposition record. Pattern transferable to future Phase D / E / F / G / H entry-shape amendments at this load-bearing-shape.
+
 ### §11.7 Mid-stream pivot dispositions (if any)
 
 *[empty — populated by §7.2 pivot procedure if triggered. Schema lives in §7.2.]*

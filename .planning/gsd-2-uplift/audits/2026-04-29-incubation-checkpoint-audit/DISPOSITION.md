@@ -113,6 +113,35 @@ Per trajectory plan §1.3 step 5 + §4.1 commit grouping for Phase C atomic:
 3. Verify clean tree.
 4. C→D phase boundary pause for Logan green-light before Phase D first-target dispatch.
 
+## §8. Phase D entry pre-mini-spec amendment (post-§7.9 audit-disposition; Phase C step 6)
+
+*Added 2026-04-29 post-audit-disposition under Logan-prompt: "is there anything we aren't considering that we should?" — different provenance from §0-§7 (audit-disposition); §8 records the Phase D entry pre-mini-spec amendment landed at INCUBATION-CHECKPOINT.md §7.10. Phase C step 6.*
+
+**Trigger.** After Phase C step 5 audit-disposition applied + commit `e1da6ae` + VERIFICATION.md goal-delivered + commit `98505f1`, Logan prompted negative-space survey on §7.9.3 four gates + §7.5 P5 pre-D parallel probe at xhigh effort. Main-thread Claude (Opus 4.7) surveyed; Logan disposed: *"lets do the first then, we need to preserve auditability"* — i.e., addendum-shape addition at INCUBATION-CHECKPOINT.md §7.10 rather than collapsing the survey into Phase D entry first-step work (the alternative path).
+
+**Why §7.10 sibling rather than §7.9 sub-section.** Different provenance preserves audit trail. §7.9 traces to paired auditor outputs (cross-vendor codex GPT-5.5 xhigh + same-vendor adversarial-auditor xhigh independent); §7.10 traces to Logan-prompted main-thread Claude survey. Conflating them muddies provenance. Auditability discipline = provenance separation.
+
+**Survey result.** 7 H-tier + 5 M-tier + 8 L-tier gaps surfaced (20 items total); documented at INCUBATION-CHECKPOINT.md §7.10. The four §7.9.3 gates + §7.5 P5 pre-D parallel probe are necessary but not sufficient; §7.10 surfaces additional considerations folding into Phase D entry pre-mini-spec work-flow (§7.10.4) + checklist (§7.10.5).
+
+**H-tier headlines** (load-bearing for Phase D coherence):
+- H1: Architectural shape of "decision-trace skill/workflow" undefined.
+- H2: R-strategy implicit in §7.3.c may be miscoded (R2 vs R4-by-construction).
+- H3: Existing gsd-2 primitives (`/gsdr:deliberate`, `/gsdr:reflect`, `/gsdr:audit`, `/gsdr:spike`, etc.) unmapped.
+- H4: Falsification criteria absent at gate 3.
+- H5: Substrate-evidence vs first-target-evidence channel separation unguarded (re-fires §7.4 audit-priority surface if not addressed).
+- H6: gsd-2 codebase access perimeter undefined.
+- H7: Phase D output staging contradicts §0.3 trajectory framing (substrate-work-inside-test-case-repo).
+
+**Recommended Phase D entry work-flow** (§7.10.4): Step 0 pre-D parallel probes (P5 + codebase-snapshot) → Step 1 design-space framing (H1+H2+H3) → Step 2 practical decisions (H6+H7+M1+M3+M4) → Step 3 mini-spec drafting (gate 3 amended with H4+H5+M5) → Step 4 gates 1+2+4 + L-tier disposition → Step 5 Phase D entry audit (paired per §2.4 row D) → Step 6 Logan green-light at dispatch entry.
+
+**Phase D entry audit reads §7.10 + gate dispositions + mini-spec.** Per plan §2.4 row D design-shape: same-vendor xhigh adversarial-auditor of design framing + cross-vendor xhigh audit of evidence-load. This audit fires structural correction for §7.10's D5a in-session-collaboration inheritance + design framing quality + evidence-load calibration.
+
+**Why no separate paired audit on §7.10 alone.** §7.10 is pre-Phase-D entry survey work, lower stakes than Phase C dispositions themselves. §7.9 fired paired audit on Phase C dispositions because those carried framing-load + decision-stake at the operating-frame layer. §7.10 surfaces gaps in the gates' coverage; Phase D entry audit reading §7.10 + gate dispositions + mini-spec together is proportional to stakes (per plan §2.4 row D + L8 disposition signal). If Phase D entry audit catches §7.10-specific framing-leaks, addendum-shape correction at §7.10 fires per AUDIT-SPEC.md §8 pathway.
+
+**Trajectory plan NOT modified.** §7.10 amendment lives at INCUBATION-CHECKPOINT.md as Phase C step 6 artifact. Trajectory plan §1.4 Phase D entry shape unchanged; §7.10.4 work-flow is recommended-not-prescribed (Logan-disposes follow or alternative). If §7.10 work-flow proves load-bearing post-Phase-D, future amendment to plan §1.4 codifies as standing Phase D entry discipline (per audit-evidence rather than design-decision).
+
+**Phase C complete pending C→D boundary pause.** Working-tree commit (INCUBATION-CHECKPOINT.md §7.10 + this DISPOSITION.md §8 + STATE.md frontmatter + OVERVIEW.md §11.6.10) lands as Phase C step 6 atomic per plan §4.1 commit grouping. Per plan §0.7 hybrid autonomy: Logan green-light at C→D boundary before Phase D first-target dispatch begins, with Phase D dispatch entry following §7.10.4 work-flow (if Logan disposes that work-flow shape) or alternative.
+
 ---
 
-*DISPOSITION.md authored by main-thread Claude (Opus 4.7, xhigh effort) 2026-04-29 per Logan's per-axis disposition. Logan disposed Option 4 hybrid; surgical revisions + §7.9 addendum applied as documented above. The in-session-collaboration risk applies recursively to this DISPOSITION.md itself; the audit-arc trail (audit-findings-A.md + audit-findings-B.md + DIFFERENTIAL.md) is the structural correction; future Phase E / Phase H audits will read this DISPOSITION.md as standing context.*
+*DISPOSITION.md authored by main-thread Claude (Opus 4.7, xhigh effort) 2026-04-29 per Logan's per-axis disposition. Logan disposed Option 4 hybrid; surgical revisions + §7.9 addendum applied as documented above. §8 Phase D entry pre-mini-spec amendment added 2026-04-29 (Phase C step 6) under Logan-prompted negative-space survey + "preserve auditability" disposition; §7.10 amendment-shape landing preserves provenance trail. The in-session-collaboration risk applies recursively to this DISPOSITION.md itself + to §8 + to §7.10; the audit-arc trail (audit-findings-A.md + audit-findings-B.md + DIFFERENTIAL.md) is the structural correction for §0-§7; the Phase D entry audit per plan §2.4 row D is the structural correction for §8 + §7.10. Future Phase E / Phase H audits will read this DISPOSITION.md (including §8) as standing context.*

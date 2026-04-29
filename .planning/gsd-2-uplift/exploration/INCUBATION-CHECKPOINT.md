@@ -1,7 +1,7 @@
 ---
 type: incubation-checkpoint-disposed
 date: 2026-04-29
-status: disposed (Phase C step 4 per trajectory plan §1.3) + audit-applied (step 5; Logan-disposed Option 4 hybrid 2026-04-29; surgical revision at §7 header / §7.3.a bullet 4 / §7.4 bullet 2 / DECISION-SPACE.md §1.18 + targeted §7.9 audit addendum). Logan disposed per axis 2026-04-29 from option sets (per §1.5 / §2.5 / §3.5 / §4.5 / §5.5 / §6.5 / §7.7); Phase C audit (audit-findings-A.md cross-vendor codex GPT-5.5 xhigh + audit-findings-B.md same-vendor adversarial-auditor xhigh independent + DIFFERENTIAL.md) fired as structural correction for D5a in-session-collaboration risk per trajectory plan §0.5 + §2.4 row C. Audit DISPOSITION.md at `.planning/gsd-2-uplift/audits/2026-04-29-incubation-checkpoint-audit/DISPOSITION.md`.
+status: disposed (Phase C step 4 per trajectory plan §1.3) + audit-applied (step 5; Logan-disposed Option 4 hybrid 2026-04-29; surgical revision at §7 header / §7.3.a bullet 4 / §7.4 bullet 2 / DECISION-SPACE.md §1.18 + targeted §7.9 audit addendum) + Phase D entry pre-mini-spec amendment (step 6; §7.10 negative-space survey added 2026-04-29 under Logan-prompt "is there anything we aren't considering that we should?"; main-thread Claude survey at xhigh effort; provenance distinct from §7.9 paired-auditor-driven addendum). Logan disposed per axis 2026-04-29 from option sets (per §1.5 / §2.5 / §3.5 / §4.5 / §5.5 / §6.5 / §7.7); Phase C audit (audit-findings-A.md cross-vendor codex GPT-5.5 xhigh + audit-findings-B.md same-vendor adversarial-auditor xhigh independent + DIFFERENTIAL.md) fired as structural correction for D5a in-session-collaboration risk per trajectory plan §0.5 + §2.4 row C. Audit DISPOSITION.md at `.planning/gsd-2-uplift/audits/2026-04-29-incubation-checkpoint-audit/DISPOSITION.md` (§8 records Phase D entry pre-mini-spec amendment).
 phase: trajectory plan Phase C — incubation-checkpoint adjudication on SYNTHESIS-COMPARISON.md §2.1 + §5 axes
 authoring_discipline: |
   Drafted by Claude (Opus 4.7, in-session-collaboration with Logan) per trajectory plan §1.3 process
@@ -574,6 +574,158 @@ Frame-revision remains a live option per framing-widening §9 items 16-17; the �
 - DECISION-SPACE.md §1.18 determining-assumption #2 — reframed in-place.
 
 **Methodology precedent.** SYNTHESIS-COMPARISON.md §7 audit addendum (post-premise-bleed audit-arc); the §7.1 reading-frame addendum at synthesis stage. This §7.9 lands the parallel addendum at disposition stage. Per DECISION-SPACE.md §1.17 lessons-distilled: M1 paired-review property produces complementary findings at framing-load + decision-stake + cross-cutting + negative-space-depth audits; this audit confirmed the precedent.
+
+---
+
+### §7.10 Phase D entry pre-mini-spec negative-space survey (post-§7.9, pre-Phase-D-dispatch; Logan-prompted main-thread Claude survey)
+
+*Added 2026-04-29 post-§7.9 audit-disposition under Logan-prompt: "is there anything we aren't considering that we should?" — main-thread Claude survey at xhigh effort, surfacing gaps the §7.9.3 four gates + §7.5 P5 pre-D parallel probe do not cover. **Different provenance from §7.9** (which traces to paired auditor outputs); §7.10 traces to Logan-prompted survey by main-thread Claude (D5a in-session-collaboration applies). The Phase D entry audit per plan §2.4 row D will read §7.10 alongside Logan's gate dispositions + Phase D mini-spec; that audit fires structural-correction discipline for §7.10's framing inheritance. Logan disposed §7.10 amendment-shape landing 2026-04-29: "lets do the first then, we need to preserve auditability" — i.e., addendum-shape addition at the artifact preserves provenance trail rather than collapsing the survey into Phase D entry first-step work.*
+
+#### §7.10.0 Survey origin and provenance
+
+**Prompted exchange.** After §7.9 audit-disposition applied, main-thread offered a gate-by-gate review path. Logan redirected: *"is there anything we aren't considering that we should?"* — explicit negative-space survey request rather than gate adjudication.
+
+**Survey author.** Main-thread Claude (Opus 4.7, xhigh effort), drawing on full Phase A-C standing context + audit-arc trail + RELATIONSHIP-TO-PARENT.md + framing-widening §9 + spike-program METHODOLOGY.md + AGENTS.md disciplines + available-skills awareness (gsd-2 primitives surfaced).
+
+**D5a recursion at this addendum layer.** §7.10 is itself Claude-drafted in-session-collaboration with Logan; survey carries Logan-framing inheritance the same way Phase C dispositions did. **Structural correction:** Phase D entry audit (per plan §2.4 row D, design-shape; same-vendor xhigh adversarial-auditor of design framing + cross-vendor xhigh audit of evidence-load) reads §7.10 + gate dispositions + mini-spec together — third-reader stress-test. The addendum-shape landing (vs absorption into first-step work) preserves auditability of the survey-as-artifact.
+
+**Calibration discipline.** Survey items tiered by main-thread Claude's honest read of leverage on Phase D substrate-evidence quality, not for balance. H-tier items I read as load-bearing for Phase D coherence; M-tier as quality-of-spike concerns; L-tier as light reminders. **Tiers are non-binding signal**; Logan's calibration governs.
+
+#### §7.10.1 High-leverage gaps (H-tier; recommended for Phase D entry pre-mini-spec disposition)
+
+**H1 — Architectural shape of "decision-trace skill/workflow" undefined.** §7.3.a names the target by capability; the artifact-shape (single skill / skill bundle / workflow template / MCP tool / hook-driven / markdown convention) is undecided. Each shape implies different gsd-2 surfaces, dependencies, failure modes, evidence yields. Without prior framing, gate 3's mini-spec is fill-in-the-blank without priors.
+
+*Recommended Phase D entry step:* surface 3-5 candidate artifact shapes with tradeoffs; Logan-disposes one to operationalize the mini-spec.
+
+**H2 — R-strategy implicit in §7.3.c may be miscoded.** Disposition is "skills subsystem primarily, R2-shaped." But "decision-trace" may live OUTSIDE gsd-2 (Claude Code skill in `~/.claude/skills/`; MCP server gsd-2 talks to; parallel substrate inspired-by) — making the work R4-by-construction or R5-by-construction. If so, §7.1 R4-contrast requirement (gate 1) is structurally already-met-or-irrelevant, collapsing gate 1's analytic structure (performative-vs-operational openness risk per §0.6).
+
+*Recommended Phase D entry step:* for each H1 candidate shape, R-strategy-tag what it actually instantiates. Folds with H1.
+
+**H3 — Existing gsd-2 primitives are unmapped.** gsd-2 already exposes `/gsdr:deliberate`, `/gsdr:reflect`, `/gsdr:audit`, `/gsdr:signal`, `/gsdr:explore`, `/gsdr:spike`, `/gsdr:collect-signals` (per available-skills list). "Decision-trace skill" may overlap, extend, or replace existing capability. Building without inventory risks duplication or doctrine-collision. RELATIONSHIP-TO-PARENT.md §1 cited but did not operationalize this.
+
+*Recommended Phase D entry step:* read gsd-2's existing skill manifests + descriptions + activation patterns (~30 minutes of reading); informs both H1 design-space and H2 R-strategy questions.
+
+**H4 — Falsification criteria absent.** Gate 3 names successful-evidence; the inverse (what evidence would tell us decision-trace is the WRONG first-target) is unspecified. Phase E inherits ambiguity. The §7.4 audit-priority surface is exactly this pattern — disposition supported only against priors that don't include falsifiers.
+
+*Recommended Phase D entry step:* gate 3 mini-spec amendment — add row "Falsifying evidence" specifying observable patterns that would license Phase E re-disposition or first-target re-shape.
+
+**H5 — Substrate-evidence vs first-target-evidence channel separation unguarded.** §7.4's audit-priority surface (convergent C1 from F-IC-A1 + F-IC-1) was: projection from test-case-anchored evidence to substrate-shape-anchoring is weakly licensed. Phase D operating without explicit channel-separation risks re-firing C1 at Phase E re-read time.
+
+*Recommended Phase D entry step:* mini-spec distinguishes two channels — (a) "first-target works/doesn't work" (scoped to decision-trace skill); (b) "substrate handles this kind of work well/poorly" (requires explicit cross-referencing claims to general-purpose substrate properties, not just decision-trace specifics).
+
+**H6 — gsd-2 codebase access perimeter undefined.** Per §0.5 don't-modify-external-without-asking, gsd-2 is external to arxiv-sanity-mcp. Where does Phase D actually happen? Clone path; read-only vs modifiable; fork to working branch / sandbox in scratch / arxiv-sanity-mcp design-only. No phase has answered this practical question.
+
+*Recommended Phase D entry step:* gate 3 mini-spec includes work-location decision — (i) clone/fork gsd-2 to working tree; (ii) sandbox replica in scratch; (iii) arxiv-sanity-mcp `.planning/gsd-2-uplift/wave-2/` design-only no-code. Each has tradeoffs for evidence-yield.
+
+**H7 — Phase D output staging contradicts trajectory framing.** Plan §1.4 stages Phase D output in `.planning/gsd-2-uplift/wave-2/` inside arxiv-sanity-mcp; Phase G migrates. But §0.3: gsd-2-uplift = substrate work; arxiv-sanity-mcp = test case. Substrate work first landing inside the test-case repo is contradictory to the trajectory's framing. Two cleaner options: (i) stage in sibling scratch or pre-create new repo and stage there from start, with Phase G as coordinate-update rather than migration; (ii) accept contradiction explicitly with caveat ("deliberation-and-genesis material stays close to the conversation that genesised it; substantive substrate work may need a different home"). Plan §1.4 tacitly chose (ii) without surfacing.
+
+*Recommended Phase D entry step:* Logan disposition surfaced; either (i) or (ii) defensible; bare contradiction is not.
+
+#### §7.10.2 Medium-leverage gaps (M-tier; quality-of-spike concerns)
+
+**M1 — Phase D time-budget and abort criteria absent.** First implementation phase; no time-budget. Phases A-C in days; Phase D could spiral.
+
+*Recommended Phase D entry step:* set soft time-budget (1 week / 2 weeks / 1 month) + explicit abort triggers ("if X surfaces, pause and re-adjudicate at Phase C").
+
+**M2 — Pre-D codebase-snapshot probe complementary to P5.** Cheap (~1 hour) structural snapshot of gsd-2 skill subsystem (file tree + skill manifests + activation-pattern map) informs H1/H2/H3.
+
+*Recommended Phase D entry step:* fire alongside P5 in same parallel pre-D arc.
+
+**M3 — Auditor infrastructure for code-shape Phase D output.** trajectory-verifier handles deliberation; gsd-verifier expects GSD orchestrator scaffolding (which Phase D doesn't have). Code-shape spike output (decision-trace skill implementation + behavior tests) needs an auditor that reads code, not just deliberation artifacts.
+
+*Recommended Phase D entry step:* decide auditor — likely `adversarial-auditor-xhigh` for design framing + code-reviewer (or general-purpose with explicit code-review prompt) for implementation. Recurrence of agent-infrastructure question we just navigated for Phase C.
+
+**M4 — Spike-sizing / complexity envelope unspecified.** Per `reference_spike_design`, spikes need sizing to surface signal. "Decision-trace skill" could be tiny or vast. H1 design-space framing partially addresses; sizing is a sub-question.
+
+*Recommended Phase D entry step:* mini-spec includes minimum-viable scope (smallest implementation yielding evidence) + maximum-allowable scope (creep boundary).
+
+**M5 — RELATIONSHIP-TO-PARENT.md operationalization at implementation level.** Phase B artifact carries philosophical framing. Phase D needs operational test-case-vs-substrate distinction at implementation choices.
+
+*Recommended Phase D entry step:* mini-spec includes per-decision test-case-vs-substrate categorization rule, so each implementation choice lands one side or the other.
+
+#### §7.10.3 Lower-leverage gaps (L-tier; light reminders for Phase D entry checklist)
+
+- **L1 — Skill-heuristic shallow-match risk** (per §0.6). First design move at Phase D entry: explicit context-comparison ("what's same as generic skill, what's different about decision-trace specifically"). Folds with H1.
+- **L2 — Logan's current operating context snapshot.** §7.4 disposed plural anchoring with anticipated-shifting; snapshot of TODAY's context (solo deep-work / multi-stakeholder / transition / etc.) calibrates scope. 2-line note at Phase D entry.
+- **L3 — Doctrine layer reflexivity.** Building decision-trace skills implicitly proposes substrate-self-cognition. Worth a Phase E re-read criterion: "did Phase D output implicitly modify substrate doctrine (AGENTS.md / methodology)?"
+- **L4 — This-planning-session-as-substrate-evidence.** Quality of THIS dispatch-readiness work IS substrate operating; Phase E could reasonably treat planning-quality of Phase D entry as part of substrate-evidence corpus, not just Phase D's outputs. Worth noting in §7.10.7 cross-references for traceability.
+- **L5 — Stress-amplification at Phase D output.** Risk of "too clean" Phase D result under-stressing the substrate. Spike-design recommends adversarial probing of output. Post-implementation pre-stability-test stress-probe pass deliberately exercises artifact at boundaries.
+- **L6 — Substrate primitives during Phase D design (recursivity).** Could USE `/gsdr:deliberate` / `/gsdr:spike` to deliberate Phase D design choices. Recursive (substrate designing substrate via substrate primitives). My read: feature, not contamination — exactly the test-case-vs-substrate diagnostic loop. Worth surfacing because the act of using is itself substrate-evidence.
+- **L7 — Time-since-last-Logan-touch on gsd-2.** If weeks, fresh re-grounding needed; if recent, evidence is fresh. Cheap to check.
+- **L8 — Dispatch-readiness-resolution-itself audit shape.** §2.4 row D specifies first-target-work audit shape but not gate-resolution audit shape. My read: fold gate-resolution into Phase D entry audit (small enough; single audit pass suffices) rather than separate paired audit. Worth surfacing for Logan disposition.
+
+#### §7.10.4 Recommended Phase D entry work-flow
+
+Synthesis of H/M/L items into a sequenced entry-flow. **Logan-disposes whether to follow this or alternative**; recommended-not-prescribed.
+
+**Step 0 — Pre-D parallel probes.** §7.5 P5 effective-state-emission + M2 codebase-snapshot of gsd-2 skill subsystem. Both cheap; fire concurrently. Outputs read before Step 1.
+
+**Step 1 — Design-space framing.** Surface 3-5 candidate artifact shapes for "decision-trace skill/workflow" (H1) with R-strategy tagging (H2) and existing-primitives mapping (H3, informed by Step 0 codebase snapshot). Logan disposes one shape for the mini-spec to operationalize.
+
+**Step 2 — Practical decisions.** Work-location (H6); output staging (H7); time-budget + abort criteria (M1); auditor selection (M3); spike-sizing envelope (M4).
+
+**Step 3 — Mini-spec drafting (gate 3 amended).** §7.9.3 (c) Phase D dispatch contract (artifact / skill behavior / workflow scope / decision-trace evidence definition / F-discipline observability) + §7.10 amendments: falsification criteria (H4) + substrate-vs-first-target channel separation (H5) + per-decision test-case-vs-substrate rule (M5).
+
+**Step 4 — Gates 1 + 2 + 4 + L-tier disposition.** §7.9.3 (a) R4 contrast requirement disposed (or structurally moot per H2 outcome); §7.9.3 (b) P5 failure branch — disposed at trigger-time per default, Logan-discretion to pre-dispose; §7.9.3 (d) user-side adoption-pattern probe deferral confirmed (or earlier-trigger requested); L-tier checklist (L1-L8) sweep.
+
+**Step 5 — Phase D entry audit.** Per plan §2.4 row D design-shape: same-vendor xhigh adversarial-auditor of design framing + cross-vendor xhigh audit of evidence-load. **Auditor reads §7.10 + Logan's gate dispositions + Phase D mini-spec together** — structural correction for §7.10's D5a inheritance (per §7.10.0 caveat) + design framing quality + evidence-load calibration.
+
+**Step 6 — Logan green-light at Phase D dispatch entry.** Per plan §0.7 hybrid autonomy. After audit-disposition, Phase D first-target work begins.
+
+#### §7.10.5 Phase D entry pre-mini-spec checklist (executor reference)
+
+For each Phase D entry pre-mini-spec sub-step, executor confirms:
+
+- [ ] Pre-D parallel probes fired (P5 + codebase-snapshot); outputs read.
+- [ ] H1 design-space candidates surfaced (3-5 artifact shapes + tradeoffs).
+- [ ] H2 R-strategy tagging applied per candidate.
+- [ ] H3 existing-primitives inventory complete.
+- [ ] Logan-disposed one candidate shape.
+- [ ] H6 work-location disposed.
+- [ ] H7 output-staging disposed.
+- [ ] M1 time-budget + abort triggers set.
+- [ ] M3 auditor selected.
+- [ ] M4 spike-sizing envelope set.
+- [ ] H4 falsification criteria drafted.
+- [ ] H5 evidence channel-separation drafted.
+- [ ] M5 per-decision test-case-vs-substrate rule drafted.
+- [ ] §7.9.3 (a) R4 contrast requirement disposed (or noted structurally moot per H2 outcome).
+- [ ] §7.9.3 (b) P5 failure branch — default trigger-time disposition confirmed (or pre-disposition exercised).
+- [ ] §7.9.3 (c) Phase D dispatch contract (mini-spec) drafted with §7.10 amendments.
+- [ ] §7.9.3 (d) user-adoption probe deferral confirmed (or earlier-trigger requested).
+- [ ] L-tier checklist swept (L1-L8).
+- [ ] Phase D entry audit fired and disposed.
+- [ ] Phase D dispatch begins.
+
+#### §7.10.6 Audit-priority risk acknowledgments at §7.10 layer
+
+**D5a recursion risk.** Acknowledged at §7.10.0; Phase D entry audit is the structural correction.
+
+**Survey-completeness risk.** Survey is bounded by main-thread Claude's read of Phase A-C standing context; gaps the survey itself failed to surface remain available for Phase D entry audit and Phase E stability test to catch. H/M/L tiering is non-binding signal; Logan's calibration governs.
+
+**Closure-pressure risk at §7.10.** Main-thread Claude reads H-tier as "load-bearing" — that framing itself is a closure-pressure surface. Logan-disposition may dissolve any H-item if calibration shifts. §7.10 doesn't pre-decide; it surfaces.
+
+**Performative-vs-operational openness risk.** Some §7.10 items (e.g., L4 "this-session-as-substrate-evidence") are more thought-completeness than operational triggers. Surface honesty: not every L-item warrants checklist rigor; some are reminders for traceability discipline only.
+
+**Integration-grammar-as-fact recurrence risk at §7.10 layer.** §7.10's framing-grammar (H/M/L tiers; "gaps"; "channels"; "primitives") is itself a Claude-imported organizing structure, not an observed taxonomy. Phase D entry audit catches if any tier-claim or gap-claim functions as fact rather than as Claude's organizing-frame.
+
+**Recommendation-as-prescription risk.** §7.10.4 work-flow is recommended-not-prescribed; Logan-disposes whether to follow or alternative. The numbering (Step 0, Step 1, etc.) carries a sequence-shape claim that may itself be over-fit; Phase D entry audit checks whether the sequencing is operationally load-bearing or cosmetic.
+
+#### §7.10.7 Cross-references
+
+**§7.9 audit addendum** — different provenance (auditor-driven); §7.10 extends but does not modify §7.9. The §7.9.3 four gates remain in force; §7.10.4 recommended work-flow includes them at Step 3 + Step 4.
+
+**Phase D entry audit** (per plan §2.4 row D) — reads §7.10 + Logan's gate dispositions + Phase D mini-spec together; structural correction for §7.10 D5a inheritance + design framing quality.
+
+**RELATIONSHIP-TO-PARENT.md** — §1 (test-case-anchoring) and §2 (failure-modes) referenced by H3 + H5 + M5 as load-bearing standing context.
+
+**Spike methodology** — `.planning/spikes/METHODOLOGY.md` six-lens discipline + paired-review practices; `reference_spike_design` checklist (per §0.5 provenance pointer); both inform M4 spike-sizing.
+
+**Trajectory plan §1.4 + §2.4 row D** — Phase D goal articulation + audit reasoning-level table; §7.10.4 work-flow operationalizes both. Trajectory plan itself NOT modified by §7.10 (deferred to post-Phase-D-evidence consideration; if §7.10 work-flow proves load-bearing, future amendment to plan §1.4 codifies as standing Phase D entry discipline).
+
+**§5.4 productive-curiosity pattern** — applies if any pre-D probe (P5 + M2 codebase-snapshot) surfaces evidence that triggers re-adjudication.
+
+**DISPOSITION.md §8** — Phase D entry pre-mini-spec amendment record; cross-references §7.10 as the authoritative survey artifact.
 
 ---
 
