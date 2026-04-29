@@ -413,15 +413,69 @@ Append-only. Initially empty.
 
 ### §11.4 W2 audit dispositions
 
-*[empty]*
+Per `audit-spec.md §6` disposition categories. Full reasoning in `.planning/deliberations/2026-04-28-w2-audit-dispositions-and-synthesis-readiness.md` (D1-D4).
+
+**2026-04-28 — slice 1 audit not triggered.** Pilot disposition was already proceed-parallel (per §11.2 implicit; pilot output reviewed and disposed without re-audit warrant). No further action.
+
+**2026-04-28 — slice 2 audit dispatched and disposed.** Audit at `.planning/gsd-2-uplift/exploration/02-architecture-audit.md` (Claude Opus xhigh adversarial-auditor). Verdict: **Clean → proceed.** Five source spot-checks all verified. ADR-010 vendoring claim (proposed-not-implemented; ~79 files of GSD-authored code in vendored Pi packages) verified verbatim at `docs/dev/ADR-010-pi-clean-seam-architecture.md:12-29`. RTK gating divergence verified verbatim (`README.md:22` vs `src/cli.ts:167-178`). No critical or material findings; no framing-leakage. Direction-shifting evidence (ADR-010 status; vendoring extent; RTK divergence) all independently corroborated. **Disposition: clean → proceed (no addendum, no re-dispatch).**
+
+**2026-04-28 — slice 3 audit skipped.** Per `audit-spec.md §7-§16` selective-audit criteria, slice 3 met all skip conditions: output is concrete, well-grounded, well-cited; calibration honest; no claims that would materially affect second-wave-scoping decisions beyond what was already verified at re-audit time; no unexplained in-scope omissions surfaced from the dispatching project's read. Slice 3's two-engine finding additionally corroborates the W2 dive at `w2-markdown-phase-engine-findings.md` which was independently verified. **Disposition: skip (justified by selective-audit criteria); synthesis reads slice 3 directly.**
+
+**2026-04-28 — slice 4 audit dispatched and disposed.** Audit at `.planning/gsd-2-uplift/exploration/04-artifact-lifecycle-audit.md` (Claude Opus xhigh adversarial-auditor; mandatory per audit-spec.md `:9` because R2 viability is load-bearing). Verdict: **Minor → addendum.** Source verification clean (5/5 spot-checks accurate at cited ranges). One severity-tagged "material" completeness finding (CG-1: Q2 missed enumeration of three additional extension subsystems — ecosystem at `ecosystem/loader.ts:1-110`; workflow plugins at `workflow-plugins.ts:1-60`; skills at `skill-manifest.ts:1-60`). Auditor disposed material → addendum (not re-dispatch) on substantive trigger reading: CG-1 *adds* to the slice's central claim ("gsd-2 has substantive extension surfaces") rather than reverses it; addendum integrates the four-surface enumeration via auditor's source-cited paragraph. No framing-leakage. **Disposition: minor → addendum applied to slice 4 in-place at section (vi) using auditor's suggested paragraph (audit `:144-146`); no re-dispatch warranted (substantive disposition documented in deliberation log D1).**
+
+**2026-04-28 — slice 5 audit dispatched and disposed.** Audit at `.planning/gsd-2-uplift/exploration/05-release-cadence-audit.md` (Claude Opus xhigh adversarial-auditor). Verdict: **Minor → addendum.** Math reproduces exactly across 8 spot-checks (cadence; tag count; tag-gap math; alias telemetry; CHANGELOG `[Unreleased]` deprecation). Three citation line-number errors found: `scripts/generate-changelog.mjs:194-204` (file is 152 lines; content at `:58, 66-67`), `:230-260` (content at `:96, 118-125`), and `scripts/update-changelog.mjs:78-136` (file is 59 lines; content at `:33-56`). Content described correct in all three cases; only line numbers wrong. Cross-finding integration flag for synthesis: elaborate breaking-change *machinery* vs rapid-cadence *practice* (auditor flagged as synthesis-stage; lives in audit §5 → captured in synthesis-input chain per synthesis-spec.md `:35`). No framing-leakage. **Disposition: minor → addendum applied to slice 5 in-place via strikethrough-and-correct at six citation occurrences plus corrigenda section (vi) at end (D2). Cross-finding integration flag left for synthesis-stage per audit's recommendation (D3). No re-dispatch warranted.**
+
+**Pre-synthesis state:** all five W1 slice outputs landed (slices 1-5); all post-audit addenda + corrigenda applied; three audits disposed; slice 1 + slice 3 audits not needed. Synthesis-input chain is complete. Next: W3 synthesis dispatch per §11.5 + `synthesis-spec.md`.
 
 ### §11.5 W3 synthesis disposition (incl. paired-synthesis escalation decision)
 
-*[empty]*
+Per `synthesis-spec.md §"Paired-synthesis escalation criterion"` at `:172-189`. Full reasoning in `.planning/deliberations/2026-04-28-w2-audit-dispositions-and-synthesis-readiness.md` (D5) for synthesis dispatch shape; `.planning/deliberations/2026-04-28-comparison-drafting-decisions.md` (DC0-DC4) for comparison-drafting decisions.
+
+**2026-04-28 — W3 same-vendor synthesis dispatched and landed.** Per D5 disposition: single same-vendor synthesizer (Claude Opus xhigh general-purpose subagent at max effort; effort inherited from parent xhigh session per Logan's substrate-gap correction). Inputs: 5 slice outputs (with slice 4 (vi) addendum + slice 5 (vi) corrigenda) + 3 audits + framing-widening + DECISION-SPACE.md + INITIATIVE.md + side-investigation evidence + tier-comparison + W2 disposition log. Output at `.planning/gsd-2-uplift/exploration/SYNTHESIS.md` (609 lines; 8 sections §0-§7; F1-F8 numbered findings stratification). Frontmatter sets `escalation_to_paired_synthesis: yes` (Trigger 4 fires confirmed; Triggers 2 + 3 plausibly fire per §0). Post-synthesis citation-verification spot-checks (5/5 verifications: F1 ADR-010 status; F2 four extension subsystems; F3 zero BREAKING-marked commits; F4 two-engine architecture; F5 RTK gating divergence; F8 SCHEMA_VERSION = 22) all passed against gsd-2 source — synthesis factual content source-grounded; interpretive layering is exactly what paired-synthesis escalation tests. **Disposition: same-vendor synthesis complete; escalate to paired-synthesis per Trigger 4.**
+
+**2026-04-28 — paired-synthesis (cross-vendor) dispatched and landed.** Per Trigger 4 firing: codex GPT-5.5 high cross-vendor synthesizer dispatched via background `codex exec` (bg ID `b8ikf3e4m`; ~10 min wall-clock; 268,544 tokens). Forbidden-reading enforced: Claude's SYNTHESIS.md, Gemini deep-research doc, predecessor handoff. Codex confirmed independence in §0 frontmatter note. Output at `.planning/gsd-2-uplift/exploration/SYNTHESIS-CROSS.md` (207 lines; 8 sections §0-§7). Independent integration of audited W1 evidence + framing-widening operating frame; independent source spot-checks beyond audits at `commands-workflow-templates.ts:424-508`, `custom-workflow-engine.ts:90-226`, `workflow-plugins.ts:120-221`. **Disposition: paired-synthesis complete; both syntheses landed; comparison artifact follows.**
+
+**2026-04-28 — SYNTHESIS-COMPARISON.md drafting (in-session-collaborative per D5a).** Per `synthesis-spec.md:185-188` + `DECISION-SPACE §2.3` incubation-feeding chain: comparison artifact at `.planning/gsd-2-uplift/exploration/SYNTHESIS-COMPARISON.md` drafted in-session (Claude Opus 4.7 xhigh) with Logan adjudication on §2 divergent findings + §5 multi-axis integration. Comparison-stage decisions DC0-DC4 captured in `.planning/deliberations/2026-04-28-comparison-drafting-decisions.md`:
+
+- **DC0** — Affirm handoff §6.3 scaffold (§0-§6) with three operational refinements (DC1-DC3).
+- **DC1** — §0 top-line takeaway differentiates three divergence-types: substantive R4-disposition-timing (codex declares synthesis-stage shift; Claude defers shift to incubation); register R5 framing (common operational endpoint); artifact-shape register/length divergence.
+- **DC2** — §1 carries 9 convergent findings; RTK gating divergence stays collapsed within §1.5 docs-vs-source class; tightly-interleaved release/workflow/artifact infrastructure re-categorized as Claude-unique (moves to §3 asymmetric coverage).
+- **DC3** — Per-finding "Implication for incubation" multi-clause lines refactored to tight "Bears on §5.X" pointers; integration load lives in §5 multi-axis structure (§5.1 metaquestion / §5.2 R1-R5 mix / §5.3 six-context anchoring (Logan-disposed) / §5.4 side-probe triggers).
+- **DC4** — R4 weighting characterized as substantive interpretive-disposition-timing divergence (not register) — load-bearing for incubation starting position. Different starting positions yield different disposition shapes.
+
+§4 of the comparison-drafting deliberation log records the methodological observation that arxiv-sanity-mcp's `AGENTS.md` / `CLAUDE.md` anti-pattern checklists are project-specific to arxiv-sanity-mcp's own implementation work and were over-imported into gsd-2-uplift comparison reasoning during DC1; correct grounds for gsd-2-uplift-specific anti-pattern self-checks live in `framing-widening §0 + §10` + `DECISION-SPACE §4` + `LONG-ARC.md` generic anti-patterns + `handoff §8` + `METHODOLOGY.md` M1. The drift event is a small data point that the migration trigger per `INITIATIVE.md §7` is approaching readiness; recorded as session-discipline observation; not blocking near-horizon work.
+
+**Status as of this update (2026-04-29):** SYNTHESIS-COMPARISON.md draft-complete. Full §0-§6 landed in-session-collaborative per D5a. Section-shape:
+
+- **§0** three-divergence-type top-line summary (substantive R4 disposition-timing; register R5; artifact-shape register/length).
+- **§1** nine convergent findings (Pi vendoring; extension plurality; two-engine; release machinery-vs-practice; docs-vs-source drift; R2 viable; telemetry/observability/security centrality; B4 split; R3 under-evidenced) with tight `Bears on §5.X` pointers per DC3.
+- **§2** three divergent findings: §2.1 R4 weighting (Logan-adjudication per DC4 substantive interpretive-disposition-timing); §2.2 R5 framing (surfacing-only register at common operational endpoint); §2.3 synthesis register/length (surfacing-only artifact-shape).
+- **§3** six asymmetric-coverage items: 3 Claude-unique (interleaved release/workflow/artifact infra; substrate-richness methodological observation; symmetry note ground); 3 codex-unique (cross-vendor framing-leakage caveat; R5 reference-plus-sibling reframe; first-target-selection methodology; named effective-state probe). Pattern: complementary depth-vs-breadth, not contradiction.
+- **§4** five methodological observations: M1 paired-review observed-as-claimed-in-some-instances-and-inverted-in-others (n=1; refines M1 toward depth-vs-breadth axis); convergence-as-robustness-within-framing; tier-comparison preliminary observation (GPT-5.5 high sufficient for synthesis-stage cross-vendor); framing-import drift surfaced (initiative-maturity signal); stratification methodology converged.
+- **§5** four-axis incubation-checkpoint integration: §5.1 metaquestion (direction-holds-with-qualifications, medium-high); §5.2 R-mix (narrowed-and-widened shape; Logan-adjudication on §2.1 disposition-timing + first-target-shape + R3 probe-firing); §5.3 six-context anchoring (Logan-disposed; A-primary + F-secondary plausible per syntheses); §5.4 side-probe triggers (six probes surfaced with trigger-conditions; Logan-disposed pre-vs-post critical path); §5.5 cross-axis composition observation with suggested deliberation order.
+- **§6** confidence + limits + D5a in-session-collaboration caveat (§6.3) + audit chain (§6.4) + reading-order guidance (§6.5) + confidence-summary table (§6.6).
+
+**Disposition:** SYNTHESIS-COMPARISON.md draft-complete; comparison artifact ready for incubation-checkpoint. Incubation per `DECISION-SPACE §2.3` is Logan-led + out of orchestration scope. Post-incubation second-wave-scoping signal returns to orchestration scope when fired.
 
 ### §11.6 Incubation-checkpoint outcome
 
 *[empty — populated when checkpoint runs; though strictly speaking that's outside this orchestration's scope]*
+
+### §11.6.5 v1-GSD premise-bleed audit (post-comparison; pre-incubation)
+
+Per `DECISION-SPACE.md §1.17` (audit-methodology decision) + `.planning/deliberations/2026-04-28-audit-spec-review-deliberation.md` (deliberation trace). This audit is a bounded premise-bleed lens audit before §2.1 + §5 incubation adjudication on SYNTHESIS-COMPARISON.md, motivated by Logan's 2026-04-28 premise-correction concern (v1-GSD mental-model bleed potentially under-weighting gsd-2 runtime-application surfaces).
+
+**2026-04-28 — audit-spec arc (revise-before-dispatch).**
+
+- Claude drafted `audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/AUDIT-SPEC.md` v1 (initial draft; same-vendor adversarial-auditor recommended baseline).
+- Logan commissioned cross-vendor review (GPT-5.5 xhigh) at `AUDIT-SPEC-REVIEW.md`. Disposition: revise-before-dispatch. Returned 7 findings (4 Material / 2 Moderate / 1 Minor).
+- Claude analyzed findings (transparent reasoning per finding) at `.planning/deliberations/2026-04-28-audit-spec-review-deliberation.md §3` + cross-cutting observations §4.
+- Logan authorized Claude to perform per-finding adjudication and write disposition; Claude-disposed at deliberation log §5 with rationale + where-Logan-might-differ + revision-implication per finding.
+- Logan post-disposition follow-up confirmed F1 + F4 with refinements (manual-escalation discretion; lookup-mechanics + meta-discipline). Logan pushed on F6 (universalization concern); Claude verified META-SYNTHESIS coverage; Logan accepted three F6 refinements (soft-cap-with-overflow; META-SYNTHESIS §2 typed-vocab citation; META-SYNTHESIS §3 prohibited-articulations integration).
+- Load-bearing decisions distilled to `DECISION-SPACE.md §1.17` (7-rule audit methodology).
+- Revised AUDIT-SPEC.md v2 applies all 7 finding adjudications + 5 post-disposition refinements; ~30-50% rewrite.
+
+**Disposition: AUDIT-SPEC.md v2 revised-for-dispatch; awaiting Logan final-call before Step-1 cross-vendor codex auditor dispatch.** Step-2 same-vendor stress fires conditionally on Class C return (default) or Logan manual-escalation discretion. Audit feeds incubation-checkpoint disposition on SYNTHESIS-COMPARISON.md (commit-as-is / commit-with-addendum / revise-before-commit) per AUDIT-SPEC.md §8 disposition pathway.
 
 ### §11.7 Mid-stream pivot dispositions (if any)
 
