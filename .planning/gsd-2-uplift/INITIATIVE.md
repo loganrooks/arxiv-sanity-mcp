@@ -67,6 +67,8 @@ The list below is not exhaustive. First-wave exploration may surface additional 
 
 Operating frame as of 2026-04-26: yes — Logan's articulation.
 
+**Updated 2026-04-29 post-Phase-C-incubation-checkpoint disposition (β) per DECISION-SPACE.md §1.18.** Direction-holds-with-qualifications net read sufficient broadly for proceeding to second-wave-scoping under A+F-primary anchoring (per §1.18.4); for first-targets touching release machinery (per SYNTHESIS-COMPARISON.md §1.4 machinery-vs-practice gap), the qualification-load is operationally flagged at metaquestion-level. No direction-shift; the metaquestion answer ("uplift-of-gsd-2 is the right shape") persists at medium-high confidence within-framing. Frame-revision triggers remain available at Phase E / F per framing-widening §9 items 16-17 if Phase D evidence licenses.
+
 Non-exhaustive starter examples of direction-shifting evidence first-wave might surface:
 - gsd-2 architecturally hostile to long-horizon features (no native extension surface for what we'd add).
 - gsd-2's substrate (Pi SDK) doesn't expose extension points needed.

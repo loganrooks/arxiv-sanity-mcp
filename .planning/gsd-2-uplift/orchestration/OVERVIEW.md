@@ -538,6 +538,43 @@ Per `DECISION-SPACE.md §1.17` (audit-methodology decision) + `.planning/deliber
 
 **Lessons carried from Phase B.** Audit dispatched at this checkpoint will use `audit-findings*.md` naming convention to bypass `tengu_sub_nomdrep_q7k` regex (per Phase B AUDIT-SPEC §4 convention). Hybrid autonomy: within-phase remediation autonomous after Logan-disposition lands; cross-checking against verifier-steelman not-reflex-deferring (per Phase B G-3 follow-up lesson). §6.2 verification + dispatch fresh-context goal-backward verifier before crossing C→D boundary.
 
+### §11.6.9 Trajectory plan Phase C steps 3-5 + audit-disposition (2026-04-29; Phase C complete pending C→D boundary)
+
+**Trigger.** Logan green-lit Phase C step 3 disposition; rendered xhigh-effort transparent disposition with reasoning + steel-man counters + sensitivity tables + audit-priority-risk disclosure. Logan: "I accept as proposed, lets proceed."
+
+**Step 3 (Logan-disposition per axis) — done.** Verbatim per-axis dispositions recorded at INCUBATION-CHECKPOINT.md §7.1-§7.7:
+- §7.1 §2.1 R4 disposition-timing: (b) evaluate-whether-to-shift
+- §7.2 §5.1 metaquestion: (β) direction-holds-broadly + flag §1.4 specific-target sensitivity
+- §7.3.a first-target-shape: Context A/F long-arc decision-trace skill/workflow
+- §7.3.b R3-probe-fire-timing: not-fired-this-arc
+- §7.3.c R-mix decomposition: skills subsystem primarily
+- §7.4 §5.3 six-context anchoring: A+F primary; E secondary; B adjacent; anticipated-shifting; plural-context
+- §7.5 §5.4 side-probe pre-vs-post: P1 NF / P2 post-D / P3 NF / P4 NF / P5 pre-D parallel / P6 post-D
+- §7.6 §5.5 deliberation order: anchoring-first
+- §7.7 frame-revision triggers: none active
+- §7.8 audit-priority list (consolidated for dispatch lens): 6 priority surfaces
+
+**Step 4 (DECISION-SPACE / INITIATIVE.md updates) — done.** DECISION-SPACE.md §1.18 captures load-bearing dispositions + audit-priority risks + determining assumptions + sensitivity (no direction-shift; (β)-sensitivity refinement only). INITIATIVE.md §3.1 (β)-sensitivity refinement landed.
+
+**Step 5 (Phase C audit) — done.** Paired discipline at this load-bearing decision per plan §2.4 row C + premise-bleed audit precedent at §1.17:
+- **Cross-vendor codex GPT-5.5 xhigh** (audit-findings-A.md; 0A/5B/2C; F-IC-A1 + F-IC-A2 Class C). F-IC-A1: §7.4 substrate-shape-anchoring projection. F-IC-A2: §7.1 (b) ↔ §7.3.a internal incoherence (R2 first-target doesn't generate R4-shift evidence). Class B: P5 failure branch missing; P2 post-D under-prioritization; §7.7 wording drift; Phase D dispatch contract missing; user-side adoption-pattern probe missing.
+- **Same-vendor adversarial-auditor-xhigh independent** (audit-findings-B.md; 4A/6B/2C; F-IC-1 + F-IC-2 Class C). F-IC-1: §7.4 substrate-shape-anchoring projection at DECISION-SPACE.md §1.18 determining-assumption #2 (legitimates by stipulation). F-IC-2: §7.3.a reasoning bullet 4 inversion of RELATIONSHIP-TO-PARENT.md §2 failure-mode 1. Class B: §7.7 performative-vs-operational openness; §7.2 steel-man under-engaged; §7.6 post-hoc not ex-ante; §7.3.c smuggled (a)-disposition; §7.5 P5 "any first-target" inconsistency; §7 disposition-record header rendered-transparency-as-ground.
+- **Main-thread DIFFERENTIAL.md** reconciled: convergent C1 (§7.4 substrate-shape-anchoring projection) + divergent C2's (different layers, compatible fixes). Both auditors signaled commit-with-addendum.
+
+**M1 paired-review property confirmed** per DECISION-SPACE.md §1.17 lessons-distilled. Cross-vendor caught substantive-coherence; same-vendor caught register-shaped residuals at meta-level. Convergent + complementary, not redundant.
+
+**Audit-disposition (Logan-disposed Option 4 hybrid 2026-04-29).** After fresh xhigh reasoning post-context-clearing, Logan disposed Option 4 hybrid (commit-with-revision-and-addendum) — a hybrid extension of AUDIT-SPEC.md §8 standard option set surfaced via main-thread analysis. Reasoning: addendum-to-a-determining-assumption is structurally awkward; reasoning-trace bullets read in-place by Phase E; dispatch additions are addendum-shape. Surgical revisions applied at: frontmatter `status:` field; §7 disposition-record header + meta-note; §7.3.a reasoning bullet 4 (descriptive-not-licensing reframe); §7.4 reasoning bullet 2 (point-of-use foregrounding); DECISION-SPACE.md §1.18 (Decision header + determining-assumption #2 + Full reasoning per axis paragraph). §7.9 audit addendum composed (~150 lines) carrying: audit-arc summary; convergent C1 + divergent C2 corrections trail; Phase D dispatch-readiness additions (R4 contrast / P5 failure branch / Phase D dispatch contract / user-adoption probe deferred); §7.5 + §7.7 reasoning-trace additions; Class B reasoning-trace reframings; cross-references. DISPOSITION.md authored at audit folder.
+
+**Phase D dispatch-readiness gates established** per §7.9.3:
+- R4 contrast requirement (Logan-disposed at Phase D entry)
+- P5 failure branch (Logan-disposed at trigger-time per §5.4 productive-curiosity)
+- §7.3.a Phase D dispatch contract (mini-spec at Phase D entry)
+- User-side adoption-pattern probe (deferred at this iteration)
+
+**Methodology continuity.** §7.9 addendum mirrors SYNTHESIS-COMPARISON.md §7 audit addendum precedent at synthesis stage; this audit lands the parallel correction at disposition stage. Pattern transferable to future Phase E / F / G / H audits at this load-bearing-shape.
+
+**Phase C complete pending C→D boundary pause.** Working-tree commit (incubation-checkpoint surgical revisions + §7.9 addendum + DECISION-SPACE.md §1.18 revisions + audit folder) lands as Phase C atomic per plan §4.1. After commit: §6.2 per-phase verification + Logan green-light at C→D boundary per §0.7 hybrid autonomy before Phase D first-target dispatch begins.
+
 ### §11.7 Mid-stream pivot dispositions (if any)
 
 *[empty — populated by §7.2 pivot procedure if triggered. Schema lives in §7.2.]*

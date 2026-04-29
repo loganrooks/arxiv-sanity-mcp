@@ -551,6 +551,53 @@ The output rename (rule 6) and read budget (rule 7) are localized cleanups: the 
 
 References to executed-audit artifacts: `audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/FINDINGS.md` + `FINDINGS-STEP2.md` + `DIFFERENTIAL.md` + `DISPOSITION.md`.
 
+### §1.18 Phase C incubation-checkpoint dispositions (Logan-disposed 2026-04-29)
+
+**Decision.** Per trajectory plan §1.3 Phase C process executed end-to-end, the following load-bearing dispositions are recorded for the incubation-checkpoint adjudication on SYNTHESIS-COMPARISON.md §2.1 + §5 axes. Logan disposed per axis from option sets (per surfacing artifact §1.5 / §2.5 / §3.5 / §4.5 / §5.5 / §6.5 / §7.7) on 2026-04-29 ("I accept as proposed, lets proceed"), with the Phase C cross-vendor + same-vendor paired audit (per trajectory plan §2.4 row C; per §1.17 audit methodology) firing per AUDIT-SPEC.md §8 disposition pathway as the structural correction for D5a in-session-collaboration risk. Audit findings (audit-findings-A.md cross-vendor codex GPT-5.5 xhigh + audit-findings-B.md same-vendor adversarial-auditor xhigh independent + DIFFERENTIAL.md main-thread reconciliation) surfaced 4A/11B/4C across paired; Logan-disposed Option 4 hybrid (commit-with-revision-and-addendum) — surgical revision applied to highest-leverage leak surfaces (this §1.18 + INCUBATION-CHECKPOINT.md §7.4 reasoning bullet 2 + §7.3.a reasoning bullet 4 + §7 disposition-record header + frontmatter) + targeted §7.9 audit addendum carrying audit's substantive observations + dispatch-readiness additions (R4 contrast / P5 failure branch / Phase D dispatch contract). Detail at `.planning/gsd-2-uplift/exploration/INCUBATION-CHECKPOINT.md §7` (per-axis dispositions + reasoning) and `.planning/gsd-2-uplift/audits/2026-04-29-incubation-checkpoint-audit/DISPOSITION.md` (audit disposition trail).
+
+**Per-axis dispositions:**
+
+1. **§2.1 R4 disposition-timing — (b) evaluate-whether-to-shift.** Incubation enters with R2-base + R4-net-widening on the table; first-target generates evidence ABOUT the shift; Phase E stability test re-disposes if Phase D evidence licenses (a) operate-under-shifted-frame.
+2. **§5.1 metaquestion — (β) direction-holds-broadly + flag §1.4 specific-target sensitivity.** Direction-holds-with-qualifications net read sufficient for proceeding to Phase D; for first-targets touching release machinery, the qualification-load is operationally flagged at metaquestion-level (and screened at §7.3 first-target-selection). No direction-shift; no INITIATIVE.md re-disposition required beyond §3.1 (β)-sensitivity refinement.
+3. **§5.2 R-mix integration — three sub-dispositions:**
+   - First-target-shape: **Context A/F long-arc decision-trace skill/workflow** (R2-shaped on skill subsystem; possibly composing with workflow templates).
+   - R3-probe-fire-timing: **not-fired-this-arc** (skill subsystem first-target doesn't require upstream PR).
+   - R-mix decomposition: **skills subsystem primarily**, possibly composing with workflow templates for workflow-side.
+4. **§5.3 six-context anchoring — three sub-dispositions:**
+   - Primary anchoring: **A (solo-research) + F (transition-as-stance) primary**; E (transition-as-event) secondary; B (small-team-product) adjacent; C/D out-of-scope at this iteration.
+   - Stable-or-anticipated: **anticipated-shifting** (F's design demand).
+   - Single-or-plural: **plural-context-anchoring** per INITIATIVE.md §3.3 + framing-widening §3.3.
+5. **§5.4 side-probe pre-vs-post:** P1 not-fired-this-arc; P2 post-Phase-D; P3 not-fired-this-arc; P4 not-fired-this-arc; **P5 effective-state-emission pre-Phase-D parallel** (cheap diagnostic context); P6 post-Phase-D.
+6. **§5.5 deliberation order — anchoring-first.** §4 anchoring → §2 metaquestion → §3 first-target → §1+§3 R-mix decomposition → §5 side-probes (per comparison §5.5 efficient ordering observation).
+7. **Frame-revision triggers — none active.** Integration grammar (R1-R5 / six-context / four-act) held as live-and-well-grounded per Phase C surfacing artifact §0.2 + §6 + §7.7. If Phase D evidence surfaces resistance-to-categorical-naming, frame-revision can fire at Phase E or Phase F.
+
+**Audit-priority risk surfaces** (Claude's transparency disclosure carried forward; auditor lens):
+- (i) substrate-shape-anchoring projection from test-case-anchoring (D5a inheritance from RELATIONSHIP-TO-PARENT.md → INCUBATION-CHECKPOINT.md);
+- (ii) (b) over (a) §2.1 — under-selling synthesis evidence vs preserving deliberation-discipline;
+- (iii) decision-trace over P5 effective-state-emission probe — design-shape over probe-shape cost-vs-information calibration;
+- (iv) P5 pre-D parallel — cheap-insurance vs over-engineering;
+- (v) anchoring-first over first-target-first — D5a-mediated preference;
+- (vi) frame-revision-none-active — un-surfaced gradient-vs-categorical-vocabulary risk.
+
+**Full reasoning per axis.** Each disposition's reasoning trace + steel-man counter + sensitivity table + audit-priority risk lives at INCUBATION-CHECKPOINT.md §7.1-§7.7. Audit-corrections at point-of-use lifted into reasoning-trace at §7.9 audit addendum. The Phase C cross-vendor + same-vendor paired audit (per plan §2.4 row C; per premise-bleed precedent at §1.17) is the structural mitigation for D5a in-session-collaboration risk; per Logan-disposed Option 4 hybrid 2026-04-29, audit-corrections applied as surgical revision at highest-leverage leak surfaces + §7.9 addendum carrying substantive audit observations + dispatch-readiness additions.
+
+**Determining assumptions.**
+1. Logan's per-axis disposition is binding-on-Logan-side; the Phase C audit fires as structural correction for D5a in-session-collaboration risk (per trajectory plan §0.5 D5a caveat + §2.4 row C); AUDIT-SPEC.md §8 disposition pathway applies on audit-completion (commit-as-is / commit-with-addendum / revise-before-commit / hybrid).
+2. *(Reframed 2026-04-29 per Phase C audit Logan-disposed Option 4 hybrid; original prose superseded.)* Substrate-shape-anchoring at this iteration is the audit-priority surface flagged at INCUBATION-CHECKPOINT.md §7.4. The Phase C audit (audit-findings-A.md F-IC-A1 + audit-findings-B.md F-IC-1, both Class C with high / medium-high confidence) confirms the projection-from-test-case-anchoring-to-substrate-shape-anchoring carries D5a inheritance at the reasoning-trace layer. The disposition outcome (A+F-primary plural-context per §7.4) is licensed by reasoning bullets (1) Logan's articulated onboarding situations cluster around solo-research + transition + (3) plural-context-with-A+F-primary preserves room for B/E/D adjacency at later iterations, *without* requiring bullet (2)'s "first-wave evidence is what we have" appeal to test-case-anchoring's prior. Per RELATIONSHIP-TO-PARENT.md §1.1 frame-status discipline + §2 failure-mode 1 prevention: test-case-anchoring is descriptive (this happens to be A+F's binding constraint at arxiv-sanity-mcp's test case) and does NOT license substrate-shape selection. The §7.9 audit addendum lifts the audit-priority surface into the reasoning trace at point-of-use; Phase E stability test reads disposition-stability against the revised reasoning-trace anchors.
+3. Phase D's first-target dispatch produces substrate-shape evidence under uplift conditions; Phase E stability test reads disposition-stability against Phase D evidence; re-disposition of any axis is licit at Phase E if Phase D evidence shifts ground.
+4. Framing-widening's R1-R5 + six-context vocabulary is well-grounded for this checkpoint per §1.17 audit-arc + §7.7 frame-revision-none-active disposition; frame-revision remains a live option per framing-widening §9 items 16-17 if Phase D evidence licenses.
+
+**What would change the decision.**
+- *If Phase C audit surfaces Class C findings affecting load-bearing dispositions* — AUDIT-SPEC.md §8 disposition pathway applies; specific-finding-shaped revision lands.
+- *If Phase D first-target evidence contradicts the dispositions* — re-adjudication trigger fires per trajectory plan §5.4 productive curiosity pattern; return to Phase C with updated evidence.
+- *If §7.4 anchoring proves wrong (e.g., Logan's actual context is B-primary not A+F-primary)* — re-disposition at Phase E or earlier; cascades to §7.2 metaquestion (γ), §7.3 first-target (release-metadata-checklist or headless), §7.5 side-probes (P2 + P4 + P1 elevate).
+- *If §7.1 (b) proves under-conservative under Phase D evidence (R4 evidence converges strongly, licensing the shift)* — re-disposition to (a) at Phase E; first-target evidence-load shifts.
+- *If frame-revision triggers fire later (Phase D / E / F)* — framing-widening §1 R-mix or §2 six-context revised; checkpoint dispositions re-read against revised frame.
+
+**Confidence.** Medium-high on the disposition-set as a whole (per Claude's confidence-per-axis rendered at INCUBATION-CHECKPOINT.md §7 audit-priority risk disclosures). Highest confidence on §7.3.b R3-probe not-fired-this-arc (high) and §7.5 P5 pre-D (high). Lowest confidence on §7.4 substrate-shape-anchoring projection (medium-low on the projection-shape itself; medium-high on A+F as the test-case-anchoring read; the projection is the audit-priority surface).
+
+**Log reference.** `.planning/gsd-2-uplift/exploration/INCUBATION-CHECKPOINT.md` (surfacing artifact + §7 disposition record). Triggering session: 2026-04-29 Phase C steps 1-4 (pre-reading + surfacing draft + Logan-prompted xhigh transparent disposition + accept-as-proposed). Predecessor: §1.17 audit methodology + §2.3 incubation checkpoint specifics + Phase A trajectory plan + Phase B standing-context artifact.
+
 ## §2. Recommendations not yet decisions
 
 These are Claude's standing recommendations that haven't been confirmed (or rejected) by Logan in the current session. They ride on the same conditional structure as decisions but are flagged as recommendations.
