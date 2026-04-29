@@ -1,0 +1,5 @@
+Wrote the Step-1 findings to [FINDINGS.md](/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/gsd-2-uplift/audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/FINDINGS.md). Headline result: 6 premise-bleed instances surfaced: 1 Class A, 5 Class B, 0 Class C. The bleed is real but front-loaded in the initial staging/prompt vocabulary, especially `patcher / skills / hybrid` and the early R2/R3 weighting.
+
+Step-2 is not triggered by the spec’s default rule because Class C count is zero. I set frontmatter status to `step1-complete; no-step2-trigger`.
+
+Confidence is medium-high. Main self-flag: the closest B/C boundary is the early R2-base framing, but I kept it Class B because `SYNTHESIS-COMPARISON.md` explicitly surfaces the R4/runtime correction as Logan-adjudicated rather than silently carrying the old frame. Surprising relative to the spec’s prediction: the later synthesis chain already corrected much of the predicted premise bleed by naming R4, headless/RPC/MCP, runtime/product scale, and typed extension plurality.
