@@ -602,6 +602,39 @@ Per `DECISION-SPACE.md §1.17` (audit-methodology decision) + `.planning/deliber
 
 **Methodology continuity.** §7.10 amendment-shape landing parallels SYNTHESIS-COMPARISON.md §7 audit addendum precedent + INCUBATION-CHECKPOINT.md §7.9 audit addendum precedent — pattern: load-bearing artifact at point-of-use carries amendment-shape addition with provenance preservation; structural correction discipline (audit) reads amendment alongside primary disposition record. Pattern transferable to future Phase D / E / F / G / H entry-shape amendments at this load-bearing-shape.
 
+### §11.6.11 Trajectory plan Phase D entry — Steps 0-5 + Phase D entry paired audit + Logan-disposed Revise-before-dispatch (2026-04-30)
+
+**Phase D entry work-flow execution (per INCUBATION-CHECKPOINT.md §7.10.4).** After Phase C complete (`98505f1` VERIFICATION.md commit) + Logan-green-light at C→D boundary per plan §0.7 hybrid autonomy:
+
+- **Step 0 — Pre-D parallel probes (P5 + M2):** P5-effective-state-emission-findings.md (moderate drift; sub-option (ii) caveat) + M2-codebase-snapshot-findings.md (gsd-2 skill subsystem snapshot + primitives inventory). Probes fired in parallel; outputs landed at `.planning/gsd-2-uplift/wave-2/pre-D-probes/`.
+- **Step 1 — Design-space framing:** STEP1-design-space.md (5 candidate shapes A/D/E/F/G; gsdr-side B/C dropped per Logan-correction at /effort max about substrate distinction). Logan disposed accept-as-stated at /effort xhigh: §6.E primary (in-tree gsd-2 skill); §6.E.(i) parallel R4 comparator (Shape A); §6.(a) gap-mapping at Step 1; F + G OOS-this-arc. Recorded at STEP1-DISPOSITION.md.
+- **Step 2 — Practical decisions:** STEP2-practical-decisions.md disposed H6 (existing clone + new working-branch `phase-d-decision-trace-spike` off main@42ef05fbe) / H7 (`.planning/gsd-2-uplift/wave-2/decision-trace/` staging) / M1 (8-day hard limit + 5 abort triggers) / M3 (paired auditor: same-vendor adversarial-auditor xhigh independent + cross-vendor codex GPT-5.5) / M4 (skill-only ≤500 lines + ≤2 coordination touchpoints + ≥1 real test-task).
+- **Step 3 — Mini-spec drafting (gate 3 amended):** MINI-SPEC.md drafted as Phase D dispatch contract. §1 artifacts (E + A); §2 skill behavior tested (P1-P5 activation + B1-B5 query/reconstruction); §2.3 test-task; §3 workflow-template OOS; §4 success criteria; §5 F-discipline observability; §6 H4 falsifiers; §7 H5 channel separation; §8 M5 per-decision categorization.
+- **Step 4 — Gates + L-tier sweep:** STEP4-gates-and-L-tier.md confirmed gate (a) parallel R4 comparator / gate (b) P5 sub-option (ii) pre-disposed / gate (d) deferred-confirmed. L1-L8 swept. 18/20 checklist artifact-presence.
+- **Step 5 — Phase D entry paired audit (per plan §2.4 row D).** Audit-folder `.planning/gsd-2-uplift/audits/2026-04-30-phase-d-entry-audit/`. Same-vendor `adversarial-auditor-xhigh` (independent mode; xhigh) fired in parallel with cross-vendor codex GPT-5.5 (recalibrated from xhigh to high per Logan's calibration; see POST-MORTEM.md §4). **Cross-vendor attempt-1 hung** on stdin-inheritance bug (codex `<stdin>`-block-append branch fired; 37 min wallclock idle; $0 cost; clean kill). Root cause + fix recorded at POST-MORTEM.md (`</dev/null` mechanical fix; effort recalibration as separate issue). Re-dispatch attempt-2 completed cleanly. Audit findings: A (codex high; 1C/4B/2A; non-binding signal Revise-before-dispatch narrow) + B (adversarial-auditor xhigh; 1C/3B/3A; non-binding signal Addendum-shape with one targeted revision). DIFFERENTIAL.md reconciled: 12 distinct findings across A + B (2 convergent: A5↔B2 test-task D5a; A6↔B7 checklist overclaim). Combined signal: Revise-before-dispatch (narrow) with B-derived addenda folded.
+
+**Logan-disposition (2026-04-30 /effort xhigh):** *"lets go with your recommendation"* — option 3 (Revise-before-dispatch combined-signal full-width with B1 absorbed per DISPOSITION.md §1.2 defense). Revisions applied per DISPOSITION.md §2 sequence:
+
+| # | Finding | Surface revised |
+|---|---|---|
+| 1 | F-PD-A1 (E/A comparator mechanics; Class C hard-blocker) | MINI-SPEC §1.A distinct-name rename (`decision-trace-r4` for A); §2.1 P1 + P4 distinct-name parallel observability; §2.2 B5d sub-test row |
+| 2 | F-PD-A2 + F-PD-B1 (existing-primitives inventory: gsd-2-internal decision-DB + gsdr prior-art) | STEP1-design-space §1.3 inventory adds `gsd_decision_save` MCP + DECISIONS.md canonical-table + db-writer rows + `/gsdr:deliberate` prior-art-not-candidate-shape row; STEP4 §3 row 4 status reframe; MINI-SPEC §2.2 B5b + B5c rows |
+| 3 | F-PD-A3 (P5 layer-attribution success criterion) | MINI-SPEC §2.2 B3 wording downgrade (option i: explicit file-origin; mark derived defaults unresolved) |
+| 4 | F-PD-A4 (unit-context-manifest activation matrix) | MINI-SPEC §1.E 5-dim activation matrix table; §6 falsifier #10 added; STEP2 §2.M4 P3+B3 routing per matrix |
+| 5 | F-PD-A5 + F-PD-B2 (test-task D5a) | MINI-SPEC §2.3 primary task swapped to 2026-04-25 long-arc-and-multi-lens-redirection (pre-current-arc); framing-widening retained as backup with explicit D5a-caveat |
+| 6 | F-PD-B3 (H5 channel-separation declared rule) | MINI-SPEC §7.3.1 EXECUTION-LOG inline-tagging discipline added (extends §8.4 M5 inline pattern to channel-(a)/(b)/(a→b)) |
+| 7 | F-PD-A6 + F-PD-B7 (checklist overclaim) | STEP4 §3 row labels reframed to artifact-presence-vs-completion; row 4 H3 + row 9 M3 + row 10 M4 + row 14 §7.9.3(a) gate updated |
+| 8 | F-PD-A7 (heal-skill observation hook) | MINI-SPEC §8.5 observation-only hook; EXECUTION-LOG.md template inherits |
+| 9 | F-PD-B4 (Stack D foreclosure shallow-match) | STEP1-DISPOSITION §2.A item 5 disclaimer (rhetorical reinforcement; disposition rests on items 1-4) |
+| 10 | F-PD-B5 (/effort sequence laundering) | STEP1-DISPOSITION §0 standing clarification (procedural-traceability NOT disposition-authority) |
+| 11 | F-PD-B6 (H/M/L tier convergence) | STEP4 §2 preamble convergence-check note (L-items not assumed orthogonal; L4↔L6 example) |
+
+**M1 paired-review property — strong confirmation.** Cross-vendor (codex GPT-5.5 high) caught source-grounded substantive divergence (A1-A4: skill-sync mechanics, decision-DB substrate, preferences source structure, unit-context-composer surface). Same-vendor (Opus xhigh adversarial-auditor) caught meta-level + framing-leak (B1: substrate-confusion drop operationalization; B3-B6: declared-rule-vs-built-in-mechanism, shallow-pattern-match, co-production-laundering, integration-grammar-as-fact at tier framing). Either alone would have missed half the audit's catch.
+
+**Methodology continuity.** Phase D entry paired audit precedent established: paired-shape (cross-vendor + same-vendor independent) at design-shape work where framing-load + cross-cutting reasoning + decision-stake + negative-space-depth all warrant it (per plan §2.4 row D). Effort calibration: codex `high` ≈ Opus 4.7 `xhigh` capability for these tasks; xhigh is expensive markup with diminishing returns. POST-MORTEM.md §4 records calibration shift; trajectory plan §2.4 row D amendment deferred to post-Phase-D evidence.
+
+**Phase D step 5 atomic commit (this commit).** STEP1-design-space.md §1.3 + STEP1-DISPOSITION.md §0/§2.A item 5 + STEP2-practical-decisions.md §2.M4 + MINI-SPEC.md §1.A/§1.E/§2.1/§2.2/§2.3/§6/§7.3.1/§8.4/§8.5 + STEP4-gates-and-L-tier.md §2/§3 + audit-folder (AUDIT-SPEC.md + audit-findings-A.md + audit-findings-B.md + DIFFERENTIAL.md + DISPOSITION.md + POST-MORTEM.md) + STATE.md + this §11.6.11 record. After commit: Logan green-light at Step 6 boundary per AUDIT-SPEC §7 disposition pathway before Phase D first-target dispatch (build of Shape E + Shape A + test-task) begins.
+
 ### §11.7 Mid-stream pivot dispositions (if any)
 
 *[empty — populated by §7.2 pivot procedure if triggered. Schema lives in §7.2.]*
