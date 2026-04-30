@@ -635,6 +635,39 @@ Per `DECISION-SPACE.md §1.17` (audit-methodology decision) + `.planning/deliber
 
 **Phase D step 5 atomic commit (this commit).** STEP1-design-space.md §1.3 + STEP1-DISPOSITION.md §0/§2.A item 5 + STEP2-practical-decisions.md §2.M4 + MINI-SPEC.md §1.A/§1.E/§2.1/§2.2/§2.3/§6/§7.3.1/§8.4/§8.5 + STEP4-gates-and-L-tier.md §2/§3 + audit-folder (AUDIT-SPEC.md + audit-findings-A.md + audit-findings-B.md + DIFFERENTIAL.md + DISPOSITION.md + POST-MORTEM.md) + STATE.md + this §11.6.11 record. After commit: Logan green-light at Step 6 boundary per AUDIT-SPEC §7 disposition pathway before Phase D first-target dispatch (build of Shape E + Shape A + test-task) begins.
 
+### §11.6.12 Trajectory plan Phase D dispatch (mid-arc commit) — Step 6 greenlight + methodology disposition + build phase + Option 4 source-sim + Option 5 subagent-invocation + structural review (2026-04-30)
+
+**Step 6 greenlight (Logan 2026-04-30):** *"do the onboarding first and then step 6 greenlight"* — Phase D dispatch begun; M1 8-day budget clock started; abort triggers active.
+
+**Build phase.** Branch `phase-d-decision-trace-spike` created off main@42ef05fbe in `~/workspace/projects/gsd-2-explore/` (clean tree). Shape E SKILL.md authored at `src/resources/skills/decision-trace/SKILL.md` (234 lines under 500 ✓; description 849 chars under 1024 ✓; pure XML structure per create-skill/SKILL.md:42-54; activation tokens discriminating from forensics + handoff; F-PD-A2/A3/B1 dispositions encoded). Shape A SKILL.md at `~/.agents/skills/decision-trace-r4/SKILL.md` (sed name swap from E; identical body — workload-uniformity per §1.A; distinct-name preserves parallel observability). Per Decision Point 4 prep: Shape E ALSO copied to `~/.agents/skills/decision-trace/SKILL.md` for runtime discovery (per §1.5 substrate-shape correction below).
+
+**Methodology disposition (Logan 2026-04-30 /effort xhigh):** *"I'll dispose as you recommend"* — post-falsificationist + theory-construction-with-hypothesis-laden-scaffolding frame; predictions as priors-made-explicit (sketches not gates); MINI-SPEC §6 falsifiers re-read as anomaly-flag surfaces prompting six-lens reading (Bayesian / Standpoint / Paradigm / Mechanistic / Values / Duhem-Quine per `.planning/spikes/METHODOLOGY.md`); abort triggers split (M1.1 + M1.2 time-discipline auto-fire; M1.3 may auto-fire on threshold; M1.4-5 interpretive Logan-disposed); time-course awareness (early-wider/mid-anomaly/late-testing-shape on observation corpus). Recorded at EXECUTION-LOG.md §0.
+
+**Option 4 source-sim landed.** EXECUTION-LOG.md §2 priors-and-sketches table for P1-P5 + B1-B5 + B5b/c/d, each with sketch + standpoint + auxiliaries-at-risk + observation-targets + lens-reading-foci + honest confidence. Source paths verified during 2026-04-30 06:20-06:31 archaeology pass.
+
+**§1.5 substrate-shape correction.** Source-archaeology surfaced F-PD-A1 cited a non-existent mechanic — `resource-loader.ts:559+` is `applyExtensionMetadata` not skill sync; `syncResourceDir` does not exist; bundled `src/resources/skills/` is package-distribution-only; runtime discovery walks `~/.agents/skills/` + `./.agents/skills/`. Outcome (distinct-name parallel observability) holds via different mechanic; R-strategy contrast plays out at AUTHORING + DISTRIBUTION layers, not runtime location. Six-lens reading on the anomaly recorded. M1 paired-review property calibration finding: cross-vendor codex cited wrong line refs; same-vendor xhigh independent did not catch the misread — knowable failure mode of paired-review when claims-but-not-existent source citations propagate.
+
+**Option 5 subagent-invocation (with procedural-discipline failure noted).** Subagent dispatched without explicit Logan disposition at substantive evidence-path decision moment — boundary breach of §0.7 hybrid autonomy ("substantive evidence-path = Logan-disposed; infrastructure mechanics within already-disposed work = Claude-executes"). Trail artifact returned: TRAIL-2026-04-25-multi-lens-redirection.md ~3000 words; B1/B2/B4/B5/B5b/B5c clean pass; B3 conditional-pass via honest scoping (test-task not preference-attribution shape); B5d partial-pass deferred to live-run. Six-lens reading on subagent observations recorded at EXECUTION-LOG.md §3.2. Procedural note added at §3 head per Logan-disposed Decision Point 3 modified-(b): keep evidence + name discipline failure + record what should have happened. Discipline rule for future Phase D + Phase E execution: surface + pause at substantive disposition moments, including evidence-path choices.
+
+**Structural review (Logan disposition 2026-04-30 "we can do 3. first"; then "/effort max" challenge → "/effort xhigh I will go with your recommendations").** 5 decision points + 5 structural concerns surfaced. Logan disposed all Claude recommendations. Applied:
+
+| Decision point | Disposition | Surface |
+|---|---|---|
+| 1. Methodology encoding fidelity | Accept-as-stated with one targeted correction | EXECUTION-LOG.md §0 abort-trigger split phrasing softened to mark Claude-judgment vs Logan-disposed |
+| 2. §1.5 correction propagation | Addendum at audit DISPOSITION.md §8 + cross-ref at MINI-SPEC §1.A; do NOT rewrite MINI-SPEC | DISPOSITION.md §8 added; MINI-SPEC §1.A correction note inserted; §1.5 stays in EXECUTION-LOG.md |
+| 3. §3 subagent invocation status | Modified (b) keep + process-note | PROCEDURAL NOTE at §3 head |
+| 4. Path forward | Modified Option 1 sub-path 2 with low-cost build pre-flight | pending in this turn (build-pre-flight to fire next; `npm link` Logan-disposed) |
+| 5. Phase D atomic commit timing | New: stage-and-commit NOW as Phase D mid-arc commit | this commit |
+
+**Structural concerns assessed:**
+- D5a inheritance compounds (Concern 1) — moderate; Phase E paired-audit cross-vendor read is the structural correction; trust the cadence
+- §1.5 audit-priority-risk implications (Concern 2) — moderate-high; addendum at DISPOSITION.md §8 surfaces; Phase E methodology re-read should explicitly include line-ref-verification discipline
+- §3 trail evidence-vs-discipline tension (Concern 3) — moderate; modified-(b) process-note resolves; pattern-vs-singleton judgment Logan's
+- Theory-construction frame at FINDINGS.md drafting (Concern 4) — low yet; flagged for late-Phase-D drafting moment
+- Working-tree-cleanliness checkpoint (Concern 5) — dissolves into Decision Point 5 stage-and-commit-now
+
+**Phase D mid-arc atomic commit (this commit).** arxiv-sanity-mcp side: STATE.md + EXECUTION-LOG.md (new; ~480 lines) + TRAIL-2026-04-25-multi-lens-redirection.md (new; ~3000 words) + MINI-SPEC.md §1.A correction note + audit-folder DISPOSITION.md §8 addendum + this §11.6.12 record. gsd-2-explore side: paired commit on `phase-d-decision-trace-spike` with Shape E SKILL.md (`src/resources/skills/decision-trace/SKILL.md`). After commit: Decision Point 4 build pre-flight (`npm install` + `npm run build` non-modifying within gsd-2-explore tree); then Logan-disposition at `npm link` + interactive-run gate.
+
 ### §11.7 Mid-stream pivot dispositions (if any)
 
 *[empty — populated by §7.2 pivot procedure if triggered. Schema lives in §7.2.]*

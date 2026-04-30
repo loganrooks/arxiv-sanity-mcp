@@ -320,6 +320,27 @@ If Logan disposes option 2 (Addendum-shape):
 - Phase C precedent (audit-arc disposition with reasoning trail + Option 4 hybrid):
   - `.planning/gsd-2-uplift/audits/2026-04-29-incubation-checkpoint-audit/DISPOSITION.md`
 
+## §8. Post-disposition correction (added 2026-04-30 mid-Phase-D execution)
+
+**Trigger:** Source-archaeology pass to ground Option 4 priors-and-sketches table 2026-04-30 06:20-06:31 surfaced that F-PD-A1's source citation is misread.
+
+**The correction:** F-PD-A1 cited "resource-loader.ts:559, 596-598 syncs bundled `resources/skills` to `~/.agents/skills` at init" + "syncResourceDir 256-275 removes destination subdirectories before copy" — but verified source reading shows: (a) lines 559+ in `packages/pi-coding-agent/src/core/resource-loader.ts` are `applyExtensionMetadata` (extension path metadata propagation), NOT skill sync; (b) `grep syncResourceDir` returns no matches in resource-loader.ts; (c) skills discovery walks ECOSYSTEM_SKILLS_DIR (`~/.agents/skills/`) per `skills.ts:421-423` + ECOSYSTEM_PROJECT_SKILLS_DIR (`./.agents/skills/`) per `skills.ts:425` only — bundled `src/resources/skills/` is NOT in the runtime discovery path; (d) `scripts/copy-resources.cjs` copies `src/resources/` → `dist/resources/` for package distribution, NOT to user-side `~/.agents/skills/` at install.
+
+**What this changes:** F-PD-A1's *outcome* (distinct-name disposition for parallel observability) holds, but rests on a different mechanic. The R-strategy R2/R4 contrast plays out at AUTHORING residence (gsd-2 repo source vs user-side-only) + DISTRIBUTION residence (via package vs no package), NOT at runtime location. At runtime, both shapes co-reside at `~/.agents/skills/` under distinct subdirectory names (`decision-trace/` and `decision-trace-r4/`); collision per `skills.ts:401-417` only fires on same `name:` field, which differs.
+
+**M1 paired-review property calibration finding:** Cross-vendor codex audit (audit-findings-A) cited the wrong line refs and the same-vendor adversarial-auditor xhigh independent read (audit-findings-B) did not catch the misread. Two readers + two vendor positions + one missed non-existence claim. This is a knowable failure mode of the paired-review discipline (claimed-but-not-existent source citations propagate through paired reads). It is substrate-evidence about how M1 operates under spike-intensive conditions, per RELATIONSHIP-TO-PARENT.md §2 substrate-behavior-channel.
+
+**Mitigations applied:**
+- Full reasoning + six-lens reading on the anomaly recorded at `.planning/gsd-2-uplift/wave-2/decision-trace/EXECUTION-LOG.md` §1.5
+- Cross-reference added to MINI-SPEC.md §1.A noting the post-disposition correction
+- Theory-construction-stage update: R-strategy contrast theory revised mid-Phase-D (recorded at EXECUTION-LOG.md §1.5)
+
+**Recommended downstream propagation:**
+- Phase E paired-audit should explicitly verify cited line refs against source ("line-citations-as-not-just-claimed-but-verified" discipline)
+- Consider whether to update `.planning/spikes/METHODOLOGY.md` to include "line-ref-verification" as a paired-review practice (deferred to post-Phase-D scope per §0 methodology disposition)
+
+**Disposition status:** the underlying §0 disposition (option 3 — Revise-before-dispatch combined signal full-width with B1 absorbed) remains valid. This §8 records a post-disposition mechanics correction that does not change the disposition; it only refines the substrate-mechanics auxiliary the disposition rests on. No re-disposition required; trace preserved per §0.5 traces-over-erasure discipline.
+
 ---
 
-*DISPOSITION.md surfaced by main-thread Claude (Opus 4.7, /effort max) 2026-04-30 per Logan-prompted disposition-surfacing-with-adversarial-defense pattern (parallel to STEP1-DISPOSITION.md). Logan-disposition pending. The §1 per-finding reasoning + §2 revision plan + §3 sensitivity map + §4 acknowledged-audit-priority-risks + §5 disposition options are surfaced for Logan-disposition; verbatim Logan-disposition language replaces "pending" frontmatter status + §0 summary on disposition. The in-session-collaboration risk applies recursively to this DISPOSITION.md itself per §4 risk #1; Logan-disposition is the structural correction.*
+*DISPOSITION.md surfaced by main-thread Claude (Opus 4.7, /effort max) 2026-04-30 per Logan-prompted disposition-surfacing-with-adversarial-defense pattern (parallel to STEP1-DISPOSITION.md). Logan-disposition pending. The §1 per-finding reasoning + §2 revision plan + §3 sensitivity map + §4 acknowledged-audit-priority-risks + §5 disposition options are surfaced for Logan-disposition; verbatim Logan-disposition language replaces "pending" frontmatter status + §0 summary on disposition. The in-session-collaboration risk applies recursively to this DISPOSITION.md itself per §4 risk #1; Logan-disposition is the structural correction. §8 post-disposition correction added 2026-04-30 mid-Phase-D per Logan-disposed Decision Point 2 from structural review.*
