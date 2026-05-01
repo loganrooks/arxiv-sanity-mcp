@@ -486,11 +486,72 @@ The §2.1-§2.2 sketches are now grounded; live engagement requires gsd-2 to act
 [pending — fill at end of Phase D execution if more surfaces post-live-run]
 ```
 
-## §4. Cross-references
+## §4. INTERIM-OUTPUT MARKER (added 2026-04-30 post (V'.a) disposition)
 
-- MINI-SPEC.md (this folder) — Phase D dispatch contract.
-- `.planning/gsd-2-uplift/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` — option 3 + 11 revisions applied.
-- `.planning/gsd-2-uplift/wave-2/pre-D-probes/STEP1-DISPOSITION.md` — axis 1-4 dispositions.
-- `.planning/gsd-2-uplift/wave-2/pre-D-probes/STEP2-practical-decisions.md` — H6/H7/M1/M3/M4 envelope.
-- `.planning/gsd-2-uplift/exploration/INCUBATION-CHECKPOINT.md` §7.10.4 work-flow.
-- `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` §1.4 Phase D + §0.7 hybrid autonomy.
+**Status:** This EXECUTION-LOG.md is **interim Phase D output**, NOT Phase D's
+final FINDINGS.md. The current evidence corpus (§0-§3 above + §3.5 heal-skill
+observations) is preserved as work-product input to the replanned mapping-shape
+Phase D, not as Phase D's evidence under the misshapen single-target-spike scope.
+
+**Disposition trail.** Five frame-revisions surfaced on Logan's direct prompting
+in 2026-04-30 mid-arc turn-cluster (build pre-flight; test-shape; intervention-
+surface; multi-surface; gsd-2-native-placement). The fifth crystallized as
+**methodology-question-shape-mismatch**: spike methodology was applied to a
+mapping question (substrate-design-accommodation: "does this surface-set
+accommodate this practice?" is mapping-shape, not "does X work?" spike-shape).
+The five frame-revisions trace to this single methodological mismatch as their
+load-bearing source.
+
+**Logan disposed (V'.a) trajectory-replan** /effort xhigh 2026-04-30 ("I accept
+(V'.a)"). cheerful-forging-galaxy.md will be revised to replace single-target-
+spike Phase D with mapping-shape Phase D; Phase E reshapes to test mapping-
+coherence; Phase F gates on mapping-coherence + intent-intervention-feasibility.
+Plan-self-audit cycle scoped to question-shape-fit. Frame-revision-checks built
+into trajectory mechanics (Phase entry / mid-Phase / Phase output draft).
+
+**Substantive findings carried forward** (not lost; preserved across replan):
+- Decision-trace gsd-2-native-placement misfit (companion-tool to gsd_decision_
+  save / forensics-extension-shaped, NOT skill-shape; skill-shape was R4-
+  disguised-as-R2)
+- Substrate-mismatch finding (gsd-2's `.gsd/DECISIONS.md` schema vs. arxiv-
+  sanity-mcp's multi-modal decision-trail across deliberations + ADRs +
+  handoffs + git + audits — substantive substrate-shape evidence)
+- Multi-surface evidence-need + intent-tangled-with-surface-choice findings
+- §1.5 substrate-shape correction (resource-loader.ts mechanic doesn't exist
+  as F-PD-A1 cited)
+- M1 paired-review property calibration (paired audit-arc didn't catch
+  methodology-mismatch; audit-scope at framing-inheritance risk under same
+  misframe as artifact)
+- §3 subagent invocation channel (a) clean pass on B1/B2/B4/B5/B5b/B5c
+- Source-grounded P1/P3 (skills.ts:421-433 walk; skill-manifest.ts:33-123
+  allowlist mechanics)
+- Investigation findings (no skill-list diagnostic; headless requires `.gsd/`;
+  per-unit-type allowlist binds at queued-unit-execution time via skillFilter
+  at agent-session.ts:1045; auto-prompts.ts:40 imports resolveSkillManifest)
+
+**Frame-revision pattern as substrate-shape evidence.** Closure-pressure-into-
+elaboration pattern survives cross-vendor xhigh + same-vendor adversarial-
+auditor xhigh + D5a awareness + xhigh effort + max effort + methodology
+codification + premise-bleed audit-arc precedent. Broke only at max + Logan
+correction + defense-against-critics combined. Substrate must support
+maximum-discipline configuration + structured-external-pressure as routine.
+
+**Canonical deliberation record:**
+`.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md`
+
+**MINI-SPEC.md status.** The Phase D dispatch contract under spike-shape framing
+is **superseded by replan**. Preserved as historical record of what was attempted
+under the misshapen scope; the mapping-shape Phase D will have its own contract
+authored as part of cheerful-forging-galaxy.md revision.
+
+## §5. Cross-references
+
+- MINI-SPEC.md (this folder) — Phase D dispatch contract under spike-shape framing (superseded by replan).
+- `.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md` — canonical deliberation record for methodology-mismatch finding + (V'.a) disposition.
+- `.planning/gsd-2-uplift/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` — paired audit-arc that fired Phase D entry but did not surface methodology-mismatch (Option 3 + 11 revisions applied; §8 addendum recorded substrate-shape correction).
+- `.planning/gsd-2-uplift/wave-2/pre-D-probes/STEP1-DISPOSITION.md` — axis 1-4 dispositions (under spike-shape framing).
+- `.planning/gsd-2-uplift/wave-2/pre-D-probes/STEP2-practical-decisions.md` — H6/H7/M1/M3/M4 envelope (under spike-shape framing).
+- `.planning/gsd-2-uplift/exploration/INCUBATION-CHECKPOINT.md` §7.10.4 work-flow (under spike-shape framing).
+- `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` §1.4 Phase D + §0.7 hybrid autonomy (revision pending per (V'.a) step 2).
+- Forward: `.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md` (forthcoming per (V'.a) step 5).
+- Forward: `.planning/gsd-2-uplift/audits/202X-XX-XX-trajectory-replan-audit/` (forthcoming per (V'.a) step 3).
