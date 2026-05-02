@@ -1,8 +1,8 @@
 # Plan: Trajectory from Audit-Arc-Complete to gsd-2-Uplift Extraction
 
 **Plan author:** Claude (Opus 4.7), 2026-04-29, in-session-collaboration with Logan
-**Plan status:** REVISED 2026-04-29 (post-Phase-A-audit; revise-before-execute disposition applied per audit findings F1-F9). Ready for Phase B execution.
-**Plan-self-audit status:** complete — `.planning/gsd-2-uplift/audits/2026-04-29-trajectory-plan-audit/PLAN-AUDIT.md` (cross-vendor codex GPT-5.5 xhigh; 9 findings; 1A/6B/2C; revise-before-execute disposition recorded in DISPOSITION.md)
+**Plan status:** REVISED 2026-05-01 ((V′.a) Step 2 — methodology-fit response: spike-shape Phase D replaced with mapping-shape Phase D per 2026-04-30 §2.6 disposition; Phase E reshaped to test mapping-coherence; Phase F gate adjusted to mapping-coherence + intent-intervention-feasibility; §0.8 acknowledges methodology-fit response; §0.4 expanded with new standing-context references). Phases A, B, C complete; Phase D under (V′.a) replan with current evidence corpus marked interim per 2026-04-30 §2.8 + commit `43e652b`.
+**Plan-self-audit status:** Phase A complete — `.planning/gsd-2-uplift/audits/2026-04-29-trajectory-plan-audit/PLAN-AUDIT.md` (cross-vendor codex GPT-5.5 xhigh; 9 findings; 1A/6B/2C; revise-before-execute disposition). (V′.a) Step 3 plan-self-audit pending (scoped to question-shape-fit per 2026-04-30 §4 step 3; this revision is the artifact under audit). **Step 3 audit-spec drafting form: cross-vendor codex independent draft recommended** (per Step 2 self-review concern surfaced 2026-05-01 — audit-spec-itself-at-framing-inheritance-risk per 2026-04-30 §5.3 finding requires independence at scope-level, not just at execution-level; Claude-drafted-audit-spec-after-Logan-disposed-checks would re-import the failure-mode-signature). Logan disposes spec-drafting form before audit dispatch.
 **Authoritative location:** `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` (in-repo, version-controlled — the canonical execution authority and audit provenance). The `/home/rookslog/.claude/plans/cheerful-forging-galaxy.md` runtime copy is a working-draft mirror only; for any fresh-session execution, treat the in-repo copy as authority.
 
 ---
@@ -79,8 +79,12 @@ Read these in order before executing any phase. **Do not skip.** Each carries lo
 11. **`.planning/spikes/METHODOLOGY.md`** — six interpretive lenses + paired-review practice disciplines (A-F) + model-verification disciplines.
 12. **`.planning/foundation-audit/METHODOLOGY.md`** — decision-review epistemic discipline; evidence tracing; alternative evaluation; sensitivity analysis; inference-chain integrity.
 13. **`.planning/STATE.md`** — current state-of-play (will reflect plan-execution progress as phases complete).
+14. **`.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md`** — Phase B output; test-case-vs-substrate framing as standing context (lifted from §0.3 here into a discoverable artifact). Load-bearing for keeping the diagnostic loop in foreground during mapping-shape Phase D.
+15. **`.planning/gsd-2-uplift/EXTERNAL-VISION-CONTEXT.md`** — substrate-vision standing context (2026-05-01). §1 corrected gsd-2-uplift project-shape (5-property: identity-preserving / pressure-respecting / pushes-limits-in-reasonable-ways / reasonable-objectives-discovered-through-exploration / anchored-against-concrete-test-cases). §2 pressure-not-destination relationship to harness-studio. §3 12 substrate-vision properties (the depth-spectrum mapping-shape Phase D evaluates). §4 scope-discipline (burden-of-proof-on-exclusion + four-category C1/C2/C3/C4 model + identity-distortion narrowness). §5 Phase D mapping purpose under this framing. **Load-bearing for mapping-shape Phase D scope-control** — §3 enumerates what gets mapped; §4 governs how candidate interventions get classified; §5 specifies what the mapping output looks like.
+16. **`.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md`** — methodology-question-shape-mismatch finding (spike methodology applied to mapping question) + (V′.a) disposition + five frame-revisions trace + Logan-disposition scope clarification (§2.7) + calibration findings (§5: closure-pressure pattern recurrence + audit-discipline limits + Logan's correction about audit-load transfer). **Load-bearing for understanding why mapping-shape Phase D exists.**
+17. **`.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md`** (forthcoming per (V′.a) Step 5; reference now so future-Claude executing post-Step-5 reads it) — standalone methodology-mismatch substrate-shape evidence artifact.
 
-After reading: confirm internal model of (a) horizon-stack; (b) test-case-vs-substrate relationship; (c) §7.1 reading-frame; (d) audit-arc trail outcomes; (e) discipline-set per §0.5 below.
+After reading: confirm internal model of (a) horizon-stack; (b) test-case-vs-substrate relationship; (c) §7.1 reading-frame; (d) audit-arc trail outcomes; (e) discipline-set per §0.5 below; (f) **mapping-vs-spike methodology distinction per §0.8 + 2026-04-30 deliberation §2.5**; (g) **substrate-vision 12-property set + four-category scope-confidence model per EXTERNAL-VISION-CONTEXT.md §3-§4 — these govern mapping-shape Phase D scope**.
 
 ### §0.5 Discipline reminders (load-bearing for execution)
 
@@ -106,6 +110,13 @@ After reading: confirm internal model of (a) horizon-stack; (b) test-case-vs-sub
 
 **Spike-process discipline (provenance: `feedback_spike_process` + `reference_spike_design`).** For spike-program decisions: separate designer/critic/executor roles; AI-agent evaluation > list-review > metrics; consult `reference_spike_design` checklist when designing experiments.
 
+**Frame-revision-check ((V′.a) Step 4 mechanism, added 2026-04-30).** Each phase has explicit "is the question we're answering still right?" pauses, performed by Claude with surfacing to Logan, BEFORE within-frame elaboration. This is the structural mitigation against the closure-pressure-into-elaboration pattern documented 2026-04-30 §5.1 + recurring 2026-05-01: surface frame-revision question early, before elaborate within-frame work commits. Specific check-points (per §6.1 + §6.2):
+- **Phase entry** (after reading inputs; before drafting outputs): "Is the question this phase exists to answer still the right question? Has the question-shape shifted since the prior phase? Is the methodology applied to this phase still right for the question-shape?"
+- **Mid-Phase if observations diverge from priors** (or after a within-mapping observation that surfaces accommodation that the original phase scope didn't predict): "Are observations diverging from priors in a way that warrants pause-and-re-frame rather than continued within-frame elaboration?"
+- **Phase output draft** (before commit): "Has the artifact drifted from the question-shape it was authored to answer? Have new frame-revision questions surfaced during construction?"
+
+The check fires by Claude → surfaces to Logan if frame-revision is warranted → Logan disposes (continue within-frame / pause for frame-revision / restart phase under revised frame). Per 2026-04-30 §2.7: Logan-disposition here is for capturing user-intent on frame-revision direction, NOT for substrate-design-soundness audit-of-last-resort. Claude must do agent-side reasoning sufficient to commit to "within-frame OK" or "frame-revision needed" before defaulting to Logan.
+
 ### §0.6 Failure-mode taxonomy (kinds of erring to check against)
 
 Different kinds of erring need different checks. The plan's quality gates target each. **§5.6 below** maps each row of this taxonomy to the phase(s) where it applies, the concrete check, and the disposition-owner.
@@ -125,8 +136,9 @@ Different kinds of erring need different checks. The plan's quality gates target
 | **Strict-M1 undersell at recommendation stage** | Underselling cross-vendor or same-vendor recommendation because of M1 asymmetry-as-claimed; should use M1 asymmetry-as-empirically-more-complex | Recommendation calibration per SYNTHESIS-COMPARISON.md §4.1 |
 | **Execution error** | Wrong tool, wrong file, wrong command — pure mechanics failure | Pre-execution verification; post-execution verification |
 | **In-session-collaboration risk** | Claude-drafted artifacts carry Logan's framing inheritance | D5a caveat application; cross-vendor independent reads at load-bearing artifacts; ExitPlanMode discipline |
+| **Methodology-question-shape mismatch (added 2026-04-30 per (V′.a))** | Methodology applied to a question-shape it doesn't fit (e.g., spike methodology applied to mapping question per 2026-04-30 §2.5 + §3.5) | Frame-revision-check at phase entry / mid-phase / phase output draft per (V′.a) Step 4; audit-spec lens-question "is the methodology still right for the question-shape?"; plan-self-audit at trajectory-plan revisions scoped to question-shape-fit |
 
-### §0.7 Logan-disposed plan parameters (resolved 2026-04-29)
+### §0.7 Logan-disposed plan parameters (resolved 2026-04-29 items 1-5; item 6 added 2026-04-30 per (V′.a))
 
 1. **Autonomy boundary.** Hybrid: autonomous within phases; pause at phase boundaries. Claude executes within a phase autonomously (drafting artifacts, dispatching audits, applying dispositions on lower-stakes items). Pauses at phase boundaries (between A→B, B→C, etc.) for Logan disposition before next phase begins. Preserves Logan-disposition discipline at load-bearing junctures while enabling within-phase momentum.
 
@@ -137,6 +149,23 @@ Different kinds of erring need different checks. The plan's quality gates target
 4. **Plan endpoint.** Phase H complete (extraction + integration verified). Plan stops when both repos are coherent post-extraction, all references work, EXTRACTION-LOG.md complete. Subsequent uplift design + build happens in new repo with its own plan/orchestration.
 
 5. **Failure-mode-checks-per-phase.** Plan-default: checks relevant to that phase's load-bearing-ness (per §5.6 mapping table). Phase A plan-self-audit applies all §0.6 taxonomy checks (it's auditing the plan itself; comprehensive coverage warranted). Other phases apply the subset relevant to their load-bearing dimensions per §5.6. Logan-discretion to override per phase at execution time.
+
+6. **(V′.a) trajectory-replan disposition (resolved 2026-04-30, Logan /effort xhigh).** Spike-shape Phase D was replaced with mapping-shape Phase D after the methodology-question-shape-mismatch finding crystallized (per `.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md` §2.5-§2.6). Phase E reshapes to test mapping-coherence; Phase F gate adjusts to mapping-coherence + intent-intervention-feasibility. Phase D current evidence corpus (per Phase D entry through 2026-04-30) is preserved as **interim work-product** (per 2026-04-30 §2.8 + commit `43e652b`), feeding into the replanned mapping-shape Phase D — NOT Phase D's final FINDINGS.md output. The plan-self-audit per (V′.a) Step 3 is scoped explicitly to question-shape-fit (mapping vs. spike) rather than the original Phase A audit's general "is this plan well-formed?" lens.
+
+### §0.8 Methodology-fit acknowledgment (mapping-shape vs. spike-shape question)
+
+**Spike methodology fits "does X work?" questions** under conditions where the right experiment isn't pre-known. Spike shape: pick target → experiment → does it work? → revise hypothesis. arxiv-sanity-mcp's spike program at `.planning/spikes/` uses this methodology where it fits.
+
+**Substrate-design-accommodation is a different question-shape — a *mapping* question.** "Does this surface-set accommodate this practice?" Mapping shape: survey surfaces → compose mental model → check accommodation against intervention-intents → identify gaps → iterate model. Mapping is iterative and theory-constructive; it does not converge on a single experiment-resolved answer the way spikes do.
+
+**The 2026-04-30 finding.** Five frame-revisions during Phase D's spike-shape execution (build pre-flight → test-shape → intervention-surface → multi-surface + intent-tangled → gsd-2-native-placement) all traced to a single source: spike methodology applied to a mapping question. Force-fitting produced the single-target-skill-shape misframe, the multi-surface omission, the intent-tangled blindness, and the gsd-2-native-placement miss. The fix is methodology-fit at trajectory-shape level, not within-frame elaboration. This trajectory revision IS that methodology-fit response.
+
+**Implication for execution.**
+- **Phase D under (V′.a) is mapping-shape, not spike-shape.** It produces a substrate-shape map across (a) gsd-2's intervention surfaces + their composition mechanics; (b) arxiv-sanity-mcp's actual practice as substrate-evidence-channel; (c) sketched intervention-intents per substrate-area (S1-S8 per 2026-04-30 §3.4); (d) joint accommodation-evidence at the surface × intent intersection.
+- **Spike methodology remains valid for "does X work?" questions** that may arise within or alongside mapping work (e.g., probing whether a specific extension surface mechanically supports a specific intervention). Such spikes nest *inside* the mapping; they do not replace it.
+- **Watch for spike→mapping contamination.** When a within-mapping question genuinely is "does X work?" — fire a bounded spike for it. When the question is "does this surface-set accommodate this practice?" — keep mapping. Conflating the two is the failure-mode this revision exists to address.
+
+**Where this could be wrong.** Counter-claim: spike methodology can be scoped flexibly to do mapping work; what was needed was broader-scoped spikes, not different methodology. Counter-counter (per 2026-04-30 §3.5): the prior Phase D scope WAS spike-shaped (single-target with M1 abort triggers; theory-construction frame of EXECUTION-LOG.md §0; build → test → findings) and that scope produced single-surface focus. Calling broader-scoped work "spike" would be cosmetic re-labeling without addressing methodology-fit. (V′.a) Step 3 plan-self-audit is scoped to challenge this finding explicitly.
 
 ---
 
@@ -219,61 +248,120 @@ The trajectory is **eight phases, A through H.** Each phase has: goal, inputs, o
 
 **Commit:** `docs(gsd-2-uplift): incubation-checkpoint adjudication + DECISION-SPACE.md updates + audit`.
 
-### §1.4 Phase D: First-second-wave-target dispatch + execution
+### §1.4 Phase D: Mapping-shape substrate-shape evidence collection (REVISED 2026-04-30 per (V′.a))
 
-**Goal:** Execute the first-second-wave-target Logan disposed in Phase C. This is the FIRST PIECE OF UPLIFT WORK — the test of whether Phase C's framing held up under contact with substrate-shape work.
+**Goal:** Produce a **substrate-shape map** that surfaces, for each of the 12 substrate-vision properties (per EXTERNAL-VISION-CONTEXT.md §3), where current gsd-2 surface-mechanics meet, partially-meet, or do-not-meet the property under arxiv-sanity-mcp's actual practice — at multiple intervention depths (shallow / mid / deep). The map reclassifies candidate interventions across C1 (confirmed in-scope), C2 (plausibly in-scope, evidence-needed), C3 (aspirationally in-scope, deeper exploration warranted) per EXTERNAL-VISION-CONTEXT.md §4.2; it does NOT relocate items out of C4 (those stay anchored by harness-studio pressure, requiring vision-frame revision rather than mapping evidence).
 
-**Why this phase exists in this plan:** Per §0.3 test-case-vs-substrate framing, the first-second-wave-target produces evidence about substrate-shape under uplift conditions. Without executing it, extraction would lack a stability test and would happen on framing alone.
+**Why this phase exists (under (V′.a)):** Per §0.8 methodology-fit acknowledgment, substrate-design-accommodation is a mapping question, not a spike question. The map is the load-bearing evidence-product feeding Phase E (mapping-coherence test) and Phase F (extraction-readiness gate). Without it, extraction would happen against an unmapped substrate — high risk of the misfits surfaced 2026-04-30 (skill-shape gsd-2-native-placement misfit; substrate-mismatch between gsd-2 decision-DB and arxiv-sanity-mcp's actual decision-artifact conventions) re-occurring at design time.
 
-**Inputs:** INCUBATION-CHECKPOINT.md disposition. Selected first-target-shape (one of: effective-state-emission probe / release-metadata-checklist artifact / Context A/F long-arc decision-trace skill/workflow / headless orchestration recipe / OR Logan-disposed alternative).
+**Inputs:**
+- INCUBATION-CHECKPOINT.md disposition (Phase C — operating-frame).
+- EXTERNAL-VISION-CONTEXT.md §3 (12 substrate-vision properties; mapping target).
+- EXTERNAL-VISION-CONTEXT.md §4 (scope-discipline; burden-of-proof + four-category model + identity-distortion narrowness).
+- EXTERNAL-VISION-CONTEXT.md §5 (Phase D mapping purpose specification).
+- META-SYNTHESIS.md (cross-vendor codebase-understanding-audit; gsd-2 surface vocabulary + mechanics).
+- 2026-04-30 deliberation §3.1-§3.4 (gsd-2-native-placement finding; substrate-mismatch finding; multi-surface evidence-need; intent-tangled-with-surface-choice).
+- 2026-04-30 deliberation §3.4 sketched intervention-intents (S1-S8): S1 multi-modal decision-trail support / S2 layered audit-arc support / S3 methodology codification / S4 deliberation discipline / S5 decision reconstruction / S6 long-arc anti-pattern detection / S7 comprehension-across-time (Context A primary) / S8 modular-surfaces-that-stay-optional (Context F secondary).
+- Phase D interim evidence corpus (per 2026-04-30 §2.8 + commit `43e652b`): EXECUTION-LOG.md §1.5 substrate-shape correction; M1 calibration; source-grounded P1/P3; investigation findings; gsd-2-native-placement misfit; substrate-mismatch finding. **Carried as inputs, not as final findings.**
+- arxiv-sanity-mcp practice as substrate-evidence-channel: `.planning/deliberations/`, `docs/adrs/`, `.planning/handoffs/`, `git log`, `.planning/STATE.md`, audit folders, ADR-0005-style commitments, spike program outputs (the practice the substrate must accommodate).
 
-**Outputs:** Depend on first-target-shape. Pattern:
-- If first-target is a probe (e.g., P5 effective-state-emission): probe execution + findings document + disposition.
-- If first-target is a design-shape candidate (e.g., headless orchestration recipe): design artifact + spike-style implementation + findings.
+**The mapping target — four axes:**
 
-Specifies in `.planning/gsd-2-uplift/wave-2/` (new directory; or per Logan-disposed structure).
+The substrate-shape map is a structured artifact populated across four axes:
 
-**Quality gate:** Per first-target-shape. If probe-shape: cross-vendor xhigh audit of findings + disposition. If design-shape: same-vendor xhigh adversarial-auditor of design framing + cross-vendor xhigh audit of evidence-load. Spike-program discipline applies (per `.planning/spikes/METHODOLOGY.md` six lenses + paired-review practices A-F).
+1. **gsd-2 intervention surfaces + composition mechanics.** Surface set per META-SYNTHESIS: skills, hooks, workflow templates (markdown-phase + yaml-step engines), extensions, MCP tools, custom subcommands, decision-DB subsystem (`gsd_decision_save` / `.gsd/DECISIONS.md` / journal / activity / sessions), knowledge graph, per-unit-type allowlists, R4 external orchestration. Map records: what each surface is, what it composes with, what state it touches, what its identity-preservation envelope is (per EXTERNAL-VISION-CONTEXT.md §4.3).
+2. **arxiv-sanity-mcp practice (substrate-evidence-channel).** What practice patterns arxiv-sanity-mcp actually uses (deep deliberation; audit-arcs; ADR-grounded decisions; multi-artifact decision-trails; handoff-bridged sessions; closure-pressure detection; framing-widening; M1 paired-review; spike methodology where it fits). Map records: what the practice is, what artifacts/conventions support it, what the substrate would need to accommodate.
+3. **Sketched intervention-intents (S1-S8 per 2026-04-30 §3.4 + extensions).** What we'd want gsd-2 to do if it could. Each intent implicates multiple surfaces; intents are *sketches* and revisable as mapping evidence accumulates (per intent-tangled-with-surface-choice resolution in 2026-04-30 §3.4).
+4. **Joint accommodation-evidence (surface × intent intersection).** For each (surface, intent) cell where mapping is informative: what's the shallow-depth accommodation (small extension, light hook, etc.); what's the mid-depth accommodation (decision-DB extension; new unit-types; workflow-template additions); what's the deep accommodation (vision-aware lifecycle; classification-driven workflow-selection; full progressive activation). What's the identity-preservation envelope at each depth? What's the harness-studio-pressure foreclosure-risk at each depth?
 
-**Failure-branch:** If first-target-execution surfaces evidence that contradicts incubation disposition, return to Phase C and re-adjudicate (this is *productive curiosity*, not failure — the spike-program is generating new knowledge that wasn't available at incubation time). Record the re-adjudication trigger explicitly.
-
-**Commit:** `docs(gsd-2-uplift): first-second-wave-target ${target-shape} execution + audit + disposition`.
-
-### §1.5 Phase E: Stability test
-
-**Goal:** Verify that Phase C dispositions and Phase D evidence cohere. The disposition is "stable" if it holds across:
-1. A fresh-session re-read (per §0.5 D5a caveat — does the disposition survive without Claude+Logan in-session-collaboration carrying it?).
-2. The Phase D evidence (does first-target evidence support, contradict, or extend the disposition?).
-3. A cross-vendor read (does cross-vendor xhigh agree the disposition is well-formed and well-evidenced?).
-
-**Inputs:** INCUBATION-CHECKPOINT.md + Phase D outputs + DECISION-SPACE.md updates from Phase C.
+**The 12-property scope-control overlay.** For each of the 12 substrate-vision properties (per EXTERNAL-VISION-CONTEXT.md §3), the map records: at what depth (shallow / mid / deep) is the property pursuable under current gsd-2 surface-mechanics? What's the C1/C2/C3/C4 confidence per depth (per EXTERNAL-VISION-CONTEXT.md §4.2)? **Burden of proof rests on exclusion** (per §4.1): default depth is candidate-in-scope; downgrade requires demonstrated grounds.
 
 **Process:**
-1. Logan reads INCUBATION-CHECKPOINT.md + Phase D outputs in a fresh session (or after a deliberate gap from Phase C session).
-2. Cross-vendor xhigh audit reads same set, lens: "is the disposition + first-target evidence coherent and well-formed; does the disposition narrow the design space appropriately given the evidence; or has the evidence shifted ground?"
-3. Same-vendor xhigh adversarial-auditor optionally fires per Logan-discretion (the M1 paired-review property argues for it at this load-bearing decision).
-4. Logan disposes: stable / unstable / partially-stable.
+1. Read inputs (per §0.4 mandatory pre-reading + Phase D interim corpus).
+2. **Phase-entry frame-revision-check** (per §6.1 + §0.5 — the (V′.a) Step 4 mechanism): is the question we're answering still right? Is mapping the right shape? Surface to Logan if frame-revision is warranted.
+3. Survey gsd-2 intervention surfaces + composition mechanics (axis 1). Read META-SYNTHESIS as primary grounding; supplement with source-archaeology where mechanics are unclear. Output: surface-mechanics inventory with identity-preservation envelope per surface.
+4. Survey arxiv-sanity-mcp practice (axis 2). Inventory what practice patterns the substrate must accommodate (deliberation discipline; audit-arc patterns; multi-modal decision-trails; ADR-grounded commitments; handoff conventions; closure-pressure-pattern detection; M1 paired-review; spike methodology where it fits; offshoot pattern; etc.). Output: practice inventory with substrate-needs-per-practice.
+5. **Mid-Phase frame-revision-check** (per §6.1 + §0.5): are observations diverging from priors? If new mapping-shape methodology questions surface, address them. If a within-mapping question genuinely shifts to "does X work?" shape, fire a bounded spike for it (per §0.8 spikes-nest-inside-mapping discipline).
+6. Articulate sketched intervention-intents (axis 3). Start from S1-S8 per 2026-04-30 §3.4; add others surfaced during the survey. Cross-check against EXTERNAL-VISION-CONTEXT.md §3 12-property set — every property should have at least one representative intent in the sketched set, OR an explicit note about why no intent is sketched at this stage. **Iteration-mechanics gesture (intent-tangled-with-surface-choice per 2026-04-30 §3.4 + Hanson theory-laden-observation problem):** intent-sketches are revisable artifacts, not commitments. After axis-3 articulation passes, axes 1 + 2 inventories may surface accommodation-evidence (or its absence) that revises an intent's shape — e.g., a surface-mechanic absence may suggest the intent was under-specified for that surface; an arxiv-sanity-mcp practice pattern may reveal an intent the original S1-S8 list missed. When an axis-3 revision-trigger surfaces during axes-4 cell construction, record: (a) what was the prior intent-sketch; (b) what evidence triggered revision; (c) what the revised intent-sketch is; (d) whether revision warrants re-traversing earlier-completed cells under the new intent. **This iteration-shape gesture is one possible shape; Phase D execution may surface a different shape (e.g., revision-trigger should fire from intent-survey not surface-survey; or axes 3 + 4 should compose differently); frame-revision-check at process step 5 fires if the iteration-shape itself shifts.** The discipline is: the under-specification of iteration-mechanics here is intentional (mapping is theory-constructive; locking iteration shape prematurely is closure-pressure), not negligent.
+7. Construct joint accommodation-evidence cells (axis 4). For each (surface, intent) cell that's informative, record shallow / mid / deep accommodation evidence + identity-preservation envelope + harness-studio-pressure foreclosure-risk. Cells that are uninformative (no plausible accommodation; not the surface for this intent) get explicitly marked as such (per performative-vs-operational openness discipline). When cell-construction surfaces intent-revision-triggers (per step 6 iteration-mechanics gesture), pause cell work, complete intent-revision, decide whether to re-traverse earlier cells, then resume.
+8. Apply 12-property scope-control overlay. Per property × depth, classify as C1 / C2 / C3 / C4 with reasoning. Burden of proof on exclusion: default candidate-in-scope.
+9. **Phase-output-draft frame-revision-check** (per §6.1 + §0.5): is the map well-formed? Has the question still got the right shape? Are there frame-revisions surfaced during construction that warrant pause-and-replan rather than commit?
+10. Draft FINDINGS.md (the substrate-shape map) + DISPOSITION.md (Logan disposes).
 
 **Outputs:**
-- `.planning/gsd-2-uplift/STABILITY-CHECK.md` (~80-150 lines; what was checked; what stabilized; what didn't; what would change the call).
-- If unstable: trigger re-adjudication (return to Phase C).
+- `.planning/gsd-2-uplift/wave-2/substrate-shape-map/SUBSTRATE-SHAPE-MAP.md` (mapping-shape Phase D's primary output; structured across four axes + 12-property overlay; ~600-1200 lines depending on map density). Replaces the wave-2/decision-trace/ skill-shape outputs as Phase D's final FINDINGS.md. **Budget-deviation-as-frame-revision-trigger:** if the map comes in meaningfully under (e.g., far-below 600 lines) or over (e.g., far-above 1200 lines), do NOT silently absorb. Underrun could mean (a) mapping-territory genuinely thinner than expected → substrate-shape evidence + readiness for Phase E early; OR (b) Phase D scope-truncation → closure-pressure recurrence. Overrun could mean (a) mapping-territory denser than expected → substrate-shape evidence + Phase D may need split; OR (b) scope-creep (e.g., intervention-intent sketch expanding into design-work). Different findings warrant different actions; phase-output-draft frame-revision-check (process step 9) is where the meta-question surfaces. Threshold deliberately unspecified — let executor-judgment fire on "feels meaningful," not on artificial precision (artificial precision would be closure-pressure-shaped).
+- `.planning/gsd-2-uplift/wave-2/substrate-shape-map/INTERIM-CORPUS-INTEGRATION.md` (~150-300 lines; how the interim Phase D corpus from 2026-04-30 — gsd-2-native-placement misfit, substrate-mismatch finding, source-grounded P1/P3, investigation findings — gets carried into the map; what stays as evidence and what gets reclassified).
+- `.planning/gsd-2-uplift/wave-2/substrate-shape-map/DISPOSITION.md` (~80-150 lines; Logan disposes the map; flags any properties / intents / cells warranting deeper exploration before Phase E).
+- Audit folder with FINDINGS + DISPOSITION (cross-vendor xhigh + same-vendor xhigh paired per §2.4 update).
 
-**Quality gate:** Stability call requires evidence-load justification. "Feels stable" is closure-pressure (per §0.5); requires explicit per-axis evidence.
+**Quality gate (cross-vendor xhigh + same-vendor xhigh paired):** The map carries high framing-load (mapping target shape itself is at framing-inheritance risk per 2026-04-30 §5.3 audit-discipline-limits finding). Paired discipline fires:
+- **Cross-vendor xhigh** (codex GPT-5.5 xhigh): does the four-axis structure hold? Are there 12-property gaps the map missed? Is the C1/C2/C3/C4 classification well-evidenced? Negative-space check: what's NOT in the map that should be (excluded surfaces, omitted intents, missing accommodation cells)?
+- **Same-vendor xhigh** (adversarial-auditor-xhigh independent mode): is the map drifting back into spike-shape framing? Is any "single-target accommodation" claim unsupported? Is integration-grammar-as-fact present at the map-claim level (treating mapping vocabulary as observed-fact rather than as inputs)?
+- **Audit lens explicit:** "Is the map mapping-shape, or has it drifted toward spike-shape claims (single-target / converges-on-answer)?" + "Are the 12 properties + four-category scope-confidence model applied as scope-controls per EXTERNAL-VISION-CONTEXT.md §3-§4?" + "Has the closure-pressure-into-elaboration pattern surfaced new frame-revisions during mapping that warrant phase-restart rather than commit?"
 
-**Failure-branch:** If stability is partial, identify which axes are stable and which need further work. Stable axes proceed to Phase F readiness consideration; unstable axes loop back to Phase C or Phase D as appropriate.
+**Failure-branch:**
+- If audit surfaces frame-revision (the closure-pressure pattern recurred again): apply 2026-04-30 §5 calibration findings; either fix at point-of-bleed and re-audit, or pause to plan-self-audit-2 if the methodology-fit itself is in question.
+- If audit surfaces "this is still spike-shape masquerading as mapping" — return to §0.8 methodology-fit reading + revise. Record explicitly per traces-over-erasure discipline.
+- If interim Phase D corpus integration surfaces new evidence that shifts the mapping (e.g., gsd-2-native-placement finding generalizes beyond decision-trace): apply per §5.4 productive-curiosity pattern; expand mapping scope or surface for Logan-disposition.
 
-**Commit:** `docs(gsd-2-uplift): stability check + audit`.
+**Phase-D-specific watch-flags (2026-04-30 calibration findings as live concerns):**
+- **Closure-pressure-into-elaboration recurrence** (per 2026-04-30 §5.1; pattern surfaced multiple times during 2026-05-01 turn-cluster too). Watch for: "the mapping is resolved enough" framings absent evidence; elaborate within-frame work without frame-revision-check firing; "this surface obviously accommodates this intent" without joint-evidence.
+- **In-session-collaboration risk on mapping target shape** (per 2026-04-30 §5.4; pattern recognition required Logan's pressure). Cross-vendor xhigh audit + same-vendor xhigh independent paired discipline (above) is structural mitigation. Logan-disposition is for user-intent capture (per 2026-04-30 §2.7 + §5.2), NOT for substrate-design-soundness audit-of-last-resort.
+- **Audit-discipline limits** (per 2026-04-30 §5.3). Audit-spec must include "challenge intervention-surface choice" + "challenge methodology-fit" lens-questions explicitly — not just "is this artifact well-formed?". Embedded in audit-spec (above).
 
-### §1.6 Phase F: Extraction-readiness gate
+**Commit pattern:**
+- (1) `docs(gsd-2-uplift): Phase D mapping-shape substrate-shape map + interim-corpus-integration` (the map + integration document together).
+- (2) `docs(gsd-2-uplift): Phase D substrate-shape map audit + DISPOSITION` (audit folder + Logan disposition).
+- (3) Coordination updates (STATE.md + OVERVIEW.md) per §6.2.
 
-**Goal:** Hard gate before extraction. Verifies that the conditions for extraction (per §0.3 test-case-vs-substrate analysis) are met.
+### §1.5 Phase E: Mapping-coherence + theory-construction quality test (REVISED 2026-04-30 per (V′.a))
+
+**Goal:** Verify that the Phase D substrate-shape map is **coherent as a theory-construction artifact** — not "stable" in the spike-disposition sense. Mapping is iterative + theory-constructive; the relevant test is whether the map holds together as a coherent theory of the gsd-2 × arxiv-sanity-mcp × intervention-intents × accommodation-evidence territory, and whether the theory survives:
+1. **Fresh-session re-read** (per §0.5 D5a caveat — does the map's structure + claims survive without Claude+Logan in-session-collaboration carrying it?).
+2. **Internal cross-axis coherence** (do the four axes hang together; do (surface, intent) accommodation-cells sum to a coherent picture; do the 12-property classifications follow consistently from the underlying evidence; are there axis-internal contradictions?).
+3. **Cross-vendor xhigh read** (does cross-vendor xhigh agree the map is well-formed; does it surface 12-property gaps or surface-omissions or intent-omissions that suggest the theory is incomplete in load-bearing ways?).
+4. **Theory-construction-quality lenses** (per spike METHODOLOGY.md adapted to mapping: model-verification through evidence-traceability; framework-fit-lens; alternative-theory lens — could the same evidence support a different mapping shape and would that matter?).
+
+**Inputs:** Phase D substrate-shape map (SUBSTRATE-SHAPE-MAP.md + INTERIM-CORPUS-INTEGRATION.md + DISPOSITION.md) + Phase D audit findings + DECISION-SPACE.md updates from Phase C + EXTERNAL-VISION-CONTEXT.md §3-§4 (the scope-control overlay the map applies).
+
+**Process:**
+1. Logan reads Phase D outputs in a fresh session (or after deliberate gap from Phase D session) — fresh-context coherence test.
+2. **Internal cross-axis coherence audit:** main-thread Claude reads the map for axis-internal coherence + cross-axis consistency (e.g., does intent S5 "decision reconstruction" land at consistent depth-classification across the surfaces it implicates? Does property #4 "work-history multi-modal" map at consistent depths to the intents that operationalize it?).
+3. **Cross-vendor xhigh audit (codex GPT-5.5 xhigh)** reads the map. Lens: "is the map a coherent theory of the territory; are there 12-property gaps; are there surface or intent omissions that suggest theory-incompleteness; does the C1/C2/C3 classification logic hold consistently across cells; is the burden-of-proof-on-exclusion discipline applied correctly per EXTERNAL-VISION-CONTEXT.md §4.1; is harness-studio-pressure foreclosure-risk surfaced where it applies?"
+4. **Same-vendor xhigh adversarial-auditor (independent mode)** stress-tests the theory: "could the same evidence be marshaled into a different mapping shape — what would that look like, what would change about the conclusions; is integration-grammar-as-fact present at the map-claim level; has the closure-pressure-into-elaboration pattern produced any 'resolved enough' framings without evidence?"
+5. Logan disposes: theory-coherent / partially-coherent / incoherent (with named axes/properties/intents requiring further mapping work).
+
+**Outputs:**
+- `.planning/gsd-2-uplift/MAPPING-COHERENCE-CHECK.md` (~100-200 lines; what theory-construction tests were applied; per-axis coherence findings; per-property coherence findings; cross-axis tensions surfaced; what would shift the call from coherent ↔ partially-coherent ↔ incoherent; Logan disposition).
+- If partially-coherent: triggers targeted re-mapping (return to Phase D for specific axes/properties; do NOT restart whole-map work unless multiple axes are in question).
+- If incoherent: triggers Phase D re-execution + (V′.b) consideration (return to incubation-level; map shape itself was wrong).
+
+**Quality gate:** Theory-coherence call requires evidence-load justification. "Feels coherent" is closure-pressure (per §0.5); requires per-axis + per-property explicit coherence-evidence. Paired audit-discipline (cross-vendor + same-vendor) is the structural mitigation against the closure-pressure-pattern recurrence — particularly load-bearing here per 2026-04-30 §5.1 finding.
+
+**Failure-branch:**
+- **Partially-coherent (most likely outcome):** identify which axes/properties/intents are coherent vs. need further mapping. Coherent axes proceed to Phase F readiness consideration; incoherent axes loop back to Phase D for targeted re-mapping. Record which.
+- **Incoherent:** map theory itself is misshapen. Loop back to question-shape disposition (potentially (V′.b) — replan trajectory shape itself if mapping methodology is itself wrong for the question).
+- **New frame-revision surfaces during Phase E** (productive-curiosity per §5.4): record + propagate; do not silently absorb.
+
+**Commit:** `docs(gsd-2-uplift): Phase E mapping-coherence check + audit + DISPOSITION`.
+
+### §1.6 Phase F: Extraction-readiness gate (REVISED 2026-04-30 per (V′.a) — mapping-coherence + intent-intervention-feasibility)
+
+**Goal:** Hard gate before extraction. Verifies that the conditions for extraction (per §0.3 test-case-vs-substrate analysis + §0.8 mapping-shape methodology-fit) are met.
 
 **Gate criteria (all required; not Logan-discretion-bypassable except with explicit reasoning):**
-1. **Disposition-stable** (Phase E confirmed stable, or partial-stability with documented unstable-axis-deferral plan).
-2. **First-target evidence in** and confirms-or-extends-incubation-disposition (Phase D outputs are coherent with Phase C dispositions).
-3. **Internal coherence test** — the gsd-2-uplift work has citations to its own internal artifacts (META-SYNTHESIS, FINDINGS, audits, INITIATIVE) rather than depending heavily on arxiv-sanity-mcp-spike-program-references for its load-bearing claims. (If R5 disposed: heavier dependency may be appropriate; document.) Note: "internal coherence" here means the new-repo-content stands on its own internal logic, NOT that it has zero references back to arxiv-sanity-mcp; explicit references back for diagnostic evidence are expected and preserved (per §1.8 Phase H test phrasing).
-4. **Repo-extraction triggers fired** — at least one of: (a) disposition explicitly commits to dedicated-uplift-repo as part of design (R1 fork; R5 sibling); (b) substrate-shape work has internal gravitational center independent of arxiv-sanity-mcp; (c) materially-competing-for-shared-resources signal (planning-tree confusion affecting spike work).
-5. **No outstanding load-bearing-decisions block extraction** (per Logan disposition).
+
+1. **Mapping-coherent** (Phase E confirmed coherent, or partial-coherence with documented incoherent-axis-deferral plan). The substrate-shape map's four-axis structure holds together as a coherent theory of the territory; per-property C1/C2/C3 classifications are consistent; theory-construction-quality lenses passed.
+
+2. **Intent-intervention feasibility surfaced for at least one C1-classified intervention path.** The map identifies at least one (intervention-intent × surface × depth) triplet at C1 confidence (per EXTERNAL-VISION-CONTEXT.md §4.2: "patches we can plausibly land based on current evidence") with named accommodation-evidence + identity-preservation envelope + harness-studio-pressure foreclosure-check. **This replaces the prior "first-target evidence in" criterion** — under mapping-shape, what gates extraction is "the map identifies feasible intervention paths," not "a single first-target was executed." (If zero C1 paths exist: the map either is incomplete OR the substrate genuinely cannot accommodate any intervention at low risk — both are findings warranting Phase D re-execution or (V′.b) consideration, not extraction.)
+
+3. **Internal coherence + diagnostic-loop-preserving** — the gsd-2-uplift work has citations to its own internal artifacts (META-SYNTHESIS, substrate-shape map, INTERIM-CORPUS-INTEGRATION, audits, INITIATIVE, EXTERNAL-VISION-CONTEXT, RELATIONSHIP-TO-PARENT, METHODOLOGY-MISMATCH-FINDING) rather than depending heavily on arxiv-sanity-mcp-spike-program-references for its load-bearing claims. (If R5 disposed: heavier dependency may be appropriate; document.) Note: "internal coherence" here means the new-repo-content stands on its own internal logic, NOT that it has zero references back to arxiv-sanity-mcp; explicit references back for diagnostic evidence are expected and preserved (per §1.8 Phase H test phrasing). The diagnostic-loop relationship (arxiv-sanity-mcp practice as substrate-evidence-channel) must remain readable post-extraction.
+
+4. **Repo-extraction triggers fired** — at least one of: (a) disposition explicitly commits to dedicated-uplift-repo as part of design (R1 fork; R5 sibling; R-mix per Phase C disposition); (b) substrate-shape mapping work has internal gravitational center independent of arxiv-sanity-mcp; (c) materially-competing-for-shared-resources signal (planning-tree confusion affecting spike work or arxiv-sanity-mcp implementation work); (d) the substrate-shape map identifies enough cross-project / portfolio-shape work (per Property 12 in EXTERNAL-VISION-CONTEXT.md §3) that staying within arxiv-sanity-mcp's planning tree distorts the work.
+
+5. **Methodology-mismatch finding integrated** — the substrate-shape map + audit findings explicitly account for the 2026-04-30 methodology-mismatch finding (mapping-vs-spike question-shape distinction operationalized, not just nominally acknowledged). The METHODOLOGY-MISMATCH-FINDING.md artifact (per (V′.a) Step 5) is referenced from the map.
+
+6. **No outstanding load-bearing-decisions block extraction** (per Logan disposition).
 
 **Inputs:** All prior phase outputs + DECISION-SPACE.md + INITIATIVE.md + STATE.md current state.
 
@@ -305,8 +393,11 @@ Specifies in `.planning/gsd-2-uplift/wave-2/` (new directory; or per Logan-dispo
 | `.planning/gsd-2-uplift/exploration/` (SYNTHESIS.md + SYNTHESIS-CROSS.md + SYNTHESIS-COMPARISON.md + INCUBATION-CHECKPOINT.md + STABILITY-CHECK.md + EXTRACTION-READINESS.md) | **MOVE** | Initiative-scoping exploration outputs (per INITIATIVE.md §7 explicit migration). |
 | `.planning/gsd-2-uplift/audits/` (all uplift-scoped audit folders) | **MOVE** | Audits about uplift artifacts; their findings are about substrate-shape work. |
 | `.planning/gsd-2-uplift/orchestration/OVERVIEW.md` | **MOVE** | Initiative coordination record. |
-| `.planning/gsd-2-uplift/wave-2/` (Phase D outputs) | **MOVE** | Substrate-shape work product. |
+| `.planning/gsd-2-uplift/wave-2/` (Phase D outputs — `decision-trace/` interim corpus + `substrate-shape-map/` mapping outputs) | **MOVE** | Substrate-shape mapping work product. The interim `decision-trace/` corpus moves alongside the final `substrate-shape-map/` outputs as carried-forward evidence (per Phase D INTERIM-CORPUS-INTEGRATION.md). |
 | `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (Phase B output) | **DUPLICATE** (cite-by-reference) | This artifact is intrinsically about both sides of the relationship. arxiv-sanity-mcp keeps a copy referencing new-repo location for its diagnostic-loop trail; new repo keeps a copy referencing arxiv-sanity-mcp's spike program. Bidirectional reference; both copies updated to point at the other. |
+| `.planning/gsd-2-uplift/EXTERNAL-VISION-CONTEXT.md` (2026-05-01 standing-context artifact) | **DUPLICATE** (cite-by-reference) | Per the artifact's own frontmatter (`post_extraction_disposition: DUPLICATE`). Both sides keep a copy with bidirectional references to the other side and to harness-studio's sibling artifact. Vision-context is intrinsically cross-project (substrate-vision properties cross both gsd-2-uplift and the eventual harness-studio operating model); duplication preserves cross-project legibility. |
+| `.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md` ((V′.a) Step 5 output) | **DUPLICATE** (cite-by-reference) | Self-correction from Step 2 (initially MOVE; revised on Step 2 self-review). The finding is intrinsically about both sides: (a) substrate-shape evidence (methodology-fit finding about substrate-design-evidence-collection) → matters in new repo; (b) diagnostic-loop record (the spike program at arxiv-sanity-mcp produced this finding through Phase D's misframe-and-recovery; the local-staying 2026-04-30 deliberation references it) → matters in arxiv-sanity-mcp. Same structural shape as RELATIONSHIP-TO-PARENT.md and EXTERNAL-VISION-CONTEXT.md (DUPLICATE precedent). Both copies updated to point at the other; sync-discipline note in both copies. |
+| `.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md` | **Per-deliberation Logan-disposed** | Same heuristic as other uplift-substantive deliberations: records both arxiv-sanity-mcp's session-dynamic (the deliberation arc with five frame-revisions; Logan's correction; calibration findings about the substrate's behavior) AND substantive substrate-shape content (methodology-mismatch finding; (V′.a) disposition). Reasonable readings: STAY (recording of session-dynamic that arrived at substrate-shape conclusion; the diagnostic-loop record needs it local) OR MOVE (substrate-shape-substantive content that informs new-repo work). Logan disposes; EXTRACTION-LOG.md records reasoning. |
 | `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` (this plan) | **MOVE** (with arxiv-sanity-mcp citation kept) | Plan governs the extraction it just executed; lives in new repo as historical record. arxiv-sanity-mcp's EXTRACTION-LOG.md cites the plan's new-repo location. |
 | `.planning/deliberations/2026-04-26-uplift-initiative-genesis-and-dispatch-deferral.md` and similar genesis-recording deliberations | **STAY** (per INITIATIVE.md §7 deliberation-log retention) | Records arxiv-sanity-mcp's session-genesis. |
 | Uplift-substantive deliberations from `.planning/deliberations/` (e.g., 2026-04-28-framing-widening, comparison-drafting, audit-spec-review) | **Per-deliberation Logan-disposed** | Default heuristic: if the deliberation primarily records arxiv-sanity-mcp's session-dynamic that arrived at an uplift conclusion → STAY; if it primarily records substrate-shape-substantive-content → MOVE. EXTRACTION-LOG.md records per-deliberation disposition + reasoning. |
@@ -376,17 +467,18 @@ Specifies in `.planning/gsd-2-uplift/wave-2/` (new directory; or per Logan-dispo
 ### §2.1 What triggers cross-vendor audit (reasoning-level per §2.4)
 
 **Default-fires (no Logan-discretion to skip):**
-- Plan-self-audit (Phase A).
+- Plan-self-audit (Phase A) + (V′.a) Step 3 plan-self-audit-2 (this revision under audit, scoped to question-shape-fit).
 - Incubation-checkpoint adjudication output (Phase C — Logan dispositions inherit framing).
-- Stability test (Phase E — load-bearing for go-no-go).
+- **Substrate-shape map (Phase D under (V′.a))** — load-bearing for Phase E coherence test + Phase F gate; carries highest cross-cutting framing-load.
+- **Mapping-coherence test (Phase E under (V′.a))** — load-bearing for go-no-go gate; theory-coherence stake.
 - Extraction-readiness gate (Phase F — hard gate).
 - Extraction execution audit (Phase G — orphan-reference + missed-migration check).
 - Post-extraction integration (Phase H — coherence check).
 
 **Conditional-fires (Logan-discretion):**
 - Phase B standing-context artifact (only if Logan disposes the artifact carries framing-leak risk; same-vendor xhigh adversarial is the default for register-leak).
-- Phase D first-target execution (cross-vendor xhigh audit of evidence-load; spike-program-discipline determines audit shape; may be high rather than xhigh if first-target is mechanically simple).
 - Re-adjudication triggers (any phase that loops back fires fresh audit on the updated artifact).
+- Within-mapping spike audits (when mapping-shape Phase D fires bounded spikes inside the mapping per §0.8 — those spikes get spike-program audit-discipline scaled to spike scope).
 
 **What "cross-vendor xhigh" means operationally:**
 - Cross-vendor: codex GPT-5.5 xhigh (per current cross-vendor pattern; substitute analogous if codex unavailable).
@@ -412,6 +504,9 @@ Specifies in `.planning/gsd-2-uplift/wave-2/` (new directory; or per Logan-dispo
 **Default-fires:**
 - Phase A plan-self-audit MAY use paired discipline (Logan-discretion; depends on plan-load-bearing-ness Logan reads).
 - Phase C incubation-checkpoint adjudication output MAY use paired discipline (Logan-discretion; depends on disposition-load-bearing-ness).
+- **Phase D substrate-shape map (under (V′.a))** — paired-default (per §2.4 Phase D row + 2026-04-30 §5.3 audit-discipline-limits finding). Cross-vendor catches 12-property gaps + surface-omissions; same-vendor catches drift-back-to-spike-shape + integration-grammar-as-fact at map-claim level + closure-pressure-pattern resolutions-without-evidence. Logan-discretion to downgrade to single-vendor under cost-bandwidth constraint, with tradeoff explicit in DISPOSITION (downgrade reintroduces 2026-04-30 §5.4 closure-pressure-pattern-survives-single-vendor risk).
+- **Phase E mapping-coherence test (under (V′.a))** — paired-default (per §2.4 Phase E row). Same rationale: theory-construction stage carries both vocabulary-import risk + integration-grammar-as-fact risk. Same Logan-discretion-to-downgrade as Phase D.
+- **(V′.a) Step 3 plan-self-audit-2 (the revision under this section)** — paired-default; this revision IS the artifact at framing-inheritance risk per the 2026-04-30 §5.4 finding (max-effort + Logan-correction was the necessary condition to break the prior misframe; the revision must clear paired audit-discipline). **Audit-spec for Step 3 should be drafted independently** per Concern 1 disposition (cross-vendor codex independent spec-drafting recommended; Logan disposes spec-drafting form before audit dispatch).
 
 **Pattern (per premise-bleed audit precedent):**
 1. Cross-vendor codex Step-1 baseline.
@@ -444,14 +539,15 @@ Per Logan's frame "be smart and elegant about harnessing reasoning effectively" 
 | B | Standing-context artifact audit | Same-vendor adversarial-auditor | **high** | Bounded artifact (~80-120 lines). Register-leak detection on a clarification artifact. Deep reasoning isn't what's being tested. high suffices. |
 | C | Incubation-checkpoint audit | Cross-vendor codex GPT-5.5 | **xhigh** | Logan dispositions on §5 axes inherit Logan-framing inheritance. Decision-stake: shapes second-wave-target, which shapes substrate-shape evidence, which shapes extraction-readiness. Cross-cutting: integrates synthesis + comparison + framing-widening + audit-arc outcomes. xhigh warranted. |
 | C | Incubation-checkpoint audit (paired Step-2) | Same-vendor adversarial-auditor | **xhigh** (Logan-discretion to fire) | If fired (recommended given premise-bleed audit precedent), catches integration-grammar-as-fact at the dispositions themselves. xhigh because dispositions carry framing-load. |
-| D | First-target execution audit | Per-target-shape (see below) | **per-target** | Reasoning-level depends on first-target shape. **Probe-shape (e.g., P5 effective-state-emission):** fact-grounding-heavy → cross-vendor **high** suffices. **Design-shape (e.g., headless orchestration recipe):** framing-load present → cross-vendor **xhigh**. **Spike-shape:** per spike-program METHODOLOGY.md six-lens discipline → at least cross-vendor **xhigh** for design-questions; **high** for representational sub-questions. |
-| E | Stability test audit | Cross-vendor codex GPT-5.5 | **xhigh** | Coherence check between Phase C dispositions and Phase D evidence. Cross-cutting reasoning: "is the disposition + first-target evidence coherent + well-formed; has evidence shifted ground?" Decision-stake: load-bearing for go-no-go. xhigh warranted. |
-| E | Stability test (Logan-discretion same-vendor stress) | Same-vendor adversarial-auditor | **high** | If fired, same-vendor at high is sufficient — the load-bearing stress is the cross-vendor's coherence check; same-vendor stress is supplementary calibration on shared-framing-inheritance and doesn't need xhigh depth. |
+| D | Substrate-shape map audit (REVISED 2026-04-30 per (V′.a) — mapping-shape) | Cross-vendor codex GPT-5.5 | **xhigh** | Mapping-shape Phase D's substrate-shape map carries highest cross-cutting framing-load: 4 axes × 12 substrate-vision properties × multiple intervention-intents × multi-depth accommodation evidence × C1/C2/C3/C4 scope-classification overlay. Negative-space-depth deep ("what surfaces / intents / properties did the map miss?"). Decision-stake: feeds Phase E coherence test + Phase F gate. Aligned with §2.4 principle: "Cross-cutting reasoning required → xhigh." |
+| D | Substrate-shape map audit (paired Step-2) | Same-vendor adversarial-auditor | **xhigh** (paired-default per (V′.a); Logan-discretion to downgrade to single-vendor xhigh under documented cost-bandwidth constraint, with paired-discipline tradeoff explicit in DISPOSITION) | Per 2026-04-30 §5.3 audit-discipline-limits finding: paired discipline catches different categories of failure (vocabulary-import vs. integration-grammar-as-fact). Phase D under (V′.a) carries three coexisting risks: vocabulary-import (mapping vocabulary fresh + framing-inheritance-risk), integration-grammar-as-fact (mapping vocabulary could be treated as observed-fact at map-claim level), and methodology-question-shape-mismatch (the new failure mode (V′.a) addresses). Same-vendor independent stress catches: map drifting back into spike-shape claims; integration-grammar-as-fact at the map-claim level; "resolved enough" framings without evidence. **Audit lens MUST include "challenge intervention-surface-set choice" + "challenge methodology-fit-of-mapping" lens-questions explicitly** per 2026-04-30 §5.3 finding (audit-spec-itself at framing-inheritance risk). **Discretion note:** if Logan downgrades to single-vendor under cost-bandwidth constraint, the closure-pressure-pattern recurrence risk from 2026-04-30 §5.4 (effort-level alone insufficient to break the pattern; max + structured-external-pressure was the breaking condition) becomes a known live risk; DISPOSITION must record this tradeoff. |
+| E | Mapping-coherence test audit (REVISED 2026-04-30 per (V′.a)) | Cross-vendor codex GPT-5.5 | **xhigh** | Theory-coherence check: does the four-axis map hold together as a coherent theory; are 12-property gaps surfaced; does C1/C2/C3 logic apply consistently; is burden-of-proof-on-exclusion preserved? Cross-cutting reasoning across the entire map. Decision-stake: load-bearing for Phase F gate. xhigh warranted. |
+| E | Mapping-coherence test (paired Step-2) | Same-vendor adversarial-auditor | **xhigh** (paired-default per (V′.a); Logan-discretion to downgrade to single-vendor xhigh under documented cost-bandwidth constraint, with paired-discipline tradeoff explicit in DISPOSITION) | Same rationale as Phase D paired audit: closure-pressure-pattern recurrence risk + integration-grammar-as-fact risk at theory-construction stage. Stress-tests: "could the same evidence be marshaled into a different mapping shape?" + "is the map closure-pressure-resolved without evidence at any cell?". Same Discretion-note as Phase D row: downgrade preserves cost but reintroduces 2026-04-30 §5.4 closure-pressure-pattern-survives-single-vendor risk; DISPOSITION must record. |
 | F | Extraction-readiness gate audit | Cross-vendor codex GPT-5.5 | **xhigh** | Hard gate. Criterion-3 internal-coherence test requires deep cross-cutting reasoning ("does the work have its own gravitational center?"). Negative-space-depth: deep ("what's NOT ready that might be load-bearing?"). xhigh warranted. |
 | G | Extraction execution audit | Cross-vendor codex GPT-5.5 | **high** | Mechanical-coherence: orphan-reference check + missed-migration check + cross-reference integrity. Bounded scope. Deep reasoning not required. high suffices. xhigh would be over-engineered. |
 | H | Post-extraction integration audit | Cross-vendor codex GPT-5.5 | **xhigh** | Cross-cutting: reasons across two repos simultaneously; coherence-of-integration; trail-of-references on both sides. Decision-stake: this is the last gate before the trajectory is complete. xhigh warranted for final-state verification. |
 
-**Note on M1 strict-undersell at recommendation stage (per §0.6 failure-mode taxonomy):** Don't add paired discipline by default to every audit "for safety." That's M1 strict-undersell — applying the strongest discipline blanketly when specific failure-modes are single-vendor-detectable. Phase B is single-vendor (same-vendor) because register-leak is what's being detected; Phase G is single-vendor (cross-vendor) because mechanical-coherence is what's being detected. Use paired discipline at Phase A and Phase C **only** because those carry both vocabulary-import risk (cross-vendor catches) AND integration-grammar-as-fact risk (same-vendor catches). The premise-bleed audit precedent established this.
+**Note on M1 strict-undersell at recommendation stage (per §0.6 failure-mode taxonomy):** Don't add paired discipline by default to every audit "for safety." That's M1 strict-undersell — applying the strongest discipline blanketly when specific failure-modes are single-vendor-detectable. Phase B is single-vendor (same-vendor) because register-leak is what's being detected; Phase G is single-vendor (cross-vendor) because mechanical-coherence is what's being detected. Use paired discipline at Phase A, Phase C, **Phase D, and Phase E (the latter two added under (V′.a))** because those carry both vocabulary-import risk (cross-vendor catches) AND integration-grammar-as-fact risk (same-vendor catches). The premise-bleed audit precedent established this; the 2026-04-30 audit-discipline-limits finding (§5.3) extended it to Phase D + E given the closure-pressure-pattern recurrence + audit-scope-itself-at-framing-inheritance-risk evidence under mapping-shape methodology.
 
 **Adversarial-auditor-xhigh agent vs reasoning level note:** The `adversarial-auditor-xhigh` Claude agent has "xhigh" in its name as the *agent-type identifier*. The reasoning-level is set per-dispatch via Anthropic SDK reasoning-effort parameter or analogous. When this plan says "same-vendor adversarial-auditor at high level," it means: agent-type=adversarial-auditor-xhigh, reasoning-effort=high. The agent's adversarial-discipline-prior + role-priming hold; just the reasoning depth is bounded.
 
@@ -476,8 +572,9 @@ Per Logan's frame "be smart and elegant about harnessing reasoning effectively" 
 | A | This plan + audit + DISPOSITION | **Authoritative:** `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` (in-repo, version-controlled). **Mirror:** `/home/rookslog/.claude/plans/cheerful-forging-galaxy.md` (runtime working draft; not committed; for `/loop` resume only). **Audit folder:** `.planning/gsd-2-uplift/audits/2026-04-29-trajectory-plan-audit/PLAN-AUDIT.md` + `DISPOSITION.md` | 800-1300 (plan) + 200-500 (audit) + 100-200 (DISPOSITION) |
 | B | Standing-context artifact + CLAUDE.md load-point | `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (per §0.7 Q3 Option (a)) + CLAUDE.md doctrine-load-point addition (~3 lines under "Doctrine load-points") + audit folder | 80-120 (artifact) + ~3 (CLAUDE.md) + 100-200 (audit) |
 | C | Incubation-checkpoint | `.planning/gsd-2-uplift/exploration/INCUBATION-CHECKPOINT.md` + DECISION-SPACE.md updates + audit folder | 150-300 (checkpoint) + ~30 (DECISION-SPACE updates) + 200-400 (audit) |
-| D | First-target | `.planning/gsd-2-uplift/wave-2/${target-name}/` + audit folder | TBD per first-target-shape |
-| E | Stability check | `.planning/gsd-2-uplift/STABILITY-CHECK.md` + audit folder | 80-150 (check) + 200-400 (audit) |
+| D | Substrate-shape map (REVISED 2026-04-30 per (V′.a)) | `.planning/gsd-2-uplift/wave-2/substrate-shape-map/SUBSTRATE-SHAPE-MAP.md` + `INTERIM-CORPUS-INTEGRATION.md` + `DISPOSITION.md` + audit folder. Interim corpus at `.planning/gsd-2-uplift/wave-2/decision-trace/` carried as historical evidence. | 600-1200 (map) + 150-300 (integration) + 80-150 (DISPOSITION) + 400-700 (paired audit folder) |
+| D-aux | Methodology-mismatch finding artifact ((V′.a) Step 5 standalone) | `.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md` | 200-400 (artifact) |
+| E | Mapping-coherence check (REVISED 2026-04-30 per (V′.a)) | `.planning/gsd-2-uplift/MAPPING-COHERENCE-CHECK.md` + audit folder | 100-200 (check) + 400-700 (paired audit folder) |
 | F | Extraction-readiness | `.planning/gsd-2-uplift/EXTRACTION-READINESS.md` + audit folder | 100-200 (readiness) + 200-400 (audit) |
 | G | Extraction execution | New repo (location Logan-disposed) + `.planning/gsd-2-uplift/EXTRACTION-LOG.md` (arxiv-sanity-mcp side) + pointer artifacts at moved-from paths + audit folder | 150-300 (EXTRACTION-LOG) + ~10 lines per pointer artifact + TBD (depends on artifact set being moved) |
 | H | Post-extraction integration | EXTRACTION-LOG.md updates with Phase H verification + final cross-repo commit identities + new repo corrections + audit folder | TBD |
@@ -520,8 +617,8 @@ Per Logan's frame "be smart and elegant about harnessing reasoning effectively" 
 | A | (1) In-repo plan landing (`.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md`) + plan-audit folder (PLAN-AUDIT.md + DISPOSITION.md). (2) Coordination updates (STATE.md + OVERVIEW.md). |
 | B | (1) Standing-context artifact + CLAUDE.md load-point + audit. |
 | C | (1) Incubation-checkpoint + audit folder. (2) DECISION-SPACE.md updates + INITIATIVE.md updates if shifts. (3) Coordination updates. |
-| D | (1) First-target execution outputs + audit. (2) Coordination updates if disposition shifts. |
-| E | (1) Stability check + audit. (2) Coordination updates. |
+| D | (1) Substrate-shape map (SUBSTRATE-SHAPE-MAP.md + INTERIM-CORPUS-INTEGRATION.md). (2) Substrate-shape map paired audit folder + DISPOSITION. (3) METHODOLOGY-MISMATCH-FINDING.md artifact ((V′.a) Step 5; may commit alongside (1) or as separate logical unit per Logan-discretion). (4) Coordination updates (STATE.md + OVERVIEW.md). |
+| E | (1) Mapping-coherence check + paired audit folder + DISPOSITION. (2) Coordination updates. |
 | F | (1) Extraction-readiness + audit + Logan disposition. |
 | G | (1) Extraction-execution arxiv-sanity-mcp side: pointer artifacts at moved-from paths + EXTRACTION-LOG.md + trail-of-references. (2) Extraction-execution new repo side: initial population. (3) Cross-repo commit-identity follow-up commits per §4.2.1. |
 | H | (1) Post-extraction integration audit + corrections (both sides) + EXTRACTION-LOG.md final-state update. |
@@ -632,10 +729,11 @@ Maps each §0.6 failure-mode kind to: **phase(s) where it applies**, **concrete 
 
 | §0.6 failure mode | Phase(s) where applies | Concrete check | Recorded at | Owner |
 |---|---|---|---|---|
-| **Framing error** | A (plan framing); C (incubation framing); D (first-target framing); F (readiness framing) | Cross-vendor xhigh audit fires by default at A/C/F; cross-vendor xhigh at D if first-target is design-shape; negative-space lens-question explicit in audit spec | Phase audit FINDINGS.md + DISPOSITION.md | auditor + Logan (disposes) |
-| **Premise-bleed** | A; B; C; G (extraction prose carrying inheritance); H | Same-vendor adversarial-auditor (B default; A/C Logan-discretion paired; G/H if Class C trigger from cross-vendor) | Phase audit FINDINGS-STEP2.md + DISPOSITION.md | auditor + Logan |
-| **Closure-pressure** | All phases (recurrent) | Per-phase pre-commit check: "is any 'resolved enough' framing in this phase's output unresolved-by-evidence?"; explicit name-the-uncertainty discipline; `framing-widening §9` deferred-items addition for genuinely open items | Phase output (artifact body) + (if resolved-too-early) audit DISPOSITION.md re-open trigger | executor (in-phase) + auditor (post-phase) + Logan (final) |
-| **Scope creep** | All phases | Per-phase pre-commit scope check (per §6.2 verification list); §5.3 handling pattern | Phase output (scope-statement section) + coordination layer (STATE.md note if creep landed) | executor (in-phase) + Logan (final disposition if creep is valid) |
+| **Framing error** | A (plan framing); C (incubation framing); **D (mapping-target shape per (V′.a)); E (mapping-coherence theory shape per (V′.a))**; F (readiness framing) | Cross-vendor xhigh audit fires by default at A/C/D/E/F; **paired discipline (cross-vendor + same-vendor independent) default-fires at D and E per §2.4 + §2.3**; **frame-revision-check ((V′.a) Step 4) fires at phase entry / mid-phase / phase output draft per §6.1**; negative-space lens-question explicit in audit spec | Phase audit FINDINGS.md + DISPOSITION.md | auditor + Logan (disposes) |
+| **Premise-bleed** | A; B; C; **D + E (under (V′.a))**; G (extraction prose carrying inheritance); H | Same-vendor adversarial-auditor (B default; A/C Logan-discretion paired; **D/E paired-default per (V′.a)**; G/H if Class C trigger from cross-vendor) | Phase audit FINDINGS-STEP2.md + DISPOSITION.md | auditor + Logan |
+| **Closure-pressure** | All phases (recurrent — pattern-recurrence per 2026-04-30 §5.1 + 2026-05-01 turn-cluster recurrence) | Per-phase pre-commit check: "is any 'resolved enough' framing in this phase's output unresolved-by-evidence?"; explicit name-the-uncertainty discipline; `framing-widening §9` deferred-items addition for genuinely open items; **frame-revision-check at phase entry / mid-phase / phase output draft per (V′.a) Step 4 + §6.1** | Phase output (artifact body) + (if resolved-too-early) audit DISPOSITION.md re-open trigger | executor (in-phase) + auditor (post-phase) + Logan (final) |
+| **Scope creep** | All phases — under (V′.a) particularly visible at Phase D where the mapping target shape itself is the scope (drift between sketches-of-intervention-intents vs. mapping-target-as-evidence-collection vs. operating-on-substrate is the scope-creep risk) | Per-phase pre-commit scope check (per §6.2 verification list); §5.3 handling pattern; **at Phase D under (V′.a): scope-pressure-watch for offshoot-pattern triggers (per EXTERNAL-VISION-CONTEXT.md §7.5) — when out-of-scope vision-content surfaces, carve to vision-repo rather than expand mapping scope** | Phase output (scope-statement section) + coordination layer (STATE.md note if creep landed) | executor (in-phase) + Logan (final disposition if creep is valid) |
+| **Methodology-question-shape mismatch (added 2026-04-30 per (V′.a))** | All phases (recurrent risk; the load-bearing finding from 2026-04-30 §3.5) | Phase entry frame-revision-check asks: "is the methodology applied to this phase still right for the question-shape we're answering, or has the question-shape shifted?" Per-phase audit-spec includes explicit lens-question: "is the artifact under audit still the right shape for the question being answered?" Plan-self-audit at trajectory-plan revisions scoped explicitly to question-shape-fit | Phase output (frame-revision-check record) + audit FINDINGS.md (Class A/B/C as appropriate) | executor (raises) + auditor (surfaces) + Logan (disposes if methodology-shift warranted) |
 | **Comparative-claims-without-comparative-data** | C (axis dispositions making cross-option comparisons); D (first-target findings); E (stability comparing Phase D evidence to Phase C disposition) | Per-claim evidence check (per audit lens); reject claims unsupported by comparative measurement; audit asks "what's the comparative data?" | Phase audit FINDINGS.md (Class B/C if claim unsupported) | auditor (surfaces) + Logan (disposes) |
 | **False-confidence calibration** | A (plan claims); C (disposition claims); D (findings claims); F (gate claims); H (integration claims) | Per-finding confidence calibration check in audit spec; downgrade where evidence-load doesn't justify | Phase audit FINDINGS.md (Class A/B for over-confidence) + plan/output revision if Class C | auditor + Logan |
 | **Comfort-language** | All phases producing prose (artifact bodies) | Active-voice + explicit-disposition discipline at decision artifacts; auditor lens explicitly checks "is any disposition softened to look optional that's actually load-bearing?" | Phase output + audit FINDINGS.md (Class A/B) | executor (in-phase) + auditor (post-phase) |
@@ -653,18 +751,22 @@ Maps each §0.6 failure-mode kind to: **phase(s) where it applies**, **concrete 
 ### §6.1 Pre-execution verification
 
 Before any phase begins:
-- [ ] §0.4 mandatory pre-reading complete (fresh-context Claude must verify by re-reading and confirming internal model).
-- [ ] §0.5 discipline reminders internalized.
-- [ ] §0.6 failure-mode taxonomy understood; §5.6 control matrix reviewed for the upcoming phase.
-- [ ] §0.7 Logan-disposed parameters acknowledged.
+- [ ] §0.4 mandatory pre-reading complete (fresh-context Claude must verify by re-reading and confirming internal model — including (f) mapping-vs-spike methodology distinction + (g) substrate-vision 12-property + four-category scope-confidence model per (V′.a) revisions).
+- [ ] §0.5 discipline reminders internalized (including frame-revision-check (V′.a) Step 4 mechanism).
+- [ ] §0.6 failure-mode taxonomy understood (including methodology-question-shape mismatch row); §5.6 control matrix reviewed for the upcoming phase.
+- [ ] §0.7 Logan-disposed parameters acknowledged (including Q6 (V′.a) trajectory-replan disposition).
+- [ ] §0.8 methodology-fit acknowledgment understood — particularly mapping-vs-spike question-shape distinction.
 - [ ] Working tree clean.
 - [ ] Current STATE.md reflects the actual state (no unsynced changes).
+- [ ] **Phase-entry frame-revision-check fired:** "Is the question this phase exists to answer still right? Has question-shape shifted since prior phase? Is methodology applied to this phase still right for the question-shape?" Recorded in phase-output's frame-revision-check section.
 
 ### §6.2 Per-phase verification
 
 Each phase verifies:
 - [ ] Phase inputs are current (not stale; no upstream phase has shifted ground since this phase started).
-- [ ] Phase scope is preserved (no scope creep per §5.3).
+- [ ] Phase scope is preserved (no scope creep per §5.3; offshoot-pattern triggers checked per §5.6 scope-creep row).
+- [ ] **Mid-phase frame-revision-check fired** (if observations diverge from priors, or after within-mapping observations that surface accommodation the original scope didn't predict). Recorded.
+- [ ] **Phase-output-draft frame-revision-check fired before commit:** "Has artifact drifted from question-shape it was authored to answer? Have new frame-revision questions surfaced during construction that warrant pause rather than commit?" Recorded.
 - [ ] Phase quality gate fired and disposed.
 - [ ] Phase outputs land at correct location per §3.1.
 - [ ] Phase commits are atomic and traceable per §4.1.
@@ -701,11 +803,16 @@ Post-extraction (Phase H complete):
 - .planning/deliberations/2026-04-28-framing-widening.md
 - .planning/gsd-2-uplift/exploration/SYNTHESIS-COMPARISON.md
 - .planning/gsd-2-uplift/audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/ (full folder)
-- .planning/gsd-2-uplift/audits/2026-04-29-trajectory-plan-audit/ (this plan's own audit-arc)
+- .planning/gsd-2-uplift/audits/2026-04-29-trajectory-plan-audit/ (this plan's own audit-arc; Phase A)
 - .planning/gsd-2-uplift/audits/2026-04-28-cross-vendor-codebase-understanding-audit/wave-3/META-SYNTHESIS.md
 - .planning/spikes/METHODOLOGY.md
 - .planning/foundation-audit/METHODOLOGY.md
 - .planning/STATE.md (current state-of-play)
+- .planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md (Phase B output; test-case-vs-substrate framing)
+- **`.planning/gsd-2-uplift/EXTERNAL-VISION-CONTEXT.md`** (substrate-vision standing context; 12 properties + scope-discipline + Phase D mapping purpose; 2026-05-01 turn-cluster output)
+- **`.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md`** (methodology-mismatch finding + (V′.a) disposition)
+- `.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md` (forthcoming per (V′.a) Step 5)
+- `.planning/gsd-2-uplift/audits/2026-04-30-phase-d-entry-audit/` ((V′.a) predecessor audit; the audit that fired Phase D entry but did not surface the methodology-mismatch — load-bearing as 2026-04-30 §5.3 evidence about audit-discipline limits)
 
 **Methodology grounding:**
 - `.planning/spikes/METHODOLOGY.md` M1 paired-review property (with empirical-complexity refinement per SYNTHESIS-COMPARISON.md §4.1).
@@ -732,4 +839,4 @@ These are runtime-personalization artifacts that may not be available in a fresh
 
 ---
 
-*Plan v1 drafted 2026-04-29 by Claude (Opus 4.7), main thread, in-session-collaboration with Logan. Revised 2026-04-29 post-Phase-A-audit per revise-before-execute disposition (F1-F9 applied; see audit folder DISPOSITION.md for per-finding revision trace). Subject to same fallibility caveat as DECISION-SPACE.md §0. The in-session-collaboration risk applies to this plan as it does to all artifacts in this conversation arc; the plan-self-audit at Phase A and the Phase E/H cross-vendor audits are the structural mitigations.*
+*Plan v1 drafted 2026-04-29 by Claude (Opus 4.7), main thread, in-session-collaboration with Logan. Revised 2026-04-29 post-Phase-A-audit per revise-before-execute disposition (F1-F9 applied; see audit folder DISPOSITION.md for per-finding revision trace). **Revised again 2026-05-01 per (V′.a) Step 2 — methodology-fit response to 2026-04-30 methodology-question-shape-mismatch finding** (per `.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md` §2.5-§2.6; (V′.a) Logan-disposed at /effort xhigh 2026-04-30): spike-shape Phase D replaced with mapping-shape Phase D; Phase E reshaped to test mapping-coherence; Phase F gate adjusted to mapping-coherence + intent-intervention-feasibility; §0.4 expanded with EXTERNAL-VISION-CONTEXT.md + 2026-04-30 deliberation + RELATIONSHIP-TO-PARENT.md + METHODOLOGY-MISMATCH-FINDING.md (forthcoming) + 2026-04-30 audit folder; §0.8 added (methodology-fit acknowledgment); §0.5 + §6.1 + §6.2 + §5.6 updated for frame-revision-check ((V′.a) Step 4 mechanism) + methodology-question-shape-mismatch failure mode; §2.1 + §2.3 + §2.4 + §3.1 + §4.1 + §1.7 updated for mapping-shape Phase D + E + (V′.a) Step 5 outputs + paired audit defaults at D and E. **Step 2 self-review revisions applied 2026-05-01** (Logan-disposed after Step 2 surfaced 7 concerns; recommendations 2-5 applied; recommendations 1 + 7 are Logan-side actions for Step 3 dispatch; recommendation 6 is no-op): §1.7 METHODOLOGY-MISMATCH-FINDING.md changed MOVE→DUPLICATE (self-correction from Step 2 premature commitment) + 2026-04-30 deliberation added to per-deliberation-Logan-disposed list; §2.3 + §2.4 paired-default-fires at D and E softened to paired-default-with-Logan-discretion-to-downgrade-under-cost-bandwidth-constraint; §1.4 step 6 + 7 + Outputs got iteration-mechanics gesture + budget-deviation-as-frame-revision-trigger; plan-status header notes Step 3 audit-spec drafting form (cross-vendor codex independent draft recommended) per Concern 1 disposition. Subject to same fallibility caveat as DECISION-SPACE.md §0 + EXTERNAL-VISION-CONTEXT.md §0. The in-session-collaboration risk applies to this revision (and to the self-review-revisions) as it does to all artifacts in this conversation arc; the (V′.a) Step 3 plan-self-audit-2 (scoped to question-shape-fit per 2026-04-30 §4 step 3; audit-spec independence per Concern 1 disposition) is the structural mitigation against framing-inheritance in both. The closure-pressure-into-elaboration pattern recurred during the 2026-05-01 turn-cluster that produced EXTERNAL-VISION-CONTEXT.md (per §7.1 of that artifact); future-Claude executing this plan should treat the pattern as a live risk under (V′.a), not a resolved one. **The self-review process itself (concerns surfaced + recommendations applied) is at framing-inheritance risk** — surfacing concerns can be performatively-open without operationally-resolving (per §0.6 performative-vs-operational openness); Step 3 paired audit reads both the revision AND the self-review trace as artifacts at risk.*

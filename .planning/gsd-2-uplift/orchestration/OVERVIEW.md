@@ -668,6 +668,63 @@ Per `DECISION-SPACE.md §1.17` (audit-methodology decision) + `.planning/deliber
 
 **Phase D mid-arc atomic commit (this commit).** arxiv-sanity-mcp side: STATE.md + EXECUTION-LOG.md (new; ~480 lines) + TRAIL-2026-04-25-multi-lens-redirection.md (new; ~3000 words) + MINI-SPEC.md §1.A correction note + audit-folder DISPOSITION.md §8 addendum + this §11.6.12 record. gsd-2-explore side: paired commit on `phase-d-decision-trace-spike` with Shape E SKILL.md (`src/resources/skills/decision-trace/SKILL.md`). After commit: Decision Point 4 build pre-flight (`npm install` + `npm run build` non-modifying within gsd-2-explore tree); then Logan-disposition at `npm link` + interactive-run gate.
 
+### §11.6.13 Phase D mid-arc methodology-mismatch finding + (V′.a) trajectory-replan disposition (2026-04-30)
+
+**Trigger.** Five frame-revisions surfaced during Phase D mid-arc on Logan's direct prompting (build pre-flight → test-shape → intervention-surface → multi-surface + intent-tangled → gsd-2-native-placement). All traced to a single source: **spike methodology applied to a mapping question** (substrate-design-accommodation is "does this surface-set accommodate this practice?" mapping-shape, not "does X work?" spike-shape). The Phase D entry paired audit fired but did not surface this — audit-scope-itself-at-framing-inheritance-risk (per 2026-04-30 §5.3 finding).
+
+**Disposition (Logan 2026-04-30 /effort xhigh):** *"I accept (V'.a) but lets perhaps record these decisions and this deliberation so I can compact"* — (V′.a) trajectory-replan committed at max effort by Claude with named residual risks; Logan disposed.
+
+**Logan's methodological correction (load-bearing).** *"You need to have reasoned enough to make the recommendation strongly. I do not have expertise in this and to lay the responsibility on me is irresponsible."* — Logan-disposition discipline scoped: for user-intent capture + framing-pressure auditing where Logan has standing as user; NOT audit-of-last-resort for substrate-design soundness. Codification candidate (per DECISION-SPACE §3.9 threshold pattern) for `.planning/spikes/METHODOLOGY.md` or `AGENTS.md`. Recorded as 2026-04-30 §2.7.
+
+**Calibration findings (substrate-shape evidence; per 2026-04-30 §5).**
+- §5.1 — Five frame-revisions surfaced ONLY on Logan's direct prompting; closure-pressure-into-elaboration pattern survives cross-vendor xhigh + same-vendor xhigh + D5a awareness + max effort + spike methodology codification + premise-bleed audit precedent. Pattern broke at /effort max + Logan-correction-with-defense-against-critics-framing.
+- §5.2 — Logan-disposition-as-evasion correction: distinguishing legitimate (user-intent capture) vs. evasive (transferring agent-side audit-load) requires per-situation judgment + agent-side reasoning depth before defaulting to Logan-disposition.
+- §5.3 — Audit-discipline limits: paired discipline catches different failure categories (substance vs. register; vocabulary-import vs. integration-grammar-as-fact) but does NOT catch methodology-question-shape-mismatch unless explicitly scoped to. Audit-scope itself at framing-inheritance risk if scoped under same misframe.
+- §5.4 — Pattern-recognition required Logan's pressure: maximum-discipline configuration + structured-external-pressure was necessary to break closure-pressure-into-elaboration; lower configurations insufficient.
+
+**(V′.a) execution: 5 concrete steps committed 2026-04-30.**
+1. Mark Phase D evidence as interim work-product (EXECUTION-LOG.md §4 marker; MINI-SPEC superseded-by-replan marker) — **DONE commit `43e652b`**.
+2. Author trajectory-plan revision to `cheerful-forging-galaxy.md` — see §11.6.14.
+3. Plan-self-audit cycle scoped to question-shape-fit (mapping vs. spike) — pending; cross-vendor codex independent spec-drafting recommended per Step 2 self-review.
+4. Build frame-revision-check into trajectory mechanics — embedded in plan revision (§0.5 + §6.1 + §6.2 + §1.4 process steps); standalone codification disposition pending.
+5. Document methodology-mismatch finding as standalone substrate-shape evidence artifact at `.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md` — pending.
+
+**Predecessor commits.** `c0465a4` Phase D mid-arc dispatch + structural review; `43e652b` (V′.a) Step 1 + this disposition recorded.
+
+**Cross-references.** `.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md` (canonical record); `.planning/gsd-2-uplift/wave-2/decision-trace/EXECUTION-LOG.md` §4 INTERIM-OUTPUT marker; `.planning/gsd-2-uplift/wave-2/decision-trace/MINI-SPEC.md` superseded marker.
+
+### §11.6.14 Trajectory plan (V′.a) Step 2 — methodology-fit response + 2026-05-01 vision-articulation context + self-review revisions (2026-05-01)
+
+**Predecessor context (2026-05-01 turn-cluster).** Logan asked for brief overview of what gsd-2 should ideally become; Claude initially produced 7-property articulation; Logan progressively widened (project-class plurality across game/SaaS/social/scholarly; harness-studio + paddock as offshoot-pattern instances; pressure-not-destination clarification correcting bridge-harness framing; vision-as-regulative-ideal philosophical depth; monetization-as-workflow-primitive vision-addition; burden-of-proof-on-exclusion correction). Settled on 12-property substrate-vision set + 5-property gsd-2-uplift project-shape + scope-discipline corrections. Closure-pressure-into-elaboration pattern recurred multiple times during the turn-cluster (per 2026-04-30 §5.4 finding; pattern survives /effort max + pattern-recognition-active); broke each instance only on Logan-correction. Logan accepted at /effort xhigh ("I accept"). Two artifacts authored: EXTERNAL-VISION-CONTEXT.md (arxiv-sanity-mcp side) + 2026-05-01-gsd-2-substrate-transfer-and-pressure-clarification.md (harness-studio side); committed `c1b098c` arxiv-sanity-mcp + `7a11d89` harness-studio.
+
+**(V′.a) Step 2 work.** Trajectory plan `cheerful-forging-galaxy.md` revised to:
+- Replace single-target-spike Phase D (§1.4) with **mapping-shape Phase D** producing substrate-shape map across four axes (gsd-2 surfaces × arxiv-sanity-mcp practice × intervention-intents S1-S8 × joint accommodation-evidence) + 12-property scope-control overlay (per EXTERNAL-VISION-CONTEXT.md §3) + four-category C1/C2/C3/C4 confidence-classification (per EXTERNAL-VISION-CONTEXT.md §4.2).
+- Reshape Phase E (§1.5) from stability-test to **mapping-coherence + theory-construction quality test**.
+- Adjust Phase F gate (§1.6) to **mapping-coherence + intent-intervention-feasibility** (criterion 2 reframe; ≥1 C1 path requirement; criterion 5 methodology-mismatch-finding-integrated added).
+- Add §0.8 methodology-fit acknowledgment (mapping-shape vs. spike-shape question; spikes-nest-inside-mapping discipline; counter-claim challenged).
+- Expand §0.4 mandatory pre-reading (items 14-17): RELATIONSHIP-TO-PARENT.md, EXTERNAL-VISION-CONTEXT.md, 2026-04-30 deliberation, METHODOLOGY-MISMATCH-FINDING.md (forthcoming).
+- Add §0.5 frame-revision-check ((V′.a) Step 4 mechanism): phase-entry / mid-phase / output-draft check-points. Embedded in §1.4 process steps 2/5/9.
+- Add §0.6 + §5.6 methodology-question-shape-mismatch failure-mode row.
+- Update §1.7 Phase G artifact-by-artifact table for substrate-shape-map outputs, EXTERNAL-VISION-CONTEXT.md (DUPLICATE), METHODOLOGY-MISMATCH-FINDING.md (initially MOVE; revised to DUPLICATE on self-review).
+- Update §2.1 + §2.3 + §2.4 paired audit-discipline default-fires at Phase D + E + Step 3 self-audit (paired-default with Logan-discretion-to-downgrade-under-cost-bandwidth-constraint per self-review).
+
+**Self-review revisions applied 2026-05-01 (Logan disposed "lets go with your recommendations then" at /effort xhigh).** Step 2's self-surfaced 7 concerns; recommendations 2-5 applied; recommendations 1 + 7 are Logan-side actions; recommendation 6 is no-op:
+- **Concern 1 (audit-spec at framing-inheritance risk):** plan-status header notes Step 3 audit-spec drafting form recommends cross-vendor codex independent draft (B-strong); Logan disposes spec-drafting form before audit dispatch. §2.3 Step 3 row matched.
+- **Concern 2 (budget-deviation meaning):** §1.4 Outputs adds budget-deviation-as-frame-revision-trigger; underrun/overrun differentiated; threshold deliberately unspecified.
+- **Concern 3 (intent-tangled iteration mechanics):** §1.4 process steps 6 + 7 add iteration-mechanics gesture (one possible shape; frame-revision-check fires if iteration-shape itself shifts; under-specification intentional, not negligent).
+- **Concern 4 (premature commitment self-correction):** §1.7 METHODOLOGY-MISMATCH-FINDING.md MOVE → DUPLICATE; 2026-04-30 deliberation added to per-deliberation-Logan-disposed list with both-readings articulated.
+- **Concern 5 (paired-default cost):** §2.4 Phase D + E rows softened from hard-default to paired-default-with-Logan-discretion-to-downgrade; tradeoff (downgrade reintroduces 2026-04-30 §5.4 closure-pressure-pattern-survives-single-vendor risk) explicit; matching softening in §2.3.
+
+**Final caveat updated.** Plan-final fallibility caveat traces both Step 2 and self-review-revision authoring + flags self-review process itself at framing-inheritance risk (surfacing concerns can be performatively-open without operationally-resolving per §0.6 performative-vs-operational openness); Step 3 paired audit reads both revision AND self-review trace as artifacts at risk.
+
+**Plan size.** 735 → 842 lines (+107 net; +167 insertions / -60 deletions).
+
+**Phases status.** Phase A complete; Phase B complete; Phase C complete; Phase D under (V′.a) replan with current evidence corpus marked interim per 2026-04-30 §2.8 + commit `43e652b`. Phases E-H reshaped under (V′.a) but not yet executed.
+
+**Step 3 audit-spec drafting form.** B-strong (cross-vendor codex independent draft) recommended per Concern 1 disposition; Logan disposes form before audit dispatch.
+
+**Cross-references.** `.planning/gsd-2-uplift/EXTERNAL-VISION-CONTEXT.md` (12 properties + scope-discipline + Phase D mapping purpose); `.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md` (methodology-mismatch finding); `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` (revised plan).
+
 ### §11.7 Mid-stream pivot dispositions (if any)
 
 *[empty — populated by §7.2 pivot procedure if triggered. Schema lives in §7.2.]*
