@@ -23,7 +23,7 @@ extraction_completed: 2026-05-08
 
 This document carries a clarification that is load-bearing for any session working on gsd-2-uplift (here in arxiv-sanity-mcp's `.planning/`, or post-extraction in the dedicated repo) and for any session reasoning about arxiv-sanity-mcp's role in the broader long-horizon agential development arc. It articulates the **test-case-vs-substrate relationship** between the two projects so that future sessions do not collapse it.
 
-The clarification originated in the trajectory plan at `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` §0.3, drafted 2026-04-29 in collaboration with Logan after the v1-GSD premise-bleed audit-arc surfaced the cost of letting framings inherit silently. This standing-context artifact lifts §0.3 out of the trajectory plan and into a place that auto-loads (via CLAUDE.md doctrine load-point) for the relevant session triggers.
+The clarification originated in the trajectory plan at `~/workspace/projects/gsd-2-uplift/.planning/trajectory/cheerful-forging-galaxy.md` §0.3, drafted 2026-04-29 in collaboration with Logan after the v1-GSD premise-bleed audit-arc surfaced the cost of letting framings inherit silently. This standing-context artifact lifts §0.3 out of the trajectory plan and into a place that auto-loads (via CLAUDE.md doctrine load-point) for the relevant session triggers.
 
 ## §1. What arxiv-sanity-mcp is in the bigger picture
 
@@ -73,15 +73,15 @@ The bidirectional reference is intentional. Trajectory plan §1.7 specifies this
 
 ## §4. Cross-references
 
-**Originating artifact:** `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` §0.3 (this artifact lifts §0.3 into a standing location).
+**Originating artifact:** `~/workspace/projects/gsd-2-uplift/.planning/trajectory/cheerful-forging-galaxy.md` §0.3 (this artifact lifts §0.3 into a standing location).
 
 **Initiative-scoping:**
-- `.planning/gsd-2-uplift/INITIATIVE.md` (§7 migration trigger; §1 goal articulation; §3.3 onboarding situations).
-- `.planning/gsd-2-uplift/DECISION-SPACE.md` (§1.6 incubation discipline; §3.8 onboarding plurality; §1.2 goal as articulated).
+- `~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md` (§7 migration trigger; §1 goal articulation; §3.3 onboarding situations).
+- `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md` (§1.6 incubation discipline; §3.8 onboarding plurality; §1.2 goal as articulated).
 
 **Framing context:**
 - `.planning/deliberations/2026-04-28-framing-widening.md` §2 (six-context plurality of "long-horizon development" — the artifact's §1.1 single-case-anchoring caveat draws on this) and §3.3 ("Where this could be wrong" — flags that arxiv-sanity-mcp may be one user-context among many; this artifact extends with a different cut: arxiv-sanity-mcp is *also* a substrate-shape test case, not just a user-context).
-- `.planning/gsd-2-uplift/exploration/SYNTHESIS-COMPARISON.md` §7 (the addendum that surfaced the integration-grammar-as-fact residual; precedent for point-of-use clarification artifacts; §1.1 above applies §7's "useful inputs, not observed facts" discipline to this artifact recursively).
+- `~/workspace/projects/gsd-2-uplift/.planning/exploration/SYNTHESIS-COMPARISON.md` §7 (the addendum that surfaced the integration-grammar-as-fact residual; precedent for point-of-use clarification artifacts; §1.1 above applies §7's "useful inputs, not observed facts" discipline to this artifact recursively).
 
 **Substrate-evidential channels:**
 - `.planning/spikes/METHODOLOGY.md` (six interpretive lenses + paired-review practice disciplines A-F + M1 paired-review property — the spike program's methodology is itself an instance of substrate-evidence about how rigorous spike work is conducted under the substrate).
@@ -90,7 +90,7 @@ The bidirectional reference is intentional. Trajectory plan §1.7 specifies this
 - `.planning/foundation-audit/` (foundation-audit findings as substrate-behavior evidence under decision-review conditions).
 
 **Trajectory plan integration:**
-- `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` §0.3 (the §0.3 articulation that this artifact carries forward into standing-context).
+- `~/workspace/projects/gsd-2-uplift/.planning/trajectory/cheerful-forging-galaxy.md` §0.3 (the §0.3 articulation that this artifact carries forward into standing-context).
 - §1.2 (Phase B; this artifact's authoring phase).
 - §1.7 (Phase G artifact-by-artifact disposition table; this artifact's DUPLICATE disposition).
 - §1.8 (Phase H integration verification; tests references-back coherence on both sides).

@@ -10,7 +10,7 @@ ground: |
   - `~/workspace/projects/gsd-2-uplift/.planning/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` — paired audit-arc that fired Phase D entry but did not surface methodology-mismatch
   - `.planning/spikes/METHODOLOGY.md` — spike methodology identified as scope-mismatched for mapping-question
   - `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` — test-case-vs-substrate framing standing context (DUPLICATE; this side)
-  - DECISION-SPACE.md §1.8 R2-base assumption (1) on extension-surface accommodation — load-bearing for what Phase D was supposed to test (DECISION-SPACE.md MOVED to gsd-2-uplift; pointer-stub at `.planning/gsd-2-uplift/DECISION-SPACE.md`)
+  - DECISION-SPACE.md §1.8 R2-base assumption (1) on extension-surface accommodation — load-bearing for what Phase D was supposed to test (DECISION-SPACE.md MOVED to gsd-2-uplift; pointer-stub at `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md`)
 purpose: |
   Records the deliberation arc from Phase D mid-arc build commit (`c0465a4` arxiv-
   sanity-mcp + `23b1ddc89` gsd-2-explore) through to the methodology-mismatch
@@ -268,7 +268,7 @@ arxiv-sanity-mcp does NOT use `gsd_decision_save`. arxiv-sanity-mcp's actual dec
 - `git log`
 - `.planning/STATE.md`
 - ADR-0005-style architectural commitments
-- Audit folders (`.planning/gsd-2-uplift/audits/*/`)
+- Audit folders (`~/workspace/projects/gsd-2-uplift/.planning/audits/*/`)
 
 These are arxiv-sanity-mcp's native artifact conventions — not gsd-2's. **The misfit between gsd-2's decision-DB substrate and arxiv-sanity-mcp's actual decision-artifact conventions is load-bearing channel-(b) substrate-shape evidence.** It surfaces that gsd-2's decision-DB substrate is opinionated about decision-shape (per-decision-row); arxiv-sanity-mcp's actual decision-trail is artifact-richer and runs across multiple subsystems. Uplift design must address this misfit if gsd-2 is to serve arxiv-sanity-mcp's actual practice (per RELATIONSHIP-TO-PARENT.md §1 test-case-vs-substrate framing).
 
@@ -321,7 +321,7 @@ These are committed. Logan-disposed disposition is execution-greenlight.
 - Mid-Phase if observations diverge from priors
 - Phase output draft (before commit)
 
-**Step 5 — Document methodology-mismatch finding as substrate-shape evidence artifact.** New artifact at `.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md` (or similar) capturing:
+**Step 5 — Document methodology-mismatch finding as substrate-shape evidence artifact.** New artifact at `~/workspace/projects/gsd-2-uplift/.planning/METHODOLOGY-MISMATCH-FINDING.md` (or similar) capturing:
 - The diagnosis: spike methodology applied to mapping question
 - The five frame-revisions as evidence-of-mismatch
 - The skill-shape gsd-2-native-placement misfit as one instantiation
@@ -387,19 +387,19 @@ Implication: substrate-design must support maximum-discipline configuration + st
 
 **Predecessor records:**
 - Predecessor commit: `c0465a4` arxiv-sanity-mcp; `23b1ddc89` gsd-2-explore (Phase D mid-arc atomic commit)
-- `.planning/gsd-2-uplift/wave-2/decision-trace/EXECUTION-LOG.md` §0-§3 + §1.5 substrate-shape correction
-- `.planning/gsd-2-uplift/wave-2/decision-trace/MINI-SPEC.md` (Phase D contract under spike framing)
-- `.planning/gsd-2-uplift/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` (paired audit-arc that didn't catch methodology-mismatch)
-- `.planning/gsd-2-uplift/wave-2/decision-trace/TRAIL-2026-04-25-multi-lens-redirection.md` (subagent invocation evidence)
+- `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/EXECUTION-LOG.md` §0-§3 + §1.5 substrate-shape correction
+- `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/MINI-SPEC.md` (Phase D contract under spike framing)
+- `~/workspace/projects/gsd-2-uplift/.planning/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` (paired audit-arc that didn't catch methodology-mismatch)
+- `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/TRAIL-2026-04-25-multi-lens-redirection.md` (subagent invocation evidence)
 
 **Standing context:**
 - `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` §1 (test-case-vs-substrate framing)
-- `.planning/gsd-2-uplift/INITIATIVE.md` §1-§3 (uplift goal articulation + open framing questions)
-- `.planning/gsd-2-uplift/DECISION-SPACE.md` §1.8 (R2-base assumption (1) on extension-surface accommodation)
+- `~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md` §1-§3 (uplift goal articulation + open framing questions)
+- `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md` §1.8 (R2-base assumption (1) on extension-surface accommodation)
 - `.planning/deliberations/2026-04-28-framing-widening.md` §1-§3 (R1-R5 design space + six-context plurality + project-anchoring)
-- `.planning/gsd-2-uplift/exploration/SYNTHESIS-COMPARISON.md` §5 + §7 (incubation axes + audit addendum)
-- `.planning/gsd-2-uplift/exploration/INCUBATION-CHECKPOINT.md` (Phase C disposition; first-target shape originally disposed)
-- `.planning/gsd-2-uplift/orchestration/OVERVIEW.md` §11.6 (Phase D orchestration history)
+- `~/workspace/projects/gsd-2-uplift/.planning/exploration/SYNTHESIS-COMPARISON.md` §5 + §7 (incubation axes + audit addendum)
+- `~/workspace/projects/gsd-2-uplift/.planning/exploration/INCUBATION-CHECKPOINT.md` (Phase C disposition; first-target shape originally disposed)
+- `~/workspace/projects/gsd-2-uplift/.planning/orchestration/OVERVIEW.md` §11.6 (Phase D orchestration history)
 
 **Methodology grounding:**
 - `.planning/spikes/METHODOLOGY.md` (spike methodology now identified as scope-mismatched for mapping-question)
@@ -408,9 +408,9 @@ Implication: substrate-design must support maximum-discipline configuration + st
 - `AGENTS.md` "CONTEXT.md epistemic discipline" + "Deliberation boundaries"
 
 **Forward-references (V'.a execution):**
-- `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` (revision pending per §4 step 2)
-- `.planning/gsd-2-uplift/audits/202X-XX-XX-trajectory-replan-audit/` (forthcoming per §4 step 3)
-- `.planning/gsd-2-uplift/METHODOLOGY-MISMATCH-FINDING.md` (forthcoming per §4 step 5)
+- `~/workspace/projects/gsd-2-uplift/.planning/trajectory/cheerful-forging-galaxy.md` (revision pending per §4 step 2)
+- `~/workspace/projects/gsd-2-uplift/.planning/audits/202X-XX-XX-trajectory-replan-audit/` (forthcoming per §4 step 3)
+- `~/workspace/projects/gsd-2-uplift/.planning/METHODOLOGY-MISMATCH-FINDING.md` (forthcoming per §4 step 5)
 - Codification candidate (Logan-disposition scope clarification) per §2.7 + §4 pending
 
 ---

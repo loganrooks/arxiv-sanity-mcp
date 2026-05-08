@@ -321,20 +321,20 @@ Logan applied the pattern in real-time during the 2026-05-01 turn-cluster (extra
 - `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` — test-case-vs-substrate framing (arxiv-sanity-mcp ↔ gsd-2-uplift's substrate-shape diagnostic role).
 
 **gsd-2-uplift initiative artifacts:**
-- `.planning/gsd-2-uplift/INITIATIVE.md` — forward-staging; goal articulation; open framing questions; first-wave plan.
-- `.planning/gsd-2-uplift/DECISION-SPACE.md` — load-bearing decision reference.
-- `.planning/gsd-2-uplift/exploration/SYNTHESIS-COMPARISON.md` — paired-synthesis comparison; §7 audit addendum.
-- `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` — trajectory plan ((V′.a) Step 2 revision pending).
-- `.planning/gsd-2-uplift/wave-2/decision-trace/EXECUTION-LOG.md` — Phase D interim evidence corpus.
+- `~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md` — forward-staging; goal articulation; open framing questions; first-wave plan.
+- `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md` — load-bearing decision reference.
+- `~/workspace/projects/gsd-2-uplift/.planning/exploration/SYNTHESIS-COMPARISON.md` — paired-synthesis comparison; §7 audit addendum.
+- `~/workspace/projects/gsd-2-uplift/.planning/trajectory/cheerful-forging-galaxy.md` — trajectory plan ((V′.a) Step 2 revision pending).
+- `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/EXECUTION-LOG.md` — Phase D interim evidence corpus.
 
 **Deliberation logs:**
 - `.planning/deliberations/2026-04-28-framing-widening.md` — R1-R5 + six-context plurality + project-anchoring.
 - `.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md` — methodology-mismatch finding + (V′.a) disposition.
 
 **Audit folders:**
-- `.planning/gsd-2-uplift/audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/` — premise-bleed audit-arc.
-- `.planning/gsd-2-uplift/audits/2026-04-29-trajectory-plan-audit/` — trajectory plan-self-audit.
-- `.planning/gsd-2-uplift/audits/2026-04-30-phase-d-entry-audit/` — Phase D entry audit (paired).
+- `~/workspace/projects/gsd-2-uplift/.planning/audits/2026-04-28-v1-gsd-mental-model-premise-bleed-audit/` — premise-bleed audit-arc.
+- `~/workspace/projects/gsd-2-uplift/.planning/audits/2026-04-29-trajectory-plan-audit/` — trajectory plan-self-audit.
+- `~/workspace/projects/gsd-2-uplift/.planning/audits/2026-04-30-phase-d-entry-audit/` — Phase D entry audit (paired).
 
 **External — harness-studio:**
 - `~/workspace/projects/harness-studio/README.md` — purpose statement.
