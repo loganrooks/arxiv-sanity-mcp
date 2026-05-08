@@ -1,0 +1,14 @@
+Drafted the audit spec at [.planning/gsd-2-uplift/audits/2026-05-01-trajectory-replan-audit/AUDIT-SPEC.md](/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/gsd-2-uplift/audits/2026-05-01-trajectory-replan-audit/AUDIT-SPEC.md).
+
+Key choices in the spec:
+- Treats `SPEC-DRAFTING-BRIEF.md` as provenance, not future auditor input.
+- Makes “mapping” itself auditable, not presumed correct.
+- Includes all required Q-SF / Q-FI / Q-MM / Q-PF / Q-PG / Q-AD / Q-NS lens questions plus marked cross-vendor-original additions.
+- Specifies paired Step 1 / Step 2 / `DIFFERENTIAL.md` / Logan `DISPOSITION.md` flow.
+- Uses A/B/C classes as `ACCEPT-AS-STATED`, `ADDENDUM-TRACTABLE`, `REVISE-BEFORE-COMMIT`.
+
+Verification:
+- `wc -l` reports `683` lines, inside the requested ~400-700 range.
+- `rg` confirmed required sections, lens IDs, output artifacts, and classification labels.
+- `git status` shows the new untracked `AUDIT-SPEC.md`; the pre-existing untracked `.logs/` directory was left untouched. No audit was dispatched.
+
