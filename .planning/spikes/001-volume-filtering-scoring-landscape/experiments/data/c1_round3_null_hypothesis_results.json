@@ -1,0 +1,119 @@
+{
+  "RL_Robotics_gt_sensitivity": {
+    "seed_sim_top200": {
+      "day1_precision": 1.0,
+      "day30_precision": 0.95,
+      "delta": -0.05,
+      "degrades": false
+    },
+    "same_category_200": {
+      "day1_precision": 0.05,
+      "day30_precision": 0.05,
+      "delta": 0.0,
+      "degrades": false
+    },
+    "keyword_match_200": {
+      "day1_precision": 0.0,
+      "day30_precision": 0.0,
+      "delta": 0.0,
+      "degrades": false
+    }
+  },
+  "RL_Robotics_model_comparison": {
+    "centroid": {
+      "day1_precision": 0.0,
+      "day10_precision": 0.0,
+      "day30_precision": 0.0,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.6365,
+      "day30_relevance": 0.5545,
+      "relevance_delta": -0.082
+    },
+    "bounded_centroid": {
+      "day1_precision": 0.0,
+      "day10_precision": 0.0,
+      "day30_precision": 0.0,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.6365,
+      "day30_relevance": 0.5545,
+      "relevance_delta": -0.082
+    },
+    "multi_centroid": {
+      "day1_precision": 0.0,
+      "day10_precision": 0.0,
+      "day30_precision": 0.0,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.6252,
+      "day30_relevance": 0.5188,
+      "relevance_delta": -0.1064
+    },
+    "svm": {
+      "day1_precision": 0.0,
+      "day10_precision": 0.0,
+      "day30_precision": 0.0,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.5932,
+      "day30_relevance": 0.462,
+      "relevance_delta": -0.1312
+    }
+  },
+  "LLM_Reasoning_gt_sensitivity": {
+    "seed_sim_top200": {
+      "day1_precision": 1.0,
+      "day30_precision": 0.7,
+      "delta": -0.3,
+      "degrades": true
+    },
+    "same_category_200": {
+      "day1_precision": 0.0,
+      "day30_precision": 0.05,
+      "delta": 0.05,
+      "degrades": false
+    },
+    "keyword_match_200": {
+      "day1_precision": 0.0,
+      "day30_precision": 0.0,
+      "delta": 0.0,
+      "degrades": false
+    }
+  },
+  "LLM_Reasoning_model_comparison": {
+    "centroid": {
+      "day1_precision": 0.0,
+      "day10_precision": 0.0,
+      "day30_precision": 0.0,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.5325,
+      "day30_relevance": 0.4648,
+      "relevance_delta": -0.0677
+    },
+    "bounded_centroid": {
+      "day1_precision": 0.0,
+      "day10_precision": 0.0,
+      "day30_precision": 0.0,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.5325,
+      "day30_relevance": 0.4626,
+      "relevance_delta": -0.0699
+    },
+    "multi_centroid": {
+      "day1_precision": 0.05,
+      "day10_precision": 0.0,
+      "day30_precision": 0.05,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.4668,
+      "day30_relevance": 0.4571,
+      "relevance_delta": -0.0097
+    },
+    "svm": {
+      "day1_precision": 0.0,
+      "day10_precision": 0.0,
+      "day30_precision": 0.0,
+      "precision_delta": 0.0,
+      "day1_relevance": 0.4758,
+      "day30_relevance": 0.4358,
+      "relevance_delta": -0.04
+    }
+  },
+  "timestamp": "2026-03-19T02:52:27Z"
+}

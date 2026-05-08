@@ -1,0 +1,460 @@
+# Spike 001: Findings
+
+**Last updated:** 2026-03-19
+**Status:** Complete (all phases). See DECISION.md for synthesis and recommendations.
+
+## Phase A1: Volume Mapping — Complete
+
+### Experiment: January 2026 Harvest
+
+Harvested real arXiv papers via OAI-PMH for three category configurations.
+
+| Config | Categories | Unique Papers (Jan 2026) | % of All CS | Projected Annual |
+|--------|-----------|-------------------------|-------------|------------------|
+| Big4 | cs.AI, cs.CL, cs.CV, cs.LG | 12,145 | 67.7% | ~146K |
+| Configured | All 15 in categories.toml | 14,962 | 83.4% | ~180K |
+| All CS | All 37 CS subcategories | 17,928 | 100% | ~215K |
+
+**Key findings:**
+1. Big4 captures 81% of what all 15 configured categories would get. The extra 11 categories add only 2,817 papers/month, dominated by robotics (521), optimization (464), and signal processing (429).
+2. cs.AI appears in 5,438 papers but is primary category for only 1,318 — the "cs.AI explosion" is largely a cross-listing phenomenon from cs.LG, cs.CL, cs.CV.
+3. 65% of papers are cross-listed to 2+ categories. Only 35% have a single category.
+4. Daily volume varies from 1 (weekends/holidays) to 1,396 (post-holiday backlog). Weekday average ~550-600 for big4.
+5. OAI-PMH datestamps include paper updates, not just new submissions. The unique paper count (via INSERT OR IGNORE) is the reliable metric.
+
+**Data:** 19,252 unique papers stored in `experiments/data/spike_001_harvest.db` (37 MB).
+
+### Experiment: FTS5 Search Performance Benchmark
+
+Measured SQLite FTS5 search latency at 7 scale points using real paper data (duplicated to reach target sizes). 10 query types, 10 runs each with 2 warmup runs.
+
+| Scale | Insert | FTS Build | DB Size | Search p50 | Search p95 |
+|-------|--------|-----------|---------|-----------|-----------|
+| 5K | 0.1s | 0.3s | 15 MB | 0.9ms | 1.6ms |
+| 10K | 0.2s | 0.6s | 28 MB | 1.8ms | 2.9ms |
+| 19K | 0.3s | 1.2s | 50 MB | 2.7ms | 4.5ms |
+| 50K | 0.5s | 3.6s | 132 MB | 7.2ms | 10.7ms |
+| 100K | 1.3s | 6.8s | 259 MB | 13.5ms | 17.8ms |
+| 215K | 2.7s | 15.1s | 553 MB | 30ms | 38ms |
+| 500K | 5.4s | 36.3s | 1.28 GB | 71ms | 84ms |
+
+**Key findings:**
+1. Search latency scales linearly with corpus size. No performance knee or sudden degradation up to 500K papers.
+2. At 215K papers (projected annual for configured categories), median search is 30ms, p95 is 38ms — well under the 100ms "feels instant" threshold.
+3. At 500K papers (2+ years of broad harvesting), median search is 71ms — still under 100ms.
+4. Slowest queries are common two-word terms ("language model": 91ms at 215K) and phrases ("large language model": 73ms at 215K). Specific queries stay fast (<5ms).
+5. FTS index build takes 15 seconds at 215K papers — acceptable for initial setup, and daily incremental inserts (300 papers) would be sub-second.
+6. DB size is ~2.6 MB per 1K papers (metadata + FTS index).
+
+**Methodology note:** Larger scale points used duplicated papers with modified IDs. This preserves realistic text distributions and term frequencies but means the vocabulary doesn't grow beyond 19K papers' worth. Real 215K unique papers would have more diverse vocabulary, potentially making searches slightly faster (terms are more discriminative) or slightly slower (larger inverted index). This is a known limitation — real-scale testing would require months of harvesting.
+
+## A1c.1: TF-IDF Matrix Benchmark — Complete
+
+Measured TF-IDF matrix construction, memory footprint, and cosine similarity search time at 6 scale points using real arXiv paper abstracts. 5 vocabulary configurations tested. Scikit-learn 1.8.0, float32 dtype, scipy CSR sparse format.
+
+### Memory Footprint (matrix + vocabulary)
+
+| Scale | Default | max_50k | max_20k | Pruned (min2/max0.8) | Pruned+50k |
+|-------|---------|---------|---------|----------------------|------------|
+| 5K | 5.8 MB | 5.9 MB | 5.3 MB | 4.6 MB | 4.7 MB |
+| 10K | 10.4 MB | 10.6 MB | 8.9 MB | 8.7 MB | 8.8 MB |
+| 19K | 17.9 MB | 17.6 MB | 14.9 MB | 15.4 MB | 15.5 MB |
+| 50K | 40.1 MB | 39.8 MB | 36.5 MB | 40.1 MB | 39.8 MB |
+| 100K | 75.4 MB | 74.9 MB | 70.9 MB | 75.4 MB | 74.9 MB |
+| 215K | 156.9 MB | 156.2 MB | 150.3 MB | 156.9 MB | 156.2 MB |
+
+### Cosine Similarity Search Time (top-20 via argpartition, median of 5 runs)
+
+| Scale | Default | max_50k | max_20k | Pruned | Pruned+50k |
+|-------|---------|---------|---------|--------|------------|
+| 5K | 5.4ms | 5.4ms | 5.9ms | 5.2ms | 5.2ms |
+| 10K | 11.7ms | 12.1ms | 10.7ms | 11.2ms | 10.4ms |
+| 19K | 20.7ms | 21.1ms | 19.3ms | 20.7ms | 20.6ms |
+| 50K | 56.9ms | 87.4ms | 51.6ms | 76.2ms | 86.9ms |
+| 100K | 173.4ms | 214.6ms | 210.1ms | 207.3ms | 220.1ms |
+| 215K | 516.0ms | 495.8ms | 467.9ms | 510.4ms | 463.9ms |
+
+### Fit Time (full fit_transform, median of 3 runs)
+
+| Scale | Default | max_50k | max_20k | Pruned | Pruned+50k |
+|-------|---------|---------|---------|--------|------------|
+| 5K | 0.6s | 0.7s | 0.7s | 0.6s | 0.6s |
+| 10K | 1.2s | 1.5s | 1.3s | 1.3s | 1.3s |
+| 19K | 2.2s | 2.7s | 2.5s | 2.2s | 2.5s |
+| 50K | 5.6s | 6.6s | 6.5s | 6.1s | 6.3s |
+| 100K | 11.4s | 13.2s | 12.8s | 12.1s | 12.8s |
+| 215K | 28.5s | 27.2s | 27.0s | 26.1s | 26.9s |
+
+### Other Measurements
+
+- **Query transform time:** <1ms at all scales (negligible)
+- **Vocabulary size:** 55,798 terms at 19K unique papers (default config)
+- **Sparsity:** >99.5% at all scales (TF-IDF matrices are extremely sparse)
+- **NNZ per document:** ~90-97 nonzero entries per paper (average abstract ~200 words, ~95 unique terms after stop words)
+- **Partitioned vs full argsort:** No meaningful difference — the cosine similarity computation dominates, not the sort
+
+### Key Findings
+
+1. **Memory is not the bottleneck.** At 215K papers, the full TF-IDF matrix + vocabulary requires only ~157 MB. A laptop with 8 GB RAM can hold this trivially. Even at 500K (extrapolating linearly), it would be ~365 MB. The deliberation's concern about RAM feasibility was unfounded.
+
+2. **Cosine similarity search IS the bottleneck.** Brute-force cosine similarity crosses the 100ms "feels instant" threshold between 50K and 100K papers. At 215K, it's ~500ms — noticeable but usable. At 500K (extrapolating), it would be ~1.2s — too slow for interactive use.
+
+3. **The feasibility breakpoint for brute-force TF-IDF similarity is ~50K-75K papers.** Below this, brute-force cosine similarity is under 100ms. Above, you need either pre-filtering (search within a category or time window), approximate nearest neighbors, or acceptance of perceptible latency.
+
+4. **Vocabulary pruning makes minimal difference.** At scale, all configs converge to similar memory and search times. The vocabulary size is dominated by the number of unique documents, not the pruning parameters. At 19K unique papers: default=56K terms, pruned=26K terms, but the memory difference is only 2.5 MB. The compute time difference is within measurement noise.
+
+5. **Rebuild time is acceptable.** A full TF-IDF rebuild at 215K papers takes ~28 seconds. This is fine for a nightly rebuild or MCP server startup. Daily incremental papers (~600 for configured categories) would mean a rebuild adding 0.06s — negligible.
+
+6. **This is a compute constraint, not a memory constraint.** The architectural implication is that pre-filtering (not ANN, not bigger hardware) is the path to scaling TF-IDF recommendations. An SVM trained on user preferences acts as a pre-filter naturally — you only need similarity against the papers in the user's interest categories.
+
+### What Would Have Surprised Us (Pre-registered Predictions vs Results)
+
+| Prediction | Threshold | Actual | Surprised? |
+|-----------|-----------|--------|-----------|
+| Matrix at 215K exceeds 2 GB | >2 GB | 157 MB | No — 13x under threshold |
+| Cosine search at 215K exceeds 100ms | >100ms | 516ms | **Yes** — 5x over threshold |
+| Vocabulary pruning dramatically changes results | Quality degradation | Minimal effect | No |
+| Rebuild time at 215K exceeds 60s | >60s | 28.5s | No — 2x under threshold |
+
+### Methodology Note
+
+Same duplication caveat as A1b: scale points above 19K use duplicated papers with modified IDs. This preserves term frequency distributions but means vocabulary is capped at 19K unique papers' worth (~56K terms). Real 215K unique papers would have larger vocabulary (~150K-200K terms estimated), which would increase memory slightly but likely decrease search time (sparser, more discriminative vectors). The cosine search time finding (the main concern) may be slightly pessimistic for real data — duplicated documents create a denser similarity landscape than truly diverse papers would.
+
+## A1c.2: Concurrent SQLite Read+Write — Complete
+
+Measured FTS5 search latency during concurrent writes at 5 write rates (0–100/s), 2 journal modes (default DELETE vs WAL), 2 batch sizes (1 vs 10). 10K pre-populated papers. Each test runs for 10 seconds. `busy_timeout=5000ms`.
+
+### Search p50 Latency During Concurrent Writes
+
+**Batch size 1 (individual INSERT+COMMIT per paper):**
+
+| Journal Mode | 0/s (baseline) | 1/s | 10/s | 50/s | 100/s |
+|-------------|---------------|------|------|------|-------|
+| DELETE | 1.3ms | 1.7ms | 1.9ms | **27.6ms** | **180.7ms** |
+| WAL | 1.3ms | 1.5ms | 1.4ms | 1.6ms | 1.6ms |
+
+**Batch size 10 (10 INSERTs per COMMIT):**
+
+| Journal Mode | 0/s (baseline) | 1/s | 10/s | 50/s | 100/s |
+|-------------|---------------|------|------|------|-------|
+| DELETE | 1.3ms | 1.4ms | 1.6ms | 1.5ms | 1.9ms |
+| WAL | 1.3ms | 1.2ms | 1.4ms | 1.5ms | 1.5ms |
+
+### Search p95 Latency During Concurrent Writes
+
+**Batch size 1:**
+
+| Journal Mode | 0/s | 1/s | 10/s | 50/s | 100/s |
+|-------------|------|------|------|------|-------|
+| DELETE | 7.6ms | 8.2ms | 10.4ms | **59.7ms** | **3714ms** |
+| WAL | 7.7ms | 7.6ms | 7.5ms | 8.2ms | 8.1ms |
+
+**Batch size 10:**
+
+| Journal Mode | 0/s | 1/s | 10/s | 50/s | 100/s |
+|-------------|------|------|------|------|-------|
+| DELETE | 7.5ms | 7.6ms | 8.1ms | 8.6ms | 11.1ms |
+| WAL | 7.4ms | 7.3ms | 7.6ms | 8.1ms | 7.8ms |
+
+### Search Throughput
+
+| Config | 0/s writes | 100/s writes (batch=1) | 100/s writes (batch=10) |
+|--------|-----------|----------------------|------------------------|
+| DELETE | 406/s | **1/s** (99.7% drop) | 264/s (35% drop) |
+| WAL | 405/s | 359/s (11% drop) | 378/s (7% drop) |
+
+### Lock Errors
+
+**Zero lock errors across all configurations.** The 5-second `busy_timeout` was never triggered. Contention manifests as latency increase, not errors.
+
+### Key Findings
+
+1. **WAL mode completely eliminates write-induced search latency degradation.** With WAL, search p50 stays at 1.3-1.6ms regardless of write rate (0 to 100/s). Without WAL, search p50 jumps from 1.3ms to 181ms at 100 writes/s with batch=1 — a 140x degradation.
+
+2. **Batch size matters enormously for DELETE mode, barely for WAL.** DELETE mode with batch=1 at 100/s is catastrophic (p95=3.7s). DELETE mode with batch=10 at 100/s is tolerable (p95=11ms). WAL mode doesn't care about batch size — both are under 10ms.
+
+3. **The harvest daemon + MCP server can absolutely coexist on SQLite.** With WAL mode enabled (one `PRAGMA journal_mode=WAL` statement), concurrent access is a non-issue at any realistic write rate. Daily harvest of ~600 papers is 0.007 papers/second sustained — orders of magnitude below where any contention appears.
+
+4. **Even bulk import is fine with WAL.** 100 papers/second with batch=10 in WAL mode: search p50=1.5ms, p95=7.8ms, 378 searches/second. Zero impact on search quality.
+
+5. **DELETE mode with batch=1 is the only dangerous configuration.** Individual commits per paper at high rates cause severe contention. This is easily avoided: either use WAL (preferred) or batch writes.
+
+### What Would Have Surprised Us (Pre-registered Predictions vs Results)
+
+| Prediction | Threshold | Actual | Surprised? |
+|-----------|-----------|--------|-----------|
+| WAL eliminates contention entirely | No degradation | p50 stays 1.3-1.6ms at all rates | **Yes** — even better than expected, completely flat |
+| Search latency doubles during writes | 2x baseline | DELETE+batch1: 140x at 100/s. WAL: 1.0-1.2x | Partial — DELETE is worse than predicted, WAL better |
+| SQLITE_BUSY errors at realistic rates | Any busy errors | Zero errors at all rates (with 5s timeout) | **Yes** — expected some at 100/s |
+
+### Methodology Note
+
+Tests run with 10K pre-populated papers. At larger corpus sizes (50K+), absolute search latency would be higher (per A1b findings) but the *relative impact* of concurrent writes should be similar since the contention is at the file/journal level, not query-proportional. WAL mode's advantage is architectural (readers don't block on writers), not scale-dependent.
+
+## A1c.3: Lightweight Embedding Benchmark — Complete
+
+Measured all-MiniLM-L6-v2 (384-dim) embedding computation time on CPU (Xeon W-2125, 4c/8t) and GPU (GTX 1080 Ti), memory footprint, and brute-force cosine similarity search time at 6 scale points. Pre-normalized embeddings enable dot-product search.
+
+### Embedding Computation Time
+
+| Scale | CPU | GPU | GPU Speedup |
+|-------|-----|-----|-------------|
+| 5K | 177s (35.5ms/paper) | 8.7s (1.7ms/paper) | 20.3x |
+| 10K | 355s (35.5ms/paper) | 17.3s (1.7ms/paper) | 20.4x |
+| 19K | 684s (35.5ms/paper) | 33.1s (1.7ms/paper) | 20.6x |
+| 50K | 1762s (35.2ms/paper) | 88.0s (1.8ms/paper) | 20.0x |
+| 100K | 3371s (33.7ms/paper) | 179.7s (1.8ms/paper) | 18.8x |
+| 215K | 7136s (33.2ms/paper) | 377.9s (1.8ms/paper) | 18.9x |
+
+### Memory Footprint
+
+| Scale | float32 | float16 |
+|-------|---------|---------|
+| 5K | 7.3 MB | 3.7 MB |
+| 10K | 14.6 MB | 7.3 MB |
+| 19K | 28.2 MB | 14.1 MB |
+| 50K | 73.2 MB | 36.6 MB |
+| 100K | 146.5 MB | 73.2 MB |
+| 215K | 314.9 MB | 157.5 MB |
+
+### Brute-Force Cosine Similarity Search (p50, pre-normalized dot product)
+
+| Scale | CPU | GPU |
+|-------|-----|-----|
+| 5K | 3.0ms | 0.2ms |
+| 10K | 2.8ms | 0.5ms |
+| 19K | 5.0ms | 4.2ms |
+| 50K | 5.0ms | 7.8ms |
+| 100K | 8.0ms | 9.2ms |
+| 215K | 16.2ms | 16.9ms |
+
+### Key Findings
+
+1. **Brute-force embedding search is shockingly fast — under 17ms at 215K papers.** This is 30x faster than TF-IDF cosine similarity (516ms) at the same scale. Pre-normalized dot product with dense 384-dim vectors is faster than sparse TF-IDF cosine over 56K-dim vectors. The 100ms threshold from DESIGN.md is never even approached.
+
+2. **GPU provides ~20x speedup for embedding computation, but search is CPU-bound.** GPU embedding is 1.7ms/paper vs 35ms/paper on CPU — a consistent 20x. But brute-force search is similar on CPU and GPU because it's a simple matrix multiplication that numpy handles efficiently.
+
+3. **CPU embedding is slow but operationally manageable.** Embedding 19K papers takes 11.4 minutes on CPU. The full 215K takes 2 hours — acceptable as an overnight cold-start job. Daily incremental (600 papers) takes only 21 seconds on CPU. The real question isn't "is CPU fast enough?" but "what's the smart ingestion strategy?" — prioritize user's categories first, background the rest, provide progress feedback. GPU makes cold start fast (6.3 min for 215K) but isn't required.
+
+4. **Memory is modest.** float32 embeddings for 215K papers need 315 MB. float16 halves this to 158 MB. Both fit trivially in laptop RAM. Combined with TF-IDF (157 MB), the total feature set for 215K papers is ~472 MB float32 — still under 1 GB.
+
+5. **Semantic search works on SQLite without pgvector.** At all scales, brute-force search is under 17ms. This completely undercuts the deliberation's assumption that pgvector is needed for semantic search at personal scale. The tier differentiation should be GPU availability for *embedding computation*, not database features for *search*.
+
+6. **The embedding bottleneck is computation, not storage or search.** Same pattern as TF-IDF (A1c.1) but more extreme: the features are cheap to store and fast to search, but expensive to compute (especially on CPU).
+
+### What Would Have Surprised Us (Pre-registered Predictions vs Results)
+
+| Prediction | Threshold | Actual | Surprised? |
+|-----------|-----------|--------|-----------|
+| Brute-force search at 100K under 10ms | <10ms | 8.0ms CPU, 9.2ms GPU | **Yes** — expected this to be slow |
+| GPU embedding <5x faster than CPU | <5x speedup | 20x speedup | **Yes** — GPU advantage much larger than expected |
+| float16 measurably degrades quality | Quality difference | Not tested (need quality eval) | N/A — deferred |
+
+### Methodology Note
+
+Same duplication caveat as previous experiments. Search time at 215K with real unique papers would produce different similarity distributions but the compute time (matrix multiply) depends only on matrix dimensions, not content uniqueness. Embedding computation time per paper is consistent (~35ms CPU, ~1.7ms GPU) regardless of scale — the work is per-text, not per-corpus. The GPU speedup (20x) is a property of the model+hardware combination, not the data.
+
+## What We Know With Evidence
+
+| Claim | Evidence | Confidence |
+|-------|----------|-----------|
+| Big4 captures most papers a ML/AI researcher would want | 81% of configured categories' papers | High — measured directly |
+| SQLite FTS5 search is fast enough at 215K papers | 30ms p50, 38ms p95 | Medium — measured but with duplicated data caveat |
+| Storage is not the constraint for SQLite | 553 MB at 215K papers | High — measured directly |
+| Annual paper volume for configured categories is ~180K | Extrapolated from 1 month | Medium — seasonal variation not captured |
+| TF-IDF matrix fits comfortably in RAM at 215K papers | 157 MB total | High — measured directly, even pessimistic duplication |
+| TF-IDF rebuild time is acceptable at 215K papers | 28.5s full rebuild | High — measured directly |
+| Brute-force cosine similarity is too slow above ~50-75K papers | 57ms at 50K, 173ms at 100K, 516ms at 215K | Medium — measured with duplicated data; real data may be slightly faster (sparser vectors) |
+| Vocabulary pruning has negligible impact on TF-IDF performance | All 5 configs within 10% at scale | High — measured across 5 configurations |
+| The TF-IDF feasibility constraint is compute, not memory | 157 MB RAM vs 516ms search at 215K | High — clear separation between the two dimensions |
+| WAL mode eliminates concurrent access as a concern | p50 stays 1.3-1.6ms at 0-100 writes/s | High — measured directly, completely flat |
+| Harvest daemon + MCP server can coexist on SQLite | Zero degradation at realistic rates (WAL) | High — 600 papers/day is orders of magnitude below threshold |
+| DELETE journal mode with unbatched writes is dangerous | p95=3.7s at 100 writes/s, batch=1 | High — measured directly |
+| Batch writes eliminate DELETE mode contention | p95=11ms at 100/s with batch=10 | High — measured directly |
+| Brute-force embedding search is fast at all scales | 16.2ms p50 at 215K papers | High — measured directly |
+| GPU provides ~20x speedup for embedding computation | 35ms/paper CPU vs 1.7ms/paper GPU | High — consistent across all scales |
+| CPU embedding: cold start is overnight, daily incremental is 21s | 35ms/paper × 600/day = 21s. Full 215K = 2h. | High — measured directly. Reframed: not a problem with smart ingestion strategy. |
+| Semantic search does NOT need pgvector at personal scale | Brute-force under 17ms at 215K | High — completely undercuts deliberation assumption |
+| Embedding memory is modest | 315 MB float32 at 215K papers | High — measured directly |
+
+## What We Don't Know (Unmeasured)
+
+| Question | Why it matters | Experiment needed |
+|----------|---------------|-------------------|
+| ~~TF-IDF matrix size vs corpus size~~ | ~~Determines RAM needed~~ | **Answered (A1c.1):** 157 MB at 215K papers |
+| ~~TF-IDF rebuild time at scale~~ | ~~Determines feature update latency~~ | **Answered (A1c.1):** 28.5s at 215K papers |
+| ~~Brute-force TF-IDF cosine similarity at scale~~ | ~~Determines whether numpy search is practical~~ | **Answered (A1c.1):** Feasible to ~50-75K; 516ms at 215K |
+| ~~Embedding computation time (CPU vs GPU)~~ | ~~Determines semantic feature feasibility~~ | **Answered (A1c.3):** 35ms/paper CPU, 1.7ms/paper GPU (20x speedup) |
+| ~~Brute-force embedding search at scale~~ | ~~Determines whether embeddings work without pgvector~~ | **Answered (A1c.3):** 16ms p50 at 215K — pgvector unnecessary at personal scale |
+| ~~Concurrent read+write on SQLite~~ | ~~Determines harvest daemon + MCP coexistence~~ | **Answered (A1c.2):** WAL mode makes this a non-issue |
+| Pre-filtered cosine similarity performance | Does searching within category/time window keep latency under 100ms at 215K? | TF-IDF cosine on pre-filtered subsets |
+| PostgreSQL performance at same scales | Needed for fair backend comparison | Run equivalent benchmarks on PostgreSQL |
+| FTS5 vs tsvector result quality | Do they return the same papers for the same queries? | Side-by-side comparison on real data |
+| MCP server startup time with feature loading | Determines user experience when opening Claude Code | Measure startup with TF-IDF matrix and/or embeddings loaded |
+| Quality of TF-IDF recommendations vs current ranker | Is the added complexity worth it? | Comparative evaluation on real triage data |
+| Cold start behavior | What happens before user has triaged enough papers? | Test with 0, 5, 10, 20 positive examples |
+
+## Discoveries That Changed Our Thinking
+
+1. **The NLP layer is independent of the database.** TF-IDF, SVM, embeddings — all run in Python/numpy/scikit-learn. The database just stores papers. This means the "SQLite vs PostgreSQL" question is about storage and indexing, not about intelligence.
+
+2. **PostgreSQL's real advantage is narrower than assumed.** It's not search quality or storage. It's: (a) indexed approximate nearest neighbor at >500K vectors (pgvector), (b) concurrent multi-writer access, (c) mature extension ecosystem. For a single-user tool under 500K papers, SQLite + Python handles everything.
+
+3. **The configuration space is multi-dimensional.** What a user can run depends on: hardware (RAM, GPU, disk), category selection (determines corpus size), filter settings (determines what's ingested), and which NLP features are enabled. These interact — designing "tiers" doesn't capture the full picture. A capability/dependency system is more appropriate but risks over-engineering.
+
+4. **Feature lifecycle is an unsolved problem.** Pre-computed features (TF-IDF matrices, embeddings) need to persist across MCP server restarts, update incrementally when new papers arrive, and fit in available RAM. This is an architecture question we haven't addressed.
+
+5. **"Project" as a first-class concept is missing.** Interest profiles provide per-project ranking, but the user wants project-level recommendation feeds, model inheritance, and workspace separation. This isn't in any design doc.
+
+6. **SQLite concurrent access is a solved problem with WAL mode.** We expected this to be a meaningful constraint that might force separate databases for harvest and query. It's not — WAL mode completely eliminates write-induced search degradation. Search latency is flat at 1.3-1.6ms regardless of whether 0 or 100 papers/second are being written concurrently. The deliberation's concern about "concurrent multi-writer access" as a PostgreSQL advantage is invalid for the single-writer scenario (one harvest daemon). WAL should be the default for all SQLite deployments.
+
+7. **Embedding search is faster than TF-IDF search.** Brute-force dot product over 384-dim dense embeddings (16ms at 215K) is 30x faster than cosine similarity over 56K-dim sparse TF-IDF (516ms at 215K). Dense, low-dimensional, pre-normalized vectors are simply more efficient to search than high-dimensional sparse matrices. This means that if you have embeddings, you don't need FTS5 for *similarity* — only for *keyword search* (which embeddings can't replace).
+
+8. **The tier differentiation is GPU for embedding computation, not database for search.** The deliberation assumed pgvector was needed for semantic search. It's not — brute-force works fine to 215K+. The real tier differentiator is GPU availability for *creating* embeddings (20x speedup), not database features for *searching* them. A laptop without GPU can still use pre-computed embeddings; it just can't create them quickly.
+
+9. **The TF-IDF feasibility constraint is compute, not memory.** We expected that RAM might be the bottleneck for TF-IDF recommendations on laptops. It's not — 215K papers need only 157 MB. The bottleneck is brute-force cosine similarity search: O(n) over the full matrix crosses 100ms around 50K-75K papers and hits 500ms at 215K. This means the scaling strategy is pre-filtering (reduce the search space), not approximate nearest neighbors or bigger hardware. Conveniently, an SVM classifier trained on user preferences *is* a pre-filter — you only compute similarity against papers the SVM considers relevant.
+
+---
+
+## Phase A2: Corpus Visualization — Complete (2026-03-19)
+
+### Topic-Category Alignment
+
+BERTopic on 19K papers (using MiniLM embeddings) found 48 topics. Average topic purity: **0.40** (1.0 = perfect category alignment). Only 1/48 topics has high purity (>0.7). 13/48 have low purity (<0.3).
+
+**Implication:** Categories moderately align with topical structure. Category-based pre-filtering works but will miss cross-domain papers. The administrative category structure does not cleanly map to the research topic structure.
+
+### Category Co-occurrence
+
+60.6% of papers list multiple categories. Top co-occurrences: cs.AI+cs.LG (1,909 papers), cs.AI+cs.CL (1,445), cs.AI+cs.CV (858). cs.AI is a cross-listing hub — 5,438 listed vs 1,318 primary.
+
+### Author Distribution
+
+65,513 unique authors. Median: 1 paper/month. P99: 6. Max: 56 (common names like "Yang Liu" inflated by name collision). Power-law distribution.
+
+## Phase A3: Distribution Analysis — Complete (2026-03-19)
+
+- Category inequality: Gini 0.83. cs.LG (2,894), cs.CV (2,737), cs.CL (2,218) = 41% of corpus.
+- Abstract length: median 153 words, mean 157. Title: median 10 words.
+- Vocabulary: 49,944 unique terms. 2,001 terms (4%) cover 80% of content. Zipf's law holds.
+- Authors per paper: median 4. Single-author: rare.
+
+## Phase B1: Signal Literature Review — Complete (2026-03-19)
+
+Reviewed 6 production systems + 2 comprehensive surveys (117 systems, 2019-2024).
+
+Key findings:
+- Dense embeddings replacing TF-IDF: 50.79% of recent systems use embeddings vs ~6% TF-IDF
+- Hybrid/adaptive systems dominate: 55.56% use multiple signal types
+- Citation is the most powerful metadata signal (78.72% of relational systems)
+- SPECTER2 is SOTA for scientific document embeddings (citation-graph-trained)
+- Our 5-signal ranker covers personalization well; highest-value additions are FWCI, citation count, bibliographic coupling
+
+Full catalog: `experiments/data/b1_signal_literature_review.md`
+
+## Phase B2: Computed Signal Exploration — Complete (2026-03-19)
+
+460 papers enriched via OpenAlex. Correlation with citations (importance proxy):
+- FWCI: r=0.75 (strongest non-tautological)
+- Citation percentile: r=0.39
+- Institution proxy: r=0.39
+- Author count: r=0.25
+- Reference count: r=0.20
+- Content signals (topic novelty, abstract length, category entropy): near-zero
+
+**Limitation:** Near-zero citations for January 2026 papers. Correlations show signal structure, not predictive power.
+
+> **Qualification (Spike 003):** These correlations are based on
+> 460 enriched papers with near-zero citation maturity. Spike 003 found
+> FWCI and citation signals non-functional at 2.6% enrichment coverage
+> (S2d/S2e). The correlation structure is informative about signal
+> relationships but does not demonstrate operational utility. Bibliographic
+> coupling (listed as signal #4 in DECISION.md) requires enrichment
+> expansion from 0.5% to meaningful coverage before it becomes operational.
+
+## Phase B3: Importance Analysis — Complete (2026-03-19)
+
+At least 2 distinct importance dimensions visible: bibliometric impact (FWCI, citations — avg |r|=0.57) and content properties (topic novelty, length — avg |r|=0.08). Structural signals (author count, references) are intermediate (avg |r|=0.28).
+
+**Recommendation:** Multi-axis display is better than single composite score. Show bibliometric strength AND content relevance separately.
+
+## Phase C1: Coverage-Regret + Filtering Landscape — Complete (2026-03-19)
+
+### Round 1-2: Static Filters (coverage proxy — limited reliability)
+
+No static strategy dramatically outperforms random against near-zero citation proxy. Embedding-based filtering slightly more efficient than category filtering. Hybrid union (keyword OR embedding OR author) gives best absolute coverage (68% at 69% volume).
+
+### Round 3: Quality Metrics and Fair Evaluation
+
+**Quality profiles (C1-R7):** Embedding top-100 gives highest coherence (0.49-0.58) and seed relevance (0.49-0.60). Keyword matching produces high volume with low coherence (0.18-0.34). The tradeoff is smooth with no sharp elbow — users need a configurable aggressiveness slider.
+
+**Null hypothesis tests:** Centroid model degradation was a simulation artifact (circular ground truth). Cannot reject H0 for any adaptive model — the simulation framework lacks the power to distinguish models.
+
+**Fair cross-model evaluation:** Each embedding model wins on its own clusters, loses on the other's. Neither is "better" — they capture different similarity dimensions. Consensus papers (agreed by both) have higher category overlap with seed (0.40 vs 0.32/0.33).
+
+> **Qualification (Spike 003):** This "fair cross-model evaluation"
+> reproduces the circular evaluation bias documented in Spike 003
+> Section 8.1. Each model winning on its own clusters is tautological
+> when clusters are defined by the model's own embeddings. The conclusion
+> "neither is better" may be correct but this evidence does not support it.
+
+**12-strategy comparison on model-independent ground truth (category co-membership):**
+
+| Strategy | R@100 | What it captures |
+|---|---|---|
+| Co-author network | 82% | Social proximity |
+| Rare category co-occurrence | 50% | Metadata structure |
+| BERTopic topic | 47% | Topical clustering |
+| MiniLM embedding | 17% | Semantic similarity |
+| SPECTER2 embedding | 16% | Citation-structure proximity |
+| All weighted/RRF combos | 14-16% | Various blends |
+| TF-IDF | 14% | Lexical overlap |
+
+**Caveat:** Category co-membership favors metadata-based strategies by construction. Embedding models find papers related in ways categories don't capture — validated by qualitative review.
+
+> **Qualification (Spike 003):** Cross-family R@100 comparisons in
+> this table (e.g., co-author 82% vs MiniLM 17%) use category
+> co-membership as ground truth, which systematically favors metadata-based
+> strategies. Spike 003 documented this class of evaluation framework
+> entanglement in Section 8.1. Within-family comparisons (e.g., among
+> metadata strategies) remain valid. Cross-family comparisons should not
+> be interpreted as quality rankings.
+
+### Qualitative Review (3 seeds, 15 papers each)
+
+> **Qualification (Spike 003):** All SPECTER2 findings in this section
+> used the base model without the proximity adapter. Spike 003 W0.1 fixed
+> the adapter loading; the corrected model changes ~35% of top-20 results.
+> The W5.4 qualitative review with the corrected adapter found SPECTER2
+> qualitatively redundant with MiniLM for CS/ML papers (45-60% overlap,
+> score compression making ranking noise). The "discovery potential"
+> attribution to SPECTER2 is not confirmed under corrected loading.
+> The three quality dimensions framework (topical precision, methodological
+> kinship, discovery potential) remains valuable but is not attributable
+> to specific models as stated here.
+
+AI agent reviewed consensus, MiniLM-only, and SPECTER2-only recommendations:
+- MiniLM captures **topical precision** (papers using similar language)
+- SPECTER2 captures **discovery potential** (papers from adjacent communities with different vocabulary)
+- Best papers distributed across all three sets — neither model alone finds everything
+- Both produce false positives of different kinds: MiniLM = vocabulary squatters, SPECTER2 = community neighbors
+
+Full review: `experiments/data/qualitative_review_assessment.md`
+
+## Phase C2: Promotion Pipeline Simulation — Complete (2026-03-19)
+
+All strategies resource-feasible at 19K papers/month. Even embed-everything with SPECTER2 needs only 13s GPU/day. Storage: 1.5-15 GB/year. The constraint is signal quality, not compute cost.
+
+Per-category resource model built for interactive installer: `experiments/data/category_resource_model.json`
+
+## Critical Limitations
+
+1. **SPECTER2 loaded improperly.** All experiments used mean pooling without proximity adapter. Proper adapter changes ~35% of top-20 recommendations. All SPECTER2 results should be re-evaluated. See Spike 003.
+
+2. **No human relevance judgments.** All evaluations use proxies. AI qualitative review is informative but not authoritative.
+
+3. **Near-zero citation proxy.** Coverage/importance measurements unreliable as absolute values.
+
+4. **One month of data.** Seasonal and long-term variation not captured.
+
+5. **Evaluation biases caught 5 times during this spike** — see signals in knowledge base. Results should be read with awareness that evaluation framework design affects which approach "wins."

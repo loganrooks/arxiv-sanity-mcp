@@ -1,0 +1,151 @@
+{
+  "strategies": [
+    {
+      "name": "Co-author network",
+      "n": 150,
+      "recall": {
+        "20": 0.1333,
+        "50": 0.4533,
+        "100": 0.82,
+        "500": 1.0
+      },
+      "median_rank": 71,
+      "mean_rank": 67.9
+    },
+    {
+      "name": "Rare category co-occ",
+      "n": 150,
+      "recall": {
+        "20": 0.5,
+        "50": 0.5,
+        "100": 0.5,
+        "500": 0.8
+      },
+      "median_rank": 168,
+      "mean_rank": 258.4
+    },
+    {
+      "name": "BERTopic topic",
+      "n": 150,
+      "recall": {
+        "20": 0.4667,
+        "50": 0.4667,
+        "100": 0.4667,
+        "500": 0.5733
+      },
+      "median_rank": 395,
+      "mean_rank": 698.9
+    },
+    {
+      "name": "MiniLM",
+      "n": 150,
+      "recall": {
+        "20": 0.04,
+        "50": 0.08,
+        "100": 0.1667,
+        "500": 0.4933
+      },
+      "median_rank": 522,
+      "mean_rank": 1352.1
+    },
+    {
+      "name": "SPECTER2",
+      "n": 150,
+      "recall": {
+        "20": 0.0467,
+        "50": 0.0867,
+        "100": 0.16,
+        "500": 0.4533
+      },
+      "median_rank": 644,
+      "mean_rank": 1490.1
+    },
+    {
+      "name": "RRF (MiniLM+SPECTER2)",
+      "n": 150,
+      "recall": {
+        "20": 0.06,
+        "50": 0.0867,
+        "100": 0.16,
+        "500": 0.5133
+      },
+      "median_rank": 476,
+      "mean_rank": 1256.8
+    },
+    {
+      "name": "Weighted (MiniLM=0.3)",
+      "n": 150,
+      "recall": {
+        "20": 0.0533,
+        "50": 0.08,
+        "100": 0.16,
+        "500": 0.5133
+      },
+      "median_rank": 485,
+      "mean_rank": 1275.2
+    },
+    {
+      "name": "Weighted (MiniLM=0.7)",
+      "n": 150,
+      "recall": {
+        "20": 0.0467,
+        "50": 0.08,
+        "100": 0.16,
+        "500": 0.4933
+      },
+      "median_rank": 524,
+      "mean_rank": 1282.4
+    },
+    {
+      "name": "MiniLM(0.7)+TF-IDF(0.3)",
+      "n": 150,
+      "recall": {
+        "20": 0.0467,
+        "50": 0.08,
+        "100": 0.16,
+        "500": 0.5133
+      },
+      "median_rank": 483,
+      "mean_rank": 1291.3
+    },
+    {
+      "name": "Weighted (MiniLM=0.5)",
+      "n": 150,
+      "recall": {
+        "20": 0.0467,
+        "50": 0.08,
+        "100": 0.1533,
+        "500": 0.5067
+      },
+      "median_rank": 481,
+      "mean_rank": 1258.2
+    },
+    {
+      "name": "TF-IDF",
+      "n": 150,
+      "recall": {
+        "20": 0.04,
+        "50": 0.08,
+        "100": 0.14,
+        "500": 0.44
+      },
+      "median_rank": 694,
+      "mean_rank": 1847.5
+    },
+    {
+      "name": "RRF (all 3)",
+      "n": 150,
+      "recall": {
+        "20": 0.0667,
+        "50": 0.08,
+        "100": 0.14,
+        "500": 0.54
+      },
+      "median_rank": 431,
+      "mean_rank": 1215.4
+    }
+  ],
+  "evaluation": "leave-one-out on category co-membership groups (model-independent)",
+  "test_groups": 10,
+  "timestamp": "2026-03-19T17:46:08Z"
+}

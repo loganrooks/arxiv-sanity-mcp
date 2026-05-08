@@ -1,0 +1,449 @@
+{
+  "umap": {
+    "n_papers": 19252,
+    "n_categories": 130,
+    "umap_params": {
+      "n_neighbors": 15,
+      "min_dist": 0.1
+    }
+  },
+  "bertopic": {
+    "n_topics": 48,
+    "outlier_count": 7318,
+    "outlier_fraction": 0.3801,
+    "top_topics": [
+      {
+        "topic_id": 0,
+        "count": 5140,
+        "top_words": [
+          "models",
+          "reasoning",
+          "model",
+          "performance",
+          "tasks"
+        ]
+      },
+      {
+        "topic_id": 1,
+        "count": 837,
+        "top_words": [
+          "channel",
+          "wireless",
+          "communication",
+          "sensing",
+          "network"
+        ]
+      },
+      {
+        "topic_id": 2,
+        "count": 442,
+        "top_words": [
+          "attack",
+          "safety",
+          "attacks",
+          "security",
+          "llms"
+        ]
+      },
+      {
+        "topic_id": 3,
+        "count": 404,
+        "top_words": [
+          "neural",
+          "networks",
+          "equations",
+          "network",
+          "learning"
+        ]
+      },
+      {
+        "topic_id": 4,
+        "count": 356,
+        "top_words": [
+          "numerical",
+          "method",
+          "equations",
+          "element",
+          "finite"
+        ]
+      },
+      {
+        "topic_id": 5,
+        "count": 316,
+        "top_words": [
+          "gaussian",
+          "distribution",
+          "posterior",
+          "distributions",
+          "sampling"
+        ]
+      },
+      {
+        "topic_id": 6,
+        "count": 286,
+        "top_words": [
+          "control",
+          "controller",
+          "safety",
+          "proposed",
+          "systems"
+        ]
+      },
+      {
+        "topic_id": 7,
+        "count": 279,
+        "top_words": [
+          "quantum",
+          "classical",
+          "circuit",
+          "circuits",
+          "computing"
+        ]
+      },
+      {
+        "topic_id": 8,
+        "count": 234,
+        "top_words": [
+          "social",
+          "bias",
+          "llms",
+          "political",
+          "moral"
+        ]
+      },
+      {
+        "topic_id": 9,
+        "count": 221,
+        "top_words": [
+          "memory",
+          "gpu",
+          "workloads",
+          "hardware",
+          "latency"
+        ]
+      }
+    ],
+    "avg_topic_purity": 0.3988,
+    "high_purity_count": 1,
+    "low_purity_count": 13,
+    "topic_purity": {
+      "0": {
+        "purity": 0.4423,
+        "dominant_category": "cs.CV",
+        "dominant_fraction": 0.322,
+        "n_categories": 63
+      },
+      "1": {
+        "purity": 0.4587,
+        "dominant_category": "eess.SP",
+        "dominant_fraction": 0.4182,
+        "n_categories": 29
+      },
+      "2": {
+        "purity": 0.4504,
+        "dominant_category": "cs.CR",
+        "dominant_fraction": 0.5362,
+        "n_categories": 21
+      },
+      "3": {
+        "purity": 0.4388,
+        "dominant_category": "cs.LG",
+        "dominant_fraction": 0.5347,
+        "n_categories": 38
+      },
+      "4": {
+        "purity": 0.6419,
+        "dominant_category": "math.NA",
+        "dominant_fraction": 0.7725,
+        "n_categories": 22
+      },
+      "5": {
+        "purity": 0.3492,
+        "dominant_category": "math.ST",
+        "dominant_fraction": 0.2848,
+        "n_categories": 28
+      },
+      "6": {
+        "purity": 0.512,
+        "dominant_category": "eess.SY",
+        "dominant_fraction": 0.4056,
+        "n_categories": 20
+      },
+      "7": {
+        "purity": 0.5426,
+        "dominant_category": "quant-ph",
+        "dominant_fraction": 0.6667,
+        "n_categories": 32
+      },
+      "8": {
+        "purity": 0.4176,
+        "dominant_category": "cs.CL",
+        "dominant_fraction": 0.5128,
+        "n_categories": 21
+      },
+      "9": {
+        "purity": 0.305,
+        "dominant_category": "cs.DC",
+        "dominant_fraction": 0.3484,
+        "n_categories": 26
+      },
+      "10": {
+        "purity": 0.3416,
+        "dominant_category": "cs.LO",
+        "dominant_fraction": 0.4348,
+        "n_categories": 18
+      },
+      "11": {
+        "purity": 0.3644,
+        "dominant_category": "cs.LG",
+        "dominant_fraction": 0.4764,
+        "n_categories": 24
+      },
+      "12": {
+        "purity": 0.3745,
+        "dominant_category": "cs.LG",
+        "dominant_fraction": 0.3098,
+        "n_categories": 25
+      },
+      "13": {
+        "purity": 0.5147,
+        "dominant_category": "cs.IT",
+        "dominant_fraction": 0.6941,
+        "n_categories": 12
+      },
+      "14": {
+        "purity": 0.3275,
+        "dominant_category": "math.CO",
+        "dominant_fraction": 0.3106,
+        "n_categories": 19
+      },
+      "15": {
+        "purity": 0.4977,
+        "dominant_category": "cs.CR",
+        "dominant_fraction": 0.6331,
+        "n_categories": 18
+      },
+      "16": {
+        "purity": 0.6821,
+        "dominant_category": "math.OC",
+        "dominant_fraction": 0.8456,
+        "n_categories": 9
+      },
+      "17": {
+        "purity": 0.6579,
+        "dominant_category": "cs.LG",
+        "dominant_fraction": 0.822,
+        "n_categories": 14
+      },
+      "18": {
+        "purity": 0.5055,
+        "dominant_category": "cs.CY",
+        "dominant_fraction": 0.6724,
+        "n_categories": 14
+      },
+      "19": {
+        "purity": 0.5694,
+        "dominant_category": "eess.SY",
+        "dominant_fraction": 0.7411,
+        "n_categories": 11
+      }
+    }
+  },
+  "category_cooccurrence": {
+    "multi_category_count": 11661,
+    "multi_category_fraction": 0.6057,
+    "top_categories": [
+      [
+        "cs.AI",
+        5438
+      ],
+      [
+        "cs.LG",
+        5145
+      ],
+      [
+        "cs.CV",
+        3364
+      ],
+      [
+        "cs.CL",
+        3100
+      ],
+      [
+        "cs.RO",
+        957
+      ],
+      [
+        "cs.CR",
+        950
+      ],
+      [
+        "math.OC",
+        912
+      ],
+      [
+        "cs.SY",
+        787
+      ],
+      [
+        "eess.SY",
+        785
+      ],
+      [
+        "stat.ML",
+        782
+      ],
+      [
+        "cs.HC",
+        746
+      ],
+      [
+        "eess.SP",
+        723
+      ],
+      [
+        "cs.NA",
+        711
+      ],
+      [
+        "math.NA",
+        711
+      ],
+      [
+        "cs.SE",
+        691
+      ]
+    ],
+    "top_cooccurrences": [
+      [
+        [
+          "cs.AI",
+          "cs.LG"
+        ],
+        1909
+      ],
+      [
+        [
+          "cs.AI",
+          "cs.CL"
+        ],
+        1445
+      ],
+      [
+        [
+          "cs.AI",
+          "cs.CV"
+        ],
+        858
+      ],
+      [
+        [
+          "cs.SY",
+          "eess.SY"
+        ],
+        785
+      ],
+      [
+        [
+          "cs.NA",
+          "math.NA"
+        ],
+        711
+      ],
+      [
+        [
+          "cs.CL",
+          "cs.LG"
+        ],
+        703
+      ],
+      [
+        [
+          "cs.IT",
+          "math.IT"
+        ],
+        665
+      ],
+      [
+        [
+          "cs.LG",
+          "stat.ML"
+        ],
+        631
+      ],
+      [
+        [
+          "cs.CV",
+          "cs.LG"
+        ],
+        555
+      ],
+      [
+        [
+          "math.ST",
+          "stat.TH"
+        ],
+        426
+      ]
+    ]
+  },
+  "temporal": {
+    "total_days": 1060,
+    "mean_per_day": 18.2,
+    "median_per_day": 4.0,
+    "max_per_day": 557,
+    "min_per_day": 1
+  },
+  "authors": {
+    "total_unique_authors": 65513,
+    "percentiles": {
+      "p50": 1.0,
+      "p90": 2.0,
+      "p99": 6.0,
+      "max": 56
+    },
+    "top_authors": [
+      [
+        "Yang Liu",
+        56
+      ],
+      [
+        "Yu Wang",
+        33
+      ],
+      [
+        "Wei Wang",
+        32
+      ],
+      [
+        "Hao Li",
+        30
+      ],
+      [
+        "Hao Wang",
+        29
+      ],
+      [
+        "Wei Zhang",
+        28
+      ],
+      [
+        "Yang Li",
+        27
+      ],
+      [
+        "Dusit Niyato",
+        26
+      ],
+      [
+        "Yong Liu",
+        25
+      ],
+      [
+        "Chao Wang",
+        23
+      ]
+    ]
+  },
+  "timestamp": "2026-03-19T01:13:34Z"
+}

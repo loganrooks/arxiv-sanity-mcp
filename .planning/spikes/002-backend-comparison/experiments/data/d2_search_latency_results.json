@@ -1,0 +1,2549 @@
+{
+  "dimension": "D2",
+  "description": "Search Latency at Scale \u2014 FTS5 vs tsvector",
+  "scale_points": [
+    5000,
+    10000,
+    19252,
+    50000,
+    100000,
+    215000
+  ],
+  "runs_per_query": 20,
+  "warmup_runs": 3,
+  "per_scale": [
+    {
+      "scale": 5000,
+      "fts5_build_s": 0.275,
+      "fts5_size_mb": 14.6,
+      "pg_build_s": 2.026,
+      "pg_size_mb": 30.1,
+      "queries": [
+        {
+          "query_name": "single_common",
+          "query_text": "transformer",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.969,
+            "p95_ms": 2.595,
+            "mean_ms": 1.177,
+            "min_ms": 0.649,
+            "max_ms": 2.595
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 710,
+            "p50_ms": 3.413,
+            "p95_ms": 9.954,
+            "mean_ms": 3.95,
+            "min_ms": 2.775,
+            "max_ms": 9.954
+          }
+        },
+        {
+          "query_name": "single_specific",
+          "query_text": "phenomenology",
+          "fts5": {
+            "result_count": 3,
+            "p50_ms": 0.199,
+            "p95_ms": 0.217,
+            "mean_ms": 0.186,
+            "min_ms": 0.113,
+            "max_ms": 0.217
+          },
+          "tsvector": {
+            "result_count": 3,
+            "total_matches": 3,
+            "p50_ms": 0.374,
+            "p95_ms": 0.651,
+            "mean_ms": 0.414,
+            "min_ms": 0.255,
+            "max_ms": 0.651
+          }
+        },
+        {
+          "query_name": "two_word",
+          "query_text": "language model",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 4.429,
+            "p95_ms": 4.618,
+            "mean_ms": 4.399,
+            "min_ms": 3.829,
+            "max_ms": 4.618
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1878,
+            "p50_ms": 23.865,
+            "p95_ms": 30.168,
+            "mean_ms": 24.277,
+            "min_ms": 21.698,
+            "max_ms": 30.168
+          }
+        },
+        {
+          "query_name": "three_word",
+          "query_text": "reinforcement learning agent",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.93,
+            "p95_ms": 1.285,
+            "mean_ms": 1.023,
+            "min_ms": 0.734,
+            "max_ms": 1.285
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 124,
+            "p50_ms": 1.679,
+            "p95_ms": 2.122,
+            "mean_ms": 1.777,
+            "min_ms": 1.611,
+            "max_ms": 2.122
+          }
+        },
+        {
+          "query_name": "boolean_and",
+          "query_text": "attention AND mechanism",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.83,
+            "p95_ms": 2.279,
+            "mean_ms": 0.941,
+            "min_ms": 0.571,
+            "max_ms": 2.279
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 190,
+            "p50_ms": 1.734,
+            "p95_ms": 2.836,
+            "mean_ms": 1.839,
+            "min_ms": 1.578,
+            "max_ms": 2.836
+          }
+        },
+        {
+          "query_name": "boolean_or",
+          "query_text": "consciousness OR awareness",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.131,
+            "p95_ms": 4.296,
+            "mean_ms": 1.6,
+            "min_ms": 0.685,
+            "max_ms": 4.296
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 751,
+            "p50_ms": 5.853,
+            "p95_ms": 14.399,
+            "mean_ms": 6.513,
+            "min_ms": 5.324,
+            "max_ms": 14.399
+          }
+        },
+        {
+          "query_name": "phrase",
+          "query_text": "\"large language model\"",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.635,
+            "p95_ms": 4.76,
+            "mean_ms": 3.11,
+            "min_ms": 1.948,
+            "max_ms": 4.76
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1301,
+            "p50_ms": 18.124,
+            "p95_ms": 32.918,
+            "mean_ms": 19.045,
+            "min_ms": 16.931,
+            "max_ms": 32.918
+          }
+        },
+        {
+          "query_name": "multi_field_broad",
+          "query_text": "neural network optimization",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.451,
+            "p95_ms": 1.146,
+            "mean_ms": 0.748,
+            "min_ms": 0.433,
+            "max_ms": 1.146
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 111,
+            "p50_ms": 1.96,
+            "p95_ms": 3.792,
+            "mean_ms": 2.212,
+            "min_ms": 1.469,
+            "max_ms": 3.792
+          }
+        },
+        {
+          "query_name": "narrow_specific",
+          "query_text": "RLHF alignment",
+          "fts5": {
+            "result_count": 16,
+            "p50_ms": 0.36,
+            "p95_ms": 0.461,
+            "mean_ms": 0.361,
+            "min_ms": 0.235,
+            "max_ms": 0.461
+          },
+          "tsvector": {
+            "result_count": 16,
+            "total_matches": 16,
+            "p50_ms": 0.398,
+            "p95_ms": 0.429,
+            "mean_ms": 0.386,
+            "min_ms": 0.307,
+            "max_ms": 0.429
+          }
+        },
+        {
+          "query_name": "long_query",
+          "query_text": "multi-agent system cooperative reinforcement learning",
+          "fts5": {
+            "error": "FTS5 parse error for: multi-agent system cooperative reinforcement learning"
+          },
+          "tsvector": {
+            "result_count": 3,
+            "total_matches": 3,
+            "p50_ms": 0.727,
+            "p95_ms": 0.862,
+            "mean_ms": 0.689,
+            "min_ms": 0.526,
+            "max_ms": 0.862
+          }
+        },
+        {
+          "query_name": "author_name",
+          "query_text": "Vaswani",
+          "fts5": {
+            "result_count": 0,
+            "p50_ms": 0.06,
+            "p95_ms": 0.074,
+            "mean_ms": 0.061,
+            "min_ms": 0.059,
+            "max_ms": 0.074
+          },
+          "tsvector": {
+            "result_count": 0,
+            "total_matches": 0,
+            "p50_ms": 0.233,
+            "p95_ms": 0.283,
+            "mean_ms": 0.238,
+            "min_ms": 0.219,
+            "max_ms": 0.283
+          }
+        },
+        {
+          "query_name": "acronym_expansion",
+          "query_text": "GAN generative adversarial",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.604,
+            "p95_ms": 1.853,
+            "mean_ms": 0.807,
+            "min_ms": 0.385,
+            "max_ms": 1.853
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 22,
+            "p50_ms": 0.561,
+            "p95_ms": 0.663,
+            "mean_ms": 0.558,
+            "min_ms": 0.432,
+            "max_ms": 0.663
+          }
+        },
+        {
+          "query_name": "trending_topic",
+          "query_text": "diffusion model image generation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.779,
+            "p95_ms": 1.669,
+            "mean_ms": 0.869,
+            "min_ms": 0.764,
+            "max_ms": 1.669
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 124,
+            "p50_ms": 2.628,
+            "p95_ms": 3.187,
+            "mean_ms": 2.62,
+            "min_ms": 2.197,
+            "max_ms": 3.187
+          }
+        },
+        {
+          "query_name": "subfield",
+          "query_text": "graph neural network",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.833,
+            "p95_ms": 0.958,
+            "mean_ms": 0.765,
+            "min_ms": 0.336,
+            "max_ms": 0.958
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 100,
+            "p50_ms": 2.104,
+            "p95_ms": 2.301,
+            "mean_ms": 1.987,
+            "min_ms": 1.302,
+            "max_ms": 2.301
+          }
+        },
+        {
+          "query_name": "cross_domain",
+          "query_text": "federated learning privacy",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.477,
+            "p95_ms": 1.265,
+            "mean_ms": 0.644,
+            "min_ms": 0.401,
+            "max_ms": 1.265
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 45,
+            "p50_ms": 0.912,
+            "p95_ms": 1.357,
+            "mean_ms": 0.956,
+            "min_ms": 0.72,
+            "max_ms": 1.357
+          }
+        },
+        {
+          "query_name": "math_adjacent",
+          "query_text": "theorem proof verification",
+          "fts5": {
+            "result_count": 0,
+            "p50_ms": 0.149,
+            "p95_ms": 0.191,
+            "mean_ms": 0.154,
+            "min_ms": 0.143,
+            "max_ms": 0.191
+          },
+          "tsvector": {
+            "result_count": 0,
+            "total_matches": 0,
+            "p50_ms": 0.244,
+            "p95_ms": 0.298,
+            "mean_ms": 0.244,
+            "min_ms": 0.223,
+            "max_ms": 0.298
+          }
+        },
+        {
+          "query_name": "applied",
+          "query_text": "robotics manipulation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.39,
+            "p95_ms": 1.399,
+            "mean_ms": 0.553,
+            "min_ms": 0.36,
+            "max_ms": 1.399
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 42,
+            "p50_ms": 0.674,
+            "p95_ms": 1.27,
+            "mean_ms": 0.789,
+            "min_ms": 0.656,
+            "max_ms": 1.27
+          }
+        },
+        {
+          "query_name": "stats_adjacent",
+          "query_text": "causal inference",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.529,
+            "p95_ms": 0.557,
+            "mean_ms": 0.5,
+            "min_ms": 0.386,
+            "max_ms": 0.557
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 36,
+            "p50_ms": 0.605,
+            "p95_ms": 1.005,
+            "mean_ms": 0.667,
+            "min_ms": 0.476,
+            "max_ms": 1.005
+          }
+        },
+        {
+          "query_name": "method_specific",
+          "query_text": "self-supervised contrastive",
+          "fts5": {
+            "error": "FTS5 parse error for: self-supervised contrastive"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 21,
+            "p50_ms": 0.745,
+            "p95_ms": 2.228,
+            "mean_ms": 0.817,
+            "min_ms": 0.709,
+            "max_ms": 2.228
+          }
+        },
+        {
+          "query_name": "very_common",
+          "query_text": "survey",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.552,
+            "p95_ms": 0.846,
+            "mean_ms": 0.558,
+            "min_ms": 0.284,
+            "max_ms": 0.846
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 96,
+            "p50_ms": 0.923,
+            "p95_ms": 1.49,
+            "mean_ms": 0.969,
+            "min_ms": 0.819,
+            "max_ms": 1.49
+          }
+        }
+      ],
+      "avg_fts5_p50_ms": 0.906,
+      "avg_pg_p50_ms": 3.388,
+      "avg_ratio": 3.74
+    },
+    {
+      "scale": 10000,
+      "fts5_build_s": 0.5,
+      "fts5_size_mb": 28.0,
+      "pg_build_s": 3.914,
+      "pg_size_mb": 58.8,
+      "queries": [
+        {
+          "query_name": "single_common",
+          "query_text": "transformer",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.599,
+            "p95_ms": 3.315,
+            "mean_ms": 1.64,
+            "min_ms": 1.16,
+            "max_ms": 3.315
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1386,
+            "p50_ms": 6.013,
+            "p95_ms": 18.981,
+            "mean_ms": 6.808,
+            "min_ms": 5.139,
+            "max_ms": 18.981
+          }
+        },
+        {
+          "query_name": "single_specific",
+          "query_text": "phenomenology",
+          "fts5": {
+            "result_count": 9,
+            "p50_ms": 0.369,
+            "p95_ms": 0.574,
+            "mean_ms": 0.377,
+            "min_ms": 0.181,
+            "max_ms": 0.574
+          },
+          "tsvector": {
+            "result_count": 9,
+            "total_matches": 9,
+            "p50_ms": 0.548,
+            "p95_ms": 0.667,
+            "mean_ms": 0.514,
+            "min_ms": 0.32,
+            "max_ms": 0.667
+          }
+        },
+        {
+          "query_name": "two_word",
+          "query_text": "language model",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 5.893,
+            "p95_ms": 10.407,
+            "mean_ms": 6.345,
+            "min_ms": 4.051,
+            "max_ms": 10.407
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 3717,
+            "p50_ms": 25.103,
+            "p95_ms": 29.95,
+            "mean_ms": 25.333,
+            "min_ms": 22.282,
+            "max_ms": 29.95
+          }
+        },
+        {
+          "query_name": "three_word",
+          "query_text": "reinforcement learning agent",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.636,
+            "p95_ms": 2.789,
+            "mean_ms": 1.624,
+            "min_ms": 0.873,
+            "max_ms": 2.789
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 265,
+            "p50_ms": 3.542,
+            "p95_ms": 4.548,
+            "mean_ms": 3.637,
+            "min_ms": 3.212,
+            "max_ms": 4.548
+          }
+        },
+        {
+          "query_name": "boolean_and",
+          "query_text": "attention AND mechanism",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.71,
+            "p95_ms": 1.776,
+            "mean_ms": 0.927,
+            "min_ms": 0.62,
+            "max_ms": 1.776
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 400,
+            "p50_ms": 3.238,
+            "p95_ms": 5.208,
+            "mean_ms": 3.427,
+            "min_ms": 3.155,
+            "max_ms": 5.208
+          }
+        },
+        {
+          "query_name": "boolean_or",
+          "query_text": "consciousness OR awareness",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.385,
+            "p95_ms": 4.126,
+            "mean_ms": 1.831,
+            "min_ms": 1.319,
+            "max_ms": 4.126
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1488,
+            "p50_ms": 12.106,
+            "p95_ms": 13.365,
+            "mean_ms": 12.214,
+            "min_ms": 11.166,
+            "max_ms": 13.365
+          }
+        },
+        {
+          "query_name": "phrase",
+          "query_text": "\"large language model\"",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 5.27,
+            "p95_ms": 9.001,
+            "mean_ms": 5.439,
+            "min_ms": 3.818,
+            "max_ms": 9.001
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2566,
+            "p50_ms": 32.682,
+            "p95_ms": 42.154,
+            "mean_ms": 33.629,
+            "min_ms": 30.192,
+            "max_ms": 42.154
+          }
+        },
+        {
+          "query_name": "multi_field_broad",
+          "query_text": "neural network optimization",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.934,
+            "p95_ms": 1.972,
+            "mean_ms": 1.182,
+            "min_ms": 0.758,
+            "max_ms": 1.972
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 254,
+            "p50_ms": 3.134,
+            "p95_ms": 4.333,
+            "mean_ms": 3.254,
+            "min_ms": 3.001,
+            "max_ms": 4.333
+          }
+        },
+        {
+          "query_name": "narrow_specific",
+          "query_text": "RLHF alignment",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.349,
+            "p95_ms": 1.55,
+            "mean_ms": 1.143,
+            "min_ms": 0.347,
+            "max_ms": 1.55
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 30,
+            "p50_ms": 0.922,
+            "p95_ms": 1.227,
+            "mean_ms": 0.931,
+            "min_ms": 0.731,
+            "max_ms": 1.227
+          }
+        },
+        {
+          "query_name": "long_query",
+          "query_text": "multi-agent system cooperative reinforcement learning",
+          "fts5": {
+            "error": "FTS5 parse error for: multi-agent system cooperative reinforcement learning"
+          },
+          "tsvector": {
+            "result_count": 5,
+            "total_matches": 5,
+            "p50_ms": 1.059,
+            "p95_ms": 1.598,
+            "mean_ms": 1.115,
+            "min_ms": 0.819,
+            "max_ms": 1.598
+          }
+        },
+        {
+          "query_name": "author_name",
+          "query_text": "Vaswani",
+          "fts5": {
+            "result_count": 0,
+            "p50_ms": 0.084,
+            "p95_ms": 0.092,
+            "mean_ms": 0.081,
+            "min_ms": 0.062,
+            "max_ms": 0.092
+          },
+          "tsvector": {
+            "result_count": 0,
+            "total_matches": 0,
+            "p50_ms": 0.4,
+            "p95_ms": 0.806,
+            "mean_ms": 0.432,
+            "min_ms": 0.339,
+            "max_ms": 0.806
+          }
+        },
+        {
+          "query_name": "acronym_expansion",
+          "query_text": "GAN generative adversarial",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.181,
+            "p95_ms": 3.22,
+            "mean_ms": 1.23,
+            "min_ms": 0.524,
+            "max_ms": 3.22
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 40,
+            "p50_ms": 0.843,
+            "p95_ms": 1.309,
+            "mean_ms": 0.9,
+            "min_ms": 0.719,
+            "max_ms": 1.309
+          }
+        },
+        {
+          "query_name": "trending_topic",
+          "query_text": "diffusion model image generation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.737,
+            "p95_ms": 4.03,
+            "mean_ms": 2.041,
+            "min_ms": 1.463,
+            "max_ms": 4.03
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 241,
+            "p50_ms": 4.447,
+            "p95_ms": 9.801,
+            "mean_ms": 5.0,
+            "min_ms": 4.037,
+            "max_ms": 9.801
+          }
+        },
+        {
+          "query_name": "subfield",
+          "query_text": "graph neural network",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.956,
+            "p95_ms": 2.573,
+            "mean_ms": 1.059,
+            "min_ms": 0.644,
+            "max_ms": 2.573
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 207,
+            "p50_ms": 2.593,
+            "p95_ms": 4.245,
+            "mean_ms": 2.787,
+            "min_ms": 2.512,
+            "max_ms": 4.245
+          }
+        },
+        {
+          "query_name": "cross_domain",
+          "query_text": "federated learning privacy",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.219,
+            "p95_ms": 3.07,
+            "mean_ms": 1.254,
+            "min_ms": 0.803,
+            "max_ms": 3.07
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 87,
+            "p50_ms": 1.347,
+            "p95_ms": 1.581,
+            "mean_ms": 1.355,
+            "min_ms": 1.236,
+            "max_ms": 1.581
+          }
+        },
+        {
+          "query_name": "math_adjacent",
+          "query_text": "theorem proof verification",
+          "fts5": {
+            "result_count": 2,
+            "p50_ms": 0.401,
+            "p95_ms": 1.522,
+            "mean_ms": 0.653,
+            "min_ms": 0.378,
+            "max_ms": 1.522
+          },
+          "tsvector": {
+            "result_count": 2,
+            "total_matches": 2,
+            "p50_ms": 0.37,
+            "p95_ms": 0.401,
+            "mean_ms": 0.368,
+            "min_ms": 0.284,
+            "max_ms": 0.401
+          }
+        },
+        {
+          "query_name": "applied",
+          "query_text": "robotics manipulation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.514,
+            "p95_ms": 0.722,
+            "mean_ms": 0.527,
+            "min_ms": 0.454,
+            "max_ms": 0.722
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 77,
+            "p50_ms": 0.995,
+            "p95_ms": 2.553,
+            "mean_ms": 1.109,
+            "min_ms": 0.78,
+            "max_ms": 2.553
+          }
+        },
+        {
+          "query_name": "stats_adjacent",
+          "query_text": "causal inference",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.292,
+            "p95_ms": 0.749,
+            "mean_ms": 0.468,
+            "min_ms": 0.283,
+            "max_ms": 0.749
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 73,
+            "p50_ms": 1.002,
+            "p95_ms": 1.536,
+            "mean_ms": 1.079,
+            "min_ms": 0.808,
+            "max_ms": 1.536
+          }
+        },
+        {
+          "query_name": "method_specific",
+          "query_text": "self-supervised contrastive",
+          "fts5": {
+            "error": "FTS5 parse error for: self-supervised contrastive"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 43,
+            "p50_ms": 1.355,
+            "p95_ms": 1.503,
+            "mean_ms": 1.36,
+            "min_ms": 1.283,
+            "max_ms": 1.503
+          }
+        },
+        {
+          "query_name": "very_common",
+          "query_text": "survey",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.057,
+            "p95_ms": 1.955,
+            "mean_ms": 1.149,
+            "min_ms": 0.49,
+            "max_ms": 1.955
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 199,
+            "p50_ms": 1.381,
+            "p95_ms": 2.06,
+            "mean_ms": 1.33,
+            "min_ms": 0.912,
+            "max_ms": 2.06
+          }
+        }
+      ],
+      "avg_fts5_p50_ms": 1.477,
+      "avg_pg_p50_ms": 5.154,
+      "avg_ratio": 3.49
+    },
+    {
+      "scale": 19252,
+      "fts5_build_s": 1.174,
+      "fts5_size_mb": 50.4,
+      "pg_build_s": 7.919,
+      "pg_size_mb": 107.0,
+      "queries": [
+        {
+          "query_name": "single_common",
+          "query_text": "transformer",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.663,
+            "p95_ms": 5.039,
+            "mean_ms": 3.148,
+            "min_ms": 1.907,
+            "max_ms": 5.039
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2258,
+            "p50_ms": 9.404,
+            "p95_ms": 12.08,
+            "mean_ms": 9.714,
+            "min_ms": 8.488,
+            "max_ms": 12.08
+          }
+        },
+        {
+          "query_name": "single_specific",
+          "query_text": "phenomenology",
+          "fts5": {
+            "result_count": 16,
+            "p50_ms": 0.199,
+            "p95_ms": 0.219,
+            "mean_ms": 0.201,
+            "min_ms": 0.192,
+            "max_ms": 0.219
+          },
+          "tsvector": {
+            "result_count": 16,
+            "total_matches": 16,
+            "p50_ms": 0.293,
+            "p95_ms": 0.385,
+            "mean_ms": 0.29,
+            "min_ms": 0.245,
+            "max_ms": 0.385
+          }
+        },
+        {
+          "query_name": "two_word",
+          "query_text": "language model",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 6.811,
+            "p95_ms": 12.237,
+            "mean_ms": 7.433,
+            "min_ms": 5.7,
+            "max_ms": 12.237
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 5107,
+            "p50_ms": 31.365,
+            "p95_ms": 40.015,
+            "mean_ms": 32.421,
+            "min_ms": 30.254,
+            "max_ms": 40.015
+          }
+        },
+        {
+          "query_name": "three_word",
+          "query_text": "reinforcement learning agent",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.594,
+            "p95_ms": 3.714,
+            "mean_ms": 2.605,
+            "min_ms": 1.759,
+            "max_ms": 3.714
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 389,
+            "p50_ms": 5.026,
+            "p95_ms": 5.86,
+            "mean_ms": 5.164,
+            "min_ms": 4.89,
+            "max_ms": 5.86
+          }
+        },
+        {
+          "query_name": "boolean_and",
+          "query_text": "attention AND mechanism",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.949,
+            "p95_ms": 1.341,
+            "mean_ms": 0.976,
+            "min_ms": 0.935,
+            "max_ms": 1.341
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 555,
+            "p50_ms": 5.945,
+            "p95_ms": 6.985,
+            "mean_ms": 5.795,
+            "min_ms": 4.646,
+            "max_ms": 6.985
+          }
+        },
+        {
+          "query_name": "boolean_or",
+          "query_text": "consciousness OR awareness",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 3.858,
+            "p95_ms": 7.296,
+            "mean_ms": 3.998,
+            "min_ms": 2.101,
+            "max_ms": 7.296
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2363,
+            "p50_ms": 14.111,
+            "p95_ms": 21.055,
+            "mean_ms": 14.922,
+            "min_ms": 12.664,
+            "max_ms": 21.055
+          }
+        },
+        {
+          "query_name": "phrase",
+          "query_text": "\"large language model\"",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 6.165,
+            "p95_ms": 9.748,
+            "mean_ms": 6.915,
+            "min_ms": 5.289,
+            "max_ms": 9.748
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 3513,
+            "p50_ms": 40.699,
+            "p95_ms": 54.559,
+            "mean_ms": 42.056,
+            "min_ms": 35.903,
+            "max_ms": 54.559
+          }
+        },
+        {
+          "query_name": "multi_field_broad",
+          "query_text": "neural network optimization",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.16,
+            "p95_ms": 4.574,
+            "mean_ms": 2.282,
+            "min_ms": 1.259,
+            "max_ms": 4.574
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 403,
+            "p50_ms": 4.939,
+            "p95_ms": 7.496,
+            "mean_ms": 5.28,
+            "min_ms": 4.79,
+            "max_ms": 7.496
+          }
+        },
+        {
+          "query_name": "narrow_specific",
+          "query_text": "RLHF alignment",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.694,
+            "p95_ms": 0.889,
+            "mean_ms": 0.546,
+            "min_ms": 0.266,
+            "max_ms": 0.889
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 35,
+            "p50_ms": 0.732,
+            "p95_ms": 1.125,
+            "mean_ms": 0.769,
+            "min_ms": 0.693,
+            "max_ms": 1.125
+          }
+        },
+        {
+          "query_name": "long_query",
+          "query_text": "multi-agent system cooperative reinforcement learning",
+          "fts5": {
+            "error": "FTS5 parse error for: multi-agent system cooperative reinforcement learning"
+          },
+          "tsvector": {
+            "result_count": 13,
+            "total_matches": 13,
+            "p50_ms": 1.142,
+            "p95_ms": 2.205,
+            "mean_ms": 1.332,
+            "min_ms": 1.037,
+            "max_ms": 2.205
+          }
+        },
+        {
+          "query_name": "author_name",
+          "query_text": "Vaswani",
+          "fts5": {
+            "result_count": 0,
+            "p50_ms": 0.053,
+            "p95_ms": 0.096,
+            "mean_ms": 0.056,
+            "min_ms": 0.052,
+            "max_ms": 0.096
+          },
+          "tsvector": {
+            "result_count": 0,
+            "total_matches": 0,
+            "p50_ms": 0.427,
+            "p95_ms": 0.716,
+            "mean_ms": 0.438,
+            "min_ms": 0.367,
+            "max_ms": 0.716
+          }
+        },
+        {
+          "query_name": "acronym_expansion",
+          "query_text": "GAN generative adversarial",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.215,
+            "p95_ms": 2.315,
+            "mean_ms": 1.34,
+            "min_ms": 0.799,
+            "max_ms": 2.315
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 47,
+            "p50_ms": 0.788,
+            "p95_ms": 1.003,
+            "mean_ms": 0.819,
+            "min_ms": 0.762,
+            "max_ms": 1.003
+          }
+        },
+        {
+          "query_name": "trending_topic",
+          "query_text": "diffusion model image generation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.032,
+            "p95_ms": 6.643,
+            "mean_ms": 2.598,
+            "min_ms": 1.975,
+            "max_ms": 6.643
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 320,
+            "p50_ms": 6.095,
+            "p95_ms": 7.238,
+            "mean_ms": 6.148,
+            "min_ms": 5.531,
+            "max_ms": 7.238
+          }
+        },
+        {
+          "query_name": "subfield",
+          "query_text": "graph neural network",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.099,
+            "p95_ms": 3.228,
+            "mean_ms": 1.398,
+            "min_ms": 0.848,
+            "max_ms": 3.228
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 288,
+            "p50_ms": 4.136,
+            "p95_ms": 10.372,
+            "mean_ms": 4.69,
+            "min_ms": 3.559,
+            "max_ms": 10.372
+          }
+        },
+        {
+          "query_name": "cross_domain",
+          "query_text": "federated learning privacy",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.145,
+            "p95_ms": 2.474,
+            "mean_ms": 1.287,
+            "min_ms": 0.675,
+            "max_ms": 2.474
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 116,
+            "p50_ms": 1.66,
+            "p95_ms": 2.084,
+            "mean_ms": 1.714,
+            "min_ms": 1.611,
+            "max_ms": 2.084
+          }
+        },
+        {
+          "query_name": "math_adjacent",
+          "query_text": "theorem proof verification",
+          "fts5": {
+            "result_count": 13,
+            "p50_ms": 0.791,
+            "p95_ms": 1.272,
+            "mean_ms": 0.809,
+            "min_ms": 0.495,
+            "max_ms": 1.272
+          },
+          "tsvector": {
+            "result_count": 13,
+            "total_matches": 13,
+            "p50_ms": 0.452,
+            "p95_ms": 0.598,
+            "mean_ms": 0.471,
+            "min_ms": 0.43,
+            "max_ms": 0.598
+          }
+        },
+        {
+          "query_name": "applied",
+          "query_text": "robotics manipulation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.414,
+            "p95_ms": 0.946,
+            "mean_ms": 0.614,
+            "min_ms": 0.381,
+            "max_ms": 0.946
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 215,
+            "p50_ms": 2.243,
+            "p95_ms": 6.458,
+            "mean_ms": 2.781,
+            "min_ms": 1.689,
+            "max_ms": 6.458
+          }
+        },
+        {
+          "query_name": "stats_adjacent",
+          "query_text": "causal inference",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.247,
+            "p95_ms": 2.977,
+            "mean_ms": 1.28,
+            "min_ms": 0.51,
+            "max_ms": 2.977
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 121,
+            "p50_ms": 1.554,
+            "p95_ms": 1.845,
+            "mean_ms": 1.59,
+            "min_ms": 1.493,
+            "max_ms": 1.845
+          }
+        },
+        {
+          "query_name": "method_specific",
+          "query_text": "self-supervised contrastive",
+          "fts5": {
+            "error": "FTS5 parse error for: self-supervised contrastive"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 51,
+            "p50_ms": 1.626,
+            "p95_ms": 3.24,
+            "mean_ms": 1.765,
+            "min_ms": 1.214,
+            "max_ms": 3.24
+          }
+        },
+        {
+          "query_name": "very_common",
+          "query_text": "survey",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.921,
+            "p95_ms": 1.597,
+            "mean_ms": 1.0,
+            "min_ms": 0.597,
+            "max_ms": 1.597
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 408,
+            "p50_ms": 1.952,
+            "p95_ms": 3.879,
+            "mean_ms": 2.128,
+            "min_ms": 1.653,
+            "max_ms": 3.879
+          }
+        }
+      ],
+      "avg_fts5_p50_ms": 1.945,
+      "avg_pg_p50_ms": 6.729,
+      "avg_ratio": 3.46
+    },
+    {
+      "scale": 50000,
+      "fts5_build_s": 3.297,
+      "fts5_size_mb": 131.8,
+      "pg_build_s": 20.411,
+      "pg_size_mb": 267.8,
+      "queries": [
+        {
+          "query_name": "single_common",
+          "query_text": "transformer",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 6.184,
+            "p95_ms": 12.222,
+            "mean_ms": 7.33,
+            "min_ms": 5.336,
+            "max_ms": 12.222
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 6115,
+            "p50_ms": 30.642,
+            "p95_ms": 33.678,
+            "mean_ms": 30.76,
+            "min_ms": 26.63,
+            "max_ms": 33.678
+          }
+        },
+        {
+          "query_name": "single_specific",
+          "query_text": "phenomenology",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.341,
+            "p95_ms": 1.155,
+            "mean_ms": 0.508,
+            "min_ms": 0.327,
+            "max_ms": 1.155
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 42,
+            "p50_ms": 0.495,
+            "p95_ms": 0.635,
+            "mean_ms": 0.505,
+            "min_ms": 0.487,
+            "max_ms": 0.635
+          }
+        },
+        {
+          "query_name": "two_word",
+          "query_text": "language model",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 24.408,
+            "p95_ms": 33.755,
+            "mean_ms": 25.056,
+            "min_ms": 19.882,
+            "max_ms": 33.755
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 14462,
+            "p50_ms": 95.517,
+            "p95_ms": 102.406,
+            "mean_ms": 94.812,
+            "min_ms": 84.317,
+            "max_ms": 102.406
+          }
+        },
+        {
+          "query_name": "three_word",
+          "query_text": "reinforcement learning agent",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 3.455,
+            "p95_ms": 6.495,
+            "mean_ms": 4.011,
+            "min_ms": 2.94,
+            "max_ms": 6.495
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1083,
+            "p50_ms": 15.325,
+            "p95_ms": 28.925,
+            "mean_ms": 16.154,
+            "min_ms": 14.162,
+            "max_ms": 28.925
+          }
+        },
+        {
+          "query_name": "boolean_and",
+          "query_text": "attention AND mechanism",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 4.108,
+            "p95_ms": 4.945,
+            "mean_ms": 3.596,
+            "min_ms": 2.311,
+            "max_ms": 4.945
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1558,
+            "p50_ms": 11.827,
+            "p95_ms": 14.749,
+            "mean_ms": 12.02,
+            "min_ms": 10.536,
+            "max_ms": 14.749
+          }
+        },
+        {
+          "query_name": "boolean_or",
+          "query_text": "consciousness OR awareness",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 7.425,
+            "p95_ms": 12.035,
+            "mean_ms": 7.697,
+            "min_ms": 5.691,
+            "max_ms": 12.035
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 6408,
+            "p50_ms": 44.955,
+            "p95_ms": 49.764,
+            "mean_ms": 44.248,
+            "min_ms": 36.998,
+            "max_ms": 49.764
+          }
+        },
+        {
+          "query_name": "phrase",
+          "query_text": "\"large language model\"",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 19.668,
+            "p95_ms": 23.989,
+            "mean_ms": 19.675,
+            "min_ms": 15.457,
+            "max_ms": 23.989
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 9962,
+            "p50_ms": 116.539,
+            "p95_ms": 134.475,
+            "mean_ms": 115.888,
+            "min_ms": 104.746,
+            "max_ms": 134.475
+          }
+        },
+        {
+          "query_name": "multi_field_broad",
+          "query_text": "neural network optimization",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 3.094,
+            "p95_ms": 5.684,
+            "mean_ms": 3.352,
+            "min_ms": 3.04,
+            "max_ms": 5.684
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1097,
+            "p50_ms": 15.096,
+            "p95_ms": 17.823,
+            "mean_ms": 15.282,
+            "min_ms": 13.16,
+            "max_ms": 17.823
+          }
+        },
+        {
+          "query_name": "narrow_specific",
+          "query_text": "RLHF alignment",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.101,
+            "p95_ms": 2.867,
+            "mean_ms": 1.301,
+            "min_ms": 0.637,
+            "max_ms": 2.867
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 102,
+            "p50_ms": 1.924,
+            "p95_ms": 3.325,
+            "mean_ms": 2.194,
+            "min_ms": 1.198,
+            "max_ms": 3.325
+          }
+        },
+        {
+          "query_name": "long_query",
+          "query_text": "multi-agent system cooperative reinforcement learning",
+          "fts5": {
+            "error": "FTS5 parse error for: multi-agent system cooperative reinforcement learning"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 31,
+            "p50_ms": 2.175,
+            "p95_ms": 2.358,
+            "mean_ms": 2.173,
+            "min_ms": 1.863,
+            "max_ms": 2.358
+          }
+        },
+        {
+          "query_name": "author_name",
+          "query_text": "Vaswani",
+          "fts5": {
+            "result_count": 0,
+            "p50_ms": 0.076,
+            "p95_ms": 0.167,
+            "mean_ms": 0.105,
+            "min_ms": 0.07,
+            "max_ms": 0.167
+          },
+          "tsvector": {
+            "result_count": 0,
+            "total_matches": 0,
+            "p50_ms": 0.44,
+            "p95_ms": 0.739,
+            "mean_ms": 0.472,
+            "min_ms": 0.315,
+            "max_ms": 0.739
+          }
+        },
+        {
+          "query_name": "acronym_expansion",
+          "query_text": "GAN generative adversarial",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.809,
+            "p95_ms": 4.779,
+            "mean_ms": 2.268,
+            "min_ms": 1.661,
+            "max_ms": 4.779
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 138,
+            "p50_ms": 2.72,
+            "p95_ms": 6.268,
+            "mean_ms": 3.156,
+            "min_ms": 1.754,
+            "max_ms": 6.268
+          }
+        },
+        {
+          "query_name": "trending_topic",
+          "query_text": "diffusion model image generation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 7.678,
+            "p95_ms": 9.646,
+            "mean_ms": 7.364,
+            "min_ms": 5.273,
+            "max_ms": 9.646
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 923,
+            "p50_ms": 16.525,
+            "p95_ms": 17.62,
+            "mean_ms": 16.342,
+            "min_ms": 14.252,
+            "max_ms": 17.62
+          }
+        },
+        {
+          "query_name": "subfield",
+          "query_text": "graph neural network",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.345,
+            "p95_ms": 7.127,
+            "mean_ms": 3.165,
+            "min_ms": 2.196,
+            "max_ms": 7.127
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 814,
+            "p50_ms": 10.61,
+            "p95_ms": 13.482,
+            "mean_ms": 10.954,
+            "min_ms": 9.199,
+            "max_ms": 13.482
+          }
+        },
+        {
+          "query_name": "cross_domain",
+          "query_text": "federated learning privacy",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.178,
+            "p95_ms": 3.316,
+            "mean_ms": 2.29,
+            "min_ms": 1.708,
+            "max_ms": 3.316
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 327,
+            "p50_ms": 4.037,
+            "p95_ms": 5.11,
+            "mean_ms": 4.181,
+            "min_ms": 3.665,
+            "max_ms": 5.11
+          }
+        },
+        {
+          "query_name": "math_adjacent",
+          "query_text": "theorem proof verification",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.045,
+            "p95_ms": 1.68,
+            "mean_ms": 1.014,
+            "min_ms": 0.703,
+            "max_ms": 1.68
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 31,
+            "p50_ms": 1.325,
+            "p95_ms": 2.611,
+            "mean_ms": 1.412,
+            "min_ms": 0.749,
+            "max_ms": 2.611
+          }
+        },
+        {
+          "query_name": "applied",
+          "query_text": "robotics manipulation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.059,
+            "p95_ms": 2.613,
+            "mean_ms": 1.371,
+            "min_ms": 0.868,
+            "max_ms": 2.613
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 519,
+            "p50_ms": 4.352,
+            "p95_ms": 5.752,
+            "mean_ms": 4.511,
+            "min_ms": 4.187,
+            "max_ms": 5.752
+          }
+        },
+        {
+          "query_name": "stats_adjacent",
+          "query_text": "causal inference",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.915,
+            "p95_ms": 2.323,
+            "mean_ms": 1.146,
+            "min_ms": 0.895,
+            "max_ms": 2.323
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 331,
+            "p50_ms": 3.355,
+            "p95_ms": 4.344,
+            "mean_ms": 3.412,
+            "min_ms": 2.9,
+            "max_ms": 4.344
+          }
+        },
+        {
+          "query_name": "method_specific",
+          "query_text": "self-supervised contrastive",
+          "fts5": {
+            "error": "FTS5 parse error for: self-supervised contrastive"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 148,
+            "p50_ms": 3.412,
+            "p95_ms": 7.951,
+            "mean_ms": 4.09,
+            "min_ms": 2.757,
+            "max_ms": 7.951
+          }
+        },
+        {
+          "query_name": "very_common",
+          "query_text": "survey",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 1.543,
+            "p95_ms": 2.955,
+            "mean_ms": 1.525,
+            "min_ms": 0.999,
+            "max_ms": 2.955
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1035,
+            "p50_ms": 5.738,
+            "p95_ms": 7.366,
+            "mean_ms": 5.61,
+            "min_ms": 4.178,
+            "max_ms": 7.366
+          }
+        }
+      ],
+      "avg_fts5_p50_ms": 4.913,
+      "avg_pg_p50_ms": 19.35,
+      "avg_ratio": 3.94
+    },
+    {
+      "scale": 100000,
+      "fts5_build_s": 7.207,
+      "fts5_size_mb": 259.2,
+      "pg_build_s": 41.127,
+      "pg_size_mb": 517.2,
+      "queries": [
+        {
+          "query_name": "single_common",
+          "query_text": "transformer",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 17.203,
+            "p95_ms": 23.625,
+            "mean_ms": 17.276,
+            "min_ms": 12.771,
+            "max_ms": 23.625
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 11847,
+            "p50_ms": 108.849,
+            "p95_ms": 117.677,
+            "mean_ms": 109.455,
+            "min_ms": 103.282,
+            "max_ms": 117.677
+          }
+        },
+        {
+          "query_name": "single_specific",
+          "query_text": "phenomenology",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.873,
+            "p95_ms": 1.326,
+            "mean_ms": 0.787,
+            "min_ms": 0.278,
+            "max_ms": 1.326
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 82,
+            "p50_ms": 1.183,
+            "p95_ms": 2.225,
+            "mean_ms": 1.247,
+            "min_ms": 0.744,
+            "max_ms": 2.225
+          }
+        },
+        {
+          "query_name": "two_word",
+          "query_text": "language model",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 46.741,
+            "p95_ms": 60.266,
+            "mean_ms": 47.937,
+            "min_ms": 37.152,
+            "max_ms": 60.266
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 26932,
+            "p50_ms": 264.534,
+            "p95_ms": 285.708,
+            "mean_ms": 264.521,
+            "min_ms": 235.953,
+            "max_ms": 285.708
+          }
+        },
+        {
+          "query_name": "three_word",
+          "query_text": "reinforcement learning agent",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 8.736,
+            "p95_ms": 13.666,
+            "mean_ms": 8.971,
+            "min_ms": 5.91,
+            "max_ms": 13.666
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2034,
+            "p50_ms": 26.78,
+            "p95_ms": 30.633,
+            "mean_ms": 26.607,
+            "min_ms": 22.733,
+            "max_ms": 30.633
+          }
+        },
+        {
+          "query_name": "boolean_and",
+          "query_text": "attention AND mechanism",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 6.057,
+            "p95_ms": 10.786,
+            "mean_ms": 6.693,
+            "min_ms": 4.397,
+            "max_ms": 10.786
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2919,
+            "p50_ms": 21.117,
+            "p95_ms": 27.494,
+            "mean_ms": 21.845,
+            "min_ms": 19.298,
+            "max_ms": 27.494
+          }
+        },
+        {
+          "query_name": "boolean_or",
+          "query_text": "consciousness OR awareness",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 15.663,
+            "p95_ms": 20.117,
+            "mean_ms": 16.166,
+            "min_ms": 12.404,
+            "max_ms": 20.117
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 12366,
+            "p50_ms": 133.019,
+            "p95_ms": 184.248,
+            "mean_ms": 137.466,
+            "min_ms": 127.056,
+            "max_ms": 184.248
+          }
+        },
+        {
+          "query_name": "phrase",
+          "query_text": "\"large language model\"",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 42.095,
+            "p95_ms": 53.944,
+            "mean_ms": 41.639,
+            "min_ms": 34.287,
+            "max_ms": 53.944
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 18532,
+            "p50_ms": 296.778,
+            "p95_ms": 317.932,
+            "mean_ms": 295.291,
+            "min_ms": 264.843,
+            "max_ms": 317.932
+          }
+        },
+        {
+          "query_name": "multi_field_broad",
+          "query_text": "neural network optimization",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 8.155,
+            "p95_ms": 11.618,
+            "mean_ms": 8.324,
+            "min_ms": 6.149,
+            "max_ms": 11.618
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2097,
+            "p50_ms": 22.92,
+            "p95_ms": 25.346,
+            "mean_ms": 22.617,
+            "min_ms": 20.026,
+            "max_ms": 25.346
+          }
+        },
+        {
+          "query_name": "narrow_specific",
+          "query_text": "RLHF alignment",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.997,
+            "p95_ms": 1.864,
+            "mean_ms": 1.088,
+            "min_ms": 0.968,
+            "max_ms": 1.864
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 182,
+            "p50_ms": 2.008,
+            "p95_ms": 4.722,
+            "mean_ms": 2.457,
+            "min_ms": 1.677,
+            "max_ms": 4.722
+          }
+        },
+        {
+          "query_name": "long_query",
+          "query_text": "multi-agent system cooperative reinforcement learning",
+          "fts5": {
+            "error": "FTS5 parse error for: multi-agent system cooperative reinforcement learning"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 68,
+            "p50_ms": 3.516,
+            "p95_ms": 9.426,
+            "mean_ms": 4.364,
+            "min_ms": 2.992,
+            "max_ms": 9.426
+          }
+        },
+        {
+          "query_name": "author_name",
+          "query_text": "Vaswani",
+          "fts5": {
+            "result_count": 0,
+            "p50_ms": 0.059,
+            "p95_ms": 0.07,
+            "mean_ms": 0.058,
+            "min_ms": 0.047,
+            "max_ms": 0.07
+          },
+          "tsvector": {
+            "result_count": 0,
+            "total_matches": 0,
+            "p50_ms": 0.299,
+            "p95_ms": 0.41,
+            "mean_ms": 0.313,
+            "min_ms": 0.235,
+            "max_ms": 0.41
+          }
+        },
+        {
+          "query_name": "acronym_expansion",
+          "query_text": "GAN generative adversarial",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 3.814,
+            "p95_ms": 7.379,
+            "mean_ms": 4.342,
+            "min_ms": 3.113,
+            "max_ms": 7.379
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 249,
+            "p50_ms": 4.503,
+            "p95_ms": 10.724,
+            "mean_ms": 5.101,
+            "min_ms": 3.508,
+            "max_ms": 10.724
+          }
+        },
+        {
+          "query_name": "trending_topic",
+          "query_text": "diffusion model image generation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 15.791,
+            "p95_ms": 19.738,
+            "mean_ms": 15.484,
+            "min_ms": 10.567,
+            "max_ms": 19.738
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1696,
+            "p50_ms": 30.45,
+            "p95_ms": 37.083,
+            "mean_ms": 30.176,
+            "min_ms": 22.471,
+            "max_ms": 37.083
+          }
+        },
+        {
+          "query_name": "subfield",
+          "query_text": "graph neural network",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 5.376,
+            "p95_ms": 8.163,
+            "mean_ms": 5.696,
+            "min_ms": 3.93,
+            "max_ms": 8.163
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1516,
+            "p50_ms": 19.84,
+            "p95_ms": 22.087,
+            "mean_ms": 19.648,
+            "min_ms": 15.99,
+            "max_ms": 22.087
+          }
+        },
+        {
+          "query_name": "cross_domain",
+          "query_text": "federated learning privacy",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 3.592,
+            "p95_ms": 7.642,
+            "mean_ms": 4.187,
+            "min_ms": 2.927,
+            "max_ms": 7.642
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 613,
+            "p50_ms": 9.457,
+            "p95_ms": 21.503,
+            "mean_ms": 10.168,
+            "min_ms": 8.657,
+            "max_ms": 21.503
+          }
+        },
+        {
+          "query_name": "math_adjacent",
+          "query_text": "theorem proof verification",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.732,
+            "p95_ms": 1.981,
+            "mean_ms": 1.111,
+            "min_ms": 0.71,
+            "max_ms": 1.981
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 65,
+            "p50_ms": 1.319,
+            "p95_ms": 4.412,
+            "mean_ms": 1.474,
+            "min_ms": 1.104,
+            "max_ms": 4.412
+          }
+        },
+        {
+          "query_name": "applied",
+          "query_text": "robotics manipulation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.052,
+            "p95_ms": 4.097,
+            "mean_ms": 2.279,
+            "min_ms": 1.673,
+            "max_ms": 4.097
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1111,
+            "p50_ms": 9.716,
+            "p95_ms": 20.03,
+            "mean_ms": 10.574,
+            "min_ms": 8.058,
+            "max_ms": 20.03
+          }
+        },
+        {
+          "query_name": "stats_adjacent",
+          "query_text": "causal inference",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.702,
+            "p95_ms": 4.467,
+            "mean_ms": 2.729,
+            "min_ms": 1.58,
+            "max_ms": 4.467
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 631,
+            "p50_ms": 6.621,
+            "p95_ms": 7.479,
+            "mean_ms": 6.643,
+            "min_ms": 5.839,
+            "max_ms": 7.479
+          }
+        },
+        {
+          "query_name": "method_specific",
+          "query_text": "self-supervised contrastive",
+          "fts5": {
+            "error": "FTS5 parse error for: self-supervised contrastive"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 271,
+            "p50_ms": 6.678,
+            "p95_ms": 7.553,
+            "mean_ms": 6.535,
+            "min_ms": 5.438,
+            "max_ms": 7.553
+          }
+        },
+        {
+          "query_name": "very_common",
+          "query_text": "survey",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.14,
+            "p95_ms": 4.71,
+            "mean_ms": 2.771,
+            "min_ms": 1.94,
+            "max_ms": 4.71
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2114,
+            "p50_ms": 11.565,
+            "p95_ms": 24.263,
+            "mean_ms": 12.583,
+            "min_ms": 9.581,
+            "max_ms": 24.263
+          }
+        }
+      ],
+      "avg_fts5_p50_ms": 10.154,
+      "avg_pg_p50_ms": 49.058,
+      "avg_ratio": 4.83
+    },
+    {
+      "scale": 215000,
+      "fts5_build_s": 17.86,
+      "fts5_size_mb": 553.2,
+      "pg_build_s": 88.789,
+      "pg_size_mb": 1101.1,
+      "queries": [
+        {
+          "query_name": "single_common",
+          "query_text": "transformer",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 34.007,
+            "p95_ms": 56.61,
+            "mean_ms": 35.531,
+            "min_ms": 26.977,
+            "max_ms": 56.61
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 25321,
+            "p50_ms": 235.914,
+            "p95_ms": 280.736,
+            "mean_ms": 239.942,
+            "min_ms": 221.579,
+            "max_ms": 280.736
+          }
+        },
+        {
+          "query_name": "single_specific",
+          "query_text": "phenomenology",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 0.661,
+            "p95_ms": 1.506,
+            "mean_ms": 0.765,
+            "min_ms": 0.316,
+            "max_ms": 1.506
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 177,
+            "p50_ms": 0.894,
+            "p95_ms": 1.31,
+            "mean_ms": 0.956,
+            "min_ms": 0.853,
+            "max_ms": 1.31
+          }
+        },
+        {
+          "query_name": "two_word",
+          "query_text": "language model",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 93.412,
+            "p95_ms": 120.095,
+            "mean_ms": 95.866,
+            "min_ms": 76.33,
+            "max_ms": 120.095
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 57368,
+            "p50_ms": 536.127,
+            "p95_ms": 593.871,
+            "mean_ms": 531.985,
+            "min_ms": 496.237,
+            "max_ms": 593.871
+          }
+        },
+        {
+          "query_name": "three_word",
+          "query_text": "reinforcement learning agent",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 17.468,
+            "p95_ms": 23.43,
+            "mean_ms": 18.033,
+            "min_ms": 13.783,
+            "max_ms": 23.43
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 4351,
+            "p50_ms": 50.131,
+            "p95_ms": 58.601,
+            "mean_ms": 49.903,
+            "min_ms": 43.924,
+            "max_ms": 58.601
+          }
+        },
+        {
+          "query_name": "boolean_and",
+          "query_text": "attention AND mechanism",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 14.159,
+            "p95_ms": 17.541,
+            "mean_ms": 14.634,
+            "min_ms": 11.876,
+            "max_ms": 17.541
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 6226,
+            "p50_ms": 46.533,
+            "p95_ms": 52.908,
+            "mean_ms": 46.852,
+            "min_ms": 43.564,
+            "max_ms": 52.908
+          }
+        },
+        {
+          "query_name": "boolean_or",
+          "query_text": "consciousness OR awareness",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 36.423,
+            "p95_ms": 54.801,
+            "mean_ms": 36.999,
+            "min_ms": 29.626,
+            "max_ms": 54.801
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 26475,
+            "p50_ms": 291.02,
+            "p95_ms": 311.757,
+            "mean_ms": 291.849,
+            "min_ms": 270.454,
+            "max_ms": 311.757
+          }
+        },
+        {
+          "query_name": "phrase",
+          "query_text": "\"large language model\"",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 90.916,
+            "p95_ms": 112.344,
+            "mean_ms": 93.03,
+            "min_ms": 78.315,
+            "max_ms": 112.344
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 39467,
+            "p50_ms": 618.828,
+            "p95_ms": 655.587,
+            "mean_ms": 614.69,
+            "min_ms": 560.812,
+            "max_ms": 655.587
+          }
+        },
+        {
+          "query_name": "multi_field_broad",
+          "query_text": "neural network optimization",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 19.3,
+            "p95_ms": 32.062,
+            "mean_ms": 20.597,
+            "min_ms": 14.144,
+            "max_ms": 32.062
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 4500,
+            "p50_ms": 48.82,
+            "p95_ms": 53.772,
+            "mean_ms": 48.858,
+            "min_ms": 43.822,
+            "max_ms": 53.772
+          }
+        },
+        {
+          "query_name": "narrow_specific",
+          "query_text": "RLHF alignment",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 2.075,
+            "p95_ms": 2.697,
+            "mean_ms": 2.126,
+            "min_ms": 2.059,
+            "max_ms": 2.697
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 392,
+            "p50_ms": 3.763,
+            "p95_ms": 4.415,
+            "mean_ms": 3.804,
+            "min_ms": 3.216,
+            "max_ms": 4.415
+          }
+        },
+        {
+          "query_name": "long_query",
+          "query_text": "multi-agent system cooperative reinforcement learning",
+          "fts5": {
+            "error": "FTS5 parse error for: multi-agent system cooperative reinforcement learning"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 145,
+            "p50_ms": 6.779,
+            "p95_ms": 8.471,
+            "mean_ms": 6.887,
+            "min_ms": 6.057,
+            "max_ms": 8.471
+          }
+        },
+        {
+          "query_name": "author_name",
+          "query_text": "Vaswani",
+          "fts5": {
+            "result_count": 0,
+            "p50_ms": 0.038,
+            "p95_ms": 0.055,
+            "mean_ms": 0.039,
+            "min_ms": 0.03,
+            "max_ms": 0.055
+          },
+          "tsvector": {
+            "result_count": 0,
+            "total_matches": 0,
+            "p50_ms": 0.184,
+            "p95_ms": 0.198,
+            "mean_ms": 0.187,
+            "min_ms": 0.182,
+            "max_ms": 0.198
+          }
+        },
+        {
+          "query_name": "acronym_expansion",
+          "query_text": "GAN generative adversarial",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 10.705,
+            "p95_ms": 16.947,
+            "mean_ms": 11.794,
+            "min_ms": 7.059,
+            "max_ms": 16.947
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 529,
+            "p50_ms": 7.457,
+            "p95_ms": 8.513,
+            "mean_ms": 7.541,
+            "min_ms": 7.075,
+            "max_ms": 8.513
+          }
+        },
+        {
+          "query_name": "trending_topic",
+          "query_text": "diffusion model image generation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 31.373,
+            "p95_ms": 44.567,
+            "mean_ms": 31.156,
+            "min_ms": 23.25,
+            "max_ms": 44.567
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 3601,
+            "p50_ms": 55.886,
+            "p95_ms": 87.116,
+            "mean_ms": 58.792,
+            "min_ms": 49.903,
+            "max_ms": 87.116
+          }
+        },
+        {
+          "query_name": "subfield",
+          "query_text": "graph neural network",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 12.788,
+            "p95_ms": 20.594,
+            "mean_ms": 13.925,
+            "min_ms": 9.814,
+            "max_ms": 20.594
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 3229,
+            "p50_ms": 36.706,
+            "p95_ms": 41.029,
+            "mean_ms": 35.264,
+            "min_ms": 29.86,
+            "max_ms": 41.029
+          }
+        },
+        {
+          "query_name": "cross_domain",
+          "query_text": "federated learning privacy",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 9.022,
+            "p95_ms": 12.62,
+            "mean_ms": 9.33,
+            "min_ms": 7.447,
+            "max_ms": 12.62
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1305,
+            "p50_ms": 17.958,
+            "p95_ms": 32.317,
+            "mean_ms": 18.749,
+            "min_ms": 16.04,
+            "max_ms": 32.317
+          }
+        },
+        {
+          "query_name": "math_adjacent",
+          "query_text": "theorem proof verification",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 3.113,
+            "p95_ms": 4.073,
+            "mean_ms": 2.902,
+            "min_ms": 1.46,
+            "max_ms": 4.073
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 143,
+            "p50_ms": 2.03,
+            "p95_ms": 2.766,
+            "mean_ms": 2.173,
+            "min_ms": 1.947,
+            "max_ms": 2.766
+          }
+        },
+        {
+          "query_name": "applied",
+          "query_text": "robotics manipulation",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 8.997,
+            "p95_ms": 18.838,
+            "mean_ms": 9.512,
+            "min_ms": 8.339,
+            "max_ms": 18.838
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 2393,
+            "p50_ms": 20.541,
+            "p95_ms": 26.267,
+            "mean_ms": 20.887,
+            "min_ms": 17.894,
+            "max_ms": 26.267
+          }
+        },
+        {
+          "query_name": "stats_adjacent",
+          "query_text": "causal inference",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 5.881,
+            "p95_ms": 8.35,
+            "mean_ms": 5.972,
+            "min_ms": 4.298,
+            "max_ms": 8.35
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 1353,
+            "p50_ms": 11.019,
+            "p95_ms": 28.129,
+            "mean_ms": 12.038,
+            "min_ms": 9.267,
+            "max_ms": 28.129
+          }
+        },
+        {
+          "query_name": "method_specific",
+          "query_text": "self-supervised contrastive",
+          "fts5": {
+            "error": "FTS5 parse error for: self-supervised contrastive"
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 576,
+            "p50_ms": 12.397,
+            "p95_ms": 21.367,
+            "mean_ms": 13.514,
+            "min_ms": 11.353,
+            "max_ms": 21.367
+          }
+        },
+        {
+          "query_name": "very_common",
+          "query_text": "survey",
+          "fts5": {
+            "result_count": 20,
+            "p50_ms": 5.63,
+            "p95_ms": 11.94,
+            "mean_ms": 7.041,
+            "min_ms": 5.317,
+            "max_ms": 11.94
+          },
+          "tsvector": {
+            "result_count": 20,
+            "total_matches": 4551,
+            "p50_ms": 26.175,
+            "p95_ms": 29.589,
+            "mean_ms": 26.156,
+            "min_ms": 23.45,
+            "max_ms": 29.589
+          }
+        }
+      ],
+      "avg_fts5_p50_ms": 21.998,
+      "avg_pg_p50_ms": 101.458,
+      "avg_ratio": 4.61
+    }
+  ],
+  "timestamp": "2026-03-18T21:51:50Z"
+}

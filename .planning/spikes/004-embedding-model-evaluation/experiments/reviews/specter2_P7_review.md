@@ -1,0 +1,207 @@
+# Single-Strategy Characterization Review
+
+**Model:** specter2
+**Profile:** Federated learning + privacy (P7)
+**Depth:** full
+**Overlap with MiniLM:** 15/20 shared, 5 unique to specter2
+
+## Seed Papers
+  - [2601.00785] FedHypeVAE: Federated Learning with Hypernetwork Generated Conditional VAEs for Differentially Private Embedding Sharing (cs.LG)
+  - [2509.14024] Differentially private federated learning for localized control of infectious disease dynamics (cs.LG)
+  - [2509.14603] Towards Privacy-Preserving and Heterogeneity-aware Split Federated Learning via Probabilistic Masking (cs.LG)
+  - [2601.01737] Local Layer-wise Differential Privacy in Federated Learning (cs.CR)
+  - [2601.06466] SecureDyn-FL: A Robust Privacy-Preserving Federated Learning Framework for Intrusion Detection in IoT Networks (cs.CR)
+
+## specter2 Top-20 Recommendations
+
+### Paper 1: [2601.01737]
+**Title:** Local Layer-wise Differential Privacy in Federated Learning
+**Category:** cs.CR
+**Score:** 0.9800
+**In MiniLM top-20:** True
+
+Federated Learning (FL) enables collaborative model training without direct data sharing, yet it remains vulnerable to privacy attacks such as model inversion and membership inference. Existing differential privacy (DP) solutions for FL often inject noise uniformly across the entire model, degrading utility while providing suboptimal privacy-utility tradeoffs. To address this, we propose LaDP, a novel layer-wise adaptive noise injection mechanism for FL that optimizes privacy protection while preserving model accuracy. LaDP leverages two key insights: (1) neural network layers contribute unevenly to model utility, and (2) layer-wise privacy leakage can be quantified via KL divergence between local and global model distributions. LaDP dynamically injects noise into selected layers based on their privacy sensitivity and importance to model performance.
+  We provide a rigorous theoretical analysis, proving that LaDP satisfies $(\epsilon, \delta)$-DP guarantees and converges under bounded noise. Extensive experiments on CIFAR-10/100 datasets demonstrate that LaDP reduces noise injection by 46.14% on average compared to state-of-the-art (SOTA) methods while improving accuracy by 102.99%. Under the same privacy budget, LaDP outperforms SOTA solutions like Dynamic Privacy Allocation LDP and AdapLDP by 25.18% and 6.1% in accuracy, respectively. Additionally, LaDP robustly defends against reconstruction attacks, increasing the FID of the reconstructed private data by $>$12.84% compared to all baselines. Our work advances the practical deployment of privacy-preserving FL with minimal utility loss.
+
+### Paper 2: [2509.14603]
+**Title:** Towards Privacy-Preserving and Heterogeneity-aware Split Federated Learning via Probabilistic Masking
+**Category:** cs.LG
+**Score:** 0.9794
+**In MiniLM top-20:** True
+
+Split Federated Learning (SFL) has emerged as an efficient alternative to traditional Federated Learning (FL) by reducing client-side computation through model partitioning. However, exchanging of intermediate activations and model updates introduces significant privacy risks, especially from data reconstruction attacks that recover original inputs from intermediate representations. Existing defenses using noise injection often degrade model performance. To overcome these challenges, we present PM-SFL, a scalable and privacy-preserving SFL framework that incorporates Probabilistic Mask training to add structured randomness without relying on explicit noise. This mitigates data reconstruction risks while maintaining model utility. To address data heterogeneity, PM-SFL employs personalized mask learning that tailors submodel structures to each client's local data. For system heterogeneity, we introduce a layer-wise knowledge compensation mechanism, enabling clients with varying resources to participate effectively under adaptive model splitting. Theoretical analysis confirms its privacy protection, and experiments on image and wireless sensing tasks demonstrate that PM-SFL consistently improves accuracy, communication efficiency, and robustness to privacy attacks, with particularly strong performance under data and system heterogeneity.
+
+### Paper 3: [2412.07454]
+**Title:** Tazza: Shuffling Neural Network Parameters for Secure and Private Federated Learning
+**Category:** cs.LG
+**Score:** 0.9658
+**In MiniLM top-20:** True
+
+Federated learning enables decentralized model training without sharing raw data, preserving data privacy. However, its vulnerability towards critical security threats, such as gradient inversion and model poisoning by malicious clients, remain unresolved. Existing solutions often address these issues separately, sacrificing either system robustness or model accuracy. This work introduces Tazza, a secure and efficient federated learning framework that simultaneously addresses both challenges. By leveraging the permutation equivariance and invariance properties of neural networks via weight shuffling and shuffled model validation, Tazza enhances resilience against diverse poisoning attacks, while ensuring data confidentiality and high model accuracy. Comprehensive evaluations on various datasets and embedded platforms show that Tazza achieves robust defense with up to 6.7x improved computational efficiency compared to alternative schemes, without compromising performance.
+
+### Paper 4: [2601.00785]
+**Title:** FedHypeVAE: Federated Learning with Hypernetwork Generated Conditional VAEs for Differentially Private Embedding Sharing
+**Category:** cs.LG
+**Score:** 0.9652
+**In MiniLM top-20:** True
+
+Federated data sharing promises utility without centralizing raw data, yet existing embedding-level generators struggle under non-IID client heterogeneity and provide limited formal protection against gradient leakage. We propose FedHypeVAE, a differentially private, hypernetwork-driven framework for synthesizing embedding-level data across decentralized clients. Building on a conditional VAE backbone, we replace the single global decoder and fixed latent prior with client-aware decoders and class-conditional priors generated by a shared hypernetwork from private, trainable client codes. This bi-level design personalizes the generative layerrather than the downstream modelwhile decoupling local data from communicated parameters. The shared hypernetwork is optimized under differential privacy, ensuring that only noise-perturbed, clipped gradients are aggregated across clients. A local MMD alignment between real and synthetic embeddings and a Lipschitz regularizer on hypernetwork outputs further enhance stability and distributional coherence under non-IID conditions. After training, a neutral meta-code enables domain agnostic synthesis, while mixtures of meta-codes provide controllable multi-domain coverage. FedHypeVAE unifies personalization, privacy, and distribution alignment at the generator level, establishing a principled foundation for privacy-preserving data synthesis in federated settings. Code: github.com/sunnyinAI/FedHypeVAE
+
+### Paper 5: [2402.16028]
+**Title:** FedFDP: Fairness-Aware Federated Learning with Differential Privacy
+**Category:** cs.CR
+**Score:** 0.9651
+**In MiniLM top-20:** True
+
+Federated learning (FL) is an emerging machine learning paradigm designed to address the challenge of data silos, attracting considerable attention. However, FL encounters persistent issues related to fairness and data privacy. To tackle these challenges simultaneously, we propose a fairness-aware federated learning algorithm called FedFair. Building on FedFair, we introduce differential privacy to create the FedFDP algorithm, which addresses trade-offs among fairness, privacy protection, and model performance. In FedFDP, we developed a fairness-aware gradient clipping technique to explore the relationship between fairness and differential privacy. Through convergence analysis, we identified the optimal fairness adjustment parameters to achieve both maximum model performance and fairness. Additionally, we present an adaptive clipping method for uploaded loss values to reduce privacy budget consumption. Extensive experimental results show that FedFDP significantly surpasses state-of-the-art solutions in both model performance and fairness.
+
+### Paper 6: [2601.06466]
+**Title:** SecureDyn-FL: A Robust Privacy-Preserving Federated Learning Framework for Intrusion Detection in IoT Networks
+**Category:** cs.CR
+**Score:** 0.9638
+**In MiniLM top-20:** True
+
+The rapid proliferation of Internet of Things (IoT) devices across domains such as smart homes, industrial control systems, and healthcare networks has significantly expanded the attack surface for cyber threats, including botnet-driven distributed denial-of-service (DDoS), malware injection, and data exfiltration. Conventional intrusion detection systems (IDS) face critical challenges like privacy, scalability, and robustness when applied in such heterogeneous IoT environments. To address these issues, we propose SecureDyn-FL, a comprehensive and robust privacy-preserving federated learning (FL) framework tailored for intrusion detection in IoT networks. SecureDyn-FL is designed to simultaneously address multiple security dimensions in FL-based IDS: (1) poisoning detection through dynamic temporal gradient auditing, (2) privacy protection against inference and eavesdropping attacks through secure aggregation, and (3) adaptation to heterogeneous non-IID data via personalized learning. The framework introduces three core contributions: (i) a dynamic temporal gradient auditing mechanism that leverages Gaussian mixture models (GMMs) and Mahalanobis distance (MD) to detect stealthy and adaptive poisoning attacks, (ii) an optimized privacy-preserving aggregation scheme based on transformed additive ElGamal encryption with adaptive pruning and quantization for secure and efficient communication, and (iii) a dual-objective personalized learning strategy that improves model adaptation under non-IID data using logit-adjusted loss. Extensive experiments on the N-BaIoT dataset under both IID and non-IID settings, including scenarios with up to 50% adversarial clients, demonstrate that SecureDyn-FL consistently outperforms state-of-the-art FL-based IDS defenses.
+
+### Paper 7: [2509.14024]
+**Title:** Differentially private federated learning for localized control of infectious disease dynamics
+**Category:** cs.LG
+**Score:** 0.9626
+**In MiniLM top-20:** True
+
+In times of epidemics, swift reaction is necessary to mitigate epidemic spreading. For this reaction, localized approaches have several advantages, limiting necessary resources and reducing the impact of interventions on a larger scale. However, training a separate machine learning (ML) model on a local scale is often not feasible due to limited available data. Centralizing the data is also challenging because of its high sensitivity and privacy constraints. In this study, we consider a localized strategy based on the German counties and communities managed by the related local health authorities (LHA). For the preservation of privacy to not oppose the availability of detailed situational data, we propose a privacy-preserving forecasting method that can assist public health experts and decision makers. ML methods with federated learning (FL) train a shared model without centralizing raw data. Considering the counties, communities or LHAs as clients and finding a balance between utility and privacy, we study a FL framework with client-level differential privacy (DP). We train a shared multilayer perceptron on sliding windows of recent case counts to forecast the number of cases, while clients exchange only norm-clipped updates and the server aggregated updates with DP noise. We evaluate the approach on COVID-19 data on county-level during two phases. As expected, very strict privacy yields unstable, unusable forecasts. At a moderately strong level, the DP model closely approaches the non-DP model: R2 around 0.94 (vs. 0.95) and mean absolute percentage error (MAPE) of 26 % in November 2020; R2 around 0.88 (vs. 0.93) and MAPE of 21 % in March 2022. Overall, client-level DP-FL can deliver useful county-level predictions with strong privacy guarantees, and viable privacy budgets depend on epidemic phase, allowing privacy-compliant collaboration among health authorities for local forecasting.
+
+### Paper 8: [2412.04416]
+**Title:** FedDUAL: A Dual-Strategy with Adaptive Loss and Dynamic Aggregation for Mitigating Data Heterogeneity in Federated Learning
+**Category:** cs.LG
+**Score:** 0.9598
+**In MiniLM top-20:** True
+
+Federated Learning (FL) marks a transformative approach to distributed model training by combining locally optimized models from various clients into a unified global model. While FL preserves data privacy by eliminating centralized storage, it encounters significant challenges such as performance degradation, slower convergence, and reduced robustness of the global model due to the heterogeneity in client data distributions. Among the various forms of data heterogeneity, label skew emerges as a particularly formidable and prevalent issue, especially in domains such as image classification. To address these challenges, we begin with comprehensive experiments to pinpoint the underlying issues in the FL training process. Based on our findings, we then introduce an innovative dual-strategy approach designed to effectively resolve these issues. First, we introduce an adaptive loss function for client-side training, meticulously crafted to preserve previously acquired knowledge while maintaining an optimal equilibrium between local optimization and global model coherence. Secondly, we develop a dynamic aggregation strategy for aggregating client models at the server. This approach adapts to each client's unique learning patterns, effectively addressing the challenges of diverse data across the network. Our comprehensive evaluation, conducted across three diverse real-world datasets, coupled with theoretical convergence guarantees, demonstrates the superior efficacy of our method compared to several established state-of-the-art approaches.
+
+### Paper 9: [2506.22727]
+**Title:** Convergent Privacy Framework for Multi-layer GNNs through Contractive Message Passing
+**Category:** cs.CR
+**Score:** 0.9576
+**In MiniLM top-20:** True
+
+Differential privacy (DP) has been integrated into graph neural networks (GNNs) to protect sensitive structural information, e.g., edges, nodes, and associated features across various applications. A prominent approach is to perturb the message-passing process, which forms the core of most GNN architectures. However, existing methods typically incur a privacy cost that grows linearly with the number of layers (e.g., GAP published in Usenix Security'23), ultimately requiring excessive noise to maintain a reasonable privacy level. This limitation becomes particularly problematic when multi-layer GNNs, which have shown better performance than one-layer GNN, are used to process graph data with sensitive information. In this paper, we theoretically establish that the privacy budget converges with respect to the number of layers by applying privacy amplification techniques to the message-passing process, exploiting the contractive properties inherent to standard GNN operations. Motivated by this analysis, we propose a simple yet effective Contractive Graph Layer (CGL) that ensures the contractiveness required for theoretical guarantees while preserving model utility. Our framework, CARIBOU, supports both training and inference, equipped with a contractive aggregation module, a privacy allocation module, and a privacy auditing module. Experimental evaluations demonstrate that CARIBOU significantly improves the privacy-utility trade-off and achieves superior performance in privacy auditing tasks.
+
+### Paper 10: [2507.14629]
+**Title:** VMask: Tunable Label Privacy Protection for Vertical Federated Learning via Layer Masking
+**Category:** cs.CR
+**Score:** 0.9557
+**In MiniLM top-20:** True
+
+Though vertical federated learning (VFL) is generally considered to be privacy-preserving, recent studies have shown that VFL system is vulnerable to label inference attacks originating from various attack surfaces. Among these attacks, the model completion (MC) attack is currently the most powerful one. Existing defense methods against it either sacrifice model accuracy or incur impractical computational overhead. In this paper, we propose VMask, a novel label privacy protection framework designed to defend against MC attack from the perspective of layer masking. Our key insight is to disrupt the strong correlation between input data and intermediate outputs by applying the secret sharing (SS) technique to mask layer parameters in the attacker's model. We devise a strategy for selecting critical layers to mask, reducing the overhead that would arise from naively applying SS to the entire model. Moreover, VMask is the first framework to offer a tunable privacy budget to defenders, allowing for flexible control over the levels of label privacy according to actual requirements. We built a VFL system, implemented VMask on it, and extensively evaluated it using five model architectures and 13 datasets with different modalities, comparing it to 12 other defense methods. The results demonstrate that VMask achieves the best privacy-utility trade-off, successfully thwarting the MC attack (reducing the label inference accuracy to a random guessing level) while preserving model performance (e.g., in Transformer-based model, the averaged drop of VFL model accuracy is only 0.09%). VMask's runtime is up to 60,846 times faster than cryptography-based methods, and it only marginally exceeds that of standard VFL by 1.8 times in a large Transformer-based model, which is generally acceptable.
+
+### Paper 11: [2503.15550]
+**Title:** Zero-Knowledge Federated Learning: A New Trustworthy and Privacy-Preserving Distributed Learning Paradigm
+**Category:** cs.CR
+**Score:** 0.9553
+**In MiniLM top-20:** True
+
+Federated Learning (FL) has emerged as a promising paradigm in distributed machine learning, enabling collaborative model training while preserving data privacy. However, despite its many advantages, FL still contends with significant challenges -- most notably regarding security and trust. Zero-Knowledge Proofs (ZKPs) offer a potential solution by establishing trust and enhancing system integrity throughout the FL process. Although several studies have explored ZKP-based FL (ZK-FL), a systematic framework and comprehensive analysis are still lacking. This article makes two key contributions. First, we propose a structured ZK-FL framework that categorizes and analyzes the technical roles of ZKPs across various FL stages and tasks. Second, we introduce a novel algorithm, Verifiable Client Selection FL (Veri-CS-FL), which employs ZKPs to refine the client selection process. In Veri-CS-FL, participating clients generate verifiable proofs for the performance metrics of their local models and submit these concise proofs to the server for efficient verification. The server then selects clients with high-quality local models for uploading, subsequently aggregating the contributions from these selected clients. By integrating ZKPs, Veri-CS-FL not only ensures the accuracy of performance metrics but also fortifies trust among participants while enhancing the overall efficiency and security of FL systems.
+
+### Paper 12: [2601.19745]
+**Title:** GraphDLG: Exploring Deep Leakage from Gradients in Federated Graph Learning
+**Category:** cs.LG
+**Score:** 0.9545
+**In MiniLM top-20:** True
+
+Federated graph learning (FGL) has recently emerged as a promising privacy-preserving paradigm that enables distributed graph learning across multiple data owners. A critical privacy concern in federated learning is whether an adversary can recover raw data from shared gradients, a vulnerability known as deep leakage from gradients (DLG). However, most prior studies on the DLG problem focused on image or text data, and it remains an open question whether graphs can be effectively recovered, particularly when the graph structure and node features are uniquely entangled in GNNs. In this work, we first theoretically analyze the components in FGL and derive a crucial insight: once the graph structure is recovered, node features can be obtained through a closed-form recursive rule. Building on this analysis, we propose GraphDLG, a novel approach to recover raw training graphs from shared gradients in FGL, which can utilize randomly generated graphs or client-side training graphs as auxiliaries to enhance recovery. Extensive experiments demonstrate that GraphDLG outperforms existing solutions by successfully decoupling the graph structure and node features, achieving improvements of over 5.46% (by MSE) for node feature reconstruction and over 25.04% (by AUC) for graph structure reconstruction.
+
+### Paper 13: [2601.19090]
+**Title:** Privacy-Preserving Model Transcription with Differentially Private Synthetic Distillation
+**Category:** cs.LG
+**Score:** 0.9477
+**In MiniLM top-20:** True
+
+While many deep learning models trained on private datasets have been deployed in various practical tasks, they may pose a privacy leakage risk as attackers could recover informative data or label knowledge from models. In this work, we present \emph{privacy-preserving model transcription}, a data-free model-to-model conversion solution to facilitate model deployment with a privacy guarantee. To this end, we propose a cooperative-competitive learning approach termed \emph{differentially private synthetic distillation} that learns to convert a pretrained model (teacher) into its privacy-preserving counterpart (student) via a trainable generator without access to private data. The learning collaborates with three players in a unified framework and performs alternate optimization: i)~the generator is learned to generate synthetic data, ii)~the teacher and student accept the synthetic data and compute differential private labels by flexible data or label noisy perturbation, and iii)~the student is updated with noisy labels and the generator is updated by taking the student as a discriminator for adversarial training. We theoretically prove that our approach can guarantee differential privacy and convergence. The transcribed student has good performance and privacy protection, while the resulting generator can generate private synthetic data for downstream tasks. Extensive experiments clearly demonstrate that our approach outperforms 26 state-of-the-arts.
+
+### Paper 14 [DIVERGENT]: [2412.02578]
+**Title:** Private Linear Regression with Differential Privacy and PAC Privacy
+**Category:** cs.LG
+**Score:** 0.9461
+**In MiniLM top-20:** False
+
+Linear regression is a fundamental tool for statistical analysis, which has motivated the development of linear regression methods that satisfy provable privacy guarantees so that the learned model reveals little about any one data point used to construct it. Most existing privacy-preserving linear regression methods rely on the well-established framework of differential privacy, while the newly proposed PAC Privacy has not yet been explored in this context. In this paper, we systematically compare linear regression models trained with differential privacy and PAC privacy across three real-world datasets, observing several key findings that impact the performance of privacy-preserving linear regression.
+
+### Paper 15: [2601.17713]
+**Title:** FedCCA: Client-Centric Adaptation against Data Heterogeneity in Federated Learning on IoT Devices
+**Category:** cs.LG
+**Score:** 0.9456
+**In MiniLM top-20:** True
+
+With the rapid development of the Internet of Things (IoT), AI model training on private data such as human sensing data is highly desired. Federated learning (FL) has emerged as a privacy-preserving distributed training framework for this purpuse. However, the data heterogeneity issue among IoT devices can significantly degrade the model performance and convergence speed in FL. Existing approaches limit in fixed client selection and aggregation on cloud server, making the privacy-preserving extraction of client-specific information during local training challenging. To this end, we propose Client-Centric Adaptation federated learning (FedCCA), an algorithm that optimally utilizes client-specific knowledge to learn a unique model for each client through selective adaptation, aiming to alleviate the influence of data heterogeneity. Specifically, FedCCA employs dynamic client selection and adaptive aggregation based on the additional client-specific encoder. To enhance multi-source knowledge transfer, we adopt an attention-based global aggregation strategy. We conducted extensive experiments on diverse datasets to assess the efficacy of FedCCA. The experimental results demonstrate that our approach exhibits a substantial performance advantage over competing baselines in addressing this specific problem.
+
+### Paper 16 [DIVERGENT]: [2512.24286]
+**Title:** Data Heterogeneity-Aware Client Selection for Federated Learning in Wireless Networks
+**Category:** cs.DC
+**Score:** 0.9420
+**In MiniLM top-20:** False
+
+Federated Learning (FL) enables mobile edge devices, functioning as clients, to collaboratively train a decentralized model while ensuring local data privacy. However, the efficiency of FL in wireless networks is limited not only by constraints on communication and computational resources but also by significant data heterogeneity among clients, particularly in large-scale networks. This paper first presents a theoretical analysis of the impact of client data heterogeneity on global model generalization error, which can result in repeated training cycles, increased energy consumption, and prolonged latency. Based on the theoretical insights, an optimization problem is formulated to jointly minimize learning latency and energy consumption while constraining generalization error. A joint client selection and resource allocation (CSRA) approach is then proposed, employing a series of convex optimization and relaxation techniques. Extensive simulation results demonstrate that the proposed CSRA scheme yields higher test accuracy, reduced learning latency, and lower energy consumption compared to baseline methods that do not account for data heterogeneity.
+
+### Paper 17 [DIVERGENT]: [2601.17183]
+**Title:** Federated Proximal Optimization for Privacy-Preserving Heart Disease Prediction: A Controlled Simulation Study on Non-IID Clinical Data
+**Category:** cs.LG
+**Score:** 0.9418
+**In MiniLM top-20:** False
+
+Healthcare institutions have access to valuable patient data that could be of great help in the development of improved diagnostic models, but privacy regulations like HIPAA and GDPR prevent hospitals from directly sharing data with one another. Federated Learning offers a way out to this problem by facilitating collaborative model training without having the raw patient data centralized. However, clinical datasets intrinsically have non-IID (non-independent and identically distributed) features brought about by demographic disparity and diversity in disease prevalence and institutional practices. This paper presents a comprehensive simulation research of Federated Proximal Optimization (FedProx) for Heart Disease prediction based on UCI Heart Disease dataset. We generate realistic non-IID data partitions by simulating four heterogeneous hospital clients from the Cleveland Clinic dataset (303 patients), by inducing statistical heterogeneity by demographic-based stratification. Our experimental results show that FedProx with proximal parameter mu=0.05 achieves 85.00% accuracy, which is better than both centralized learning (83.33%) and isolated local models (78.45% average) without revealing patient privacy. Through generous sheer ablation studies with statistical validation on 50 independent runs we demonstrate that proximal regularization is effective in curbing client drift in heterogeneous environments. This proof-of-concept research offers algorithmic insights and practical deployment guidelines for real-world federated healthcare systems, and thus, our results are directly transferable to hospital IT-administrators, implementing privacy-preserving collaborative learning.
+
+### Paper 18 [DIVERGENT]: [2601.14687]
+**Title:** Beyond Denial-of-Service: The Puppeteer's Attack for Fine-Grained Control in Ranking-Based Federated Learning
+**Category:** cs.LG
+**Score:** 0.9401
+**In MiniLM top-20:** False
+
+Federated Rank Learning (FRL) is a promising Federated Learning (FL) paradigm designed to be resilient against model poisoning attacks due to its discrete, ranking-based update mechanism. Unlike traditional FL methods that rely on model updates, FRL leverages discrete rankings as a communication parameter between clients and the server. This approach significantly reduces communication costs and limits an adversary's ability to scale or optimize malicious updates in the continuous space, thereby enhancing its robustness. This makes FRL particularly appealing for applications where system security and data privacy are crucial, such as web-based auction and bidding platforms. While FRL substantially reduces the attack surface, we demonstrate that it remains vulnerable to a new class of local model poisoning attack, i.e., fine-grained control attacks. We introduce the Edge Control Attack (ECA), the first fine-grained control attack tailored to ranking-based FL frameworks. Unlike conventional denial-of-service (DoS) attacks that cause conspicuous disruptions, ECA enables an adversary to precisely degrade a competitor's accuracy to any target level while maintaining a normal-looking convergence trajectory, thereby avoiding detection. ECA operates in two stages: (i) identifying and manipulating Ascending and Descending Edges to align the global model with the target model, and (ii) widening the selection boundary gap to stabilize the global model at the target accuracy. Extensive experiments across seven benchmark datasets and nine Byzantine-robust aggregation rules (AGRs) show that ECA achieves fine-grained accuracy control with an average error of only 0.224%, outperforming the baseline by up to 17x. Our findings highlight the need for stronger defenses against advanced poisoning attacks. Our code is available at: https://github.com/Chenzh0205/ECA
+
+### Paper 19: [2510.23463]
+**Title:** Differential Privacy as a Perk: Federated Learning over Multiple-Access Fading Channels with a Multi-Antenna Base Station
+**Category:** cs.LG
+**Score:** 0.9391
+**In MiniLM top-20:** True
+
+Federated Learning (FL) is a distributed learning paradigm that preserves privacy by eliminating the need to exchange raw data during training. In its prototypical edge instantiation with underlying wireless transmissions enabled by analog over-the-air computing (AirComp), referred to as \emph{over-the-air FL (AirFL)}, the inherent channel noise plays a unique role of \emph{frenemy} in the sense that it degrades training due to noisy global aggregation while providing a natural source of randomness for privacy-preserving mechanisms, formally quantified by \emph{differential privacy (DP)}. It remains, nevertheless, challenging to effectively harness such channel impairments, as prior arts, under assumptions of either simple channel models or restricted types of loss functions, mostly considering (local) DP enhancement with a single-round or non-convergent bound on privacy loss. In this paper, we study AirFL over multiple-access fading channels with a multi-antenna base station (BS) subject to user-level DP requirements. Despite a recent study, which claimed in similar settings that artificial noise (AN) must be injected to ensure DP in general, we demonstrate, on the contrary, that DP can be gained as a \emph{perk} even \emph{without} employing any AN. Specifically, we derive a novel bound on DP that converges under general bounded-domain assumptions on model parameters, along with a convergence bound with general smooth and non-convex loss functions. Next, we optimize over receive beamforming and power allocations to characterize the optimal convergence-privacy trade-offs, which also reveal explicit conditions in which DP is achievable without compromising training. Finally, our theoretical findings are validated by extensive numerical results.
+
+### Paper 20 [DIVERGENT]: [2510.07132]
+**Title:** DPMM-CFL: Clustered Federated Learning via Dirichlet Process Mixture Model Nonparametric Clustering
+**Category:** cs.LG
+**Score:** 0.9389
+**In MiniLM top-20:** False
+
+Clustered Federated Learning (CFL) improves performance under non-IID client heterogeneity by clustering clients and training one model per cluster, thereby balancing between a global model and fully personalized models. However, most CFL methods require the number of clusters K to be fixed a priori, which is impractical when the latent structure is unknown. We propose DPMM-CFL, a CFL algorithm that places a Dirichlet Process (DP) prior over the distribution of cluster parameters. This enables nonparametric Bayesian inference to jointly infer both the number of clusters and client assignments, while optimizing per-cluster federated objectives. This results in a method where, at each round, federated updates and cluster inferences are coupled, as presented in this paper. The algorithm is validated on benchmark datasets under Dirichlet and class-split non-IID partitions.
+
+---
+
+## Review Instructions
+
+You are reviewing the top-20 recommendations from specter2 for the profile "Federated learning + privacy".
+Papers marked [DIVERGENT] are in specter2's top-20 but NOT in MiniLM's.
+
+### Full Review (all sections required)
+
+1. **Per-paper assessment**: For each paper:
+   - Connection to seeds (direct, adjacent, provocative, noise)
+   - For DIVERGENT papers especially: is this a genuinely different signal?
+   - Discoverability: would a researcher find this via other means?
+
+2. **Set-level assessment**:
+   - Does this set map a research landscape or just list similar papers?
+   - Coverage: methods, applications, critiques, foundations?
+   - What's conspicuously absent?
+   - How does the character of divergent papers differ from shared papers?
+
+3. **Emergent observations**:
+   - What kind of signal does this model capture that MiniLM doesn't?
+   - Is the divergence signal (coherent, valuable) or noise (scattered, irrelevant)?
+   - Any productive provocations among the recommendations?
+
+4. **Absent researcher note**:
+   - What would you need to know about the researcher to assess this properly?
+
+5. **Metric divergence flags**:
+   - Does your qualitative impression contradict quantitative expectations?

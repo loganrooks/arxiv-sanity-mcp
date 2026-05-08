@@ -1,11 +1,12 @@
 ---
 gsd_state_version: 1.0
-milestone: v0.1
-milestone_name: milestone
-status: complete
-stopped_at: Completed 10-03-PLAN.md
-last_updated: "2026-03-14T05:14:26.000Z"
-last_activity: 2026-03-14 -- Phase 10 complete. All critical fixes applied, README validated, friction report finalized.
+milestone: v0.2
+milestone_name: multi-lens-substrate
+status: planning
+post_milestone_state: v0.2-active-planning
+stopped_at: 'v0.2 multi-lens substrate active milestone (Phases 12-17 authored). Phase 12 plan-1 authoring is the next active work, not yet started. v0.1 historical (shipped 2026-03-14; 31/31 plans; 13 MCP tools + 4 resources + 3 prompts; pytest collection ~493 tests).'
+last_updated: "2026-05-08T00:00:00Z"
+last_activity: '2026-05-08 — Planning tree cleanup; v0.2 implementation work resumes with Phase 12 plan-1 authoring as next active work.'
 progress:
   total_phases: 11
   completed_phases: 11
@@ -21,23 +22,26 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** All phases complete. v0.1 milestone ready for final review.
+**Current focus:** v0.2 (multi-lens substrate) is the active milestone. Phases 12-17 are planned; Phase 12 plan-1 authoring is the next active work. v0.1 is complete and frozen.
 
 ## Current Position
 
-Phase: 10 of 11 (Agent Integration Test)
-Plan: 3 of 3 in current phase (Plans 01-03 complete)
-Status: Phase 10 complete. All critical fixes applied, README validated, friction report finalized.
-Last activity: 2026-03-14 -- Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
+Milestone: `v0.2` active (planning phase)
+Implementation roadmap: Phases 12-17 authored. Phase 12 plan-1 authoring is the next active work.
+Active work: not yet started; pending Phase 12 plan-1 authoring.
+Last implementation activity: 2026-03-14 -- Phase 10 Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
 
-Progress: [██████████] 100% (31/31 plans)
+Progress: [██████████] 100% (31/31 plans) — v0.1 historical; v0.2 plans not yet tracked here
 
-## Performance Metrics
+## v0.1 Historical Metrics
+
+*These metrics are for the completed v0.1 milestone (Phases 1-10, shipped 2026-03-14). v0.2 velocity will be tracked separately once Phase 12 implementation begins.*
 
 **Velocity:**
-- Total plans completed: 23
-- Average duration: 12.6 min
-- Total execution time: 5.0 hours
+- Total v0.1 plans completed: 31 (phases 1-10 including Phase 04.1)
+  - *Note: velocity table below shows 23 — that figure covers Phases 01-04 only (the phases with per-plan timing data). Plans 05-10 were tracked but not included in the avg/plan table. 31 is the correct total-plans-completed.*
+- Average duration (Phases 01-04): 12.6 min
+- Total execution time (Phases 01-04): 5.0 hours
 
 **By Phase:**
 
@@ -193,7 +197,11 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- **Phase 12 plan-1 authoring** — next active work. Sequencing per LONG-ARC.md.
+- Q1/Q4/Q16 Logan validation (foundation-audit closures from Phase 04.1 / Quick Task 1; tracker in §"Pending Validations" below).
+- Codification of session-disciplines (closure-pressure recurrence; comfort-language; performative-vs-operational openness; non-exhaustive-listings; push-for-assumptions; skill-heuristic shallow-match; strict-M1 undersell at recommendation stage) in METHODOLOGY.md or AGENTS.md — threshold reached at 3 deliberation logs (2026-04-25 + 2026-04-26 + 2026-04-27); codification candidate ready for evaluation when next opportunity warrants.
+- Two INDEX.md verification items addressed via PROJECT.md refresh (2026-04-26): local-gap-propagation reframed as GSDR-signal-system-scoped (not primary active reference); spike-epistemic-rigor symlink note added.
+- Orchestrator-audit (`.planning/audits/2026-05-01-orchestrator-audit/`) surfaced arxiv-sanity-mcp-side findings to action: broken doctrine path references; agential-setup gaps in harness configuration; missing project `.mcp.json`; missing PostgreSQL/SQLite MCP. Address as separate cleanup task or fold into v0.2 implementation.
 
 ### Roadmap Evolution
 
@@ -217,8 +225,17 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 1 | Foundation fixes: extensible schemas, remove implicit demotion, epistemic discipline | 2026-03-11 | 27ae31f | [1-foundation-fixes](./quick/1-foundation-fixes-extensible-schemas-remo/) |
 
+## Pending Validations (carried over from foundation-audit)
+
+| Open Question | Closed by | Pending action | Status |
+|---|---|---|---|
+| Q1 — What is the right default notion of interest state? | Quick Task 1 (application-validated signal types, no DB constraint) | Logan validates the closure rationale | PENDING |
+| Q4 — Which external enrichments are worth the dependency cost? | Quick Task 1 (OpenAlex as sole source; composite PK for multi-source extensibility) | Logan validates the closure rationale | PENDING |
+| Q16 — What is the right processing intensity promotion strategy? | Quick Task 1 (demand-driven promotion only) | Logan validates the closure rationale | PENDING |
+
+*Source: `.planning/foundation-audit/FINDINGS.md` finding I5; closures recorded in `docs/10-open-questions.md` (Q1 at line 9, Q4 at line 31, Q16 at line 104). Each marked "Resolved during implementation (pending user validation)."*
+
 ## Session Continuity
 
-Last session: 2026-03-14T05:14:26Z
-Stopped at: Completed 10-03-PLAN.md
-Resume file: None
+Last session: 2026-05-08 — planning tree cleanup. v0.2 implementation resumes.
+Resume file: `.planning/ROADMAP.md` (Phase 12 entry); `.planning/REQUIREMENTS.md`; `.planning/LONG-ARC.md` (sequencing).

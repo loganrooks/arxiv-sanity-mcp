@@ -1,0 +1,137 @@
+{
+  "cross_model_clusters": {
+    "MiniLM_on_MiniLM_clusters": {
+      "recall": {
+        "20": 0.07,
+        "50": 0.15,
+        "100": 0.305,
+        "500": 0.58
+      },
+      "median_rank": 303,
+      "n": 200
+    },
+    "MiniLM_on_SPECTER2_clusters": {
+      "recall": {
+        "20": 0.07,
+        "50": 0.15,
+        "100": 0.255,
+        "500": 0.535
+      },
+      "median_rank": 389,
+      "n": 200
+    },
+    "SPECTER2_on_MiniLM_clusters": {
+      "recall": {
+        "20": 0.05,
+        "50": 0.155,
+        "100": 0.22,
+        "500": 0.515
+      },
+      "median_rank": 473,
+      "n": 200
+    },
+    "SPECTER2_on_SPECTER2_clusters": {
+      "recall": {
+        "20": 0.125,
+        "50": 0.25,
+        "100": 0.36,
+        "500": 0.645
+      },
+      "median_rank": 206,
+      "n": 200
+    }
+  },
+  "model_independent_gt": {
+    "category_comembership_MiniLM": {
+      "recall_at_100": 0.1333,
+      "median_rank": 622,
+      "n": 150
+    },
+    "category_comembership_SPECTER2": {
+      "recall_at_100": 0.1267,
+      "median_rank": 716,
+      "n": 150
+    }
+  },
+  "consensus": {
+    "overlap_at_k": {
+      "20": 0.405,
+      "50": 0.442,
+      "100": 0.428,
+      "500": 0.5036
+    },
+    "consensus_quality": [
+      {
+        "seed": "2501.13165",
+        "consensus_cat_overlap": 0.484,
+        "minilm_only_cat_overlap": 0.378,
+        "specter_only_cat_overlap": 0.2133,
+        "consensus_size": 50
+      },
+      {
+        "seed": "2601.20085",
+        "consensus_cat_overlap": 0.2075,
+        "minilm_only_cat_overlap": 0.2011,
+        "specter_only_cat_overlap": 0.1418,
+        "consensus_size": 53
+      },
+      {
+        "seed": "2601.18272",
+        "consensus_cat_overlap": 0.0856,
+        "minilm_only_cat_overlap": 0.0885,
+        "specter_only_cat_overlap": 0.0903,
+        "consensus_size": 52
+      },
+      {
+        "seed": "2601.05751",
+        "consensus_cat_overlap": 0.6476,
+        "minilm_only_cat_overlap": 0.48,
+        "specter_only_cat_overlap": 0.4769,
+        "consensus_size": 35
+      },
+      {
+        "seed": "2601.11135",
+        "consensus_cat_overlap": 0.5933,
+        "minilm_only_cat_overlap": 0.4817,
+        "specter_only_cat_overlap": 0.5367,
+        "consensus_size": 50
+      },
+      {
+        "seed": "2601.07764",
+        "consensus_cat_overlap": 0.3276,
+        "minilm_only_cat_overlap": 0.1946,
+        "specter_only_cat_overlap": 0.1853,
+        "consensus_size": 26
+      },
+      {
+        "seed": "2601.13448",
+        "consensus_cat_overlap": 0.3123,
+        "minilm_only_cat_overlap": 0.1816,
+        "specter_only_cat_overlap": 0.3376,
+        "consensus_size": 34
+      },
+      {
+        "seed": "2412.04134",
+        "consensus_cat_overlap": 0.4688,
+        "minilm_only_cat_overlap": 0.3235,
+        "specter_only_cat_overlap": 0.4493,
+        "consensus_size": 46
+      },
+      {
+        "seed": "2601.03506",
+        "consensus_cat_overlap": 0.6071,
+        "minilm_only_cat_overlap": 0.5948,
+        "specter_only_cat_overlap": 0.4412,
+        "consensus_size": 49
+      },
+      {
+        "seed": "2509.03122",
+        "consensus_cat_overlap": 0.2813,
+        "minilm_only_cat_overlap": 0.2878,
+        "specter_only_cat_overlap": 0.3823,
+        "consensus_size": 33
+      }
+    ]
+  },
+  "timestamp": "2026-03-19T03:49:02Z"
+}

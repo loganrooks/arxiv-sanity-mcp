@@ -1,0 +1,481 @@
+{
+  "type": "characterization",
+  "model_key": "gte",
+  "profile_id": "P4",
+  "profile_name": "AI safety / alignment",
+  "depth": "full",
+  "seeds": [
+    {
+      "arxiv_id": "2501.19180",
+      "title": "Enhancing Model Defense Against Jailbreaks with Proactive Safety Reasoning",
+      "category": "cs.CR"
+    },
+    {
+      "arxiv_id": "2511.13788",
+      "title": "Scaling Patterns in Adversarial Alignment: Evidence from Multi-LLM Jailbreak Experiments",
+      "category": "cs.LG"
+    },
+    {
+      "arxiv_id": "2511.21214",
+      "title": "Self-Guided Defense: Adaptive Safety Alignment for Reasoning Models via Synthesized Guidelines",
+      "category": "cs.CL"
+    },
+    {
+      "arxiv_id": "2512.24044",
+      "title": "Jailbreaking Attacks vs. Content Safety Filters: How Far Are We in the LLM Safety Arms Race?",
+      "category": "cs.CR"
+    },
+    {
+      "arxiv_id": "2601.10589",
+      "title": "Be Your Own Red Teamer: Safety Alignment via Self-Play and Reflective Experience Replay",
+      "category": "cs.CR"
+    }
+  ],
+  "model_top20": [
+    {
+      "arxiv_id": "2501.19180",
+      "title": "Enhancing Model Defense Against Jailbreaks with Proactive Safety Reasoning",
+      "abstract": "Large language models (LLMs) are vital for a wide range of applications yet remain susceptible to jailbreak threats, which could lead to the generation of inappropriate responses. Conventional defenses, such as refusal and adversarial training, often fail to cover corner cases or rare domains, leaving LLMs still vulnerable to more sophisticated attacks. We propose a novel defense strategy, Safety Chain-of-Thought (SCoT), which harnesses the enhanced \\textit{reasoning capabilities} of LLMs for proactive assessment of harmful inputs, rather than simply blocking them. SCoT augments any refusal training datasets to critically analyze the intent behind each request before generating answers. By employing proactive reasoning, SCoT enhances the generalization of LLMs across varied harmful queries and scenarios not covered in the safety alignment corpus. Additionally, it generates detailed refusals specifying the rules violated. Comparative evaluations show that SCoT significantly surpasses existing defenses, reducing vulnerability to out-of-distribution issues and adversarial manipulations while maintaining strong general capabilities.",
+      "category": "cs.CR",
+      "score": 0.930399,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2512.24044",
+      "title": "Jailbreaking Attacks vs. Content Safety Filters: How Far Are We in the LLM Safety Arms Race?",
+      "abstract": "As large language models (LLMs) are increasingly deployed, ensuring their safe use is paramount. Jailbreaking, adversarial prompts that bypass model alignment to trigger harmful outputs, present significant risks, with existing studies reporting high success rates in evading common LLMs. However, previous evaluations have focused solely on the models, neglecting the full deployment pipeline, which typically incorporates additional safety mechanisms like content moderation filters. To address this gap, we present the first systematic evaluation of jailbreak attacks targeting LLM safety alignment, assessing their success across the full inference pipeline, including both input and output filtering stages. Our findings yield two key insights: first, nearly all evaluated jailbreak techniques can be detected by at least one safety filter, suggesting that prior assessments may have overestimated the practical success of these attacks; second, while safety filters are effective in detection, there remains room to better balance recall and precision to further optimize protection and user experience. We highlight critical gaps and call for further refinement of detection accuracy and usability in LLM safety systems.",
+      "category": "cs.CR",
+      "score": 0.924069,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2511.13788",
+      "title": "Scaling Patterns in Adversarial Alignment: Evidence from Multi-LLM Jailbreak Experiments",
+      "abstract": "Large language models (LLMs) increasingly operate in multi-agent and safety-critical settings, raising open questions about how their vulnerabilities scale when models interact adversarially. This study examines whether larger models can systematically jailbreak smaller ones - eliciting harmful or restricted behavior despite alignment safeguards. Using standardized adversarial tasks from JailbreakBench, we simulate over 6,000 multi-turn attacker-target exchanges across major LLM families and scales (0.6B-120B parameters), measuring both harm score and refusal behavior as indicators of adversarial potency and alignment integrity. Each interaction is evaluated through aggregated harm and refusal scores assigned by three independent LLM judges, providing a consistent, model-based measure of adversarial outcomes. Aggregating results across prompts, we find a strong and statistically significant correlation between mean harm and the logarithm of the attacker-to-target size ratio (Pearson r = 0.51, p < 0.001; Spearman rho = 0.52, p < 0.001), indicating that relative model size correlates with the likelihood and severity of harmful completions. Mean harm score variance is higher across attackers (0.18) than across targets (0.10), suggesting that attacker-side behavioral diversity contributes more to adversarial outcomes than target susceptibility. Attacker refusal frequency is strongly and negatively correlated with harm (rho = -0.93, p < 0.001), showing that attacker-side alignment mitigates harmful responses. These findings reveal that size asymmetry influences robustness and provide exploratory evidence for adversarial scaling patterns, motivating more controlled investigations into inter-model alignment and safety.",
+      "category": "cs.LG",
+      "score": 0.904604,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.10589",
+      "title": "Be Your Own Red Teamer: Safety Alignment via Self-Play and Reflective Experience Replay",
+      "abstract": "Large Language Models (LLMs) have achieved remarkable capabilities but remain vulnerable to adversarial ``jailbreak'' attacks designed to bypass safety guardrails. Current safety alignment methods depend heavily on static external red teaming, utilizing fixed defense prompts or pre-collected adversarial datasets. This leads to a rigid defense that overfits known patterns and fails to generalize to novel, sophisticated threats. To address this critical limitation, we propose empowering the model to be its own red teamer, capable of achieving autonomous and evolving adversarial attacks. Specifically, we introduce Safety Self- Play (SSP), a system that utilizes a single LLM to act concurrently as both the Attacker (generating jailbreaks) and the Defender (refusing harmful requests) within a unified Reinforcement Learning (RL) loop, dynamically evolving attack strategies to uncover vulnerabilities while simultaneously strengthening defense mechanisms. To ensure the Defender effectively addresses critical safety issues during the self-play, we introduce an advanced Reflective Experience Replay Mechanism, which uses an experience pool accumulated throughout the process. The mechanism employs a Upper Confidence Bound (UCB) sampling strategy to focus on failure cases with low rewards, helping the model learn from past hard mistakes while balancing exploration and exploitation. Extensive experiments demonstrate that our SSP approach autonomously evolves robust defense capabilities, significantly outperforming baselines trained on static adversarial datasets and establishing a new benchmark for proactive safety alignment.",
+      "category": "cs.CR",
+      "score": 0.902432,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2511.21214",
+      "title": "Self-Guided Defense: Adaptive Safety Alignment for Reasoning Models via Synthesized Guidelines",
+      "abstract": "Reasoning models have demonstrated remarkable capabilities in complex reasoning tasks. However, ensuring their safety against adversarial jailbreak prompts remains a critical challenge. Due to the covert and deceptive nature of such prompts, they can often evade built-in safety mechanisms and lead to the generation of harmful content. This underscores the need for an adaptive safety alignment approach that enables models to autonomously reinforce their defenses in response to adversarial inputs. This paper introduces the Synthesized Guideline-based Adaptive Safety Alignment (SGASA) framework, which internalizes model-generated safety guidelines to strengthen models' ability to enhance robustness against harmful adversarial prompts while minimizing unnecessary refusals of benign requests. SGASA consists of two key stages: Data Pre-synthesis, which generates safety guidelines and augmented prompts; and Alignment Fine-tuning, which leverages Supervised Fine-tuning (SFT) and Direct Preference Optimization (DPO) to embed these guidelines into the model. Extensive experiments across multiple datasets demonstrate that SGASA significantly improves model safety, validating its adaptive and scalable effectiveness.",
+      "category": "cs.CL",
+      "score": 0.885462,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2505.07167",
+      "title": "One Trigger Token Is Enough: A Defense Strategy for Balancing Safety and Usability in Large Language Models",
+      "abstract": "Large Language Models (LLMs) have been extensively used across diverse domains, including virtual assistants, automated code generation, and scientific research. However, they remain vulnerable to jailbreak attacks, which manipulate the models into generating harmful responses despite safety alignment. Recent studies have shown that current safety-aligned LLMs undergo shallow safety alignment. In this work, we conduct an in-depth investigation into the underlying mechanism of this phenomenon and reveal that it manifests through learned ''safety trigger tokens'' that activate the model's safety patterns when paired with the specific input. Through both analysis and empirical verification, we further demonstrate the high similarity of the safety trigger tokens across different harmful inputs. Accordingly, we propose D-STT, a simple yet effective defense algorithm that identifies and explicitly decodes safety trigger tokens of the given safety-aligned LLM to activate the model's learned safety patterns. In this process, the safety trigger is constrained to a single token, which effectively preserves model usability by introducing minimum intervention in the decoding process. Extensive experiments across diverse jailbreak attacks and benign prompts demonstrate that D-STT significantly reduces output harmfulness while preserving model usability and incurring negligible response time overhead, outperforming ten baseline methods.",
+      "category": "cs.CR",
+      "score": 0.884959,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2509.01631",
+      "title": "Unraveling LLM Jailbreaks Through Safety Knowledge Neurons",
+      "abstract": "Large Language Models (LLMs) are increasingly attracting attention in various applications. Nonetheless, there is a growing concern as some users attempt to exploit these models for malicious purposes, including the synthesis of controlled substances and the propagation of disinformation, a technique known as \"Jailbreak.\" While some studies have achieved defenses against jailbreak attacks by modifying output distributions or detecting harmful content, the exact rationale still remains elusive. In this work, we present a novel neuron-level interpretability method that focuses on the role of safety-related knowledge neurons. Unlike existing approaches, our method projects the model's internal representation into a more consistent and interpretable vocabulary space. We then show that adjusting the activation of safety-related neurons can effectively control the model's behavior with a mean ASR higher than 97%. Building on this insight, we propose SafeTuning, a fine-tuning strategy that reinforces safety-critical neurons to improve model robustness against jailbreaks. SafeTuning consistently reduces attack success rates across multiple LLMs and outperforms all four baseline defenses. These findings offer a new perspective on understanding and defending against jailbreak attacks.",
+      "category": "cs.AI",
+      "score": 0.866204,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2508.12897",
+      "title": "RAJ-PGA: Reasoning-Activated Jailbreak and Principle-Guided Alignment Framework for Large Reasoning Models",
+      "abstract": "Large Reasoning Models (LRMs) face a distinct safety vulnerability: their internal reasoning chains may generate harmful content even when the final output appears benign. To address this overlooked risk, we first propose a novel attack paradigm, Reasoning-Activated Jailbreak (RAJ) via Concretization, which demonstrates that refining malicious prompts to be more specific can trigger step-by-step logical reasoning that overrides the model's safety protocols. To systematically mitigate this vulnerability, we further develop a scalable framework for constructing high-quality safety alignment datasets. This framework first leverages the RAJ attack to elicit challenging harmful reasoning chains from LRMs, then transforms these high-risk traces into safe, constructive, and educational responses through a tailored Principle-Guided Alignment (PGA) mechanism. Then, we introduce the PGA dataset, a verified alignment dataset containing 3,989 samples using our proposed method. Extensive experiments show that fine-tuning LRMs with PGA dataset significantly enhances model safety, achieving up to a 29.5% improvement in defense success rates across multiple jailbreak benchmarks. Critically, our approach not only defends against sophisticated reasoning-based attacks but also preserves, even enhances, the model's general reasoning capabilities. This work provides a scalable and effective pathway for safety alignment in reasoning-intensive AI systems, addressing the core trade-off between safety and functional performance.",
+      "category": "cs.AI",
+      "score": 0.856961,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.03594",
+      "title": "Jailbreaking LLMs & VLMs: Mechanisms, Evaluation, and Unified Defense",
+      "abstract": "This paper provides a systematic survey of jailbreak attacks and defenses on Large Language Models (LLMs) and Vision-Language Models (VLMs), emphasizing that jailbreak vulnerabilities stem from structural factors such as incomplete training data, linguistic ambiguity, and generative uncertainty. It further differentiates between hallucinations and jailbreaks in terms of intent and triggering mechanisms. We propose a three-dimensional survey framework: (1) Attack dimension-including template/encoding-based, in-context learning manipulation, reinforcement/adversarial learning, LLM-assisted and fine-tuned attacks, as well as prompt- and image-level perturbations and agent-based transfer in VLMs; (2) Defense dimension-encompassing prompt-level obfuscation, output evaluation, and model-level alignment or fine-tuning; and (3) Evaluation dimension-covering metrics such as Attack Success Rate (ASR), toxicity score, query/time cost, and multimodal Clean Accuracy and Attribute Success Rate. Compared with prior works, this survey spans the full spectrum from text-only to multimodal settings, consolidating shared mechanisms and proposing unified defense principles: variant-consistency and gradient-sensitivity detection at the perception layer, safety-aware decoding and output review at the generation layer, and adversarially augmented preference alignment at the parameter layer. Additionally, we summarize existing multimodal safety benchmarks and discuss future directions, including automated red teaming, cross-modal collaborative defense, and standardized evaluation.",
+      "category": "cs.CR",
+      "score": 0.850713,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.00213",
+      "title": "Overlooked Safety Vulnerability in LLMs: Malicious Intelligent Optimization Algorithm Request and its Jailbreak",
+      "abstract": "The widespread deployment of large language models (LLMs) has raised growing concerns about their misuse risks and associated safety issues. While prior studies have examined the safety of LLMs in general usage, code generation, and agent-based applications, their vulnerabilities in automated algorithm design remain underexplored. To fill this gap, this study investigates this overlooked safety vulnerability, with a particular focus on intelligent optimization algorithm design, given its prevalent use in complex decision-making scenarios. We introduce MalOptBench, a benchmark consisting of 60 malicious optimization algorithm requests, and propose MOBjailbreak, a jailbreak method tailored for this scenario. Through extensive evaluation of 13 mainstream LLMs including the latest GPT-5 and DeepSeek-V3.1, we reveal that most models remain highly susceptible to such attacks, with an average attack success rate of 83.59% and an average harmfulness score of 4.28 out of 5 on original harmful prompts, and near-complete failure under MOBjailbreak. Furthermore, we assess state-of-the-art plug-and-play defenses that can be applied to closed-source models, and find that they are only marginally effective against MOBjailbreak and prone to exaggerated safety behaviors. These findings highlight the urgent need for stronger alignment techniques to safeguard LLMs against misuse in algorithm design.",
+      "category": "cs.CR",
+      "score": 0.842851,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2511.15304",
+      "title": "Adversarial Poetry as a Universal Single-Turn Jailbreak Mechanism in Large Language Models",
+      "abstract": "We present evidence that adversarial poetry functions as a universal single-turn jailbreak technique for Large Language Models (LLMs). Across 25 frontier proprietary and open-weight models, curated poetic prompts yielded high attack-success rates (ASR), with some providers exceeding 90%. Mapping prompts to MLCommons and EU CoP risk taxonomies shows that poetic attacks transfer across CBRN, manipulation, cyber-offence, and loss-of-control domains. Converting 1,200 MLCommons harmful prompts into verse via a standardized meta-prompt produced ASRs up to 18 times higher than their prose baselines. Outputs are evaluated using an ensemble of 3 open-weight LLM judges, whose binary safety assessments were validated on a stratified human-labeled subset. Poetic framing achieved an average jailbreak success rate of 62% for hand-crafted poems and approximately 43% for meta-prompt conversions (compared to non-poetic baselines), substantially outperforming non-poetic baselines and revealing a systematic vulnerability across model families and safety training approaches. These findings demonstrate that stylistic variation alone can circumvent contemporary safety mechanisms, suggesting fundamental limitations in current alignment methods and evaluation protocols.",
+      "category": "cs.CL",
+      "score": 0.839811,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2411.08862",
+      "title": "LLMStinger: Jailbreaking LLMs using RL fine-tuned LLMs",
+      "abstract": "We introduce LLMStinger, a novel approach that leverages Large Language Models (LLMs) to automatically generate adversarial suffixes for jailbreak attacks. Unlike traditional methods, which require complex prompt engineering or white-box access, LLMStinger uses a reinforcement learning (RL) loop to fine-tune an attacker LLM, generating new suffixes based on existing attacks for harmful questions from the HarmBench benchmark. Our method significantly outperforms existing red-teaming approaches (we compared against 15 of the latest methods), achieving a +57.2% improvement in Attack Success Rate (ASR) on LLaMA2-7B-chat and a +50.3% ASR increase on Claude 2, both models known for their extensive safety measures. Additionally, we achieved a 94.97% ASR on GPT-3.5 and 99.4% on Gemma-2B-it, demonstrating the robustness and adaptability of LLMStinger across open and closed-source models.",
+      "category": "cs.LG",
+      "score": 0.836018,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2508.10029",
+      "title": "Latent Fusion Jailbreak: Blending Harmful and Harmless Representations to Elicit Unsafe LLM Outputs",
+      "abstract": "While Large Language Models (LLMs) have achieved remarkable progress, they remain vulnerable to jailbreak attacks. Existing methods, primarily relying on discrete input optimization (e.g., GCG), often suffer from high computational costs and generate high-perplexity prompts that are easily blocked by simple filters. To overcome these limitations, we propose Latent Fusion Jailbreak (LFJ), a stealthy white-box attack that operates in the continuous latent space. Unlike previous approaches, LFJ constructs adversarial representations by mathematically fusing the hidden states of a harmful query with a thematically similar benign query, effectively masking malicious intent while retaining semantic drive. We further introduce a gradient-guided optimization strategy to balance attack success and computational efficiency. Extensive evaluations on Vicuna-7B, LLaMA-2-7B-Chat, Guanaco-7B, LLaMA-3-70B, and Mistral-7B-Instruct show that LFJ achieves an average Attack Success Rate (ASR) of 94.01%, significantly outperforming state-of-the-art baselines like GCG and AutoDAN while avoiding detectable input artifacts. Furthermore, we identify that thematic similarity in the latent space is a critical vulnerability in current safety alignments. Finally, we propose a latent adversarial training defense that reduces LFJ's ASR by over 80% without compromising model utility.",
+      "category": "cs.CL",
+      "score": 0.835536,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2512.13655",
+      "title": "Comparative Analysis of LLM Abliteration Methods: A Cross-Architecture Evaluation",
+      "abstract": "Safety alignment mechanisms in large language models prevent responses to harmful queries through learned refusal behavior, yet these same mechanisms impede legitimate research applications including cognitive modeling, adversarial testing, and security analysis. While abliteration techniques enable surgical removal of refusal representations through directional orthogonalization, the relative effectiveness of available implementations remains uncharacterized. This study evaluates four abliteration tools (Heretic, DECCP, ErisForge, FailSpy) across sixteen instruction-tuned models (7B-14B parameters), reporting tool compatibility on all 16 models and quantitative metrics on subsets dictated by tool support. Single-pass methods demonstrated superior capability preservation on the benchmarked subset (avg GSM8K change across three models: ErisForge -0.28 pp; DECCP -0.13 pp), while Bayesian-optimized abliteration produced variable distribution shift (KL divergence: 0.043-1.646) with model-dependent capability impact. These findings provide researchers with evidence-based selection criteria for abliteration tool deployment across diverse model architectures. The principal finding indicates that mathematical reasoning capabilities exhibit the highest sensitivity to abliteration interventions, with GSM8K change ranging from +1.51 pp to -18.81 pp (-26.5% relative) depending on tool selection and model architecture.",
+      "category": "cs.CL",
+      "score": 0.831837,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": false,
+      "divergent": true
+    },
+    {
+      "arxiv_id": "2509.05367",
+      "title": "Between a Rock and a Hard Place: The Tension Between Ethical Reasoning and Safety Alignment in LLMs",
+      "abstract": "Large Language Model safety alignment predominantly operates on a binary assumption that requests are either safe or unsafe. This classification proves insufficient when models encounter ethical dilemmas, where the capacity to reason through moral trade-offs creates a distinct attack surface. We formalize this vulnerability through TRIAL, a multi-turn red-teaming methodology that embeds harmful requests within ethical framings. TRIAL achieves high attack success rates across most tested models by systematically exploiting the model's ethical reasoning capabilities to frame harmful actions as morally necessary compromises. Building on these insights, we introduce ERR (Ethical Reasoning Robustness), a defense framework that distinguishes between instrumental responses that enable harmful outcomes and explanatory responses that analyze ethical frameworks without endorsing harmful acts. ERR employs a Layer-Stratified Harm-Gated LoRA architecture, achieving robust defense against reasoning-based attacks while preserving model utility.",
+      "category": "cs.CR",
+      "score": 0.823765,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.10173",
+      "title": "ReasAlign: Reasoning Enhanced Safety Alignment against Prompt Injection Attack",
+      "abstract": "Large Language Models (LLMs) have enabled the development of powerful agentic systems capable of automating complex workflows across various fields. However, these systems are highly vulnerable to indirect prompt injection attacks, where malicious instructions embedded in external data can hijack agent behavior. In this work, we present ReasAlign, a model-level solution to improve safety alignment against indirect prompt injection attacks. The core idea of ReasAlign is to incorporate structured reasoning steps to analyze user queries, detect conflicting instructions, and preserve the continuity of the user's intended tasks to defend against indirect injection attacks. To further ensure reasoning logic and accuracy, we introduce a test-time scaling mechanism with a preference-optimized judge model that scores reasoning steps and selects the best trajectory. Comprehensive evaluations across various benchmarks show that ReasAlign maintains utility comparable to an undefended model while consistently outperforming Meta SecAlign, the strongest prior guardrail. On the representative open-ended CyberSecEval2 benchmark, which includes multiple prompt-injected tasks, ReasAlign achieves 94.6% utility and only 3.6% ASR, far surpassing the state-of-the-art defensive model of Meta SecAlign (56.4% utility and 74.4% ASR). These results demonstrate that ReasAlign achieves the best trade-off between security and utility, establishing a robust and practical defense against prompt injection attacks in real-world agentic systems. Our code and experimental results could be found at https://github.com/leolee99/ReasAlign.",
+      "category": "cs.CR",
+      "score": 0.822588,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.03005",
+      "title": "JPU: Bridging Jailbreak Defense and Unlearning via On-Policy Path Rectification",
+      "abstract": "Despite extensive safety alignment, Large Language Models (LLMs) often fail against jailbreak attacks. While machine unlearning has emerged as a promising defense by erasing specific harmful parameters, current methods remain vulnerable to diverse jailbreaks. We first conduct an empirical study and discover that this failure mechanism is caused by jailbreaks primarily activating non-erased parameters in the intermediate layers. Further, by probing the underlying mechanism through which these circumvented parameters reassemble into the prohibited output, we verify the persistent existence of dynamic $\\textbf{jailbreak paths}$ and show that the inability to rectify them constitutes the fundamental gap in existing unlearning defenses. To bridge this gap, we propose $\\textbf{J}$ailbreak $\\textbf{P}$ath $\\textbf{U}$nlearning (JPU), which is the first to rectify dynamic jailbreak paths towards safety anchors by dynamically mining on-policy adversarial samples to expose vulnerabilities and identify jailbreak paths. Extensive experiments demonstrate that JPU significantly enhances jailbreak resistance against dynamic attacks while preserving the model's utility.",
+      "category": "cs.CR",
+      "score": 0.818842,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.15698",
+      "title": "Beyond Visual Safety: Jailbreaking Multimodal Large Language Models for Harmful Image Generation via Semantic-Agnostic Inputs",
+      "abstract": "The rapid advancement of Multimodal Large Language Models (MLLMs) has introduced complex security challenges, particularly at the intersection of textual and visual safety. While existing schemes have explored the security vulnerabilities of MLLMs, the investigation into their visual safety boundaries remains insufficient. In this paper, we propose Beyond Visual Safety (BVS), a novel image-text pair jailbreaking framework specifically designed to probe the visual safety boundaries of MLLMs. BVS employs a \"reconstruction-then-generation\" strategy, leveraging neutralized visual splicing and inductive recomposition to decouple malicious intent from raw inputs, thereby leading MLLMs to be induced into generating harmful images. Experimental results demonstrate that BVS achieves a remarkable jailbreak success rate of 98.21\\% against GPT-5 (12 January 2026 release). Our findings expose critical vulnerabilities in the visual safety alignment of current MLLMs.",
+      "category": "cs.CV",
+      "score": 0.814675,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": false,
+      "divergent": true
+    },
+    {
+      "arxiv_id": "2601.03699",
+      "title": "RedBench: A Universal Dataset for Comprehensive Red Teaming of Large Language Models",
+      "abstract": "As large language models (LLMs) become integral to safety-critical applications, ensuring their robustness against adversarial prompts is paramount. However, existing red teaming datasets suffer from inconsistent risk categorizations, limited domain coverage, and outdated evaluations, hindering systematic vulnerability assessments. To address these challenges, we introduce RedBench, a universal dataset aggregating 37 benchmark datasets from leading conferences and repositories, comprising 29,362 samples across attack and refusal prompts. RedBench employs a standardized taxonomy with 22 risk categories and 19 domains, enabling consistent and comprehensive evaluations of LLM vulnerabilities. We provide a detailed analysis of existing datasets, establish baselines for modern LLMs, and open-source the dataset and evaluation code. Our contributions facilitate robust comparisons, foster future research, and promote the development of secure and reliable LLMs for real-world deployment. Code: https://github.com/knoveleng/redeval",
+      "category": "cs.CL",
+      "score": 0.806207,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.03401",
+      "title": "Rendering Data Unlearnable by Exploiting LLM Alignment Mechanisms",
+      "abstract": "Large language models (LLMs) are increasingly trained on massive, heterogeneous text corpora, raising serious concerns about the unauthorised use of proprietary or personal data during model training. In this work, we address the problem of data protection against unwanted model learning in a realistic black-box setting. We propose Disclaimer Injection, a novel data-level defence that renders text unlearnable to LLMs. Rather than relying on model-side controls or explicit data removal, our approach exploits the models' own alignment mechanisms: by injecting carefully designed alignment-triggering disclaimers to prevent effective learning. Through layer-wise analysis, we find that fine-tuning on such protected data induces persistent activation of alignment-related layers, causing alignment constraints to override task learning even on common inputs. Consequently, models trained on such data exhibit substantial and systematic performance degradation compared to standard fine-tuning. Our results identify alignment behaviour as a previously unexplored lever for data protection and, to our knowledge, present the first practical method for restricting data learnability at LLM scale without requiring access to or modification of the training pipeline.",
+      "category": "cs.CL",
+      "score": 0.803976,
+      "source": "gte",
+      "in_model_top20": true,
+      "in_minilm_top20": false,
+      "divergent": true
+    }
+  ],
+  "minilm_top20": [
+    {
+      "arxiv_id": "2501.19180",
+      "title": "Enhancing Model Defense Against Jailbreaks with Proactive Safety Reasoning",
+      "abstract": "Large language models (LLMs) are vital for a wide range of applications yet remain susceptible to jailbreak threats, which could lead to the generation of inappropriate responses. Conventional defenses, such as refusal and adversarial training, often fail to cover corner cases or rare domains, leaving LLMs still vulnerable to more sophisticated attacks. We propose a novel defense strategy, Safety Chain-of-Thought (SCoT), which harnesses the enhanced \\textit{reasoning capabilities} of LLMs for proactive assessment of harmful inputs, rather than simply blocking them. SCoT augments any refusal training datasets to critically analyze the intent behind each request before generating answers. By employing proactive reasoning, SCoT enhances the generalization of LLMs across varied harmful queries and scenarios not covered in the safety alignment corpus. Additionally, it generates detailed refusals specifying the rules violated. Comparative evaluations show that SCoT significantly surpasses existing defenses, reducing vulnerability to out-of-distribution issues and adversarial manipulations while maintaining strong general capabilities.",
+      "category": "cs.CR",
+      "score": 0.920653,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2511.21214",
+      "title": "Self-Guided Defense: Adaptive Safety Alignment for Reasoning Models via Synthesized Guidelines",
+      "abstract": "Reasoning models have demonstrated remarkable capabilities in complex reasoning tasks. However, ensuring their safety against adversarial jailbreak prompts remains a critical challenge. Due to the covert and deceptive nature of such prompts, they can often evade built-in safety mechanisms and lead to the generation of harmful content. This underscores the need for an adaptive safety alignment approach that enables models to autonomously reinforce their defenses in response to adversarial inputs. This paper introduces the Synthesized Guideline-based Adaptive Safety Alignment (SGASA) framework, which internalizes model-generated safety guidelines to strengthen models' ability to enhance robustness against harmful adversarial prompts while minimizing unnecessary refusals of benign requests. SGASA consists of two key stages: Data Pre-synthesis, which generates safety guidelines and augmented prompts; and Alignment Fine-tuning, which leverages Supervised Fine-tuning (SFT) and Direct Preference Optimization (DPO) to embed these guidelines into the model. Extensive experiments across multiple datasets demonstrate that SGASA significantly improves model safety, validating its adaptive and scalable effectiveness.",
+      "category": "cs.CL",
+      "score": 0.901915,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2512.24044",
+      "title": "Jailbreaking Attacks vs. Content Safety Filters: How Far Are We in the LLM Safety Arms Race?",
+      "abstract": "As large language models (LLMs) are increasingly deployed, ensuring their safe use is paramount. Jailbreaking, adversarial prompts that bypass model alignment to trigger harmful outputs, present significant risks, with existing studies reporting high success rates in evading common LLMs. However, previous evaluations have focused solely on the models, neglecting the full deployment pipeline, which typically incorporates additional safety mechanisms like content moderation filters. To address this gap, we present the first systematic evaluation of jailbreak attacks targeting LLM safety alignment, assessing their success across the full inference pipeline, including both input and output filtering stages. Our findings yield two key insights: first, nearly all evaluated jailbreak techniques can be detected by at least one safety filter, suggesting that prior assessments may have overestimated the practical success of these attacks; second, while safety filters are effective in detection, there remains room to better balance recall and precision to further optimize protection and user experience. We highlight critical gaps and call for further refinement of detection accuracy and usability in LLM safety systems.",
+      "category": "cs.CR",
+      "score": 0.86271,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2511.13788",
+      "title": "Scaling Patterns in Adversarial Alignment: Evidence from Multi-LLM Jailbreak Experiments",
+      "abstract": "Large language models (LLMs) increasingly operate in multi-agent and safety-critical settings, raising open questions about how their vulnerabilities scale when models interact adversarially. This study examines whether larger models can systematically jailbreak smaller ones - eliciting harmful or restricted behavior despite alignment safeguards. Using standardized adversarial tasks from JailbreakBench, we simulate over 6,000 multi-turn attacker-target exchanges across major LLM families and scales (0.6B-120B parameters), measuring both harm score and refusal behavior as indicators of adversarial potency and alignment integrity. Each interaction is evaluated through aggregated harm and refusal scores assigned by three independent LLM judges, providing a consistent, model-based measure of adversarial outcomes. Aggregating results across prompts, we find a strong and statistically significant correlation between mean harm and the logarithm of the attacker-to-target size ratio (Pearson r = 0.51, p < 0.001; Spearman rho = 0.52, p < 0.001), indicating that relative model size correlates with the likelihood and severity of harmful completions. Mean harm score variance is higher across attackers (0.18) than across targets (0.10), suggesting that attacker-side behavioral diversity contributes more to adversarial outcomes than target susceptibility. Attacker refusal frequency is strongly and negatively correlated with harm (rho = -0.93, p < 0.001), showing that attacker-side alignment mitigates harmful responses. These findings reveal that size asymmetry influences robustness and provide exploratory evidence for adversarial scaling patterns, motivating more controlled investigations into inter-model alignment and safety.",
+      "category": "cs.LG",
+      "score": 0.8515,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.10589",
+      "title": "Be Your Own Red Teamer: Safety Alignment via Self-Play and Reflective Experience Replay",
+      "abstract": "Large Language Models (LLMs) have achieved remarkable capabilities but remain vulnerable to adversarial ``jailbreak'' attacks designed to bypass safety guardrails. Current safety alignment methods depend heavily on static external red teaming, utilizing fixed defense prompts or pre-collected adversarial datasets. This leads to a rigid defense that overfits known patterns and fails to generalize to novel, sophisticated threats. To address this critical limitation, we propose empowering the model to be its own red teamer, capable of achieving autonomous and evolving adversarial attacks. Specifically, we introduce Safety Self- Play (SSP), a system that utilizes a single LLM to act concurrently as both the Attacker (generating jailbreaks) and the Defender (refusing harmful requests) within a unified Reinforcement Learning (RL) loop, dynamically evolving attack strategies to uncover vulnerabilities while simultaneously strengthening defense mechanisms. To ensure the Defender effectively addresses critical safety issues during the self-play, we introduce an advanced Reflective Experience Replay Mechanism, which uses an experience pool accumulated throughout the process. The mechanism employs a Upper Confidence Bound (UCB) sampling strategy to focus on failure cases with low rewards, helping the model learn from past hard mistakes while balancing exploration and exploitation. Extensive experiments demonstrate that our SSP approach autonomously evolves robust defense capabilities, significantly outperforming baselines trained on static adversarial datasets and establishing a new benchmark for proactive safety alignment.",
+      "category": "cs.CR",
+      "score": 0.846705,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2505.07167",
+      "title": "One Trigger Token Is Enough: A Defense Strategy for Balancing Safety and Usability in Large Language Models",
+      "abstract": "Large Language Models (LLMs) have been extensively used across diverse domains, including virtual assistants, automated code generation, and scientific research. However, they remain vulnerable to jailbreak attacks, which manipulate the models into generating harmful responses despite safety alignment. Recent studies have shown that current safety-aligned LLMs undergo shallow safety alignment. In this work, we conduct an in-depth investigation into the underlying mechanism of this phenomenon and reveal that it manifests through learned ''safety trigger tokens'' that activate the model's safety patterns when paired with the specific input. Through both analysis and empirical verification, we further demonstrate the high similarity of the safety trigger tokens across different harmful inputs. Accordingly, we propose D-STT, a simple yet effective defense algorithm that identifies and explicitly decodes safety trigger tokens of the given safety-aligned LLM to activate the model's learned safety patterns. In this process, the safety trigger is constrained to a single token, which effectively preserves model usability by introducing minimum intervention in the decoding process. Extensive experiments across diverse jailbreak attacks and benign prompts demonstrate that D-STT significantly reduces output harmfulness while preserving model usability and incurring negligible response time overhead, outperforming ten baseline methods.",
+      "category": "cs.CR",
+      "score": 0.839832,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2508.12897",
+      "title": "RAJ-PGA: Reasoning-Activated Jailbreak and Principle-Guided Alignment Framework for Large Reasoning Models",
+      "abstract": "Large Reasoning Models (LRMs) face a distinct safety vulnerability: their internal reasoning chains may generate harmful content even when the final output appears benign. To address this overlooked risk, we first propose a novel attack paradigm, Reasoning-Activated Jailbreak (RAJ) via Concretization, which demonstrates that refining malicious prompts to be more specific can trigger step-by-step logical reasoning that overrides the model's safety protocols. To systematically mitigate this vulnerability, we further develop a scalable framework for constructing high-quality safety alignment datasets. This framework first leverages the RAJ attack to elicit challenging harmful reasoning chains from LRMs, then transforms these high-risk traces into safe, constructive, and educational responses through a tailored Principle-Guided Alignment (PGA) mechanism. Then, we introduce the PGA dataset, a verified alignment dataset containing 3,989 samples using our proposed method. Extensive experiments show that fine-tuning LRMs with PGA dataset significantly enhances model safety, achieving up to a 29.5% improvement in defense success rates across multiple jailbreak benchmarks. Critically, our approach not only defends against sophisticated reasoning-based attacks but also preserves, even enhances, the model's general reasoning capabilities. This work provides a scalable and effective pathway for safety alignment in reasoning-intensive AI systems, addressing the core trade-off between safety and functional performance.",
+      "category": "cs.AI",
+      "score": 0.825987,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2509.01631",
+      "title": "Unraveling LLM Jailbreaks Through Safety Knowledge Neurons",
+      "abstract": "Large Language Models (LLMs) are increasingly attracting attention in various applications. Nonetheless, there is a growing concern as some users attempt to exploit these models for malicious purposes, including the synthesis of controlled substances and the propagation of disinformation, a technique known as \"Jailbreak.\" While some studies have achieved defenses against jailbreak attacks by modifying output distributions or detecting harmful content, the exact rationale still remains elusive. In this work, we present a novel neuron-level interpretability method that focuses on the role of safety-related knowledge neurons. Unlike existing approaches, our method projects the model's internal representation into a more consistent and interpretable vocabulary space. We then show that adjusting the activation of safety-related neurons can effectively control the model's behavior with a mean ASR higher than 97%. Building on this insight, we propose SafeTuning, a fine-tuning strategy that reinforces safety-critical neurons to improve model robustness against jailbreaks. SafeTuning consistently reduces attack success rates across multiple LLMs and outperforms all four baseline defenses. These findings offer a new perspective on understanding and defending against jailbreak attacks.",
+      "category": "cs.AI",
+      "score": 0.809953,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.03005",
+      "title": "JPU: Bridging Jailbreak Defense and Unlearning via On-Policy Path Rectification",
+      "abstract": "Despite extensive safety alignment, Large Language Models (LLMs) often fail against jailbreak attacks. While machine unlearning has emerged as a promising defense by erasing specific harmful parameters, current methods remain vulnerable to diverse jailbreaks. We first conduct an empirical study and discover that this failure mechanism is caused by jailbreaks primarily activating non-erased parameters in the intermediate layers. Further, by probing the underlying mechanism through which these circumvented parameters reassemble into the prohibited output, we verify the persistent existence of dynamic $\\textbf{jailbreak paths}$ and show that the inability to rectify them constitutes the fundamental gap in existing unlearning defenses. To bridge this gap, we propose $\\textbf{J}$ailbreak $\\textbf{P}$ath $\\textbf{U}$nlearning (JPU), which is the first to rectify dynamic jailbreak paths towards safety anchors by dynamically mining on-policy adversarial samples to expose vulnerabilities and identify jailbreak paths. Extensive experiments demonstrate that JPU significantly enhances jailbreak resistance against dynamic attacks while preserving the model's utility.",
+      "category": "cs.CR",
+      "score": 0.807799,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.03594",
+      "title": "Jailbreaking LLMs & VLMs: Mechanisms, Evaluation, and Unified Defense",
+      "abstract": "This paper provides a systematic survey of jailbreak attacks and defenses on Large Language Models (LLMs) and Vision-Language Models (VLMs), emphasizing that jailbreak vulnerabilities stem from structural factors such as incomplete training data, linguistic ambiguity, and generative uncertainty. It further differentiates between hallucinations and jailbreaks in terms of intent and triggering mechanisms. We propose a three-dimensional survey framework: (1) Attack dimension-including template/encoding-based, in-context learning manipulation, reinforcement/adversarial learning, LLM-assisted and fine-tuned attacks, as well as prompt- and image-level perturbations and agent-based transfer in VLMs; (2) Defense dimension-encompassing prompt-level obfuscation, output evaluation, and model-level alignment or fine-tuning; and (3) Evaluation dimension-covering metrics such as Attack Success Rate (ASR), toxicity score, query/time cost, and multimodal Clean Accuracy and Attribute Success Rate. Compared with prior works, this survey spans the full spectrum from text-only to multimodal settings, consolidating shared mechanisms and proposing unified defense principles: variant-consistency and gradient-sensitivity detection at the perception layer, safety-aware decoding and output review at the generation layer, and adversarially augmented preference alignment at the parameter layer. Additionally, we summarize existing multimodal safety benchmarks and discuss future directions, including automated red teaming, cross-modal collaborative defense, and standardized evaluation.",
+      "category": "cs.CR",
+      "score": 0.78381,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2508.10029",
+      "title": "Latent Fusion Jailbreak: Blending Harmful and Harmless Representations to Elicit Unsafe LLM Outputs",
+      "abstract": "While Large Language Models (LLMs) have achieved remarkable progress, they remain vulnerable to jailbreak attacks. Existing methods, primarily relying on discrete input optimization (e.g., GCG), often suffer from high computational costs and generate high-perplexity prompts that are easily blocked by simple filters. To overcome these limitations, we propose Latent Fusion Jailbreak (LFJ), a stealthy white-box attack that operates in the continuous latent space. Unlike previous approaches, LFJ constructs adversarial representations by mathematically fusing the hidden states of a harmful query with a thematically similar benign query, effectively masking malicious intent while retaining semantic drive. We further introduce a gradient-guided optimization strategy to balance attack success and computational efficiency. Extensive evaluations on Vicuna-7B, LLaMA-2-7B-Chat, Guanaco-7B, LLaMA-3-70B, and Mistral-7B-Instruct show that LFJ achieves an average Attack Success Rate (ASR) of 94.01%, significantly outperforming state-of-the-art baselines like GCG and AutoDAN while avoiding detectable input artifacts. Furthermore, we identify that thematic similarity in the latent space is a critical vulnerability in current safety alignments. Finally, we propose a latent adversarial training defense that reduces LFJ's ASR by over 80% without compromising model utility.",
+      "category": "cs.CL",
+      "score": 0.77885,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2511.15304",
+      "title": "Adversarial Poetry as a Universal Single-Turn Jailbreak Mechanism in Large Language Models",
+      "abstract": "We present evidence that adversarial poetry functions as a universal single-turn jailbreak technique for Large Language Models (LLMs). Across 25 frontier proprietary and open-weight models, curated poetic prompts yielded high attack-success rates (ASR), with some providers exceeding 90%. Mapping prompts to MLCommons and EU CoP risk taxonomies shows that poetic attacks transfer across CBRN, manipulation, cyber-offence, and loss-of-control domains. Converting 1,200 MLCommons harmful prompts into verse via a standardized meta-prompt produced ASRs up to 18 times higher than their prose baselines. Outputs are evaluated using an ensemble of 3 open-weight LLM judges, whose binary safety assessments were validated on a stratified human-labeled subset. Poetic framing achieved an average jailbreak success rate of 62% for hand-crafted poems and approximately 43% for meta-prompt conversions (compared to non-poetic baselines), substantially outperforming non-poetic baselines and revealing a systematic vulnerability across model families and safety training approaches. These findings demonstrate that stylistic variation alone can circumvent contemporary safety mechanisms, suggesting fundamental limitations in current alignment methods and evaluation protocols.",
+      "category": "cs.CL",
+      "score": 0.740108,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.04199",
+      "title": "The Forgotten Shield: Safety Grafting in Parameter-Space for Medical MLLMs",
+      "abstract": "Medical Multimodal Large Language Models (Medical MLLMs) have achieved remarkable progress in specialized medical tasks; however, research into their safety has lagged, posing potential risks for real-world deployment. In this paper, we first establish a multidimensional evaluation framework to systematically benchmark the safety of current SOTA Medical MLLMs. Our empirical analysis reveals pervasive vulnerabilities across both general and medical-specific safety dimensions in existing models, particularly highlighting their fragility against cross-modality jailbreak attacks. Furthermore, we find that the medical fine-tuning process frequently induces catastrophic forgetting of the model's original safety alignment. To address this challenge, we propose a novel \"Parameter-Space Intervention\" approach for efficient safety re-alignment. This method extracts intrinsic safety knowledge representations from original base models and concurrently injects them into the target model during the construction of medical capabilities. Additionally, we design a fine-grained parameter search algorithm to achieve an optimal trade-off between safety and medical performance. Experimental results demonstrate that our approach significantly bolsters the safety guardrails of Medical MLLMs without relying on additional domain-specific safety data, while minimizing degradation to core medical performance.",
+      "category": "cs.LG",
+      "score": 0.73342,
+      "source": "minilm",
+      "in_model_top20": false,
+      "in_minilm_top20": true,
+      "divergent": true
+    },
+    {
+      "arxiv_id": "2411.08862",
+      "title": "LLMStinger: Jailbreaking LLMs using RL fine-tuned LLMs",
+      "abstract": "We introduce LLMStinger, a novel approach that leverages Large Language Models (LLMs) to automatically generate adversarial suffixes for jailbreak attacks. Unlike traditional methods, which require complex prompt engineering or white-box access, LLMStinger uses a reinforcement learning (RL) loop to fine-tune an attacker LLM, generating new suffixes based on existing attacks for harmful questions from the HarmBench benchmark. Our method significantly outperforms existing red-teaming approaches (we compared against 15 of the latest methods), achieving a +57.2% improvement in Attack Success Rate (ASR) on LLaMA2-7B-chat and a +50.3% ASR increase on Claude 2, both models known for their extensive safety measures. Additionally, we achieved a 94.97% ASR on GPT-3.5 and 99.4% on Gemma-2B-it, demonstrating the robustness and adaptability of LLMStinger across open and closed-source models.",
+      "category": "cs.LG",
+      "score": 0.728738,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.00213",
+      "title": "Overlooked Safety Vulnerability in LLMs: Malicious Intelligent Optimization Algorithm Request and its Jailbreak",
+      "abstract": "The widespread deployment of large language models (LLMs) has raised growing concerns about their misuse risks and associated safety issues. While prior studies have examined the safety of LLMs in general usage, code generation, and agent-based applications, their vulnerabilities in automated algorithm design remain underexplored. To fill this gap, this study investigates this overlooked safety vulnerability, with a particular focus on intelligent optimization algorithm design, given its prevalent use in complex decision-making scenarios. We introduce MalOptBench, a benchmark consisting of 60 malicious optimization algorithm requests, and propose MOBjailbreak, a jailbreak method tailored for this scenario. Through extensive evaluation of 13 mainstream LLMs including the latest GPT-5 and DeepSeek-V3.1, we reveal that most models remain highly susceptible to such attacks, with an average attack success rate of 83.59% and an average harmfulness score of 4.28 out of 5 on original harmful prompts, and near-complete failure under MOBjailbreak. Furthermore, we assess state-of-the-art plug-and-play defenses that can be applied to closed-source models, and find that they are only marginally effective against MOBjailbreak and prone to exaggerated safety behaviors. These findings highlight the urgent need for stronger alignment techniques to safeguard LLMs against misuse in algorithm design.",
+      "category": "cs.CR",
+      "score": 0.725029,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.16466",
+      "title": "Persona Jailbreaking in Large Language Models",
+      "abstract": "Large Language Models (LLMs) are increasingly deployed in domains such as education, mental health and customer support, where stable and consistent personas are critical for reliability. Yet, existing studies focus on narrative or role-playing tasks and overlook how adversarial conversational history alone can reshape induced personas. Black-box persona manipulation remains unexplored, raising concerns for robustness in realistic interactions. In response, we introduce the task of persona editing, which adversarially steers LLM traits through user-side inputs under a black-box, inference-only setting. To this end, we propose PHISH (Persona Hijacking via Implicit Steering in History), the first framework to expose a new vulnerability in LLM safety that embeds semantically loaded cues into user queries to gradually induce reverse personas. We also define a metric to quantify attack success. Across 3 benchmarks and 8 LLMs, PHISH predictably shifts personas, triggers collateral changes in correlated traits, and exhibits stronger effects in multi-turn settings. In high-risk domains mental health, tutoring, and customer support, PHISH reliably manipulates personas, validated by both human and LLM-as-Judge evaluations. Importantly, PHISH causes only a small reduction in reasoning benchmark performance, leaving overall utility largely intact while still enabling significant persona manipulation. While current guardrails offer partial protection, they remain brittle under sustained attack. Our findings expose new vulnerabilities in personas and highlight the need for context-resilient persona in LLMs. Our codebase and dataset is available at: https://github.com/Jivnesh/PHISH",
+      "category": "cs.CL",
+      "score": 0.723585,
+      "source": "minilm",
+      "in_model_top20": false,
+      "in_minilm_top20": true,
+      "divergent": true
+    },
+    {
+      "arxiv_id": "2509.06350",
+      "title": "Mask-GCG: Are All Tokens in Adversarial Suffixes Necessary for Jailbreak Attacks?",
+      "abstract": "Jailbreak attacks on Large Language Models (LLMs) have demonstrated various successful methods whereby attackers manipulate models into generating harmful responses that they are designed to avoid. Among these, Greedy Coordinate Gradient (GCG) has emerged as a general and effective approach that optimizes the tokens in a suffix to generate jailbreakable prompts. While several improved variants of GCG have been proposed, they all rely on fixed-length suffixes. However, the potential redundancy within these suffixes remains unexplored. In this work, we propose Mask-GCG, a plug-and-play method that employs learnable token masking to identify impactful tokens within the suffix. Our approach increases the update probability for tokens at high-impact positions while pruning those at low-impact positions. This pruning not only reduces redundancy but also decreases the size of the gradient space, thereby lowering computational overhead and shortening the time required to achieve successful attacks compared to GCG. We evaluate Mask-GCG by applying it to the original GCG and several improved variants. Experimental results show that most tokens in the suffix contribute significantly to attack success, and pruning a minority of low-impact tokens does not affect the loss values or compromise the attack success rate (ASR), thereby revealing token redundancy in LLM prompts. Our findings provide insights for developing efficient and interpretable LLMs from the perspective of jailbreak attacks.",
+      "category": "cs.CL",
+      "score": 0.715108,
+      "source": "minilm",
+      "in_model_top20": false,
+      "in_minilm_top20": true,
+      "divergent": true
+    },
+    {
+      "arxiv_id": "2601.10173",
+      "title": "ReasAlign: Reasoning Enhanced Safety Alignment against Prompt Injection Attack",
+      "abstract": "Large Language Models (LLMs) have enabled the development of powerful agentic systems capable of automating complex workflows across various fields. However, these systems are highly vulnerable to indirect prompt injection attacks, where malicious instructions embedded in external data can hijack agent behavior. In this work, we present ReasAlign, a model-level solution to improve safety alignment against indirect prompt injection attacks. The core idea of ReasAlign is to incorporate structured reasoning steps to analyze user queries, detect conflicting instructions, and preserve the continuity of the user's intended tasks to defend against indirect injection attacks. To further ensure reasoning logic and accuracy, we introduce a test-time scaling mechanism with a preference-optimized judge model that scores reasoning steps and selects the best trajectory. Comprehensive evaluations across various benchmarks show that ReasAlign maintains utility comparable to an undefended model while consistently outperforming Meta SecAlign, the strongest prior guardrail. On the representative open-ended CyberSecEval2 benchmark, which includes multiple prompt-injected tasks, ReasAlign achieves 94.6% utility and only 3.6% ASR, far surpassing the state-of-the-art defensive model of Meta SecAlign (56.4% utility and 74.4% ASR). These results demonstrate that ReasAlign achieves the best trade-off between security and utility, establishing a robust and practical defense against prompt injection attacks in real-world agentic systems. Our code and experimental results could be found at https://github.com/leolee99/ReasAlign.",
+      "category": "cs.CR",
+      "score": 0.707261,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2509.05367",
+      "title": "Between a Rock and a Hard Place: The Tension Between Ethical Reasoning and Safety Alignment in LLMs",
+      "abstract": "Large Language Model safety alignment predominantly operates on a binary assumption that requests are either safe or unsafe. This classification proves insufficient when models encounter ethical dilemmas, where the capacity to reason through moral trade-offs creates a distinct attack surface. We formalize this vulnerability through TRIAL, a multi-turn red-teaming methodology that embeds harmful requests within ethical framings. TRIAL achieves high attack success rates across most tested models by systematically exploiting the model's ethical reasoning capabilities to frame harmful actions as morally necessary compromises. Building on these insights, we introduce ERR (Ethical Reasoning Robustness), a defense framework that distinguishes between instrumental responses that enable harmful outcomes and explanatory responses that analyze ethical frameworks without endorsing harmful acts. ERR employs a Layer-Stratified Harm-Gated LoRA architecture, achieving robust defense against reasoning-based attacks while preserving model utility.",
+      "category": "cs.CR",
+      "score": 0.706092,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    },
+    {
+      "arxiv_id": "2601.03699",
+      "title": "RedBench: A Universal Dataset for Comprehensive Red Teaming of Large Language Models",
+      "abstract": "As large language models (LLMs) become integral to safety-critical applications, ensuring their robustness against adversarial prompts is paramount. However, existing red teaming datasets suffer from inconsistent risk categorizations, limited domain coverage, and outdated evaluations, hindering systematic vulnerability assessments. To address these challenges, we introduce RedBench, a universal dataset aggregating 37 benchmark datasets from leading conferences and repositories, comprising 29,362 samples across attack and refusal prompts. RedBench employs a standardized taxonomy with 22 risk categories and 19 domains, enabling consistent and comprehensive evaluations of LLM vulnerabilities. We provide a detailed analysis of existing datasets, establish baselines for modern LLMs, and open-source the dataset and evaluation code. Our contributions facilitate robust comparisons, foster future research, and promote the development of secure and reliable LLMs for real-world deployment. Code: https://github.com/knoveleng/redeval",
+      "category": "cs.CL",
+      "score": 0.698956,
+      "source": "minilm",
+      "in_model_top20": true,
+      "in_minilm_top20": true,
+      "divergent": false
+    }
+  ],
+  "model_unique_count": 3,
+  "minilm_unique_count": 3,
+  "shared_count": 17
+}

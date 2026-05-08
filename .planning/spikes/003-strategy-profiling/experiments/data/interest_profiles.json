@@ -1,0 +1,2596 @@
+{
+  "metadata": {
+    "created": "2026-03-20T02:46:59.964000+00:00",
+    "seed": 42,
+    "corpus_size": 19252,
+    "embedding_dim": 384,
+    "n_profiles": 8,
+    "source_db": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/001-volume-filtering-scoring-landscape/experiments/data/spike_001_harvest.db"
+  },
+  "profiles": {
+    "P1": {
+      "profile_id": "P1",
+      "name": "RL for robotics",
+      "description": "Reinforcement learning applied to robotics and embodied agents",
+      "breadth": "Medium",
+      "total_candidates_found": 156,
+      "verified_on_topic": 99,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2601.15761",
+          "title": "Off-Policy Actor-Critic with Sigmoid-Bounded Entropy for Real-World Robot Learning",
+          "categories": "cs.AI",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.20668",
+          "title": "GPO: Growing Policy Optimization for Legged Robot Locomotion and Whole-Body Control",
+          "categories": "cs.RO",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.20846",
+          "title": "End-to-end example-based sim-to-real RL policy transfer based on neural stylisation with application to robotic cutting",
+          "categories": "cs.RO",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2505.06357",
+          "title": "DAPPER: Discriminability-Aware Policy-to-Policy Preference-Based Reinforcement Learning for Query-Efficient Robot Skill Acquisition",
+          "categories": "cs.RO",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2505.22094",
+          "title": "ReinFlow: Fine-tuning Flow Matching Policy with Online Reinforcement Learning",
+          "categories": "cs.RO cs.LG",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.15545",
+          "title": "A Mobile Magnetic Manipulation Platform for Gastrointestinal Navigation with Deep Reinforcement Learning Control",
+          "categories": "cs.RO",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2504.16680",
+          "title": "Uncertainty-Aware Robotic World Model Makes Offline Model-Based Reinforcement Learning Work on Real Robots",
+          "categories": "cs.RO cs.AI cs.LG",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2505.18763",
+          "title": "GenPO: Generative Diffusion Models Meet On-Policy Reinforcement Learning",
+          "categories": "cs.LG",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2506.00070",
+          "title": "Robot-R1: Reinforcement Learning for Enhanced Embodied Reasoning in Robotics",
+          "categories": "cs.RO cs.AI",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2509.25756",
+          "title": "SAC Flow: Sample-Efficient Reinforcement Learning of Flow-Based Policies via Velocity-Reparameterized Sequential Modeling",
+          "categories": "cs.RO cs.LG",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2512.17853",
+          "title": "AnyTask: an Automated Task and Data Generation Framework for Advancing Sim-to-Real Policy Learning",
+          "categories": "cs.RO cs.AI",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2506.09049",
+          "title": "VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning",
+          "categories": "cs.AI cs.CV cs.RO",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2509.04069",
+          "title": "Solving Robotics Tasks with Prior Demonstration via Exploration-Efficient Deep Reinforcement Learning",
+          "categories": "cs.RO cs.LG",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2512.24698",
+          "title": "Dynamic Policy Learning for Legged Robot with Simplified Model Pretraining and Model Homotopy Transfer",
+          "categories": "cs.RO",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2512.24740",
+          "title": "Control of Microrobots with Reinforcement Learning under On-Device Compute Constraints",
+          "categories": "cs.RO cs.SY eess.SY",
+          "relevance_score": 11
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2601.11143",
+          "title": "Learning Quadrupedal Locomotion for a Heavy Hydraulic Robot Using an Actuator Model",
+          "categories": "cs.RO cs.AI",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2501.19128",
+          "title": "Shaping Sparse Rewards in Reinforcement Learning: A Semi-supervised Approach",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2512.24651",
+          "title": "Hybrid Motion Planning with Deep Reinforcement Learning for Mobile Robot Navigation",
+          "categories": "cs.RO cs.AI cs.LG",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.00087",
+          "title": "Reinforcement learning with timed constraints for robotics motion planning",
+          "categories": "cs.RO cs.LG",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.00675",
+          "title": "RoboReward: General-Purpose Vision-Language Reward Models for Robotics",
+          "categories": "cs.RO",
+          "relevance_score": 10
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2504.16680",
+          "2506.00070",
+          "2509.25756",
+          "2601.15545",
+          "2601.20668"
+        ],
+        "subset_10": [
+          "2504.16680",
+          "2506.00070",
+          "2506.09049",
+          "2509.04069",
+          "2509.25756",
+          "2512.24698",
+          "2601.15545",
+          "2601.15761",
+          "2601.20668",
+          "2601.20846"
+        ],
+        "subset_15": [
+          "2504.16680",
+          "2505.06357",
+          "2505.18763",
+          "2505.22094",
+          "2506.00070",
+          "2506.09049",
+          "2509.04069",
+          "2509.25756",
+          "2512.17853",
+          "2512.24698",
+          "2512.24740",
+          "2601.15545",
+          "2601.15761",
+          "2601.20668",
+          "2601.20846"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 191,
+        "strongly_related_count": 139,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2505.22094",
+            "embedding_similarity": 0.8557,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2509.04069",
+            "embedding_similarity": 0.8416,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2504.16680",
+            "embedding_similarity": 0.8361,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.15761",
+            "embedding_similarity": 0.8359,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.20668",
+            "embedding_similarity": 0.8334,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.17853",
+            "embedding_similarity": 0.8194,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.01948",
+            "embedding_similarity": 0.8144,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2509.25756",
+            "embedding_similarity": 0.8063,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.19707",
+            "embedding_similarity": 0.8051,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.12397",
+            "embedding_similarity": 0.801,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.20701",
+            "embedding_similarity": 0.7954,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.09101",
+            "embedding_similarity": 0.7945,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2509.18631",
+            "embedding_similarity": 0.7932,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.16109",
+            "embedding_similarity": 0.7923,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2511.00423",
+            "embedding_similarity": 0.7892,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.18763",
+            "embedding_similarity": 0.7882,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.21065",
+            "embedding_similarity": 0.7879,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.00969",
+            "embedding_similarity": 0.7869,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.16881",
+            "embedding_similarity": 0.7856,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2506.00070",
+            "embedding_similarity": 0.7841,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "0": 5,
+        "3": 1,
+        "6": 1,
+        "9": 1
+      },
+      "relevant_categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    "P2": {
+      "profile_id": "P2",
+      "name": "Language model reasoning",
+      "description": "Reasoning capabilities of large language models",
+      "breadth": "Medium",
+      "total_candidates_found": 950,
+      "verified_on_topic": 942,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2506.14641",
+          "title": "Revisiting Chain-of-Thought Prompting: Zero-shot Can Be Stronger than Few-shot",
+          "categories": "cs.CL cs.AI cs.LG",
+          "relevance_score": 18
+        },
+        {
+          "arxiv_id": "2501.01203",
+          "title": "HetGCoT: Heterogeneous Graph-Enhanced Chain-of-Thought LLM Reasoning for Academic Question Answering",
+          "categories": "cs.SI",
+          "relevance_score": 17
+        },
+        {
+          "arxiv_id": "2601.03559",
+          "title": "DiffCoT: Diffusion-styled Chain-of-Thought Reasoning in LLMs",
+          "categories": "cs.CL",
+          "relevance_score": 17
+        },
+        {
+          "arxiv_id": "2601.10775",
+          "title": "LLMs for Game Theory: Entropy-Guided In-Context Learning and Adaptive CoT Reasoning",
+          "categories": "cs.CL cs.GT cs.LG",
+          "relevance_score": 17
+        },
+        {
+          "arxiv_id": "2503.10095",
+          "title": "Cognitive-Mental-LLM: Evaluating Reasoning in Large Language Models for Mental Health Prediction via Online Text",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 16
+        },
+        {
+          "arxiv_id": "2601.02902",
+          "title": "Logical Phase Transitions: Understanding Collapse in LLM Logical Reasoning",
+          "categories": "cs.AI cs.CL cs.LO",
+          "relevance_score": 16
+        },
+        {
+          "arxiv_id": "2601.03682",
+          "title": "From Implicit to Explicit: Token-Efficient Logical Supervision for Mathematical Reasoning in LLMs",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 16
+        },
+        {
+          "arxiv_id": "2507.11408",
+          "title": "KisMATH: Do LLMs Have Knowledge of Implicit Structures in Mathematical Reasoning?",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2508.01191",
+          "title": "Is Chain-of-Thought Reasoning of LLMs a Mirage? A Data Distribution Lens",
+          "categories": "cs.AI cs.CL cs.LG",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.06289",
+          "title": "How well can off-the-shelf LLMs elucidate molecular structures from mass spectra using chain-of-thought reasoning?",
+          "categories": "cs.CL cs.LG",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.08058",
+          "title": "Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.08758",
+          "title": "M3CoTBench: Benchmark Chain-of-Thought of MLLMs in Medical Image Understanding",
+          "categories": "eess.IV cs.CV",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.09805",
+          "title": "Improving Chain-of-Thought for Logical Reasoning via Attention-Aware Intervention",
+          "categories": "cs.AI cs.LG",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.17420",
+          "title": "CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction",
+          "categories": "cs.CV",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2502.15401",
+          "title": "Problem-Solving Logic Guided Curriculum In-Context Learning for LLMs Complex Reasoning",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 14
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2510.24940",
+          "title": "SemCoT: Accelerating Chain-of-Thought Reasoning through Semantically-Aligned Implicit Tokens",
+          "categories": "cs.CL",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2601.02739",
+          "title": "Mitigating Prompt-Induced Hallucinations in Large Language Models via Structured Reasoning",
+          "categories": "cs.CL",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2601.04666",
+          "title": "Know Thy Enemy: Securing LLMs Against Prompt Injection via Diverse Data Synthesis and Instruction-Level Chain-of-Thought Learning",
+          "categories": "cs.AI cs.CR",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2601.10983",
+          "title": "Evaluating 21st-Century Competencies in Postsecondary Curricula with Large Language Models: Performance Benchmarking and Reasoning-Based Prompting Strategies",
+          "categories": "cs.CY",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2601.13763",
+          "title": "TransMode-LLM: Feature-Informed Natural Language Modeling with Domain-Enhanced Prompting for Travel Behavior Modeling",
+          "categories": "cs.CE",
+          "relevance_score": 14
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2501.01203",
+          "2506.14641",
+          "2508.01191",
+          "2601.03559",
+          "2601.09805"
+        ],
+        "subset_10": [
+          "2501.01203",
+          "2503.10095",
+          "2506.14641",
+          "2508.01191",
+          "2601.02902",
+          "2601.03559",
+          "2601.03682",
+          "2601.09805",
+          "2601.10775",
+          "2601.17420"
+        ],
+        "subset_15": [
+          "2501.01203",
+          "2502.15401",
+          "2503.10095",
+          "2506.14641",
+          "2507.11408",
+          "2508.01191",
+          "2601.02902",
+          "2601.03559",
+          "2601.03682",
+          "2601.06289",
+          "2601.08058",
+          "2601.08758",
+          "2601.09805",
+          "2601.10775",
+          "2601.17420"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 191,
+        "strongly_related_count": 191,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2508.01191",
+            "embedding_similarity": 0.8727,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.09805",
+            "embedding_similarity": 0.8355,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2506.14641",
+            "embedding_similarity": 0.8296,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.24574",
+            "embedding_similarity": 0.8285,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03682",
+            "embedding_similarity": 0.8256,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.22255",
+            "embedding_similarity": 0.8247,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.08058",
+            "embedding_similarity": 0.8213,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2504.11741",
+            "embedding_similarity": 0.8153,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.05616",
+            "embedding_similarity": 0.815,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2503.21614",
+            "embedding_similarity": 0.8111,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03550",
+            "embedding_similarity": 0.8107,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.08108",
+            "embedding_similarity": 0.8103,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.22662",
+            "embedding_similarity": 0.8066,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.11252",
+            "embedding_similarity": 0.8061,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.21576",
+            "embedding_similarity": 0.8029,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.14140",
+            "embedding_similarity": 0.8025,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2507.11408",
+            "embedding_similarity": 0.8017,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.02972",
+            "embedding_similarity": 0.7998,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.21909",
+            "embedding_similarity": 0.7987,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03093",
+            "embedding_similarity": 0.7984,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "0": 15,
+        "3": 1,
+        "8": 1,
+        "2": 1
+      },
+      "relevant_categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    "P3": {
+      "profile_id": "P3",
+      "name": "Quantum computing / quantum ML",
+      "description": "Quantum computing and quantum machine learning",
+      "breadth": "Narrow",
+      "total_candidates_found": 159,
+      "verified_on_topic": 148,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2601.18710",
+          "title": "Analyzing Images of Blood Cells with Quantum Machine Learning Methods: Equilibrium Propagation and Variational Quantum Circuits to Detect Acute Myeloid Leukemia",
+          "categories": "cs.ET cs.LG quant-ph",
+          "relevance_score": 17
+        },
+        {
+          "arxiv_id": "2506.22555",
+          "title": "Spectral Bias in Variational Quantum Machine Learning",
+          "categories": "quant-ph cs.LG",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2601.11937",
+          "title": "Impact of Circuit Depth versus Qubit Count on Variational Quantum Classifiers for Higgs Boson Signal Detection",
+          "categories": "quant-ph cs.LG hep-ex",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2209.07714",
+          "title": "Variational quantum algorithm for measurement extraction from the Navier-Stokes, Einstein, Maxwell, B-type, Lin-Tsien, Camassa-Holm, DSW, H-S, KdV-B, non-homogeneous KdV, generalized KdV, KdV, translational KdV, sKdV, B-L and Airy equations",
+          "categories": "quant-ph cs.IT cs.NA math.IT math.NA math.OC physics.comp-ph",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2507.16036",
+          "title": "Entanglement-Efficient Distribution of Quantum Circuits over Large-Scale Quantum Networks",
+          "categories": "quant-ph cs.DC",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2510.09824",
+          "title": "Quantum Circuit for Quantum Fourier Transform for Arbitrary Qubit Connectivity Graphs",
+          "categories": "quant-ph cs.DS",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.00656",
+          "title": "Quantum Simulation of Protein Fragment Electronic Structure Using Moment-based Adaptive Variational Quantum Algorithms",
+          "categories": "q-bio.QM cs.ET",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.01877",
+          "title": "Random-Matrix-Induced Simplicity Bias in Over-parameterized Variational Quantum Circuits",
+          "categories": "quant-ph cs.LG math-ph math.MP",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.02064",
+          "title": "Cutting Quantum Circuits Beyond Qubits",
+          "categories": "quant-ph cs.DC",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2601.18811",
+          "title": "Variational Quantum Circuit-Based Reinforcement Learning for Dynamic Portfolio Optimization",
+          "categories": "cs.LG q-fin.CP q-fin.PM quant-ph",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2411.02535",
+          "title": "Polynomial-Time Classical Simulation of Noisy Quantum Circuits with Naturally Fault-Tolerant Gates",
+          "categories": "quant-ph cs.CC",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2501.15828",
+          "title": "Hybrid Quantum Neural Networks with Amplitude Encoding: Advancing Recovery Rate Predictions",
+          "categories": "q-fin.CP cs.LG quant-ph",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2601.01777",
+          "title": "A Survey on Applications of Quantum Computing for Unit Commitment",
+          "categories": "quant-ph cs.SY eess.SY",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2502.04271",
+          "title": "Variational decision diagrams for quantum-inspired machine learning applications",
+          "categories": "quant-ph cs.LG",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2504.11109",
+          "title": "Agent-Q: Fine-Tuning Large Language Models for Quantum Circuit Generation and Optimization",
+          "categories": "quant-ph cs.AI",
+          "relevance_score": 10
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2505.16714",
+          "title": "Experimental robustness benchmarking of quantum neural networks on a superconducting quantum processor",
+          "categories": "quant-ph cs.LG",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2507.01726",
+          "title": "Generative flow-based warm start of the variational quantum eigensolver",
+          "categories": "quant-ph physics.chem-ph stat.ML",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2507.02577",
+          "title": "Quantum Computing in the Computational Landscape of Power Electronics: Vision and Reality",
+          "categories": "quant-ph math.OC",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2508.15267",
+          "title": "Optimizing Compilation for Distributed Quantum Computing via Clustering and Annealing",
+          "categories": "quant-ph cs.DC",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2509.08481",
+          "title": "Robustness of quantum algorithms: Worst-case fidelity bounds and implications for design",
+          "categories": "quant-ph cs.SY eess.SY math.OC",
+          "relevance_score": 10
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2411.02535",
+          "2501.15828",
+          "2601.01877",
+          "2601.11937",
+          "2601.18811"
+        ],
+        "subset_10": [
+          "2411.02535",
+          "2501.15828",
+          "2502.04271",
+          "2507.16036",
+          "2510.09824",
+          "2601.01777",
+          "2601.01877",
+          "2601.02064",
+          "2601.11937",
+          "2601.18811"
+        ],
+        "subset_15": [
+          "2209.07714",
+          "2411.02535",
+          "2501.15828",
+          "2502.04271",
+          "2504.11109",
+          "2506.22555",
+          "2507.16036",
+          "2510.09824",
+          "2601.00656",
+          "2601.01777",
+          "2601.01877",
+          "2601.02064",
+          "2601.11937",
+          "2601.18710",
+          "2601.18811"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 185,
+        "strongly_related_count": 52,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2601.21780",
+            "embedding_similarity": 0.8129,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03235",
+            "embedding_similarity": 0.7935,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2501.15828",
+            "embedding_similarity": 0.7897,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.18058",
+            "embedding_similarity": 0.7863,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2506.22555",
+            "embedding_similarity": 0.781,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2504.11109",
+            "embedding_similarity": 0.7805,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2511.13408",
+            "embedding_similarity": 0.7784,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.11942",
+            "embedding_similarity": 0.7765,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2511.01918",
+            "embedding_similarity": 0.7734,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.10965",
+            "embedding_similarity": 0.7721,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2502.04271",
+            "embedding_similarity": 0.7703,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2503.16342",
+            "embedding_similarity": 0.7687,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.18811",
+            "embedding_similarity": 0.7606,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.06392",
+            "embedding_similarity": 0.7595,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2503.24111",
+            "embedding_similarity": 0.7576,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.08578",
+            "embedding_similarity": 0.7574,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2507.01726",
+            "embedding_similarity": 0.749,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.11937",
+            "embedding_similarity": 0.7478,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2507.16036",
+            "embedding_similarity": 0.7472,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.04732",
+            "embedding_similarity": 0.7468,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "7": 19,
+        "3": 4,
+        "0": 3,
+        "2": 1
+      },
+      "relevant_categories": [
+        "quant-ph",
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    "P4": {
+      "profile_id": "P4",
+      "name": "AI safety / alignment",
+      "description": "AI safety, alignment, and responsible AI development",
+      "breadth": "Broad",
+      "total_candidates_found": 484,
+      "verified_on_topic": 358,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2501.19180",
+          "title": "Enhancing Model Defense Against Jailbreaks with Proactive Safety Reasoning",
+          "categories": "cs.CR cs.AI",
+          "relevance_score": 16
+        },
+        {
+          "arxiv_id": "2511.13788",
+          "title": "Scaling Patterns in Adversarial Alignment: Evidence from Multi-LLM Jailbreak Experiments",
+          "categories": "cs.LG cs.AI cs.CL cs.CR cs.MA",
+          "relevance_score": 16
+        },
+        {
+          "arxiv_id": "2511.21214",
+          "title": "Self-Guided Defense: Adaptive Safety Alignment for Reasoning Models via Synthesized Guidelines",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 16
+        },
+        {
+          "arxiv_id": "2512.24044",
+          "title": "Jailbreaking Attacks vs. Content Safety Filters: How Far Are We in the LLM Safety Arms Race?",
+          "categories": "cs.CR cs.AI cs.CL",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.10589",
+          "title": "Be Your Own Red Teamer: Safety Alignment via Self-Play and Reflective Experience Replay",
+          "categories": "cs.CR cs.CL",
+          "relevance_score": 15
+        },
+        {
+          "arxiv_id": "2601.03594",
+          "title": "Jailbreaking LLMs & VLMs: Mechanisms, Evaluation, and Unified Defense",
+          "categories": "cs.CR",
+          "relevance_score": 14
+        },
+        {
+          "arxiv_id": "2508.10029",
+          "title": "Latent Fusion Jailbreak: Blending Harmful and Harmless Representations to Elicit Unsafe LLM Outputs",
+          "categories": "cs.CL cs.AI cs.CR",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2509.06350",
+          "title": "Mask-GCG: Are All Tokens in Adversarial Suffixes Necessary for Jailbreak Attacks?",
+          "categories": "cs.CL cs.AI cs.CR",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.03005",
+          "title": "JPU: Bridging Jailbreak Defense and Unlearning via On-Policy Path Rectification",
+          "categories": "cs.CR cs.AI",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.05150",
+          "title": "$PC^2$: Politically Controversial Content Generation via Jailbreaking Attacks on GPT-based Text-to-Image Models",
+          "categories": "cs.CR",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.09321",
+          "title": "SpatialJB: How Text Distribution Art Becomes the \"Jailbreak Key\" for LLM Guardrails",
+          "categories": "cs.CR",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.09721",
+          "title": "Cross-Platform Evaluation of Large Language Model Safety in Pediatric Consultations: Evolution of Adversarial Robustness and the Scale Paradox",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.10173",
+          "title": "ReasAlign: Reasoning Enhanced Safety Alignment against Prompt Injection Attack",
+          "categories": "cs.CR cs.AI cs.CL",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2601.15698",
+          "title": "Beyond Visual Safety: Jailbreaking Multimodal Large Language Models for Harmful Image Generation via Semantic-Agnostic Inputs",
+          "categories": "cs.CV cs.AI",
+          "relevance_score": 13
+        },
+        {
+          "arxiv_id": "2505.07167",
+          "title": "One Trigger Token Is Enough: A Defense Strategy for Balancing Safety and Usability in Large Language Models",
+          "categories": "cs.CR cs.CL",
+          "relevance_score": 12
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2508.12897",
+          "title": "RAJ-PGA: Reasoning-Activated Jailbreak and Principle-Guided Alignment Framework for Large Reasoning Models",
+          "categories": "cs.AI cs.CR",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2509.01631",
+          "title": "Unraveling LLM Jailbreaks Through Safety Knowledge Neurons",
+          "categories": "cs.AI",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2509.05367",
+          "title": "Between a Rock and a Hard Place: The Tension Between Ethical Reasoning and Safety Alignment in LLMs",
+          "categories": "cs.CR cs.AI",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2511.15304",
+          "title": "Adversarial Poetry as a Universal Single-Turn Jailbreak Mechanism in Large Language Models",
+          "categories": "cs.CL cs.AI",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2601.00213",
+          "title": "Overlooked Safety Vulnerability in LLMs: Malicious Intelligent Optimization Algorithm Request and its Jailbreak",
+          "categories": "cs.CR cs.CL",
+          "relevance_score": 12
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2505.07167",
+          "2511.13788",
+          "2511.21214",
+          "2601.03594",
+          "2601.05150"
+        ],
+        "subset_10": [
+          "2501.19180",
+          "2505.07167",
+          "2508.10029",
+          "2509.06350",
+          "2511.13788",
+          "2511.21214",
+          "2512.24044",
+          "2601.03594",
+          "2601.05150",
+          "2601.10173"
+        ],
+        "subset_15": [
+          "2501.19180",
+          "2505.07167",
+          "2508.10029",
+          "2509.06350",
+          "2511.13788",
+          "2511.21214",
+          "2512.24044",
+          "2601.03005",
+          "2601.03594",
+          "2601.05150",
+          "2601.09321",
+          "2601.09721",
+          "2601.10173",
+          "2601.10589",
+          "2601.15698"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 187,
+        "strongly_related_count": 98,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2501.19180",
+            "embedding_similarity": 0.8954,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.07167",
+            "embedding_similarity": 0.8782,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.24044",
+            "embedding_similarity": 0.8778,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.05466",
+            "embedding_similarity": 0.8619,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03005",
+            "embedding_similarity": 0.8601,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2506.12382",
+            "embedding_similarity": 0.852,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.10029",
+            "embedding_similarity": 0.8487,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03594",
+            "embedding_similarity": 0.8471,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.16506",
+            "embedding_similarity": 0.8432,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2511.21214",
+            "embedding_similarity": 0.8423,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2509.01631",
+            "embedding_similarity": 0.8377,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.20293",
+            "embedding_similarity": 0.8345,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.10390",
+            "embedding_similarity": 0.8254,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.12460",
+            "embedding_similarity": 0.8234,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03265",
+            "embedding_similarity": 0.82,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.03420",
+            "embedding_similarity": 0.8183,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.15331",
+            "embedding_similarity": 0.8182,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.05339",
+            "embedding_similarity": 0.8104,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.07761",
+            "embedding_similarity": 0.8059,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.12897",
+            "embedding_similarity": 0.8055,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "0": 20,
+        "2": 19,
+        "6": 2,
+        "8": 1
+      },
+      "relevant_categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CR",
+        "cs.CY"
+      ]
+    },
+    "P5": {
+      "profile_id": "P5",
+      "name": "Graph neural networks",
+      "description": "Graph neural networks and geometric deep learning",
+      "breadth": "Medium",
+      "total_candidates_found": 172,
+      "verified_on_topic": 96,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2503.06614",
+          "title": "Using Subgraph GNNs for Node Classification:an Overlooked Potential Approach",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2411.12732",
+          "title": "Benchmarking Positional Encodings for GNNs and Graph Transformers",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2506.22727",
+          "title": "Convergent Privacy Framework for Multi-layer GNNs through Contractive Message Passing",
+          "categories": "cs.CR",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2510.15583",
+          "title": "Attn-JGNN: Attention Enhanced Join-Graph Neural Networks",
+          "categories": "cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2512.24901",
+          "title": "Spectral Graph Neural Networks for Cognitive Task Classification in fMRI Connectomes",
+          "categories": "cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.18198",
+          "title": "Scalable Quantum Message Passing Graph Neural Networks for Next-Generation Wireless Communications: Architectures, Use Cases, and Future Directions",
+          "categories": "cs.IT math.IT",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2103.15066",
+          "title": "InsertGNN: Can Graph Neural Networks Outperform Humans in TOEFL Sentence Insertion Problem?",
+          "categories": "cs.CL",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2502.17999",
+          "title": "GNN-XAR: A Graph Neural Network for Explainable Activity Recognition in Smart Homes",
+          "categories": "cs.AI cs.LG",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2508.16012",
+          "title": "FIRE-GNN: Force-informed, Relaxed Equivariance Graph Neural Network for Rapid and Accurate Prediction of Surface Properties",
+          "categories": "cond-mat.mtrl-sci cs.LG physics.comp-ph",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2601.02366",
+          "title": "TextBridgeGNN: Pre-training Graph Neural Network for Cross-Domain Recommendation via Text-Guided Transfer",
+          "categories": "cs.IR cs.AI",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2601.02451",
+          "title": "mHC-GNN: Manifold-Constrained Hyper-Connections for Graph Neural Networks",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2601.13013",
+          "title": "HT-GNN: Hyper-Temporal Graph Neural Network for Customer Lifetime Value Prediction in Baidu Ads",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2601.14536",
+          "title": "engGNN: A Dual-Graph Neural Network for Omics-Based Disease Classification and Feature Selection",
+          "categories": "cs.LG q-bio.GN stat.ML",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2505.22362",
+          "title": "Directed Homophily-Aware Graph Neural Network",
+          "categories": "cs.LG",
+          "relevance_score": 7
+        },
+        {
+          "arxiv_id": "2511.10501",
+          "title": "Graph Neural Networks, Deep Reinforcement Learning and Probabilistic Topic Modeling for Strategic Multiagent Settings",
+          "categories": "cs.AI",
+          "relevance_score": 7
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2601.03062",
+          "title": "Explainable Fuzzy GNNs for Leak Detection in Water Distribution Networks",
+          "categories": "cs.AI cs.LG",
+          "relevance_score": 7
+        },
+        {
+          "arxiv_id": "2601.04807",
+          "title": "Parallelizing Node-Level Explainability in Graph Neural Networks",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 7
+        },
+        {
+          "arxiv_id": "2601.17130",
+          "title": "How does Graph Structure Modulate Membership-Inference Risk for Graph Neural Networks?",
+          "categories": "cs.LG cs.CR",
+          "relevance_score": 7
+        },
+        {
+          "arxiv_id": "2409.13861",
+          "title": "Learning to Simulate Aerosol Dynamics with Graph Neural Networks",
+          "categories": "physics.ao-ph cs.LG",
+          "relevance_score": 6
+        },
+        {
+          "arxiv_id": "2411.06500",
+          "title": "Graph Neural Network Surrogates to leverage Mechanistic Expert Knowledge towards Reliable and Immediate Pandemic Response",
+          "categories": "cs.LG q-bio.PE",
+          "relevance_score": 6
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2505.22362",
+          "2508.16012",
+          "2510.15583",
+          "2601.13013",
+          "2601.18198"
+        ],
+        "subset_10": [
+          "2103.15066",
+          "2411.12732",
+          "2502.17999",
+          "2505.22362",
+          "2506.22727",
+          "2508.16012",
+          "2510.15583",
+          "2601.13013",
+          "2601.14536",
+          "2601.18198"
+        ],
+        "subset_15": [
+          "2103.15066",
+          "2411.12732",
+          "2502.17999",
+          "2503.06614",
+          "2505.22362",
+          "2506.22727",
+          "2508.16012",
+          "2510.15583",
+          "2511.10501",
+          "2512.24901",
+          "2601.02366",
+          "2601.02451",
+          "2601.13013",
+          "2601.14536",
+          "2601.18198"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 175,
+        "strongly_related_count": 39,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2505.18289",
+            "embedding_similarity": 0.8005,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2503.06614",
+            "embedding_similarity": 0.7994,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2411.12732",
+            "embedding_similarity": 0.7988,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.01123",
+            "embedding_similarity": 0.797,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2511.11046",
+            "embedding_similarity": 0.7946,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.22362",
+            "embedding_similarity": 0.7896,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2511.16871",
+            "embedding_similarity": 0.783,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2205.07266",
+            "embedding_similarity": 0.7828,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.19449",
+            "embedding_similarity": 0.7797,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.08033",
+            "embedding_similarity": 0.7768,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2411.02168",
+            "embedding_similarity": 0.7743,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.14241",
+            "embedding_similarity": 0.77,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.10358",
+            "embedding_similarity": 0.7537,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.04807",
+            "embedding_similarity": 0.7527,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.04475",
+            "embedding_similarity": 0.7523,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2506.11700",
+            "embedding_similarity": 0.748,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2402.02005",
+            "embedding_similarity": 0.7466,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2506.17977",
+            "embedding_similarity": 0.7435,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2410.02296",
+            "embedding_similarity": 0.7432,
+            "category_match": false,
+            "strongly_related": false
+          },
+          {
+            "arxiv_id": "2601.02366",
+            "embedding_similarity": 0.743,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "3": 20,
+        "0": 4,
+        "1": 1,
+        "7": 1,
+        "5": 1
+      },
+      "relevant_categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.SI"
+      ]
+    },
+    "P6": {
+      "profile_id": "P6",
+      "name": "Diffusion models for generation",
+      "description": "Diffusion models for image, video, and content generation",
+      "breadth": "Medium",
+      "total_candidates_found": 330,
+      "verified_on_topic": 244,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2509.00642",
+          "title": "HADIS: Hybrid Adaptive Diffusion Model Serving for Efficient Text-to-Image Generation",
+          "categories": "cs.DC",
+          "relevance_score": 12
+        },
+        {
+          "arxiv_id": "2403.04279",
+          "title": "Controllable Generation with Text-to-Image Diffusion Models: A Survey",
+          "categories": "cs.CV",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2406.14815",
+          "title": "Latent diffusion models for parameterization and data assimilation of facies-based geomodels",
+          "categories": "cs.CV cs.AI cs.CE cs.LG physics.geo-ph",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.05852",
+          "title": "Kidney Cancer Detection Using 3D-Based Latent Diffusion Models",
+          "categories": "cs.CV",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.11085",
+          "title": "Generation of Chest CT pulmonary Nodule Images by Latent Diffusion Models using the LIDC-IDRI Dataset",
+          "categories": "eess.IV cs.CV physics.med-ph",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2309.06135",
+          "title": "Prompting4Debugging: Red-Teaming Text-to-Image Diffusion Models by Finding Problematic Prompts",
+          "categories": "cs.CL cs.CV",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2502.10495",
+          "title": "SWA-LDM: Toward Stealthy Watermarks for Latent Diffusion Models",
+          "categories": "cs.CR cs.AI cs.CV cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2503.06884",
+          "title": "Text-to-Image Diffusion Models Cannot Count, and Prompt Refinement Cannot Help",
+          "categories": "cs.CV cs.AI cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2505.08142",
+          "title": "Highly Undersampled MRI Reconstruction via a Single Posterior Sampling of Diffusion Models",
+          "categories": "eess.IV",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2508.03221",
+          "title": "BadBlocks: Lightweight and Stealthy Backdoor Threat in Text-to-Image Diffusion Models",
+          "categories": "cs.CR cs.CV",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.03499",
+          "title": "GeoDiff-SAR: A Geometric Prior Guided Diffusion Model for SAR Image Generation",
+          "categories": "eess.IV cs.CV",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.19232",
+          "title": "Structure-based RNA Design by Step-wise Optimization of Latent Diffusion Model",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.21033",
+          "title": "Predict-Project-Renoise: Sampling Diffusion Models under Hard Constraints",
+          "categories": "cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.21348",
+          "title": "Memorization Control in Diffusion Models from Denoising-centric Perspective",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2207.00050",
+          "title": "Semantic Image Synthesis via Diffusion Models",
+          "categories": "cs.CV",
+          "relevance_score": 8
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2501.01761",
+          "title": "Adverse Weather Conditions Augmentation of LiDAR Scenes with Latent Diffusion Models",
+          "categories": "cs.CV",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2502.09665",
+          "title": "Revealing Subtle Phenotypes in Small Microscopy Datasets Using Latent Diffusion Models",
+          "categories": "cs.CV",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2503.21791",
+          "title": "SeisRDT: Latent Diffusion Model Based On Representation Learning For Seismic Data Interpolation And Reconstruction",
+          "categories": "physics.geo-ph cs.LG",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2504.13745",
+          "title": "ESPLoRA: Enhanced Spatial Precision with Low-Rank Adaption in Text-to-Image Diffusion Models for High-Definition Synthesis",
+          "categories": "cs.CV cs.AI",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2506.12198",
+          "title": "ViSTA: Visual Storytelling using Multi-modal Adapters for Text-to-Image Diffusion Models",
+          "categories": "cs.CV",
+          "relevance_score": 8
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2207.00050",
+          "2503.06884",
+          "2508.03221",
+          "2509.00642",
+          "2601.21348"
+        ],
+        "subset_10": [
+          "2207.00050",
+          "2403.04279",
+          "2503.06884",
+          "2505.08142",
+          "2508.03221",
+          "2509.00642",
+          "2601.03499",
+          "2601.11085",
+          "2601.21033",
+          "2601.21348"
+        ],
+        "subset_15": [
+          "2207.00050",
+          "2309.06135",
+          "2403.04279",
+          "2406.14815",
+          "2502.10495",
+          "2503.06884",
+          "2505.08142",
+          "2508.03221",
+          "2509.00642",
+          "2601.03499",
+          "2601.05852",
+          "2601.11085",
+          "2601.19232",
+          "2601.21033",
+          "2601.21348"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 193,
+        "strongly_related_count": 46,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2403.04279",
+            "embedding_similarity": 0.7986,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2503.06884",
+            "embedding_similarity": 0.7972,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2507.12318",
+            "embedding_similarity": 0.7829,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2504.16064",
+            "embedding_similarity": 0.7806,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2504.15473",
+            "embedding_similarity": 0.7622,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2207.00050",
+            "embedding_similarity": 0.7584,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2502.09665",
+            "embedding_similarity": 0.7521,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2411.18109",
+            "embedding_similarity": 0.7502,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.20260",
+            "embedding_similarity": 0.7442,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2406.18944",
+            "embedding_similarity": 0.7437,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2510.21366",
+            "embedding_similarity": 0.7419,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.16208",
+            "embedding_similarity": 0.7399,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.01608",
+            "embedding_similarity": 0.7397,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.21348",
+            "embedding_similarity": 0.7351,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2312.02625",
+            "embedding_similarity": 0.7341,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2312.08290",
+            "embedding_similarity": 0.7341,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.20306",
+            "embedding_similarity": 0.7307,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2512.24176",
+            "embedding_similarity": 0.7292,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.06625",
+            "embedding_similarity": 0.7273,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.21633",
+            "embedding_similarity": 0.7265,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "0": 17,
+        "3": 1,
+        "5": 1,
+        "2": 1
+      },
+      "relevant_categories": [
+        "cs.CV",
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    "P7": {
+      "profile_id": "P7",
+      "name": "Federated learning + privacy",
+      "description": "Federated learning, differential privacy, and privacy-preserving ML",
+      "breadth": "Medium",
+      "total_candidates_found": 247,
+      "verified_on_topic": 212,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2601.00785",
+          "title": "FedHypeVAE: Federated Learning with Hypernetwork Generated Conditional VAEs for Differentially Private Embedding Sharing",
+          "categories": "cs.LG cs.AI cs.CV",
+          "relevance_score": 11
+        },
+        {
+          "arxiv_id": "2509.14024",
+          "title": "Differentially private federated learning for localized control of infectious disease dynamics",
+          "categories": "cs.LG",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2509.14603",
+          "title": "Towards Privacy-Preserving and Heterogeneity-aware Split Federated Learning via Probabilistic Masking",
+          "categories": "cs.LG",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.01737",
+          "title": "Local Layer-wise Differential Privacy in Federated Learning",
+          "categories": "cs.CR",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.06466",
+          "title": "SecureDyn-FL: A Robust Privacy-Preserving Federated Learning Framework for Intrusion Detection in IoT Networks",
+          "categories": "cs.CR cs.NI",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.17183",
+          "title": "Federated Proximal Optimization for Privacy-Preserving Heart Disease Prediction: A Controlled Simulation Study on Non-IID Clinical Data",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2601.17713",
+          "title": "FedCCA: Client-Centric Adaptation against Data Heterogeneity in Federated Learning on IoT Devices",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 10
+        },
+        {
+          "arxiv_id": "2412.02578",
+          "title": "Private Linear Regression with Differential Privacy and PAC Privacy",
+          "categories": "cs.LG cs.CR",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2503.14553",
+          "title": "Redefining non-IID Data in Federated Learning for Computer Vision Tasks: Migrating from Labels to Embeddings for Task-Specific Data Distributions",
+          "categories": "cs.CV cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2503.15550",
+          "title": "Zero-Knowledge Federated Learning: A New Trustworthy and Privacy-Preserving Distributed Learning Paradigm",
+          "categories": "cs.CR cs.AI",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2510.23463",
+          "title": "Differential Privacy as a Perk: Federated Learning over Multiple-Access Fading Channels with a Multi-Antenna Base Station",
+          "categories": "cs.LG cs.CR stat.ML",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.01053",
+          "title": "Byzantine-Robust Federated Learning Framework with Post-Quantum Secure Aggregation for Real-Time Threat Intelligence Sharing in Critical IoT Infrastructure",
+          "categories": "cs.CR cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.04641",
+          "title": "DP-MGTD: Privacy-Preserving Machine-Generated Text Detection via Adaptive Differentially Private Entity Sanitization",
+          "categories": "cs.CR cs.CL cs.LG",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.12105",
+          "title": "Privacy-Preserving Cohort Analytics for Personalized Health Platforms: A Differentially Private Framework with Stochastic Risk Modeling",
+          "categories": "cs.CR stat.AP stat.ME",
+          "relevance_score": 9
+        },
+        {
+          "arxiv_id": "2601.19090",
+          "title": "Privacy-Preserving Model Transcription with Differentially Private Synthetic Distillation",
+          "categories": "cs.LG cs.AI cs.CV",
+          "relevance_score": 9
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2402.16028",
+          "title": "FedFDP: Fairness-Aware Federated Learning with Differential Privacy",
+          "categories": "cs.CR",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2412.04416",
+          "title": "FedDUAL: A Dual-Strategy with Adaptive Loss and Dynamic Aggregation for Mitigating Data Heterogeneity in Federated Learning",
+          "categories": "cs.LG cs.AI cs.CV cs.DC",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2412.07454",
+          "title": "Tazza: Shuffling Neural Network Parameters for Secure and Private Federated Learning",
+          "categories": "cs.LG cs.AI",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2503.05786",
+          "title": "FedMentalCare: Towards Privacy-Preserving Fine-Tuned LLMs to Analyze Mental Health Status Using Federated Learning Framework",
+          "categories": "cs.CL cs.HC cs.LG",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2512.24286",
+          "title": "Data Heterogeneity-Aware Client Selection for Federated Learning in Wireless Networks",
+          "categories": "cs.DC",
+          "relevance_score": 8
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2509.14603",
+          "2510.23463",
+          "2601.00785",
+          "2601.01737",
+          "2601.17183"
+        ],
+        "subset_10": [
+          "2412.02578",
+          "2509.14603",
+          "2510.23463",
+          "2601.00785",
+          "2601.01737",
+          "2601.04641",
+          "2601.06466",
+          "2601.12105",
+          "2601.17183",
+          "2601.17713"
+        ],
+        "subset_15": [
+          "2412.02578",
+          "2503.14553",
+          "2503.15550",
+          "2509.14024",
+          "2509.14603",
+          "2510.23463",
+          "2601.00785",
+          "2601.01053",
+          "2601.01737",
+          "2601.04641",
+          "2601.06466",
+          "2601.12105",
+          "2601.17183",
+          "2601.17713",
+          "2601.19090"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 183,
+        "strongly_related_count": 78,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2601.01737",
+            "embedding_similarity": 0.8862,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2509.14603",
+            "embedding_similarity": 0.8701,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.19065",
+            "embedding_similarity": 0.8318,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2504.18007",
+            "embedding_similarity": 0.8309,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2402.16028",
+            "embedding_similarity": 0.8227,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.10701",
+            "embedding_similarity": 0.8198,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2509.14024",
+            "embedding_similarity": 0.8179,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2509.14275",
+            "embedding_similarity": 0.8099,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.06866",
+            "embedding_similarity": 0.8095,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.13643",
+            "embedding_similarity": 0.8048,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.19090",
+            "embedding_similarity": 0.8046,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2503.11514",
+            "embedding_similarity": 0.8024,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2501.17512",
+            "embedding_similarity": 0.8004,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.09978",
+            "embedding_similarity": 0.7995,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.17713",
+            "embedding_similarity": 0.791,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.06436",
+            "embedding_similarity": 0.7894,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.07214",
+            "embedding_similarity": 0.7861,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.20397",
+            "embedding_similarity": 0.7833,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2503.15550",
+            "embedding_similarity": 0.7797,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.04912",
+            "embedding_similarity": 0.7758,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "0": 5,
+        "3": 4,
+        "2": 2,
+        "1": 2,
+        "6": 1,
+        "5": 1
+      },
+      "relevant_categories": [
+        "cs.LG",
+        "cs.CR",
+        "cs.DC"
+      ]
+    },
+    "P8": {
+      "profile_id": "P8",
+      "name": "Mathematical foundations of neural networks",
+      "description": "Theory of deep learning: approximation, generalization, optimization",
+      "breadth": "Narrow",
+      "total_candidates_found": 50,
+      "verified_on_topic": 27,
+      "final_selected": 20,
+      "seed_papers": [
+        {
+          "arxiv_id": "2504.05695",
+          "title": "Architecture independent generalization bounds for overparametrized deep ReLU networks",
+          "categories": "cs.LG cs.AI math.AP math.OC stat.ML",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2601.08100",
+          "title": "Towards A Unified PAC-Bayesian Framework for Norm-based Generalization Bounds",
+          "categories": "stat.ML cs.IT cs.LG math.IT",
+          "relevance_score": 8
+        },
+        {
+          "arxiv_id": "2507.21429",
+          "title": "From Sublinear to Linear: Fast Convergence in Deep Networks via Locally Polyak-Lojasiewicz Regions",
+          "categories": "stat.ML cs.LG",
+          "relevance_score": 6
+        },
+        {
+          "arxiv_id": "2204.12392",
+          "title": "A PAC-Bayes oracle inequality for sparse neural networks",
+          "categories": "math.ST stat.ML stat.TH",
+          "relevance_score": 5
+        },
+        {
+          "arxiv_id": "2407.17092",
+          "title": "Universal Approximation of Dynamical Systems by Semi-Autonomous Neural ODEs and Applications",
+          "categories": "math.NA cs.NA",
+          "relevance_score": 5
+        },
+        {
+          "arxiv_id": "2601.01465",
+          "title": "Leveraging Flatness to Improve Information-Theoretic Generalization Bounds for SGD",
+          "categories": "cs.LG",
+          "relevance_score": 5
+        },
+        {
+          "arxiv_id": "2601.10915",
+          "title": "A PAC-Bayesian Analysis of Channel-Induced Degradation in Edge Inference",
+          "categories": "cs.IT cs.LG math.IT",
+          "relevance_score": 5
+        },
+        {
+          "arxiv_id": "2103.03191",
+          "title": "Generalization Bounds for Sparse Random Feature Expansions",
+          "categories": "stat.ML cs.LG cs.NA math.NA math.OC math.PR",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2204.12016",
+          "title": "Accelerated-gradient-based generalized Levenberg--Marquardt method with oracle complexity bound and local quadratic convergence",
+          "categories": "math.OC",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2312.08410",
+          "title": "Universal approximation property of Banach space-valued random feature models including random neural networks",
+          "categories": "cs.LG math.PR stat.ML",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2403.11565",
+          "title": "Convergence of Decentralized Stochastic Subgradient-based Methods for Nonsmooth Nonconvex functions",
+          "categories": "math.OC cs.LG",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2410.03573",
+          "title": "HyResPINNs: A Hybrid Residual Physics-Informed Neural Network Architecture Designed to Balance Expressiveness and Trainability",
+          "categories": "cs.LG",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2506.13911",
+          "title": "Logical Expressiveness of Graph Neural Networks with Hierarchical Node Individualization",
+          "categories": "cs.LG cs.AI cs.LO",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2507.01752",
+          "title": "Tuning without Peeking: Provable Generalization Bounds and Robust LLM Post-Training",
+          "categories": "cs.LG cs.AI cs.CL cs.CR",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2510.21245",
+          "title": "Convergence of Stochastic Gradient Langevin Dynamics in the Lazy Training Regime",
+          "categories": "cs.LG math.OC",
+          "relevance_score": 4
+        }
+      ],
+      "held_out_papers": [
+        {
+          "arxiv_id": "2601.01853",
+          "title": "Asymptotic Convergence and Stability of Adaptive Gradient Methods in Smooth Non-convex Optimization",
+          "categories": "math.OC",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2601.03162",
+          "title": "On the Convergence Behavior of Preconditioned Gradient Descent Toward the Rich Learning Regime",
+          "categories": "cs.LG",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2601.08547",
+          "title": "Convergence of gradient flow for learning convolutional neural networks",
+          "categories": "math.OC cs.LG",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2601.14026",
+          "title": "Universal Approximation Theorem for Input-Connected Multilayer Perceptrons",
+          "categories": "cs.LG cs.NE math.FA",
+          "relevance_score": 4
+        },
+        {
+          "arxiv_id": "2601.17987",
+          "title": "Systematic Characterization of Minimal Deep Learning Architectures: A Unified Analysis of Convergence, Pruning, and Quantization",
+          "categories": "cs.LG cs.CV",
+          "relevance_score": 4
+        }
+      ],
+      "seed_subsets": {
+        "subset_5": [
+          "2103.03191",
+          "2204.12392",
+          "2410.03573",
+          "2507.21429",
+          "2601.10915"
+        ],
+        "subset_10": [
+          "2103.03191",
+          "2204.12392",
+          "2410.03573",
+          "2504.05695",
+          "2506.13911",
+          "2507.21429",
+          "2510.21245",
+          "2601.01465",
+          "2601.08100",
+          "2601.10915"
+        ],
+        "subset_15": [
+          "2103.03191",
+          "2204.12016",
+          "2204.12392",
+          "2312.08410",
+          "2403.11565",
+          "2407.17092",
+          "2410.03573",
+          "2504.05695",
+          "2506.13911",
+          "2507.01752",
+          "2507.21429",
+          "2510.21245",
+          "2601.01465",
+          "2601.08100",
+          "2601.10915"
+        ]
+      },
+      "cluster_mapping": {
+        "embedding_related_count": 200,
+        "category_related_count": 186,
+        "strongly_related_count": 25,
+        "top_200_by_similarity": [
+          {
+            "arxiv_id": "2601.01465",
+            "embedding_similarity": 0.7993,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.08100",
+            "embedding_similarity": 0.766,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2507.21429",
+            "embedding_similarity": 0.7587,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2504.05695",
+            "embedding_similarity": 0.7536,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2506.20779",
+            "embedding_similarity": 0.7442,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2412.16765",
+            "embedding_similarity": 0.7391,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2510.21245",
+            "embedding_similarity": 0.7373,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.16884",
+            "embedding_similarity": 0.7361,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.19958",
+            "embedding_similarity": 0.7351,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.01311",
+            "embedding_similarity": 0.7346,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.01764",
+            "embedding_similarity": 0.7336,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2409.14123",
+            "embedding_similarity": 0.7324,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2502.01556",
+            "embedding_similarity": 0.7313,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2508.07142",
+            "embedding_similarity": 0.7312,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2312.08410",
+            "embedding_similarity": 0.7305,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2103.03191",
+            "embedding_similarity": 0.7305,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2511.01938",
+            "embedding_similarity": 0.7215,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.21791",
+            "embedding_similarity": 0.7212,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2601.04270",
+            "embedding_similarity": 0.7179,
+            "category_match": true,
+            "strongly_related": true
+          },
+          {
+            "arxiv_id": "2505.18289",
+            "embedding_similarity": 0.7125,
+            "category_match": true,
+            "strongly_related": true
+          }
+        ]
+      },
+      "bertopic_topic_hits": {
+        "3": 15,
+        "0": 2,
+        "5": 1,
+        "4": 1,
+        "1": 1
+      },
+      "relevant_categories": [
+        "cs.LG",
+        "stat.ML",
+        "math.OC",
+        "cs.NE"
+      ]
+    }
+  },
+  "summary": [
+    {
+      "id": "P1",
+      "name": "RL for robotics",
+      "breadth": "Medium",
+      "found": 156,
+      "verified": 99,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 191,
+      "strongly_related": 139,
+      "topics": "T0(5), T3(1), T6(1), T9(1)"
+    },
+    {
+      "id": "P2",
+      "name": "Language model reasoning",
+      "breadth": "Medium",
+      "found": 950,
+      "verified": 942,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 191,
+      "strongly_related": 191,
+      "topics": "T0(15), T3(1), T8(1), T2(1)"
+    },
+    {
+      "id": "P3",
+      "name": "Quantum computing / quantum ML",
+      "breadth": "Narrow",
+      "found": 159,
+      "verified": 148,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 185,
+      "strongly_related": 52,
+      "topics": "T7(19), T3(4), T0(3), T2(1)"
+    },
+    {
+      "id": "P4",
+      "name": "AI safety / alignment",
+      "breadth": "Broad",
+      "found": 484,
+      "verified": 358,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 187,
+      "strongly_related": 98,
+      "topics": "T0(20), T2(19), T6(2), T8(1)"
+    },
+    {
+      "id": "P5",
+      "name": "Graph neural networks",
+      "breadth": "Medium",
+      "found": 172,
+      "verified": 96,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 175,
+      "strongly_related": 39,
+      "topics": "T3(20), T0(4), T1(1), T7(1), T5(1)"
+    },
+    {
+      "id": "P6",
+      "name": "Diffusion models for generation",
+      "breadth": "Medium",
+      "found": 330,
+      "verified": 244,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 193,
+      "strongly_related": 46,
+      "topics": "T0(17), T3(1), T5(1), T2(1)"
+    },
+    {
+      "id": "P7",
+      "name": "Federated learning + privacy",
+      "breadth": "Medium",
+      "found": 247,
+      "verified": 212,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 183,
+      "strongly_related": 78,
+      "topics": "T0(5), T3(4), T2(2), T1(2), T6(1)"
+    },
+    {
+      "id": "P8",
+      "name": "Mathematical foundations of neural networks",
+      "breadth": "Narrow",
+      "found": 50,
+      "verified": 27,
+      "seeds": 15,
+      "held_out": 5,
+      "embedding_cluster": 200,
+      "category_cluster": 186,
+      "strongly_related": 25,
+      "topics": "T3(15), T0(2), T5(1), T4(1), T1(1)"
+    }
+  ]
+}

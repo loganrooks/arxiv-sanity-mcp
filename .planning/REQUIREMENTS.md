@@ -1,7 +1,10 @@
 # Requirements: arXiv Discovery MCP
 
-**Defined:** 2026-03-08
-**Core Value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
+> **Status:** `v0.1` portion is frozen as shipped milestone (53 codes, complete). `v0.2` portion is active (17 new codes, planned 2026-04-25).
+> **Current work:** v0.2 multi-lens substrate. See [v0.2-MILESTONE.md](./milestones/v0.2-MILESTONE.md), [ADR-0005](../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md), [VISION.md](./VISION.md), [LONG-ARC.md](./LONG-ARC.md).
+
+**Defined:** 2026-03-08 (v0.1) / 2026-04-25 (v0.2 extension)
+**Core Value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results — across multiple coexisting lenses.
 
 ## v1 Requirements
 
@@ -87,7 +90,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **MCP-04**: MCP server exposes canonical resources: paper://{arxiv_id}, collection://{slug}, profile://{slug}, watch://{slug}/deltas
 - [x] **MCP-05** [chosen for now]: MCP server exposes reusable prompts: daily-digest, literature-map-from-seeds, triage-shortlist (source lists as examples, not deliverables; open question whether prompts are reusable)
 - [x] **MCP-06**: Tool names describe user intent, not implementation (find_related_papers, not search_embeddings)
-- [x] **MCP-07** [chosen for now]: MCP tool set stays at 5-10 tools maximum to limit context token cost (no traceable source; sensible heuristic but not a firm requirement)
+- [x] **MCP-07** [chosen for now]: MCP tool count is justified and grouped by user intent — tools are organized around user-facing workflows, not arbitrary count caps. *[Post-audit correction 2026-04-26: original "5-10 tools maximum" framing was a heuristic inconsistent with the 13-tool shipped state; reframed to capture the actual intent: count is justified by workflow grouping, not capped by heuristic.]*
 
 ### MCP Validation
 
@@ -95,23 +98,61 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **MCPV-02**: Doc 06 open questions (tool granularity, resource design, prompt reusability) resolved with evidence from MCP usage
 - [x] **MCPV-03**: MCP tool set iterated at least once based on real agent workflow feedback
 
+## v0.2 Requirements
+
+Requirements for the multi-lens substrate milestone. Each maps to v0.2 phases (12-17).
+
+### Lens Architecture
+
+- [ ] **LENS-01**: System provides a `Lens` interface admitting registered implementations producing `query(seed_or_profile, options) → ranked_results_with_provenance`
+- [ ] **LENS-02**: At least two lenses ship in v0.2: existing semantic (TF-IDF + lexical + workflow-state) and citation/community
+- [ ] **LENS-03**: Adding a new lens does not require modifications to existing consumers (validated by design walkthrough)
+- [ ] **LENS-04**: `ProfileRankingService` dispatches to lenses by name; per-lens scorers replace the hard-sequenced calls in `RankingPipeline.score_paper`
+- [ ] **LENS-05**: `SearchResult` carries per-lens score components and per-lens explanations alongside legacy composite (backward-compatible default)
+
+### Citation/Community Lens
+
+- [ ] **CITE-01**: Citation edges are stored in retrieval-shaped form (queryable table or denormalized projection), not write-once JSONB
+- [ ] **CITE-02**: Citation lens performs co-citation neighborhood traversal at query time or via pre-materialized projections
+- [ ] **CITE-03**: Citation lens explanations name cited papers, relationship type (direct citation, co-citation, citation depth), and the evidence basis
+- [ ] **CITE-04**: Citation source provenance is recorded per edge: source API, retrieval timestamp, freshness window (per ADR-0003)
+
+### Lens-Disagreement and Intersection Operations
+
+- [ ] **LDIS-01**: User can request "papers in lens A but not lens B" via MCP
+- [ ] **LDIS-02**: User can request set intersection across two or more lenses via MCP
+- [ ] **LDIS-03**: Per-paper cross-lens explanation surfaces all lenses that produced a given paper, with per-lens score components
+
+### Longitudinal Pilot
+
+- [ ] **LPILOT-01**: Harness captures lens usage at session level (which lens(es) selected, which queries issued)
+- [ ] **LPILOT-02**: Harness captures triage events with timestamps: selection, dismissal, return-to-paper after dismissal. For each event, captures the set of lens(es) that surfaced the paper for that event (multi-valued; never assumes one-lens-per-event), plus the user's explicit lens selection if any (separate field). Multi-lens attribution is preserved through analysis — the analysis layer must not reduce events to a single lens-of-record
+- [ ] **LPILOT-03**: Pilot runs continuously through Logan's research practice for at least four weeks; capture is durable and exportable
+
+### MCP Surface Lens-Awareness
+
+- [ ] **MCP-08**: Discovery tools (`search_papers`, `browse_recent`, `find_related_papers`, `get_paper`) accept a `lens=` parameter; default and multi-value semantics per ADR-0005 (single-lens semantic when omitted; per-lens dict when a list is passed without explicit `mode=`)
+- [ ] **MCP-09**: `RankerSnapshot` (and equivalent provenance objects) identifies which lens(es) produced the result set
+
 ## v2 Requirements
 
 Deferred to future release. Tracked but not in current roadmap.
 
 ### Semantic Search
 
-- **SEMA-01**: System computes SPECTER2 embeddings selectively for user-touched/saved papers
-- **SEMA-02**: Semantic search via pgvector for embedded paper cohorts
+- **SEMA-01**: System computes embeddings selectively for user-touched/saved papers; specific embedding model selected via lens-design analysis at v2 planning time
+- **SEMA-02**: Semantic search via vector index for embedded paper cohorts; specific index implementation selected at v2 planning time
 - **SEMA-03**: Hybrid retrieval: lexical candidates + semantic reranking
 - **SEMA-04**: Profile-driven recommendation using embedded interest profiles
 
 ### Advanced Enrichment
 
-- **ADVN-01**: Semantic Scholar adapter for recommendations and SPECTER2 embeddings
+- **ADVN-01**: Citation/recommendation adapter for an additional source beyond OpenAlex; specific source selected via lens-design analysis at v2 planning time
 - **ADVN-02**: Crossref/OpenCitations adapter for broader citation graph
 - **ADVN-03**: Citation-context analysis (supporting/contrasting/mentioning)
 - **ADVN-04**: Popularity/trending signals from external sources (citation velocity, GitHub stars)
+
+> **Historical candidates considered at write-time (2026-Q1):** SPECTER2 was the embedding-model candidate for SEMA-01; pgvector was the vector-index candidate for SEMA-02; Semantic Scholar was the additional-citation-source candidate for ADVN-01. Listed for context; not load-bearing on v2 planning. The technology choice is open per the LONG-ARC anti-pattern against treating embedding-model selection as architecturally load-bearing (`LONG-ARC.md` "Embedding-model choice as load-bearing decision" anti-pattern).
 
 ### Advanced Workflows
 
@@ -192,12 +233,30 @@ Deferred to future release. Tracked but not in current roadmap.
 | CONT-05 | Phase 6 | Complete |
 | CONT-06 | Phase 6 | Complete |
 | MCP-03 | Phase 6 | Complete |
+| LENS-01 | Phase 12 | Planned |
+| LENS-02 | Phase 12, 15 | Planned |
+| LENS-03 | Phase 15 | Planned |
+| LENS-04 | Phase 12 | Planned |
+| LENS-05 | Phase 12 | Planned |
+| MCP-08 | Phase 13 | Planned |
+| MCP-09 | Phase 13 | Planned |
+| CITE-01 | Phase 14 | Planned |
+| CITE-02 | Phase 15 | Planned |
+| CITE-03 | Phase 15 | Planned |
+| CITE-04 | Phase 14 | Planned |
+| LDIS-01 | Phase 16 | Planned |
+| LDIS-02 | Phase 16 | Planned |
+| LDIS-03 | Phase 16 | Planned |
+| LPILOT-01 | Phase 17 | Planned |
+| LPILOT-02 | Phase 17 | Planned |
+| LPILOT-03 | Phase 17 | Planned |
 
 **Coverage:**
-- v1 requirements: 53 total (47 original + 3 PREMCP + 3 MCPV)
-- Mapped to phases: 53
+- v0.1 requirements: 53 total (47 original + 3 PREMCP + 3 MCPV) — complete
+- v0.2 requirements: 17 total (5 LENS + 4 CITE + 3 LDIS + 3 LPILOT + 2 MCP) — planned
+- Mapped to phases: 70
 - Unmapped: 0
 
 ---
-*Requirements defined: 2026-03-08*
-*Last updated: 2026-03-11 after ecosystem commentary and roadmap resequencing*
+*Requirements defined: 2026-03-08 (v0.1) / 2026-04-25 (v0.2 extension)*
+*Last updated: 2026-04-25 after multi-lens redirection and ADR-0005 commitment*

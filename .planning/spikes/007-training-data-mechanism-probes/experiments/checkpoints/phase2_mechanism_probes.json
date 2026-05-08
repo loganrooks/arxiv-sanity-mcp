@@ -1,0 +1,561 @@
+{
+  "phase": "phase2_mechanism_probes",
+  "timestamp": "2026-04-16T20:05:49.836395+00:00",
+  "source_gate": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/007-training-data-mechanism-probes/experiments/checkpoints/phase1_probe_gate.json",
+  "source_metrics": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/checkpoints/phase2_metrics.json",
+  "source_interaction_checkpoint": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/006-model-retrieval-interactions/experiments/checkpoints/phase1_quantitative.json",
+  "blocked_subprobes": [
+    "citation_or_community_overlap"
+  ],
+  "family_results": {
+    "specter2": {
+      "claim": "specialized scientific / citation-community style relatedness is strongest on narrow technical domains",
+      "claim_strength_note": "direct citation/community verification remains blocked, so support can only be partial",
+      "specialization_probe": {
+        "targets": [
+          "P3",
+          "P8"
+        ],
+        "controls": [
+          "P1",
+          "P4",
+          "P5"
+        ],
+        "per_target_profile": {
+          "P3": {
+            "jaccard_at_20": 0.3793,
+            "n_truly_unique": 8,
+            "kendall_tau_vs_minilm": 0.391
+          },
+          "P8": {
+            "jaccard_at_20": 0.5385,
+            "n_truly_unique": 6,
+            "kendall_tau_vs_minilm": 0.5471
+          }
+        },
+        "target_mean_jaccard_at_20": 0.4589,
+        "non_target_mean_jaccard_at_20": 0.6604,
+        "control_mean_jaccard_at_20": 0.7413,
+        "target_mean_truly_unique": 7.0,
+        "non_target_mean_truly_unique": 3.3333,
+        "control_mean_truly_unique": 3.0,
+        "target_mean_tau": 0.4691,
+        "jaccard_gap_vs_non_targets": 0.2015,
+        "truly_unique_lift_vs_non_targets": 3.6667,
+        "signal_strength": "strong"
+      },
+      "profile_surfaces": {
+        "P3": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P3_blind.json",
+          "review_input_type": "blind_comparison",
+          "profile_name": "Quantum computing / quantum ML",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.ET",
+            "quant-ph"
+          ],
+          "model_unique_nonseed_count": 9,
+          "minilm_unique_nonseed_count": 9,
+          "avg_seed_token_overlap_model_unique": 0.3191,
+          "avg_seed_token_overlap_minilm_unique": 0.2446,
+          "seed_category_match_rate_model_unique": 0.5556,
+          "seed_category_match_rate_minilm_unique": 0.8889,
+          "representative_model_unique_titles": [
+            "Agent-Q: Fine-Tuning Large Language Models for Quantum Circuit Generation and Optimization",
+            "Variational Quantum Circuit-Based Reinforcement Learning for Dynamic Portfolio Optimization",
+            "Performance enhancing of hybrid quantum-classical Benders approach for MILP optimization",
+            "Scalable Quantum Message Passing Graph Neural Networks for Next-Generation Wireless Communications: Architectures, Use Cases, and Future Directions",
+            "Quantum Approximate Optimization Algorithm for Test Case Optimization"
+          ],
+          "representative_minilm_unique_titles": [
+            "Cutting Quantum Circuits Beyond Qubits",
+            "Random-Matrix-Induced Simplicity Bias in Over-parameterized Variational Quantum Circuits",
+            "Fault-Tolerant Quantum Error Correction: Implementing Hamming-Based Codes with Advanced Syndrome Extraction Techniques",
+            "Optimizing Compilation for Distributed Quantum Computing via Clustering and Annealing",
+            "Wigner's Friend as a Circuit: Inter-Branch Communication Witness Benchmarks on Superconducting Quantum Hardware"
+          ]
+        },
+        "P8": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P8.json",
+          "review_input_type": "characterization",
+          "profile_name": "Mathematical foundations of neural networks",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.LG",
+            "math.NA",
+            "math.ST",
+            "stat.ML"
+          ],
+          "model_unique_nonseed_count": 6,
+          "minilm_unique_nonseed_count": 6,
+          "avg_seed_token_overlap_model_unique": 0.0784,
+          "avg_seed_token_overlap_minilm_unique": 0.1898,
+          "seed_category_match_rate_model_unique": 0.8333,
+          "seed_category_match_rate_minilm_unique": 1.0,
+          "representative_model_unique_titles": [
+            "Architectural Scaling Surpass Basis Complexity? Efficient KANs with Single-Parameter Design",
+            "Implicit bias as a Gauge correction: Theory and Inverse Design",
+            "MAST: Model-Agnostic Sparsified Training",
+            "A Unified Theory of Sparse Dictionary Learning in Mechanistic Interpretability: Piecewise Biconvexity and Spurious Minima",
+            "A Theory of Universal Agnostic Learning"
+          ],
+          "representative_minilm_unique_titles": [
+            "Leveraging Flatness to Improve Information-Theoretic Generalization Bounds for SGD",
+            "Beyond Softmax and Entropy: Improving Convergence Guarantees of Policy Gradients by f-SoftArgmax Parameterization with Coupled Regularization",
+            "Divergence Results and Convergence of a Variance Reduced Version of ADAM",
+            "Training Large Neural Networks With Low-Dimensional Error Feedback",
+            "Diagonal Linear Networks and the Lasso Regularization Path"
+          ]
+        },
+        "P2": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/specter2_P2_blind.json",
+          "review_input_type": "blind_comparison",
+          "profile_name": "Language model reasoning",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.CL",
+            "cs.SI"
+          ],
+          "model_unique_nonseed_count": 6,
+          "minilm_unique_nonseed_count": 6,
+          "avg_seed_token_overlap_model_unique": 0.3025,
+          "avg_seed_token_overlap_minilm_unique": 0.2125,
+          "seed_category_match_rate_model_unique": 0.3333,
+          "seed_category_match_rate_minilm_unique": 0.5,
+          "representative_model_unique_titles": [
+            "From Meta-Thought to Execution: Cognitively Aligned Post-Training for Generalizable and Reliable LLM Reasoning",
+            "Improving Chain-of-Thought for Logical Reasoning via Attention-Aware Intervention",
+            "CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction",
+            "Time-Scaling Is What Agents Need Now",
+            "The Evolution of Thought: Tracking LLM Overthinking via Reasoning Dynamics Analysis"
+          ],
+          "representative_minilm_unique_titles": [
+            "AtomThink: Multimodal Slow Thinking with Atomic Step Reasoning",
+            "Logical Phase Transitions: Understanding Collapse in LLM Logical Reasoning",
+            "Reasoning-Aware Proxy Reward Model using Process Mining",
+            "Multi-hop Reasoning via Early Knowledge Alignment",
+            "Mitigating Prompt-Induced Hallucinations in Large Language Models via Structured Reasoning"
+          ]
+        }
+      },
+      "interaction_context_from_006": {
+        "mean_knn_union_delta_vs_tfidf_at_20": -0.75,
+        "mean_centroid_union_delta_vs_tfidf_at_20": -3.625,
+        "mean_method_jaccard_centroid_vs_knn_at_20": 0.4309,
+        "saved_family_read": "method-sensitive",
+        "category_family_read": "method-sensitive"
+      },
+      "mean_tau_vs_minilm_from_004": 0.5604,
+      "structural_distinctness_proxy": 0.4396
+    },
+    "stella": {
+      "claim": "practical / deployment-oriented extension rather than pure topic matching",
+      "claim_strength_note": "this is the most proxy-dependent claim in the shortlist",
+      "specialization_probe": {
+        "targets": [
+          "P6",
+          "P7"
+        ],
+        "controls": [
+          "P1",
+          "P4",
+          "P5"
+        ],
+        "per_target_profile": {
+          "P6": {
+            "jaccard_at_20": 0.3793,
+            "n_truly_unique": 7,
+            "kendall_tau_vs_minilm": 0.6578
+          },
+          "P7": {
+            "jaccard_at_20": 0.4815,
+            "n_truly_unique": 6,
+            "kendall_tau_vs_minilm": 0.6029
+          }
+        },
+        "target_mean_jaccard_at_20": 0.4304,
+        "non_target_mean_jaccard_at_20": 0.6216,
+        "control_mean_jaccard_at_20": 0.7413,
+        "target_mean_truly_unique": 6.5,
+        "non_target_mean_truly_unique": 3.3333,
+        "control_mean_truly_unique": 2.3333,
+        "target_mean_tau": 0.6303,
+        "jaccard_gap_vs_non_targets": 0.1912,
+        "truly_unique_lift_vs_non_targets": 3.1667,
+        "signal_strength": "strong"
+      },
+      "profile_surfaces": {
+        "P6": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P6_blind.json",
+          "review_input_type": "blind_comparison",
+          "profile_name": "Diffusion models for generation",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.CV",
+            "cs.DC",
+            "eess.IV"
+          ],
+          "model_unique_nonseed_count": 9,
+          "minilm_unique_nonseed_count": 9,
+          "avg_seed_token_overlap_model_unique": 0.2287,
+          "avg_seed_token_overlap_minilm_unique": 0.1777,
+          "seed_category_match_rate_model_unique": 0.7778,
+          "seed_category_match_rate_minilm_unique": 0.6667,
+          "representative_model_unique_titles": [
+            "Text-to-Image Diffusion Models Cannot Count, and Prompt Refinement Cannot Help",
+            "Revealing Subtle Phenotypes in Small Microscopy Datasets Using Latent Diffusion Models",
+            "Adverse Weather Conditions Augmentation of LiDAR Scenes with Latent Diffusion Models",
+            "Rethinking and Red-Teaming Protective Perturbation in Personalized Diffusion Models",
+            "Align & Invert: Solving Inverse Problems with Diffusion and Flow-based Models via Representation Alignment"
+          ],
+          "representative_minilm_unique_titles": [
+            "There and Back Again: On the relation between Noise and Image Inversions in Diffusion Models",
+            "SDiT: Semantic Region-Adaptive for Diffusion Transformers",
+            "PILD: Physics-Informed Learning via Diffusion",
+            "GeoDiff-SAR: A Geometric Prior Guided Diffusion Model for SAR Image Generation",
+            "Memorization Control in Diffusion Models from Denoising-centric Perspective"
+          ]
+        },
+        "P7": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P7.json",
+          "review_input_type": "characterization",
+          "profile_name": "Federated learning + privacy",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.CR",
+            "cs.LG"
+          ],
+          "model_unique_nonseed_count": 7,
+          "minilm_unique_nonseed_count": 7,
+          "avg_seed_token_overlap_model_unique": 0.1825,
+          "avg_seed_token_overlap_minilm_unique": 0.1802,
+          "seed_category_match_rate_model_unique": 0.7143,
+          "seed_category_match_rate_minilm_unique": 0.8571,
+          "representative_model_unique_titles": [
+            "Redefining non-IID Data in Federated Learning for Computer Vision Tasks: Migrating from Labels to Embeddings for Task-Specific Data Distributions",
+            "Federated Proximal Optimization for Privacy-Preserving Heart Disease Prediction: A Controlled Simulation Study on Non-IID Clinical Data",
+            "SSFL: Discovering Sparse Unified Subnetworks at Initialization for Efficient Federated Learning",
+            "Beyond Denial-of-Service: The Puppeteer's Attack for Fine-Grained Control in Ranking-Based Federated Learning",
+            "Data Heterogeneity-Aware Client Selection for Federated Learning in Wireless Networks"
+          ],
+          "representative_minilm_unique_titles": [
+            "A review of federated learning in renewable energy applications: Potential, challenges, and future directions",
+            "Zero-Knowledge Federated Learning: A New Trustworthy and Privacy-Preserving Distributed Learning Paradigm",
+            "Privacy-Preserving Data Processing in Cloud : From Homomorphic Encryption to Federated Analytics",
+            "FedMentalCare: Towards Privacy-Preserving Fine-Tuned LLMs to Analyze Mental Health Status Using Federated Learning Framework",
+            "Differential Privacy for Transformer Embeddings of Text with Nonparametric Variational Information Bottleneck"
+          ]
+        },
+        "P2": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/stella_P2.json",
+          "review_input_type": "characterization",
+          "profile_name": "Language model reasoning",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.CL",
+            "cs.SI"
+          ],
+          "model_unique_nonseed_count": 6,
+          "minilm_unique_nonseed_count": 6,
+          "avg_seed_token_overlap_model_unique": 0.2417,
+          "avg_seed_token_overlap_minilm_unique": 0.2996,
+          "seed_category_match_rate_model_unique": 0.3333,
+          "seed_category_match_rate_minilm_unique": 0.5,
+          "representative_model_unique_titles": [
+            "Do explanations generalize across large reasoning models?",
+            "Scaling Trends for Multi-Hop Contextual Reasoning in Mid-Scale Language Models",
+            "Efficient Reinforcement Learning with Semantic and Token Entropy for LLM Reasoning",
+            "M3CoTBench: Benchmark Chain-of-Thought of MLLMs in Medical Image Understanding",
+            "AtomThink: Multimodal Slow Thinking with Atomic Step Reasoning"
+          ],
+          "representative_minilm_unique_titles": [
+            "CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction",
+            "FLEx: Language Modeling with Few-shot Language Explanations",
+            "Time-Scaling Is What Agents Need Now",
+            "Automatic Question Generation for Intuitive Learning Utilizing Causal Graph Guided Chain of Thought Reasoning",
+            "The Evolution of Thought: Tracking LLM Overthinking via Reasoning Dynamics Analysis"
+          ]
+        }
+      },
+      "interaction_context_from_006": {
+        "mean_knn_union_delta_vs_tfidf_at_20": -0.3125,
+        "mean_centroid_union_delta_vs_tfidf_at_20": -3.5,
+        "mean_method_jaccard_centroid_vs_knn_at_20": 0.496,
+        "saved_family_read": "method-sensitive",
+        "category_family_read": "method-sensitive"
+      },
+      "mean_tau_vs_minilm_from_004": 0.6355,
+      "structural_distinctness_proxy": 0.3645
+    },
+    "gte": {
+      "claim": "broader methodological envelope that stays near the incumbent ranking structure",
+      "claim_strength_note": "support should favor controlled widening rather than raw divergence",
+      "specialization_probe": {
+        "targets": [
+          "P2",
+          "P8"
+        ],
+        "controls": [
+          "P1",
+          "P4",
+          "P5"
+        ],
+        "per_target_profile": {
+          "P2": {
+            "jaccard_at_20": 0.6667,
+            "n_truly_unique": 2,
+            "kendall_tau_vs_minilm": 0.6902
+          },
+          "P8": {
+            "jaccard_at_20": 0.4815,
+            "n_truly_unique": 6,
+            "kendall_tau_vs_minilm": 0.6401
+          }
+        },
+        "target_mean_jaccard_at_20": 0.5741,
+        "non_target_mean_jaccard_at_20": 0.6604,
+        "control_mean_jaccard_at_20": 0.7413,
+        "target_mean_truly_unique": 4.0,
+        "non_target_mean_truly_unique": 2.8333,
+        "control_mean_truly_unique": 2.3333,
+        "target_mean_tau": 0.6652,
+        "jaccard_gap_vs_non_targets": 0.0863,
+        "truly_unique_lift_vs_non_targets": 1.1667,
+        "signal_strength": "moderate"
+      },
+      "profile_surfaces": {
+        "P8": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P8_blind.json",
+          "review_input_type": "blind_comparison",
+          "profile_name": "Mathematical foundations of neural networks",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.LG",
+            "math.NA",
+            "math.ST",
+            "stat.ML"
+          ],
+          "model_unique_nonseed_count": 6,
+          "minilm_unique_nonseed_count": 7,
+          "avg_seed_token_overlap_model_unique": 0.2232,
+          "avg_seed_token_overlap_minilm_unique": 0.155,
+          "seed_category_match_rate_model_unique": 0.8333,
+          "seed_category_match_rate_minilm_unique": 0.8571,
+          "representative_model_unique_titles": [
+            "Systematic Characterization of Minimal Deep Learning Architectures: A Unified Analysis of Convergence, Pruning, and Quantization",
+            "Architectural Scaling Surpass Basis Complexity? Efficient KANs with Single-Parameter Design",
+            "Interpretable global minima of deep ReLU neural networks on sequentially separable data",
+            "Floating-Point Neural Networks Are Provably Robust Universal Approximators",
+            "Two-hidden-layer ReLU neural networks and finite elements"
+          ],
+          "representative_minilm_unique_titles": [
+            "Mathematical theory of deep learning",
+            "Beyond Softmax and Entropy: Improving Convergence Guarantees of Policy Gradients by f-SoftArgmax Parameterization with Coupled Regularization",
+            "Convergence of gradient flow for learning convolutional neural networks",
+            "FISMO: Fisher-Structured Momentum-Orthogonalized Optimizer",
+            "Divergence Results and Convergence of a Variance Reduced Version of ADAM"
+          ]
+        },
+        "P2": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P2.json",
+          "review_input_type": "characterization",
+          "profile_name": "Language model reasoning",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.CL",
+            "cs.SI"
+          ],
+          "model_unique_nonseed_count": 4,
+          "minilm_unique_nonseed_count": 4,
+          "avg_seed_token_overlap_model_unique": 0.2724,
+          "avg_seed_token_overlap_minilm_unique": 0.2974,
+          "seed_category_match_rate_model_unique": 0.0,
+          "seed_category_match_rate_minilm_unique": 0.5,
+          "representative_model_unique_titles": [
+            "AtomThink: Multimodal Slow Thinking with Atomic Step Reasoning",
+            "M3CoTBench: Benchmark Chain-of-Thought of MLLMs in Medical Image Understanding",
+            "Scaling Trends for Multi-Hop Contextual Reasoning in Mid-Scale Language Models",
+            "Think When Needed: Model-Aware Reasoning Routing for LLM-based Ranking"
+          ],
+          "representative_minilm_unique_titles": [
+            "CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction",
+            "FLEx: Language Modeling with Few-shot Language Explanations",
+            "Time-Scaling Is What Agents Need Now",
+            "Rewarding How Models Think Pedagogically: Integrating Pedagogical Reasoning and Thinking Rewards for LLMs in Education"
+          ]
+        },
+        "P7": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/gte_P7.json",
+          "review_input_type": "characterization",
+          "profile_name": "Federated learning + privacy",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.CR",
+            "cs.LG"
+          ],
+          "model_unique_nonseed_count": 5,
+          "minilm_unique_nonseed_count": 5,
+          "avg_seed_token_overlap_model_unique": 0.1932,
+          "avg_seed_token_overlap_minilm_unique": 0.1819,
+          "seed_category_match_rate_model_unique": 0.4,
+          "seed_category_match_rate_minilm_unique": 1.0,
+          "representative_model_unique_titles": [
+            "Federated Proximal Optimization for Privacy-Preserving Heart Disease Prediction: A Controlled Simulation Study on Non-IID Clinical Data",
+            "Redefining non-IID Data in Federated Learning for Computer Vision Tasks: Migrating from Labels to Embeddings for Task-Specific Data Distributions",
+            "Data Heterogeneity-Aware Client Selection for Federated Learning in Wireless Networks",
+            "TransFR: Transferable Federated Recommendation with Adapter Tuning on Pre-trained Language Models",
+            "Beyond Denial-of-Service: The Puppeteer's Attack for Fine-Grained Control in Ranking-Based Federated Learning"
+          ],
+          "representative_minilm_unique_titles": [
+            "A review of federated learning in renewable energy applications: Potential, challenges, and future directions",
+            "Zero-Knowledge Federated Learning: A New Trustworthy and Privacy-Preserving Distributed Learning Paradigm",
+            "Differential Privacy for Transformer Embeddings of Text with Nonparametric Variational Information Bottleneck",
+            "One-Shot Federated Clustering of Non-Independent Completely Distributed Data",
+            "Convergent Privacy Framework for Multi-layer GNNs through Contractive Message Passing"
+          ]
+        }
+      },
+      "interaction_context_from_006": {
+        "mean_knn_union_delta_vs_tfidf_at_20": -1.0625,
+        "mean_centroid_union_delta_vs_tfidf_at_20": -4.6875,
+        "mean_method_jaccard_centroid_vs_knn_at_20": 0.4713,
+        "saved_family_read": "method-sensitive",
+        "category_family_read": "method-sensitive"
+      },
+      "mean_tau_vs_minilm_from_004": 0.6274,
+      "structural_distinctness_proxy": 0.3726
+    },
+    "voyage": {
+      "claim": "broader conceptual similarity that diverges most on open-ended conceptual profiles",
+      "claim_strength_note": "operational caveats remain outside the mechanism question",
+      "specialization_probe": {
+        "targets": [
+          "P2",
+          "P7"
+        ],
+        "controls": [
+          "P1",
+          "P4",
+          "P5"
+        ],
+        "per_target_profile": {
+          "P2": {
+            "jaccard_at_20": 0.3333,
+            "n_truly_unique": 8,
+            "kendall_tau_vs_minilm": 0.5238
+          },
+          "P7": {
+            "jaccard_at_20": 0.4815,
+            "n_truly_unique": 6,
+            "kendall_tau_vs_minilm": 0.4675
+          }
+        },
+        "target_mean_jaccard_at_20": 0.4074,
+        "non_target_mean_jaccard_at_20": 0.6304,
+        "control_mean_jaccard_at_20": 0.7413,
+        "target_mean_truly_unique": 7.0,
+        "non_target_mean_truly_unique": 3.5,
+        "control_mean_truly_unique": 2.3333,
+        "target_mean_tau": 0.4957,
+        "jaccard_gap_vs_non_targets": 0.223,
+        "truly_unique_lift_vs_non_targets": 3.5,
+        "signal_strength": "strong"
+      },
+      "profile_surfaces": {
+        "P2": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P2_blind.json",
+          "review_input_type": "blind_comparison",
+          "profile_name": "Language model reasoning",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.CL",
+            "cs.SI"
+          ],
+          "model_unique_nonseed_count": 7,
+          "minilm_unique_nonseed_count": 10,
+          "avg_seed_token_overlap_model_unique": 0.302,
+          "avg_seed_token_overlap_minilm_unique": 0.2071,
+          "seed_category_match_rate_model_unique": 0.5714,
+          "seed_category_match_rate_minilm_unique": 0.6,
+          "representative_model_unique_titles": [
+            "GRACE: Discriminator-Guided Chain-of-Thought Reasoning",
+            "EntroCoT: Enhancing Chain-of-Thought via Adaptive Entropy-Guided Segmentation",
+            "CoT-Seg: Rethinking Segmentation with Chain-of-Thought Reasoning and Self-Correction",
+            "FLEx: Language Modeling with Few-shot Language Explanations",
+            "Time-Scaling Is What Agents Need Now"
+          ],
+          "representative_minilm_unique_titles": [
+            "Do explanations generalize across large reasoning models?",
+            "AtomThink: Multimodal Slow Thinking with Atomic Step Reasoning",
+            "Mitigating Prompt-Induced Hallucinations in Large Language Models via Structured Reasoning",
+            "Logical Phase Transitions: Understanding Collapse in LLM Logical Reasoning",
+            "PILOT: Planning via Internalized Latent Optimization Trajectories for Large Language Models"
+          ]
+        },
+        "P1": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P1.json",
+          "review_input_type": "characterization",
+          "profile_name": "RL for robotics",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.AI",
+            "cs.RO"
+          ],
+          "model_unique_nonseed_count": 2,
+          "minilm_unique_nonseed_count": 2,
+          "avg_seed_token_overlap_model_unique": 0.1928,
+          "avg_seed_token_overlap_minilm_unique": 0.1352,
+          "seed_category_match_rate_model_unique": 0.0,
+          "seed_category_match_rate_minilm_unique": 0.5,
+          "representative_model_unique_titles": [
+            "Beyond Static Datasets: Robust Offline Policy Optimization via Vetted Synthetic Transitions",
+            "Representation-Driven Reinforcement Learning"
+          ],
+          "representative_minilm_unique_titles": [
+            "Failure-Aware RL: Reliable Offline-to-Online Reinforcement Learning with Self-Recovery for Real-World Manipulation",
+            "Shaping Sparse Rewards in Reinforcement Learning: A Semi-supervised Approach"
+          ]
+        },
+        "P3": {
+          "review_input_path": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/004-embedding-model-evaluation/experiments/review_inputs/voyage_P3.json",
+          "review_input_type": "characterization",
+          "profile_name": "Quantum computing / quantum ML",
+          "seed_count": 5,
+          "seed_categories": [
+            "cs.ET",
+            "quant-ph"
+          ],
+          "model_unique_nonseed_count": 6,
+          "minilm_unique_nonseed_count": 5,
+          "avg_seed_token_overlap_model_unique": 0.2814,
+          "avg_seed_token_overlap_minilm_unique": 0.2921,
+          "seed_category_match_rate_model_unique": 0.6667,
+          "seed_category_match_rate_minilm_unique": 0.8,
+          "representative_model_unique_titles": [
+            "Random-Matrix-Induced Simplicity Bias in Over-parameterized Variational Quantum Circuits",
+            "Optimizing Compilation for Distributed Quantum Computing via Clustering and Annealing",
+            "Quantum-enhanced long short-term memory with attention for spatial permeability prediction in oilfield reservoirs",
+            "Cutting Quantum Circuits Beyond Qubits",
+            "Quantum Simulation of Protein Fragment Electronic Structure Using Moment-based Adaptive Variational Quantum Algorithms"
+          ],
+          "representative_minilm_unique_titles": [
+            "Variational decision diagrams for quantum-inspired machine learning applications",
+            "Experimental robustness benchmarking of quantum neural networks on a superconducting quantum processor",
+            "Quantum Approximate Optimization Algorithm for Test Case Optimization",
+            "Quantum Circuit for Quantum Fourier Transform for Arbitrary Qubit Connectivity Graphs",
+            "Quantum Computing in the Computational Landscape of Power Electronics: Vision and Reality"
+          ]
+        }
+      },
+      "interaction_context_from_006": {
+        "mean_knn_union_delta_vs_tfidf_at_20": -0.9375,
+        "mean_centroid_union_delta_vs_tfidf_at_20": -4.375,
+        "mean_method_jaccard_centroid_vs_knn_at_20": 0.4747,
+        "saved_family_read": "method-sensitive",
+        "category_family_read": "method-sensitive"
+      },
+      "mean_tau_vs_minilm_from_004": 0.4993,
+      "structural_distinctness_proxy": 0.5007
+    }
+  }
+}

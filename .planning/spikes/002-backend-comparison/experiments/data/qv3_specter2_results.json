@@ -1,0 +1,455 @@
+{
+  "minilm": {
+    "model": "all-MiniLM-L6-v2",
+    "dim": 384,
+    "per_paper_ms_gpu": 1.7,
+    "per_paper_ms_cpu": 35
+  },
+  "specter2": {
+    "model": "allenai/specter2_base",
+    "dim": 768,
+    "device": "cuda",
+    "compute_time_s": 396.57,
+    "per_paper_ms": 20.599,
+    "memory_bytes": 59142144,
+    "memory_mb": 56.4
+  },
+  "similarity_comparison": {
+    "num_seeds": 10,
+    "top_k": 10,
+    "avg_jaccard": 0.1779,
+    "per_seed": [
+      {
+        "seed_id": "2010.11450",
+        "seed_title": "Optimal Approximation -- Smoothness Tradeoffs for Soft-Max Functions",
+        "seed_category": "cs.LG",
+        "jaccard": 0.0,
+        "shared_count": 0,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2512.09720",
+            "title": "A Smooth Approximation Framework for Weakly Convex Optimization",
+            "category": "math.OC"
+          },
+          {
+            "arxiv_id": "2601.12604",
+            "title": "Beyond Softmax and Entropy: Improving Convergence Guarantees of Policy Gradients by f-SoftArgmax Par",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2512.10825",
+            "title": "An Elementary Proof of the Near Optimality of LogSumExp Smoothing",
+            "category": "math.ST"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2601.00611",
+            "title": "Stronger Approximation Guarantees for Non-Monotone {\\gamma}-Weakly DR-Submodular Maximization",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2601.09860",
+            "title": "Improved Algorithms for Fair Matroid Submodular Maximization",
+            "category": "cs.DS"
+          },
+          {
+            "arxiv_id": "2601.15682",
+            "title": "Tight Bounds for Gaussian Mean Estimation under Personalized Differential Privacy",
+            "category": "cs.DS"
+          }
+        ]
+      },
+      {
+        "seed_id": "2601.03098",
+        "seed_title": "From Muscle to Text with MyoText: sEMG to Text via Finger Classification and Transformer-Based Decod",
+        "seed_category": "cs.LG",
+        "jaccard": 0.1765,
+        "shared_count": 3,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2601.22090",
+            "title": "ReactEMG Stroke: Healthy-to-Stroke Few-shot Adaptation for sEMG-Based Intent Detection",
+            "category": "cs.RO"
+          },
+          {
+            "arxiv_id": "2601.04181",
+            "title": "Lightweight Test-Time Adaptation for EMG-Based Gesture Recognition",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2506.11862",
+            "title": "Confidence-Based Self-Training for EMG-to-Speech: Leveraging Synthetic EMG for Robust Modeling",
+            "category": "cs.SD"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2601.20447",
+            "title": "Assembling the Mind's Mosaic: Towards EEG Semantic Intent Decoding",
+            "category": "q-bio.NC"
+          },
+          {
+            "arxiv_id": "2601.19079",
+            "title": "Neuromorphic BrailleNet: Accurate and Generalizable Braille Reading Beyond Single Characters through",
+            "category": "cs.RO"
+          },
+          {
+            "arxiv_id": "2511.07920",
+            "title": "Lightweight Diffusion-based Framework for Online Imagined Speech Decoding in Aphasia",
+            "category": "cs.AI"
+          }
+        ]
+      },
+      {
+        "seed_id": "2508.08997",
+        "seed_title": "Intrinsic Memory Agents: Heterogeneous Multi-Agent LLM Systems through Structured Contextual Memory",
+        "seed_category": "cs.AI",
+        "jaccard": 0.3333,
+        "shared_count": 5,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2601.06966",
+            "title": "RealMem: Benchmarking LLMs in Real-World Memory-Driven Interaction",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.03543",
+            "title": "EvolMem: A Cognitive-Driven Benchmark for Multi-Session Dialogue Memory",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.05890",
+            "title": "StackPlanner: A Centralized Hierarchical Multi-Agent System with Task-Experience Memory Management",
+            "category": "cs.AI"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2510.07593",
+            "title": "AgentAsk: Multi-Agent Systems Need to Ask",
+            "category": "cs.AI"
+          },
+          {
+            "arxiv_id": "2508.17281",
+            "title": "From Language to Action: A Review of Large Language Models as Autonomous Agents and Tool Users",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.12979",
+            "title": "The Bitter Lesson of Diffusion Language Models for Agentic Workflows: A Comprehensive Reality Check",
+            "category": "cs.CL"
+          }
+        ]
+      },
+      {
+        "seed_id": "2601.11340",
+        "seed_title": "Neural Chain-of-Thought Search: Searching the Optimal Reasoning Path to Enhance Large Language Model",
+        "seed_category": "cs.CL",
+        "jaccard": 0.1111,
+        "shared_count": 2,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2510.04182",
+            "title": "Thinking on the Fly: Test-Time Reasoning Enhancement via Latent Thought Policy Optimization",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2503.21614",
+            "title": "A Survey of Efficient Reasoning for Large Reasoning Models: Language, Multimodality, and Beyond",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2508.05988",
+            "title": "Pruning the Unsurprising: Efficient LLM Reasoning via First-Token Surprisal",
+            "category": "cs.LG"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2506.02397",
+            "title": "OThink-R1: Intrinsic Fast/Slow Thinking Mode Switching for Over-Reasoning Mitigation",
+            "category": "cs.AI"
+          },
+          {
+            "arxiv_id": "2512.24574",
+            "title": "Understanding and Steering the Cognitive Behaviors of Reasoning Models at Test-Time",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.07238",
+            "title": "Group Pattern Selection Optimization: Let LRMs Pick the Right Pattern for Reasoning",
+            "category": "cs.AI"
+          }
+        ]
+      },
+      {
+        "seed_id": "2601.15319",
+        "seed_title": "Large Language Models as Simulative Agents for Neurodivergent Adult Psychometric Profiles",
+        "seed_category": "q-bio.NC",
+        "jaccard": 0.1111,
+        "shared_count": 2,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2601.09833",
+            "title": "Stable and Explainable Personality Trait Evaluation in Large Language Models with Internal Activatio",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.07110",
+            "title": "The Need for a Socially-Grounded Persona Framework for User Simulation",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.10246",
+            "title": "coTherapist: A Behavior-Aligned Small Language Model to Support Mental Healthcare Experts",
+            "category": "cs.CL"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2601.14264",
+            "title": "Psychometric Comparability of LLM-Based Digital Twins",
+            "category": "cs.CY"
+          },
+          {
+            "arxiv_id": "2601.18630",
+            "title": "Assessing the Quality of Mental Health Support in LLM Responses through Multi-Attribute Human Evalua",
+            "category": "cs.AI"
+          },
+          {
+            "arxiv_id": "2601.18085",
+            "title": "\"Crash Test Dummies\" for AI-Enabled Clinical Assessment: Validating Virtual Patient Scenarios with V",
+            "category": "cs.HC"
+          }
+        ]
+      },
+      {
+        "seed_id": "2601.19667",
+        "seed_title": "SynCABEL: Synthetic Contextualized Augmentation for Biomedical Entity Linking",
+        "seed_category": "cs.CL",
+        "jaccard": 0.1111,
+        "shared_count": 2,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2601.08500",
+            "title": "It's All About the Confidence: An Unsupervised Approach for Multilingual Historical Entity Linking u",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2509.01387",
+            "title": "ABCD-LINK: Annotation Bootstrapping for Cross-Document Fine-Grained Links",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.02186",
+            "title": "Toward Global Large Language Models in Medicine",
+            "category": "cs.CL"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2601.16711",
+            "title": "Better Generalizing to Unseen Concepts: An Evaluation Framework and An LLM-Based Auto-Labeled Pipeli",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2508.11281",
+            "title": "ToxiFrench: Benchmarking and Enhancing Language Models via CoT Fine-Tuning for French Toxicity Detec",
+            "category": "cs.CL"
+          },
+          {
+            "arxiv_id": "2601.06847",
+            "title": "MedGround: Bridging the Evidence Gap in Medical Vision-Language Models with Verified Grounding Data",
+            "category": "cs.CV"
+          }
+        ]
+      },
+      {
+        "seed_id": "2601.10326",
+        "seed_title": "On gradient stability in nonlinear PDE models and inference in interacting particle systems",
+        "seed_category": "math.ST",
+        "jaccard": 0.25,
+        "shared_count": 4,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2512.24567",
+            "title": "Optimal Transport, Timesteppers, Newton-Krylov Methods and Steady States of Collective Particle Dyna",
+            "category": "math.NA"
+          },
+          {
+            "arxiv_id": "2601.02725",
+            "title": "Sampling non-log-concave densities via Hessian-free high-resolution dynamics",
+            "category": "math.PR"
+          },
+          {
+            "arxiv_id": "2404.09503",
+            "title": "Data-driven identification of reaction-diffusion dynamics from finitely many non-local noisy measure",
+            "category": "math.OC"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2601.20456",
+            "title": "Fokker--Planck Dynamics on Star Graphs with Variable Drift: Well-Posedness, Adjoint Analysis, and Nu",
+            "category": "math.NA"
+          },
+          {
+            "arxiv_id": "2406.01320",
+            "title": "Structural and Convergence Analysis of Discrete-Time Denoising Diffusion Probabilistic Models",
+            "category": "math.PR"
+          },
+          {
+            "arxiv_id": "2601.09210",
+            "title": "On the Identification of Latent Objectives in Stochastic Control",
+            "category": "math.OC"
+          }
+        ]
+      },
+      {
+        "seed_id": "2307.00847",
+        "seed_title": "An analysis on stochastic Lanczos quadrature with asymmetric quadrature nodes",
+        "seed_category": "math.NA",
+        "jaccard": 0.1765,
+        "shared_count": 3,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2601.10248",
+            "title": "Restoring similarity in randomized Krylov methods with applications to eigenvalue problems and matri",
+            "category": "math.NA"
+          },
+          {
+            "arxiv_id": "2601.11145",
+            "title": "Eigenvector-based acceleration strategies for gradient-type methods",
+            "category": "math.NA"
+          },
+          {
+            "arxiv_id": "2504.19308",
+            "title": "Efficient approximations of matrix multiplication using truncated decompositions",
+            "category": "math.NA"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2507.19246",
+            "title": "Multi-Level Monte Carlo sampling with Parallel-in-Time Integration for Uncertainty Quantification in",
+            "category": "cs.CE"
+          },
+          {
+            "arxiv_id": "2512.20777",
+            "title": "Improving Matrix Exponential for Generative AI Flows: A Taylor-Based Approach Beyond Paterson--Stock",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2601.17432",
+            "title": "An algorithmic approach to direct spline products: procedures and computational aspects",
+            "category": "math.NA"
+          }
+        ]
+      },
+      {
+        "seed_id": "2508.07119",
+        "seed_title": "Compressibility Barriers to Neighborhood-Preserving Data Visualizations",
+        "seed_category": "cs.CG",
+        "jaccard": 0.1765,
+        "shared_count": 3,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2512.12805",
+            "title": "From Small to Large: Generalization Bounds for Transformers on Variable-Size Inputs",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2312.03688",
+            "title": "Twin-width of sparse random graphs",
+            "category": "math.CO"
+          },
+          {
+            "arxiv_id": "2601.16552",
+            "title": "Understanding and Improving UMAP with Geometric and Topological Priors: The JORC-UMAP Algorithm",
+            "category": "cs.LG"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2601.20844",
+            "title": "$\\mathbb{R}^{2k}$ is Theoretically Large Enough for Embedding-based Top-$k$ Retrieval",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2402.10818",
+            "title": "Trading off Consistency and Dimensionality of Convex Surrogates for the Mode",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2503.04316",
+            "title": "Mapping bipartite networks into multidimensional hyperbolic spaces",
+            "category": "physics.soc-ph"
+          }
+        ]
+      },
+      {
+        "seed_id": "2601.22120",
+        "seed_title": "Comparative Assessment of Look-Ahead Economic Dispatch and Ramp Products for Grid Flexibility",
+        "seed_category": "eess.SY",
+        "jaccard": 0.3333,
+        "shared_count": 5,
+        "minilm_only_sample": [
+          {
+            "arxiv_id": "2506.21510",
+            "title": "Joint Scheduling of DER under Demand Charges: Structure and Approximation",
+            "category": "eess.SY"
+          },
+          {
+            "arxiv_id": "2601.10973",
+            "title": "Toward Adaptive Grid Resilience: A Gradient-Free Meta-RL Framework for Critical Load Restoration",
+            "category": "cs.LG"
+          },
+          {
+            "arxiv_id": "2601.13615",
+            "title": "Resilient Hierarchical Power Control for Hybrid GFL/GFM Microgrids Under Mixed Cyber-Attacks and Phy",
+            "category": "eess.SY"
+          }
+        ],
+        "specter_only_sample": [
+          {
+            "arxiv_id": "2512.21754",
+            "title": "Economic and Reliability Value of Improved Offshore Wind Forecasting in Bulk Power Grid Operation: A",
+            "category": "eess.SY"
+          },
+          {
+            "arxiv_id": "2601.15135",
+            "title": "Stochastic EMS for Optimal 24/7 Carbon-Free Energy Operations",
+            "category": "eess.SY"
+          },
+          {
+            "arxiv_id": "2601.13202",
+            "title": "Emissions and cost tradeoffs of time-matched clean electricity procurement under inter-annual weathe",
+            "category": "eess.SY"
+          }
+        ]
+      }
+    ]
+  },
+  "search_latency": {
+    "minilm": {
+      "label": "MiniLM-384",
+      "dim": 384,
+      "n_papers": 19252,
+      "p50_ms": 2.81,
+      "p95_ms": 3.728
+    },
+    "specter2": {
+      "label": "SPECTER2-768",
+      "dim": 768,
+      "n_papers": 19252,
+      "p50_ms": 3.529,
+      "p95_ms": 18.038
+    }
+  },
+  "memory_at_215k": {
+    "minilm_mb": 315.0,
+    "specter2_mb": 630.0
+  },
+  "timestamp": "2026-03-19T01:45:29Z"
+}

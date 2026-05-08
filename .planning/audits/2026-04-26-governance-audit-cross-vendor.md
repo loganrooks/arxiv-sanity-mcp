@@ -1,0 +1,100 @@
+---
+type: cross-vendor-governance-audit
+status: complete
+date: 2026-04-26
+target: governance-doc set (ADRs 0001-0004 + AGENTS + CLAUDE + REQUIREMENTS-outside-v0.2 + ROADMAP-outside-12-17 + STATE + foundation-audit + ECOSYSTEM-COMMENTARY)
+auditor: GPT-5.5 via codex CLI, reasoning_effort=high
+independence: This audit was dispatched without reference to any audit of the v0.2 plan layer. The dispatching prompt forbade reading prior v0.2-plan-audit artifacts per METHODOLOGY discipline A's independent-dispatch sub-discipline.
+---
+
+# Cross-Vendor Governance Audit
+
+## Summary
+
+The governance substrate is directionally coherent: ADRs 0001-0004, AGENTS.md, and the v0.1/v0.2 planning canon all preserve the same core commitments around exploration, metadata-first design, provenance, rights, and MCP-native workflow objects. The main gaps are not doctrinal contradiction but operational drift: CLAUDE.md and STATE.md are stale, tool/test counts disagree across authority surfaces, and some "binding" language in derivative v0.2 artifacts strengthens ADR-0001 beyond what ADR-0001 itself says. Recommended action is a governance refresh pass: update live state/instructions, add binding-check clauses to ADRs, and produce a closeout matrix for foundation-audit findings.
+
+## Findings by dimension
+
+### Dimension 1 — ADR coherence and binding clarity
+
+**Finding 1.1: ADRs 0001-0004 are coherent but mostly posture-level decisions, not drift tests.** ADR-0001 says multiple retrieval/ranking strategies "can coexist," workflow-state features can be added without rewriting core, interest state is not reduced to tags, and unresolved questions remain documented until evidence justifies closure (docs/adrs/ADR-0001-exploration-first.md:20-25). Its own note says it is about "process and architecture posture" (docs/adrs/ADR-0001-exploration-first.md:38-41). That makes it a real guardrail, but not a precise contract by itself. Confidence: high. Recommended action: add a short "binding checks" section to ADR-0001 defining what would count as violation, for example single-lens-only public contracts, schema-level tag primacy, or hidden closure of open questions.
+
+**Finding 1.2: ADR-0002, ADR-0003, and ADR-0004 bind more concretely than ADR-0001.** ADR-0002 names eager metadata ingestion, metadata/lexical workflows, and lazy/selective enrichment for embeddings, graph enrichments, conversion, and popularity signals (docs/adrs/ADR-0002-metadata-first-lazy-enrichment.md:12-23). ADR-0003 names source/acquisition path, conversion backend/warnings, ranking-signal provenance, and hosted/public conservatism (docs/adrs/ADR-0003-license-and-provenance-first.md:14-24). ADR-0004 rules out one mega search tool and anticipates workflow objects, resources, and prompts (docs/adrs/ADR-0004-mcp-as-workflow-substrate.md:12-20). Confidence: high. Recommended action: keep these ADRs, but add explicit "common misuses" so downstream docs cannot cite them for narrower decisions they do not make.
+
+**Finding 1.3: ADR-0005 faithfully extends ADR-0001 in spirit, but strengthens its register.** ADR-0005 says ADR-0001's coexistence claim had been treated as aspiration rather than implementation requirement (docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md:7-10) and then commits to at least two lenses, lens parameters, per-lens dictionaries, dispatcher shape, retrieval-shaped citation storage, and disagreement/intersection operations (docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md:21-40). This is a defensible operationalization, but the "binding posture" language is stronger than ADR-0001's original posture wording. Confidence: medium-high. Recommended action: leave ADR-0005 in place, but add a note that ADR-0005 is the binding implementation contract; ADR-0001 alone was the motivating doctrine.
+
+### Dimension 2 — AGENTS.md / CLAUDE.md operational discipline
+
+**Finding 2.1: AGENTS.md matches current doctrine better than CLAUDE.md.** AGENTS.md tells agents not to assume tags, dense retrieval, lexical obsolescence, UI-shaped MCP, or "paper chat" (AGENTS.md:15-25), and it encodes the preferred abstractions and implementation bias (AGENTS.md:62-87). That matches ADRs 0001-0004. CLAUDE.md, however, says "Phases 1-5 + 04.1 complete," "10 tools," and "Phase 6 is next" (CLAUDE.md:9), while ROADMAP says v0.1 Phases 1-10 are complete and v0.2 Phases 12-17 are active (.planning/ROADMAP.md:3-10). Confidence: high. Recommended action: update CLAUDE.md immediately or demote it to a thin pointer to AGENTS.md plus ROADMAP/STATE.
+
+**Finding 2.2: The status-marker discipline exists but is inconsistently used.** AGENTS.md and CLAUDE.md both require Settled / Chosen for now / Hypothesis / Open markers (AGENTS.md:39-45, CLAUDE.md:26-32). REQUIREMENTS uses `[chosen for now]` on five historically over-firm requirements (.planning/REQUIREMENTS.md:53-54, .planning/REQUIREMENTS.md:82, .planning/REQUIREMENTS.md:91-93). Most roadmap and phase-context prose does not use the newer source-traceable / artifact-reported / derived / interpretive schema, and at least one older context still uses plain "inferred" (.planning/phases/02-workflow-state/02-CONTEXT.md:40). Confidence: medium. Recommended action: add the epistemic schema to new CONTEXT.md templates and do not retrofit all older files except where they remain active.
+
+**Finding 2.3: There is duplication without a clear authority rule.** CLAUDE.md repeats AGENTS-level ADR summaries and roadmap sequencing (CLAUDE.md:11-24, CLAUDE.md:46-50), while AGENTS.md contains the fuller operational and epistemic discipline (AGENTS.md:110-136). Confidence: high. Recommended action: make AGENTS.md canonical for agent conduct; make CLAUDE.md runtime-specific and minimal.
+
+### Dimension 3 — REQUIREMENTS / ROADMAP outside v0.2 — historical accuracy + forward coherence
+
+**Finding 3.1: v0.1 capability claims mostly match shipped artifacts, but counts drift.** CHANGELOG says v0.1 shipped 13 tools, 4 resource templates, and 3 prompts (CHANGELOG.md:12-20). Tests assert exactly 13 MCP tools and list the expected tool set (tests/test_mcp/test_tool_names.py:12-23, tests/test_mcp/test_tool_names.py:29-49). Resource and prompt definitions exist for four resources and three prompts (src/arxiv_mcp/mcp/resources/paper.py:21-23, src/arxiv_mcp/mcp/resources/collection.py:18-20, src/arxiv_mcp/mcp/resources/profile.py:18-20, src/arxiv_mcp/mcp/resources/watch.py:18-20; src/arxiv_mcp/mcp/prompts/literature_review.py:15-22, src/arxiv_mcp/mcp/prompts/daily_digest.py:15-23, src/arxiv_mcp/mcp/prompts/triage_shortlist.py:20-29). CLAUDE.md still says 10 tools (CLAUDE.md:9), and LONG-ARC says 403 tests (.planning/LONG-ARC.md:22-27), while current pytest collection reports 493 tests. Confidence: high on tool/resource/prompt count; medium on test count because I collected tests but did not run them. Recommended action: update all status surfaces to 13 tools and the current test-count convention, or stop placing volatile test counts in doctrine files.
+
+**Finding 3.2: MCP-07 is internally inconsistent after later growth.** REQUIREMENTS says MCP-07 is a `[chosen for now]` 5-10 tool heuristic and explicitly says it is "not a firm requirement" (.planning/REQUIREMENTS.md:91-94). The test suite now makes "exactly 13" the asserted behavior while still describing the test as verifying MCP-07 (tests/test_mcp/test_tool_names.py:1-4, tests/test_mcp/test_tool_names.py:12-23). Confidence: high. Recommended action: replace MCP-07 with "tool count is justified and grouped by user intent" rather than any numeric cap, or archive the cap as superseded.
+
+**Finding 3.3: Historical requirement-to-phase mapping is auditable, but the reverse mapping is uneven.** REQUIREMENTS has a direct traceability table for v0.1 and v0.2 requirements (.planning/REQUIREMENTS.md:175-256), and ROADMAP phase blocks list requirement codes (.planning/ROADMAP.md:42-52, .planning/ROADMAP.md:59-68, .planning/ROADMAP.md:75-84). However, Phase 2's success criteria omit "seen" while REQUIREMENTS now includes it under WKFL-03 (.planning/ROADMAP.md:63-68, .planning/REQUIREMENTS.md:37-47). Confidence: medium-high. Recommended action: do not rewrite v0.1 history wholesale, but add a small "post-audit corrections" note where historical phase text is known to be superseded.
+
+**Finding 3.4: v2-deferred items remain coherent with v0.2, with one needed annotation.** v2 semantic search and selective embeddings remain deferred (.planning/REQUIREMENTS.md:141-147), and v0.2 explicitly keeps pgvector and Semantic Scholar out of scope (.planning/milestones/v0.2-MILESTONE.md:32-40, .planning/milestones/v0.2-MILESTONE.md:77-83). Advanced citation sources remain complementary because v0.2 uses OpenAlex first but preserves fallback/re-deliberation if coverage is insufficient (.planning/ROADMAP.md:294-314). Confidence: medium. Recommended action: annotate ADVN-02 as "broader citation coverage after OpenAlex-first v0.2," not a duplicate.
+
+### Dimension 4 — STATE.md reliability
+
+**Finding 4.1: STATE.md is stale on the active planning surface.** Its frontmatter says v0.2 shape is committed but the detailed v0.2 plan is "still to be written" (.planning/STATE.md:6-9). ROADMAP and v0.2-MILESTONE now contain detailed Phases 12-17, plan counts, dependencies, risks, and success criteria (.planning/ROADMAP.md:31-39, .planning/milestones/v0.2-MILESTONE.md:54-75). Confidence: high. Recommended action: refresh STATE.md before any go/no-go routing.
+
+**Finding 4.2: STATE.md carries conflicting metrics.** Frontmatter says 31 total plans and 31 completed plans (.planning/STATE.md:10-15), while the velocity section says total plans completed is 23 (.planning/STATE.md:37-43). The file also says current focus is inter-milestone spike exploration (.planning/STATE.md:24-33), while ROADMAP says current work is active v0.2 multi-lens planning (.planning/ROADMAP.md:3-4). Confidence: high. Recommended action: split "v0.1 historical completion" from "current v0.2 planning" in STATE.md, rather than using one progress bar for both.
+
+**Finding 4.3: Timestamping discipline is present but not fully propagated.** STATE has `last_updated: 2026-04-25T20:00:00Z` (.planning/STATE.md:6-9), yet the session-continuity section still says last session was 2026-04-16 and stopped at post-v0.1 spike exploration (.planning/STATE.md:222-226). Confidence: high. Recommended action: update session continuity whenever frontmatter is updated, or mark old continuity blocks as historical.
+
+### Dimension 5 — Foundation-audit notes: ratified vs orphaned
+
+**Finding 5.1: Inventory is small and legible.** The directory contains `METHODOLOGY.md` and `FINDINGS.md`. METHODOLOGY defines evidence categories, alternative evaluation, sensitivity, inference-chain integrity, category discipline, verdicts, and confidence notation (.planning/foundation-audit/METHODOLOGY.md:7-60). FINDINGS scopes roadmap structural changes, requirements extraction, Phase 3-4 CONTEXT files, and ADRs 0001-0004 (.planning/foundation-audit/FINDINGS.md:6-13). Confidence: high. Recommended action: keep the directory as historical governance substrate.
+
+**Finding 5.2: Most high-impact findings were ratified and resolved elsewhere.** Quick Task 1 states it removed the signal-type CHECK, added composite enrichment PK, removed category-based negative demotion, added OpenAlex email config, annotated open questions, annotated requirements, and added AGENTS epistemic discipline (.planning/quick/1-foundation-fixes-extensible-schemas-remo/1-SUMMARY.md:75-105). Phase 04.1 then fixed ranking triple-counting, added "seen," documented pagination approximation, and aligned planning docs (.planning/phases/04.1-mcp-v1-expose-existing-services-as-mcp-tools-and-resources/04.1-01-SUMMARY.md:70-97). Confidence: high. Recommended action: add a foundation-audit closeout matrix linking each finding to its resolution artifact.
+
+**Finding 5.3: The remaining "pending user validation" items are not orphaned, but they are under-tracked.** docs/10 annotates Q1, Q4, and Q16 as resolved during implementation but pending user validation (docs/10-open-questions.md:8-11, docs/10-open-questions.md:30-37, docs/10-open-questions.md:103-118). There is no single live tracker that says whether that validation happened. Confidence: medium-high. Recommended action: move those three pending validations into STATE.md or an explicit governance follow-up list.
+
+### Dimension 6 — ECOSYSTEM-COMMENTARY scope and currency
+
+**Finding 6.1: ECOSYSTEM-COMMENTARY is responsibly dated.** The top banner says it was written 2026-03-11 before Phase 04.1, and that numbers reflect pre-04.1 state, with recommendations in sections 3-4 implemented in Phase 04.1 (.planning/ECOSYSTEM-COMMENTARY.md:1-5). Confidence: high. Recommended action: retain it as historical analysis.
+
+**Finding 6.2: Some sections still read like forward recommendations despite being implemented.** The document recommends MCP v1 then validation then content normalization (.planning/ECOSYSTEM-COMMENTARY.md:34-53), and later proposes a minimal MCP surface (.planning/ECOSYSTEM-COMMENTARY.md:127-148). ROADMAP shows that resequencing and subsequent phases already happened (.planning/ROADMAP.md:106-161, .planning/ROADMAP.md:196-220). Confidence: high. Recommended action: add a one-line status under each major recommendation: "implemented in Phase 04.1/5/6" or "historical."
+
+**Finding 6.3: I did not verify external ecosystem claims.** The doc's claims about arxiv-scan, Hugging Face, OpenAlex, and community MCP servers may still be useful, but external state can drift and this audit did not browse or inspect `/scratch/arxiv-scan` (.planning/ECOSYSTEM-COMMENTARY.md:101-123; docs/07-data-sources-content-rights.md:96-120). Confidence: low on current external truth; high on the document being clearly dated. Recommended action: refresh external claims before using them to justify new v0.2/v0.3 commitments.
+
+### Dimension 7 — Closure-pressure / register-inflation at the doctrine layer
+
+**Finding 7.1: ADRs 0001-0004 are comparatively restrained.** ADR-0001 explicitly frames itself as posture, not implementation avoidance (docs/adrs/ADR-0001-exploration-first.md:38-41). ADR-0002 says it sets the early default and does not prohibit broader enrichment later (docs/adrs/ADR-0002-metadata-first-lazy-enrichment.md:36-39). ADR-0004 says not all workflow objects ship in v1 (docs/adrs/ADR-0004-mcp-as-workflow-substrate.md:32-35). Confidence: high. Recommended action: no major correction.
+
+**Finding 7.2: Derivative doctrine uses stronger labels than the foundational ADRs.** LONG-ARC names protected seams that "must preserve" lens-extensibility, per-lens provenance, lens-aware MCP, citation/community data, longitudinal state, and inspectability (.planning/LONG-ARC.md:29-41). VISION calls multi-lens the "architecturally load-bearing claim" (.planning/VISION.md:34-39). These are not unsupported, but they are stronger than ADR-0001's original posture. Confidence: medium-high. Recommended action: keep the stronger v0.2 doctrine but cite ADR-0005, VISION, and LONG-ARC as the current binding layer, not ADR-0001 alone.
+
+**Finding 7.3: Some instruction-as-aspiration is visible.** MCP-07's 5-10 tool heuristic became a completed requirement despite 13 tools (.planning/REQUIREMENTS.md:91-94; tests/test_mcp/test_tool_names.py:12-23). AGENTS.md says open questions require user confirmation or ADR rationale before closure (AGENTS.md:123-127), while docs/10 still has implementation-resolved-but-pending-validation questions (docs/10-open-questions.md:8-11, docs/10-open-questions.md:30-37). Confidence: high. Recommended action: distinguish hard rules from heuristics in requirements and agent instructions.
+
+### Dimension 8 — Doctrine-vs-derivative integrity
+
+**Finding 8.1: Derivative v0.2 artifacts inherit ADR-0001 faithfully at the product-shape level, but not merely by deduction.** ADR-0001 supports coexistence and documented uncertainty (docs/adrs/ADR-0001-exploration-first.md:20-25). ADR-0005 turns that into two shipped lenses, lens parameters, per-lens dict outputs, dispatcher refactor, and disagreement/intersection operations (docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md:23-40). That is a legitimate design decision, not a simple entailment. Confidence: medium-high. Recommended action: describe v0.2 as "chosen to operationalize ADR-0001," not "required by ADR-0001" unless citing ADR-0005.
+
+**Finding 8.2: VISION and LONG-ARC extend doctrine coherently.** VISION extends ADR-0003's provenance commitment into recommendation-level provenance and trust calibration (.planning/VISION.md:72-75), while LONG-ARC says ADR-0003 binds inspectability and hidden ranker state (.planning/LONG-ARC.md:35-40). This is a coherent extension because ADR-0003 already includes ranking-signal provenance "where practical" (docs/adrs/ADR-0003-license-and-provenance-first.md:20-24). Confidence: high. Recommended action: keep this extension explicit as an extension, not as a quotation of ADR-0003.
+
+**Finding 8.3: ROADMAP depends on a same-cycle audit artifact as evidence for Option B.** ROADMAP says the v0.2 choice was "Property-audit-grounded" and cites a 2026-04-25 audit (.planning/ROADMAP.md:8-10). For this audit, that evidence was intentionally forbidden, so the claim is opaque here. Confidence: high on the citation structure; no confidence on the underlying audit content. Recommended action: make ADR-0005 and the deliberation the primary live authority, with audit artifacts as evidence appendices.
+
+## Cross-cutting observations
+
+The project has a healthy pattern of auditing and then actually changing code and planning docs: foundation findings flowed into Quick Task 1, Phase 04.1, and later v0.2 doctrine (.planning/quick/1-foundation-fixes-extensible-schemas-remo/1-SUMMARY.md:75-105; .planning/phases/04.1-mcp-v1-expose-existing-services-as-mcp-tools-and-resources/04.1-01-SUMMARY.md:70-97; .planning/LONG-ARC.md:42-63). The weak point is freshness management across overlapping authority surfaces. ROADMAP and REQUIREMENTS are current; STATE and CLAUDE are not; ECOSYSTEM-COMMENTARY is historical but well labeled; foundation-audit is resolved in practice but lacks a closeout ledger.
+
+The v0.2 layer also reveals a governance pattern: when a posture ADR becomes insufficiently binding, the project writes a stronger derivative doctrine. That is acceptable, but the chain should be named accurately. ADR-0001 is the source of the concern; ADR-0005/LONG-ARC/VISION are the current binding governance layer.
+
+## Confidence calibration
+
+High-confidence findings are cross-confirmed across multiple files: CLAUDE/ROADMAP/CHANGELOG/test-tool-count drift, STATE/ROADMAP/v0.2-MILESTONE drift, and foundation-audit resolution through Quick Task 1 plus Phase 04.1 summaries. Medium-confidence findings concern register and doctrine strength, because they depend on interpretive comparison between ADR wording and derivative artifacts. Low-confidence findings concern external ecosystem currency, because this audit did not browse and did not inspect external arxiv-scan state.
+
+Current test count was verified by `.venv/bin/pytest --collect-only -q` collecting 493 tests, but the full test suite was not executed. `uv run pytest --collect-only -q` could not be used under the sandbox because uv tried to fetch `pytest-timeout` from PyPI.
+
+Same-vendor adversarial confirmation would be most useful for Dimension 7 register-inflation judgments and Dimension 8's "faithful but stronger than entailed" reading of ADR-0005.
+
+## What I am not telling you
+
+I did not audit source-code behavior beyond spot-checking exposed MCP surface counts and test collection. I did not read the forbidden v0.2 plan-audit artifacts. I did not verify external ecosystem claims against the live internet or external `/scratch/arxiv-scan` files. I did not decide whether v0.2 itself is the right product direction; I audited whether the governance substrate and derivative claims are coherent, fresh, and traceable.

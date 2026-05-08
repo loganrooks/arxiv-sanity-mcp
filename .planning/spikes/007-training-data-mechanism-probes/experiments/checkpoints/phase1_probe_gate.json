@@ -1,0 +1,214 @@
+{
+  "phase": "phase1_probe_gate",
+  "timestamp": "2026-04-16T19:54:56.894309+00:00",
+  "source_handoff": "/home/rookslog/workspace/projects/arxiv-sanity-mcp/.planning/spikes/006-model-retrieval-interactions/HANDOFF.md",
+  "shortlist_from_006": [
+    "specter2",
+    "stella",
+    "gte",
+    "voyage"
+  ],
+  "dropped_from_006": [
+    "qwen3"
+  ],
+  "probe_profiles_chosen_for_now": {
+    "profiles": [
+      "P2",
+      "P3",
+      "P6",
+      "P7",
+      "P8"
+    ],
+    "rationale": {
+      "P2": "broad conceptual reasoning; strongest Voyage-style open-profile divergence and useful GTE/Qwen-style contrast site",
+      "P3": "specialized quantum domain; strongest SPECTER2-style specialization test",
+      "P6": "diffusion / multimodal generation; strongest Stella instability and application-extension site",
+      "P7": "dense federated/privacy profile; useful for Stella/GTE and interaction with dense-topic behavior",
+      "P8": "mathematical foundations; strongest specialization and methodological-envelope test"
+    }
+  },
+  "data_readiness": [
+    {
+      "probe": "citation_or_community_overlap",
+      "status": "blocked",
+      "threshold": ">= 70% selected probe papers with required metadata",
+      "seed_coverage_fraction": 0.0083,
+      "cluster_coverage_fraction": 0.0063,
+      "raw": {
+        "openalex_cache_total": 500,
+        "papers_with_referenced_works": 95,
+        "papers_with_related_works": 0,
+        "seed_total": 120,
+        "seed_with_refs": 1,
+        "cluster_total": 158,
+        "cluster_with_refs": 1,
+        "referenced_works_pointing_to_corpus": 8
+      },
+      "reason": "S3a (bibliographic coupling): SEVERELY DATA-LIMITED. Only 1 of 120 seed papers has referenced_works. 95 of 500 enriched papers have references, but these are NOT the seed or cluster papers used for evaluation. The strategy can be implemented and will produce scores for the 95 papers with data, but meaningful evaluation against interest profiles is not possible. S3c (related_works): NON-FUNCTIONAL. 0 papers have related_works populated."
+    },
+    {
+      "probe": "vocabulary_overlap_and_adjacent_field",
+      "status": "runnable",
+      "coverage_fraction": 1.0,
+      "reason": "The 2000-paper sample contains title/abstract/category fields for essentially the full evaluation surface."
+    },
+    {
+      "probe": "profile_specialization_sensitivity",
+      "status": "runnable",
+      "profiles_available": {
+        "specter2": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5",
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "stella": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5",
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "gte": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5",
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "voyage": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5",
+          "P6",
+          "P7",
+          "P8"
+        ]
+      },
+      "reason": "Spike 004 metrics exist for every shortlisted family across all 8 profiles, so divergence concentration by profile can be tested immediately."
+    }
+  ],
+  "probe_registry": [
+    {
+      "family": "specter2",
+      "mechanism_claim": "citation-community similarity stronger than vocabulary similarity, especially on specialized domains",
+      "subprobes": [
+        {
+          "name": "citation_or_community_overlap",
+          "status": "blocked",
+          "note": "Direct citation/community verification cannot run with current metadata coverage."
+        },
+        {
+          "name": "profile_specialization_sensitivity",
+          "status": "runnable",
+          "probe_profiles": [
+            "P3",
+            "P8",
+            "P2"
+          ],
+          "note": "Test whether divergence concentrates on specialized domains where citation-community structure should matter most."
+        }
+      ],
+      "runnable_claim": true
+    },
+    {
+      "family": "stella",
+      "mechanism_claim": "practical / deployment-oriented extension rather than pure topic matching",
+      "subprobes": [
+        {
+          "name": "application_and_deployment_proxy_probe",
+          "status": "runnable",
+          "probe_profiles": [
+            "P6",
+            "P7",
+            "P2"
+          ],
+          "note": "Proxy test only: compare Stella-unique papers against deployment/application-oriented lexical markers and category spread."
+        },
+        {
+          "name": "profile_specialization_sensitivity",
+          "status": "runnable",
+          "probe_profiles": [
+            "P6",
+            "P7"
+          ],
+          "note": "Check whether Stella divergence concentrates on practical, systems-heavy profiles."
+        }
+      ],
+      "runnable_claim": true,
+      "qualification": "This is weaker and more proxy-dependent than the SPECTER2 or GTE claims."
+    },
+    {
+      "family": "gte",
+      "mechanism_claim": "broader methodological envelope that stays near the incumbent ranking structure",
+      "subprobes": [
+        {
+          "name": "vocabulary_overlap_and_adjacent_field",
+          "status": "runnable",
+          "probe_profiles": [
+            "P2",
+            "P7",
+            "P8"
+          ],
+          "note": "Check whether GTE uniques widen into adjacent methodological substrate without collapsing topical coherence."
+        },
+        {
+          "name": "profile_specialization_sensitivity",
+          "status": "runnable",
+          "probe_profiles": [
+            "P2",
+            "P8"
+          ],
+          "note": "Check whether the wider methodological envelope concentrates on profiles where foundational-method variation is expected."
+        }
+      ],
+      "runnable_claim": true
+    },
+    {
+      "family": "voyage",
+      "mechanism_claim": "broader conceptual similarity that diverges most on open-ended conceptual profiles",
+      "subprobes": [
+        {
+          "name": "profile_specialization_sensitivity",
+          "status": "runnable",
+          "probe_profiles": [
+            "P2",
+            "P3",
+            "P7"
+          ],
+          "note": "Check whether divergence is highest on broader conceptual profiles and lower on narrow, well-defined ones."
+        },
+        {
+          "name": "vocabulary_overlap_and_adjacent_field",
+          "status": "runnable",
+          "probe_profiles": [
+            "P2",
+            "P3"
+          ],
+          "note": "Check whether Voyage uniques remain conceptually coherent rather than merely cross-category."
+        }
+      ],
+      "runnable_claim": true,
+      "qualification": "Operational issues from Spike 004 remain; this spike tests mechanism support, not deployment fitness."
+    }
+  ],
+  "gate_verdict": {
+    "proceed_with_probe_wave": true,
+    "reason": "Proceed. The citation/community subprobe is blocked, but every live family still has at least one concrete runnable mechanism claim via specialization or lexical/adjacent-field probes.",
+    "blocked_subprobes": [
+      "citation_or_community_overlap"
+    ]
+  }
+}

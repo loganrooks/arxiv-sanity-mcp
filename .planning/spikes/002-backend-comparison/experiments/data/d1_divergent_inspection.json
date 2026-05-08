@@ -1,0 +1,302 @@
+{
+  "inspections": [
+    {
+      "query_name": "long_query",
+      "query_text": "multi-agent system cooperative reinforcement learning",
+      "jaccard": 0.0,
+      "shared_count": 13,
+      "fts5_only_count": 0,
+      "pg_only_count": 0,
+      "fts5_only_sample": [],
+      "pg_only_sample": []
+    },
+    {
+      "query_name": "method_specific",
+      "query_text": "self-supervised contrastive",
+      "jaccard": 0.0,
+      "shared_count": 11,
+      "fts5_only_count": 9,
+      "pg_only_count": 9,
+      "fts5_only_sample": [
+        {
+          "arxiv_id": "2507.17224",
+          "title": "HuiduRep: A Robust Self-Supervised Framework for Learning Neural Representations from Extracellular Recordings",
+          "abstract": "Extracellular recordings are transient voltage fluctuations in the vicinity of neurons, serving as a fundamental modality in neuroscience for decoding brain activity at single-neuron resolution. Spike...",
+          "category": "eess.SP"
+        },
+        {
+          "arxiv_id": "2510.10069",
+          "title": "SyncLipMAE: Contrastive Masked Pretraining for Audio-Visual Talking-Face Representation",
+          "abstract": "We introduce SyncLipMAE, a self-supervised pretraining framework for talking-face video that learns synchronization-aware and transferable facial dynamics from unlabeled audio-visual streams. Our appr...",
+          "category": "cs.AI"
+        },
+        {
+          "arxiv_id": "2512.03862",
+          "title": "Diminishing Returns in Self-Supervised Learning",
+          "abstract": "Transformer-based architectures have become a dominant paradigm in vision and language, but their success is often attributed to large model capacity and massive training data. In this work, we examin...",
+          "category": "cs.CV"
+        },
+        {
+          "arxiv_id": "2601.00276",
+          "title": "Task-Driven Kernel Flows: Label Rank Compression and Laplacian Spectral Filtering",
+          "abstract": "We present a theory of feature learning in wide L2-regularized networks showing that supervised learning is inherently compressive. We derive a kernel ODE that predicts a \"water-filling\" spectral evol...",
+          "category": "cs.LG"
+        },
+        {
+          "arxiv_id": "2601.00669",
+          "title": "Physics-Guided Dual-Domain Plug-and-Play ADMM for Low-Dose CT Reconstruction",
+          "abstract": "Ultra-low-dose CT (ULDCT) imaging can greatly reduce patient radiation exposure, but the resulting scans suffer from severe structured and random noise that degrades image quality. To address this cha...",
+          "category": "eess.IV"
+        }
+      ],
+      "pg_only_sample": [
+        {
+          "arxiv_id": "2501.04942",
+          "title": "SIGNL: A Label-Efficient Audio Deepfake Detection System via Spectral-Temporal Graph Non-Contrastive Learning",
+          "abstract": "Audio deepfake detection is increasingly important as synthetic speech becomes more realistic and accessible. Recent methods, including those using graph neural networks (GNNs) to model frequency and ...",
+          "category": "cs.SD"
+        },
+        {
+          "arxiv_id": "2501.13718",
+          "title": "A Mutual Information Perspective on Multiple Latent Variable Generative Models for Positive View Generation",
+          "abstract": "In image generation, Multiple Latent Variable Generative Models (MLVGMs) employ multiple latent variables to gradually shape the final images, from global characteristics to finer and local details (e...",
+          "category": "cs.CV"
+        },
+        {
+          "arxiv_id": "2511.14639",
+          "title": "SLAM-AGS: Slide-Label Aware Multi-Task Pretraining Using Adaptive Gradient Surgery in Computational Cytology",
+          "abstract": "Computational cytology faces two major challenges: i) instance-level labels are unreliable and prohibitively costly to obtain, ii) witness rates are extremely low. We propose SLAM-AGS, a Slide-Label-A...",
+          "category": "cs.CV"
+        },
+        {
+          "arxiv_id": "2512.24373",
+          "title": "Skim-Aware Contrastive Learning for Efficient Document Representation",
+          "abstract": "Although transformer-based models have shown strong performance in word- and sentence-level tasks, effectively representing long documents, especially in fields like law and medicine, remains difficul...",
+          "category": "cs.CL"
+        },
+        {
+          "arxiv_id": "2601.02203",
+          "title": "Parameter-Efficient Domain Adaption for CSI Crowd-Counting via Self-Supervised Learning with Adapter Modules",
+          "abstract": "Device-free crowd-counting using WiFi Channel State Information (CSI) is a key enabling technology for a new generation of privacy-preserving Internet of Things (IoT) applications. However, practical ...",
+          "category": "cs.CV"
+        }
+      ]
+    },
+    {
+      "query_name": "two_word",
+      "query_text": "language model",
+      "jaccard": 0.0256,
+      "shared_count": 1,
+      "fts5_only_count": 19,
+      "pg_only_count": 19,
+      "fts5_only_sample": [
+        {
+          "arxiv_id": "2401.18034",
+          "title": "Paramanu: Compact and Competitive Monolingual Language Models for Low-Resource Morphologically Rich Indian Languages",
+          "abstract": "Multilingual large language models (LLMs) are expensive to pretrain and often suffer from imbalances across languages and datasets, English-centric bias, tokenizer oversegmentation for morphologically...",
+          "category": "cs.CL"
+        },
+        {
+          "arxiv_id": "2505.20445",
+          "title": "In-context Language Learning for Endangered Languages in Speech Recognition",
+          "abstract": "With approximately 7,000 languages spoken worldwide, current large language models (LLMs) support only a small subset. Prior research indicates LLMs can learn new languages for certain tasks without s...",
+          "category": "cs.CL"
+        },
+        {
+          "arxiv_id": "2507.11832",
+          "title": "ILID: Native Script Language Identification for Indian Languages",
+          "abstract": "The language identification task is a crucial fundamental step in NLP. Often it serves as a pre-processing step for widely used NLP applications such as multilingual machine translation, information r...",
+          "category": "cs.CL"
+        },
+        {
+          "arxiv_id": "2511.13368",
+          "title": "Donors and Recipients: On Asymmetric Transfer Across Tasks and Languages with Parameter-Efficient Fine-Tuning",
+          "abstract": "Large language models (LLMs) perform strongly across tasks and languages, yet how improvements in one task or language affect other tasks and languages remains poorly understood. We conduct a controll...",
+          "category": "cs.CL"
+        },
+        {
+          "arxiv_id": "2512.01557",
+          "title": "Language Diversity: Evaluating Language Usage and AI Performance on African Languages in Digital Spaces",
+          "abstract": "This study examines the digital representation of African languages and the challenges this presents for current language detection tools. We evaluate their performance on Yoruba, Kinyarwanda, and Amh...",
+          "category": "cs.CL"
+        }
+      ],
+      "pg_only_sample": [
+        {
+          "arxiv_id": "2310.19531",
+          "title": "MiLe Loss: a New Entropy-Weighed Loss for Mitigating the Bias of Learning Difficulties in Large Language Models",
+          "abstract": "Generative language models are usually pretrained on large text corpus via predicting the next token (i.e., sub-word/word/phrase) given the previous ones. Recent works have demonstrated the impressive...",
+          "category": "cs.CL"
+        },
+        {
+          "arxiv_id": "2405.19631",
+          "title": "Leveraging Open-Source Large Language Models for encoding Social Determinants of Health using an Intelligent Router",
+          "abstract": "Social Determinants of Health (SDOH), also known as Health-Related Social Needs (HSRN), play a significant role in patient health outcomes. The Centers for Disease Control and Prevention (CDC) introdu...",
+          "category": "cs.AI"
+        },
+        {
+          "arxiv_id": "2406.17651",
+          "title": "Software Model Evolution with Large Language Models: Experiments on Simulated, Public, and Industrial Datasets",
+          "abstract": "Modeling structure and behavior of software systems plays a crucial role in the industrial practice of software engineering. As with other software engineering artifacts, software models are subject t...",
+          "category": "cs.SE"
+        },
+        {
+          "arxiv_id": "2409.15298",
+          "title": "Sorbet: A Neuromorphic Hardware-Compatible Transformer-Based Spiking Language Model",
+          "abstract": "For reasons such as privacy, there are use cases for language models at the edge. This has given rise to small language models targeted for deployment in resource-constrained devices where energy effi...",
+          "category": "cs.NE"
+        },
+        {
+          "arxiv_id": "2412.01212",
+          "title": "Berezinskii--Kosterlitz--Thouless transition in a context-sensitive random language model",
+          "abstract": "Several power-law critical properties involving different statistics in natural languages -- reminiscent of scaling properties of physical systems at or near phase transitions -- have been documented ...",
+          "category": "stat.ML"
+        }
+      ]
+    },
+    {
+      "query_name": "multi_field_broad",
+      "query_text": "neural network optimization",
+      "jaccard": 0.1111,
+      "shared_count": 4,
+      "fts5_only_count": 16,
+      "pg_only_count": 16,
+      "fts5_only_sample": [
+        {
+          "arxiv_id": "2307.00344",
+          "title": "Sparse-Input Neural Network using Group Concave Regularization",
+          "abstract": "Simultaneous feature selection and non-linear function estimation is challenging in modeling, especially in high-dimensional settings where the number of variables exceeds the available sample size. I...",
+          "category": "stat.ML"
+        },
+        {
+          "arxiv_id": "2402.00152",
+          "title": "Deeper or Wider: A Perspective from Optimal Generalization Error with Sobolev Loss",
+          "abstract": "Constructing the architecture of a neural network is a challenging pursuit for the machine learning community, and the dilemma of whether to go deeper or wider remains a persistent question. This pape...",
+          "category": "cs.LG"
+        },
+        {
+          "arxiv_id": "2406.09132",
+          "title": "Jacobian-Enhanced Neural Networks",
+          "abstract": "Jacobian-Enhanced Neural Networks (JENN) are densely connected multi-layer perceptrons, whose training process is modified to predict partial derivatives accurately. Their main benefit is better accur...",
+          "category": "cs.LG"
+        },
+        {
+          "arxiv_id": "2407.00449",
+          "title": "Fully tensorial approach to hypercomplex-valued neural networks",
+          "abstract": "A fully tensorial theoretical framework for hypercomplex-valued neural networks is presented. The proposed approach enables neural network architectures to operate on data defined over arbitrary finit...",
+          "category": "cs.LG"
+        },
+        {
+          "arxiv_id": "2409.14123",
+          "title": "Consistency for Large Neural Networks: Regression and Classification",
+          "abstract": "Although overparameterized models have achieved remarkable practical success, their theoretical properties, particularly their generalization behavior, remain incompletely understood. The well known d...",
+          "category": "stat.ML"
+        }
+      ],
+      "pg_only_sample": [
+        {
+          "arxiv_id": "2209.04078",
+          "title": "Progressive Optimal Path Sampling for Closed-Loop Optimal Control Design with Deep Neural Networks",
+          "abstract": "Closed-loop optimal control design for high-dimensional nonlinear systems has been a long-standing challenge. Traditional methods, such as solving the associated Hamilton-Jacobi-Bellman equation, suff...",
+          "category": "math.OC"
+        },
+        {
+          "arxiv_id": "2411.17782",
+          "title": "Joint Resource Optimization, Computation Offloading and Resource Slicing for Multi-Edge Traffic-Cognitive Networks",
+          "abstract": "The evolving landscape of edge computing envisions platforms operating as dynamic intermediaries between application providers and edge servers (ESs), where task offloading is coupled with payments fo...",
+          "category": "cs.DC"
+        },
+        {
+          "arxiv_id": "2501.18792",
+          "title": "Bayesian Optimization with Preference Exploration using a Monotonic Neural Network Ensemble",
+          "abstract": "Many real-world black-box optimization problems have multiple conflicting objectives. Rather than attempting to approximate the entire set of Pareto-optimal solutions, interactive preference learning ...",
+          "category": "cs.LG"
+        },
+        {
+          "arxiv_id": "2502.19890",
+          "title": "Physics-Informed Neural Networks for Optimal Vaccination Plan in SIR Epidemic Models",
+          "abstract": "This work focuses on understanding the minimum eradication time for the controlled Susceptible-Infectious-Recovered (SIR) model in the time-homogeneous setting, where the infection and recovery rates ...",
+          "category": "math.OC"
+        },
+        {
+          "arxiv_id": "2502.20580",
+          "title": "Training Large Neural Networks With Low-Dimensional Error Feedback",
+          "abstract": "Training deep neural networks typically relies on backpropagating high dimensional error signals a computationally intensive process with little evidence supporting its implementation in the brain. Ho...",
+          "category": "cs.LG"
+        }
+      ]
+    },
+    {
+      "query_name": "three_word",
+      "query_text": "reinforcement learning agent",
+      "jaccard": 0.1429,
+      "shared_count": 5,
+      "fts5_only_count": 15,
+      "pg_only_count": 15,
+      "fts5_only_sample": [
+        {
+          "arxiv_id": "2411.05454",
+          "title": "Emergent Cooperative Strategies for Multi-Agent Shepherding via Reinforcement Learning",
+          "abstract": "We present a decentralized reinforcement learning (RL) approach to address the multi-agent shepherding control problem, departing from the conventional assumption of cohesive target groups. Our two-la...",
+          "category": "eess.SY"
+        },
+        {
+          "arxiv_id": "2505.00540",
+          "title": "Emergence of Roles in Robotic Teams with Model Sharing and Limited Communication",
+          "abstract": "We present a reinforcement learning strategy for use in multi-agent foraging systems in which the learning is centralised to a single agent and its model is periodically disseminated among the populat...",
+          "category": "cs.MA"
+        },
+        {
+          "arxiv_id": "2506.09049",
+          "title": "VIKI-R: Coordinating Embodied Multi-Agent Cooperation via Reinforcement Learning",
+          "abstract": "Coordinating multiple embodied agents in dynamic environments remains a core challenge in artificial intelligence, requiring both perception-driven reasoning and scalable cooperation strategies. While...",
+          "category": "cs.AI"
+        },
+        {
+          "arxiv_id": "2509.09219",
+          "title": "Vejde: A Framework for Inductive Deep Reinforcement Learning Based on Factor Graph Color Refinement",
+          "abstract": "We present and evaluate Vejde; a framework which combines data abstraction, graph neural networks and reinforcement learning to produce inductive policy functions for decision problems with richly str...",
+          "category": "cs.LG"
+        },
+        {
+          "arxiv_id": "2509.23870",
+          "title": "Gradient Coupling: The Hidden Barrier to Generalization in Agentic Reinforcement Learning",
+          "abstract": "Reinforcement learning (RL) is a dominant paradigm for training autonomous agents, yet these agents often exhibit poor generalization, failing to adapt to scenarios not seen during training. In this w...",
+          "category": "cs.AI"
+        }
+      ],
+      "pg_only_sample": [
+        {
+          "arxiv_id": "2406.08844",
+          "title": "Equilibrium Selection for Multi-agent Reinforcement Learning: A Unified Framework",
+          "abstract": "While multi-agent reinforcement learning (MARL) has produced numerous algorithms that converge to Nash or related equilibria, such equilibria are often non-unique and can exhibit widely varying effici...",
+          "category": "cs.GT"
+        },
+        {
+          "arxiv_id": "2411.12130",
+          "title": "Adversarial Multi-Agent Reinforcement Learning for Proactive False Data Injection Detection",
+          "abstract": "Smart inverters are instrumental in the integration of distributed energy resources into the electric grid. Such inverters rely on communication layers for continuous control and monitoring, potential...",
+          "category": "eess.SY"
+        },
+        {
+          "arxiv_id": "2503.09252",
+          "title": "Large-scale Regional Traffic Signal Control Based on Single-Agent Reinforcement Learning",
+          "abstract": "In the context of global urbanization and motorization, traffic congestion has become a significant issue, severely affecting the quality of life, environment, and economy. This paper puts forward a s...",
+          "category": "cs.LG"
+        },
+        {
+          "arxiv_id": "2505.08825",
+          "title": "Multi-source Plume Tracing via Multi-Agent Reinforcement Learning",
+          "abstract": "Industrial catastrophes like the Bhopal disaster (1984) and the Aliso Canyon gas leak (2015) demonstrate the urgent need for rapid and reliable plume tracing algorithms to protect public health and th...",
+          "category": "cs.MA"
+        },
+        {
+          "arxiv_id": "2507.14995",
+          "title": "LLM-Enhanced Multi-Agent Reinforcement Learning with Expert Workflow for Real-Time P2P Energy Trading",
+          "abstract": "Real-time peer-to-peer (P2P) electricity markets dynamically adapt to fluctuations in renewable energy and variations in demand, maximizing economic benefits through instantaneous price responses whil...",
+          "category": "cs.MA"
+        }
+      ]
+    }
+  ]
+}

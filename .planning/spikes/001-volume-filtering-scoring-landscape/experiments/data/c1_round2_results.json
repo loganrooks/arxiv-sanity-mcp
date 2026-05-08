@@ -1,0 +1,214 @@
+{
+  "C1_R1_keyword": [
+    {
+      "keyword_set": "RL+robotics",
+      "keywords": [
+        "reinforcement learning",
+        "robot",
+        "manipulation",
+        "control"
+      ],
+      "volume": 91,
+      "volume_fraction": 0.1978,
+      "coverage": 0.2268,
+      "regret": 0.7732,
+      "efficiency": 1.1465
+    },
+    {
+      "keyword_set": "LLM+reasoning",
+      "keywords": [
+        "language model",
+        "reasoning",
+        "chain of thought",
+        "prompt"
+      ],
+      "volume": 141,
+      "volume_fraction": 0.3065,
+      "coverage": 0.2371,
+      "regret": 0.7629,
+      "efficiency": 0.7736
+    },
+    {
+      "keyword_set": "diffusion+generation",
+      "keywords": [
+        "diffusion",
+        "generation",
+        "image",
+        "synthesis"
+      ],
+      "volume": 125,
+      "volume_fraction": 0.2717,
+      "coverage": 0.2577,
+      "regret": 0.7423,
+      "efficiency": 0.9485
+    },
+    {
+      "keyword_set": "graph+network",
+      "keywords": [
+        "graph neural",
+        "node",
+        "edge",
+        "relational"
+      ],
+      "volume": 84,
+      "volume_fraction": 0.1826,
+      "coverage": 0.1031,
+      "regret": 0.8969,
+      "efficiency": 0.5646
+    },
+    {
+      "keyword_set": "security+privacy",
+      "keywords": [
+        "privacy",
+        "federated",
+        "attack",
+        "adversarial",
+        "security"
+      ],
+      "volume": 43,
+      "volume_fraction": 0.0935,
+      "coverage": 0.0722,
+      "regret": 0.9278,
+      "efficiency": 0.772
+    }
+  ],
+  "C1_R2_author": [
+    {
+      "strategy": "prolific (>=5 papers)",
+      "volume": 120,
+      "volume_fraction": 0.2609,
+      "coverage": 0.268,
+      "regret": 0.732,
+      "efficiency": 1.0275
+    },
+    {
+      "strategy": "top 10 followed",
+      "volume": 8,
+      "volume_fraction": 0.0174,
+      "coverage": 0.0206,
+      "regret": 0.9794,
+      "efficiency": 1.1856
+    }
+  ],
+  "C1_R3_svm": [
+    {
+      "threshold": "top50%",
+      "avg_coverage": 0.5196,
+      "avg_volume_fraction": 0.5,
+      "avg_efficiency": 1.0392,
+      "coverage_std": 0.0563
+    },
+    {
+      "threshold": "top20%",
+      "avg_coverage": 0.1876,
+      "avg_volume_fraction": 0.2,
+      "avg_efficiency": 0.9381,
+      "coverage_std": 0.02
+    },
+    {
+      "threshold": "top10%",
+      "avg_coverage": 0.0887,
+      "avg_volume_fraction": 0.1,
+      "avg_efficiency": 0.8866,
+      "coverage_std": 0.0266
+    }
+  ],
+  "C1_R4_hybrid": [
+    {
+      "strategy": "keyword only",
+      "volume": 221,
+      "volume_fraction": 0.4804,
+      "coverage": 0.5052,
+      "regret": 0.4948,
+      "efficiency": 1.0515
+    },
+    {
+      "strategy": "embedding top50%",
+      "volume": 230,
+      "volume_fraction": 0.5,
+      "coverage": 0.4845,
+      "regret": 0.5155,
+      "efficiency": 0.9691
+    },
+    {
+      "strategy": "prolific authors",
+      "volume": 120,
+      "volume_fraction": 0.2609,
+      "coverage": 0.268,
+      "regret": 0.732,
+      "efficiency": 1.0275
+    },
+    {
+      "strategy": "union (any)",
+      "volume": 315,
+      "volume_fraction": 0.6848,
+      "coverage": 0.6804,
+      "regret": 0.3196,
+      "efficiency": 0.9936
+    },
+    {
+      "strategy": "intersection (all)",
+      "volume": 68,
+      "volume_fraction": 0.1478,
+      "coverage": 0.134,
+      "regret": 0.866,
+      "efficiency": 0.9066
+    }
+  ],
+  "C1_R5_specter2": {
+    "strategies": [
+      {
+        "strategy": "MiniLM top50%",
+        "volume": 230,
+        "volume_fraction": 0.5,
+        "coverage": 0.4845,
+        "regret": 0.5155,
+        "efficiency": 0.9691
+      },
+      {
+        "strategy": "SPECTER2 top50%",
+        "volume": 230,
+        "volume_fraction": 0.5,
+        "coverage": 0.5155,
+        "regret": 0.4845,
+        "efficiency": 1.0309
+      }
+    ],
+    "filter_overlap_jaccard": 0.6487,
+    "shared_count": 181
+  },
+  "C1_R6_sensitivity": {
+    "proxy_sizes": {
+      "citations": 97,
+      "references": 92,
+      "fwci": 460
+    },
+    "sensitivity": [
+      {
+        "proxy": "citations",
+        "volume": 230,
+        "volume_fraction": 0.5,
+        "coverage": 0.4845,
+        "regret": 0.5155,
+        "efficiency": 0.9691
+      },
+      {
+        "proxy": "references",
+        "volume": 230,
+        "volume_fraction": 0.5,
+        "coverage": 0.4239,
+        "regret": 0.5761,
+        "efficiency": 0.8478
+      },
+      {
+        "proxy": "fwci",
+        "volume": 230,
+        "volume_fraction": 0.5,
+        "coverage": 0.5,
+        "regret": 0.5,
+        "efficiency": 1.0
+      }
+    ]
+  },
+  "timestamp": "2026-03-19T02:22:11Z"
+}

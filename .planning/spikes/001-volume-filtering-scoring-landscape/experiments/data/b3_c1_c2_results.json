@@ -1,0 +1,164 @@
+{
+  "B3": {
+    "group_correlations": {
+      "bibliometric": 0.5711,
+      "structural": 0.2806,
+      "content": 0.0764
+    },
+    "conclusion": "At least 2 distinct dimensions: bibliometric impact and content properties. They are weakly correlated \u2014 a paper can be highly cited but topically unremarkable, or topically novel but uncited. Multi-axis display recommended.",
+    "recommendation": "Show bibliometric strength AND content relevance separately, not single composite score."
+  },
+  "C1": {
+    "important_count": 97,
+    "total_enriched": 460,
+    "importance_threshold": 1.0,
+    "strategies": [
+      {
+        "strategy": "no_filter",
+        "volume": 460,
+        "volume_fraction": 1.0,
+        "coverage": 1.0,
+        "regret": 0.0,
+        "efficiency": 1.0
+      },
+      {
+        "strategy": "top3_categories",
+        "volume": 188,
+        "volume_fraction": 0.4087,
+        "coverage": 0.3299,
+        "regret": 0.6701,
+        "efficiency": 0.8072
+      },
+      {
+        "strategy": "top5_categories",
+        "volume": 235,
+        "volume_fraction": 0.5109,
+        "coverage": 0.4227,
+        "regret": 0.5773,
+        "efficiency": 0.8274
+      },
+      {
+        "strategy": "embedding_top50pct",
+        "volume": 230,
+        "volume_fraction": 0.5,
+        "coverage": 0.4845,
+        "regret": 0.5155,
+        "efficiency": 0.9691
+      },
+      {
+        "strategy": "refs_above_median",
+        "volume": 460,
+        "volume_fraction": 1.0,
+        "coverage": 1.0,
+        "regret": 0.0,
+        "efficiency": 1.0
+      }
+    ],
+    "conclusion": "Category filtering provides moderate coverage reduction with proportional coverage loss. Embedding-based filtering shows higher efficiency (better coverage-to-volume ratio). No sharp elbow \u2014 tradeoff is roughly linear."
+  },
+  "C2": {
+    "assumptions": {
+      "papers_per_month": 19252,
+      "embed_gpu_ms_minilm": 1.7,
+      "embed_cpu_ms_minilm": 35,
+      "embed_gpu_ms_specter2": 20.6,
+      "openalex_rate_per_sec": 10
+    },
+    "strategies": [
+      {
+        "strategy": "S1: Triage-only embedding",
+        "description": "Embed only triaged/collected papers",
+        "embed_fraction": 0.05,
+        "enrich_fraction": 0.1,
+        "monthly": {
+          "papers_ingested": 19252,
+          "papers_embedded": 962,
+          "papers_enriched": 1925
+        },
+        "daily": {
+          "gpu_embed_seconds_minilm": 0.05,
+          "cpu_embed_seconds_minilm": 1.12,
+          "gpu_embed_seconds_specter2": 0.66,
+          "openalex_seconds": 6.42
+        },
+        "yearly": {
+          "db_storage_gb": 1.25,
+          "embedding_storage_384_gb": 0.017,
+          "embedding_storage_768_gb": 0.033,
+          "total_storage_gb": 1.27
+        }
+      },
+      {
+        "strategy": "S2: Top 10% by filter score",
+        "description": "Embed papers passing filtering threshold",
+        "embed_fraction": 0.1,
+        "enrich_fraction": 0.2,
+        "monthly": {
+          "papers_ingested": 19252,
+          "papers_embedded": 1925,
+          "papers_enriched": 3850
+        },
+        "daily": {
+          "gpu_embed_seconds_minilm": 0.11,
+          "cpu_embed_seconds_minilm": 2.25,
+          "gpu_embed_seconds_specter2": 1.32,
+          "openalex_seconds": 12.83
+        },
+        "yearly": {
+          "db_storage_gb": 1.25,
+          "embedding_storage_384_gb": 0.033,
+          "embedding_storage_768_gb": 0.066,
+          "total_storage_gb": 1.29
+        }
+      },
+      {
+        "strategy": "S3: All ingested papers",
+        "description": "Embed everything",
+        "embed_fraction": 1.0,
+        "enrich_fraction": 0.5,
+        "monthly": {
+          "papers_ingested": 19252,
+          "papers_embedded": 19252,
+          "papers_enriched": 9626
+        },
+        "daily": {
+          "gpu_embed_seconds_minilm": 1.09,
+          "cpu_embed_seconds_minilm": 22.46,
+          "gpu_embed_seconds_specter2": 13.22,
+          "openalex_seconds": 32.09
+        },
+        "yearly": {
+          "db_storage_gb": 1.25,
+          "embedding_storage_384_gb": 0.33,
+          "embedding_storage_768_gb": 0.661,
+          "total_storage_gb": 1.58
+        }
+      },
+      {
+        "strategy": "S4: Enrich then embed enriched",
+        "description": "OpenAlex enrich all, embed those with citations",
+        "embed_fraction": 0.3,
+        "enrich_fraction": 1.0,
+        "monthly": {
+          "papers_ingested": 19252,
+          "papers_embedded": 5775,
+          "papers_enriched": 19252
+        },
+        "daily": {
+          "gpu_embed_seconds_minilm": 0.33,
+          "cpu_embed_seconds_minilm": 6.74,
+          "gpu_embed_seconds_specter2": 3.97,
+          "openalex_seconds": 64.17
+        },
+        "yearly": {
+          "db_storage_gb": 1.25,
+          "embedding_storage_384_gb": 0.099,
+          "embedding_storage_768_gb": 0.198,
+          "total_storage_gb": 1.35
+        }
+      }
+    ],
+    "conclusion": "All promotion strategies are resource-feasible at our measured ingestion rate. Even the most aggressive (embed everything with SPECTER2) requires only ~3.5 minutes of GPU time per day. Storage grows 1.5-15 GB/year. The constraint is not resources but signal quality \u2014 which signals to compute depends on B2/B3 findings, not compute cost."
+  },
+  "timestamp": "2026-03-19T02:03:28Z"
+}

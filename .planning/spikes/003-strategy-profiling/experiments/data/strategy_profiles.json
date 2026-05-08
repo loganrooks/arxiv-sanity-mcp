@@ -1,0 +1,703 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "spike": "003",
+    "generated": "2026-03-20",
+    "corpus": {
+      "source": "arXiv OAI-PMH January 2026",
+      "size": 19252,
+      "categories": 151,
+      "enriched_count": 500
+    },
+    "evaluation": {
+      "protocol": "leave-one-out MRR + 6 instruments",
+      "instruments": [
+        "leave_one_out_mrr",
+        "seed_proximity",
+        "topical_coherence",
+        "cluster_diversity",
+        "novelty",
+        "category_surprise",
+        "coverage"
+      ],
+      "interest_profiles": 8,
+      "seed_selections_per_profile": 3,
+      "top_k": 20,
+      "caveats": [
+        "LOO clusters defined by MiniLM embeddings -- circularly favors MiniLM",
+        "Qualitative review found TF-IDF underrated by MRR -- held-out recovery is a better quality signal for TF-IDF",
+        "One month of data; seasonal variation not captured",
+        "AI qualitative review, not human domain expert",
+        "SPECTER2 score compression (0.009 spread) makes its MRR unreliable as a ranking signal"
+      ]
+    }
+  },
+
+  "strategies": {
+    "S1a": {
+      "strategy_id": "S1a",
+      "strategy_name": "MiniLM centroid similarity",
+      "model": "all-MiniLM-L6-v2",
+      "dim": 384,
+      "signal_type": "content",
+      "status": "primary",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.398,
+          "std": 0.089,
+          "n_observations": 24,
+          "interpretation": "Highest MRR of any strategy. Partially inflated by circular evaluation (LOO clusters defined by MiniLM). True quality advantage is real but smaller than 4x gap over TF-IDF suggests."
+        },
+        "seed_proximity": {
+          "mean": 0.764,
+          "std": 0.035,
+          "interpretation": "Strong -- recommendations are semantically close to seeds."
+        },
+        "topical_coherence": {
+          "mean": 0.643,
+          "std": 0.039,
+          "interpretation": "Good internal coherence within recommendation sets."
+        },
+        "cluster_diversity": {
+          "mean": 2.54,
+          "std": 1.53,
+          "interpretation": "Low diversity -- recommendations cluster tightly around seed topics. This is precision, not a defect."
+        },
+        "novelty": {
+          "mean": 0.046,
+          "std": 0.101,
+          "interpretation": "Very low -- most recommendations are near seed papers. Good for focused retrieval, bad for discovery."
+        },
+        "category_surprise": {
+          "mean": 0.094,
+          "std": 0.060,
+          "interpretation": "Rarely surprises with out-of-category papers. Stays within expected categories."
+        },
+        "coverage": {
+          "mean": 0.686,
+          "std": 0.078,
+          "interpretation": "Recovers 69% of held-out cluster members in top-20. Best coverage of any strategy."
+        }
+      },
+      "character": {
+        "feels_like": "A well-read colleague who knows the semantic neighborhood but sometimes conflates related-sounding work",
+        "best_for": "Papers semantically similar to seeds, especially for narrow/distinctive topics",
+        "worst_for": "Papers that describe the same concept with different vocabulary; papers from adjacent paradigms that should not be included but share terms",
+        "failure_mode": "Adjacent-paradigm conflation (e.g., imitation learning in an RL search)",
+        "score_spread": 0.053,
+        "score_interpretation": "Moderate spread; ranking carries some information but adjacent ranks are noisy"
+      },
+      "qualitative_review": {
+        "held_out_recovery": "2/15 across 3 profiles",
+        "profile_paper_recovery": "8/15 across 3 profiles",
+        "estimated_false_positive_rate": 0.20,
+        "unique_papers_in_top20": "24/60 (40% unique vs other strategies)"
+      },
+      "resources": {
+        "embedding_compute_gpu_s": 33,
+        "embedding_compute_cpu_s": 684,
+        "storage_float32_mb": 28.2,
+        "storage_float16_mb": 14.1,
+        "storage_int8_mb": 7.1,
+        "query_latency_brute_ms": 16,
+        "query_latency_hnsw_ms": 0.8,
+        "note": "One-time embedding cost for 19K papers. GPU recommended but not required."
+      }
+    },
+
+    "S1c": {
+      "strategy_id": "S1c",
+      "strategy_name": "SPECTER2 proximity adapter",
+      "model": "allenai/specter2_base + proximity adapter",
+      "dim": 768,
+      "signal_type": "content",
+      "status": "secondary_view",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.184,
+          "std": 0.072,
+          "n_observations": 24,
+          "interpretation": "Low MRR, but this is partly misleading. Score compression (0.009 spread) means ranking is essentially random within SPECTER2's top results. MRR penalizes this heavily."
+        },
+        "seed_proximity": {
+          "mean": 0.736,
+          "std": 0.043,
+          "interpretation": "Moderate -- closer to seeds than random but less focused than MiniLM."
+        },
+        "topical_coherence": {
+          "mean": 0.616,
+          "std": 0.049,
+          "interpretation": "Lower coherence reflects broader, more cross-community results."
+        },
+        "cluster_diversity": {
+          "mean": 2.33,
+          "std": 1.25,
+          "interpretation": "Similar to MiniLM in cluster count."
+        },
+        "novelty": {
+          "mean": 0.067,
+          "std": 0.094,
+          "interpretation": "Slightly more novel than MiniLM -- surfaces some papers MiniLM does not."
+        },
+        "category_surprise": {
+          "mean": 0.183,
+          "std": 0.189,
+          "interpretation": "More category surprises than MiniLM -- reflects cross-community discovery character."
+        },
+        "coverage": {
+          "mean": 0.336,
+          "std": 0.115,
+          "interpretation": "Half of MiniLM's coverage. Cannot reliably recover held-out papers."
+        }
+      },
+      "character": {
+        "feels_like": "A department librarian who knows who cites whom but cannot rank within a community",
+        "best_for": "Cross-community papers, field infrastructure (benchmarks, production tools), well-connected work from major labs",
+        "worst_for": "Papers outside the citation community; fine-grained relevance distinctions",
+        "failure_mode": "Occasional wild misfires from citation-graph noise (e.g., classical computing library in quantum ML results); score compression prevents meaningful ranking",
+        "score_spread": 0.009,
+        "score_interpretation": "Near-zero spread -- ranking is effectively meaningless noise. Cannot distinguish #1 from #1000."
+      },
+      "qualitative_review": {
+        "held_out_recovery": "0/15 across 3 profiles",
+        "profile_paper_recovery": "3/15 across 3 profiles",
+        "estimated_false_positive_rate": 0.30,
+        "unique_papers_in_top20": "25/60 (42% unique vs other strategies)"
+      },
+      "resources": {
+        "embedding_compute_gpu_s": 463,
+        "storage_float32_mb": 56.4,
+        "storage_float16_mb": 28.2,
+        "storage_int8_mb": 14.1,
+        "note": "14x slower to embed than MiniLM. GPU strongly recommended. int8 quantization NOT recommended (fails quality threshold for SPECTER2)."
+      },
+      "standalone_viable": false,
+      "standalone_reason": "Score compression prevents standalone ranking. Must be used as a secondary view or diversity signal, not as a primary retrieval strategy."
+    },
+
+    "S1d": {
+      "strategy_id": "S1d",
+      "strategy_name": "TF-IDF cosine similarity",
+      "signal_type": "content",
+      "status": "secondary_view",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.104,
+          "std": 0.031,
+          "n_observations": 24,
+          "interpretation": "Lowest MRR of viable strategies, BUT this is the most egregious evaluation bias. TF-IDF outperforms both embedding strategies on held-out recovery (5/15 vs 2/15 for MiniLM, 0/15 for SPECTER2). MRR systematically underrates TF-IDF because LOO clusters are embedding-defined."
+        },
+        "seed_proximity": {
+          "mean": 0.698,
+          "std": 0.047,
+          "interpretation": "Lower than embeddings -- expected since TF-IDF captures keyword overlap, not semantic proximity."
+        },
+        "topical_coherence": {
+          "mean": 0.564,
+          "std": 0.054,
+          "interpretation": "Moderate -- keyword-matched sets are less topically tight than embedding-matched sets."
+        },
+        "cluster_diversity": {
+          "mean": 3.33,
+          "std": 1.70,
+          "interpretation": "More diverse than embeddings -- keyword matching crosses cluster boundaries."
+        },
+        "novelty": {
+          "mean": 0.083,
+          "std": 0.062,
+          "interpretation": "Low but higher than MiniLM -- finds some unexpected papers via keyword routes."
+        },
+        "category_surprise": {
+          "mean": 0.267,
+          "std": 0.131,
+          "interpretation": "More cross-category than either embedding strategy."
+        },
+        "coverage": {
+          "mean": 0.247,
+          "std": 0.102,
+          "interpretation": "Low cluster coverage, but this metric is circular (embedding-defined clusters). Held-out recovery tells a different story: 5/15 vs 2/15."
+        }
+      },
+      "character": {
+        "feels_like": "A keyword search with intelligent ranking -- literal but precise",
+        "best_for": "Papers using exact same terminology as seeds; held-out recovery; medium-breadth topics where interest overlaps with adjacent paradigms",
+        "worst_for": "Papers that use different terminology for the same concepts; papers whose relevance is conceptual rather than terminological",
+        "failure_mode": "Papers that mention keywords without being primarily about the topic (false positives from vocabulary overlap)",
+        "score_spread": 0.072,
+        "score_interpretation": "Widest spread of any strategy -- ranking carries genuine information. Clear separation between relevant and irrelevant."
+      },
+      "qualitative_review": {
+        "held_out_recovery": "5/15 across 3 profiles (BEST)",
+        "profile_paper_recovery": "11/15 across 3 profiles (BEST)",
+        "estimated_false_positive_rate": 0.20,
+        "unique_papers_in_top20": "28/60 (47% unique vs other strategies)"
+      },
+      "resources": {
+        "matrix_memory_mb": 18,
+        "build_time_s": 2.2,
+        "query_latency_ms": 516,
+        "note": "TF-IDF matrix rebuilt on startup, not persisted. Latency is per-query at 19K; drops with pre-filtering."
+      },
+      "context_sensitivity": {
+        "scale": "DEGRADES at scale. -54% MRR at synthetic 50K. Vocabulary growth dilutes term discrimination.",
+        "breadth": "DEGRADES with breadth. -27% relative to narrow. Broad interests span too much vocabulary.",
+        "cold_start": "Peaks at 5-10 seeds. Below 3 seeds, vocabulary is too sparse for meaningful TF-IDF matching."
+      }
+    },
+
+    "S1g": {
+      "strategy_id": "S1g",
+      "strategy_name": "MiniLM title-only centroid",
+      "signal_type": "content",
+      "status": "eliminated",
+      "elimination_reason": "74% MRR collapse (0.104 vs 0.398 for title+abstract). Title-only embeddings lose critical abstract information. Not viable as a standalone strategy.",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.104,
+          "std": 0.063,
+          "interpretation": "Same as TF-IDF -- title-only MiniLM has lost its semantic advantage and degrades to keyword-level quality."
+        }
+      },
+      "title_vs_abstract_cosine": {
+        "mean": 0.729,
+        "std": 0.087,
+        "interpretation": "Only 73% similarity between title and title+abstract embeddings. Title captures different information than abstract."
+      }
+    },
+
+    "S1h": {
+      "strategy_id": "S1h",
+      "strategy_name": "SPECTER2 title-only adapter",
+      "signal_type": "content",
+      "status": "eliminated",
+      "elimination_reason": "77% MRR collapse (0.042 vs 0.184). SPECTER2 title-only is worse than random for most profiles.",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.042,
+          "std": 0.032,
+          "interpretation": "Near-zero. Title-only SPECTER2 adapter is not functional."
+        }
+      },
+      "title_vs_abstract_cosine": {
+        "mean": 0.952,
+        "std": 0.018,
+        "interpretation": "95% similarity suggests SPECTER2 title embeddings are very close to full embeddings, yet MRR collapses. The small differences are load-bearing."
+      }
+    },
+
+    "S1i": {
+      "strategy_id": "S1i",
+      "strategy_name": "SVM on TF-IDF features",
+      "signal_type": "content",
+      "status": "eliminated",
+      "elimination_reason": "Same quality as TF-IDF cosine (MRR 0.099 vs 0.104) at approximately 10x latency (~2s training per query). No quality benefit justifies the computational overhead.",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.099,
+          "std": 0.035,
+          "interpretation": "Statistically indistinguishable from TF-IDF cosine. The SVM does not learn a better boundary than simple cosine similarity."
+        }
+      }
+    },
+
+    "S1j": {
+      "strategy_id": "S1j",
+      "strategy_name": "MiniLM raw (unnormalized) centroid",
+      "signal_type": "content",
+      "status": "eliminated",
+      "elimination_reason": "Mathematical identity with S1a. Normalized embeddings + cosine similarity = unnormalized centroid + cosine similarity for unit-norm vectors. MRR identical to 6 decimal places.",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.398,
+          "std": 0.089,
+          "interpretation": "Identical to S1a. This confirms the mathematical expectation and eliminates a configuration knob."
+        }
+      }
+    },
+
+    "S2a": {
+      "strategy_id": "S2a",
+      "strategy_name": "Category filtering (primary)",
+      "signal_type": "metadata",
+      "status": "pre_filter_only",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.004,
+          "std": 0.005,
+          "interpretation": "Near-zero MRR. Categories are too coarse for ranking -- cs.AI has 5438 papers. Useful as pre-filter, not as ranker."
+        },
+        "seed_proximity": {
+          "mean": 0.487,
+          "std": 0.083,
+          "interpretation": "Above random (0.282) -- category papers are somewhat related to seeds."
+        },
+        "coverage": {
+          "mean": 0.033,
+          "std": 0.049,
+          "interpretation": "Minimal coverage -- most cluster members span multiple categories."
+        }
+      },
+      "role": "Pre-filter to reduce candidate set before applying content-based strategies. Seed proximity 0.454 confirms it selects relevant subsets."
+    },
+
+    "S2f": {
+      "strategy_id": "S2f",
+      "strategy_name": "Co-author network",
+      "signal_type": "metadata",
+      "status": "micro_booster",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.011,
+          "std": 0.014,
+          "interpretation": "Near-zero. Author overlap is too sparse for recommendation."
+        },
+        "coverage": {
+          "mean": 0.002,
+          "std": 0.005,
+          "interpretation": "0.2% coverage -- almost no papers are reachable through co-authorship in a single month."
+        }
+      },
+      "role": "Tiny signal. Could provide a 'from same lab' badge but not a recommendation strategy."
+    },
+
+    "S2d": {
+      "strategy_id": "S2d",
+      "strategy_name": "FWCI ranking",
+      "signal_type": "metadata",
+      "status": "non_functional",
+      "elimination_reason": "Only 2.6% enrichment coverage. FWCI values exist for too few papers to be useful as a signal. Requires full OpenAlex enrichment expansion.",
+      "note": "FWCI has strong theoretical properties (r=0.75 with citations, field-normalized) but needs enrichment for 50%+ of corpus to be a viable signal."
+    },
+
+    "S2e": {
+      "strategy_id": "S2e",
+      "strategy_name": "Citation count ranking",
+      "signal_type": "metadata",
+      "status": "non_functional",
+      "elimination_reason": "Same enrichment limitation as S2d. Also, January 2026 papers have near-zero citations -- too recent for citation signals.",
+      "note": "Citation-based signals are fundamentally limited for recent papers (< 6 months old)."
+    },
+
+    "S3a": {
+      "strategy_id": "S3a",
+      "strategy_name": "Bibliographic coupling (Jaccard)",
+      "signal_type": "graph",
+      "status": "data_limited",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.0,
+          "std": 0.0,
+          "interpretation": "Zero MRR because only 1 of 120 seed papers has referenced_works data. The strategy literally cannot score seed papers."
+        },
+        "seed_proximity": {
+          "mean": 0.312,
+          "std": 0.057,
+          "interpretation": "Slightly above random (0.282). The 95 papers with reference data show some topical structure."
+        }
+      },
+      "focused_evaluation": {
+        "status": "Algorithm valid, data insufficient",
+        "n_papers_with_refs": 95,
+        "n_viable_topic_groups": 5,
+        "mean_discrimination": 0.467,
+        "interpretation": "When reference data is available, bibliographic coupling DOES discriminate topically related papers (discrimination 0.467 > 0). The algorithm works; coverage must expand from 95/19252 to be useful."
+      },
+      "expansion_needed": {
+        "minimal_viable": {
+          "additional_enrichments": 1617,
+          "estimated_time": "3 minutes at 10 req/s"
+        },
+        "full_corpus": {
+          "additional_enrichments": 18752,
+          "estimated_time": "31 minutes at 10 req/s"
+        }
+      }
+    },
+
+    "S3c": {
+      "strategy_id": "S3c",
+      "strategy_name": "OpenAlex related_works",
+      "signal_type": "graph",
+      "status": "non_functional",
+      "elimination_reason": "Zero papers have related_works populated in OpenAlex cache. Field appears to not be returned for this corpus."
+    },
+
+    "S6a": {
+      "strategy_id": "S6a",
+      "strategy_name": "Random baseline",
+      "signal_type": "baseline",
+      "status": "calibration",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.0,
+          "std": 0.0,
+          "interpretation": "Floor. Any working strategy must beat this."
+        },
+        "seed_proximity": {
+          "mean": 0.282,
+          "std": 0.045,
+          "interpretation": "Random proximity level. Calibration point for all other strategies."
+        },
+        "topical_coherence": {
+          "mean": 0.178,
+          "std": 0.019,
+          "interpretation": "Random coherence. Base rate for the corpus."
+        },
+        "coverage": {
+          "mean": 0.0,
+          "std": 0.0,
+          "interpretation": "Zero coverage -- random never hits cluster members in top-20."
+        }
+      }
+    },
+
+    "S6d": {
+      "strategy_id": "S6d",
+      "strategy_name": "Same primary category baseline",
+      "signal_type": "baseline",
+      "status": "calibration",
+      "instruments": {
+        "leave_one_out_mrr": {
+          "mean": 0.004,
+          "std": 0.005,
+          "interpretation": "Barely above random. Category alone is nearly useless for ranking."
+        },
+        "seed_proximity": {
+          "mean": 0.454,
+          "std": 0.083,
+          "interpretation": "Better than random but below all content strategies. Category provides a rough filter."
+        },
+        "coverage": {
+          "mean": 0.033,
+          "std": 0.049,
+          "interpretation": "Minimal. Categories are too coarse."
+        }
+      }
+    }
+  },
+
+  "combinations": {
+    "finding": "Fusion degrades MiniLM. Pipeline converges to MiniLM. Strategies should be parallel views, not merged.",
+    "complementarity_evidence": {
+      "jaccard_overlap_s1a_s1d_top20": 0.179,
+      "unique_held_out_recoveries": {
+        "s1a_only": 2,
+        "s1d_only": 5,
+        "s1c_only": 0,
+        "total_across_all": 9,
+        "note": "9 unique papers recovered across all strategies, with only partial overlap. Strategies ARE complementary in what they find."
+      }
+    },
+    "best_rrf": {
+      "combination_id": "C1",
+      "components": ["S1a", "S1d"],
+      "fusion": "RRF (k=60)",
+      "mrr": 0.279,
+      "coverage": 0.510,
+      "vs_s1a_alone": "-30% MRR, -26% coverage",
+      "interpretation": "RRF hurts MiniLM because TF-IDF's different ranking permutes MiniLM's good order. The low-MRR strategy drags down the high-MRR strategy."
+    },
+    "best_weighted": {
+      "combination_id": "C4",
+      "components": ["S1a (0.7)", "S1d (0.3)"],
+      "fusion": "weighted linear",
+      "mrr": 0.310,
+      "coverage": 0.545,
+      "vs_s1a_alone": "-22% MRR, -21% coverage",
+      "interpretation": "Weighting toward MiniLM helps but still degrades. Even 70/30 weighting cannot avoid the penalty."
+    },
+    "best_pipeline": {
+      "pipeline_id": "P5",
+      "architecture": "Category pre-filter -> MiniLM",
+      "mrr": 0.398,
+      "coverage": 0.686,
+      "vs_s1a_alone": "Bit-identical. Category pre-filter selects the same papers MiniLM would rank highly.",
+      "interpretation": "All pipeline architectures converge to MiniLM standalone. The pre-filter does not help because MiniLM already ranks category-relevant papers at the top."
+    },
+    "why_fusion_fails": [
+      "Strategies value different quality dimensions (semantic precision vs keyword precision vs community connectivity)",
+      "These dimensions are INCOMMENSURABLE -- there is no single number that correctly weighs 'semantically similar' against 'uses the same keywords'",
+      "RRF/weighted fusion forces a single ranking, which necessarily compromises one dimension for another",
+      "The complementarity is real (Jaccard 0.179, 9 unique recoveries) but must be surfaced as PARALLEL VIEWS, not collapsed into one ranking"
+    ]
+  },
+
+  "configuration_sensitivity": {
+    "top_k": {
+      "finding": "Smooth tradeoff, no elbow",
+      "k_10": {"s1a_mrr": 0.430, "s1a_coverage": 0.417},
+      "k_20": {"s1a_mrr": 0.438, "s1a_coverage": 0.700},
+      "k_50": {"s1a_mrr": 0.440, "s1a_coverage": 0.800},
+      "k_100": {"s1a_mrr": 0.440, "s1a_coverage": 0.833},
+      "k_200": {"s1a_mrr": 0.440, "s1a_coverage": 0.833},
+      "recommendation": "K=20 default (good precision-coverage tradeoff). K=100+ for exploration mode.",
+      "note": "MRR saturates by K=50. Coverage saturates by K=100. Increasing K beyond 100 adds only noise."
+    },
+    "quantization": {
+      "finding": "float16 is free lunch. int8 is model-dependent.",
+      "minilm_float16": {
+        "mrr_delta_pct": 0.0,
+        "storage_savings_pct": 50,
+        "max_abs_error": 9.57e-05,
+        "recommendation": "USE. Zero quality loss, 50% storage savings."
+      },
+      "minilm_int8": {
+        "mrr_delta_pct": -2.1,
+        "storage_savings_pct": 75,
+        "top20_overlap_with_float32": 12,
+        "recommendation": "USABLE for MiniLM (< 5% threshold). 40% top-20 change is tolerable given overall quality."
+      },
+      "specter2_float16": {
+        "mrr_delta_pct": 0.0,
+        "storage_savings_pct": 50,
+        "recommendation": "USE. Zero quality loss."
+      },
+      "specter2_int8": {
+        "storage_savings_pct": 75,
+        "recommendation": "DO NOT USE. Score compression (0.009 spread) means int8 quantization errors (0.006 max error) are 67% of the signal. Ranking becomes pure noise."
+      }
+    },
+    "feature_input": {
+      "finding": "Abstract is load-bearing. Title-only collapses quality.",
+      "minilm_title_mrr_loss_pct": 74,
+      "specter2_title_mrr_loss_pct": 77,
+      "recommendation": "Always use title+abstract. Title-only is not a viable cost-saving measure."
+    }
+  },
+
+  "context_sensitivity": {
+    "cold_start": {
+      "finding": "MiniLM works from 1 seed. TF-IDF needs 5+.",
+      "s1a": {
+        "seeds_1": {"coverage": 0.366, "seed_proximity": 0.675, "interpretation": "Functional but sparse. 37% coverage is above the useful threshold."},
+        "seeds_3": {"coverage": 0.567, "seed_proximity": 0.726, "interpretation": "Good. Coverage jumps 55% from 1 to 3 seeds."},
+        "seeds_5": {"coverage": 0.686, "seed_proximity": 0.753, "interpretation": "Near-saturated. This is the recommended minimum."},
+        "seeds_10": {"coverage": 0.687, "seed_proximity": 0.767, "interpretation": "Saturated. Marginal improvement over 5."},
+        "seeds_15": {"coverage": 0.686, "seed_proximity": 0.773, "interpretation": "No improvement over 5-10."},
+        "minimum_viable": 1,
+        "recommended": 5,
+        "saturated": 10
+      },
+      "s1d": {
+        "seeds_1": {"coverage": 0.165, "seed_proximity": 0.588, "interpretation": "Poor. Single seed provides too little vocabulary signal."},
+        "seeds_3": {"coverage": 0.215, "seed_proximity": 0.643, "interpretation": "Marginal improvement."},
+        "seeds_5": {"coverage": 0.253, "seed_proximity": 0.678, "interpretation": "Functional but still below MiniLM's 1-seed performance."},
+        "seeds_10": {"coverage": 0.278, "seed_proximity": 0.706, "interpretation": "Continuing improvement. TF-IDF does not saturate as quickly."},
+        "seeds_15": {"coverage": 0.209, "seed_proximity": 0.713, "interpretation": "Coverage drops -- possible overfitting to seed vocabulary."},
+        "minimum_viable": 5,
+        "recommended": 10,
+        "peak": "5-10 seeds"
+      }
+    },
+    "breadth": {
+      "finding": "MiniLM improves with breadth. TF-IDF degrades.",
+      "s1a": {
+        "narrow": {"mrr": 0.327, "coverage": 0.667},
+        "medium": {"mrr": 0.406, "coverage": 0.695},
+        "broad": {"mrr": 0.500, "coverage": 0.683},
+        "narrow_to_broad_mrr_change_pct": 52.9,
+        "interpretation": "MiniLM benefits from broad interests. Broader seed sets give better centroid estimation."
+      },
+      "s1d": {
+        "narrow": {"mrr": 0.079, "coverage": 0.239},
+        "medium": {"mrr": 0.112, "coverage": 0.246},
+        "broad": {"mrr": 0.117, "coverage": 0.233},
+        "narrow_to_broad_mrr_change_pct": -27.3,
+        "interpretation": "TF-IDF degrades with breadth. Broad interests dilute the keyword signal."
+      },
+      "key_insight": "The optimal strategy depends on interest vocabulary overlap with adjacent topics, not on intrinsic strategy quality."
+    },
+    "scale": {
+      "finding": "MiniLM robust. TF-IDF collapses.",
+      "note": "Scale tests used synthetic corpus duplication, which preserves vocabulary but not diversity. Real scale effects may differ.",
+      "s1a_19k_mrr": 0.398,
+      "s1a_50k_mrr": 0.368,
+      "s1a_scale_degradation_pct": -7.5,
+      "s1d_19k_mrr": 0.104,
+      "s1d_50k_mrr": 0.048,
+      "s1d_scale_degradation_pct": -53.8,
+      "interpretation": "TF-IDF's vocabulary discrimination weakens as corpus size grows. Semantic embeddings are scale-insensitive because they operate in a fixed-dimension space."
+    }
+  },
+
+  "installer_recommendations": {
+    "architecture": "Parallel views -- each strategy as a labeled perspective, not fused ranking",
+    "architecture_rationale": "Fusion degrades quality (best combo MRR 0.310 vs S1a alone 0.398). Strategies ARE complementary (Jaccard 0.179, 9 unique recoveries) but their quality dimensions are incommensurable. Present each as a named view: 'Similar papers', 'Keyword matches', 'Related communities'.",
+    "primary_view": {
+      "strategy": "S1a",
+      "label": "Similar papers (semantic)",
+      "why": "Highest MRR (0.398), highest coverage (0.686), context-robust (works from 1 seed, improves with breadth, scale-insensitive)"
+    },
+    "secondary_views": [
+      {
+        "strategy": "S1d",
+        "label": "Keyword matches",
+        "why": "Best held-out recovery (5/15), widest score spread (0.072), competitive on medium-breadth topics. Provides papers MiniLM misses.",
+        "caveat": "Degrades at scale (>10K papers) and with broad interests. Best for small-to-medium corpora."
+      },
+      {
+        "strategy": "S1c",
+        "label": "Related communities",
+        "why": "Unique cross-community discovery signal. Surfaces field infrastructure and emerging research directions that neither MiniLM nor TF-IDF find.",
+        "caveat": "Cannot rank standalone (score compression). Must be presented as an unranked set or ranked by a secondary signal."
+      }
+    ],
+    "by_context": {
+      "cold_start_1_seed": {
+        "recommended": "S1a only",
+        "why": "Only strategy functional at 1 seed (coverage 0.366). TF-IDF coverage at 1 seed is 0.165."
+      },
+      "cold_start_5_seeds": {
+        "recommended": "S1a primary + S1d secondary",
+        "why": "TF-IDF becomes viable (coverage 0.253) and adds unique held-out recoveries."
+      },
+      "narrow_interest": {
+        "recommended": "S1a + S1d",
+        "why": "MiniLM excels on distinctive vocabulary (MRR 0.327). TF-IDF adds keyword precision for adjacent-topic discrimination."
+      },
+      "broad_interest": {
+        "recommended": "S1a primary",
+        "why": "MiniLM improves with breadth (+52% MRR). TF-IDF degrades (-27%). At broad interests, TF-IDF adds diminishing value."
+      },
+      "small_corpus_under_5k": {
+        "recommended": "S1a + S1d",
+        "why": "TF-IDF is more competitive at small scale (less vocabulary dilution). Both strategies viable."
+      },
+      "large_corpus_over_10k": {
+        "recommended": "S1a primary",
+        "why": "TF-IDF collapses at scale (-54% MRR at 50K). MiniLM is robust (-7.5%)."
+      },
+      "discovery_mode": {
+        "recommended": "S1a + S1c + S1d (all views)",
+        "why": "Maximum coverage across quality dimensions. User browsing for serendipitous finds benefits from all perspectives."
+      }
+    },
+    "defaults": {
+      "embedding_model": "all-MiniLM-L6-v2 (384-dim)",
+      "top_k": 20,
+      "storage_format": "float16",
+      "search_format": "float32",
+      "minimum_seeds": 3,
+      "recommended_seeds": 5,
+      "negative_signals": "Do NOT implement in v1. No evidence of benefit; risk of degrading small profiles."
+    },
+    "resource_requirements": {
+      "miniLM_embeddings": {
+        "storage_mb": 14.1,
+        "compute_gpu_s": 33,
+        "compute_cpu_s": 684,
+        "note": "float16 storage, one-time for 19K papers. GPU recommended, CPU viable (11 minutes)."
+      },
+      "specter2_embeddings": {
+        "storage_mb": 28.3,
+        "compute_gpu_s": 463,
+        "note": "Optional, for cross-community discovery view. GPU strongly recommended (CPU would take hours)."
+      },
+      "tfidf_matrix": {
+        "memory_mb": 18,
+        "build_time_s": 2.2,
+        "note": "Rebuilt on startup from corpus text, not persisted."
+      }
+    }
+  }
+}

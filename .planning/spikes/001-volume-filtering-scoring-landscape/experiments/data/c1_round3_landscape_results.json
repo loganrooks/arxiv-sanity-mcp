@@ -1,0 +1,227 @@
+{
+  "R10_leave_one_out": {
+    "summary": {
+      "embedding_minilm": {
+        "recall_at_k": {
+          "20": 0.07,
+          "50": 0.15,
+          "100": 0.305,
+          "500": 0.58
+        },
+        "median_rank": 303,
+        "mean_rank": 910.9,
+        "n_evaluations": 200
+      },
+      "keyword_tfidf": {
+        "recall_at_k": {
+          "20": 0.045,
+          "50": 0.14,
+          "100": 0.255,
+          "500": 0.49
+        },
+        "median_rank": 554,
+        "mean_rank": 1737.6,
+        "n_evaluations": 200
+      },
+      "svm": {
+        "recall_at_k": {
+          "20": 0.04,
+          "50": 0.15,
+          "100": 0.245,
+          "500": 0.605
+        },
+        "median_rank": 337,
+        "mean_rank": 1244.1,
+        "n_evaluations": 200
+      },
+      "bibcoupling": {
+        "recall_at_k": {
+          "20": 1.0,
+          "50": 1.0,
+          "100": 1.0,
+          "500": 1.0
+        },
+        "median_rank": 1,
+        "mean_rank": 1.0,
+        "n_evaluations": 15
+      }
+    }
+  },
+  "R12_seed_sensitivity": [
+    {
+      "cluster": 32,
+      "cluster_size": 773,
+      "n_seeds": 1,
+      "emb_mrr": 0.0041,
+      "tfidf_mrr": 0.0058,
+      "svm_mrr": 0.0051
+    },
+    {
+      "cluster": 32,
+      "cluster_size": 773,
+      "n_seeds": 2,
+      "emb_mrr": 0.0034,
+      "tfidf_mrr": 0.0051,
+      "svm_mrr": 0.0047
+    },
+    {
+      "cluster": 32,
+      "cluster_size": 773,
+      "n_seeds": 3,
+      "emb_mrr": 0.0026,
+      "tfidf_mrr": 0.0031,
+      "svm_mrr": 0.0031
+    },
+    {
+      "cluster": 32,
+      "cluster_size": 773,
+      "n_seeds": 5,
+      "emb_mrr": 0.0029,
+      "tfidf_mrr": 0.0025,
+      "svm_mrr": 0.0024
+    },
+    {
+      "cluster": 32,
+      "cluster_size": 773,
+      "n_seeds": 10,
+      "emb_mrr": 0.0031,
+      "tfidf_mrr": 0.0026,
+      "svm_mrr": 0.0037
+    },
+    {
+      "cluster": 32,
+      "cluster_size": 773,
+      "n_seeds": 20,
+      "emb_mrr": 0.003,
+      "tfidf_mrr": 0.0023,
+      "svm_mrr": 0.0031
+    },
+    {
+      "cluster": 45,
+      "cluster_size": 649,
+      "n_seeds": 1,
+      "emb_mrr": 0.0029,
+      "tfidf_mrr": 0.0011,
+      "svm_mrr": 0.0006
+    },
+    {
+      "cluster": 45,
+      "cluster_size": 649,
+      "n_seeds": 2,
+      "emb_mrr": 0.0031,
+      "tfidf_mrr": 0.0012,
+      "svm_mrr": 0.0013
+    },
+    {
+      "cluster": 45,
+      "cluster_size": 649,
+      "n_seeds": 3,
+      "emb_mrr": 0.0031,
+      "tfidf_mrr": 0.0009,
+      "svm_mrr": 0.0011
+    },
+    {
+      "cluster": 45,
+      "cluster_size": 649,
+      "n_seeds": 5,
+      "emb_mrr": 0.0125,
+      "tfidf_mrr": 0.0024,
+      "svm_mrr": 0.0023
+    },
+    {
+      "cluster": 45,
+      "cluster_size": 649,
+      "n_seeds": 10,
+      "emb_mrr": 0.0241,
+      "tfidf_mrr": 0.0028,
+      "svm_mrr": 0.0035
+    },
+    {
+      "cluster": 45,
+      "cluster_size": 649,
+      "n_seeds": 20,
+      "emb_mrr": 0.0236,
+      "tfidf_mrr": 0.0039,
+      "svm_mrr": 0.005
+    },
+    {
+      "cluster": 19,
+      "cluster_size": 635,
+      "n_seeds": 1,
+      "emb_mrr": 0.0025,
+      "tfidf_mrr": 0.0035,
+      "svm_mrr": 0.0036
+    },
+    {
+      "cluster": 19,
+      "cluster_size": 635,
+      "n_seeds": 2,
+      "emb_mrr": 0.0034,
+      "tfidf_mrr": 0.0034,
+      "svm_mrr": 0.0039
+    },
+    {
+      "cluster": 19,
+      "cluster_size": 635,
+      "n_seeds": 3,
+      "emb_mrr": 0.0029,
+      "tfidf_mrr": 0.0029,
+      "svm_mrr": 0.003
+    },
+    {
+      "cluster": 19,
+      "cluster_size": 635,
+      "n_seeds": 5,
+      "emb_mrr": 0.0032,
+      "tfidf_mrr": 0.0029,
+      "svm_mrr": 0.0032
+    },
+    {
+      "cluster": 19,
+      "cluster_size": 635,
+      "n_seeds": 10,
+      "emb_mrr": 0.0034,
+      "tfidf_mrr": 0.0033,
+      "svm_mrr": 0.0039
+    },
+    {
+      "cluster": 19,
+      "cluster_size": 635,
+      "n_seeds": 20,
+      "emb_mrr": 0.0037,
+      "tfidf_mrr": 0.0033,
+      "svm_mrr": 0.0039
+    }
+  ],
+  "R14_marginal_value": [
+    {
+      "config": "embedding_only",
+      "mrr": 0.0202
+    },
+    {
+      "config": "+ keyword",
+      "mrr": 0.0153
+    },
+    {
+      "config": "+ category",
+      "mrr": 0.0126
+    },
+    {
+      "config": "+ citation",
+      "mrr": 0.0125
+    }
+  ],
+  "R15_specter2_profiles": {
+    "minilm_median_rank": 294,
+    "specter2_median_rank": 479,
+    "minilm_recall_at_100": 0.32,
+    "specter2_recall_at_100": 0.2267,
+    "head_to_head": {
+      "minilm_wins": 51,
+      "specter2_wins": 23,
+      "ties": 1
+    },
+    "n_evaluations": 75
+  },
+  "timestamp": "2026-03-19T03:37:10Z"
+}

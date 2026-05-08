@@ -1,0 +1,9 @@
+# Spike data — embeddings, results
+# Too large for git. Regenerate by running experiment scripts.
+*.npy
+*.db
+*.csv
+*.parquet
+*.pkl
+*.json
+!.gitignore
