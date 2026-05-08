@@ -5,16 +5,23 @@ status: standing — load-bearing for gsd-2-uplift work + cross-references harne
 audience: future-Logan, future-Claude (in fresh sessions, including post-extraction sessions in the new repo), subagents dispatched on uplift work
 parent_project: arxiv-sanity-mcp
 relates_to:
-  - .planning/gsd-2-uplift/INITIATIVE.md
-  - .planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md
-  - .planning/gsd-2-uplift/DECISION-SPACE.md
-  - .planning/deliberations/2026-04-28-framing-widening.md
-  - .planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md
+  - ~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md
+  - .planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md (DUPLICATE; this side)
+  - ~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md
+  - ~/workspace/projects/gsd-2-uplift/.planning/deliberations/2026-04-28-framing-widening.md
+  - .planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md (DUPLICATE; this side)
   - ~/workspace/projects/harness-studio/docs/vision/problem-statement.md
   - ~/workspace/projects/harness-studio/docs/handoff/current.md
   - ~/workspace/projects/harness-studio/docs/deliberations/2026-05-01-gsd-2-substrate-transfer-and-pressure-clarification.md
   - ~/workspace/projects/paddock/PARKED.md
-post_extraction_disposition: DUPLICATE — this artifact lives on both sides of the eventual extraction with bidirectional cross-references; both copies updated to point at the other (per trajectory plan §1.7 RELATIONSHIP-TO-PARENT pattern, applied recursively to this artifact)
+post_extraction_disposition: DUPLICATE — this artifact lives on both sides of the extraction with bidirectional cross-references; both copies updated to point at the other (per trajectory plan §1.7 RELATIONSHIP-TO-PARENT pattern, applied recursively to this artifact)
+sibling_copy: ~/workspace/projects/gsd-2-uplift/.planning/EXTERNAL-VISION-CONTEXT.md
+sync_discipline: |
+  This is the arxiv-sanity-mcp side of the DUPLICATE pair. Substantive edits should
+  land on both copies; verify pair-coherence by diffing against the sibling
+  (gsd-2-uplift/.planning/EXTERNAL-VISION-CONTEXT.md) before committing.
+extraction_log: .planning/extraction/EXTRACTION-LOG.md (§5)
+extraction_completed: 2026-05-08
 ---
 
 # External Vision Context — gsd-2-uplift's Relationship to harness-studio's Vision

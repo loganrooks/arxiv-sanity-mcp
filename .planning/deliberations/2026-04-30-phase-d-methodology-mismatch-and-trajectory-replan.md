@@ -4,13 +4,13 @@ date: 2026-04-30
 session: post-Phase-D-build mid-arc — frame-revision arc + methodology-mismatch finding + (V'.a) trajectory-replan disposition
 status: deliberation complete; (V'.a) trajectory-replan disposed by Logan 2026-04-30 /effort xhigh; pending execution per §4 steps 1-5
 ground: |
-  - `.planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md` — trajectory plan to be revised under (V'.a)
-  - `.planning/gsd-2-uplift/wave-2/decision-trace/EXECUTION-LOG.md` — Phase D evidence corpus (now marked interim)
-  - `.planning/gsd-2-uplift/wave-2/decision-trace/MINI-SPEC.md` — Phase D contract under single-target-spike framing (superseded by replan)
-  - `.planning/gsd-2-uplift/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` — paired audit-arc that fired Phase D entry but did not surface methodology-mismatch
+  - `~/workspace/projects/gsd-2-uplift/.planning/trajectory/cheerful-forging-galaxy.md` — trajectory plan to be revised under (V'.a) (now historical post-extraction)
+  - `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/EXECUTION-LOG.md` — Phase D evidence corpus (now marked interim)
+  - `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/MINI-SPEC.md` — Phase D contract under single-target-spike framing (superseded by replan)
+  - `~/workspace/projects/gsd-2-uplift/.planning/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` — paired audit-arc that fired Phase D entry but did not surface methodology-mismatch
   - `.planning/spikes/METHODOLOGY.md` — spike methodology identified as scope-mismatched for mapping-question
-  - `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` — test-case-vs-substrate framing standing context
-  - DECISION-SPACE.md §1.8 R2-base assumption (1) on extension-surface accommodation — load-bearing for what Phase D was supposed to test
+  - `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` — test-case-vs-substrate framing standing context (DUPLICATE; this side)
+  - DECISION-SPACE.md §1.8 R2-base assumption (1) on extension-surface accommodation — load-bearing for what Phase D was supposed to test (DECISION-SPACE.md MOVED to gsd-2-uplift; pointer-stub at `.planning/gsd-2-uplift/DECISION-SPACE.md`)
 purpose: |
   Records the deliberation arc from Phase D mid-arc build commit (`c0465a4` arxiv-
   sanity-mcp + `23b1ddc89` gsd-2-explore) through to the methodology-mismatch
@@ -32,6 +32,15 @@ read_order: |
   - For "substantive findings": §3.
   - For "calibration findings (substrate-shape evidence)": §5.
   - For "where each claim might be wrong": "Where this could be wrong" subsections distributed throughout.
+post_extraction_disposition: DUPLICATE — this deliberation lives on both sides of the extraction with bidirectional cross-references (per 2026-05-08 extraction plan §3.1.2)
+sibling_copy: ~/workspace/projects/gsd-2-uplift/.planning/deliberations/2026-04-30-phase-d-methodology-mismatch-and-trajectory-replan.md
+sync_discipline: |
+  This is the arxiv-sanity-mcp side of the DUPLICATE pair. Records both arxiv-sanity-mcp's
+  session-dynamic (5 frame-revisions, Logan corrections, calibration findings about
+  substrate behavior) AND substrate-shape content (methodology-mismatch finding +
+  (V'.a) disposition). Substantive edits should land on both copies.
+extraction_log: .planning/extraction/EXTRACTION-LOG.md (§5)
+extraction_completed: 2026-05-08
 ---
 
 # Phase D mid-arc deliberation — methodology-mismatch + (V'.a) trajectory-replan

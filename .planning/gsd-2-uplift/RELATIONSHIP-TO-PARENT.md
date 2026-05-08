@@ -4,8 +4,19 @@ date: 2026-04-29
 status: standing — load-bearing for sessions touching gsd-2-uplift work or arxiv-sanity-mcp's diagnostic role
 audience: future-Logan, future-Claude (in fresh sessions, including post-extraction sessions in the new repo), subagents dispatched on uplift work
 parent_project: arxiv-sanity-mcp
-relates_to: .planning/gsd-2-uplift/INITIATIVE.md, .planning/deliberations/2026-04-28-framing-widening.md, .planning/spikes/METHODOLOGY.md, .planning/gsd-2-uplift/trajectory/cheerful-forging-galaxy.md (§0.3)
+relates_to: |
+  ~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md,
+  ~/workspace/projects/gsd-2-uplift/.planning/deliberations/2026-04-28-framing-widening.md,
+  .planning/spikes/METHODOLOGY.md,
+  ~/workspace/projects/gsd-2-uplift/.planning/trajectory/cheerful-forging-galaxy.md (§0.3, historical)
 post_extraction_disposition: DUPLICATE — this artifact lives on both sides of the extraction with bidirectional cross-references; both copies updated to point at the other (per trajectory plan §1.7 artifact-by-artifact disposition table)
+sibling_copy: ~/workspace/projects/gsd-2-uplift/.planning/RELATIONSHIP-TO-PARENT.md
+sync_discipline: |
+  This is the arxiv-sanity-mcp side of the DUPLICATE pair. Substantive edits should
+  land on both copies; verify pair-coherence by diffing against the sibling
+  (gsd-2-uplift/.planning/RELATIONSHIP-TO-PARENT.md) before committing.
+extraction_log: .planning/extraction/EXTRACTION-LOG.md (§5)
+extraction_completed: 2026-05-08
 ---
 
 # arxiv-sanity-mcp ↔ gsd-2-uplift: The Test-Case-vs-Substrate Relationship

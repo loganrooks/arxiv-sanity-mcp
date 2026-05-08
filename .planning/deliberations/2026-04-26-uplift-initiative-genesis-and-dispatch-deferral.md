@@ -5,7 +5,7 @@ session: post-Wave-5-disposition; cross-vendor dispatch deferral; gsd-2 uplift i
 participants: Logan Rooks (disposition), Claude Opus 4.7 (proposing/reflecting)
 status: complete
 predecessor_handoff: .planning/handoffs/2026-04-26-post-wave-5-disposition-handoff.md
-sibling_distillation: .planning/gsd-2-uplift/DECISION-SPACE.md
+sibling_distillation: ~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md
 artifacts_referenced: |
   - .planning/audits/2026-04-26-wave-5-exemplar-harvest.md (§10 — Wave 5 dispositions; §11 — uplift soft note; precursor)
   - .planning/audits/2026-04-26-wave-5-paired-audit-package/ (dispatch package; archived during deferral)
@@ -162,7 +162,7 @@ This invoked a discipline Claude had been carrying through the session but apply
 - The δ pointer-note as currently planned implied a list mechanism; should be softened to "tracking mechanism TBD."
 - α should be framed as transitional for current Claude Code runtime, not as durable shape.
 
-**Outstanding meta-question raised.** "The biggest unresolved question: does the gsd-2 uplift initiative warrant a dedicated scoping artifact now, even if just a stub at `.planning/gsd-2-uplift/SCOPE.md` with the goal-as-articulated and an explicit 'framing not yet worked'?"
+**Outstanding meta-question raised.** "The biggest unresolved question: does the gsd-2 uplift initiative warrant a dedicated scoping artifact now, even if just a stub at `~/workspace/projects/gsd-2-uplift/.planning/SCOPE.md` with the goal-as-articulated and an explicit 'framing not yet worked'?"
 
 ## §5. Phase 5 — initiative scoping question
 
@@ -182,7 +182,7 @@ This expanded the scope of the initiative substantially:
 2. Future sessions needed an anchor more central than scattered audit pointers.
 3. Closure-pressure mitigation argument cuts the right way: the right shape is exploration-staging (open questions + first-wave plan), not worked-out scoping (pre-canned framings).
 
-**Proposed shape.** `.planning/gsd-2-uplift/INITIATIVE.md` (~80-120 lines) + 5-slice parallel-Explore exploration plan at `.planning/gsd-2-uplift/exploration/` with first-wave prompts.
+**Proposed shape.** `~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md` (~80-120 lines) + 5-slice parallel-Explore exploration plan at `~/workspace/projects/gsd-2-uplift/.planning/exploration/` with first-wave prompts.
 
 **Slicing proposed.** 5 slices: (1) mental model + mission; (2) artifact set + lifecycle; (3) workflow surface; (4) extension + migration; (5) long-horizon-relevant features + gaps. Each ~150-300 lines structured summary with calibrated-language register.
 
@@ -334,11 +334,11 @@ Logan also asked: "we also need a few other docs right? Like the initialization 
 
 **Claude's expanded structure.**
 
-Distillation named: **DECISION-SPACE.md** at `.planning/gsd-2-uplift/DECISION-SPACE.md`. Naming choice: "decision-space" mirrored Logan's phrase; "decisions" risked confusion with gsd-2's append-only ADR register; "register" felt too formal.
+Distillation named: **DECISION-SPACE.md** at `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md`. Naming choice: "decision-space" mirrored Logan's phrase; "decisions" risked confusion with gsd-2's append-only ADR register; "register" felt too formal.
 
 Structure: §1 decisions reached (with full reasoning + assumptions + change-conditions); §2 recommendations not yet decisions; §3 open questions deferred; §4 methodological observations; §5 cross-references.
 
-Other docs needed: deliberation log, DECISION-SPACE, INITIATIVE.md (revised position: write now, not at exploration-dispatch — the thoroughness emphasis + DECISION-SPACE-as-foundation justified earlier creation), `.planning/gsd-2-uplift/README.md` (or fold into INITIATIVE.md), harvest forward-references, deferral records, Wave 5 commits 1-3, post-Wave-5-execution handoff (optional), explorer prompts (paired with first-wave dispatch).
+Other docs needed: deliberation log, DECISION-SPACE, INITIATIVE.md (revised position: write now, not at exploration-dispatch — the thoroughness emphasis + DECISION-SPACE-as-foundation justified earlier creation), `~/workspace/projects/gsd-2-uplift/.planning/README.md` (or fold into INITIATIVE.md), harvest forward-references, deferral records, Wave 5 commits 1-3, post-Wave-5-execution handoff (optional), explorer prompts (paired with first-wave dispatch).
 
 What might be forgotten: AGENTS.md awareness of new artifact patterns (defer until 2-3 logs land); CLAUDE.md awareness of DECISION-SPACE.md (STATE.md pending-todo sufficient discoverability); goal-articulation re-validation mechanism (open question, deferred); stress-testing the deliberation log itself (review checkpoint at commit time); INDEX.md format consistency (read first); harvest forward-reference scope (brief is better); archival behavior for dispatch package; AGENTS.md/CLAUDE.md cross-referencing initiative artifacts (no — same logic as Q5 from earlier).
 
@@ -418,10 +418,10 @@ Confidence assessment was honest: most leanings at medium / medium-high; not pre
 - Predecessor deliberation on recording-deliberations-extensively (the policy this log instantiates): `.planning/deliberations/2026-04-25-recording-deliberations-extensively.md`
 
 **Sibling distillation:**
-- `.planning/gsd-2-uplift/DECISION-SPACE.md` — the load-bearing reference for decisions and recommendation-space mapping; references this log for dynamics
+- `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md` — the load-bearing reference for decisions and recommendation-space mapping; references this log for dynamics
 
 **Forthcoming (Stage 1 commit 2 onward):**
-- `.planning/gsd-2-uplift/INITIATIVE.md` — initiative-staging artifact
+- `~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md` — initiative-staging artifact
 - Deferral commit: harvest §10.9 minimal addendum, §11 minimal stub, dispatch package archival
 - Wave 5 commits 1-3: AGENTS.md, CLAUDE.md, STATE.md
 - Optional post-Wave-5-execution handoff
