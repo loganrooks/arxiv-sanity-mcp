@@ -15,6 +15,5 @@ This deliberation migrated to the dedicated `gsd-2-uplift` repo on 2026-05-08 as
 
 **Why moved:** W2 audit dispositions for the uplift first-wave + synthesis-readiness disposition. Substantively about uplift work.
 
-**Test-case-vs-substrate framing:** see `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (DUPLICATE).
 
 **Extraction record:** `.planning/extraction/EXTRACTION-LOG.md` (§3.2).

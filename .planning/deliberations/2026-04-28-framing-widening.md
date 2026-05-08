@@ -15,6 +15,5 @@ This deliberation migrated to the dedicated `gsd-2-uplift` repo on 2026-05-08 as
 
 **Why moved:** The operating-frame for uplift work — R1-R5 framing-widenings + six-context vocabulary + four-act vocabulary. The session was about widening uplift's scope-frame; substantively uplift-substantive.
 
-**Test-case-vs-substrate framing:** see `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (DUPLICATE).
 
 **Extraction record:** `.planning/extraction/EXTRACTION-LOG.md` (§3.2).

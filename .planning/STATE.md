@@ -4,9 +4,9 @@ milestone: v0.2
 milestone_name: multi-lens-substrate
 status: planning
 post_milestone_state: v0.2-active-planning
-stopped_at: 'v0.2 multi-lens substrate active milestone (Phases 12-17 authored). Phase 12 plan-1 authoring is the next active work, not yet started. Implementation was on hold pre-extraction pending gsd-2 uplift first-wave findings; under corrected framing (connection-by-question, not co-location; 2026-05-08), substrate-shape work happens in dedicated repo at ~/workspace/projects/gsd-2-uplift/ and is no longer a gating dependency for arxiv-sanity-mcp v0.2 implementation. Phase 12 plan-1 authoring is unblocked. v0.1 historical (shipped 2026-03-14; 31/31 plans; 13 MCP tools + 4 resources + 3 prompts; pytest collection ~493 tests).'
+stopped_at: 'v0.2 multi-lens substrate active milestone (Phases 12-17 authored). Phase 12 plan-1 authoring is the next active work, not yet started. v0.1 historical (shipped 2026-03-14; 31/31 plans; 13 MCP tools + 4 resources + 3 prompts; pytest collection ~493 tests).'
 last_updated: "2026-05-08T00:00:00Z"
-last_activity: '2026-05-08 — gsd-2-uplift initiative extracted to dedicated repo at ~/workspace/projects/gsd-2-uplift/. arxiv-sanity-mcp planning tree cleaned of uplift artifacts. Pointer-stubs at moved-from paths preserve trail-of-references (17 stubs across .planning/gsd-2-uplift/, deliberations/, handoffs/, audits/, research/). RELATIONSHIP-TO-PARENT.md, EXTERNAL-VISION-CONTEXT.md, and 2026-04-30 phase-d-methodology-mismatch deliberation DUPLICATEd (both repos hold a copy with bidirectional cross-references). Substrate-evidence channel preserved via cross-repo references; arxiv-sanity-mcp v0.2 implementation work unblocked. Cross-repo identity ledger at .planning/extraction/EXTRACTION-LOG.md.'
+last_activity: '2026-05-08 — Planning tree cleanup; v0.2 implementation work resumes with Phase 12 plan-1 authoring as next active work.'
 progress:
   total_phases: 11
   completed_phases: 11
@@ -22,12 +22,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-08)
 
 **Core value:** Researchers and agents can discover, monitor, and triage arXiv papers through explicit, steerable interest modeling with inspectable results.
-**Current focus:** v0.2 (multi-lens substrate) is the active milestone. Phases 12-17 are planned; Phase 12 plan-1 authoring is the next active work, unblocked post-2026-05-08 extraction of the gsd-2-uplift initiative to its own repo. v0.1 is complete and frozen.
+**Current focus:** v0.2 (multi-lens substrate) is the active milestone. Phases 12-17 are planned; Phase 12 plan-1 authoring is the next active work. v0.1 is complete and frozen.
 
 ## Current Position
 
 Milestone: `v0.2` active (planning phase)
-Implementation roadmap: Phases 12-17 authored. Phase 12 plan-1 authoring is the next active work — unblocked post-2026-05-08 extraction (gsd-2 uplift no longer a gating dependency under connection-by-question framing; see `~/workspace/projects/gsd-2-uplift/`).
+Implementation roadmap: Phases 12-17 authored. Phase 12 plan-1 authoring is the next active work.
 Active work: not yet started; pending Phase 12 plan-1 authoring.
 Last implementation activity: 2026-03-14 -- Phase 10 Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
 
@@ -197,12 +197,11 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-- **Phase 12 plan-1 authoring** — UNBLOCKED post-2026-05-08 extraction (gsd-2-uplift initiative migrated to its own repo at `~/workspace/projects/gsd-2-uplift/`; substrate-shape work no longer a gating dependency under connection-by-question framing). Sequencing per LONG-ARC.md.
-- Stage 1 audit findings (deferred quality + minor) — §A decision-table compression of §1.2 bifurcation; "Logan's framing" parenthetical in §4.5; §3 prefix vs §5.1 deliverables-vs-informing tension; R2-base contingency phrasing in INITIATIVE.md §2; "load-bearing" overuse + confidence-distribution tilt; cancellation procedure / re-articulation date / attention-budget vs v0.2. Address opportunistically; not blocking. (The Stage 1 audit-* artifacts MOVEd to gsd-2-uplift; substantive findings about uplift content live there. The remaining items here are arxiv-sanity-mcp-side concerns the audit also surfaced — e.g., INITIATIVE.md §2 phrasing predates the move.)
-- Q1/Q4/Q16 Logan validation (foundation-audit closures from Phase 04.1 / Quick Task 1; tracker in §"Pending Validations" below; orthogonal to uplift work).
+- **Phase 12 plan-1 authoring** — next active work. Sequencing per LONG-ARC.md.
+- Q1/Q4/Q16 Logan validation (foundation-audit closures from Phase 04.1 / Quick Task 1; tracker in §"Pending Validations" below).
 - Codification of session-disciplines (closure-pressure recurrence; comfort-language; performative-vs-operational openness; non-exhaustive-listings; push-for-assumptions; skill-heuristic shallow-match; strict-M1 undersell at recommendation stage) in METHODOLOGY.md or AGENTS.md — threshold reached at 3 deliberation logs (2026-04-25 + 2026-04-26 + 2026-04-27); codification candidate ready for evaluation when next opportunity warrants.
 - Two INDEX.md verification items addressed via PROJECT.md refresh (2026-04-26): local-gap-propagation reframed as GSDR-signal-system-scoped (not primary active reference); spike-epistemic-rigor symlink note added.
-- Orchestrator-audit (`~/workspace/projects/arxiv-sanity-mcp/.planning/audits/2026-05-01-orchestrator-audit/`) surfaced arxiv-sanity-mcp-side findings that are SEPARATE from extraction scope: broken doctrine path references; agential-setup gaps in harness configuration; missing project `.mcp.json`; missing PostgreSQL/SQLite MCP. Address as separate cleanup task or fold into v0.2 implementation.
+- Orchestrator-audit (`.planning/audits/2026-05-01-orchestrator-audit/`) surfaced arxiv-sanity-mcp-side findings to action: broken doctrine path references; agential-setup gaps in harness configuration; missing project `.mcp.json`; missing PostgreSQL/SQLite MCP. Address as separate cleanup task or fold into v0.2 implementation.
 
 ### Roadmap Evolution
 
@@ -238,6 +237,5 @@ Recent decisions affecting current work:
 
 ## Session Continuity
 
-Last session: 2026-05-08 — gsd-2-uplift extraction completed. v0.2 implementation resumes.
+Last session: 2026-05-08 — planning tree cleanup. v0.2 implementation resumes.
 Resume file: `.planning/ROADMAP.md` (Phase 12 entry); `.planning/REQUIREMENTS.md`; `.planning/LONG-ARC.md` (sequencing).
-Cross-references (substrate-evidence channels post-extraction): `~/workspace/projects/gsd-2-uplift/.planning/STATE.md` (uplift-side current position); `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (DUPLICATE; test-case-vs-substrate framing); `.planning/extraction/EXTRACTION-LOG.md` (cross-repo identity ledger).

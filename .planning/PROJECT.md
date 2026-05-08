@@ -12,7 +12,7 @@ Researchers and agents can discover, monitor, and triage arXiv papers through ex
 
 `v0.1` shipped 2026-03-14 and is frozen as a completed milestone.
 
-`v0.2` (multi-lens substrate) is the **active milestone**, committed via [ADR-0005](../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md) on 2026-04-25. Phase plans for Phases 12-17 are authored. Phase 12 plan-1 authoring is the next active work, unblocked post-2026-05-08 extraction of the gsd-2-uplift initiative to its own repo (substrate-shape work no longer a gating dependency under connection-by-question framing; see `~/workspace/projects/gsd-2-uplift/`). The 2026-04-25/26 plan-revision and governance-audit cycles produced Wave 1 (uncontested fixes), Wave 3 (B-tier doctrine-adjacent edits), Wave 4 (governance-doc currency refresh), and Wave 5 (exemplar AGENTS/CLAUDE harvest) commits.
+`v0.2` (multi-lens substrate) is the **active milestone**, committed via [ADR-0005](../docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md) on 2026-04-25. Phase plans for Phases 12-17 are authored. Phase 12 plan-1 authoring is the next active work. The 2026-04-25/26 plan-revision and governance-audit cycles produced Wave 1 (uncontested fixes), Wave 3 (B-tier doctrine-adjacent edits), Wave 4 (governance-doc currency refresh), and Wave 5 (exemplar AGENTS/CLAUDE harvest) commits.
 
 Primary active references:
 
@@ -130,7 +130,7 @@ Stack A (metadata + lexical + graph) → Stack B (+ selective local semantic). B
 | arXiv as initial corpus | Core use case, manageable scope | In effect; 126 papers ingested for v0.2 spike work; broader corpora not added |
 | OpenAlex as primary enrichment | Best open data, free API, rich graph | Accepted; sole external enrichment source in v0.1; Semantic Scholar adapter deferred to v0.3 |
 | Multiple content backends behind one interface | Docling, Marker, GROBID all have strengths | Partial; ContentAdapter protocol shipped with MarkerAdapter; Docling/GROBID adapters deferred |
-| v0.2 ships multi-lens substrate (ADR-0005) | ADR-0001 honored in implementation; lens abstraction validated by shipping a second lens (citation/community); profile primitive generalized to bundle-of-signals | Accepted 2026-04-25; v0.2 phases 12-17 authored; Phase 12 plan-1 authoring unblocked post-2026-05-08 extraction |
+| v0.2 ships multi-lens substrate (ADR-0005) | ADR-0001 honored in implementation; lens abstraction validated by shipping a second lens (citation/community); profile primitive generalized to bundle-of-signals | Accepted 2026-04-25; v0.2 phases 12-17 authored; Phase 12 plan-1 authoring is next |
 
 ---
 *Last updated: 2026-04-26 — full refresh after Wave-3 + Wave-4 plan-revision and governance-doc audit cycles. Prior currency was 2026-04-25 (immediately after ADR-0005); body had not been refreshed to reflect the v0.2 commitment until this pass. Triggered by governance-comparison §5 joint blind spot acknowledgment that PROJECT.md was not in either Wave-2 audit's scope.*

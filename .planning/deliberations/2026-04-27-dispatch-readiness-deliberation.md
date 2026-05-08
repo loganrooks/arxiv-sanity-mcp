@@ -15,6 +15,5 @@ This deliberation migrated to the dedicated `gsd-2-uplift` repo on 2026-05-08 as
 
 **Why moved:** Substantively about uplift first-wave dispatch-readiness; produced decisions B1-B6 (DECISION-SPACE.md §1.11-§1.16). Migrates with the gsd-2-uplift initiative.
 
-**Test-case-vs-substrate framing:** see `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (DUPLICATE).
 
 **Extraction record:** `.planning/extraction/EXTRACTION-LOG.md` (§3.2).

@@ -9,7 +9,7 @@ ground: |
   - `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/MINI-SPEC.md` — Phase D contract under single-target-spike framing (superseded by replan)
   - `~/workspace/projects/gsd-2-uplift/.planning/audits/2026-04-30-phase-d-entry-audit/DISPOSITION.md` — paired audit-arc that fired Phase D entry but did not surface methodology-mismatch
   - `.planning/spikes/METHODOLOGY.md` — spike methodology identified as scope-mismatched for mapping-question
-  - `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` — test-case-vs-substrate framing standing context (DUPLICATE; this side)
+  - `~/workspace/projects/gsd-2-uplift/.planning/RELATIONSHIP-TO-PARENT.md` — test-case-vs-substrate framing standing context
   - DECISION-SPACE.md §1.8 R2-base assumption (1) on extension-surface accommodation — load-bearing for what Phase D was supposed to test (DECISION-SPACE.md MOVED to gsd-2-uplift; pointer-stub at `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md`)
 purpose: |
   Records the deliberation arc from Phase D mid-arc build commit (`c0465a4` arxiv-
@@ -393,7 +393,7 @@ Implication: substrate-design must support maximum-discipline configuration + st
 - `~/workspace/projects/gsd-2-uplift/.planning/wave-2/decision-trace/TRAIL-2026-04-25-multi-lens-redirection.md` (subagent invocation evidence)
 
 **Standing context:**
-- `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` §1 (test-case-vs-substrate framing)
+- `~/workspace/projects/gsd-2-uplift/.planning/RELATIONSHIP-TO-PARENT.md` §1 (test-case-vs-substrate framing)
 - `~/workspace/projects/gsd-2-uplift/.planning/INITIATIVE.md` §1-§3 (uplift goal articulation + open framing questions)
 - `~/workspace/projects/gsd-2-uplift/.planning/DECISION-SPACE.md` §1.8 (R2-base assumption (1) on extension-surface accommodation)
 - `.planning/deliberations/2026-04-28-framing-widening.md` §1-§3 (R1-R5 design space + six-context plurality + project-anchoring)

@@ -15,6 +15,5 @@ This deliberation migrated to the dedicated `gsd-2-uplift` repo on 2026-05-08 as
 
 **Why moved:** Comparison-drafting decisions DC0-DC4 for paired-synthesis comparison (SYNTHESIS-COMPARISON.md authoring). Uplift-substantive.
 
-**Test-case-vs-substrate framing:** see `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (DUPLICATE).
 
 **Extraction record:** `.planning/extraction/EXTRACTION-LOG.md` (§3.2).

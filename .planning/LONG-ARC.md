@@ -100,7 +100,7 @@ These are directions current planning must preserve. They are not immediate scop
 - **Cite this file** when phase sequencing, architectural seams, or rewrite-trigger decisions materially interact with long-arc posture.
 - **Preserve future seams** without padding the current phase into a later one. Lens-extensibility, bundle-of-signals primitive, longitudinal state — these stay open even when not active.
 - **Record explicit non-actions** when the correct move is to defer rather than silently decide. Add to "Explicit non-decisions" above.
-- **Run an ADR-against-current-work audit at each deliberation boundary.** The 005-008 drift was invisible from inside the spike program; periodic explicit audit is the counter-posture. *Operational-hook status: pending. The audit cadence, ownership, and artifact format are tracked as substrate-design candidates in the gsd-2-uplift initiative (cited by reference at `~/workspace/projects/gsd-2-uplift/`); arxiv-sanity-mcp's discipline remains self-imposed at deliberation boundaries; no specific cadence is committed.*
+- **Run an ADR-against-current-work audit at each deliberation boundary.** The 005-008 drift was invisible from inside the spike program; periodic explicit audit is the counter-posture. *Operational-hook status: pending. The discipline is self-imposed at deliberation boundaries; no specific cadence is committed.*
 - **Watch for anti-patterns.** Name them when they appear; do not let them ride.
 - **Escalate to VISION.md** only when the question is product identity or eventual platform shape, not planning doctrine.
 

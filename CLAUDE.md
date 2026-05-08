@@ -33,7 +33,6 @@ Read the listed document before editing or proposing changes that match the trig
 - **Proposing rights-affecting changes** (license, redistribution, content storage) → `docs/adrs/ADR-0003`.
 - **Proposing changes to enrichment cost or scheduling** → `docs/adrs/ADR-0002`.
 - **Proposing changes to the spike program structure or methodology** → `.planning/spikes/METHODOLOGY.md`, `LONG-ARC.md` (doctrine-interaction-with-spike-program).
-- **Reasoning about whether arxiv-sanity-mcp's spike-program / foundation-audit / deliberation outputs constitute substrate-behavior evidence (vs. project-specific decisions)** → `.planning/gsd-2-uplift/RELATIONSHIP-TO-PARENT.md` (DUPLICATE artifact; standing context for the diagnostic loop. Substrate-shape work itself happens at `~/workspace/projects/gsd-2-uplift/`; arxiv-sanity-mcp's role is test-case anchor + substrate-evidence channel.)
 
 ## Status Markers
 
