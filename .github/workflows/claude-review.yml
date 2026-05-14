@@ -16,8 +16,8 @@ jobs:
     with:
       enabled_modes: '["review","quick","deep","audit"]'
       review_focus_paths: |
-        mcp_server.py
-        tools/*.py
+        src/arxiv_mcp/mcp/server.py
+        src/arxiv_mcp/mcp/tools/*.py
       agents_md_path: AGENTS.md
       repo_label: arxiv-sanity-mcp
     secrets:
