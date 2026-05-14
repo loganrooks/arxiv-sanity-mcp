@@ -18,7 +18,6 @@ jobs:
       review_focus_paths: |
         mcp_server.py
         tools/*.py
-      extra_allowed_tools: 'Bash(ruff:*),Bash(mypy:*)'
       agents_md_path: AGENTS.md
       repo_label: arxiv-sanity-mcp
     secrets:
