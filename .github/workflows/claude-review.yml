@@ -1,0 +1,25 @@
+name: Claude Review
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  review:
+    uses: loganrooks/agentic-ops/.github/workflows/review.yml@v1
+    with:
+      enabled_modes: '["review","quick","deep","audit"]'
+      review_focus_paths: |
+        mcp_server.py
+        tools/*.py
+      extra_allowed_tools: 'Bash(ruff:*),Bash(mypy:*)'
+      agents_md_path: AGENTS.md
+      repo_label: arxiv-sanity-mcp
+    secrets:
+      claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
