@@ -1,6 +1,6 @@
 # Reconcile-first plan — arxiv-sanity-mcp (2026-05-29)
 
-**Status: task specs + verification plans — AWAITING APPROVAL (no tracked-file edits or commits performed).**
+**Status: EXECUTED 2026-05-29. R1–R5 + R6 (branch cleanup) committed on `reconcile/state-drift-2026-05-29` → PR #3; `spike/001` deleted; `pull-1` parked (revisit before next publish/tag). Follow-up triage of PR #3 reviewer findings applied F1 (ADR paths), F2 (`.mcp.json` un-ignored), F3 (this status). This file is a historical record of the executed reconcile, NOT a pending approval gate.**
 Re-entry option chosen: **Reconcile-first (light)** (PROMPT §3, late-orchestration = MIXED ⇒ Clean-resume not standalone-eligible).
 Companion: ground-truth in `arxiv-sanity-mcp-state-2026-05-29.md` (drift IDs D1–D7 referenced below).
 
