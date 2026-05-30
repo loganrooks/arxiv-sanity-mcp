@@ -1,0 +1,25 @@
+{
+  "_comment": "EXAMPLE per-plan completion contract. Copy to active-contract.json (drop the .example) to arm the Stop hook for a run; delete it when the run ends. The Stop hook only reads active-contract.json, so this .example file is inert.",
+  "unit": "12-01",
+  "deliverables": [
+    {"id": "tests-green", "check": "uv run pytest -> exit 0, 0 failures, 0 errors", "required": true},
+    {"id": "v0.1-tests-unmodified", "check": "git diff --name-only base..HEAD -- tests/ shows no edits to pre-existing v0.1 test files", "required": true},
+    {"id": "lens-protocol", "check": "Lens protocol + scorer registry exist in interest/; existing semantic scorers registered as the first lens", "required": true},
+    {"id": "dispatcher", "check": "ProfileRankingService dispatches by lens name; v0.1 single-pipeline behavior preserved by default", "required": true},
+    {"id": "additive-result", "check": "SearchResult/ProfileSearchResult carry additive optional lens_scores + per_lens_explanations; legacy score/ranking_explanation unchanged", "required": true},
+    {"id": "regression-tests", "check": "new tests assert v0.1 behavior is preserved through the dispatcher", "required": false}
+  ],
+  "honest_failure_buckets": ["done", "blocked_external", "halt_for_human", "deferred_with_seam"],
+  "hard_constraints": [
+    "do NOT rewrite the v0.1 ranking core (ADR-0001 coexistence: generalize the profile primitive, don't replace)",
+    "fusion is never the default; per-lens results are a dict, not an averaged value",
+    "the 'semantic' lens label does NOT imply dense embeddings — TF-IDF/lexical carries forward",
+    "no merge to main without human approval"
+  ],
+  "halt_conditions": [
+    "any irreversible/outward-facing action (merge, tag, publish, v0.3, cross-repo)",
+    "ambiguity in the lens-abstraction shape that needs a design decision"
+  ],
+  "retry_ceiling": 2,
+  "markers_dir": ".planning/autonomy/markers/"
+}
