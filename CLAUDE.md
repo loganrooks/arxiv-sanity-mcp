@@ -27,11 +27,11 @@ An MCP-native research discovery substrate inspired by arxiv-sanity. The goal is
 
 Read the listed document before editing or proposing changes that match the trigger. (Current Claude Code runtime placement; the routing-by-trigger shape itself is durable across runtimes, but specific load-points are reviewable when surfaces change.)
 
-- **Touching ranking, retrieval, or lens-architecture code** → `.planning/LONG-ARC.md` (anti-patterns), `docs/adrs/ADR-0001`, `docs/adrs/ADR-0005`.
+- **Touching ranking, retrieval, or lens-architecture code** → `.planning/LONG-ARC.md` (anti-patterns), `docs/adrs/ADR-0001-exploration-first.md`, `docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md`.
 - **Adding a new abstraction or signal type** → `.planning/LONG-ARC.md` (protected seams), `.planning/VISION.md` (anti-vision section).
-- **Touching MCP tool, resource, or prompt surfaces** → `docs/adrs/ADR-0004`, `.planning/LONG-ARC.md` (MCP-native operations).
-- **Proposing rights-affecting changes** (license, redistribution, content storage) → `docs/adrs/ADR-0003`.
-- **Proposing changes to enrichment cost or scheduling** → `docs/adrs/ADR-0002`.
+- **Touching MCP tool, resource, or prompt surfaces** → `docs/adrs/ADR-0004-mcp-as-workflow-substrate.md`, `.planning/LONG-ARC.md` (MCP-native operations).
+- **Proposing rights-affecting changes** (license, redistribution, content storage) → `docs/adrs/ADR-0003-license-and-provenance-first.md`.
+- **Proposing changes to enrichment cost or scheduling** → `docs/adrs/ADR-0002-metadata-first-lazy-enrichment.md`.
 - **Proposing changes to the spike program structure or methodology** → `.planning/spikes/METHODOLOGY.md`, `.planning/LONG-ARC.md` (doctrine-interaction-with-spike-program).
 
 ## Status Markers
@@ -45,14 +45,14 @@ Use these labels when proposing changes:
 ## Document Structure
 
 - `AGENTS.md` — Agent behavior rules and working posture
-- `docs/01-11` — Numbered design documents (read in order)
+- `docs/` — Numbered design documents (`01-project-vision.md` … `11-sources.md`, read in order)
 - `docs/adrs/` — Architecture Decision Records
 - `docs/templates/` — ADR and experiment templates
 - `.planning/` — GSD project management (STATE.md, ROADMAP.md, REQUIREMENTS.md, phases/)
 - `.planning/foundation-audit/` — Epistemic audit findings and methodology
 - `.planning/ECOSYSTEM-COMMENTARY.md` — Cross-project analysis (arxiv-scan ↔ MCP)
 
-When proposing changes: new durable decisions → ADR; new experiments → `docs/08`; new unresolved issues → `docs/10`; new external patterns → `docs/04`.
+When proposing changes: new durable decisions → ADR; new experiments → `docs/08-evaluation-and-experiments.md`; new unresolved issues → `docs/10-open-questions.md`; new external patterns → `docs/04-reference-designs.md`.
 
 ## Governance Read-Order Map
 
