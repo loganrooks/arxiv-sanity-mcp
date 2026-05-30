@@ -59,3 +59,6 @@ vendor/
 coverage/
 .cache/
 tmp/
+
+# Project MCP config is intentionally tracked (planned shared .mcp.json; env-var refs only, no inline secrets)
+!.mcp.json
