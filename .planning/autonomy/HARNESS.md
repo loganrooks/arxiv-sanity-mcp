@@ -15,6 +15,8 @@ Purpose: make autonomous/looped Claude Code work *structurally* safe, not honor-
 
 This closes the single proven-by-incident gap (a CLAUDE.md ban does not stop execution; only a hook does). It fires regardless of permission/bypass mode.
 
+**Known limitation (found live, required-before-full-autonomy):** the matcher is **substring-based, not command-position-aware**. A banned pattern quoted *inside* a non-executing argument — e.g. a `git commit -m "…blocks rm -rf…"` message, an `echo`, or a `grep` pattern — is a **false-positive block**. It errs safe (over-blocks, never under-blocks), so it's harmless for correctness, but for an autonomous loop it would fire constantly (commit messages routinely describe resets/removals). Fix before enabling full autonomy: match the banned verb only at a *command position* (string start, or after `;`/`&&`/`||`/`|`/`(`/`` ` ``/`$(`/`-c "`), not anywhere in the string. Until then: keep commit messages free of literal banned strings (write "recursive-force removal", not the literal command).
+
 ## 2. `Stop` completion-contract hook — BUILT, NOT ENABLED ⏸
 
 - **Live path (when enabled):** `.claude/hooks/stop-contract.js` · **reference:** `.planning/autonomy/hooks/stop-contract.js`
