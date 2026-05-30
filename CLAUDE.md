@@ -27,12 +27,12 @@ An MCP-native research discovery substrate inspired by arxiv-sanity. The goal is
 
 Read the listed document before editing or proposing changes that match the trigger. (Current Claude Code runtime placement; the routing-by-trigger shape itself is durable across runtimes, but specific load-points are reviewable when surfaces change.)
 
-- **Touching ranking, retrieval, or lens-architecture code** → `LONG-ARC.md` (anti-patterns), `docs/adrs/ADR-0001`, `docs/adrs/ADR-0005`.
-- **Adding a new abstraction or signal type** → `LONG-ARC.md` (protected seams), `VISION.md` (anti-vision section).
-- **Touching MCP tool, resource, or prompt surfaces** → `docs/adrs/ADR-0004`, `LONG-ARC.md` (MCP-native operations).
+- **Touching ranking, retrieval, or lens-architecture code** → `.planning/LONG-ARC.md` (anti-patterns), `docs/adrs/ADR-0001`, `docs/adrs/ADR-0005`.
+- **Adding a new abstraction or signal type** → `.planning/LONG-ARC.md` (protected seams), `.planning/VISION.md` (anti-vision section).
+- **Touching MCP tool, resource, or prompt surfaces** → `docs/adrs/ADR-0004`, `.planning/LONG-ARC.md` (MCP-native operations).
 - **Proposing rights-affecting changes** (license, redistribution, content storage) → `docs/adrs/ADR-0003`.
 - **Proposing changes to enrichment cost or scheduling** → `docs/adrs/ADR-0002`.
-- **Proposing changes to the spike program structure or methodology** → `.planning/spikes/METHODOLOGY.md`, `LONG-ARC.md` (doctrine-interaction-with-spike-program).
+- **Proposing changes to the spike program structure or methodology** → `.planning/spikes/METHODOLOGY.md`, `.planning/LONG-ARC.md` (doctrine-interaction-with-spike-program).
 
 ## Status Markers
 
@@ -56,7 +56,7 @@ When proposing changes: new durable decisions → ADR; new experiments → `docs
 
 ## Governance Read-Order Map
 
-**New contributor:** `PROJECT.md` → `VISION.md` → `LONG-ARC.md` → `docs/adrs/` (ADRs 0001-0005) → `AGENTS.md` → `.planning/ROADMAP.md` → `.planning/REQUIREMENTS.md` → `.planning/STATE.md`
+**New contributor:** `.planning/PROJECT.md` → `.planning/VISION.md` → `.planning/LONG-ARC.md` → `docs/adrs/` (ADRs 0001-0005) → `AGENTS.md` → `.planning/ROADMAP.md` → `.planning/REQUIREMENTS.md` → `.planning/STATE.md`
 
 **Agent starting a session:** This file → `.planning/STATE.md` → relevant phase plan → `AGENTS.md` (if work touches agent-conduct issues)
 
