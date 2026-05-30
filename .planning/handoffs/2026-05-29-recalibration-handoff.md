@@ -2,8 +2,8 @@
 type: session-handoff
 date: 2026-05-29
 status: post-recalibration-reconcile
-head_at_write: 9186c8a
-branch: reconcile/state-drift-2026-05-29
+reconcile_base: 9186c8a   # pre-reconcile parent — do NOT reset here; the reconcile this handoff describes landed via PR #3 (squash) onto main
+branch: reconcile/state-drift-2026-05-29 (merged via PR #3; deleted post-merge — read main, not this branch)
 supersedes_for_coldstart: "2026-04-28 W1/W2 handoffs (pointer-stubs → gsd-2-uplift repo)"
 ---
 
@@ -36,4 +36,4 @@ supersedes_for_coldstart: "2026-04-28 W1/W2 handoffs (pointer-stubs → gsd-2-up
 - **Pending validations Q1/Q4/Q16** (foundation-audit) still await Logan's sign-off (tracked in STATE.md "Pending Validations").
 
 ## To resume Phase 12 plan-1 (doctrine load-points)
-Per CLAUDE.md: ranking/retrieval/lens code → `.planning/LONG-ARC.md` (anti-patterns) + `docs/adrs/ADR-0001` + `docs/adrs/ADR-0005`; new abstraction/signal type → `.planning/LONG-ARC.md` (protected seams) + `.planning/VISION.md` (anti-vision). **STOP-rules:** don't rewrite the v0.1 ranking core (ADR-0001 lens *coexistence* — generalize, don't replace); fusion is never the default; **all v0.1 tests must pass unmodified.**
+Per CLAUDE.md: ranking/retrieval/lens code → `.planning/LONG-ARC.md` (anti-patterns) + `docs/adrs/ADR-0001-exploration-first.md` + `docs/adrs/ADR-0005-multi-lens-v0.2-substrate.md`; new abstraction/signal type → `.planning/LONG-ARC.md` (protected seams) + `.planning/VISION.md` (anti-vision). **STOP-rules:** don't rewrite the v0.1 ranking core (ADR-0001 lens *coexistence* — generalize, don't replace); fusion is never the default; **all v0.1 tests must pass unmodified.**
