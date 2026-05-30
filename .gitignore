@@ -37,3 +37,28 @@ htmlcov/
 # Claude Code local tooling (GSD framework, hooks, agents)
 .claude/
 .planning/measurement/session-meta-postlude/session-meta-postlude.jsonl
+# Machine-local skill lockfile (per-user skill pins, not a project artifact)
+skills-lock.json
+
+# ── GSD baseline (auto-generated) ──
+.gsd
+.gsd-id
+.mcp.json
+.bg-shell/
+*~
+*.code-workspace
+.env.*
+!.env.example
+node_modules/
+.next/
+*.pyc
+venv/
+target/
+vendor/
+*.log
+coverage/
+.cache/
+tmp/
+
+# Project MCP config is intentionally tracked (planned shared .mcp.json; env-var refs only, no inline secrets)
+!.mcp.json

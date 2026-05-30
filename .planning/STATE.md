@@ -5,8 +5,8 @@ milestone_name: multi-lens-substrate
 status: planning
 post_milestone_state: v0.2-active-planning
 stopped_at: 'v0.2 multi-lens substrate active milestone (Phases 12-17 authored). Phase 12 plan-1 authoring is the next active work, not yet started. v0.1 historical (shipped 2026-03-14; 31/31 plans; 13 MCP tools + 4 resources + 3 prompts; pytest collection ~493 tests).'
-last_updated: "2026-05-08T00:00:00Z"
-last_activity: '2026-05-08 — Planning tree cleanup; v0.2 implementation work resumes with Phase 12 plan-1 authoring as next active work.'
+last_updated: "2026-05-29T00:00:00Z"
+last_activity: '2026-05-29 — Recalibration + light reconcile. Reconciled STATE to post-spike/001-merge reality: merge dd1a34b (2026-05-08, 224 commits / 11 workstreams — planning+governance+audit consolidation, 0 feature code) + PyPI rename 9186c8a. Suite re-verified GREEN (493 collected, 480 passed / 2 skipped / 11 deselected). Next active work: Phase 12 plan-1 authoring (not started).'
 progress:
   total_phases: 11
   completed_phases: 11
@@ -29,7 +29,8 @@ See: .planning/PROJECT.md (updated 2026-03-08)
 Milestone: `v0.2` active (planning phase)
 Implementation roadmap: Phases 12-17 authored. Phase 12 plan-1 authoring is the next active work.
 Active work: not yet started; pending Phase 12 plan-1 authoring.
-Last implementation activity: 2026-03-14 -- Phase 10 Plan 03 complete. 3 critical fixes (B-01, F-05, F-07), README corrected, friction report finalized with all 15 items resolved.
+Last feature implementation: 2026-03-14 -- Phase 10 Plan 03 complete (3 critical fixes B-01/F-05/F-07, README corrected, friction report finalized, all 15 items resolved).
+Activity since (non-feature): 2026-05-08 spike/001-volume-filtering branch-debt payoff merge (dd1a34b — planning/governance/audit consolidation, 0 src/test/migration changes) + PyPI distribution rename (9186c8a). No v0.2 feature code yet.
 
 Progress: [██████████] 100% (31/31 plans) — v0.1 historical; v0.2 plans not yet tracked here
 
@@ -237,5 +238,5 @@ Recent decisions affecting current work:
 
 ## Session Continuity
 
-Last session: 2026-05-08 — planning tree cleanup. v0.2 implementation resumes.
-Resume file: `.planning/ROADMAP.md` (Phase 12 entry); `.planning/REQUIREMENTS.md`; `.planning/LONG-ARC.md` (sequencing).
+Last session: 2026-05-29 — recalibration + light reconcile (see `.planning/recalibration/arxiv-sanity-mcp-state-2026-05-29.md` for ground truth; `.planning/handoffs/2026-05-29-recalibration-handoff.md` for resume context). v0.2 implementation ready to resume.
+Resume file: START at `.planning/handoffs/2026-05-29-recalibration-handoff.md` (NOT the 2026-04-28 W1/W2 pointer-stubs — those redirect to the gsd-2-uplift repo). Then `.planning/ROADMAP.md` (Phase 12 entry); `.planning/REQUIREMENTS.md`; `.planning/LONG-ARC.md` (sequencing).
