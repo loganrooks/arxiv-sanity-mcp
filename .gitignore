@@ -36,7 +36,9 @@ htmlcov/
 
 # Claude Code local tooling (GSD framework, hooks, agents)
 .claude/
-.planning/measurement/session-meta-postlude/session-meta-postlude.jsonl
+# Internal GSD planning tree — extracted to private repo `arxiv-sanity-mcp-planning` (2026-06-19);
+# excluded from the public product repo going forward. History remains in prior commits.
+.planning/
 # Machine-local skill lockfile (per-user skill pins, not a project artifact)
 skills-lock.json
 

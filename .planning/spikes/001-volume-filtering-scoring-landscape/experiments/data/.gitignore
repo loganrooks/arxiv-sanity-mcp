@@ -1,8 +1,0 @@
-# Spike data — harvested papers, enrichment results, processed datasets
-# Too large for git. Regenerate by running experiment scripts.
-*.db
-*.csv
-*.parquet
-*.pkl
-*.json
-!.gitignore

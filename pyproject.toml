@@ -10,7 +10,6 @@ keywords = ["arxiv", "mcp", "research", "discovery", "papers", "academic", "mode
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Information Analysis",
@@ -48,6 +47,14 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/arxiv_mcp"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    ".planning/",
+    ".github/",
+    "CLAUDE.md",
+    "AGENTS.md",
+]
 
 [dependency-groups]
 dev = [

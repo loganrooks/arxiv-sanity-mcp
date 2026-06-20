@@ -1,10 +1,12 @@
-# arXiv Discovery MCP
+# arXiv Sanity MCP
+
+> **Package:** `arxiv-sanity-mcp` · **CLI:** `arxiv-mcp`
 
 MCP server for arXiv paper discovery, triage, and monitoring with inspectable ranking.
 
 ## What This Is
 
-arXiv Discovery MCP is a research discovery substrate inspired by [arxiv-sanity](https://arxiv-sanity-lite.com/). It helps researchers and AI agents discover, triage, and monitor arXiv papers through the [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) -- exposing tools, resources, and prompts that integrate directly into Claude Desktop, Claude Code, or any MCP-compatible client.
+arXiv Sanity MCP is a research discovery substrate inspired by [arxiv-sanity](https://arxiv-sanity-lite.com/). It helps researchers and AI agents discover, triage, and monitor arXiv papers through the [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) -- exposing tools, resources, and prompts that integrate directly into Claude Desktop, Claude Code, or any MCP-compatible client.
 
 Unlike "chat with papers" wrappers, this system provides explicit interest modeling, inspectable ranking explanations, and structured workflow state. You build an interest profile from seed papers, followed authors, and saved queries. The system uses that profile to rank search results, surface new papers, and explain why each result scored the way it did.
 
@@ -64,6 +66,8 @@ All MCP capabilities are mirrored in a full CLI (`arxiv-mcp`) for terminal workf
 
 ## Installation
 
+> **v0.1.0 installs from source.** It is not yet published to PyPI — clone the repo and `pip install -e .` as below. Database migrations are run from the cloned `alembic/` tree (see [Database Setup](#database-setup)). PyPI distribution with packaged migrations is planned for a later release.
+
 ```bash
 git clone https://github.com/loganrooks/arxiv-sanity-mcp.git
 cd arxiv-sanity-mcp
@@ -117,7 +121,7 @@ Once installed and the database is set up, try these commands:
 arxiv-mcp harvest fetch 2301.00001
 
 # Search for papers
-arxiv-mcp search query "attention mechanism"
+arxiv-mcp search query -q "attention mechanism"
 
 # Browse recent papers in a category
 arxiv-mcp search browse --category cs.AI
@@ -204,6 +208,7 @@ Architectural documentation is in the [`docs/`](docs/) directory:
 - **ADR-0002** -- Metadata-first, lazy enrichment
 - **ADR-0003** -- License and provenance first
 - **ADR-0004** -- MCP as workflow substrate
+- **ADR-0005** -- Multi-lens substrate for v0.2
 
 See [`docs/adrs/`](docs/adrs/) for full details.
 

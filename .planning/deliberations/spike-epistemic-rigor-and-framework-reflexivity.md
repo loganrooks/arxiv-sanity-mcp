@@ -1,1 +1,0 @@
-/home/rookslog/workspace/projects/get-shit-done-reflect/.planning/deliberations/spike-epistemic-rigor-and-framework-reflexivity.md
