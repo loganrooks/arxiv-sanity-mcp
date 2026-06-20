@@ -162,7 +162,7 @@ The landscape suggests three major product patterns:
 3. **Open data substrates**  
    OpenAlex, Semantic Scholar, Crossref, OpenCitations
 
-A strong arXiv Discovery MCP should probably combine all three layers:
+A strong arXiv Sanity MCP should probably combine all three layers:
 
 - substrate quality,
 - workflow support,
